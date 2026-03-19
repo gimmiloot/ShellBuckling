@@ -1,0 +1,11 @@
+# Local Python environment
+.venv/
+
+# Python cache
+__pycache__/
+
+# VS Code workspace settings
+.vscode/
+
+# Generated outputs
+output/

@@ -1,6 +1,6 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """
-mixed_weak_boundary_matrix_test_v2_updated.py
+boundary_matrix_targeted_scan.py
 
 Boundary-matrix testbench v2 for the new mixed weak criterion.
 
@@ -27,18 +27,12 @@ The purpose is to localize where the new information is lost if B_mix still coll
 from __future__ import annotations
 
 from dataclasses import dataclass
-from pathlib import Path
 from typing import Any, Sequence
 import inspect
 
 import numpy as np
 
-THIS_DIR = Path(__file__).resolve().parent
-import sys
-if str(THIS_DIR) not in sys.path:
-    sys.path.insert(0, str(THIS_DIR))
-
-import mixed_weak_solver_v1_simple_support as mw
+from shell_buckling.mixed_weak import solver_patched_core as mw
 
 try:
     import matplotlib.pyplot as plt
@@ -56,33 +50,23 @@ PRINT_CENTER_DIAGNOSTICS = False
 SHOW_SAMPLE_MATRICES = False
 BASELINE_VERBOSE = False
 
-RUN_BASELINE_SCAN = True
-RUN_RESOLUTION_STUDY = True
-RESOLUTION_CASES = [(6, 120), (8, 180), (10, 240)]
-RESOLUTION_WINDOWS = {
-    13: (2.8, 4.2),
-    14: (4.0, 5.4),
-}
-RESOLUTION_NPTS = 17
+RUN_BASELINE_SCAN = False
+RUN_RESOLUTION_STUDY = False
+RUN_FINE_SCAN = False
+RUN_ADAPTIVE_SCAN = False
 
-RUN_FINE_SCAN = True
-FINE_SCAN_CASES = [(10, 240), (12, 300)]
-FINE_SCAN_WINDOWS = {13: (3.85, 4.05), 14: (4.18, 4.32)}
-FINE_SCAN_NPTS = 21
-
-RUN_ADAPTIVE_SCAN = True
-ADAPTIVE_SCAN_CASES = [(12, 300), (14, 360)]
-ADAPTIVE_SCAN_WINDOWS = {13: (3.72, 3.94), 14: (4.28, 4.42)}
-ADAPTIVE_SCAN_NPTS = 25
-ADAPTIVE_SCAN_MAX_ITERS = 4
-ADAPTIVE_EDGE_PAD = 1
-PLOT_LINEAR_FULL_RANGE = True
-PLOT_LOG_FULL_RANGE = False
-
-# broader production scan used for current search
+# quiet targeted production scan used for current search
 BASELINE_P_MAX_MPA = 8.0
 BASELINE_P_NPTS = 33
 BASELINE_MODES = list(range(10, 19))
+PLOT_LINEAR_FULL_RANGE = False
+PLOT_LOG_FULL_RANGE = False
+
+TARGETED_CASES = [(16, 420), (18, 480)]
+TARGETED_WINDOWS0 = {13: (3.785, 3.815), 14: (4.265, 4.285)}
+TARGETED_NPTS = 41
+TARGETED_MAX_ITERS = 2
+TARGETED_EDGE_PAD = 1
 
 ROW_SCALE = np.array([1.0, 1.0, 1.0, 2.0 * (1.0 + mw.nu), mw.C_twist], dtype=float)
 
@@ -428,7 +412,7 @@ def _channel_alias(channels: dict[str, np.ndarray], *names: str) -> np.ndarray |
 def build_local_Bmix_from_channels(ch1: dict[str, np.ndarray], ch2: dict[str, np.ndarray], j: int):
     row_specs = [
         ('u_n', ('u_n',)),
-        ('M_s', ('M_s', 'Ms')),
+        ('phi', ('phi', 'varphi')),
         ('T_s', ('T_s', 'Ts')),
         ('S', ('S',)),
         ('H', ('H',)),
@@ -566,7 +550,7 @@ def print_local_Bmix_diagnostics(tag: str, x_grid: np.ndarray, ch1: dict[str, np
         print(f"      available rows {labels} with norms =", np.array2string(rn, precision=3, suppress_small=False))
         if len(labels) == 5:
             rn_bal = np.linalg.norm(balanced_Bmix(B_any), axis=1)
-            print("      balanced row norms [u_n, M_s, T_s, gamma_sθ, kappa_sθ] =",
+            print("      balanced row norms [u_n, phi, T_s, gamma_sОё, kappa_sОё] =",
                   np.array2string(rn_bal, precision=3, suppress_small=False))
         if missing:
             print(f"      missing rows = {missing}")
@@ -577,7 +561,7 @@ def print_boundary_matrix(obj: BoundaryMatrixObjectsV2) -> None:
     print("\nB_mix =")
     with np.printoptions(precision=6, suppress=True):
         print(obj.B_mix)
-    print("row labels: [u_n(1), M_s(1), T_s(1), S(1), H(1)]")
+    print("row labels: [u_n(1), phi(1), T_s(1), S(1), H(1)]")
     row_norms = np.linalg.norm(obj.B_mix, axis=1)
     col_norms = np.linalg.norm(obj.B_mix, axis=0)
     print("row norms =", row_norms)
@@ -591,7 +575,7 @@ def print_boundary_matrix(obj: BoundaryMatrixObjectsV2) -> None:
     print("\nB_mix_balanced =")
     with np.printoptions(precision=6, suppress=True):
         print(B_bal)
-    print("balanced row labels: [u_n(1), M_s(1), T_s(1), gamma_sθ(1), kappa_sθ(1)]")
+    print("balanced row labels: [u_n(1), phi(1), T_s(1), gamma_sОё(1), kappa_sОё(1)]")
     print("balanced row norms =", np.linalg.norm(B_bal, axis=1))
     print("balanced col norms =", np.linalg.norm(B_bal, axis=0))
     s_bal = np.linalg.svd(B_bal, compute_uv=False)
@@ -968,97 +952,57 @@ def run_adaptive_scan(x0: float = 1.0e-3, baseline_p_grid: np.ndarray | None = N
 
 
 
+def run_targeted_local_scan(x0: float = 1.0e-3, baseline_p_grid: np.ndarray | None = None, baseline_sols: Sequence | None = None) -> None:
+    print("\n=== Ultra-fine targeted scan for leading candidates ===")
+    print(f"windows0 = {TARGETED_WINDOWS0}, npts = {TARGETED_NPTS}, max_iters = {TARGETED_MAX_ITERS}")
+    for m_basis, n_collocation in TARGETED_CASES:
+        print(f"\n--- targeted case: m_basis={m_basis}, n_collocation={n_collocation} ---")
+        for n in sorted(TARGETED_WINDOWS0.keys()):
+            p_lo, p_hi = TARGETED_WINDOWS0[n]
+            for it in range(TARGETED_MAX_ITERS):
+                p_grid = np.linspace(float(p_lo), float(p_hi), int(TARGETED_NPTS))
+                print(f"iter={it} | n={n} | window [{p_lo:.3f}, {p_hi:.3f}] MPa")
+                if baseline_p_grid is not None and baseline_sols is not None:
+                    _, sols = solve_axisymmetric_window_seeded(
+                        p_grid, baseline_p_grid=np.asarray(baseline_p_grid, dtype=float), baseline_sols=baseline_sols,
+                        nd_bvp=1400, x0=x0, tol=1.0e-4, max_nodes=150000
+                    )
+                else:
+                    _, sols = mw.solve_axisymmetric_fmin_continuation(
+                        p_grid, nd_bvp=1400, x0=x0, tol=1.0e-4, max_nodes=150000, verbose=False
+                    )
+                _sigs, objs = scan_p_for_n_boundary_matrix_v2(
+                    p_grid, sols, n=n, x0=x0, m_basis=m_basis, n_collocation=n_collocation, verbose=False
+                )
+                metrics = extract_metrics_from_objects(objs)
+                (new_lo, new_hi), status, i_best = shift_window_if_edge_hit(p_grid, metrics['sigma_bal'], edge_pad=TARGETED_EDGE_PAD)
+                print_adaptive_scan_row(n, p_grid, metrics, note=f"best_idx={i_best}, status={status}")
+                if status == 'interior':
+                    break
+                p_lo, p_hi = new_lo, new_hi
+
+
+
 # -----------------------------------------------------------------------------
 # Main
 # -----------------------------------------------------------------------------
 def main() -> None:
     p_grid = np.linspace(0.0, BASELINE_P_MAX_MPA, BASELINE_P_NPTS)
-    modes = list(BASELINE_MODES)
     x0 = 1.0e-3
-    m_basis = 6
-    n_collocation = 120
 
-    metrics_by_n: dict[str, dict[int, np.ndarray]] = {
-        'sigma_raw': {},
-        'sigma_raw_noH': {},
-        'sigma_bal': {},
-        'sigma_bal_noH': {},
-    }
-    objs_by_n: dict[int, dict[int, BoundaryMatrixObjectsV2]] = {}
+    # Build a quiet baseline axisymmetric family only to seed local windows robustly.
+    _, sols = mw.solve_axisymmetric_fmin_continuation(
+        p_grid,
+        nd_bvp=1400,
+        x0=x0,
+        tol=1.0e-4,
+        max_nodes=150000,
+        verbose=BASELINE_VERBOSE,
+    )
 
-    if RUN_BASELINE_SCAN:
-        print(f"=== Axisymmetric continuation for F_min background (0..{p_grid[-1]:.1f} MPa) ===")
-        _, sols = mw.solve_axisymmetric_fmin_continuation(
-            p_grid,
-            nd_bvp=1400,
-            x0=x0,
-            tol=1.0e-4,
-            max_nodes=150000,
-            verbose=BASELINE_VERBOSE,
-        )
-
-        sig_by_n: dict[int, np.ndarray] = {}
-        sample_obj = None
-        for n in modes:
-            print(f"\n=== Boundary-matrix sigma scan for n={n} : mixed_weak_boundary_matrix_test_v2 ===")
-            sigs, objs = scan_p_for_n_boundary_matrix_v2(
-                p_grid, sols, n=n, x0=x0, m_basis=m_basis, n_collocation=n_collocation, verbose=BASELINE_VERBOSE
-            )
-            sig_by_n[n] = sigs
-            objs_by_n[n] = objs
-            if n == modes[0]:
-                sample_obj = objs[int(np.argmin(sigs))]
-
-            metrics = extract_metrics_from_objects(objs)
-            for key in metrics_by_n:
-                metrics_by_n[key][n] = metrics[key]
-
-        summarize_cross_mode(p_grid, sig_by_n, label="mixed_weak_boundary_matrix_test_v2")
-        summarize_cross_mode(p_grid, metrics_by_n['sigma_raw'], label="mixed_weak_boundary_matrix_test_v2 : raw")
-        summarize_cross_mode(p_grid, metrics_by_n['sigma_bal'], label="mixed_weak_boundary_matrix_test_v2 : balanced")
-        summarize_cross_mode(p_grid, metrics_by_n['sigma_bal_noH'], label="mixed_weak_boundary_matrix_test_v2 : balanced-noH")
-
-        if SHOW_SAMPLE_MATRICES and sample_obj is not None:
-            print(f"\n=== Sample B_mix for n={sample_obj.n}, p={sample_obj.p_mpa:.3f} MPa ===")
-            print_boundary_matrix(sample_obj)
-
-        best = find_global_best(metrics_by_n['sigma_bal'], objs_by_n)
-        if SHOW_SAMPLE_MATRICES and best is not None:
-            _, _, _, best_bal_obj = best
-            print(f"\n=== Sample B_mix_balanced global minimum at n={best_bal_obj.n}, p={best_bal_obj.p_mpa:.3f} MPa ===")
-            print_boundary_matrix(best_bal_obj)
-
-        if DEEP_DEBUG_VERBOSE:
-            for n, p_target in DEEP_DEBUG_TARGETS:
-                if n not in objs_by_n:
-                    continue
-                i = nearest_p_index(p_grid, p_target)
-                obj = objs_by_n[n][i]
-                print(f"\n=== Deep debug target requested at n={n}, p~{p_target:.3f} MPa; using grid point p={obj.p_mpa:.3f} MPa ===")
-                deep_debug_object(obj)
-
-        if plt is not None and PLOT_LINEAR_FULL_RANGE:
-            plot_full_range_linear_metrics(p_grid, metrics_by_n)
-
-        if plt is not None and PLOT_LOG_FULL_RANGE:
-            plt.figure(figsize=(8, 5))
-            for n, arr in sorted(metrics_by_n['sigma_bal'].items()):
-                plt.plot(p_grid, np.log(np.maximum(arr, 1.0e-300)), marker='o', ms=3, label=f'n={n}')
-            plt.xlabel('pressure p [MPa]')
-            plt.ylabel('log sigma_bal')
-            plt.title('mixed_weak_boundary_matrix_test_v2 : balanced criterion (log)')
-            plt.grid(True, alpha=0.3)
-            plt.legend()
-            plt.tight_layout()
-            plt.show()
-
-    if RUN_RESOLUTION_STUDY:
-        run_resolution_study(x0=x0, baseline_p_grid=p_grid if RUN_BASELINE_SCAN else None, baseline_sols=sols if RUN_BASELINE_SCAN else None)
-    if RUN_FINE_SCAN:
-        run_fine_scan(x0=x0, baseline_p_grid=p_grid if RUN_BASELINE_SCAN else None, baseline_sols=sols if RUN_BASELINE_SCAN else None)
-    if RUN_ADAPTIVE_SCAN:
-        run_adaptive_scan(x0=x0, baseline_p_grid=p_grid if RUN_BASELINE_SCAN else None, baseline_sols=sols if RUN_BASELINE_SCAN else None)
+    run_targeted_local_scan(x0=x0, baseline_p_grid=p_grid, baseline_sols=sols)
 
 
 if __name__ == '__main__':
     main()
+

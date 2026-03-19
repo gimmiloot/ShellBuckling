@@ -1,28 +1,28 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """
-mixed_weak_solver_v1.py
+solver_patched_core.py
 
-Первая тестовая версия solver-а для нового mixed weak criterion.
+РџРµСЂРІР°СЏ С‚РµСЃС‚РѕРІР°СЏ РІРµСЂСЃРёСЏ solver-Р° РґР»СЏ РЅРѕРІРѕРіРѕ mixed weak criterion.
 
-Идея этой версии:
-1) осесимметрический фон считается на F_min background family;
-2) неосесимметрическая задача НЕ приводится к старому 5D/6D shooting виду;
-3) вместо этого используется глобальный trial-space / collocation surrogate для
-   нового mixed weak class с полями
+РРґРµСЏ СЌС‚РѕР№ РІРµСЂСЃРёРё:
+1) РѕСЃРµСЃРёРјРјРµС‚СЂРёС‡РµСЃРєРёР№ С„РѕРЅ СЃС‡РёС‚Р°РµС‚СЃСЏ РЅР° F_min background family;
+2) РЅРµРѕСЃРµСЃРёРјРјРµС‚СЂРёС‡РµСЃРєР°СЏ Р·Р°РґР°С‡Р° РќР• РїСЂРёРІРѕРґРёС‚СЃСЏ Рє СЃС‚Р°СЂРѕРјСѓ 5D/6D shooting РІРёРґСѓ;
+3) РІРјРµСЃС‚Рѕ СЌС‚РѕРіРѕ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РіР»РѕР±Р°Р»СЊРЅС‹Р№ trial-space / collocation surrogate РґР»СЏ
+   РЅРѕРІРѕРіРѕ mixed weak class СЃ РїРѕР»СЏРјРё
 
        U = (u_s, u_n, v, phi, psi)
 
-   и главным окружным блоком
+   Рё РіР»Р°РІРЅС‹Рј РѕРєСЂСѓР¶РЅС‹Рј Р±Р»РѕРєРѕРј
 
        (v, S), (psi, H, chi).
 
-4) center-regularity зашивается через weighted basis functions x^p * t^k;
-5) для заданных (n, q) собирается глобальная прямоугольная матрица residual-ов,
-   а тестовым критерием служит ее sigma_min.
+4) center-regularity Р·Р°С€РёРІР°РµС‚СЃСЏ С‡РµСЂРµР· weighted basis functions x^p * t^k;
+5) РґР»СЏ Р·Р°РґР°РЅРЅС‹С… (n, q) СЃРѕР±РёСЂР°РµС‚СЃСЏ РіР»РѕР±Р°Р»СЊРЅР°СЏ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅР°СЏ РјР°С‚СЂРёС†Р° residual-РѕРІ,
+   Р° С‚РµСЃС‚РѕРІС‹Рј РєСЂРёС‚РµСЂРёРµРј СЃР»СѓР¶РёС‚ РµРµ sigma_min.
 
-Это НЕ окончательный solver нового критерия. Это исследовательский prototype,
-который нужен, чтобы проверить, меняется ли qualitative picture после перехода
-к новому operator class.
+Р­С‚Рѕ РќР• РѕРєРѕРЅС‡Р°С‚РµР»СЊРЅС‹Р№ solver РЅРѕРІРѕРіРѕ РєСЂРёС‚РµСЂРёСЏ. Р­С‚Рѕ РёСЃСЃР»РµРґРѕРІР°С‚РµР»СЊСЃРєРёР№ prototype,
+РєРѕС‚РѕСЂС‹Р№ РЅСѓР¶РµРЅ, С‡С‚РѕР±С‹ РїСЂРѕРІРµСЂРёС‚СЊ, РјРµРЅСЏРµС‚СЃСЏ Р»Рё qualitative picture РїРѕСЃР»Рµ РїРµСЂРµС…РѕРґР°
+Рє РЅРѕРІРѕРјСѓ operator class.
 """
 
 from __future__ import annotations
@@ -636,8 +636,7 @@ def assemble_operator_column(
     _ = (b_theta1 * Mtheta1 - (psixx1 - a01p * psi1 - a01 * psix1 + n * phi1 - b_s1 * phix1) / C_twist - 2.0 * a01 * H1) / lam_th01
     S1 = (vx1 - a01 * v1 - n * us1) / (2.0 * (1.0 + nu))
 
-    # simple support (variant A): u_n(1)=0, M_s(1)=0, and natural conditions\n    # T_s(1)=0, S(1)=0, H(1)=0 for the free boundary dofs u_s, v, psi.
-    bvec = np.array([un1, Ms1, Ts1, S1, H1], dtype=float)
+    bvec = np.array([un1, phi1, Ts1, S1, H1], dtype=float)
     return resid, bvec
 
 
@@ -819,3 +818,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
