@@ -82,6 +82,9 @@ project memory even when they are not present here as separate source files.
 - `docs/theory/vyvod_uravneniy_updated17.md`
   Main theory-development document.
 
+- `docs/theory/current_theory_verification_map.md`
+  Verification boundary and status map for the current mixed-weak theory.
+
 - `docs/assumptions/assumptions.md`
   Register of active assumptions and their current status.
 
