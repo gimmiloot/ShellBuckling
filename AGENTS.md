@@ -67,6 +67,14 @@ When in doubt, prioritize sources in this order:
 
 4. active mixed-weak solver / prototype files.
 
+Secondary supporting documents for the current branch:
+- `current_theory_verification_map.md`
+  - verification boundary and status map for the current mixed-weak theory;
+  - use it to keep accepted base, structural claims, numerical claims, and strategy items separated.
+- `current_mixed_weak_theory_note.tex`
+  - compact supervisor-facing note for the current mixed-weak theory;
+  - should summarize the current discussion object without replacing the full derivation or the project journal.
+
 If there is a conflict:
 - report it explicitly,
 - do not silently resolve it by editing code.
@@ -156,7 +164,40 @@ Use this file for theoretical development only:
 
 Do not use this file for ordinary code notes or refactoring logs.
 
-### 4. `assumptions.md`
+### 4. `docs/theory/current_theory_verification_map.md`
+Use this file to track the verification boundary and verification status of the
+current mixed-weak theory:
+- accepted working base,
+- structural claims,
+- formula-level claims,
+- numerical claims,
+- interpretation items,
+- strategy items.
+
+Do not use this file for full derivations, routine refactoring notes, or the
+global project narrative.
+
+### 5. `docs/theory/current_mixed_weak_theory_note.tex`
+Use this file for a compact supervisor-facing exposition of the **current**
+mixed-weak theory.
+
+It should:
+- stay aligned with `vyvod_uravneniy_updated17.md`,
+  `assumptions.md`, `project_journal_updated14.md`, and the active
+  mixed-weak files;
+- present the current notation, operator structure, boundary pairs, working
+  criterion, verified pieces, and open points concisely;
+- explicitly label established parts versus exploratory parts;
+- report theory/code mismatches explicitly instead of silently choosing one
+  branch.
+
+Do not turn this note into:
+- the full derivation,
+- the full repository history,
+- a changelog,
+- or a refactoring log.
+
+### 6. `assumptions.md`
 Use this file to record the main active hypotheses and assumptions:
 - modeling assumptions,
 - regularity assumptions,
@@ -165,6 +206,34 @@ Use this file to record the main active hypotheses and assumptions:
 - provisional scientific assumptions currently being used.
 
 When assumptions change, add or update them explicitly rather than silently changing code.
+
+---
+
+## Hypotheses handling policy
+Keep different classes of hypotheses separate.
+
+- accepted working base
+  - retained blocks and starting points of the current branch;
+  - these are the current working foundation, not automatically article-level proofs.
+- structural / formula claims
+  - claims about operator structure, conjugate pairs, channel separation,
+    reconstructions, or central-regularity logic;
+  - these are candidates for manual derivation, CAS, or proof-pilot work.
+- numerical claims
+  - scan results, candidate loads, singular-value behavior, and other
+    testbench outputs;
+  - keep these labeled as exploratory, partially confirmed, or numerically
+    supported unless stronger closure exists.
+- interpretation / strategy items
+  - project-level readings of the evidence and next-step choices;
+  - do not present these as mathematical theorems or as settled model assumptions.
+
+When updating documents or summaries:
+- do not promote exploratory numerical results to established theory;
+- do not present strategy items as proofs;
+- record durable project assumptions in `assumptions.md`;
+- record verification status in `current_theory_verification_map.md`;
+- record compact discussion-ready summaries in `current_mixed_weak_theory_note.tex`.
 
 ---
 
@@ -206,7 +275,7 @@ Good refactor:
 
 Bad refactor:
 - merging all code into one giant file,
-- deleting “obsolete” files without asking,
+- deleting "obsolete" files without asking,
 - renaming variables that carry mathematical meaning,
 - rewriting formulas for style only.
 
@@ -237,7 +306,7 @@ Notation is important in this repository.
 
 Unless explicitly instructed:
 - do not rename core variables,
-- do not replace notation by “cleaner” alternatives,
+- do not replace notation by "cleaner" alternatives,
 - do not normalize naming style if it obscures correspondence with theory,
 - do not rewrite formulas just for elegance.
 

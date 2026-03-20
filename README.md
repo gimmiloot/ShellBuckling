@@ -162,6 +162,8 @@ Where to change parameters:
 ## Key documents
 
 - `docs/theory/vyvod_uravneniy_updated17.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/theory/current_mixed_weak_theory_note.tex`
 - `docs/assumptions/assumptions.md`
 - `docs/journal/project_journal_updated14.md`
 - `docs/project_map.md`

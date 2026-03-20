@@ -1,5 +1,56 @@
 # CHANGELOG
 
+## 2026-03-20 - Integrate pilot 03 Lean result into V-S4 status
+
+Affected files:
+- `proof_pilots/pilot_03_central_regular_family/pilot_03_central_regular_family.md`
+- `docs/theory/current_theory_verification_map.md`
+- `CHANGELOG.md`
+
+- Recorded that `CentralRegularFamily.lean` now typechecks in the local Lean setup and named the abstract theorems used by pilot 03.
+- Tightened the V-S4 verification-map wording to include the Lean layer together with the already completed CAS and numerical checks, without upgrading the claim beyond the current ansatz/testbench boundary.
+- Marked proof pilot 03 as integrated in the verification map and removed stale pending-pilot / Lean-unavailable summary wording.
+
+## 2026-03-20 - Repair Lean typecheck for central regular family pilot
+
+Affected files:
+- `proof_pilots/pilot_03_central_regular_family/lean/CentralRegularFamily.lean`
+- `CHANGELOG.md`
+
+- Removed the UTF-8 BOM that caused Lean 4.28.0 to fail immediately at the start of the file.
+- Re-expressed the two-dimensional-family encoding using Lean core inverse notions available in the local toolchain, preserving the pilot's mathematical meaning.
+- Verified that all three proof-pilot Lean files typecheck in the current local Lean installation.
+
+## 2026-03-20 - Add proof pilot for central regular family
+
+Affected files:
+- `proof_pilots/pilot_03_central_regular_family/pilot_03_central_regular_family.md`
+- `proof_pilots/pilot_03_central_regular_family/cas_check.py`
+- `proof_pilots/pilot_03_central_regular_family/numerical_check.py`
+- `proof_pilots/pilot_03_central_regular_family/lean/CentralRegularFamily.lean`
+- `docs/theory/current_theory_verification_map.md`
+- `CHANGELOG.md`
+
+- Added a dedicated V-S4 proof pilot for the center-scaling and mode-count logic of the current mixed-weak branch.
+- Added a SymPy reduction showing that the current reduced center ansatz has two free amplitudes.
+- Added a numerical diagnostic showing that the current `v2` workflow constructs two center-regular directions rather than reusing raw surrogate-nullspace vectors.
+- Added a minimal Lean abstraction for the two-parameter mode-count logic; local typechecking is still pending because `lean.exe` is unavailable in the current environment.
+- Refined the V-S4 verification-map entry while keeping its status at partially confirmed.
+
+## 2026-03-20 - Add current mixed-weak discussion note and refine theory guidance
+
+Affected files:
+- `AGENTS.md`
+- `docs/theory/AGENTS.md`
+- `docs/theory/current_mixed_weak_theory_note.tex`
+- `README.md`
+- `CHANGELOG.md`
+
+- Refined the root assistant guidance with explicit policies for the current mixed-weak theory note, verification-status separation, and hypothesis categories.
+- Added a theory-local `docs/theory/AGENTS.md` that distinguishes the roles of the main derivation, the verification map, and the compact theory note.
+- Added a compact supervisor-facing mixed-weak theory note grounded in the current repository theory, current boundary-matrix workflow, and the present established-vs-exploratory split.
+- Added the verification map and the new theory note to the `README.md` key-document list.
+
 ## 2026-03-20 - Add current mixed-weak theory verification map
 
 Affected files:
@@ -94,4 +145,3 @@ Affected files: `data/project_map.md`, `CHANGELOG.md`
 
 - Added `data/project_map.md` to classify the current checkout into active core, runnable tasks, supporting scripts, documentation, and non-source folders.
 - Recorded the present working direction as the mixed-weak path and noted that no dedicated archived source directory exists in this checkout.
-

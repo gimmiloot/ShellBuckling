@@ -1,0 +1,369 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+
+\title{Current Mixed-Weak Theory Note}
+\date{March 20, 2026}
+
+\begin{document}
+\maketitle
+
+\section{Scope and Status}
+This note is a compact discussion note for the \emph{current} mixed-weak
+branch only. It is intended for supervisor discussions, not as a replacement
+for the full derivation in \texttt{vyvod\_uravneniy\_updated17.md}, the
+verification map, or the project journal.
+
+\medskip
+\noindent\textbf{Established enough for the current discussion.}
+\begin{itemize}
+\item The old reduced/full architecture is not the current main path.
+\item The retained base of the present branch is the corrected kinematics plus
+the corrected circumferential bending block.
+\item The active mixed-weak unknown/resultant class is
+\[
+U=(u_s,u_n,v,\varphi,\psi), \qquad
+P=(T_s,T_\theta,S,Q_s,M_s,M_\theta,H,\chi).
+\]
+\item The current branch uses independent circumferential channels
+\[
+(v,S), \qquad (\psi,H,\chi).
+\]
+\item The current working spectral criterion is built from a
+\(5\times 2\) boundary matrix \(B_{\mathrm{mix}}(q)\).
+\end{itemize}
+
+\noindent\textbf{Still exploratory or open.}
+\begin{itemize}
+\item The final article-level closure of the prestress/load block
+\(G_{ps}\) is not yet closed in one definitive text.
+\item The full physically consistent simple-support problem is not yet closed
+from axisymmetric background through critical perturbation.
+\item The current candidate loads are discussion-ready numerical candidates,
+not final validated critical loads.
+\end{itemize}
+
+\section{Problem Statement}
+Let
+\[
+Y_0=(T_{s0},Q_0,M_{s0},r_0,z_0,\varphi_0)
+\]
+be the current axisymmetric pre-buckling background obtained from the active
+\(F_{\min}\)-type continuation. For a fixed circumferential wave number
+\(n\geq 2\) and pressure \(q\), the current branch studies a non-axisymmetric
+perturbation in the mixed-weak class \(X=(U,P)\).
+
+The theory-side object is a mixed weak problem of the form
+\[
+A_n(X,\widehat X;q)
+=
+K_n(X,\widehat X)-G_{ps,n}(X,\widehat X;q)+B_{\partial,n}(X,\widehat X)=0,
+\]
+with \(G_{ps}\) kept as a bilinear prestress/load block rather than forced into
+a single scalar potential.
+
+\medskip
+\noindent
+In code, the meridional rotation is often written as \texttt{phi}; in this
+note we keep the theory notation \(\varphi\).
+
+\section{Background Fields and Active Unknowns}
+We use the current background notation
+\[
+c_0=\cos\varphi_0,\qquad
+s_0=\sin\varphi_0,\qquad
+\lambda_{s0}=1+e_{s0},\qquad
+\lambda_{\theta0}=\frac{r_0}{x},
+\]
+\[
+\kappa_{s0}=\varphi_0',\qquad
+\kappa_{\theta0}=\frac{s_0}{r_0},\qquad
+a_0=\frac{r_0'}{r_0},\qquad
+\Lambda=12(1-\nu^2)\mu^2,\qquad
+C_{\mathrm{twist}}=12(1+\nu)\mu^2.
+\]
+
+The retained corrected axisymmetric base includes
+\[
+r_0'=\lambda_{s0}c_0,\qquad
+z_0'=-\lambda_{s0}s_0,
+\]
+\[
+M_{\theta0}
+=
+\nu M_{s0}+\frac{s_0}{12\mu^2 r_0},
+\qquad
+\varphi_0'=\Lambda(M_{s0}-\nu M_{\theta0}).
+\]
+
+The active mixed-weak class is
+\[
+U=(u_s,u_n,v,\varphi,\psi),
+\qquad
+P=(T_s,T_\theta,S,Q_s,M_s,M_\theta,H,\chi).
+\]
+
+\section{Current Mixed-Weak System Under Discussion}
+\subsection*{Reconstructed quantities}
+For fixed \(n\), define
+\[
+b_s=b_m=\frac{n}{x},\qquad b_\theta=\frac{n}{r_0},
+\qquad r=c_0u_s+s_0u_n.
+\]
+
+The current prototype reconstructs the circumferential/resultant block by
+\begin{align*}
+e_\theta &= \frac{r}{x}+\frac{n}{x}v, \\
+T_\theta &= \nu T_s + e_\theta, \\
+e_s &= T_s-\nu T_\theta, \\
+S &= \frac{v'-a_0 v-(n/x)u_s}{2(1+\nu)}, \\
+\kappa_\theta^{\mathrm{new}}
+&=
+\frac{c_0}{r_0}\varphi
+-\frac{s_0}{r_0^2}r
++b_\theta \psi, \\
+M_\theta &= \nu M_s + \frac{\kappa_\theta^{\mathrm{new}}}{\Lambda}, \\
+H &= \frac{\psi'-a_0\psi-b_s\varphi}{C_{\mathrm{twist}}}, \\
+\chi &= \frac{b_\theta M_\theta - H' - 2a_0 H}{\lambda_{\theta0}}.
+\end{align*}
+
+The current prestress/load forcing used in the prototype is
+\begin{align*}
+g_s &= -\frac{T_{\theta0}}{r_0}r' - Q_0 \varphi', \\
+g_n &=
+T_{s0}\varphi'
+ + \frac{c_0}{x}T_{\theta0}\varphi
+ - \frac{\bar q}{x}\bigl(r_0 e_s+\lambda_{s0}r\bigr),
+\qquad
+\bar q = \frac{qa}{Eh}.
+\end{align*}
+
+\subsection*{Current prototype strong surrogate}
+The active numerical prototype then uses the following mixed system:
+\begin{align*}
+u_s' &= e_s + \kappa_{s0}u_n, \\
+u_n' &= \kappa_{s0}u_s - \lambda_{s0}\varphi, \\
+0 &= \frac{n}{x}u_n + \lambda_{\theta0}\psi - \kappa_{\theta0}v, \\
+\varphi' &= \Lambda(M_s-\nu M_\theta), \\
+0 &=
+T_s'
+ + a_0 T_s
+ - \frac{c_0}{x}T_\theta
+ + \frac{n}{x}S
+ - \kappa_{s0}Q_s
+ - \frac{s_0 c_0}{r_0^2}M_\theta
+ - g_s, \\
+0 &=
+Q_s'
+ + a_0 Q_s
+ - \kappa_{s0}T_s
+ + \frac{s_0}{x}T_\theta
+ - \frac{s_0^2}{r_0^2}M_\theta
+ + \frac{n}{x}\chi
+ - g_n, \\
+0 &=
+M_s'
+ + a_0 M_s
+ - a_0 M_\theta
+ - Q_s
+ + \frac{n}{x}H
+ - \frac{M_{\theta0}}{r_0}r', \\
+0 &=
+S'
+ + \frac{2}{x}S
+ - \frac{n}{x}T_\theta
+ + \kappa_{\theta0}\chi.
+\end{align*}
+
+This should be read as the \emph{current prototype realization} of the
+mixed-weak branch. It is not yet the final closed article-level formulation of
+the full mixed boundary-value problem.
+
+\section{Boundary Conditions, Conjugate Pairs, and Center Regularity}
+\subsection*{Right-boundary conjugate pairs}
+The theory-side conjugate pairs are
+\[
+(T_s,u_s),\qquad
+(Q_s,u_n),\qquad
+(S,v),\qquad
+(M_s,\varphi),\qquad
+(H,\psi).
+\]
+
+Under the current theory-side testbench choice
+\[
+u_n(1)=0,\qquad \varphi(1)=0,
+\]
+with free
+\[
+u_s(1),\qquad v(1),\qquad \psi(1),
+\]
+the natural conditions reduce to
+\[
+T_s(1)=0,\qquad S(1)=0,\qquad H(1)=0.
+\]
+
+This boundary-pair reduction is one of the best verified local pieces of the
+present branch: it is supported by the boundary-pair proof pilot.
+
+\subsection*{Center regularity}
+The current principal-part analysis gives the center scaling
+\[
+u_s,u_n,v = O(x^n),\qquad
+\varphi,\psi = O(x^{n-1}),
+\]
+\[
+T_s,S,T_\theta = O(x^{n-1}),\qquad
+Q_s,M_s,M_\theta,H,\chi = O(x^{n-2}).
+\]
+Hence the physical regular family at the center is currently treated as
+two-dimensional. The present \(v2\) boundary-matrix workflow is built around
+two central regular modes.
+
+\subsection*{Current repository split at the right boundary}
+There is an important implementation-status nuance.
+
+\begin{itemize}
+\item The theory document, verification map, project journal, and patched
+targeted scan all use the theory-side row set
+\[
+u_n(1),\ \varphi(1),\ T_s(1),\ S(1),\ H(1).
+\]
+\item The broad simple-support prototype currently still assembles a boundary
+row with \(M_s(1)\) instead of \(\varphi(1)\).
+\end{itemize}
+
+This note does \emph{not} silently resolve that split. For discussions of the
+current theory, we keep the theory-side \(\varphi(1)\) formulation and record
+the remaining theory-to-implementation alignment as open.
+
+\section{Current Criticality Criterion}
+Let \(X_{\mathrm{reg}}^{(1)}\) and \(X_{\mathrm{reg}}^{(2)}\) be the two
+central regular modes used in the present testbench. The current theory-side
+boundary matrix is
+\[
+B_{\mathrm{mix}}(q)=
+\begin{bmatrix}
+u_n^{(1)}(1) & u_n^{(2)}(1) \\
+\varphi^{(1)}(1) & \varphi^{(2)}(1) \\
+T_s^{(1)}(1) & T_s^{(2)}(1) \\
+S^{(1)}(1) & S^{(2)}(1) \\
+H^{(1)}(1) & H^{(2)}(1)
+\end{bmatrix}.
+\]
+
+The current \emph{working} criterion is
+\[
+\sigma_{\min}\!\bigl(B_{\mathrm{mix}}(q)\bigr)=0.
+\]
+
+In the numerical testbench, a balanced diagnostic matrix is also used,
+\[
+B_{\mathrm{bal}}
+=
+\operatorname{diag}\!\bigl(1,1,1,2(1+\nu),C_{\mathrm{twist}}\bigr)
+B_{\mathrm{mix}},
+\]
+but this is a diagnostic rescaling, not a replacement theorem for the main
+criterion.
+
+\section{Current Solution Procedure}
+The present workflow is:
+\begin{enumerate}
+\item Compute the axisymmetric background \(Y_0\) by continuation on the
+current \(F_{\min}\) family.
+\item Interpolate the background fields and the derived geometric/material
+coefficients \(c_0,s_0,\lambda_{s0},\lambda_{\theta0},\kappa_{s0},
+\kappa_{\theta0},a_0\).
+\item Fix \(n\) and build a weighted polynomial trial space consistent with the
+current center-regular exponents.
+\item Assemble the surrogate interior operator and the right-boundary rows for
+the current mixed-weak prototype.
+\item In the \(v2\) boundary-matrix workflow, construct two approximate central
+regular modes by constrained least squares with center normalization:
+\[
+\frac{u_s}{x^n}=1,\qquad \frac{\varphi}{x^{n-1}}=0
+\]
+for the first mode, and
+\[
+\frac{u_s}{x^n}=0,\qquad \frac{\varphi}{x^{n-1}}=1
+\]
+for the second mode, together with the center-regular constraints
+\[
+\frac{u_n}{x^n}+\frac{\lambda_c}{n}\frac{\varphi}{x^{n-1}}=0,
+\qquad
+\frac{\psi}{x^{n-1}}-\lambda_c\frac{\varphi}{x^{n-1}}=0.
+\]
+\item Evaluate \(B_{\mathrm{mix}}(q)\), track \(\sigma_{\min}\), and scan over
+pressure windows and wave numbers.
+\end{enumerate}
+
+The broad and targeted scans currently explore modes roughly in the range
+\(n=10,\dots,18\), then refine near the best windows.
+
+\section{Verified Components and Open Points}
+\subsection*{Verified or relatively solid inside the current repository boundary}
+\begin{itemize}
+\item The corrected kinematics and corrected circumferential bending block are
+the retained base of the present branch.
+\item The circumferential channels \((v,S)\) and \((\psi,H,\chi)\) are treated
+as genuinely independent; this is supported by the independent-channel proof
+pilot.
+\item The right-boundary conjugate-pair reduction to
+\(T_s(1)=0\), \(S(1)=0\), \(H(1)=0\) under
+\(u_n(1)=0\), \(\varphi(1)=0\) is locally verified by the boundary-pair proof
+pilot.
+\item The use of \(B_{\mathrm{mix}}\) as the current exploratory criterion is
+stable enough to organize the present numerical branch.
+\end{itemize}
+
+\subsection*{Open or only partially verified}
+\begin{itemize}
+\item The final article-level form of the mixed prestress/load block
+\(G_{ps}\) is still not closed in one finished text.
+\item The two-dimensional center-regular family and the exact
+``two modes from the center'' construction are still only partially closed at a
+proof level.
+\item The theory-side \(\varphi(1)\) row and the broad-scan \(M_s(1)\) row are
+not yet unified across the active code paths.
+\item The fully consistent simple-support problem remains open, especially the
+axisymmetric simple-support background.
+\item The current axisymmetric simple-support solver loses the branch near
+\(q\approx 4.36\) MPa; this is an implementation/background limitation, not a
+validated physical critical load.
+\end{itemize}
+
+\subsection*{Current exploratory numerical candidate}
+The present best mixed-weak candidate is
+\[
+n=13,\qquad q \approx 3.79\text{--}3.80\ \mathrm{MPa},
+\]
+with the nearest competitor near
+\[
+n=14,\qquad q \approx 4.28\ \mathrm{MPa}.
+\]
+
+This is \emph{not} yet a final simple-support critical load. The current
+repository interpretation is:
+\begin{itemize}
+\item it is a stable exploratory candidate of the present mixed-weak
+testbench branch;
+\item it should not yet be promoted to the final physical
+\(q_{\mathrm{cr}}\) for the full simple-support problem;
+\item the main reason is that the background and the critical problem are not
+yet fully unified in one final closed implementation.
+\end{itemize}
+
+\section{Discussion-Ready Summary}
+The current mixed-weak branch has already established a meaningful alternative
+to the old reduced/full architecture: it keeps the independent circumferential
+channels, uses the mixed operator class \(X=(U,P)\), and organizes the critical
+search through a \(5\times 2\) boundary matrix. The strongest presently closed
+local pieces are the channel separation and the right-boundary conjugate-pair
+logic. What is still missing is a fully consistent simple-support closure from
+the axisymmetric background to the critical perturbation. Therefore the present
+load values are suitable for discussion as \emph{exploratory mixed-weak
+candidates}, but not yet as final validated critical loads.
+
+\end{document}

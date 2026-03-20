@@ -194,19 +194,25 @@ not that every one of them is already article-level proven.
 - Source file(s):
   `docs/theory/vyvod_uravneniy_updated17.md` sections 1.6 and 2.2.1;
   `docs/assumptions/assumptions.md` A6;
-  `docs/journal/project_journal_updated14.md` sections 3.4 and 4.
-- Current status: `partially confirmed`
+  `docs/journal/project_journal_updated14.md` sections 3.4 and 4;
+  `proof_pilots/pilot_03_central_regular_family/pilot_03_central_regular_family.md`.
+- Current status: `partially confirmed, tightened by pilot 03`
 - What counts as verification:
-  principal-part scaling and successful construction of two central regular
-  modes in the current testbench logic.
+  principal-part scaling, reduced center nullity `2` in the current ansatz,
+  successful construction of two center-regular modes in the current testbench
+  logic, and a typechecked abstract implication from two-mode parameterization
+  to two-dimensionality.
 - Verification method:
-  manual derivation, numerical testbench.
+  manual derivation, dedicated CAS reduction, numerical testbench, Lean
+  abstraction.
 - Verification boundary:
-  within the current mixed-weak principal-part analysis and surrogate/testbench
-  mode construction; not yet a standalone rigorous proof.
+  within the current mixed-weak principal-part analysis, reduced center ansatz,
+  and surrogate/testbench mode construction; Lean closes only the abstract
+  mode-count step and does not prove the full shell-center derivation or
+  uniqueness of every regular mixed extension.
 - Next action:
-  a dedicated pilot for the center-scaling and mode-count logic would be
-  valuable.
+  keep V-S4 at this tightened pilot-backed status, but do not upgrade it beyond
+  the current ansatz/testbench boundary without a fuller center derivation.
 
 ### V-S5. `B_mix` must be built from two central regular modes
 
@@ -377,6 +383,10 @@ not that every one of them is already article-level proven.
 - Proof pilot 02 supports `V-S3` and `V-F1`:
   it verifies structural separation of `(v,S)` and `(psi,H,chi)` in the current
   formulas and proves the abstract witness-based non-collapse logic in Lean.
+- Proof pilot 03 supports `V-S4`:
+  it combines CAS, numerical, and Lean checks for the current reduced center
+  ansatz and the `v2` center-mode workflow, tightening the current
+  two-dimensional-center-family claim within the repository boundary.
 
 These pilots close only local steps. They do **not** prove the whole mixed-weak
 theory.
@@ -440,21 +450,26 @@ Relatively solid inside the current repository boundary:
 - the local right-boundary reduction and natural BC logic;
 - structural independence of the circumferential channels in the current
   formulas;
+- the pilot-backed two-dimensional center-regular family logic of the current
+  reduced ansatz and `v2` workflow;
 - the use of `B_mix` as the current exploratory criterion.
 
 Most urgent items to verify next:
 
-- the center-scaling and two-mode logic in a dedicated pilot;
 - the exact status of `B_mix` when built from the current central-regular
   workflow;
 - the bridge from the current testbench criterion to a fully consistent
   simple-support problem.
+- the gap between the current reduced center ansatz and a fuller shell-center
+  derivation.
 
 Most valuable next proof pilots:
 
-1. A pilot for the two-dimensional central regular family and its admissible
-   normalizations.
-2. A pilot that isolates the current `B_mix` construction rule from the two
+1. A pilot that isolates the current `B_mix` construction rule from the two
    central modes and checks its rows symbolically/numerically.
-3. A pilot for the current prestress/load block boundary between what is already
+2. A pilot for the current prestress/load block boundary between what is already
    structurally fixed and what is still only a working formula package.
+3. A proof-oriented check comparing the current reduced center ansatz against
+   broader regular mixed extensions, if that boundary becomes verification
+   critical.
+
