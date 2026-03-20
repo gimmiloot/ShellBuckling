@@ -361,24 +361,29 @@ not that every one of them is already article-level proven.
   `docs/assumptions/assumptions.md` A12;
   `docs/theory/vyvod_uravneniy_updated17.md` sections 2.4 and 3.1;
   `proof_pilots/pilot_07_axisymmetric_simple_support_background/pilot_07_axisymmetric_simple_support_background.md`;
+  `proof_pilots/pilot_08_simple_support_background_stabilization/pilot_08_simple_support_background_stabilization.md`;
+  `proof_pilots/pilot_09_simple_support_local_branch_following/pilot_09_simple_support_local_branch_following.md`;
   `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`.
 - Current status: `strategy only`
 - What counts as verification:
   not a theorem; it is supported only insofar as current evidence points to the
   background as the dominant unresolved node, now sharpened by the fact that a
-  separate active full-state simple-support background path exists and reaches
-  `4.30 MPa` under the current fixed-load and seeded-continuation schedules,
-  while the active mixed-weak scans still use the reduced 5-state `F_min`
-  background and the new full-state path still loses the branch near
-  `4.33 MPa`.
+  separate active full-state simple-support background path exists, its live
+  6-state BC function matches the intended simple-support BC set, its active
+  equations match the supporting 6-state non-shallow block, and a dedicated
+  local branch-following helper can now move the reachable full-state load band
+  from about `4.335 MPa` to about `4.343 MPa` before the branch is lost again
+  near `4.344 MPa` by mesh-node pressure. The active mixed-weak scans still use
+  the reduced 5-state `F_min` background.
 - Verification method:
   project-state analysis, numerical testbench.
 - Verification boundary:
   not a theorem, only a current research strategy.
 - Next action:
-  keep the separate full 6-state simple-support background path, extend its
-  stable load range beyond the current `4.30 MPa` ceiling, and only then
-  reconnect it to the mixed-weak scans.
+  keep the separate full 6-state simple-support background path, improve the
+  dedicated local branch-following / right-edge mesh-control stage beyond the
+  current `4.343..4.344 MPa` band, and only then reconnect it to the mixed-weak
+  scans.
 
 ### V-ST2. Stabilize the background before promoting `q_cr`
 

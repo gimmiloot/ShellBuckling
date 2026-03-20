@@ -1,5 +1,36 @@
 # CHANGELOG
 
+## 2026-03-20 - Add pilot 09 local branch-following helper for the 6-state simple-support background
+
+Affected files:
+- `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`
+- `tasks/run_axisymmetric_simple_support_local_branch_following.py`
+- `proof_pilots/pilot_09_simple_support_local_branch_following/pilot_09_simple_support_local_branch_following.md`
+- `proof_pilots/pilot_09_simple_support_local_branch_following/numerical_check.py`
+- `docs/theory/current_theory_verification_map.md`
+- `CHANGELOG.md`
+
+- Added a separate local branch-following helper for the 6-state axisymmetric simple-support background, built on top of the existing full-state path without changing the BC set or reconnecting the mixed-weak scans.
+- Added a right-edge-focused local mesh option, secant-based seed reuse, and a strict-first / looser-on-failure local continuation workflow with larger `max_nodes`.
+- Added a runnable task wrapper and a pilot 09 numerical check showing that the local ceiling moves from about `4.335 MPa` to about `4.343 MPa`, with first failure near `4.344 MPa`, while the bottleneck remains numerical.
+- Refined the V-ST1 wording in the verification map without changing its status from `strategy only`.
+
+## 2026-03-20 - Add pilot 08 for simple-support background stabilization
+
+Affected files:
+- `proof_pilots/pilot_08_simple_support_background_stabilization/pilot_08_simple_support_background_stabilization.md`
+- `proof_pilots/pilot_08_simple_support_background_stabilization/problem_audit.md`
+- `proof_pilots/pilot_08_simple_support_background_stabilization/bc_structure_check.py`
+- `proof_pilots/pilot_08_simple_support_background_stabilization/numerical_diagnostic.py`
+- `proof_pilots/pilot_08_simple_support_background_stabilization/equation_structure_note.md`
+- `docs/theory/current_theory_verification_map.md`
+- `CHANGELOG.md`
+
+- Added a dedicated stabilization pilot for the active 6-state axisymmetric simple-support background in the `4.30..4.35 MPa` band.
+- Added a compact problem audit and a BC structure check confirming that the live 6-state path imposes the intended simple-support BC set with a square 6-equation / 6-condition structure.
+- Added a numerical diagnostic showing that the present ceiling is mainly numerical/stiffness-limited: the active equations match the supporting 6-state equations, baseline failure localizes as right-edge mesh blow-up near `4.3275 MPa`, and a relaxed local continuation profile reaches about `4.335 MPa` before failing near `4.34 MPa`.
+- Refined the verification-map wording for V-ST1 without changing its status from `strategy only`.
+
 ## 2026-03-20 - Add separate full-state simple-support background path
 
 Affected files:
