@@ -356,7 +356,9 @@ Update `docs/theory/current_mixed_weak_theory_note.tex` only when one of the fol
 - the active boundary conditions,
 - the current criterion,
 - the current solution procedure,
-- the list of verified vs open components.
+- the list of verified vs open components,
+- the status of a central verification-map claim changes because of a completed proof pilot,
+- a repository-level closed statement becomes available for an important open block such as `G_ps`.
 
 Routine refactors, file moves, code cleanup, or small numerical tweaks should not trigger an update to this file.
 

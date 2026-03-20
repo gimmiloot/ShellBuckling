@@ -4,9 +4,9 @@
 This directory contains theory-facing documents, not ordinary implementation notes.
 
 Current important files:
-- `vyvod_uravneniy_updated17.md` — derivation notebook / theoretical investigations
-- `current_theory_verification_map.md` — verification map for the current mixed-weak project theory
-- `current_mixed_weak_theory_note.tex` — compact article-style discussion note for supervisor meetings
+- `vyvod_uravneniy_updated17.md` - derivation notebook / theoretical investigations
+- `current_theory_verification_map.md` - verification map for the current mixed-weak project theory
+- `current_mixed_weak_theory_note.tex` - compact article-style discussion note for supervisor meetings
 
 These files have different roles and must not be merged conceptually.
 
@@ -109,7 +109,9 @@ Examples that DO justify updating it:
 - changed boundary conditions,
 - changed current criterion,
 - changed active solution procedure,
-- changed status of verified/open core components.
+- changed status of verified/open core components,
+- a proof pilot materially changes the status of a central current-theory claim,
+- a repository-level closed statement becomes available for an important open block such as `G_ps`.
 
 Examples that do NOT justify updating it:
 - file moves,

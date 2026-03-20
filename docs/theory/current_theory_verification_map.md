@@ -1,4 +1,4 @@
-# Current Theory Verification Map
+﻿# Current Theory Verification Map
 
 ## 1. Introduction
 
@@ -94,17 +94,25 @@ not that every one of them is already article-level proven.
   `docs/theory/vyvod_uravneniy_updated17.md` sections 1.4-1.5;
   `docs/assumptions/assumptions.md` A5;
   `docs/journal/project_journal_updated14.md` sections 5.1 and 5.3.
-- Current status: `partially confirmed`
+- Current status: `clarified and still partial`
 - What counts as verification:
-  the functional route remains internally consistent while the scalar-potential
-  route fails to supply the needed structure.
+  a compact repository-level closed statement
+  `G_ps,n^repo(X, Xhat; q) ~ int [hat(T_s) g_s + hat(Q_s) g_n + hat(M_s) g_m] dx`
+  with sign fixed by `A_n = K_n - G_ps,n + B_partial,n`, together with
+  structural/CAS confirmation that `g_s`, `g_n`, and `g_m` match the live
+  solver cores and that the block depends on the stress-like variable `T_s` and
+  on independent mixed test slots, so it does not collapse to `G(U)` of the
+  `U` slot alone.
 - Verification method:
-  manual derivation, literature alignment, numerical testbench.
+  manual derivation, project-state alignment, CAS structure check.
 - Verification boundary:
-  within the current mixed-weak version and its testbench logic; not yet a full
-  article-level derivation.
+  within the current mixed-weak repository theory and active solver/testbench
+  reconstruction only; not a full article-level derivation of `G_ps` and not a
+  proof that every possible scalar reformulation is impossible.
 - Next action:
-  isolate the final precise `G_ps` statement and its forcing structure.
+  derive the article-level full `G_ps` formula from this repository-level closed
+  statement and freeze the final boundary between `G_ps` and the remaining
+  background-dependent operator pieces.
 
 ### V-S2. Boundary conjugate pairs and natural BC logic
 
@@ -223,19 +231,24 @@ not that every one of them is already article-level proven.
 - Type: `structural`
 - Source file(s):
   `docs/theory/vyvod_uravneniy_updated17.md` sections 2.2.1 and 2.2.2;
-  `docs/journal/project_journal_updated14.md` sections 6.2-6.3 and 9.
-- Current status: `partially confirmed`
+  `docs/journal/project_journal_updated14.md` sections 6.2-6.3 and 9;
+  `proof_pilots/pilot_04_bmix_from_regular_modes/pilot_04_bmix_from_regular_modes.md`.
+- Current status: `partially confirmed, tightened by pilot 04`
 - What counts as verification:
-  the current numerical workflow must explicitly construct the two modes from
-  the center and preserve nontrivial `T_s`, `S`, `H` rows in `B_mix`.
+  the live `v2` workflow must explicitly form `B_mix = B_full @ V_reg` from the
+  two center-regular modes, and a raw surrogate-direction comparison must show
+  that the unconstrained smallest-right-singular-vector pair violates the
+  active center constraints and changes the construction in the current
+  repository sense.
 - Verification method:
-  numerical testbench.
+  numerical testbench, Lean abstraction.
 - Verification boundary:
-  only at the surrogate/testbench level so far, not yet in a final closed BVP
-  implementation.
+  only at the surrogate/testbench builder level so far; Lean closes only the
+  abstract admissibility logic and does not prove the final shell BVP or a
+  final closed solver implementation.
 - Next action:
-  keep checking the mode-construction path whenever the boundary-matrix
-  pipeline changes.
+  keep V-S5 at this tightened pilot-backed status and re-check it whenever the
+  boundary-matrix builder changes.
 
 ### V-N1. `sigma_min(B_mix(q)) = 0` is the current working criterion
 
@@ -248,26 +261,31 @@ not that every one of them is already article-level proven.
   `docs/theory/vyvod_uravneniy_updated17.md` sections 2.2.2 and 2.3;
   `docs/assumptions/assumptions.md` A7;
   `docs/journal/project_journal_updated14.md` sections 4 and 10.
-- Current status: `partially confirmed`
+- Current status: `partially confirmed, tightened by pilot 05`
 - What counts as verification:
-  the criterion is computable, produces a qualitatively new picture compared to
-  the old architecture, and remains stable under the current scan/testbench
-  workflow.
+  live computability of `sigma_min(B_mix)` on the active q-range, reproducible
+  refined minima under the current fine/adaptive/targeted scan workflow,
+  moderate resolution robustness in the present testbench, and repository-level
+  comparison evidence that this picture differs from the rejected old
+  reduced/full architecture.
 - Verification method:
-  numerical testbench.
+  numerical testbench, project-state comparison.
 - Verification boundary:
-  working criterion inside the current mixed-weak exploratory branch only; not
-  yet a final theorem for the complete physical problem.
+  working criterion inside the current mixed-weak exploratory/testbench branch
+  only; the pilot does not prove the final closed mixed BVP criterion or the
+  final physical simple-support critical load.
 - Next action:
-  tighten the link between the testbench criterion and the final mixed BVP.
+  keep this tightened working-criterion status, but continue linking the
+  testbench spectral signal to the final mixed BVP before promoting stronger
+  claims.
 
-### V-N2. Current candidate load `n=13`, `q≈3.79..3.80 MPa`
+### V-N2. Current candidate load `n=13`, `qв‰€3.79..3.80 MPa`
 
 - ID: `V-N2`
 - Claim / Hypothesis:
   The present best mixed-weak candidate is
-  `n = 13`, `q ≈ 3.79..3.80 MPa`, with the nearest competitor near
-  `n = 14`, `q ≈ 4.28 MPa`.
+  `n = 13`, `q в‰€ 3.79..3.80 MPa`, with the nearest competitor near
+  `n = 14`, `q в‰€ 4.28 MPa`.
 - Type: `numerical`
 - Source file(s):
   `docs/theory/vyvod_uravneniy_updated17.md` sections 2.3 and 3.1;
@@ -387,6 +405,25 @@ not that every one of them is already article-level proven.
   it combines CAS, numerical, and Lean checks for the current reduced center
   ansatz and the `v2` center-mode workflow, tightening the current
   two-dimensional-center-family claim within the repository boundary.
+- Proof pilot 04 supports `V-S5`:
+  it checks that the live `B_mix` builders use the constrained center-regular
+  pair rather than raw surrogate kernel directions and adds the matching
+  abstract admissibility logic in Lean.
+- Proof pilot 05 supports `V-N1`:
+  it checks that `sigma_min(B_mix)` is computable in the live mixed-weak scan
+  workflow, stays usable across the current broad/fine/adaptive/targeted and
+  resolution-study paths, and remains only a tightened working criterion inside
+  the repository boundary.
+- Proof pilot 06 supports `V-S1`:
+  it isolates the current repository-level `G_ps` statement and CAS-checks that
+  the active solver-level forcing block is mixed-slot bilinear rather than a
+  closure `G(U)` of the `U` slot alone, while keeping the claim explicitly
+  partial.
+- Proof pilot 06b supports `V-S1`:
+  it consolidates the current repository-level closed statement
+  `G_ps^repo ~ int [hat(T_s) g_s + hat(Q_s) g_n + hat(M_s) g_m] dx` and
+  formula-checks it against both active solver cores without upgrading the claim
+  beyond the current repository boundary.
 
 These pilots close only local steps. They do **not** prove the whole mixed-weak
 theory.
@@ -452,12 +489,12 @@ Relatively solid inside the current repository boundary:
   formulas;
 - the pilot-backed two-dimensional center-regular family logic of the current
   reduced ansatz and `v2` workflow;
+- the pilot-backed rule that the current `B_mix` builders use the
+  center-regular mode pair rather than raw surrogate directions;
 - the use of `B_mix` as the current exploratory criterion.
 
 Most urgent items to verify next:
 
-- the exact status of `B_mix` when built from the current central-regular
-  workflow;
 - the bridge from the current testbench criterion to a fully consistent
   simple-support problem.
 - the gap between the current reduced center ansatz and a fuller shell-center
@@ -472,4 +509,7 @@ Most valuable next proof pilots:
 3. A proof-oriented check comparing the current reduced center ansatz against
    broader regular mixed extensions, if that boundary becomes verification
    critical.
+
+
+
 

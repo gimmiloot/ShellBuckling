@@ -1,5 +1,72 @@
 # CHANGELOG
 
+## 2026-03-20 - Refresh mixed-weak theory note after pilots 01-06b
+
+Affected files:
+- `docs/theory/current_mixed_weak_theory_note.tex`
+- `AGENTS.md`
+- `docs/theory/AGENTS.md`
+- `CHANGELOG.md`
+
+- Rewrote the supervisor-facing mixed-weak theory note so it reflects the current repository-level structure after pilots 01-06b, including the boundary-pair logic, channel independence, two-mode center family, `B_mix` construction rule, working `sigma_min(B_mix)` criterion, and the repository-level closed `G_ps` statement.
+- Kept the note explicit about verification boundaries and remaining open points, including the still-open full shell theory, final closed mixed BVP, and final physical simple-support load.
+- Refined the AGENTS maintenance policy so future theory-note updates are expected when proof pilots materially change central claim statuses or when an important open block receives a repository-level closed statement.
+
+## 2026-03-20 - Add pilot 06b for closed G_ps statement
+
+Affected files:
+- `proof_pilots/pilot_06b_gps_closed_statement/gps_closed_statement.md`
+- `proof_pilots/pilot_06b_gps_closed_statement/formula_check.py`
+- `proof_pilots/pilot_06b_gps_closed_statement/note_for_theory_note.md`
+- `docs/theory/current_theory_verification_map.md`
+- `CHANGELOG.md`
+
+- Added a compact repository-level closed statement of the active mixed-weak prestress/load block `G_ps`, aligned to the current code and theory documents.
+- Added a formula check that verifies the consolidated statement against both active mixed-weak solver cores and confirms bilinearity in the current mixed trial/test slots.
+- Refined the V-S1 wording in the verification map to record the closed repository-level `G_ps` statement more precisely, while keeping the claim at a clarified-and-still-partial status.
+- Added a short optional paragraph for possible later insertion into the supervisor-facing mixed-weak theory note.
+
+## 2026-03-20 - Add pilot 06 for G_ps as mixed-weak block
+
+Affected files:
+- `proof_pilots/pilot_06_gps_mixed_weak_block/pilot_06_gps_mixed_weak_block.md`
+- `proof_pilots/pilot_06_gps_mixed_weak_block/structure_check.md`
+- `proof_pilots/pilot_06_gps_mixed_weak_block/cas_check.py`
+- `docs/theory/current_theory_verification_map.md`
+- `CHANGELOG.md`
+
+- Added a dedicated V-S1 proof pilot that isolates the current repository-level statement of the mixed weak prestress/load block `G_ps`.
+- Added a compact structure note separating repository facts, current interpretation, and remaining ambiguity around the active `G_ps` statement.
+- Added a SymPy-based structural check showing that the live solver-level forcing block is bilinear in the current mixed trial/test slots and is not naturally a scalar closure `G(U)` of the displacement/rotation slot alone.
+- Refined V-S1 in the verification map to a clarified-and-still-partial status, without promoting it to a full article-level proof.
+
+## 2026-03-20 - Add pilot 05 for sigma_min(B_mix) as working criterion
+
+Affected files:
+- `proof_pilots/pilot_05_sigma_min_working_criterion/pilot_05_sigma_min_working_criterion.md`
+- `proof_pilots/pilot_05_sigma_min_working_criterion/numerical_check.py`
+- `docs/theory/current_theory_verification_map.md`
+- `CHANGELOG.md`
+
+- Added a dedicated V-N1 proof pilot for the current mixed-weak working criterion `sigma_min(B_mix(q)) = 0`.
+- Added a numerical check that uses the live broad/fine/adaptive/targeted mixed-weak scan workflow together with the current resolution-study path.
+- Recorded that the current repository supports `sigma_min(B_mix)` as a tightened working exploratory criterion within the present testbench boundary, without promoting it to a final theorem of the physical problem.
+- Kept this pilot numerical-only because an abstract Lean rank-loss lemma would not materially verify the repository-level workflow claim.
+
+## 2026-03-20 - Add pilot 04 for B_mix from regular modes
+
+Affected files:
+- `proof_pilots/pilot_04_bmix_from_regular_modes/pilot_04_bmix_from_regular_modes.md`
+- `proof_pilots/pilot_04_bmix_from_regular_modes/numerical_check.py`
+- `proof_pilots/pilot_04_bmix_from_regular_modes/lean/BmixFromRegularModes.lean`
+- `docs/theory/current_theory_verification_map.md`
+- `CHANGELOG.md`
+
+- Added a dedicated V-S5 proof pilot for the current repository rule that `B_mix` is built from the center-regular mode pair.
+- Added a numerical comparison between the live `V_reg`-based `B_mix` construction and a raw smallest-singular-vector surrogate pair, showing that the raw pair violates the active center constraints and changes the construction in the current repository sense.
+- Added a minimal Lean file for the abstract admissibility logic behind using the regular pair rather than a non-admissible surrogate pair.
+- Tightened the V-S5 verification-map wording without upgrading the claim beyond the current surrogate/testbench boundary.
+
 ## 2026-03-20 - Integrate pilot 03 Lean result into V-S4 status
 
 Affected files:

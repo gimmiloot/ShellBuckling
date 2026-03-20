@@ -20,154 +20,306 @@
 \maketitle
 
 \begin{abstract}
-This note presents the current mixed-weak version of the shell-buckling model used in the repository.
-Its purpose is discussion and synchronization, not full formal derivation.
-The emphasis is on the current unknowns, the active equation structure, the boundary conditions, the present criticality criterion, and the current solution procedure.
-Open points are stated explicitly.
+This note records the current mixed-weak branch as it stands after the local
+proof pilots currently integrated in the repository.
+Its role is discussion and synchronization, not full derivation.
+The emphasis is on the accepted working structure, the current repository-level
+closed formulas that are available, the locally verified components, and the
+main open points that still prevent an article-level closed theorem.
 \end{abstract}
 
 \section{Introduction}
 The current active direction of the project is the mixed-weak branch.
-It was adopted after the earlier reduced/full architecture stopped being an adequate main path.
-The aim of the present note is not to re-derive the full shell theory from scratch, but to give a compact and readable presentation of the current project-level theory used for analysis and numerical experiments.
+It replaced the older reduced/full architecture after that route failed to give
+a qualitatively new and stable main criterion.
+The purpose of the present note is not to re-derive the shell theory from zero,
+but to give a compact supervisor-facing summary of the current repository-level
+object that is actually being checked and used.
 
 \section{Problem statement}
-We consider the current shell-buckling setting used in the repository:
+The repository currently studies the linearized non-axisymmetric problem around
+a corrected axisymmetric prebuckling background, within the mixed-weak branch
+and its present simple-support-oriented testbench boundary conditions.
+This note concerns the current repository boundary only:
 \begin{itemize}[leftmargin=2em]
-    \item the active mixed-weak formulation,
-    \item the corresponding prebuckling background,
-    \item the linearized non-axisymmetric problem around that background,
-    \item the boundary conditions associated with the current simple-support branch,
-    \item the present criterion used to detect criticality.
+    \item the active mixed-weak operator class,
+    \item the current boundary-pair logic,
+    \item the present center-regular mode construction,
+    \item the current mixed boundary matrix $B_{\mathrm{mix}}$,
+    \item the current working spectral indicator $\sigma_{\min}(B_{\mathrm{mix}})$.
 \end{itemize}
+It is not a final theorem for the full closed shell BVP and it does not certify
+a final physical simple-support critical load.
 
-This note describes the current project theory, not the entire general theory of shells.
-
-\section{Unknowns and mixed-weak structure}
-The current mixed-weak branch uses the active unknown blocks
+\section{Unknowns and Mixed-Weak Structure}
+\paragraph{Accepted working structure.}
+The retained working base of the branch is the corrected kinematics together
+with the corrected circumferential bending block already fixed in the main
+theory notebook.
+The active mixed-weak unknown/resultant blocks are
 \[
-U = (\cdots), \qquad P = (\cdots),
+U = (u_s, u_n, v, \varphi, \psi),
+\qquad
+P = (T_s, T_\theta, S, Q_s, M_s, M_\theta, H, \chi).
 \]
-with the exact active set to be filled from the current theory file.
+In the active solver cores the primary coefficient vector is realized through
+\[
+(u_s, u_n, v, \varphi, \psi, T_s, Q_s, M_s),
+\]
+while $T_\theta$, $S$, $M_\theta$, $H$, and $\chi$ are reconstructed
+algebraically from those primary fields and the axisymmetric background.
 
-A central feature of the current approach is the presence of independent circumferential channels
+A central feature of the branch is the presence of two independent
+circumferential channels,
 \[
 (v,S), \qquad (\psi,H,\chi),
 \]
-which are treated as structurally meaningful parts of the current operator class rather than as redundant consequences of the older closure logic.
+which are treated as genuine parts of the operator class rather than as
+redundant consequences of an older closure logic.
+Pilot 02 closes this separation locally at the level of the current formulas and
+abstract witness logic.
 
-\subsection*{Interpretation of the active blocks}
-Briefly explain here:
-\begin{itemize}[leftmargin=2em]
-    \item which components are treated as primary field variables,
-    \item which components enter as mixed-weak auxiliary quantities,
-    \item why the current class is wider than the older reduced route.
-\end{itemize}
-
-\section{Current system of equations}
-This section should contain the current active system in a compact form.
-
-\subsection{Kinematic relations}
-Insert the current active kinematic block here.
-
-\subsection{Mixed / constitutive relations}
-Insert the current mixed-weak auxiliary relations here.
-
-\subsection{Equilibrium / operator form}
-Insert the current operator-level system here.
-
-\paragraph{Remark.}
-This note is intentionally compact.
-Detailed derivation remains in
-\texttt{docs/theory/vyvod\_uravneniy\_updated17.md}.
-
-\section{Boundary conditions and conjugate pairs}
-The boundary structure should be presented explicitly.
-
-\subsection{Essential boundary conditions}
-State the currently active essential BCs here.
-
-\subsection{Natural boundary conditions}
-State the currently active natural BCs here.
-
-\subsection{Conjugate boundary pairs}
-List the currently active right-boundary conjugate pairs, for example in the form
+The current basic kinematic measures retained in the theory file are
 \[
-(T_s,u_s), \qquad (Q_s,u_n), \qquad (S,v), \qquad (M_s,\varphi), \qquad (H,\psi),
+\varepsilon_s(U) = u_s' - \kappa_{s0}u_n,
+\qquad
+\varepsilon_\theta(U) = \frac{c_0u_s+s_0u_n}{x} + \frac{n}{x}v,
 \]
-if this remains the active form in the current theory.
+\[
+\gamma_{s\theta}(U) = v' - \frac{r_0'}{r_0}v - \frac{n}{x}u_s,
+\qquad
+g_n(U) = u_n' + \lambda_{s0}\varphi - \kappa_{s0}u_s,
+\qquad
+\kappa_s(U) = \varphi'.
+\]
+Here $c_0=\cos\varphi_0$, $s_0=\sin\varphi_0$,
+$\lambda_{s0}=1+e_{s0}$, $\lambda_{\theta0}=r_0/x$,
+and $\kappa_{s0}=\varphi_0'$ are background quantities.
+
+\section{Current System and Repository-Level Clarified Formulas}
+The active mixed-weak operator is read at repository level through
+\[
+A_n(X, \widehat X; q)
+ = K_n(X, \widehat X) - G_{\mathrm{ps},n}(X, \widehat X; q)
+   + B_{\mathrm{partial},n}(X, \widehat X) = 0,
+\qquad X=(U,P).
+\]
+This is the current project statement of the operator form.
+The full article-level derivation of each term is still open, but the branch is
+no longer described as a single scalar prestress potential $G(U)$.
+
+\subsection{Algebraic Mixed-Weak Reconstructions}
+The active solver cores implement the following current reconstructions:
+\[
+r = c_0u_s+s_0u_n,
+\qquad
+S = \frac{v' - a_0v - (n/x)u_s}{2(1+\nu)},
+\]
+\[
+\kappa_\theta^{\mathrm{new}}
+ = \frac{c_0}{r_0}\varphi - \frac{s_0}{r_0^2}r + b_\theta\psi,
+\qquad
+M_\theta = \nu M_s + \frac{\kappa_\theta^{\mathrm{new}}}{\Lambda},
+\]
+\[
+H = \frac{\psi' - a_0\psi - b_s\varphi}{C_{\mathrm{twist}}},
+\qquad
+\chi = \frac{b_\theta M_\theta - H' - 2a_0H}{\lambda_{\theta0}}.
+\]
+These relations are the basis of the current channel split checked in pilot 02.
+
+\subsection{Repository-Level Closed Statement of the Prestress/Load Block}
+The strongest current repository-level closed statement of the active
+prestress/load block is
+\[
+G_{\mathrm{ps},n}^{\mathrm{repo}}(X,\widehat X;q)
+:= \int_{x_0}^1
+\bigl( \widehat T_s\, g_s^{\mathrm{repo}}(X;q)
+     + \widehat Q_s\, g_n^{\mathrm{repo}}(X;q)
+     + \widehat M_s\, g_m^{\mathrm{repo}}(X;q)
+\bigr)\,dx,
+\]
+with overall sign fixed only through
+\[
+A_n = K_n - G_{\mathrm{ps},n} + B_{\mathrm{partial},n}.
+\]
+The current trial-side forcing terms are
+\[
+r(X)=c_0u_s+s_0u_n,
+\qquad
+r_x(X)= -\kappa_{s0}s_0u_s + c_0u_s' + \kappa_{s0}c_0u_n + s_0u_n',
+\]
+\[
+T_\theta(X) = \nu T_s + \frac{r(X)}{x} + \frac{n}{x}v,
+\qquad
+e_s^{\mathrm{code}}(X) = T_s - \nu T_\theta(X),
+\]
+\[
+g_s^{\mathrm{repo}}(X;q)
+ = -\frac{T_\theta^0}{r_0}r_x(X) - T_{sn}^0\varphi',
+\]
+\[
+g_n^{\mathrm{repo}}(X;q)
+ = T_s^0\varphi' + \frac{c_0}{x}T_\theta^0\varphi
+   - \frac{q^0}{x}\bigl(r_0 e_s^{\mathrm{code}}(X) + \lambda_{s0}r(X)\bigr),
+\]
+\[
+g_m^{\mathrm{repo}}(X;q) = \frac{M_\theta^0}{r_0}r_x(X).
+\]
+In the active code, $T_{sn}^0$ is stored as the background quantity $Q_0$.
+This closed statement is now available at repository level, but it is still not
+the final article-level full formula for all of $G_{\mathrm{ps}}$.
 
 \paragraph{Status.}
-The boundary-pair logic and the corresponding natural-condition implication have already been checked in a dedicated proof pilot.
-This supports the current boundary interpretation, but does not by itself replace a full derivation of the entire weak form.
+Pilots 06 and 06b clarify this block locally.
+They show that the active forcing block is bilinear in the current mixed
+trial/test slots and does not collapse to a scalar closure in $U$ alone, while
+leaving the full article-level derivation open.
 
-\section{Current criticality criterion}
-The current criterion is based on the mixed-weak boundary matrix
+\section{Boundary Conditions and Conjugate Pairs}
+The current right-boundary conjugate pairs are
 \[
-B_{\mathrm{mix}}(q),
+(T_s,u_s), \qquad (Q_s,u_n), \qquad (S,v), \qquad (M_s,\varphi), \qquad (H,\psi).
 \]
-constructed from two central regular modes of the active linearized problem.
+For the present mixed-weak testbench the essential conditions are
+\[
+u_n(1)=0, \qquad \varphi(1)=0,
+\]
+with free right-boundary variations in $u_s(1)$, $v(1)$, and $\psi(1)$.
+The resulting natural conditions are therefore
+\[
+T_s(1)=0, \qquad S(1)=0, \qquad H(1)=0.
+\]
 
-The current working criterion is
+\paragraph{Status.}
+Pilot 01 proves this reduction locally at the boundary-pair level by CAS and
+Lean.
+This is a closed local step, but not yet a complete derivation of the whole weak
+form.
+
+\section{Current Criticality Criterion}
+The current center-regular scaling statement is
+\[
+u_s,u_n,v = O(x^n),
+\qquad
+\varphi,\psi = O(x^{n-1}),
+\qquad
+T_s,S,T_\theta = O(x^{n-1}),
+\]
+\[
+Q_s,M_s,M_\theta,H,\chi = O(x^{n-2}).
+\]
+Within the present repository boundary the physical regular family at the center
+is treated as two-dimensional.
+The current $v2$ workflow realizes two center-regular modes by imposing
+\[
+\frac{u_n}{x^n} + \frac{\lambda_c}{n}\frac{\varphi}{x^{n-1}} = 0,
+\qquad
+\frac{\psi}{x^{n-1}} - \lambda_c\frac{\varphi}{x^{n-1}} = 0,
+\]
+while normalizing one $u_s$-led mode and one $\varphi$-led mode.
+The mixed-weak boundary matrix is then formed as
+\[
+B_{\mathrm{mix}} = B_{\mathrm{full}} V_{\mathrm{reg}},
+\]
+with $V_{\mathrm{reg}}$ built from those two center-regular modes rather than
+from raw surrogate kernel directions.
+The current working spectral criterion is
 \[
 \sigma_{\min}(B_{\mathrm{mix}}(q)) = 0.
 \]
 
-\paragraph{Important status note.}
-At the current stage this should be treated as the active project criterion of the mixed-weak branch.
-It should not automatically be read as a fully finalized physical criterion for the complete shell problem outside the current verification boundary.
+\paragraph{Status.}
+Pilot 03 tightens the current two-dimensional center-family claim within the
+reduced-center/testbench boundary.
+Pilot 04 checks that $B_{\mathrm{mix}}$ is built from the two center-regular
+modes.
+Pilot 05 checks that $\sigma_{\min}(B_{\mathrm{mix}})$ is numerically usable as
+the current working criterion in the live scan workflow.
+None of these pilots proves the final closed shell BVP or the final physical
+simple-support critical load.
 
-\section{Solution procedure}
+\section{Solution Procedure}
 A compact description of the present workflow is:
-
 \begin{enumerate}[leftmargin=2em]
     \item Compute the axisymmetric prebuckling background.
-    \item Build the current mixed-weak linearized operator around that background.
-    \item Construct the two central regular modes.
-    \item Form the mixed-weak boundary matrix \(B_{\mathrm{mix}}\).
-    \item Scan the load parameter.
-    \item Detect the candidate critical state through the degeneration of \(B_{\mathrm{mix}}\), currently monitored through \(\sigma_{\min}(B_{\mathrm{mix}})\).
+    \item Build the current mixed-weak linearized operator and the reconstructed
+    auxiliary channels around that background.
+    \item Impose the center-regular constraints and construct the two active
+    regular modes.
+    \item Form $B_{\mathrm{mix}}$ from those two regular modes.
+    \item Scan the load parameter and monitor $\sigma_{\min}(B_{\mathrm{mix}})$.
+    \item Treat any resulting candidate load as exploratory unless the remaining
+    background and full-BVP consistency issues are also resolved.
 \end{enumerate}
 
-\section{Verified components and open points}
-This section should remain short and explicit.
-
-\subsection{Components currently supported}
-Examples of items that may be listed here:
+\section{Locally Verified Components and Still-Open Points}
+\subsection{Locally Verified Components}
+The repository now has the following pilot-backed local results.
 \begin{itemize}[leftmargin=2em]
-    \item boundary-pair logic and the resulting natural BC implication,
-    \item structural separation of the \((v,S)\) and \((\psi,H,\chi)\) channels,
-    \item other components already checked by proof pilots or numerical verification.
+    \item \textbf{Boundary conjugate pairs and current natural BC logic}
+    are locally closed by pilot 01.
+    \item \textbf{Independence of $(v,S)$ and $(\psi,H,\chi)$}, together with
+    the current formula-level split in $S$, $H$, and $\chi$, is locally closed
+    by pilot 02.
+    \item \textbf{Two-dimensional center-regular family} is partially
+    confirmed and tightened by pilot 03 within the reduced-center/testbench
+    boundary.
+    \item \textbf{The rule $B_{\mathrm{mix}} = B_{\mathrm{full}}V_{\mathrm{reg}}$}
+    is partially confirmed and tightened by pilot 04.
+    \item \textbf{$\sigma_{\min}(B_{\mathrm{mix}})=0$ as the current working
+    spectral criterion} is partially confirmed and tightened by pilot 05 for
+    the present exploratory scan workflow.
+    \item \textbf{The prestress/load block $G_{\mathrm{ps}}$} is clarified to a
+    repository-level closed statement by pilots 06 and 06b, but remains only a
+    clarified-and-still-partial component rather than an article-level closed
+    theorem.
 \end{itemize}
 
-\subsection{Open points}
-Examples of items that may be listed here:
+\subsection{Still-Open Points}
+The main open points remain:
 \begin{itemize}[leftmargin=2em]
-    \item full article-level derivation of the complete mixed-weak weak form,
-    \item final status of the prestress / forcing block,
-    \item final status of the criterion beyond the current surrogate/testbench level,
-    \item final validation of candidate critical loads for the full problem.
+    \item a full article-level derivation of the complete mixed-weak weak form,
+    including the final full formula for $G_{\mathrm{ps}}$;
+    \item the final precise partition between $G_{\mathrm{ps}}$ and the other
+    background-dependent operator pieces;
+    \item a final closed mixed BVP beyond the current surrogate/testbench
+    boundary;
+    \item the axisymmetric simple-support background as the main unresolved
+    bottleneck for physical closure;
+    \item final validation of candidate critical loads for the physical problem.
 \end{itemize}
+At present the leading exploratory mixed-weak candidate remains near
+$n=13$ with $q\approx 3.79\ldots 3.80\,\mathrm{MPa}$, with a nearby
+$n=14$ competitor near $4.28\,\mathrm{MPa}$, but these values must still be
+read as exploratory rather than final.
 
 \section{Conclusion}
-The current mixed-weak theory already has a coherent project-level structure:
-unknown blocks, boundary pairs, independent circumferential channels, and a current criticality criterion based on the mixed-weak boundary matrix.
-At the same time, the theory remains a live research object rather than a fully closed final formulation.
-The purpose of this note is to keep that current state explicit and discussable.
+The current mixed-weak branch now has a coherent repository-level structure:
+active unknown/resultant blocks, verified boundary-pair logic, structurally
+independent circumferential channels, a repository-level closed statement of the
+prestress/load block, a two-mode center-regular construction, a boundary matrix
+built from those regular modes, and a working spectral criterion based on
+$\sigma_{\min}(B_{\mathrm{mix}})$.
+At the same time, the project still does not claim a final closed shell theorem,
+a final closed mixed BVP, or a final physical simple-support critical load.
+The purpose of this note is to keep that mixed state explicit and discussion-ready.
 
 \appendix
 
-\section{Minimal notation table}
+\section{Minimal Notation Table}
 \begin{tabular}{ll}
 \toprule
 Symbol & Meaning \\
 \midrule
-\(u_s, u_n\) & active displacement-type variables \\
-\(v\) & circumferential channel variable \\
-\(\varphi, \psi\) & rotation / twist-type variables in the current branch \\
-\(S, H, \chi\) & mixed-weak circumferential auxiliary quantities \\
-\(B_{\mathrm{mix}}\) & mixed-weak boundary matrix \\
-\(\sigma_{\min}\) & smallest singular value used in the current criterion \\
+$U$ & primary kinematic block $(u_s,u_n,v,\varphi,\psi)$ \\
+$P$ & mixed resultants $(T_s,T_\theta,S,Q_s,M_s,M_\theta,H,\chi)$ \\
+$(v,S)$ & membrane circumferential channel \\
+$(\psi,H,\chi)$ & twist/shear circumferential channel \\
+$G_{\mathrm{ps}}$ & prestress/load bilinear block of the mixed-weak branch \\
+$V_{\mathrm{reg}}$ & two-column center-regular mode matrix \\
+$B_{\mathrm{mix}}$ & mixed-weak boundary matrix \\
+$\sigma_{\min}$ & smallest singular value used in the current criterion \\
 \bottomrule
 \end{tabular}
 
