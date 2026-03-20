@@ -1,5 +1,30 @@
 # CHANGELOG
 
+## 2026-03-20 - Audit boundary-condition task separation
+
+Affected files:
+- `docs/theory/boundary_condition_task_audit.md`
+- `docs/theory/boundary_conditions_summary.md`
+- `README.md`
+- `docs/project_map.md`
+- `docs/theory/current_mixed_weak_theory_note.tex`
+- `CHANGELOG.md`
+
+- Added a compact audit note that separates the moving-clamp/sliding-clamp line, the current hybrid mixed-weak scan/testbench path, and the full simple-support background task.
+- Added a boundary-condition summary table for `подвижная заделка` versus `подвижный шарнир / simple support`.
+- Clarified in the README and project map that the current active mixed-weak scans still reuse the older `F_min` background and should not be read as a clean final simple-support solver path.
+- Added a short boundary-condition-scope clarification to the supervisor-facing mixed-weak theory note.
+
+## 2026-03-20 - Polish supervisor-facing wording in mixed-weak theory note
+
+Affected files:
+- `docs/theory/current_mixed_weak_theory_note.tex`
+- `CHANGELOG.md`
+
+- Tightened the wording of the supervisor-facing mixed-weak theory note without changing the mathematics, claim statuses, or verification boundary.
+- Removed a few remaining repository-internal phrases so the note reads more cleanly as a standalone discussion document.
+- Kept the explicit distinction between locally verified components and still-open points.
+
 ## 2026-03-20 - Refresh mixed-weak theory note after pilots 01-06b
 
 Affected files:

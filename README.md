@@ -29,6 +29,30 @@ materials.
 - `output/`
   Reserved for generated output files.
 
+## Boundary-condition tasks
+
+- `подвижная заделка` / moving clamp / sliding clamp:
+  in the current checkout this is the clearest runnable axisymmetric BC line.
+  The supporting comparison scripts
+  `experiments/supporting/run_supporting_dimensionless_comparison.py` and
+  `experiments/supporting/run_supporting_determinant_comparison.py` use the
+  BC set `T_s(1)=0`, `u_z(1)=0`, `phi(1)=0` at the outer edge together with
+  `T_sn(x0)=0`, `u_r(x0)=0`, `phi(x0)=0` at the center.
+- `подвижный шарнир / simple support`:
+  the theory-facing full axisymmetric candidate uses
+  `T_s(1)=0`, `M_s(1)=0`, `u_z(1)=0` at the edge with
+  `T_sn(x0)=0`, `u_r(x0)=0`, `phi(x0)=0` at the center.
+  A clean separate runnable program for this full background problem is not yet
+  present in the current checkout.
+- Current mixed-weak scans:
+  `tasks/run_mixed_weak_boundary_matrix_scan.py` and
+  `tasks/run_mixed_weak_targeted_scan.py` are exploratory
+  simple-support-oriented boundary-matrix testbenches.
+  They still reuse the older `F_min` background and should not be relabeled as
+  fully consistent simple-support solvers.
+  The broad and targeted variants also differ on the second right-boundary row:
+  `M_s(1)` in the broad scan and `phi(1)` in the targeted patched scan.
+
 ## How to run
 
 Run every command below from the repository root.
@@ -57,14 +81,17 @@ If you already activated `.venv`, replace `.\.venv\Scripts\python.exe` with
 ### Active task: broad mixed-weak boundary-matrix scan
 
 What it does:
-- Runs the main mixed-weak boundary-matrix workflow on the active
-  simple-support branch.
+- Runs the main mixed-weak boundary-matrix workflow on the current
+  simple-support-oriented hybrid testbench path.
 - Can execute the baseline pressure scan plus resolution, fine, and adaptive
   follow-up scans.
 
 Input assumptions:
-- Uses the active mixed-weak simple-support core in
-  `src/shell_buckling/mixed_weak/solver_simple_support_core.py`.
+- Uses `src/shell_buckling/mixed_weak/solver_simple_support_core.py`.
+- This core still reuses the older `F_min` axisymmetric background with
+  right-edge `T_s0(1)=0`, `phi0(1)=0`.
+- The broad boundary matrix currently uses rows
+  `[u_n(1), M_s(1), T_s(1), S(1), H(1)]`.
 - Uses the configuration constants near the top of
   `src/shell_buckling/mixed_weak/boundary_matrix_scan.py`.
 
@@ -91,6 +118,9 @@ What it does:
 Input assumptions:
 - Uses the patched mixed-weak core in
   `src/shell_buckling/mixed_weak/solver_patched_core.py`.
+- This patched path still reuses the older `F_min` axisymmetric background.
+- Its right-boundary testbench rows are
+  `[u_n(1), phi(1), T_s(1), S(1), H(1)]`.
 - Uses the targeted-window configuration near the top of
   `src/shell_buckling/mixed_weak/boundary_matrix_targeted_scan.py`.
 
@@ -115,6 +145,8 @@ What it does:
 
 Input assumptions:
 - This is supporting comparison tooling, not the main mixed-weak criterion.
+- It compares against the same axisymmetric BC line that currently plays the
+  moving-clamp / sliding-clamp comparison role in the repository.
 - Its run configuration is set inside
   `src/shell_buckling/supporting/determinant_criterion_comparison.py`.
 
@@ -137,6 +169,9 @@ What it does:
 
 Input assumptions:
 - This is a supporting diagnostic, not the main mixed-weak criterion.
+- In the current checkout it is also the clearest runnable axisymmetric
+  comparison path for the moving-clamp / sliding-clamp side of the BC
+  discussion.
 - The wrapper currently passes a single target pressure to
   `compare_dimensionless(...)`.
 
@@ -164,6 +199,8 @@ Where to change parameters:
 - `docs/theory/vyvod_uravneniy_updated17.md`
 - `docs/theory/current_theory_verification_map.md`
 - `docs/theory/current_mixed_weak_theory_note.tex`
+- `docs/theory/boundary_condition_task_audit.md`
+- `docs/theory/boundary_conditions_summary.md`
 - `docs/assumptions/assumptions.md`
 - `docs/journal/project_journal_updated14.md`
 - `docs/project_map.md`

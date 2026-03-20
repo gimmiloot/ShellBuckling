@@ -1,4 +1,4 @@
-﻿# Project Map
+# Project Map
 
 This map describes the repository after the structural refactor.
 It covers the files and directories that exist in the current checkout.
@@ -21,17 +21,34 @@ project memory even when they are not present here as separate source files.
   the fully consistent simple-support problem, especially the axisymmetric
   simple-support background.
 
+## Boundary-condition task separation
+
+- Moving clamp / sliding clamp (`подвижная заделка`) currently appears most
+  cleanly in the supporting axisymmetric comparison modules
+  `src/shell_buckling/supporting/dimensionless_background_comparison.py` and
+  `src/shell_buckling/supporting/determinant_criterion_comparison.py`, together
+  with their runnable wrappers in `experiments/supporting/`.
+- The active mixed-weak scan tasks are not yet a separate full simple-support
+  program. They reuse the older `F_min` background line, and the two active
+  scan variants currently differ on the second right-boundary row:
+  `M_s(1)` in the broad scan and `varphi(1)` in the targeted patched scan.
+- The full hinged/simple-support axisymmetric task
+  (`подвижный шарнир / simple support`) is documented in the theory and
+  assumptions files with edge conditions `T_s(1)=0`, `M_s(1)=0`, `u_z(1)=0`,
+  but no clean separate runnable solver path for that full background problem is
+  present in the current checkout.
+
 ## Active core
 
 - `src/shell_buckling/mixed_weak/solver_simple_support_core.py`
-  Reusable mixed-weak prototype for the active simple-support line. It contains
-  the axisymmetric `F_min` continuation, background interpolation, trial-space
-  construction, operator assembly, boundary functionals, and scan helpers.
+  Reusable mixed-weak prototype for the broad hybrid simple-support-oriented
+  testbench. It still uses the older `F_min` continuation/background and its
+  boundary matrix currently uses the `M_s(1)` broad-scan row variant.
 
 - `src/shell_buckling/mixed_weak/solver_patched_core.py`
   Patched working variant of the same mixed-weak prototype. It is kept as a
-  separate active branch for targeted numerical follow-up rather than as an
-  archived file.
+  separate active branch for targeted numerical follow-up and currently uses the
+  `varphi(1)` right-boundary testbench row in the patched scan path.
 
 - `src/shell_buckling/mixed_weak/boundary_matrix_scan.py`
   Reusable broad-scan module for the active mixed-weak boundary-matrix workflow.
@@ -64,7 +81,9 @@ project memory even when they are not present here as separate source files.
   Supporting comparison module for shallow vs non-shallow determinant scans.
 
 - `src/shell_buckling/supporting/dimensionless_background_comparison.py`
-  Supporting diagnostic module for dimensionless fields and branch-A checks.
+  Supporting diagnostic module for dimensionless fields and branch-A checks on
+  the axisymmetric comparison line that currently plays the moving-clamp /
+  sliding-clamp role in the repository discussion.
 
 ## Archived / legacy path
 
@@ -84,6 +103,16 @@ project memory even when they are not present here as separate source files.
 
 - `docs/theory/current_theory_verification_map.md`
   Verification boundary and status map for the current mixed-weak theory.
+
+- `docs/theory/current_mixed_weak_theory_note.tex`
+  Compact supervisor-facing note for the current mixed-weak theory.
+
+- `docs/theory/boundary_condition_task_audit.md`
+  Audit note separating the moving-clamp, hybrid mixed-weak testbench, and full
+  simple-support tasks.
+
+- `docs/theory/boundary_conditions_summary.md`
+  Compact BC summary table for the moving-clamp and simple-support tasks.
 
 - `docs/assumptions/assumptions.md`
   Register of active assumptions and their current status.
