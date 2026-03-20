@@ -1,166 +1,119 @@
-# docs/theory/AGENTS.md
+# AGENTS.md for docs/theory
 
-## Purpose of this folder
-This folder holds the main theory-development and theory-status documents for
-the current mixed-weak branch.
+## Directory purpose
+This directory contains theory-facing documents, not ordinary implementation notes.
 
-Work here must preserve mathematical meaning and must not silently merge:
-- full derivation,
-- verification status,
-- supervisor-facing summary,
-- project history,
-- or solver-specific implementation details.
+Current important files:
+- `vyvod_uravneniy_updated17.md` — derivation notebook / theoretical investigations
+- `current_theory_verification_map.md` — verification map for the current mixed-weak project theory
+- `current_mixed_weak_theory_note.tex` — compact article-style discussion note for supervisor meetings
 
-If theory documents and active code disagree, report the disagreement
-explicitly. Do not silently "clean it up" by rewriting one side to match the
-other.
-
----
-
-## Priority inside `docs/theory`
-When working only inside this folder, use the files in this order:
-
-1. `vyvod_uravneniy_updated17.md`
-   - main theoretical-development file;
-   - source of the current derivations, operator structure, boundary logic,
-     and discussion of what is and is not established.
-
-2. `current_theory_verification_map.md`
-   - verification boundary and status map for the current mixed-weak theory;
-   - use it to separate accepted base, structural claims, formula claims,
-     numerical claims, interpretation items, and strategy items.
-
-3. `current_mixed_weak_theory_note.tex`
-   - compact discussion note for supervisor-facing conversations;
-   - should summarize the current theory state without replacing the full
-     derivation or the verification map.
-
-If there is a conflict:
-- keep `vyvod_uravneniy_updated17.md` as the derivation source,
-- use `current_theory_verification_map.md` to describe claim status,
-- and make the note report the conflict rather than hiding it.
+These files have different roles and must not be merged conceptually.
 
 ---
 
 ## File roles
 
-### `vyvod_uravneniy_updated17.md`
-Use this file for:
+### 1. `vyvod_uravneniy_updated17.md`
+Use for:
+- theoretical investigations,
 - derivations,
-- equation development,
-- reformulation of the mixed-weak system,
-- boundary-pair logic,
-- current theoretical reductions,
-- discussion of what has and has not been proved at the derivation level.
+- alternative formulations,
+- development of new equation systems,
+- intermediate theoretical work.
 
-Do not use it for:
-- routine repository notes,
-- changelog entries,
-- broad project-stage narration,
-- or short supervisor summaries.
+This file may be exploratory and research-notebook-like.
 
-### `current_theory_verification_map.md`
-Use this file for:
-- verification scope,
-- claim classification,
-- current status labels,
-- proof-pilot integration,
-- verification boundaries,
-- and next verification targets.
+### 2. `current_theory_verification_map.md`
+Use for:
+- structured tracking of the current theory,
+- accepted base,
+- open claims,
+- hypotheses,
+- verification methods,
+- verification status.
 
-Keep the claim categories distinct:
-- accepted working base,
-- structural,
-- formula,
-- numerical,
-- interpretation,
-- strategy.
+This file is a verification-management document.
 
-Do not turn this file into a second derivation document or a general narrative
-history.
+### 3. `current_mixed_weak_theory_note.tex`
+Use for:
+- short article-style presentation of the current theory,
+- supervisor-facing explanation of the present mixed-weak approach,
+- a compact summary of the current system, BCs, criterion, and solution route.
 
-### `current_mixed_weak_theory_note.tex`
-Use this file for a compact, readable note aimed at a mathematically informed
-reader who has not followed the entire repository history.
-
-It should usually contain:
-- motivation and scope,
-- current problem statement,
-- active unknowns and resultants,
-- current system actually under discussion,
-- boundary conditions and conjugate pairs,
-- the current working criterion,
-- the current numerical/theoretical solution procedure,
-- verified components,
-- open points and limitations.
-
-It should not try to contain:
-- the whole derivation,
-- the whole repository history,
-- every rejected branch,
-- or every implementation detail from every script.
+This file is NOT:
+- a full derivation notebook,
+- a project journal,
+- a changelog,
+- an implementation memo.
 
 ---
 
-## When to update `current_mixed_weak_theory_note.tex`
-Update the note when one of these changes materially in the repository:
-- the active unknown/resultant set;
-- the current boundary-pair statement;
-- the current working criterion;
-- the current interpretation of what is established vs exploratory;
-- the main open bottleneck for the branch;
-- the current leading candidate load range that is being discussed publicly.
+## Policy for current_mixed_weak_theory_note.tex
+This file should be readable by a person who has not followed the entire repository history.
 
-Do not update the note merely because:
-- code was refactored without changing the discussion object;
-- a small implementation detail changed;
-- or a routine changelog item was added.
+Requirements:
+- compact and discussion-oriented,
+- mathematically careful,
+- explicit about current status,
+- consistent with repository notation,
+- not excessively long.
 
----
+Preferred section structure:
+1. Introduction / motivation
+2. Problem statement
+3. Unknowns and mixed-weak structure
+4. Current system of equations
+5. Boundary conditions and conjugate pairs
+6. Current criticality criterion
+7. Solution procedure
+8. Verified components and open points
+9. Conclusion
 
-## Style for `current_mixed_weak_theory_note.tex`
-Keep the note:
-- compact,
-- readable,
-- explicit about status,
-- and close to repository notation.
+Optional short appendix:
+- notation table
 
-Prefer:
-- `\varphi` in the theory note, while mentioning once that some code files use
-  `phi` for the same variable;
-- short equations and short explanatory paragraphs;
-- clear labels such as "established", "working", "exploratory", and "open";
-- explicit statements when a numerical result is not yet a final validated
-  `simple support` conclusion.
-
-Avoid:
-- overclaiming validation,
-- mixing strategy statements with theorem-like statements,
-- or silently replacing repository notation with cleaner alternatives.
+When editing:
+- preserve article-like readability,
+- prefer concise explanation over exhaustive derivation,
+- mark exploratory elements explicitly,
+- do not claim more than the repository currently supports,
+- do not turn open items into closed statements.
 
 ---
 
-## Current repository-specific nuance
-At present, the theory-facing documents
-`vyvod_uravneniy_updated17.md`,
-`current_theory_verification_map.md`,
-and the project journal summarize the right-boundary discussion object using
+## Policy for hypotheses and claims in theory files
+Whenever a hypothesis or claim appears in theory-facing text, make its status explicit.
 
-- `u_n(1)`,
-- `\varphi(1)`,
-- `T_s(1)`,
-- `S(1)`,
-- `H(1)`.
+Possible statuses include:
+- accepted working base
+- proven in pilot
+- partially confirmed
+- exploratory
+- strategy only
+- not yet checked
 
-The active code still contains two nearby numerical lines:
-- the broad simple-support prototype in
-  `src/shell_buckling/mixed_weak/solver_simple_support_core.py` /
-  `boundary_matrix_scan.py`, where the boundary row currently uses `M_s(1)`;
-- the patched targeted line in
-  `src/shell_buckling/mixed_weak/solver_patched_core.py` /
-  `boundary_matrix_targeted_scan.py`, where the boundary row uses
-  `\varphi(1)`.
+Do not blur:
+- proved logic,
+- symbolic consistency,
+- numerical evidence,
+- research strategy.
 
-When updating the theory note, do not silently choose one and pretend the other
-does not exist. State the split explicitly and label it as an open
-theory-to-implementation alignment issue.
+---
+
+## Update rules
+Update `current_mixed_weak_theory_note.tex` only when the current theory meaningfully changes.
+
+Examples that DO justify updating it:
+- changed active equation set,
+- changed boundary conditions,
+- changed current criterion,
+- changed active solution procedure,
+- changed status of verified/open core components.
+
+Examples that do NOT justify updating it:
+- file moves,
+- code renaming,
+- ordinary refactors,
+- local plotting changes,
+- small cleanup of scripts.
