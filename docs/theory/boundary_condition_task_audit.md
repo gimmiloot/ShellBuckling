@@ -12,18 +12,18 @@ current mixed-weak scan workflow is still hybrid, and where the documentation
 was previously ambiguous.
 
 ## Executive Result
-The current checkout does **not** yet have two cleanly separated runnable
-program paths for these two physical tasks.
+The repository now has a cleaner separation than before, but it is still not a
+fully closed two-path story.
 
-What the repository currently has is:
+What the current checkout now has is:
 
 - a supporting axisymmetric comparison path whose written BC set matches the
   moving-clamp / sliding-clamp side;
 - an active mixed-weak scan path that is `simple-support`-oriented at the
   boundary-matrix level but still reuses the older `F_min` background;
-- a documented full `simple support` axisymmetric BC target in the theory files,
-  but **no separate runnable program** for that full background problem in the
-  present checkout.
+- a separate active full-state axisymmetric simple-support background path,
+  which is runnable and reaches `4.30 MPa` in the current implementation but
+  still fails near `4.33 MPa` and is not yet connected to the mixed-weak scans.
 
 ## Runnable Scripts by Task
 
@@ -129,9 +129,11 @@ Repository status:
 
 - this task is documented as the intended full `simple support` background
   problem;
-- the repository explicitly says it is not yet closed;
-- there is **no clean separate runnable program** for it in the current
-  checkout.
+- a separate active full-state background path now exists in
+  `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`;
+- that path is runnable but not yet closed: in the current implementation it
+  reaches `4.30 MPa` and fails near `4.33 MPa`, and it is not yet connected to
+  the active mixed-weak scans.
 
 ## Where the BCs Are Currently Stated
 
@@ -202,5 +204,4 @@ After the documentation updates linked to this audit, the intended reading is:
 - supporting axisymmetric comparison scripts -> moving-clamp / sliding-clamp side;
 - active mixed-weak scan scripts -> hybrid simple-support-oriented testbench,
   still using the older `F_min` background;
-- full `simple support` axisymmetric background task -> theory target, not yet a
-  separate runnable program.
+- full `simple support` axisymmetric background task -> separate active full-state`r`n  background path now exists, but it is still only partially stabilized and is`r`n  not yet the background used by the active mixed-weak scans.

@@ -1,5 +1,39 @@
 # CHANGELOG
 
+## 2026-03-20 - Add separate full-state simple-support background path
+
+Affected files:
+- `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`
+- `tasks/run_axisymmetric_simple_support_background.py`
+- `tasks/run_axisymmetric_simple_support_background_report.py`
+- `README.md`
+- `docs/project_map.md`
+- `docs/theory/boundary_condition_task_audit.md`
+- `docs/theory/boundary_conditions_summary.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/theory/current_mixed_weak_theory_note.tex`
+- `CHANGELOG.md`
+
+- Added a separate active full-state axisymmetric simple-support background module with state `[T_s, T_sn, M_s, u_r, u_z, varphi]`.
+- Implemented fixed-load solves first and then a continuation wrapper on top, without relabeling the older 5-state `F_min` fallback.
+- Added dedicated task wrappers and a compact report path that prints the imposed BCs, the successful load range, and the current failure point near `4.33 MPa`.
+- Updated the repository documentation so it now distinguishes the new full-state background path from the still-hybrid mixed-weak scan workflow.
+
+## 2026-03-20 - Add pilot 07 for the axisymmetric simple-support background
+
+Affected files:
+- `proof_pilots/pilot_07_axisymmetric_simple_support_background/pilot_07_axisymmetric_simple_support_background.md`
+- `proof_pilots/pilot_07_axisymmetric_simple_support_background/background_problem_statement.md`
+- `proof_pilots/pilot_07_axisymmetric_simple_support_background/numerical_diagnostic.py`
+- `proof_pilots/pilot_07_axisymmetric_simple_support_background/implementation_note.md`
+- `docs/theory/current_theory_verification_map.md`
+- `CHANGELOG.md`
+
+- Added a dedicated diagnostic pilot for the current axisymmetric simple-support background bottleneck.
+- Recorded the repository-level problem statement and the minimum next implementation step without changing solver mathematics.
+- Added a runnable numerical diagnostic that distinguishes the active 5-state `F_min` fallback from the intended 6-state simple-support background and localizes the current continuation failure band.
+- Refined the verification-map wording for the strategy-level bottleneck claim V-ST1.
+
 ## 2026-03-20 - Audit boundary-condition task separation
 
 Affected files:

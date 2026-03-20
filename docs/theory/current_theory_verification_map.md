@@ -1,4 +1,4 @@
-﻿# Current Theory Verification Map
+# Current Theory Verification Map
 
 ## 1. Introduction
 
@@ -359,18 +359,26 @@ not that every one of them is already article-level proven.
 - Type: `strategy`
 - Source file(s):
   `docs/assumptions/assumptions.md` A12;
-  `docs/theory/vyvod_uravneniy_updated17.md` sections 2.4 and 3.1.
+  `docs/theory/vyvod_uravneniy_updated17.md` sections 2.4 and 3.1;
+  `proof_pilots/pilot_07_axisymmetric_simple_support_background/pilot_07_axisymmetric_simple_support_background.md`;
+  `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`.
 - Current status: `strategy only`
 - What counts as verification:
   not a theorem; it is supported only insofar as current evidence points to the
-  background as the dominant unresolved node.
+  background as the dominant unresolved node, now sharpened by the fact that a
+  separate active full-state simple-support background path exists and reaches
+  `4.30 MPa` under the current fixed-load and seeded-continuation schedules,
+  while the active mixed-weak scans still use the reduced 5-state `F_min`
+  background and the new full-state path still loses the branch near
+  `4.33 MPa`.
 - Verification method:
   project-state analysis, numerical testbench.
 - Verification boundary:
   not a theorem, only a current research strategy.
 - Next action:
-  keep testing this hypothesis against future full simple-support background
-  work.
+  keep the separate full 6-state simple-support background path, extend its
+  stable load range beyond the current `4.30 MPa` ceiling, and only then
+  reconnect it to the mixed-weak scans.
 
 ### V-ST2. Stabilize the background before promoting `q_cr`
 

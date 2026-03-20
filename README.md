@@ -42,8 +42,14 @@ materials.
   the theory-facing full axisymmetric candidate uses
   `T_s(1)=0`, `M_s(1)=0`, `u_z(1)=0` at the edge with
   `T_sn(x0)=0`, `u_r(x0)=0`, `phi(x0)=0` at the center.
-  A clean separate runnable program for this full background problem is not yet
-  present in the current checkout.
+  A separate active full-state background path now exists in
+  `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`
+  with task wrappers
+  `tasks/run_axisymmetric_simple_support_background.py` and
+  `tasks/run_axisymmetric_simple_support_background_report.py`.
+  In the current implementation fixed-load solves and seeded continuation reach
+  `4.30 MPa` and fail near `4.33 MPa`, so the path is runnable but not yet
+  fully stabilized or connected to the active mixed-weak scans.
 - Current mixed-weak scans:
   `tasks/run_mixed_weak_boundary_matrix_scan.py` and
   `tasks/run_mixed_weak_targeted_scan.py` are exploratory
@@ -73,6 +79,10 @@ If you already activated `.venv`, replace `.\.venv\Scripts\python.exe` with
   `.\.venv\Scripts\python.exe tasks/run_mixed_weak_boundary_matrix_scan.py`
 - Main active targeted scan:
   `.\.venv\Scripts\python.exe tasks/run_mixed_weak_targeted_scan.py`
+- Active full-state simple-support background report:
+  `.\.venv\Scripts\python.exe tasks/run_axisymmetric_simple_support_background.py`
+- Short simple-support background diagnostic:
+  `.\.venv\Scripts\python.exe tasks/run_axisymmetric_simple_support_background_report.py`
 - Supporting determinant comparison:
   `.\.venv\Scripts\python.exe experiments/supporting/run_supporting_determinant_comparison.py`
 - Supporting dimensionless comparison:
@@ -135,6 +145,36 @@ Where to change parameters:
 - Main grid seed: `BASELINE_P_MAX_MPA`, `BASELINE_P_NPTS`
 - Targeted scan controls: `TARGETED_CASES`, `TARGETED_WINDOWS0`,
   `TARGETED_NPTS`, `TARGETED_MAX_ITERS`
+
+### Active task: full-state axisymmetric simple-support background
+
+What it does:
+- Runs the separate full-state axisymmetric simple-support background path with
+  state `[T_s, T_sn, M_s, u_r, u_z, phi]`.
+- Reports both an independent fixed-load schedule and a continuation schedule.
+- Makes explicit which BCs are imposed and where the current implementation
+  still fails.
+
+Input assumptions:
+- Uses `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`.
+- Imposes the full simple-support BC set
+  `T_s(1)=0`, `M_s(1)=0`, `u_z(1)=0`, `T_sn(x0)=0`, `u_r(x0)=0`, `phi(x0)=0`.
+- This path is separate from the older 5-state `F_min` fallback used by the
+  active mixed-weak scans.
+- In the current implementation the default schedules reach `4.30 MPa` and
+  fail near `4.33 MPa`.
+
+Exact commands:
+
+```powershell
+.\.venv\Scripts\python.exe tasks/run_axisymmetric_simple_support_background.py
+.\.venv\Scripts\python.exe tasks/run_axisymmetric_simple_support_background_report.py
+```
+
+Where to change parameters:
+- `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`
+- Main defaults: `DEFAULT_FIXED_LOADS_MPA`, `DEFAULT_CONTINUATION_LOADS_MPA`
+- Solver settings: `AxisymmetricSimpleSupportConfig`
 
 ### Supporting task: determinant comparison
 

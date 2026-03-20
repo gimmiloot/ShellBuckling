@@ -3,7 +3,7 @@
 | Task | Intended physical interpretation | Essential boundary conditions | Natural / imposed complementary conditions | Main active code path / run script | Current status |
 | --- | --- | --- | --- | --- | --- |
 | `подвижная заделка` | Moving clamp / sliding clamp axisymmetric comparison line | center: `T_sn(x0)=0`, `u_r(x0)=0`, `varphi(x0)=0`; edge: `u_z(1)=0`, `varphi(1)=0` | edge: `T_s(1)=0` | `experiments/supporting/run_supporting_dimensionless_comparison.py`; `experiments/supporting/run_supporting_determinant_comparison.py` | Runnable and useful, but only as a supporting comparison path |
-| `подвижный шарнир / simple support` | Hinged / simple-support physical target | center: `T_sn(x0)=0`, `u_r(x0)=0`, `varphi(x0)=0`; edge: `u_z(1)=0` | edge: `T_s(1)=0`, `M_s(1)=0` | No clean separate runnable program yet in the current checkout. The active mixed-weak scans are only hybrid testbench variants built on top of the older `F_min` background. | Exploratory / not yet fully consistent as a separate solver path |
+| `подвижный шарнир / simple support` | Hinged / simple-support physical target | center: `T_sn(x0)=0`, `u_r(x0)=0`, `varphi(x0)=0`; edge: `u_z(1)=0` | edge: `T_s(1)=0`, `M_s(1)=0` | `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`; `tasks/run_axisymmetric_simple_support_background.py`; `tasks/run_axisymmetric_simple_support_background_report.py` | Separate active full-state background path now exists; default fixed-load and seeded continuation schedules reach `4.30 MPa` and fail near `4.33 MPa`; not yet connected to the active mixed-weak scans |
 
 ## Important note about the current mixed-weak scans
 

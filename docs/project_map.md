@@ -18,8 +18,8 @@ project memory even when they are not present here as separate source files.
   - `src/shell_buckling/mixed_weak/boundary_matrix_targeted_scan.py`
   - `tasks/run_mixed_weak_targeted_scan.py`
 - Current mixed-weak candidate loads remain exploratory. The main open issue is
-  the fully consistent simple-support problem, especially the axisymmetric
-  simple-support background.
+  no longer the absence of a separate full-state simple-support background path,
+  but stabilizing and reconnecting that path to the active mixed-weak scans.
 
 ## Boundary-condition task separation
 
@@ -33,10 +33,13 @@ project memory even when they are not present here as separate source files.
   scan variants currently differ on the second right-boundary row:
   `M_s(1)` in the broad scan and `varphi(1)` in the targeted patched scan.
 - The full hinged/simple-support axisymmetric task
-  (`подвижный шарнир / simple support`) is documented in the theory and
-  assumptions files with edge conditions `T_s(1)=0`, `M_s(1)=0`, `u_z(1)=0`,
-  but no clean separate runnable solver path for that full background problem is
-  present in the current checkout.
+  (`подвижный шарнир / simple support`) is now available as a separate active
+  full-state background path in
+  `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`,
+  with task wrappers in `tasks/`.
+  In the current implementation that path reaches `4.30 MPa` and fails near
+  `4.33 MPa`, so it is runnable but not yet fully stabilized or connected to
+  the active mixed-weak scans.
 
 ## Active core
 
@@ -57,6 +60,12 @@ project memory even when they are not present here as separate source files.
   Reusable targeted-scan module for local follow-up around selected candidate
   windows.
 
+- `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`
+  Separate active full-state axisymmetric simple-support background module with
+  state `[T_s, T_sn, M_s, u_r, u_z, varphi]`, fixed-load solves first, and a
+  continuation wrapper added on top. In the current implementation it reaches
+  `4.30 MPa` and fails near `4.33 MPa`.
+
 ## Runnable task scripts
 
 ### Active tasks
@@ -66,6 +75,12 @@ project memory even when they are not present here as separate source files.
 
 - `tasks/run_mixed_weak_targeted_scan.py`
   Active entry point for targeted follow-up scans.
+
+- `tasks/run_axisymmetric_simple_support_background.py`
+  Active entry point for the separate full-state simple-support background path.
+
+- `tasks/run_axisymmetric_simple_support_background_report.py`
+  Compact diagnostic/report entry point for the same full-state background path.
 
 ### Supporting tasks
 

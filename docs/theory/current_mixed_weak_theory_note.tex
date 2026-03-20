@@ -61,10 +61,13 @@ The mixed-weak critical testbench discussed in this note uses the right-boundary
 logic $u_n(1)=0$, $\varphi(1)=0$ with natural conditions
 $T_s(1)=0$, $S(1)=0$, $H(1)=0$.
 The separate full simple-support axisymmetric candidate discussed in the main
-theory file uses $T_s(1)=0$, $M_s(1)=0$, $u_z(1)=0$ and is not yet a separate
-active runnable solver path.
-The current scan programs should therefore be read as exploratory testbench
-variants rather than as a final fully separated simple-support solver.
+theory file uses $T_s(1)=0$, $M_s(1)=0$, $u_z(1)=0$ and now has a separate
+full-state background solver path in the active code base.
+That path is not yet connected to the active mixed-weak scans and in the
+current implementation reaches about $4.30\,\mathrm{MPa}$ before failing near
+$4.33\,\mathrm{MPa}$.
+The current mixed-weak scan programs should therefore still be read as
+exploratory testbench variants rather than as a final fully separated simple-support solver.
 
 \section{Unknowns and Mixed-Weak Structure}
 \paragraph{Accepted working structure.}
