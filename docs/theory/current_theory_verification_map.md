@@ -1,4 +1,4 @@
-# Current Theory Verification Map
+﻿# Current Theory Verification Map
 
 ## 1. Introduction
 
@@ -279,13 +279,13 @@ not that every one of them is already article-level proven.
   testbench spectral signal to the final mixed BVP before promoting stronger
   claims.
 
-### V-N2. Current candidate load `n=13`, `qв‰€3.79..3.80 MPa`
+### V-N2. Current candidate load `n=13`, `qРІвЂ°в‚¬3.79..3.80 MPa`
 
 - ID: `V-N2`
 - Claim / Hypothesis:
   The present best mixed-weak candidate is
-  `n = 13`, `q в‰€ 3.79..3.80 MPa`, with the nearest competitor near
-  `n = 14`, `q в‰€ 4.28 MPa`.
+  `n = 13`, `q РІвЂ°в‚¬ 3.79..3.80 MPa`, with the nearest competitor near
+  `n = 14`, `q РІвЂ°в‚¬ 4.28 MPa`.
 - Type: `numerical`
 - Source file(s):
   `docs/theory/vyvod_uravneniy_updated17.md` sections 2.3 and 3.1;
@@ -363,6 +363,12 @@ not that every one of them is already article-level proven.
   `proof_pilots/pilot_07_axisymmetric_simple_support_background/pilot_07_axisymmetric_simple_support_background.md`;
   `proof_pilots/pilot_08_simple_support_background_stabilization/pilot_08_simple_support_background_stabilization.md`;
   `proof_pilots/pilot_09_simple_support_local_branch_following/pilot_09_simple_support_local_branch_following.md`;
+  `proof_pilots/pilot_10_high_load_simple_support_continuation/pilot_10_high_load_simple_support_continuation.md`;
+  `proof_pilots/pilot_10_high_load_simple_support_continuation/branch_diagnostics.md`;
+  `proof_pilots/pilot_11_shallow_vs_nonshallow_barrier_comparison/comparison_problem_statement.md`;
+  `proof_pilots/pilot_12_high_load_branch_extension/pilot_12_high_load_branch_extension.md`;
+  `proof_pilots/pilot_12_high_load_branch_extension/branch_consistency_check.md`;
+  `proof_pilots/pilot_13_shallow_nonshallow_divergence_source/pilot_13_shallow_nonshallow_divergence_source.md`;
   `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`.
 - Current status: `strategy only`
 - What counts as verification:
@@ -371,19 +377,28 @@ not that every one of them is already article-level proven.
   separate active full-state simple-support background path exists, its live
   6-state BC function matches the intended simple-support BC set, its active
   equations match the supporting 6-state non-shallow block, and a dedicated
-  local branch-following helper can now move the reachable full-state load band
-  from about `4.335 MPa` to about `4.343 MPa` before the branch is lost again
-  near `4.344 MPa` by mesh-node pressure. The active mixed-weak scans still use
-  the reduced 5-state `F_min` background.
+  local branch-following / staged rescue workflow now makes `4.3434 MPa`
+  reproducible on the same `secant_profile_mesh` strategy, while the next
+  staged ladder step `4.3440 MPa` still fails for every tried seed by
+  `maximum number of mesh nodes` with tiny BC residuals and strong right-edge
+  concentration. This sharpens the current bottleneck from an unresolved
+  `4.3433..4.3434 MPa` barrier to a reproducible `4.3434 MPa` anchor with the
+  first new ladder failure still at `4.3440 MPa`. Pilot 13 further shows that
+  the mapped shallow/non-shallow mismatch is already clearly visible from
+  `0.02 MPa`, remains predominantly right-edge localized overall, and the
+  explicit small-angle / radius corrections in the `theta0` and `theta0'` maps
+  stay tiny until much higher load, so the present high-load obstruction is not
+  well explained by a new barrier-localized non-shallow correction. The active
+  mixed-weak scans still use the reduced 5-state `F_min` background.
 - Verification method:
   project-state analysis, numerical testbench.
 - Verification boundary:
   not a theorem, only a current research strategy.
 - Next action:
-  keep the separate full 6-state simple-support background path, improve the
-  dedicated local branch-following / right-edge mesh-control stage beyond the
-  current `4.343..4.344 MPa` band, and only then reconnect it to the mixed-weak
-  scans.
+  keep the separate full 6-state simple-support background path, continue the
+  staged bounded extension work above the reproducible `4.3434 MPa` anchor,
+  focus on the numerically difficult `4.3440 MPa` step and its right-edge mesh
+  pressure, and only then consider any reconnection to the mixed-weak scans.
 
 ### V-ST2. Stabilize the background before promoting `q_cr`
 
@@ -522,7 +537,6 @@ Most valuable next proof pilots:
 3. A proof-oriented check comparing the current reduced center ansatz against
    broader regular mixed extensions, if that boundary becomes verification
    critical.
-
 
 
 

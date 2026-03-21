@@ -1,4 +1,63 @@
-# CHANGELOG
+﻿# CHANGELOG
+
+## 2026-03-21 - Add pilot 13 shallow-vs-non-shallow divergence source sweep and attribution
+
+Affected files:
+- `proof_pilots/pilot_13_shallow_nonshallow_divergence_source/pilot_13_shallow_nonshallow_divergence_source.md`
+- `proof_pilots/pilot_13_shallow_nonshallow_divergence_source/load_sweep_comparison.py`
+- `proof_pilots/pilot_13_shallow_nonshallow_divergence_source/term_attribution.py`
+- `proof_pilots/pilot_13_shallow_nonshallow_divergence_source/load_sweep_results.json`
+- `proof_pilots/pilot_13_shallow_nonshallow_divergence_source/load_sweep_cache.npz`
+- `proof_pilots/pilot_13_shallow_nonshallow_divergence_source/term_attribution_results.json`
+- `docs/theory/current_theory_verification_map.md`
+- `CHANGELOG.md`
+
+- Added a dedicated pilot-13 load sweep that compares the repository's shallow path against the mapped active 6-state non-shallow simple-support branch from `0.02 MPa` up to the reproducible `4.3434 MPa` high-load anchor.
+- Ran the bounded sweep and recorded that the mapped shallow/non-shallow mismatch is already clearly present at the first sampled low load, remains right-edge dominated overall, and does not grow toward the `4.3434 MPa` continuation barrier.
+- Added a term-attribution pass using the current repository formulas and recorded that the explicit small-angle / radius corrections in the `theta0` and `theta0'` mappings stay tiny at low load, while larger geometric contributions such as `ur/x` are present from the start, so the early mismatch is not explained by a new high-load-only non-shallow correction.
+
+
+## 2026-03-21 - Add pilot 12 staged branch extension above the reproducible 4.3434 MPa simple-support point
+
+Affected files:
+- `proof_pilots/pilot_12_high_load_branch_extension/pilot_12_high_load_branch_extension.md`
+- `proof_pilots/pilot_12_high_load_branch_extension/numerical_extension.py`
+- `proof_pilots/pilot_12_high_load_branch_extension/branch_consistency_check.md`
+- `proof_pilots/pilot_12_high_load_branch_extension/extension_results.json`
+- `docs/theory/current_theory_verification_map.md`
+- `CHANGELOG.md`
+
+- Added a dedicated pilot-12 branch-extension workflow that reboots the validated high-load 6-state simple-support branch, repeats `4.3434 MPa` from the same predecessor pair, and then attempts a staged ladder above that point with continuity and branch-jump diagnostics.
+- Ran the bounded extension script and confirmed that `4.3434 MPa` is reproducible on the same `secant_profile_mesh` strategy, with the repeated same-load retests converging to the same saved solution and no branch-jump signal.
+- Recorded that the first new ladder step `4.3440 MPa` still fails for all tried seeds by mesh-node exhaustion with tiny BC residuals and strong right-edge concentration, so the branch anchor is now reproducible but the ceiling has not yet moved beyond 4.35 MPa.
+
+## 2026-03-21 - Add pilot 11 shallow-vs-non-shallow barrier comparison near the simple-support high-load barrier
+
+Affected files:
+- `proof_pilots/pilot_11_shallow_vs_nonshallow_barrier_comparison/pilot_11_shallow_vs_nonshallow_barrier_comparison.md`
+- `proof_pilots/pilot_11_shallow_vs_nonshallow_barrier_comparison/comparison_problem_statement.md`
+- `proof_pilots/pilot_11_shallow_vs_nonshallow_barrier_comparison/numerical_comparison.py`
+- `proof_pilots/pilot_11_shallow_vs_nonshallow_barrier_comparison/comparison_results.json`
+- `CHANGELOG.md`
+
+- Added a bounded pilot-11 comparison between the active 6-state simple-support branch and the repository's existing shallow comparison path using the live non-shallow-to-shallow mapping formulas already present in the supporting scripts.
+- Ran the comparison near the current high-load barrier neighborhood and recorded that the bounded pilot-11 run reaches `4.3434 MPa` on the non-shallow branch after two mesh-pressure failures on raw-mesh seeds and a successful `secant_profile_mesh` rescue.
+- Recorded that the mapped non-shallow vs shallow mismatch is already present below the barrier and changes only weakly from `4.3400` to `4.3434 MPa`, so the shallow comparison is informative but not a clean same-branch barrier detector by itself.
+
+## 2026-03-21 - Add pilot 10 staged high-load continuation campaign for the 6-state simple-support background
+
+Affected files:
+- `proof_pilots/pilot_10_high_load_simple_support_continuation/pilot_10_high_load_simple_support_continuation.md`
+- `proof_pilots/pilot_10_high_load_simple_support_continuation/continuation_campaign.py`
+- `proof_pilots/pilot_10_high_load_simple_support_continuation/branch_diagnostics.md`
+- `proof_pilots/pilot_10_high_load_simple_support_continuation/campaign_results.json`
+- `docs/theory/current_theory_verification_map.md`
+- `CHANGELOG.md`
+
+- Added a new pilot-10 continuation campaign for the active 6-state simple-support background with staged band runs, bounded runtime budgets, and incremental JSON progress logging.
+- Kept the same 6-state equations and simple-support BC set, but rebuilt the campaign around the validated high-load local branch rather than a smoother alternative branch.
+- Added a concise branch-diagnostics note recording the bounded `4.34..4.50 MPa` band result and the finer rescue-local refinement that reaches about `4.3433 MPa` before `4.3434 MPa` remains unresolved by mesh-node exhaustion.
+- Tightened the verification-map wording for V-ST1 without changing its status from `strategy only`.
 
 ## 2026-03-20 - Add pilot 09 local branch-following helper for the 6-state simple-support background
 
@@ -76,7 +135,7 @@ Affected files:
 - `CHANGELOG.md`
 
 - Added a compact audit note that separates the moving-clamp/sliding-clamp line, the current hybrid mixed-weak scan/testbench path, and the full simple-support background task.
-- Added a boundary-condition summary table for `подвижная заделка` versus `подвижный шарнир / simple support`.
+- Added a boundary-condition summary table for `РїРѕРґРІРёР¶РЅР°СЏ Р·Р°РґРµР»РєР°` versus `РїРѕРґРІРёР¶РЅС‹Р№ С€Р°СЂРЅРёСЂ / simple support`.
 - Clarified in the README and project map that the current active mixed-weak scans still reuse the older `F_min` background and should not be read as a clean final simple-support solver path.
 - Added a short boundary-condition-scope clarification to the supervisor-facing mixed-weak theory note.
 
@@ -302,3 +361,10 @@ Affected files: `data/project_map.md`, `CHANGELOG.md`
 
 - Added `data/project_map.md` to classify the current checkout into active core, runnable tasks, supporting scripts, documentation, and non-source folders.
 - Recorded the present working direction as the mixed-weak path and noted that no dedicated archived source directory exists in this checkout.
+
+
+
+
+
+
+
