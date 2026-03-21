@@ -60,14 +60,29 @@ $T_{s0}(1)=0$, $\varphi_0(1)=0$.
 The mixed-weak critical testbench discussed in this note uses the right-boundary
 logic $u_n(1)=0$, $\varphi(1)=0$ with natural conditions
 $T_s(1)=0$, $S(1)=0$, $H(1)=0$.
-The separate full simple-support axisymmetric candidate discussed in the main
-theory file uses $T_s(1)=0$, $M_s(1)=0$, $u_z(1)=0$ and now has a separate
-full-state background solver path in the active code base.
-That path is not yet connected to the active mixed-weak scans and in the
-current implementation reaches about $4.30\,\mathrm{MPa}$ before failing near
-$4.33\,\mathrm{MPa}$.
+The separate full simple-support axisymmetric candidate uses
+$T_s(1)=0$, $M_s(1)=0$, $u_z(1)=0$ and now has a separate active 6-state
+background path with state $(T_s,T_{sn},M_s,u_r,u_z,\varphi)$.
+That path is still not connected to the active mixed-weak scans, but it now has
+a reproducible anchor at $4.3434\,\mathrm{MPa}$ and a first persistent staged
+failure at $4.3440\,\mathrm{MPa}$.
+The failure pattern remains mainly numerical: BC residuals stay tiny, nodes pile
+up strongly near $x=1$, and the strongest gradients are dominated by $u_z$ with
+a smaller $\varphi$ shoulder.
+Pilot 15 showed that the older shallow comparator was BC-mismatched for this
+simple-support task, pilot 16 built the strongest current shallow
+simple-support comparator, and pilot 17 showed that in the corrected
+BC-aligned comparison the shallow/non-shallow mismatch becomes clearly visible
+around $2\ldots 3\,\mathrm{MPa}$, grows with load, and stays smooth through the
+available high-load range.
+So the present $4.3434\ldots 4.3440\,\mathrm{MPa}$ barrier is not currently
+explained by a sudden shallow/non-shallow split at the ceiling.
+The revised analytic diagnosis now points more toward a stiff right-edge layer
+on an already measurably non-shallow branch than toward a detected near-fold,
+but this remains heuristic and does not close the final shell problem.
 The current mixed-weak scan programs should therefore still be read as
-exploratory testbench variants rather than as a final fully separated simple-support solver.
+exploratory testbench variants rather than as a final fully separated
+simple-support solver.
 
 \section{Unknowns and Mixed-Weak Structure}
 \paragraph{Accepted working structure.}
@@ -304,7 +319,8 @@ The main open points remain:
     \item a final closed mixed BVP beyond the present surrogate verification
     boundary;
     \item the axisymmetric simple-support background as the main unresolved
-    bottleneck for physical closure;
+    bottleneck for physical closure, with the current analytic reading favoring
+    a stiff right-edge layer rather than a proved fold or branch end;
     \item final validation of candidate critical loads for the physical problem.
 \end{itemize}
 At present the leading exploratory mixed-weak candidate remains near

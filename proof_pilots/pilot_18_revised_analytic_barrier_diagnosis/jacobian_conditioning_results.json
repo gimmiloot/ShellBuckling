@@ -1,0 +1,1942 @@
+{
+  "metadata": {
+    "pilot": "pilot_18_revised_analytic_barrier_diagnosis",
+    "source_cache_npz": "D:\\PHD\\ShellBuckling\\proof_pilots\\pilot_18_revised_analytic_barrier_diagnosis\\branch_state_cache.npz",
+    "source_cache_json": "D:\\PHD\\ShellBuckling\\proof_pilots\\pilot_18_revised_analytic_barrier_diagnosis\\branch_state_cache.json",
+    "fd_rel_step": 1e-07,
+    "loads_mpa": [
+      4.34,
+      4.343,
+      4.3432,
+      4.3434
+    ]
+  },
+  "branch_cache_summary": {
+    "metadata": {
+      "pilot": "pilot_18_revised_analytic_barrier_diagnosis",
+      "source": "active 6-state simple-support branch via pilot-12 bootstrap/retest strategy",
+      "converged_loads_mpa": [
+        4.34,
+        4.343,
+        4.3432,
+        4.3434
+      ],
+      "failed_target_load_mpa": 4.344,
+      "cache_npz": "D:\\PHD\\ShellBuckling\\proof_pilots\\pilot_18_revised_analytic_barrier_diagnosis\\branch_state_cache.npz",
+      "budget_seconds": 1200.0
+    },
+    "branch_points": [
+      {
+        "q_mpa": 4.34,
+        "nodes": 1573,
+        "max_rms": 0.0010863600917758356,
+        "max_bc_residual": 1.065332705102434e-18,
+        "min_r": 0.0016666666666666668,
+        "node_pressure": 0.0026216666666666667,
+        "right_edge_fraction_0_99": 0.3610934520025429,
+        "right_edge_fraction_0_995": 0.24602670057215512,
+        "right_edge_fraction_0_999": 0.10044500953591863,
+        "min_dx": 1.92236552343239e-07,
+        "min_dx_mid": 0.9999997116451713,
+        "top_gradients": [
+          {
+            "state": "u_z",
+            "max_abs_grad": 88.22521232655163,
+            "x_at_peak": 0.9995915864031625
+          },
+          {
+            "state": "varphi",
+            "max_abs_grad": 5.307181612398097,
+            "x_at_peak": 0.9346587926509187
+          },
+          {
+            "state": "T_s",
+            "max_abs_grad": 3.317591339802698,
+            "x_at_peak": 0.0016666666666666668
+          }
+        ],
+        "observables": {
+          "Ts_x0": 0.008276380083530098,
+          "Tsn_1": -0.0019084417936221514,
+          "Ms_x0": 3.6353835219388172e-06,
+          "ur_1": -0.04992835750998436,
+          "uz_x0": 20.374570962734406,
+          "phi_1": 1.0520235195431475,
+          "max_abs_phi": 1.052206658819708,
+          "max_abs_Tsn": 0.0019084417936221514
+        },
+        "accepted_profile": "rescue_local",
+        "accepted_seed": "secant_prev_mesh",
+        "predictor_rel_correction": 0.0005770392195390354,
+        "predictor_abs_correction": 0.011756926526778955,
+        "message": "The algorithm converged to the desired accuracy."
+      },
+      {
+        "q_mpa": 4.343,
+        "nodes": 5131,
+        "max_rms": 0.0011900613528497074,
+        "max_bc_residual": 1.7121782900175227e-18,
+        "min_r": 0.0016666666666666668,
+        "node_pressure": 0.008551666666666667,
+        "right_edge_fraction_0_99": 0.44240888715649973,
+        "right_edge_fraction_0_995": 0.3011108945624635,
+        "right_edge_fraction_0_999": 0.12317287078542194,
+        "min_dx": 4.805913800254302e-08,
+        "min_dx_mid": 0.9999996876156023,
+        "top_gradients": [
+          {
+            "state": "u_z",
+            "max_abs_grad": 88.28183084369994,
+            "x_at_peak": 0.9995915864031625
+          },
+          {
+            "state": "varphi",
+            "max_abs_grad": 5.314557206769678,
+            "x_at_peak": 0.934342738407699
+          },
+          {
+            "state": "T_s",
+            "max_abs_grad": 3.3190910626143126,
+            "x_at_peak": 0.0016666666666666668
+          }
+        ],
+        "observables": {
+          "Ts_x0": 0.008280121855519303,
+          "Tsn_1": -0.0019111232623978784,
+          "Ms_x0": 3.6362443974891535e-06,
+          "ur_1": -0.04999133678106582,
+          "uz_x0": 20.38351660934864,
+          "phi_1": 1.0529868234486377,
+          "max_abs_phi": 1.0531699508182633,
+          "max_abs_Tsn": 0.0019111232623978784
+        },
+        "accepted_profile": "rescue_local",
+        "accepted_seed": "secant_prev_mesh",
+        "predictor_rel_correction": 0.004229590419483772,
+        "predictor_abs_correction": 0.08621392656628935,
+        "message": "The algorithm converged to the desired accuracy."
+      },
+      {
+        "q_mpa": 4.3432,
+        "nodes": 7773,
+        "max_rms": 0.0011960542701756436,
+        "max_bc_residual": 1.5548950733234831e-18,
+        "min_r": 0.0016666666666666668,
+        "node_pressure": 0.012955,
+        "right_edge_fraction_0_99": 0.5840730734594107,
+        "right_edge_fraction_0_995": 0.39740126077447574,
+        "right_edge_fraction_0_999": 0.16261417728032934,
+        "min_dx": 2.402956900127151e-08,
+        "min_dx_mid": 0.9999996515712488,
+        "top_gradients": [
+          {
+            "state": "u_z",
+            "max_abs_grad": 88.41097035499843,
+            "x_at_peak": 0.9996010787170696
+          },
+          {
+            "state": "varphi",
+            "max_abs_grad": 5.333830900089197,
+            "x_at_peak": 0.9346587926509187
+          },
+          {
+            "state": "T_s",
+            "max_abs_grad": 2.9132584335346863,
+            "x_at_peak": 0.0016666666666666668
+          }
+        ],
+        "observables": {
+          "Ts_x0": 0.008280914015429843,
+          "Tsn_1": -0.0019190088126145428,
+          "Ms_x0": 3.6360924412888647e-06,
+          "ur_1": -0.05015424272088971,
+          "uz_x0": 20.398279157820053,
+          "phi_1": 1.055455416916332,
+          "max_abs_phi": 1.055638365241889,
+          "max_abs_Tsn": 0.0019190088126145428
+        },
+        "accepted_profile": "rescue_local",
+        "accepted_seed": "secant_profile_mesh",
+        "predictor_rel_correction": 0.00521683988687037,
+        "predictor_abs_correction": 0.10641455633403218,
+        "message": "The algorithm converged to the desired accuracy."
+      },
+      {
+        "q_mpa": 4.3434,
+        "nodes": 49081,
+        "max_rms": 0.001198787062539263,
+        "max_bc_residual": 3.517235645802308e-18,
+        "min_r": 0.0016666666666666668,
+        "node_pressure": 0.08180166666666666,
+        "right_edge_fraction_0_99": 0.8825614800024449,
+        "right_edge_fraction_0_995": 0.8025916342372812,
+        "right_edge_fraction_0_999": 0.20531366516574642,
+        "min_dx": 6.007392250317878e-09,
+        "min_dx_mid": 0.9999996185305913,
+        "top_gradients": [
+          {
+            "state": "u_z",
+            "max_abs_grad": 88.49668994828244,
+            "x_at_peak": 0.9996074740131179
+          },
+          {
+            "state": "varphi",
+            "max_abs_grad": 5.346828986104356,
+            "x_at_peak": 0.934342738407699
+          },
+          {
+            "state": "T_s",
+            "max_abs_grad": 3.1734975970951793,
+            "x_at_peak": 0.0016666666666666668
+          }
+        ],
+        "observables": {
+          "Ts_x0": 0.008281460325821942,
+          "Tsn_1": -0.001924155202806907,
+          "Ms_x0": 3.636003307966552e-06,
+          "ur_1": -0.050263281416830646,
+          "uz_x0": 20.40839158225187,
+          "phi_1": 1.0571151479625955,
+          "max_abs_phi": 1.0572979855551652,
+          "max_abs_Tsn": 0.001924155202806907
+        },
+        "accepted_profile": "rescue_local",
+        "accepted_seed": "secant_profile_mesh",
+        "predictor_rel_correction": 0.0006777537694849041,
+        "predictor_abs_correction": 0.013831864323995191,
+        "message": "The algorithm converged to the desired accuracy."
+      }
+    ],
+    "failed_target_attempt": {
+      "q_mpa": 4.344,
+      "profile_name": "rescue_local",
+      "seed_label": "secant_profile_mesh",
+      "success": false,
+      "attempt_seconds": 58.43862609995995,
+      "message": "The maximum number of mesh nodes is exceeded.",
+      "nodes": 311944,
+      "max_nodes": 600000,
+      "max_rms": 0.001333246566558634,
+      "max_bc_residual": 7.500629368316599e-17,
+      "min_r": 0.0016666666666666668,
+      "node_pressure": 0.5199066666666666,
+      "right_edge_fraction_0_99": 0.9910080014361552,
+      "right_edge_fraction_0_995": 0.9823750416741467,
+      "right_edge_fraction_0_999": 0.5182628933398302,
+      "min_dx": 1.877309419029416e-10,
+      "min_dx_mid": 0.9999996158084917,
+      "top_gradients": [
+        {
+          "state": "u_z",
+          "max_abs_grad": 89.30164080904797,
+          "x_at_peak": 0.9996700862064436
+        },
+        {
+          "state": "varphi",
+          "max_abs_grad": 5.468357232707945,
+          "x_at_peak": 0.9346587926509187
+        },
+        {
+          "state": "T_s",
+          "max_abs_grad": 2.9147892685112984,
+          "x_at_peak": 0.0016666666666666668
+        }
+      ],
+      "observables": {
+        "Ts_x0": 0.008285267079608511,
+        "Tsn_1": -0.0019731091490626977,
+        "Ms_x0": 3.634810783429572e-06,
+        "ur_1": -0.05129066146028336,
+        "uz_x0": 20.50185255982888,
+        "phi_1": 1.0727260563304817,
+        "max_abs_phi": 1.0729078511649792,
+        "max_abs_Tsn": 0.0019731091490626977
+      },
+      "mesh_pressure_only": true,
+      "right_edge_layer_suspicion": true,
+      "branch_turning_suspicion": false,
+      "predictor_rel_correction": null,
+      "predictor_abs_correction": null
+    },
+    "bootstrap_summary": {
+      "anchor_points": [
+        {
+          "q_mpa": 4.3,
+          "nodes": 915,
+          "max_rms": 0.00018905990690451586,
+          "max_bc_residual": 1.6320448028717497e-21,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.0038125,
+          "right_edge_fraction_0_99": 0.03934426229508197,
+          "right_edge_fraction_0_995": 0.019672131147540985,
+          "right_edge_fraction_0_999": 0.004371584699453552,
+          "min_dx": 0.0001388888888888887,
+          "min_dx_mid": 0.001736111111111111,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 86.62185221037373,
+              "x_at_peak": 0.9994444444444444
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 5.090213629384152,
+              "x_at_peak": 0.9338888888888889
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 3.064326011653685,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.008222398548495565,
+            "Tsn_1": -0.0018197931531235764,
+            "Ms_x0": 3.6255024606823336e-06,
+            "ur_1": -0.04804339159405853,
+            "uz_x0": 20.164309648644323,
+            "phi_1": 1.0234309778499047,
+            "max_abs_phi": 1.023615687052412,
+            "max_abs_Tsn": 0.0018197931531235766
+          },
+          "accepted_profile": "anchor_config",
+          "accepted_seed": "template_or_previous_anchor",
+          "predictor_rel_correction": 1.1011763298326442e-17,
+          "predictor_abs_correction": 2.220446049250313e-16,
+          "message": "The algorithm converged to the desired accuracy."
+        },
+        {
+          "q_mpa": 4.325,
+          "nodes": 618,
+          "max_rms": 0.0006449330380256033,
+          "max_bc_residual": 2.720266162441887e-18,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.002575,
+          "right_edge_fraction_0_99": 0.019417475728155338,
+          "right_edge_fraction_0_995": 0.009708737864077669,
+          "right_edge_fraction_0_999": 0.003236245954692557,
+          "min_dx": 0.00010416666666666647,
+          "min_dx_mid": 0.0018229166666666667,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 88.50989647693028,
+              "x_at_peak": 1.0
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 5.359535264442599,
+              "x_at_peak": 0.9349999999999999
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 3.170201595609006,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.008259600137407303,
+            "Tsn_1": -0.001929140982761849,
+            "Ms_x0": 3.6301433483100847e-06,
+            "ur_1": -0.05035327369171814,
+            "uz_x0": 20.398148148501342,
+            "phi_1": 1.0585115019053535,
+            "max_abs_phi": 1.058682561157361,
+            "max_abs_Tsn": 0.001929140982761849
+          },
+          "accepted_profile": "anchor_config",
+          "accepted_seed": "template_or_previous_anchor",
+          "predictor_rel_correction": 1.0885527613022312e-17,
+          "predictor_abs_correction": 2.220446049250313e-16,
+          "message": "The algorithm converged to the desired accuracy."
+        },
+        {
+          "q_mpa": 4.3275,
+          "nodes": 617,
+          "max_rms": 0.000645159480109507,
+          "max_bc_residual": 2.1249437556003455e-19,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.0025708333333333334,
+          "right_edge_fraction_0_99": 0.014586709886547812,
+          "right_edge_fraction_0_995": 0.009724473257698542,
+          "right_edge_fraction_0_999": 0.0032414910858995136,
+          "min_dx": 0.00020833333333333294,
+          "min_dx_mid": 0.0028125,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 88.60911095275817,
+              "x_at_peak": 1.0
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 5.373023235061964,
+              "x_at_peak": 0.9349999999999999
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 2.9123362045139984,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.008262899573662736,
+            "Tsn_1": -0.0019346369584118512,
+            "Ms_x0": 3.6307342096052145e-06,
+            "ur_1": -0.05046996914304043,
+            "uz_x0": 20.411164565382816,
+            "phi_1": 1.0602797893319078,
+            "max_abs_phi": 1.0604505787872005,
+            "max_abs_Tsn": 0.001934636958411851
+          },
+          "accepted_profile": "anchor_config",
+          "accepted_seed": "template_or_previous_anchor",
+          "predictor_rel_correction": 3.3995580613149045e-19,
+          "predictor_abs_correction": 6.938893903907228e-18,
+          "message": "The algorithm converged to the desired accuracy."
+        },
+        {
+          "q_mpa": 4.328,
+          "nodes": 960,
+          "max_rms": 0.0007995379461392164,
+          "max_bc_residual": 8.882633623987876e-19,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.004,
+          "right_edge_fraction_0_99": 0.0375,
+          "right_edge_fraction_0_995": 0.01875,
+          "right_edge_fraction_0_999": 0.004166666666666667,
+          "min_dx": 0.00020833333333333316,
+          "min_dx_mid": 0.0017708333333333335,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 89.57573001803551,
+              "x_at_peak": 0.9997222222222222
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 5.520134817189842,
+              "x_at_peak": 0.9349999999999999
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 2.9138754998016863,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.008267268550599591,
+            "Tsn_1": -0.0019935283589604387,
+            "Ms_x0": 3.6292120674963903e-06,
+            "ur_1": -0.05170137587102778,
+            "uz_x0": 20.522752085182958,
+            "phi_1": 1.0789849938818303,
+            "max_abs_phi": 1.0791653994775072,
+            "max_abs_Tsn": 0.0019935283589604387
+          },
+          "accepted_profile": "anchor_config",
+          "accepted_seed": "template_or_previous_anchor",
+          "predictor_rel_correction": 1.0819436106980181e-17,
+          "predictor_abs_correction": 2.220446049250313e-16,
+          "message": "The algorithm converged to the desired accuracy."
+        },
+        {
+          "q_mpa": 4.329,
+          "nodes": 635,
+          "max_rms": 0.0009145920678660745,
+          "max_bc_residual": 2.198567536411931e-19,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.0026458333333333334,
+          "right_edge_fraction_0_99": 0.01889763779527559,
+          "right_edge_fraction_0_995": 0.009448818897637795,
+          "right_edge_fraction_0_999": 0.0031496062992125984,
+          "min_dx": 0.00020833333333333316,
+          "min_dx_mid": 0.0017708333333333335,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 88.42840417540081,
+              "x_at_peak": 1.0
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 5.344663997830679,
+              "x_at_peak": 0.9349999999999999
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 2.9127447758025378,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.00826405921374587,
+            "Tsn_1": -0.0019232440170104958,
+            "Ms_x0": 3.631565177974078e-06,
+            "ur_1": -0.05023378784498858,
+            "uz_x0": 20.391408161725366,
+            "phi_1": 1.0566919269291446,
+            "max_abs_phi": 1.0568634003871509,
+            "max_abs_Tsn": 0.0019232440170104958
+          },
+          "accepted_profile": "anchor_config",
+          "accepted_seed": "template_or_previous_anchor",
+          "predictor_rel_correction": 3.768392470273042e-19,
+          "predictor_abs_correction": 7.684282897491013e-18,
+          "message": "The algorithm converged to the desired accuracy."
+        },
+        {
+          "q_mpa": 4.33,
+          "nodes": 623,
+          "max_rms": 0.0009147250763444408,
+          "max_bc_residual": 2.859197635626406e-19,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.0025958333333333332,
+          "right_edge_fraction_0_99": 0.03210272873194221,
+          "right_edge_fraction_0_995": 0.019261637239165328,
+          "right_edge_fraction_0_999": 0.004815409309791332,
+          "min_dx": 0.00010416666666666647,
+          "min_dx_mid": 0.0018229166666666667,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 88.53906471321837,
+              "x_at_peak": 1.0
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 5.360820582699574,
+              "x_at_peak": 0.9349999999999999
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 3.1705989497104454,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.008265662894937036,
+            "Tsn_1": -0.001929772066067634,
+            "Ms_x0": 3.6316804292581277e-06,
+            "ur_1": -0.05037087663000206,
+            "uz_x0": 20.404762882864745,
+            "phi_1": 1.058772375869664,
+            "max_abs_phi": 1.0589542103244194,
+            "max_abs_Tsn": 0.001929772066067634
+          },
+          "accepted_profile": "anchor_config",
+          "accepted_seed": "template_or_previous_anchor",
+          "predictor_rel_correction": 9.066118373553336e-20,
+          "predictor_abs_correction": 1.849919956803392e-18,
+          "message": "The algorithm converged to the desired accuracy."
+        },
+        {
+          "q_mpa": 4.332,
+          "nodes": 623,
+          "max_rms": 0.0009150706664229178,
+          "max_bc_residual": 2.4295239486422183e-19,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.0025958333333333332,
+          "right_edge_fraction_0_99": 0.019261637239165328,
+          "right_edge_fraction_0_995": 0.009630818619582664,
+          "right_edge_fraction_0_999": 0.0032102728731942215,
+          "min_dx": 0.00020833333333333316,
+          "min_dx_mid": 0.0017708333333333335,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 88.98260626342939,
+              "x_at_peak": 1.0
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 5.426917148667343,
+              "x_at_peak": 0.9349999999999999
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 2.9147583894801525,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.008269774452924613,
+            "Tsn_1": -0.001956433568591499,
+            "Ms_x0": 3.6315395252311786e-06,
+            "ur_1": -0.05092892342573309,
+            "uz_x0": 20.457045443486184,
+            "phi_1": 1.0672432776311955,
+            "max_abs_phi": 1.0674128968987706,
+            "max_abs_Tsn": 0.001956433568591499
+          },
+          "accepted_profile": "anchor_config",
+          "accepted_seed": "template_or_previous_anchor",
+          "predictor_rel_correction": 2.3584538055062825e-19,
+          "predictor_abs_correction": 4.824699667560495e-18,
+          "message": "The algorithm converged to the desired accuracy."
+        },
+        {
+          "q_mpa": 4.335,
+          "nodes": 907,
+          "max_rms": 0.0009639554426971309,
+          "max_bc_residual": 6.292264222474849e-20,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.003779166666666667,
+          "right_edge_fraction_0_99": 0.026460859977949284,
+          "right_edge_fraction_0_995": 0.013230429988974642,
+          "right_edge_fraction_0_999": 0.0033076074972436605,
+          "min_dx": 2.60416666666664e-05,
+          "min_dx_mid": 0.0020442708333333333,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 89.24491767628177,
+              "x_at_peak": 1.0
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 5.465494904085858,
+              "x_at_peak": 0.9345833333333333
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 3.395207345629398,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.008274255054876237,
+            "Tsn_1": -0.0019717662001912987,
+            "Ms_x0": 3.63197546857665e-06,
+            "ur_1": -0.05125048801881408,
+            "uz_x0": 20.488970788366125,
+            "phi_1": 1.07212083094371,
+            "max_abs_phi": 1.0723020889217878,
+            "max_abs_Tsn": 0.001971766200191299
+          },
+          "accepted_profile": "anchor_config",
+          "accepted_seed": "template_or_previous_anchor",
+          "predictor_rel_correction": 9.061930145538009e-20,
+          "predictor_abs_correction": 1.8566962203814263e-18,
+          "message": "The algorithm converged to the desired accuracy."
+        }
+      ],
+      "local_points": [
+        {
+          "q_mpa": 4.335,
+          "nodes": 1573,
+          "max_rms": 0.0011420406199519127,
+          "max_bc_residual": 3.535481113834442e-19,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.0026216666666666667,
+          "right_edge_fraction_0_99": 0.3610934520025429,
+          "right_edge_fraction_0_995": 0.24602670057215512,
+          "right_edge_fraction_0_999": 0.10044500953591863,
+          "min_dx": 1.92236552343239e-07,
+          "min_dx_mid": 0.9999997116451713,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 88.58707003850532,
+              "x_at_peak": 0.9996217054697678
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 5.365425013662218,
+              "x_at_peak": 0.9346587926509187
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 3.3198311896727826,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.00827204517173847,
+            "Tsn_1": -0.0019315683348310653,
+            "Ms_x0": 3.633291716329248e-06,
+            "ur_1": -0.0504121215364608,
+            "uz_x0": 20.41346164812231,
+            "phi_1": 1.059390057738506,
+            "max_abs_phi": 1.0595726059018682,
+            "max_abs_Tsn": 0.0019315683348310653
+          },
+          "accepted_profile": "rescue_local",
+          "accepted_seed": "anchor_projected_to_local_mesh",
+          "predictor_rel_correction": 0.003819037516428743,
+          "predictor_abs_correction": 0.07795977587435843,
+          "message": "The algorithm converged to the desired accuracy."
+        },
+        {
+          "q_mpa": 4.336,
+          "nodes": 1573,
+          "max_rms": 0.0009300619524951277,
+          "max_bc_residual": 1.2098009413846132e-18,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.0026216666666666667,
+          "right_edge_fraction_0_99": 0.3610934520025429,
+          "right_edge_fraction_0_995": 0.24602670057215512,
+          "right_edge_fraction_0_999": 0.10044500953591863,
+          "min_dx": 1.92236552343239e-07,
+          "min_dx_mid": 0.9999997116451713,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 89.021741263673,
+              "x_at_peak": 0.9996507947353752
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 5.430811770866171,
+              "x_at_peak": 0.9346587926509187
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 3.316910069310149,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.008274680327642586,
+            "Tsn_1": -0.0019578471380559425,
+            "Ms_x0": 3.632752491358476e-06,
+            "ur_1": -0.05096368979486653,
+            "uz_x0": 20.46430112413121,
+            "phi_1": 1.067770528520066,
+            "max_abs_phi": 1.0679525238748948,
+            "max_abs_Tsn": 0.0019578471380559425
+          },
+          "accepted_profile": "rescue_local",
+          "accepted_seed": "previous_raw_mesh",
+          "predictor_rel_correction": 0.0025362322705154727,
+          "predictor_abs_correction": 0.05190222090456764,
+          "message": "The algorithm converged to the desired accuracy."
+        },
+        {
+          "q_mpa": 4.337,
+          "nodes": 1573,
+          "max_rms": 0.000931664488518906,
+          "max_bc_residual": 9.625002721641788e-19,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.0026216666666666667,
+          "right_edge_fraction_0_99": 0.3610934520025429,
+          "right_edge_fraction_0_995": 0.24602670057215512,
+          "right_edge_fraction_0_999": 0.10044500953591863,
+          "min_dx": 1.92236552343239e-07,
+          "min_dx_mid": 0.9999997116451713,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 88.38108860172497,
+              "x_at_peak": 0.9995991802542882
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 5.332831512738835,
+              "x_at_peak": 0.9346587926509187
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 3.3164004873631225,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.00827340893471965,
+            "Tsn_1": -0.001918592725903083,
+            "Ms_x0": 3.634174827978283e-06,
+            "ur_1": -0.05014039160780505,
+            "uz_x0": 20.39082531650029,
+            "phi_1": 1.0552539330985675,
+            "max_abs_phi": 1.0554367945356893,
+            "max_abs_Tsn": 0.001918592725903083
+          },
+          "accepted_profile": "rescue_local",
+          "accepted_seed": "secant_prev_mesh",
+          "predictor_rel_correction": 0.006288111074720988,
+          "predictor_abs_correction": 0.12821977449538657,
+          "message": "The algorithm converged to the desired accuracy."
+        },
+        {
+          "q_mpa": 4.338,
+          "nodes": 1573,
+          "max_rms": 0.000978137628100326,
+          "max_bc_residual": 3.6802850235295323e-19,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.0026216666666666667,
+          "right_edge_fraction_0_99": 0.3610934520025429,
+          "right_edge_fraction_0_995": 0.24602670057215512,
+          "right_edge_fraction_0_999": 0.10044500953591863,
+          "min_dx": 1.92236552343239e-07,
+          "min_dx_mid": 0.9999997116451713,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 88.27980824015367,
+              "x_at_peak": 0.9995915864031625
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 5.316912456701459,
+              "x_at_peak": 0.9346587926509187
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 3.316710756815896,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.008274183046816914,
+            "Tsn_1": -0.0019120634593765963,
+            "Ms_x0": 3.6346750548718464e-06,
+            "ur_1": -0.050008129928136136,
+            "uz_x0": 20.380105891168036,
+            "phi_1": 1.0532542807774732,
+            "max_abs_phi": 1.0534373150744951,
+            "max_abs_Tsn": 0.0019120634593765963
+          },
+          "accepted_profile": "rescue_local",
+          "accepted_seed": "secant_prev_mesh",
+          "predictor_rel_correction": 0.0031733910371668944,
+          "predictor_abs_correction": 0.06467404537154486,
+          "message": "The algorithm converged to the desired accuracy."
+        },
+        {
+          "q_mpa": 4.339,
+          "nodes": 1573,
+          "max_rms": 0.0010318741685840455,
+          "max_bc_residual": 1.1521798668522691e-18,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.0026216666666666667,
+          "right_edge_fraction_0_99": 0.3610934520025429,
+          "right_edge_fraction_0_995": 0.24602670057215512,
+          "right_edge_fraction_0_999": 0.10044500953591863,
+          "min_dx": 1.92236552343239e-07,
+          "min_dx_mid": 0.9999997116451713,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 88.20185982350131,
+              "x_at_peak": 0.9995838649216797
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 5.304437009991659,
+              "x_at_peak": 0.9346587926509187
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 3.317068089235151,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.008275074583889442,
+            "Tsn_1": -0.0019071341943472998,
+            "Ms_x0": 3.635122656092379e-06,
+            "ur_1": -0.0499044374849044,
+            "uz_x0": 20.371664413007483,
+            "phi_1": 1.0516729641334632,
+            "max_abs_phi": 1.0518561244464715,
+            "max_abs_Tsn": 0.0019071341943473
+          },
+          "accepted_profile": "rescue_local",
+          "accepted_seed": "secant_prev_mesh",
+          "predictor_rel_correction": 0.00011846401441868265,
+          "predictor_abs_correction": 0.0024133091467550827,
+          "message": "The algorithm converged to the desired accuracy."
+        },
+        {
+          "q_mpa": 4.34,
+          "nodes": 1573,
+          "max_rms": 0.0010863600917758356,
+          "max_bc_residual": 1.065332705102434e-18,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.0026216666666666667,
+          "right_edge_fraction_0_99": 0.3610934520025429,
+          "right_edge_fraction_0_995": 0.24602670057215512,
+          "right_edge_fraction_0_999": 0.10044500953591863,
+          "min_dx": 1.92236552343239e-07,
+          "min_dx_mid": 0.9999997116451713,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 88.22521232655163,
+              "x_at_peak": 0.9995915864031625
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 5.307181612398097,
+              "x_at_peak": 0.9346587926509187
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 3.317591339802698,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.008276380083530098,
+            "Tsn_1": -0.0019084417936221514,
+            "Ms_x0": 3.6353835219388172e-06,
+            "ur_1": -0.04992835750998436,
+            "uz_x0": 20.374570962734406,
+            "phi_1": 1.0520235195431475,
+            "max_abs_phi": 1.052206658819708,
+            "max_abs_Tsn": 0.0019084417936221514
+          },
+          "accepted_profile": "rescue_local",
+          "accepted_seed": "secant_prev_mesh",
+          "predictor_rel_correction": 0.0005770392195390354,
+          "predictor_abs_correction": 0.011756926526778955,
+          "message": "The algorithm converged to the desired accuracy."
+        },
+        {
+          "q_mpa": 4.341,
+          "nodes": 2754,
+          "max_rms": 0.0010856344110008248,
+          "max_bc_residual": 6.138806706960266e-19,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.00459,
+          "right_edge_fraction_0_99": 0.4121278140885984,
+          "right_edge_fraction_0_995": 0.28068264342774146,
+          "right_edge_fraction_0_999": 0.11474219317356572,
+          "min_dx": 9.611827611610835e-08,
+          "min_dx_mid": 0.9999996635860333,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 88.58132924233723,
+              "x_at_peak": 0.9996142397875909
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 5.361179499399896,
+              "x_at_peak": 0.9346587926509187
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 3.318599025915988,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.008278894234996493,
+            "Tsn_1": -0.0019297948752154531,
+            "Ms_x0": 3.635099859629164e-06,
+            "ur_1": -0.05038226268073017,
+            "uz_x0": 20.41691803016915,
+            "phi_1": 1.0589343284813257,
+            "max_abs_phi": 1.0591170077904297,
+            "max_abs_Tsn": 0.0019297948752154531
+          },
+          "accepted_profile": "rescue_local",
+          "accepted_seed": "secant_prev_mesh",
+          "predictor_rel_correction": 0.0019857834213466317,
+          "predictor_abs_correction": 0.04054357733930303,
+          "message": "The algorithm converged to the desired accuracy."
+        },
+        {
+          "q_mpa": 4.342,
+          "nodes": 5131,
+          "max_rms": 0.0011786391619892783,
+          "max_bc_residual": 8.261043938042901e-19,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.008551666666666667,
+          "right_edge_fraction_0_99": 0.44240888715649973,
+          "right_edge_fraction_0_995": 0.3011108945624635,
+          "right_edge_fraction_0_999": 0.12317287078542194,
+          "min_dx": 4.805913800254302e-08,
+          "min_dx_mid": 0.9999996876156023,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 88.79992968318948,
+              "x_at_peak": 0.9996327109108241
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 5.393387641959862,
+              "x_at_peak": 0.9346587926509187
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 3.3194367353383276,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.008280984302407852,
+            "Tsn_1": -0.0019430403082203284,
+            "Ms_x0": 3.6350066983163735e-06,
+            "ur_1": -0.05065255561511028,
+            "uz_x0": 20.44188529097517,
+            "phi_1": 1.0630239550317502,
+            "max_abs_phi": 1.0632063527050613,
+            "max_abs_Tsn": 0.0019430403082203286
+          },
+          "accepted_profile": "rescue_local",
+          "accepted_seed": "secant_prev_mesh",
+          "predictor_rel_correction": 0.0008672768032745923,
+          "predictor_abs_correction": 0.017728772928062853,
+          "message": "The algorithm converged to the desired accuracy."
+        },
+        {
+          "q_mpa": 4.343,
+          "nodes": 5131,
+          "max_rms": 0.0011900613528497074,
+          "max_bc_residual": 1.7121782900175227e-18,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.008551666666666667,
+          "right_edge_fraction_0_99": 0.44240888715649973,
+          "right_edge_fraction_0_995": 0.3011108945624635,
+          "right_edge_fraction_0_999": 0.12317287078542194,
+          "min_dx": 4.805913800254302e-08,
+          "min_dx_mid": 0.9999996876156023,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 88.28183084369994,
+              "x_at_peak": 0.9995915864031625
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 5.314557206769678,
+              "x_at_peak": 0.934342738407699
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 3.3190910626143126,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.008280121855519303,
+            "Tsn_1": -0.0019111232623978784,
+            "Ms_x0": 3.6362443974891535e-06,
+            "ur_1": -0.04999133678106582,
+            "uz_x0": 20.38351660934864,
+            "phi_1": 1.0529868234486377,
+            "max_abs_phi": 1.0531699508182633,
+            "max_abs_Tsn": 0.0019111232623978784
+          },
+          "accepted_profile": "rescue_local",
+          "accepted_seed": "secant_prev_mesh",
+          "predictor_rel_correction": 0.004229590419483772,
+          "predictor_abs_correction": 0.08621392656628935,
+          "message": "The algorithm converged to the desired accuracy."
+        }
+      ],
+      "refined_points": [
+        {
+          "q_mpa": 4.3431,
+          "nodes": 7222,
+          "max_rms": 0.001186611377561045,
+          "max_bc_residual": 2.869444294240082e-18,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.012036666666666666,
+          "right_edge_fraction_0_99": 0.7363611188036555,
+          "right_edge_fraction_0_995": 0.6359734145666021,
+          "right_edge_fraction_0_999": 0.22583771808363334,
+          "min_dx": 2.402956900127151e-08,
+          "min_dx_mid": 0.9999996515712488,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 88.79181475924634,
+              "x_at_peak": 0.99962995955056
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 5.3902993327894535,
+              "x_at_peak": 0.9346587926509187
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 2.9137233352558796,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.008282235997825068,
+            "Tsn_1": -0.0019421894910266752,
+            "Ms_x0": 3.635412213139202e-06,
+            "ur_1": -0.05064291370425944,
+            "uz_x0": 20.44250598716953,
+            "phi_1": 1.0628885578508789,
+            "max_abs_phi": 1.0630709949141919,
+            "max_abs_Tsn": 0.0019421894910266752
+          },
+          "accepted_profile": "rescue_local",
+          "accepted_seed": "secant_profile_mesh",
+          "predictor_rel_correction": 0.0032712813436438113,
+          "predictor_abs_correction": 0.0668731884531546,
+          "message": "The algorithm converged to the desired accuracy."
+        },
+        {
+          "q_mpa": 4.3432,
+          "nodes": 7773,
+          "max_rms": 0.0011960542701756436,
+          "max_bc_residual": 1.5548950733234831e-18,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.012955,
+          "right_edge_fraction_0_99": 0.5840730734594107,
+          "right_edge_fraction_0_995": 0.39740126077447574,
+          "right_edge_fraction_0_999": 0.16261417728032934,
+          "min_dx": 2.402956900127151e-08,
+          "min_dx_mid": 0.9999996515712488,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 88.41097035499843,
+              "x_at_peak": 0.9996010787170696
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 5.333830900089197,
+              "x_at_peak": 0.9346587926509187
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 2.9132584335346863,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.008280914015429843,
+            "Tsn_1": -0.0019190088126145428,
+            "Ms_x0": 3.6360924412888647e-06,
+            "ur_1": -0.05015424272088971,
+            "uz_x0": 20.398279157820053,
+            "phi_1": 1.055455416916332,
+            "max_abs_phi": 1.055638365241889,
+            "max_abs_Tsn": 0.0019190088126145428
+          },
+          "accepted_profile": "rescue_local",
+          "accepted_seed": "secant_profile_mesh",
+          "predictor_rel_correction": 0.00521683988687037,
+          "predictor_abs_correction": 0.10641455633403218,
+          "message": "The algorithm converged to the desired accuracy."
+        },
+        {
+          "q_mpa": 4.3433,
+          "nodes": 14805,
+          "max_rms": 0.0011981679102292813,
+          "max_bc_residual": 1.917720869023773e-18,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.024675,
+          "right_edge_fraction_0_99": 0.6132387706855792,
+          "right_edge_fraction_0_995": 0.41722391084093213,
+          "right_edge_fraction_0_999": 0.1706855791962175,
+          "min_dx": 1.2014784500635756e-08,
+          "min_dx_mid": 0.9999996335490721,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 88.39507349991618,
+              "x_at_peak": 0.9995987056385929
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 5.331045633811584,
+              "x_at_peak": 0.9346587926509187
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 2.9132281540486824,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.00828082790877852,
+            "Tsn_1": -0.0019179722203377138,
+            "Ms_x0": 3.6360950741660006e-06,
+            "ur_1": -0.05013405034161668,
+            "uz_x0": 20.39664298653494,
+            "phi_1": 1.0551526900217443,
+            "max_abs_phi": 1.0553356656823865,
+            "max_abs_Tsn": 0.0019179722203377138
+          },
+          "accepted_profile": "rescue_local",
+          "accepted_seed": "previous_profile_mesh",
+          "predictor_rel_correction": 8.662933997542055e-05,
+          "predictor_abs_correction": 0.0017669477196378125,
+          "message": "The algorithm converged to the desired accuracy."
+        }
+      ],
+      "attempts": [
+        {
+          "q_mpa": 4.335,
+          "profile_name": "rescue_local",
+          "seed_label": "anchor_projected_to_local_mesh",
+          "success": true,
+          "attempt_seconds": 0.0,
+          "message": "The algorithm converged to the desired accuracy.",
+          "nodes": 1573,
+          "max_nodes": 600000,
+          "max_rms": 0.0011420406199519127,
+          "max_bc_residual": 3.535481113834442e-19,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.0026216666666666667,
+          "right_edge_fraction_0_99": 0.3610934520025429,
+          "right_edge_fraction_0_995": 0.24602670057215512,
+          "right_edge_fraction_0_999": 0.10044500953591863,
+          "min_dx": 1.92236552343239e-07,
+          "min_dx_mid": 0.9999997116451713,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 88.58707003850532,
+              "x_at_peak": 0.9996217054697678
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 5.365425013662218,
+              "x_at_peak": 0.9346587926509187
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 3.3198311896727826,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.00827204517173847,
+            "Tsn_1": -0.0019315683348310653,
+            "Ms_x0": 3.633291716329248e-06,
+            "ur_1": -0.0504121215364608,
+            "uz_x0": 20.41346164812231,
+            "phi_1": 1.059390057738506,
+            "max_abs_phi": 1.0595726059018682,
+            "max_abs_Tsn": 0.0019315683348310653
+          },
+          "mesh_pressure_only": false,
+          "right_edge_layer_suspicion": true,
+          "branch_turning_suspicion": false,
+          "predictor_rel_correction": 0.003819037516428743,
+          "predictor_abs_correction": 0.07795977587435843
+        },
+        {
+          "q_mpa": 4.336,
+          "profile_name": "rescue_local",
+          "seed_label": "previous_raw_mesh",
+          "success": true,
+          "attempt_seconds": 28.983611700008623,
+          "message": "The algorithm converged to the desired accuracy.",
+          "nodes": 1573,
+          "max_nodes": 600000,
+          "max_rms": 0.0009300619524951277,
+          "max_bc_residual": 1.2098009413846132e-18,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.0026216666666666667,
+          "right_edge_fraction_0_99": 0.3610934520025429,
+          "right_edge_fraction_0_995": 0.24602670057215512,
+          "right_edge_fraction_0_999": 0.10044500953591863,
+          "min_dx": 1.92236552343239e-07,
+          "min_dx_mid": 0.9999997116451713,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 89.021741263673,
+              "x_at_peak": 0.9996507947353752
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 5.430811770866171,
+              "x_at_peak": 0.9346587926509187
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 3.316910069310149,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.008274680327642586,
+            "Tsn_1": -0.0019578471380559425,
+            "Ms_x0": 3.632752491358476e-06,
+            "ur_1": -0.05096368979486653,
+            "uz_x0": 20.46430112413121,
+            "phi_1": 1.067770528520066,
+            "max_abs_phi": 1.0679525238748948,
+            "max_abs_Tsn": 0.0019578471380559425
+          },
+          "mesh_pressure_only": false,
+          "right_edge_layer_suspicion": true,
+          "branch_turning_suspicion": false,
+          "predictor_rel_correction": 0.0025362322705154727,
+          "predictor_abs_correction": 0.05190222090456764
+        },
+        {
+          "q_mpa": 4.337,
+          "profile_name": "rescue_local",
+          "seed_label": "secant_prev_mesh",
+          "success": true,
+          "attempt_seconds": 27.554703200003132,
+          "message": "The algorithm converged to the desired accuracy.",
+          "nodes": 1573,
+          "max_nodes": 600000,
+          "max_rms": 0.000931664488518906,
+          "max_bc_residual": 9.625002721641788e-19,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.0026216666666666667,
+          "right_edge_fraction_0_99": 0.3610934520025429,
+          "right_edge_fraction_0_995": 0.24602670057215512,
+          "right_edge_fraction_0_999": 0.10044500953591863,
+          "min_dx": 1.92236552343239e-07,
+          "min_dx_mid": 0.9999997116451713,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 88.38108860172497,
+              "x_at_peak": 0.9995991802542882
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 5.332831512738835,
+              "x_at_peak": 0.9346587926509187
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 3.3164004873631225,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.00827340893471965,
+            "Tsn_1": -0.001918592725903083,
+            "Ms_x0": 3.634174827978283e-06,
+            "ur_1": -0.05014039160780505,
+            "uz_x0": 20.39082531650029,
+            "phi_1": 1.0552539330985675,
+            "max_abs_phi": 1.0554367945356893,
+            "max_abs_Tsn": 0.001918592725903083
+          },
+          "mesh_pressure_only": false,
+          "right_edge_layer_suspicion": true,
+          "branch_turning_suspicion": false,
+          "predictor_rel_correction": 0.006288111074720988,
+          "predictor_abs_correction": 0.12821977449538657
+        },
+        {
+          "q_mpa": 4.338,
+          "profile_name": "rescue_local",
+          "seed_label": "secant_prev_mesh",
+          "success": true,
+          "attempt_seconds": 29.455377700040117,
+          "message": "The algorithm converged to the desired accuracy.",
+          "nodes": 1573,
+          "max_nodes": 600000,
+          "max_rms": 0.000978137628100326,
+          "max_bc_residual": 3.6802850235295323e-19,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.0026216666666666667,
+          "right_edge_fraction_0_99": 0.3610934520025429,
+          "right_edge_fraction_0_995": 0.24602670057215512,
+          "right_edge_fraction_0_999": 0.10044500953591863,
+          "min_dx": 1.92236552343239e-07,
+          "min_dx_mid": 0.9999997116451713,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 88.27980824015367,
+              "x_at_peak": 0.9995915864031625
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 5.316912456701459,
+              "x_at_peak": 0.9346587926509187
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 3.316710756815896,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.008274183046816914,
+            "Tsn_1": -0.0019120634593765963,
+            "Ms_x0": 3.6346750548718464e-06,
+            "ur_1": -0.050008129928136136,
+            "uz_x0": 20.380105891168036,
+            "phi_1": 1.0532542807774732,
+            "max_abs_phi": 1.0534373150744951,
+            "max_abs_Tsn": 0.0019120634593765963
+          },
+          "mesh_pressure_only": false,
+          "right_edge_layer_suspicion": true,
+          "branch_turning_suspicion": false,
+          "predictor_rel_correction": 0.0031733910371668944,
+          "predictor_abs_correction": 0.06467404537154486
+        },
+        {
+          "q_mpa": 4.339,
+          "profile_name": "rescue_local",
+          "seed_label": "secant_prev_mesh",
+          "success": true,
+          "attempt_seconds": 28.29006470000604,
+          "message": "The algorithm converged to the desired accuracy.",
+          "nodes": 1573,
+          "max_nodes": 600000,
+          "max_rms": 0.0010318741685840455,
+          "max_bc_residual": 1.1521798668522691e-18,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.0026216666666666667,
+          "right_edge_fraction_0_99": 0.3610934520025429,
+          "right_edge_fraction_0_995": 0.24602670057215512,
+          "right_edge_fraction_0_999": 0.10044500953591863,
+          "min_dx": 1.92236552343239e-07,
+          "min_dx_mid": 0.9999997116451713,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 88.20185982350131,
+              "x_at_peak": 0.9995838649216797
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 5.304437009991659,
+              "x_at_peak": 0.9346587926509187
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 3.317068089235151,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.008275074583889442,
+            "Tsn_1": -0.0019071341943472998,
+            "Ms_x0": 3.635122656092379e-06,
+            "ur_1": -0.0499044374849044,
+            "uz_x0": 20.371664413007483,
+            "phi_1": 1.0516729641334632,
+            "max_abs_phi": 1.0518561244464715,
+            "max_abs_Tsn": 0.0019071341943473
+          },
+          "mesh_pressure_only": false,
+          "right_edge_layer_suspicion": true,
+          "branch_turning_suspicion": false,
+          "predictor_rel_correction": 0.00011846401441868265,
+          "predictor_abs_correction": 0.0024133091467550827
+        },
+        {
+          "q_mpa": 4.34,
+          "profile_name": "rescue_local",
+          "seed_label": "secant_prev_mesh",
+          "success": true,
+          "attempt_seconds": 27.223509199975524,
+          "message": "The algorithm converged to the desired accuracy.",
+          "nodes": 1573,
+          "max_nodes": 600000,
+          "max_rms": 0.0010863600917758356,
+          "max_bc_residual": 1.065332705102434e-18,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.0026216666666666667,
+          "right_edge_fraction_0_99": 0.3610934520025429,
+          "right_edge_fraction_0_995": 0.24602670057215512,
+          "right_edge_fraction_0_999": 0.10044500953591863,
+          "min_dx": 1.92236552343239e-07,
+          "min_dx_mid": 0.9999997116451713,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 88.22521232655163,
+              "x_at_peak": 0.9995915864031625
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 5.307181612398097,
+              "x_at_peak": 0.9346587926509187
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 3.317591339802698,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.008276380083530098,
+            "Tsn_1": -0.0019084417936221514,
+            "Ms_x0": 3.6353835219388172e-06,
+            "ur_1": -0.04992835750998436,
+            "uz_x0": 20.374570962734406,
+            "phi_1": 1.0520235195431475,
+            "max_abs_phi": 1.052206658819708,
+            "max_abs_Tsn": 0.0019084417936221514
+          },
+          "mesh_pressure_only": false,
+          "right_edge_layer_suspicion": true,
+          "branch_turning_suspicion": false,
+          "predictor_rel_correction": 0.0005770392195390354,
+          "predictor_abs_correction": 0.011756926526778955
+        },
+        {
+          "q_mpa": 4.341,
+          "profile_name": "rescue_local",
+          "seed_label": "secant_prev_mesh",
+          "success": true,
+          "attempt_seconds": 40.24237140000332,
+          "message": "The algorithm converged to the desired accuracy.",
+          "nodes": 2754,
+          "max_nodes": 600000,
+          "max_rms": 0.0010856344110008248,
+          "max_bc_residual": 6.138806706960266e-19,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.00459,
+          "right_edge_fraction_0_99": 0.4121278140885984,
+          "right_edge_fraction_0_995": 0.28068264342774146,
+          "right_edge_fraction_0_999": 0.11474219317356572,
+          "min_dx": 9.611827611610835e-08,
+          "min_dx_mid": 0.9999996635860333,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 88.58132924233723,
+              "x_at_peak": 0.9996142397875909
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 5.361179499399896,
+              "x_at_peak": 0.9346587926509187
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 3.318599025915988,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.008278894234996493,
+            "Tsn_1": -0.0019297948752154531,
+            "Ms_x0": 3.635099859629164e-06,
+            "ur_1": -0.05038226268073017,
+            "uz_x0": 20.41691803016915,
+            "phi_1": 1.0589343284813257,
+            "max_abs_phi": 1.0591170077904297,
+            "max_abs_Tsn": 0.0019297948752154531
+          },
+          "mesh_pressure_only": false,
+          "right_edge_layer_suspicion": true,
+          "branch_turning_suspicion": false,
+          "predictor_rel_correction": 0.0019857834213466317,
+          "predictor_abs_correction": 0.04054357733930303
+        },
+        {
+          "q_mpa": 4.342,
+          "profile_name": "rescue_local",
+          "seed_label": "secant_prev_mesh",
+          "success": true,
+          "attempt_seconds": 28.636650200001895,
+          "message": "The algorithm converged to the desired accuracy.",
+          "nodes": 5131,
+          "max_nodes": 600000,
+          "max_rms": 0.0011786391619892783,
+          "max_bc_residual": 8.261043938042901e-19,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.008551666666666667,
+          "right_edge_fraction_0_99": 0.44240888715649973,
+          "right_edge_fraction_0_995": 0.3011108945624635,
+          "right_edge_fraction_0_999": 0.12317287078542194,
+          "min_dx": 4.805913800254302e-08,
+          "min_dx_mid": 0.9999996876156023,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 88.79992968318948,
+              "x_at_peak": 0.9996327109108241
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 5.393387641959862,
+              "x_at_peak": 0.9346587926509187
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 3.3194367353383276,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.008280984302407852,
+            "Tsn_1": -0.0019430403082203284,
+            "Ms_x0": 3.6350066983163735e-06,
+            "ur_1": -0.05065255561511028,
+            "uz_x0": 20.44188529097517,
+            "phi_1": 1.0630239550317502,
+            "max_abs_phi": 1.0632063527050613,
+            "max_abs_Tsn": 0.0019430403082203286
+          },
+          "mesh_pressure_only": false,
+          "right_edge_layer_suspicion": true,
+          "branch_turning_suspicion": false,
+          "predictor_rel_correction": 0.0008672768032745923,
+          "predictor_abs_correction": 0.017728772928062853
+        },
+        {
+          "q_mpa": 4.343,
+          "profile_name": "rescue_local",
+          "seed_label": "secant_prev_mesh",
+          "success": true,
+          "attempt_seconds": 28.64047909999499,
+          "message": "The algorithm converged to the desired accuracy.",
+          "nodes": 5131,
+          "max_nodes": 600000,
+          "max_rms": 0.0011900613528497074,
+          "max_bc_residual": 1.7121782900175227e-18,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.008551666666666667,
+          "right_edge_fraction_0_99": 0.44240888715649973,
+          "right_edge_fraction_0_995": 0.3011108945624635,
+          "right_edge_fraction_0_999": 0.12317287078542194,
+          "min_dx": 4.805913800254302e-08,
+          "min_dx_mid": 0.9999996876156023,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 88.28183084369994,
+              "x_at_peak": 0.9995915864031625
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 5.314557206769678,
+              "x_at_peak": 0.934342738407699
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 3.3190910626143126,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.008280121855519303,
+            "Tsn_1": -0.0019111232623978784,
+            "Ms_x0": 3.6362443974891535e-06,
+            "ur_1": -0.04999133678106582,
+            "uz_x0": 20.38351660934864,
+            "phi_1": 1.0529868234486377,
+            "max_abs_phi": 1.0531699508182633,
+            "max_abs_Tsn": 0.0019111232623978784
+          },
+          "mesh_pressure_only": false,
+          "right_edge_layer_suspicion": true,
+          "branch_turning_suspicion": false,
+          "predictor_rel_correction": 0.004229590419483772,
+          "predictor_abs_correction": 0.08621392656628935
+        },
+        {
+          "q_mpa": 4.3431,
+          "profile_name": "rescue_local",
+          "seed_label": "secant_profile_mesh",
+          "success": true,
+          "attempt_seconds": 30.725073800014798,
+          "message": "The algorithm converged to the desired accuracy.",
+          "nodes": 7222,
+          "max_nodes": 600000,
+          "max_rms": 0.001186611377561045,
+          "max_bc_residual": 2.869444294240082e-18,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.012036666666666666,
+          "right_edge_fraction_0_99": 0.7363611188036555,
+          "right_edge_fraction_0_995": 0.6359734145666021,
+          "right_edge_fraction_0_999": 0.22583771808363334,
+          "min_dx": 2.402956900127151e-08,
+          "min_dx_mid": 0.9999996515712488,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 88.79181475924634,
+              "x_at_peak": 0.99962995955056
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 5.3902993327894535,
+              "x_at_peak": 0.9346587926509187
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 2.9137233352558796,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.008282235997825068,
+            "Tsn_1": -0.0019421894910266752,
+            "Ms_x0": 3.635412213139202e-06,
+            "ur_1": -0.05064291370425944,
+            "uz_x0": 20.44250598716953,
+            "phi_1": 1.0628885578508789,
+            "max_abs_phi": 1.0630709949141919,
+            "max_abs_Tsn": 0.0019421894910266752
+          },
+          "mesh_pressure_only": false,
+          "right_edge_layer_suspicion": true,
+          "branch_turning_suspicion": false,
+          "predictor_rel_correction": 0.0032712813436438113,
+          "predictor_abs_correction": 0.0668731884531546
+        },
+        {
+          "q_mpa": 4.3432,
+          "profile_name": "rescue_local",
+          "seed_label": "secant_profile_mesh",
+          "success": true,
+          "attempt_seconds": 29.091521099966485,
+          "message": "The algorithm converged to the desired accuracy.",
+          "nodes": 7773,
+          "max_nodes": 600000,
+          "max_rms": 0.0011960542701756436,
+          "max_bc_residual": 1.5548950733234831e-18,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.012955,
+          "right_edge_fraction_0_99": 0.5840730734594107,
+          "right_edge_fraction_0_995": 0.39740126077447574,
+          "right_edge_fraction_0_999": 0.16261417728032934,
+          "min_dx": 2.402956900127151e-08,
+          "min_dx_mid": 0.9999996515712488,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 88.41097035499843,
+              "x_at_peak": 0.9996010787170696
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 5.333830900089197,
+              "x_at_peak": 0.9346587926509187
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 2.9132584335346863,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.008280914015429843,
+            "Tsn_1": -0.0019190088126145428,
+            "Ms_x0": 3.6360924412888647e-06,
+            "ur_1": -0.05015424272088971,
+            "uz_x0": 20.398279157820053,
+            "phi_1": 1.055455416916332,
+            "max_abs_phi": 1.055638365241889,
+            "max_abs_Tsn": 0.0019190088126145428
+          },
+          "mesh_pressure_only": false,
+          "right_edge_layer_suspicion": true,
+          "branch_turning_suspicion": false,
+          "predictor_rel_correction": 0.00521683988687037,
+          "predictor_abs_correction": 0.10641455633403218
+        },
+        {
+          "q_mpa": 4.3433,
+          "profile_name": "rescue_local",
+          "seed_label": "secant_profile_mesh",
+          "success": false,
+          "attempt_seconds": 66.85837030003313,
+          "message": "The maximum number of mesh nodes is exceeded.",
+          "nodes": 583686,
+          "max_nodes": 600000,
+          "max_rms": 0.0018251115587075597,
+          "max_bc_residual": 2.239688768382937e-17,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.97281,
+          "right_edge_fraction_0_99": 0.7538042714747313,
+          "right_edge_fraction_0_995": 0.6071158122689254,
+          "right_edge_fraction_0_999": 0.26674102171372965,
+          "min_dx": 3.337439213879634e-10,
+          "min_dx_mid": 0.9999996173624873,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 86.89553043944761,
+              "x_at_peak": 0.9994815597191012
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 5.104162304357487,
+              "x_at_peak": 0.9338862156119374
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 3.1710761827983847,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.008275140122797384,
+            "Tsn_1": -0.0018260147934847524,
+            "Ms_x0": 3.6387634443024744e-06,
+            "ur_1": -0.04821830435710042,
+            "uz_x0": 20.224273322167193,
+            "phi_1": 1.0260835601313316,
+            "max_abs_phi": 1.0262688169599516,
+            "max_abs_Tsn": 0.0018260147934847524
+          },
+          "mesh_pressure_only": true,
+          "right_edge_layer_suspicion": true,
+          "branch_turning_suspicion": false,
+          "predictor_rel_correction": null,
+          "predictor_abs_correction": null
+        },
+        {
+          "q_mpa": 4.3433,
+          "profile_name": "rescue_local",
+          "seed_label": "previous_profile_mesh",
+          "success": true,
+          "attempt_seconds": 30.892874300014228,
+          "message": "The algorithm converged to the desired accuracy.",
+          "nodes": 14805,
+          "max_nodes": 600000,
+          "max_rms": 0.0011981679102292813,
+          "max_bc_residual": 1.917720869023773e-18,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.024675,
+          "right_edge_fraction_0_99": 0.6132387706855792,
+          "right_edge_fraction_0_995": 0.41722391084093213,
+          "right_edge_fraction_0_999": 0.1706855791962175,
+          "min_dx": 1.2014784500635756e-08,
+          "min_dx_mid": 0.9999996335490721,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 88.39507349991618,
+              "x_at_peak": 0.9995987056385929
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 5.331045633811584,
+              "x_at_peak": 0.9346587926509187
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 2.9132281540486824,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.00828082790877852,
+            "Tsn_1": -0.0019179722203377138,
+            "Ms_x0": 3.6360950741660006e-06,
+            "ur_1": -0.05013405034161668,
+            "uz_x0": 20.39664298653494,
+            "phi_1": 1.0551526900217443,
+            "max_abs_phi": 1.0553356656823865,
+            "max_abs_Tsn": 0.0019179722203377138
+          },
+          "mesh_pressure_only": false,
+          "right_edge_layer_suspicion": true,
+          "branch_turning_suspicion": false,
+          "predictor_rel_correction": 8.662933997542055e-05,
+          "predictor_abs_correction": 0.0017669477196378125
+        }
+      ]
+    },
+    "elapsed_seconds": 619.0496171999839
+  },
+  "results": [
+    {
+      "q_mpa": 4.34,
+      "sigma_max": 11626.285034756194,
+      "sigma_min": 2.875019436630234e-07,
+      "sigma_5_from_bottom": 5.6849378153805806e-05,
+      "condition_number": 40438978904.37633,
+      "soft_mode": {
+        "edge_mass_fraction": 0.05669360418598238,
+        "ultra_edge_mass_fraction": 0.01722984137896887,
+        "center_mass_fraction": 0.18610896032815444,
+        "by_state_mass_fraction": {
+          "T_s": 3.6506162727589386e-09,
+          "T_sn": 2.8330091017428827e-07,
+          "M_s": 3.091734292029046e-11,
+          "u_r": 0.00013416037708646123,
+          "u_z": 0.9682886133407574,
+          "varphi": 0.03157693929971239
+        },
+        "dominant_state": "u_z"
+      }
+    },
+    {
+      "q_mpa": 4.343,
+      "sigma_max": 11626.315311323806,
+      "sigma_min": 2.9175453524120167e-07,
+      "sigma_5_from_bottom": 5.6884448500893074e-05,
+      "condition_number": 39849647244.4276,
+      "soft_mode": {
+        "edge_mass_fraction": 0.056531300542794594,
+        "ultra_edge_mass_fraction": 0.01719331234362589,
+        "center_mass_fraction": 0.1862083833359727,
+        "by_state_mass_fraction": {
+          "T_s": 3.648366092012558e-09,
+          "T_sn": 2.8487917102818005e-07,
+          "M_s": 3.0642800235102454e-11,
+          "u_r": 0.00013440297108474852,
+          "u_z": 0.9683372185116811,
+          "varphi": 0.031528089959054255
+        },
+        "dominant_state": "u_z"
+      }
+    },
+    {
+      "q_mpa": 4.3432,
+      "sigma_max": 11626.321721090304,
+      "sigma_min": 3.0299395685720115e-07,
+      "sigma_5_from_bottom": 5.693685818776711e-05,
+      "condition_number": 38371464043.983246,
+      "soft_mode": {
+        "edge_mass_fraction": 0.05609762939542834,
+        "ultra_edge_mass_fraction": 0.01709301269544009,
+        "center_mass_fraction": 0.18645403444390837,
+        "by_state_mass_fraction": {
+          "T_s": 3.6487320051027902e-09,
+          "T_sn": 2.8897098672635897e-07,
+          "M_s": 2.9914039591645775e-11,
+          "u_r": 0.00013498356754909163,
+          "u_z": 0.9684727889252878,
+          "varphi": 0.03139193485753063
+        },
+        "dominant_state": "u_z"
+      }
+    },
+    {
+      "q_mpa": 4.3434,
+      "sigma_max": 11626.326141563679,
+      "sigma_min": 3.1061871924702104e-07,
+      "sigma_5_from_bottom": 5.697247516598947e-05,
+      "condition_number": 37429573368.1066,
+      "soft_mode": {
+        "edge_mass_fraction": 0.055805667037533625,
+        "ultra_edge_mass_fraction": 0.017025109632138505,
+        "center_mass_fraction": 0.18661961426097026,
+        "by_state_mass_fraction": {
+          "T_s": 3.649320631976023e-09,
+          "T_sn": 2.917604461242583e-07,
+          "M_s": 2.942916665092106e-11,
+          "u_r": 0.0001353764627091707,
+          "u_z": 0.9685647386948354,
+          "varphi": 0.03129958940325964
+        },
+        "dominant_state": "u_z"
+      }
+    }
+  ],
+  "summary": {
+    "label": "ill_conditioned_but_no_clear_near_fold_signal",
+    "sigma_min_ratio_high_to_low": 1.0804056323566718,
+    "condition_number_ratio_high_to_low": 0.9255815646733837,
+    "near_zero_singular_value_signal": false,
+    "highest_load_soft_mode": {
+      "edge_mass_fraction": 0.055805667037533625,
+      "ultra_edge_mass_fraction": 0.017025109632138505,
+      "center_mass_fraction": 0.18661961426097026,
+      "by_state_mass_fraction": {
+        "T_s": 3.649320631976023e-09,
+        "T_sn": 2.917604461242583e-07,
+        "M_s": 2.942916665092106e-11,
+        "u_r": 0.0001353764627091707,
+        "u_z": 0.9685647386948354,
+        "varphi": 0.03129958940325964
+      },
+      "dominant_state": "u_z"
+    }
+  }
+}

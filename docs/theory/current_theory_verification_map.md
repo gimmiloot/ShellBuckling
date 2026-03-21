@@ -372,6 +372,10 @@ not that every one of them is already article-level proven.
   `proof_pilots/pilot_15_shallow_bc_equivalence_audit/bc_equivalence_audit.md`;
   `proof_pilots/pilot_16_shallow_simple_support_comparator/shallow_problem_statement.md`;
   `proof_pilots/pilot_17_shallow_vs_nonshallow_simple_support_divergence/pilot_17_shallow_vs_nonshallow_simple_support_divergence.md`;
+  `proof_pilots/pilot_18_revised_analytic_barrier_diagnosis/pilot_18_revised_analytic_barrier_diagnosis.md`;
+  `proof_pilots/pilot_18_revised_analytic_barrier_diagnosis/edge_layer_scaling.md`;
+  `proof_pilots/pilot_18_revised_analytic_barrier_diagnosis/jacobian_conditioning_check.py`;
+  `proof_pilots/pilot_18_revised_analytic_barrier_diagnosis/term_balance_check.py`;
   `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`.
 - Current status: `strategy only`
 - What counts as verification:
@@ -395,8 +399,16 @@ not that every one of them is already article-level proven.
   variable at `2.0 MPa` (`Phi0'`), becomes clearly overall visible at
   `3.0 MPa` (`theta0'` and `Phi0'`), grows with load, and remains smooth
   through the available `4.3434 MPa` range with stable high-load right-edge
-  dominance rather than a new barrier-localized qualitative jump. The active
-  mixed-weak scans still use the reduced 5-state `F_min` background.
+  dominance rather than a new barrier-localized qualitative jump. Pilot 18 adds
+  a revised analytic diagnosis: a coarse discretized BVP Jacobian in the
+  `4.3400..4.3434 MPa` band remains severely ill-conditioned but shows no
+  collapsing near-zero-singular-value trend, while the right-edge term balance
+  stays smooth and is dominated by the geometric hoop term `u_r/x` inside
+  `T_theta`, by the `T_sn -> M_s -> varphi` coupling chain, and by a large
+  `u_z` response with only moderate trig-gap corrections. This sharpens the
+  current reading toward a stiff right-edge layer on an already non-shallow
+  branch rather than a detected near-fold, while remaining strategy only. The
+  active mixed-weak scans still use the reduced 5-state `F_min` background.
 - Verification method:
   project-state analysis, numerical testbench.
 - Verification boundary:
@@ -405,9 +417,9 @@ not that every one of them is already article-level proven.
   keep the separate full 6-state simple-support background path, continue the
   staged bounded extension work above the reproducible `4.3434 MPa` anchor,
   focus on the numerically difficult `4.3440 MPa` step and its right-edge mesh
-  pressure, and use the pilot-16/pilot-17 BC-aligned shallow comparator for
-  future simple-support divergence checks before considering any reconnection to
-  the mixed-weak scans.
+  pressure, and use the pilot-16/pilot-17 BC-aligned shallow comparator plus
+  the pilot-18 edge-layer diagnosis as guidance before considering any
+  reconnection to the mixed-weak scans.
 
 ### V-ST2. Stabilize the background before promoting `q_cr`
 

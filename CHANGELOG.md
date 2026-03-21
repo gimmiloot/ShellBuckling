@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## 2026-03-21 - Add pilot 18 revised analytic barrier diagnosis and refresh theory-facing simple-support status
+
+Affected files:
+- `docs/theory/current_mixed_weak_theory_note.tex`
+- `docs/theory/current_theory_verification_map.md`
+- `proof_pilots/pilot_18_revised_analytic_barrier_diagnosis/pilot_18_revised_analytic_barrier_diagnosis.md`
+- `proof_pilots/pilot_18_revised_analytic_barrier_diagnosis/barrier_problem_statement.md`
+- `proof_pilots/pilot_18_revised_analytic_barrier_diagnosis/edge_layer_scaling.md`
+- `proof_pilots/pilot_18_revised_analytic_barrier_diagnosis/analysis_common.py`
+- `proof_pilots/pilot_18_revised_analytic_barrier_diagnosis/jacobian_conditioning_check.py`
+- `proof_pilots/pilot_18_revised_analytic_barrier_diagnosis/term_balance_check.py`
+- `proof_pilots/pilot_18_revised_analytic_barrier_diagnosis/branch_state_cache.npz`
+- `proof_pilots/pilot_18_revised_analytic_barrier_diagnosis/branch_state_cache.json`
+- `proof_pilots/pilot_18_revised_analytic_barrier_diagnosis/jacobian_conditioning_results.json`
+- `proof_pilots/pilot_18_revised_analytic_barrier_diagnosis/term_balance_results.json`
+- `CHANGELOG.md`
+
+- Updated the supervisor-facing mixed-weak theory note so the simple-support discussion now reflects the reproducible `4.3434 MPa` anchor, the persistent `4.3440 MPa` failure, the BC-corrected shallow comparator history, the corrected `2..3 MPa` mismatch onset, and the still-open final shell / mixed-BVP / physical-load status.
+- Added a dedicated pilot-18 analytic diagnosis package with a compact problem statement, a heuristic edge-layer note, a shared branch-cache helper, and two runnable diagnostics for Jacobian conditioning and term-balance structure near the current ceiling.
+- Ran the new diagnostics and recorded that the coarse Jacobian remains severely ill-conditioned but shows no collapsing near-zero-singular-value trend, while the right-edge term balance stays smooth and is dominated by the geometric hoop contribution `u_r/x`, the `T_sn -> M_s -> varphi` chain, and a large `u_z` response with only moderate trig-gap corrections.
+
 ## 2026-03-21 - Add pilot 17 corrected shallow-vs-non-shallow simple-support divergence sweep
 
 Affected files:
