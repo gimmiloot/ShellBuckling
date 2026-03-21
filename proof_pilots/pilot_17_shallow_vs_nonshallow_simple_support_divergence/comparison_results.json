@@ -1,0 +1,3931 @@
+{
+  "metadata": {
+    "pilot": "pilot_17_shallow_vs_nonshallow_simple_support_divergence",
+    "loads_mpa_requested": [
+      0.02,
+      0.05,
+      0.1,
+      0.25,
+      0.5,
+      0.75,
+      1.0,
+      1.5,
+      2.0,
+      3.0,
+      4.0,
+      4.2,
+      4.3,
+      4.3434
+    ],
+    "clear_threshold_bulk_rel_l2": 0.05,
+    "output_cache_npz": "D:\\PHD\\ShellBuckling\\proof_pilots\\pilot_17_shallow_vs_nonshallow_simple_support_divergence\\comparison_cache.npz",
+    "time_budget_seconds": 1500.0,
+    "nonshallow_path": "active 6-state simple-support background + pilot-12 high-load anchor",
+    "shallow_path": "pilot-16 shallow simple-support comparator"
+  },
+  "status": "completed",
+  "shallow": {
+    "diagnostics": [
+      {
+        "q_mpa": 0.02,
+        "success": true,
+        "message": "The algorithm converged to the desired accuracy.",
+        "nodes": 4136,
+        "max_rms": 9.990908803569211e-06,
+        "max_bc_residual": 8.29659466053696e-19,
+        "edge_moment_residual": -0.0,
+        "max_abs_theta0": 15.277283916878833,
+        "max_abs_Phi0": 6.680260327745945,
+        "max_abs_u_z_recovered": 2.4779200946009086
+      },
+      {
+        "q_mpa": 0.05,
+        "success": true,
+        "message": "The algorithm converged to the desired accuracy.",
+        "nodes": 4597,
+        "max_rms": 9.814815284541117e-06,
+        "max_bc_residual": 1.3586251309642592e-18,
+        "edge_moment_residual": -0.0,
+        "max_abs_theta0": 25.269055640758193,
+        "max_abs_Phi0": 14.011726692241986,
+        "max_abs_u_z_recovered": 3.621791849069616
+      },
+      {
+        "q_mpa": 0.1,
+        "success": true,
+        "message": "The algorithm converged to the desired accuracy.",
+        "nodes": 4436,
+        "max_rms": 9.968117028748636e-06,
+        "max_bc_residual": 1.0121381975198847e-20,
+        "edge_moment_residual": -0.0,
+        "max_abs_theta0": 36.423180279087106,
+        "max_abs_Phi0": 23.391428242972573,
+        "max_abs_u_z_recovered": 4.720619398099945
+      },
+      {
+        "q_mpa": 0.25,
+        "success": true,
+        "message": "The algorithm converged to the desired accuracy.",
+        "nodes": 4597,
+        "max_rms": 9.919226691788651e-06,
+        "max_bc_residual": 3.552713678800501e-15,
+        "edge_moment_residual": 9.845238709245108e-23,
+        "max_abs_theta0": 58.383352665386745,
+        "max_abs_Phi0": 44.49355972170712,
+        "max_abs_u_z_recovered": 6.614017167733308
+      },
+      {
+        "q_mpa": 0.5,
+        "success": true,
+        "message": "The algorithm converged to the desired accuracy.",
+        "nodes": 4491,
+        "max_rms": 9.98800504004333e-06,
+        "max_bc_residual": 3.552713678800501e-15,
+        "edge_moment_residual": -9.845238709245108e-23,
+        "max_abs_theta0": 82.94946441482794,
+        "max_abs_Phi0": 71.2524363942253,
+        "max_abs_u_z_recovered": 8.498826920272561
+      },
+      {
+        "q_mpa": 0.75,
+        "success": true,
+        "message": "The algorithm converged to the desired accuracy.",
+        "nodes": 2992,
+        "max_rms": 9.989167922927573e-06,
+        "max_bc_residual": 3.552713678800501e-15,
+        "edge_moment_residual": -9.845238709245108e-23,
+        "max_abs_theta0": 101.70345037291605,
+        "max_abs_Phi0": 93.48741297411843,
+        "max_abs_u_z_recovered": 9.832387407068293
+      },
+      {
+        "q_mpa": 1.0,
+        "success": true,
+        "message": "The algorithm converged to the desired accuracy.",
+        "nodes": 1660,
+        "max_rms": 9.989313376843063e-06,
+        "max_bc_residual": 7.105427357601002e-15,
+        "edge_moment_residual": -1.9690477418490216e-22,
+        "max_abs_theta0": 117.46176495771837,
+        "max_abs_Phi0": 113.21893436240481,
+        "max_abs_u_z_recovered": 10.900228088936704
+      },
+      {
+        "q_mpa": 1.5,
+        "success": true,
+        "message": "The algorithm converged to the desired accuracy.",
+        "nodes": 1655,
+        "max_rms": 9.988215459590461e-06,
+        "max_bc_residual": 3.312047054530084e-17,
+        "edge_moment_residual": -0.0,
+        "max_abs_theta0": 143.80780186922718,
+        "max_abs_Phi0": 148.11570970635495,
+        "max_abs_u_z_recovered": 12.600149147896012
+      },
+      {
+        "q_mpa": 2.0,
+        "success": true,
+        "message": "The algorithm converged to the desired accuracy.",
+        "nodes": 1655,
+        "max_rms": 9.986261614296008e-06,
+        "max_bc_residual": 7.105427357601002e-15,
+        "edge_moment_residual": -1.9690477418490216e-22,
+        "max_abs_theta0": 165.94460518634588,
+        "max_abs_Phi0": 179.10980220883408,
+        "max_abs_u_z_recovered": 13.961138621748312
+      },
+      {
+        "q_mpa": 3.0,
+        "success": true,
+        "message": "The algorithm converged to the desired accuracy.",
+        "nodes": 1656,
+        "max_rms": 9.981458604950026e-06,
+        "max_bc_residual": 1.3879481873708965e-17,
+        "edge_moment_residual": -0.0,
+        "max_abs_theta0": 202.95579497197372,
+        "max_abs_Phi0": 233.98650838943823,
+        "max_abs_u_z_recovered": 16.127076275315833
+      },
+      {
+        "q_mpa": 4.0,
+        "success": true,
+        "message": "The algorithm converged to the desired accuracy.",
+        "nodes": 1656,
+        "max_rms": 9.976344417157926e-06,
+        "max_bc_residual": 1.268342900053853e-16,
+        "edge_moment_residual": -0.0,
+        "max_abs_theta0": 234.05731913417156,
+        "max_abs_Phi0": 282.7859898045256,
+        "max_abs_u_z_recovered": 17.860569286956064
+      },
+      {
+        "q_mpa": 4.2,
+        "success": true,
+        "message": "The algorithm converged to the desired accuracy.",
+        "nodes": 1656,
+        "max_rms": 9.975320001480394e-06,
+        "max_bc_residual": 4.7248768347265754e-17,
+        "edge_moment_residual": -0.0,
+        "max_abs_theta0": 239.78111606417113,
+        "max_abs_Phi0": 292.01627654342326,
+        "max_abs_u_z_recovered": 18.172186357198683
+      },
+      {
+        "q_mpa": 4.3,
+        "success": true,
+        "message": "The algorithm converged to the desired accuracy.",
+        "nodes": 1657,
+        "max_rms": 9.974808763051789e-06,
+        "max_bc_residual": 1.805073797411013e-16,
+        "edge_moment_residual": -0.0,
+        "max_abs_theta0": 242.59091149942205,
+        "max_abs_Phi0": 296.5748122973171,
+        "max_abs_u_z_recovered": 18.32437588257382
+      },
+      {
+        "q_mpa": 4.3434,
+        "success": true,
+        "message": "The algorithm converged to the desired accuracy.",
+        "nodes": 1656,
+        "max_rms": 9.974587143478349e-06,
+        "max_bc_residual": 1.7585632182772794e-16,
+        "edge_moment_residual": -0.0,
+        "max_abs_theta0": 243.79999072583587,
+        "max_abs_Phi0": 298.5419016085233,
+        "max_abs_u_z_recovered": 18.38970846499419
+      }
+    ],
+    "missing_loads_mpa": []
+  },
+  "nonshallow": {
+    "diagnostics": {
+      "low_path": [
+        {
+          "q_mpa": 0.02,
+          "success": true,
+          "message": "The algorithm converged to the desired accuracy.",
+          "nodes": 603,
+          "seed_kind": "scaled_template",
+          "max_rms": 0.00017207959806654733,
+          "max_bc_residual": 1.236800451889287e-19,
+          "min_r": 0.0016666666666666668
+        },
+        {
+          "q_mpa": 0.05,
+          "success": true,
+          "message": "The algorithm converged to the desired accuracy.",
+          "nodes": 605,
+          "seed_kind": "previous_solution",
+          "max_rms": 0.00014587410604206707,
+          "max_bc_residual": 1.2487912620488557e-18,
+          "min_r": 0.0016666666666666668
+        },
+        {
+          "q_mpa": 0.1,
+          "success": true,
+          "message": "The algorithm converged to the desired accuracy.",
+          "nodes": 606,
+          "seed_kind": "previous_solution",
+          "max_rms": 0.00011367923626608524,
+          "max_bc_residual": 9.756231365593438e-19,
+          "min_r": 0.0016666666666666668
+        },
+        {
+          "q_mpa": 0.25,
+          "success": true,
+          "message": "The algorithm converged to the desired accuracy.",
+          "nodes": 606,
+          "seed_kind": "previous_solution",
+          "max_rms": 0.0001801705163660484,
+          "max_bc_residual": 1.7510288602114524e-18,
+          "min_r": 0.0016666666666666668
+        },
+        {
+          "q_mpa": 0.5,
+          "success": true,
+          "message": "The algorithm converged to the desired accuracy.",
+          "nodes": 609,
+          "seed_kind": "previous_solution",
+          "max_rms": 0.0001691494320772023,
+          "max_bc_residual": 3.142703992550268e-18,
+          "min_r": 0.0016666666666666668
+        },
+        {
+          "q_mpa": 0.75,
+          "success": true,
+          "message": "The algorithm converged to the desired accuracy.",
+          "nodes": 610,
+          "seed_kind": "previous_solution",
+          "max_rms": 0.00015855159092911174,
+          "max_bc_residual": 3.4114251950666946e-19,
+          "min_r": 0.0016666666666666668
+        },
+        {
+          "q_mpa": 1.0,
+          "success": true,
+          "message": "The algorithm converged to the desired accuracy.",
+          "nodes": 610,
+          "seed_kind": "previous_solution",
+          "max_rms": 0.00018077650713612477,
+          "max_bc_residual": 4.4824983568697574e-18,
+          "min_r": 0.0016666666666666668
+        },
+        {
+          "q_mpa": 1.5,
+          "success": true,
+          "message": "The algorithm converged to the desired accuracy.",
+          "nodes": 611,
+          "seed_kind": "previous_solution",
+          "max_rms": 0.00016386744641306355,
+          "max_bc_residual": 4.9479429613859954e-18,
+          "min_r": 0.0016666666666666668
+        },
+        {
+          "q_mpa": 2.0,
+          "success": true,
+          "message": "The algorithm converged to the desired accuracy.",
+          "nodes": 611,
+          "seed_kind": "previous_solution",
+          "max_rms": 0.00019446727645828992,
+          "max_bc_residual": 9.286022200748895e-18,
+          "min_r": 0.0016666666666666668
+        },
+        {
+          "q_mpa": 3.0,
+          "success": true,
+          "message": "The algorithm converged to the desired accuracy.",
+          "nodes": 612,
+          "seed_kind": "previous_solution",
+          "max_rms": 0.00016521359785453906,
+          "max_bc_residual": 1.1243515341853583e-17,
+          "min_r": 0.0016666666666666668
+        },
+        {
+          "q_mpa": 4.0,
+          "success": true,
+          "message": "The algorithm converged to the desired accuracy.",
+          "nodes": 612,
+          "seed_kind": "previous_solution",
+          "max_rms": 0.00018410028059179465,
+          "max_bc_residual": 9.294492530221438e-18,
+          "min_r": 0.0016666666666666668
+        },
+        {
+          "q_mpa": 4.2,
+          "success": true,
+          "message": "The algorithm converged to the desired accuracy.",
+          "nodes": 612,
+          "seed_kind": "previous_solution",
+          "max_rms": 0.0001874013296925439,
+          "max_bc_residual": 5.061868892791699e-18,
+          "min_r": 0.0016666666666666668
+        },
+        {
+          "q_mpa": 4.3,
+          "success": true,
+          "message": "The algorithm converged to the desired accuracy.",
+          "nodes": 612,
+          "seed_kind": "previous_solution",
+          "max_rms": 0.0001890599073117999,
+          "max_bc_residual": 6.117271945070557e-18,
+          "min_r": 0.0016666666666666668
+        }
+      ],
+      "high_path": {
+        "bootstrap": {
+          "anchor_points": [
+            {
+              "q_mpa": 4.3,
+              "nodes": 915,
+              "max_rms": 0.00018905990690451586,
+              "max_bc_residual": 1.6320448028717497e-21,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.0038125,
+              "right_edge_fraction_0_99": 0.03934426229508197,
+              "right_edge_fraction_0_995": 0.019672131147540985,
+              "right_edge_fraction_0_999": 0.004371584699453552,
+              "min_dx": 0.0001388888888888887,
+              "min_dx_mid": 0.001736111111111111,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 86.62185221037373,
+                  "x_at_peak": 0.9994444444444444
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.090213629384152,
+                  "x_at_peak": 0.9338888888888889
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 3.064326011653685,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008222398548495565,
+                "Tsn_1": -0.0018197931531235764,
+                "Ms_x0": 3.6255024606823336e-06,
+                "ur_1": -0.04804339159405853,
+                "uz_x0": 20.164309648644323,
+                "phi_1": 1.0234309778499047,
+                "max_abs_phi": 1.023615687052412,
+                "max_abs_Tsn": 0.0018197931531235766
+              },
+              "accepted_profile": "anchor_config",
+              "accepted_seed": "template_or_previous_anchor",
+              "predictor_rel_correction": 1.1011763298326442e-17,
+              "predictor_abs_correction": 2.220446049250313e-16,
+              "message": "The algorithm converged to the desired accuracy."
+            },
+            {
+              "q_mpa": 4.325,
+              "nodes": 618,
+              "max_rms": 0.0006449330380256033,
+              "max_bc_residual": 2.720266162441887e-18,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.002575,
+              "right_edge_fraction_0_99": 0.019417475728155338,
+              "right_edge_fraction_0_995": 0.009708737864077669,
+              "right_edge_fraction_0_999": 0.003236245954692557,
+              "min_dx": 0.00010416666666666647,
+              "min_dx_mid": 0.0018229166666666667,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 88.50989647693028,
+                  "x_at_peak": 1.0
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.359535264442599,
+                  "x_at_peak": 0.9349999999999999
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 3.170201595609006,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008259600137407303,
+                "Tsn_1": -0.001929140982761849,
+                "Ms_x0": 3.6301433483100847e-06,
+                "ur_1": -0.05035327369171814,
+                "uz_x0": 20.398148148501342,
+                "phi_1": 1.0585115019053535,
+                "max_abs_phi": 1.058682561157361,
+                "max_abs_Tsn": 0.001929140982761849
+              },
+              "accepted_profile": "anchor_config",
+              "accepted_seed": "template_or_previous_anchor",
+              "predictor_rel_correction": 1.0885527613022312e-17,
+              "predictor_abs_correction": 2.220446049250313e-16,
+              "message": "The algorithm converged to the desired accuracy."
+            },
+            {
+              "q_mpa": 4.3275,
+              "nodes": 617,
+              "max_rms": 0.000645159480109507,
+              "max_bc_residual": 2.1249437556003455e-19,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.0025708333333333334,
+              "right_edge_fraction_0_99": 0.014586709886547812,
+              "right_edge_fraction_0_995": 0.009724473257698542,
+              "right_edge_fraction_0_999": 0.0032414910858995136,
+              "min_dx": 0.00020833333333333294,
+              "min_dx_mid": 0.0028125,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 88.60911095275817,
+                  "x_at_peak": 1.0
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.373023235061964,
+                  "x_at_peak": 0.9349999999999999
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 2.9123362045139984,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008262899573662736,
+                "Tsn_1": -0.0019346369584118512,
+                "Ms_x0": 3.6307342096052145e-06,
+                "ur_1": -0.05046996914304043,
+                "uz_x0": 20.411164565382816,
+                "phi_1": 1.0602797893319078,
+                "max_abs_phi": 1.0604505787872005,
+                "max_abs_Tsn": 0.001934636958411851
+              },
+              "accepted_profile": "anchor_config",
+              "accepted_seed": "template_or_previous_anchor",
+              "predictor_rel_correction": 3.3995580613149045e-19,
+              "predictor_abs_correction": 6.938893903907228e-18,
+              "message": "The algorithm converged to the desired accuracy."
+            },
+            {
+              "q_mpa": 4.328,
+              "nodes": 960,
+              "max_rms": 0.0007995379461392164,
+              "max_bc_residual": 8.882633623987876e-19,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.004,
+              "right_edge_fraction_0_99": 0.0375,
+              "right_edge_fraction_0_995": 0.01875,
+              "right_edge_fraction_0_999": 0.004166666666666667,
+              "min_dx": 0.00020833333333333316,
+              "min_dx_mid": 0.0017708333333333335,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 89.57573001803551,
+                  "x_at_peak": 0.9997222222222222
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.520134817189842,
+                  "x_at_peak": 0.9349999999999999
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 2.9138754998016863,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008267268550599591,
+                "Tsn_1": -0.0019935283589604387,
+                "Ms_x0": 3.6292120674963903e-06,
+                "ur_1": -0.05170137587102778,
+                "uz_x0": 20.522752085182958,
+                "phi_1": 1.0789849938818303,
+                "max_abs_phi": 1.0791653994775072,
+                "max_abs_Tsn": 0.0019935283589604387
+              },
+              "accepted_profile": "anchor_config",
+              "accepted_seed": "template_or_previous_anchor",
+              "predictor_rel_correction": 1.0819436106980181e-17,
+              "predictor_abs_correction": 2.220446049250313e-16,
+              "message": "The algorithm converged to the desired accuracy."
+            },
+            {
+              "q_mpa": 4.329,
+              "nodes": 635,
+              "max_rms": 0.0009145920678660745,
+              "max_bc_residual": 2.198567536411931e-19,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.0026458333333333334,
+              "right_edge_fraction_0_99": 0.01889763779527559,
+              "right_edge_fraction_0_995": 0.009448818897637795,
+              "right_edge_fraction_0_999": 0.0031496062992125984,
+              "min_dx": 0.00020833333333333316,
+              "min_dx_mid": 0.0017708333333333335,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 88.42840417540081,
+                  "x_at_peak": 1.0
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.344663997830679,
+                  "x_at_peak": 0.9349999999999999
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 2.9127447758025378,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.00826405921374587,
+                "Tsn_1": -0.0019232440170104958,
+                "Ms_x0": 3.631565177974078e-06,
+                "ur_1": -0.05023378784498858,
+                "uz_x0": 20.391408161725366,
+                "phi_1": 1.0566919269291446,
+                "max_abs_phi": 1.0568634003871509,
+                "max_abs_Tsn": 0.0019232440170104958
+              },
+              "accepted_profile": "anchor_config",
+              "accepted_seed": "template_or_previous_anchor",
+              "predictor_rel_correction": 3.768392470273042e-19,
+              "predictor_abs_correction": 7.684282897491013e-18,
+              "message": "The algorithm converged to the desired accuracy."
+            },
+            {
+              "q_mpa": 4.33,
+              "nodes": 623,
+              "max_rms": 0.0009147250763444408,
+              "max_bc_residual": 2.859197635626406e-19,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.0025958333333333332,
+              "right_edge_fraction_0_99": 0.03210272873194221,
+              "right_edge_fraction_0_995": 0.019261637239165328,
+              "right_edge_fraction_0_999": 0.004815409309791332,
+              "min_dx": 0.00010416666666666647,
+              "min_dx_mid": 0.0018229166666666667,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 88.53906471321837,
+                  "x_at_peak": 1.0
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.360820582699574,
+                  "x_at_peak": 0.9349999999999999
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 3.1705989497104454,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008265662894937036,
+                "Tsn_1": -0.001929772066067634,
+                "Ms_x0": 3.6316804292581277e-06,
+                "ur_1": -0.05037087663000206,
+                "uz_x0": 20.404762882864745,
+                "phi_1": 1.058772375869664,
+                "max_abs_phi": 1.0589542103244194,
+                "max_abs_Tsn": 0.001929772066067634
+              },
+              "accepted_profile": "anchor_config",
+              "accepted_seed": "template_or_previous_anchor",
+              "predictor_rel_correction": 9.066118373553336e-20,
+              "predictor_abs_correction": 1.849919956803392e-18,
+              "message": "The algorithm converged to the desired accuracy."
+            },
+            {
+              "q_mpa": 4.332,
+              "nodes": 623,
+              "max_rms": 0.0009150706664229178,
+              "max_bc_residual": 2.4295239486422183e-19,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.0025958333333333332,
+              "right_edge_fraction_0_99": 0.019261637239165328,
+              "right_edge_fraction_0_995": 0.009630818619582664,
+              "right_edge_fraction_0_999": 0.0032102728731942215,
+              "min_dx": 0.00020833333333333316,
+              "min_dx_mid": 0.0017708333333333335,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 88.98260626342939,
+                  "x_at_peak": 1.0
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.426917148667343,
+                  "x_at_peak": 0.9349999999999999
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 2.9147583894801525,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008269774452924613,
+                "Tsn_1": -0.001956433568591499,
+                "Ms_x0": 3.6315395252311786e-06,
+                "ur_1": -0.05092892342573309,
+                "uz_x0": 20.457045443486184,
+                "phi_1": 1.0672432776311955,
+                "max_abs_phi": 1.0674128968987706,
+                "max_abs_Tsn": 0.001956433568591499
+              },
+              "accepted_profile": "anchor_config",
+              "accepted_seed": "template_or_previous_anchor",
+              "predictor_rel_correction": 2.3584538055062825e-19,
+              "predictor_abs_correction": 4.824699667560495e-18,
+              "message": "The algorithm converged to the desired accuracy."
+            },
+            {
+              "q_mpa": 4.335,
+              "nodes": 907,
+              "max_rms": 0.0009639554426971309,
+              "max_bc_residual": 6.292264222474849e-20,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.003779166666666667,
+              "right_edge_fraction_0_99": 0.026460859977949284,
+              "right_edge_fraction_0_995": 0.013230429988974642,
+              "right_edge_fraction_0_999": 0.0033076074972436605,
+              "min_dx": 2.60416666666664e-05,
+              "min_dx_mid": 0.0020442708333333333,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 89.24491767628177,
+                  "x_at_peak": 1.0
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.465494904085858,
+                  "x_at_peak": 0.9345833333333333
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 3.395207345629398,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008274255054876237,
+                "Tsn_1": -0.0019717662001912987,
+                "Ms_x0": 3.63197546857665e-06,
+                "ur_1": -0.05125048801881408,
+                "uz_x0": 20.488970788366125,
+                "phi_1": 1.07212083094371,
+                "max_abs_phi": 1.0723020889217878,
+                "max_abs_Tsn": 0.001971766200191299
+              },
+              "accepted_profile": "anchor_config",
+              "accepted_seed": "template_or_previous_anchor",
+              "predictor_rel_correction": 9.061930145538009e-20,
+              "predictor_abs_correction": 1.8566962203814263e-18,
+              "message": "The algorithm converged to the desired accuracy."
+            }
+          ],
+          "local_points": [
+            {
+              "q_mpa": 4.335,
+              "nodes": 1573,
+              "max_rms": 0.0011420406199519127,
+              "max_bc_residual": 3.535481113834442e-19,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.0026216666666666667,
+              "right_edge_fraction_0_99": 0.3610934520025429,
+              "right_edge_fraction_0_995": 0.24602670057215512,
+              "right_edge_fraction_0_999": 0.10044500953591863,
+              "min_dx": 1.92236552343239e-07,
+              "min_dx_mid": 0.9999997116451713,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 88.58707003850532,
+                  "x_at_peak": 0.9996217054697678
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.365425013662218,
+                  "x_at_peak": 0.9346587926509187
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 3.3198311896727826,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.00827204517173847,
+                "Tsn_1": -0.0019315683348310653,
+                "Ms_x0": 3.633291716329248e-06,
+                "ur_1": -0.0504121215364608,
+                "uz_x0": 20.41346164812231,
+                "phi_1": 1.059390057738506,
+                "max_abs_phi": 1.0595726059018682,
+                "max_abs_Tsn": 0.0019315683348310653
+              },
+              "accepted_profile": "rescue_local",
+              "accepted_seed": "anchor_projected_to_local_mesh",
+              "predictor_rel_correction": 0.003819037516428743,
+              "predictor_abs_correction": 0.07795977587435843,
+              "message": "The algorithm converged to the desired accuracy."
+            },
+            {
+              "q_mpa": 4.336,
+              "nodes": 1573,
+              "max_rms": 0.0009300619524951277,
+              "max_bc_residual": 1.2098009413846132e-18,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.0026216666666666667,
+              "right_edge_fraction_0_99": 0.3610934520025429,
+              "right_edge_fraction_0_995": 0.24602670057215512,
+              "right_edge_fraction_0_999": 0.10044500953591863,
+              "min_dx": 1.92236552343239e-07,
+              "min_dx_mid": 0.9999997116451713,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 89.021741263673,
+                  "x_at_peak": 0.9996507947353752
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.430811770866171,
+                  "x_at_peak": 0.9346587926509187
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 3.316910069310149,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008274680327642586,
+                "Tsn_1": -0.0019578471380559425,
+                "Ms_x0": 3.632752491358476e-06,
+                "ur_1": -0.05096368979486653,
+                "uz_x0": 20.46430112413121,
+                "phi_1": 1.067770528520066,
+                "max_abs_phi": 1.0679525238748948,
+                "max_abs_Tsn": 0.0019578471380559425
+              },
+              "accepted_profile": "rescue_local",
+              "accepted_seed": "previous_raw_mesh",
+              "predictor_rel_correction": 0.0025362322705154727,
+              "predictor_abs_correction": 0.05190222090456764,
+              "message": "The algorithm converged to the desired accuracy."
+            },
+            {
+              "q_mpa": 4.337,
+              "nodes": 1573,
+              "max_rms": 0.000931664488518906,
+              "max_bc_residual": 9.625002721641788e-19,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.0026216666666666667,
+              "right_edge_fraction_0_99": 0.3610934520025429,
+              "right_edge_fraction_0_995": 0.24602670057215512,
+              "right_edge_fraction_0_999": 0.10044500953591863,
+              "min_dx": 1.92236552343239e-07,
+              "min_dx_mid": 0.9999997116451713,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 88.38108860172497,
+                  "x_at_peak": 0.9995991802542882
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.332831512738835,
+                  "x_at_peak": 0.9346587926509187
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 3.3164004873631225,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.00827340893471965,
+                "Tsn_1": -0.001918592725903083,
+                "Ms_x0": 3.634174827978283e-06,
+                "ur_1": -0.05014039160780505,
+                "uz_x0": 20.39082531650029,
+                "phi_1": 1.0552539330985675,
+                "max_abs_phi": 1.0554367945356893,
+                "max_abs_Tsn": 0.001918592725903083
+              },
+              "accepted_profile": "rescue_local",
+              "accepted_seed": "secant_prev_mesh",
+              "predictor_rel_correction": 0.006288111074720988,
+              "predictor_abs_correction": 0.12821977449538657,
+              "message": "The algorithm converged to the desired accuracy."
+            },
+            {
+              "q_mpa": 4.338,
+              "nodes": 1573,
+              "max_rms": 0.000978137628100326,
+              "max_bc_residual": 3.6802850235295323e-19,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.0026216666666666667,
+              "right_edge_fraction_0_99": 0.3610934520025429,
+              "right_edge_fraction_0_995": 0.24602670057215512,
+              "right_edge_fraction_0_999": 0.10044500953591863,
+              "min_dx": 1.92236552343239e-07,
+              "min_dx_mid": 0.9999997116451713,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 88.27980824015367,
+                  "x_at_peak": 0.9995915864031625
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.316912456701459,
+                  "x_at_peak": 0.9346587926509187
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 3.316710756815896,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008274183046816914,
+                "Tsn_1": -0.0019120634593765963,
+                "Ms_x0": 3.6346750548718464e-06,
+                "ur_1": -0.050008129928136136,
+                "uz_x0": 20.380105891168036,
+                "phi_1": 1.0532542807774732,
+                "max_abs_phi": 1.0534373150744951,
+                "max_abs_Tsn": 0.0019120634593765963
+              },
+              "accepted_profile": "rescue_local",
+              "accepted_seed": "secant_prev_mesh",
+              "predictor_rel_correction": 0.0031733910371668944,
+              "predictor_abs_correction": 0.06467404537154486,
+              "message": "The algorithm converged to the desired accuracy."
+            },
+            {
+              "q_mpa": 4.339,
+              "nodes": 1573,
+              "max_rms": 0.0010318741685840455,
+              "max_bc_residual": 1.1521798668522691e-18,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.0026216666666666667,
+              "right_edge_fraction_0_99": 0.3610934520025429,
+              "right_edge_fraction_0_995": 0.24602670057215512,
+              "right_edge_fraction_0_999": 0.10044500953591863,
+              "min_dx": 1.92236552343239e-07,
+              "min_dx_mid": 0.9999997116451713,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 88.20185982350131,
+                  "x_at_peak": 0.9995838649216797
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.304437009991659,
+                  "x_at_peak": 0.9346587926509187
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 3.317068089235151,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008275074583889442,
+                "Tsn_1": -0.0019071341943472998,
+                "Ms_x0": 3.635122656092379e-06,
+                "ur_1": -0.0499044374849044,
+                "uz_x0": 20.371664413007483,
+                "phi_1": 1.0516729641334632,
+                "max_abs_phi": 1.0518561244464715,
+                "max_abs_Tsn": 0.0019071341943473
+              },
+              "accepted_profile": "rescue_local",
+              "accepted_seed": "secant_prev_mesh",
+              "predictor_rel_correction": 0.00011846401441868265,
+              "predictor_abs_correction": 0.0024133091467550827,
+              "message": "The algorithm converged to the desired accuracy."
+            },
+            {
+              "q_mpa": 4.34,
+              "nodes": 1573,
+              "max_rms": 0.0010863600917758356,
+              "max_bc_residual": 1.065332705102434e-18,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.0026216666666666667,
+              "right_edge_fraction_0_99": 0.3610934520025429,
+              "right_edge_fraction_0_995": 0.24602670057215512,
+              "right_edge_fraction_0_999": 0.10044500953591863,
+              "min_dx": 1.92236552343239e-07,
+              "min_dx_mid": 0.9999997116451713,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 88.22521232655163,
+                  "x_at_peak": 0.9995915864031625
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.307181612398097,
+                  "x_at_peak": 0.9346587926509187
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 3.317591339802698,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008276380083530098,
+                "Tsn_1": -0.0019084417936221514,
+                "Ms_x0": 3.6353835219388172e-06,
+                "ur_1": -0.04992835750998436,
+                "uz_x0": 20.374570962734406,
+                "phi_1": 1.0520235195431475,
+                "max_abs_phi": 1.052206658819708,
+                "max_abs_Tsn": 0.0019084417936221514
+              },
+              "accepted_profile": "rescue_local",
+              "accepted_seed": "secant_prev_mesh",
+              "predictor_rel_correction": 0.0005770392195390354,
+              "predictor_abs_correction": 0.011756926526778955,
+              "message": "The algorithm converged to the desired accuracy."
+            },
+            {
+              "q_mpa": 4.341,
+              "nodes": 2754,
+              "max_rms": 0.0010856344110008248,
+              "max_bc_residual": 6.138806706960266e-19,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.00459,
+              "right_edge_fraction_0_99": 0.4121278140885984,
+              "right_edge_fraction_0_995": 0.28068264342774146,
+              "right_edge_fraction_0_999": 0.11474219317356572,
+              "min_dx": 9.611827611610835e-08,
+              "min_dx_mid": 0.9999996635860333,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 88.58132924233723,
+                  "x_at_peak": 0.9996142397875909
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.361179499399896,
+                  "x_at_peak": 0.9346587926509187
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 3.318599025915988,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008278894234996493,
+                "Tsn_1": -0.0019297948752154531,
+                "Ms_x0": 3.635099859629164e-06,
+                "ur_1": -0.05038226268073017,
+                "uz_x0": 20.41691803016915,
+                "phi_1": 1.0589343284813257,
+                "max_abs_phi": 1.0591170077904297,
+                "max_abs_Tsn": 0.0019297948752154531
+              },
+              "accepted_profile": "rescue_local",
+              "accepted_seed": "secant_prev_mesh",
+              "predictor_rel_correction": 0.0019857834213466317,
+              "predictor_abs_correction": 0.04054357733930303,
+              "message": "The algorithm converged to the desired accuracy."
+            },
+            {
+              "q_mpa": 4.342,
+              "nodes": 5131,
+              "max_rms": 0.0011786391619892783,
+              "max_bc_residual": 8.261043938042901e-19,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.008551666666666667,
+              "right_edge_fraction_0_99": 0.44240888715649973,
+              "right_edge_fraction_0_995": 0.3011108945624635,
+              "right_edge_fraction_0_999": 0.12317287078542194,
+              "min_dx": 4.805913800254302e-08,
+              "min_dx_mid": 0.9999996876156023,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 88.79992968318948,
+                  "x_at_peak": 0.9996327109108241
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.393387641959862,
+                  "x_at_peak": 0.9346587926509187
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 3.3194367353383276,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008280984302407852,
+                "Tsn_1": -0.0019430403082203284,
+                "Ms_x0": 3.6350066983163735e-06,
+                "ur_1": -0.05065255561511028,
+                "uz_x0": 20.44188529097517,
+                "phi_1": 1.0630239550317502,
+                "max_abs_phi": 1.0632063527050613,
+                "max_abs_Tsn": 0.0019430403082203286
+              },
+              "accepted_profile": "rescue_local",
+              "accepted_seed": "secant_prev_mesh",
+              "predictor_rel_correction": 0.0008672768032745923,
+              "predictor_abs_correction": 0.017728772928062853,
+              "message": "The algorithm converged to the desired accuracy."
+            },
+            {
+              "q_mpa": 4.343,
+              "nodes": 5131,
+              "max_rms": 0.0011900613528497074,
+              "max_bc_residual": 1.7121782900175227e-18,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.008551666666666667,
+              "right_edge_fraction_0_99": 0.44240888715649973,
+              "right_edge_fraction_0_995": 0.3011108945624635,
+              "right_edge_fraction_0_999": 0.12317287078542194,
+              "min_dx": 4.805913800254302e-08,
+              "min_dx_mid": 0.9999996876156023,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 88.28183084369994,
+                  "x_at_peak": 0.9995915864031625
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.314557206769678,
+                  "x_at_peak": 0.934342738407699
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 3.3190910626143126,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008280121855519303,
+                "Tsn_1": -0.0019111232623978784,
+                "Ms_x0": 3.6362443974891535e-06,
+                "ur_1": -0.04999133678106582,
+                "uz_x0": 20.38351660934864,
+                "phi_1": 1.0529868234486377,
+                "max_abs_phi": 1.0531699508182633,
+                "max_abs_Tsn": 0.0019111232623978784
+              },
+              "accepted_profile": "rescue_local",
+              "accepted_seed": "secant_prev_mesh",
+              "predictor_rel_correction": 0.004229590419483772,
+              "predictor_abs_correction": 0.08621392656628935,
+              "message": "The algorithm converged to the desired accuracy."
+            }
+          ],
+          "refined_points": [
+            {
+              "q_mpa": 4.3431,
+              "nodes": 7222,
+              "max_rms": 0.001186611377561045,
+              "max_bc_residual": 2.869444294240082e-18,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.012036666666666666,
+              "right_edge_fraction_0_99": 0.7363611188036555,
+              "right_edge_fraction_0_995": 0.6359734145666021,
+              "right_edge_fraction_0_999": 0.22583771808363334,
+              "min_dx": 2.402956900127151e-08,
+              "min_dx_mid": 0.9999996515712488,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 88.79181475924634,
+                  "x_at_peak": 0.99962995955056
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.3902993327894535,
+                  "x_at_peak": 0.9346587926509187
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 2.9137233352558796,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008282235997825068,
+                "Tsn_1": -0.0019421894910266752,
+                "Ms_x0": 3.635412213139202e-06,
+                "ur_1": -0.05064291370425944,
+                "uz_x0": 20.44250598716953,
+                "phi_1": 1.0628885578508789,
+                "max_abs_phi": 1.0630709949141919,
+                "max_abs_Tsn": 0.0019421894910266752
+              },
+              "accepted_profile": "rescue_local",
+              "accepted_seed": "secant_profile_mesh",
+              "predictor_rel_correction": 0.0032712813436438113,
+              "predictor_abs_correction": 0.0668731884531546,
+              "message": "The algorithm converged to the desired accuracy."
+            },
+            {
+              "q_mpa": 4.3432,
+              "nodes": 7773,
+              "max_rms": 0.0011960542701756436,
+              "max_bc_residual": 1.5548950733234831e-18,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.012955,
+              "right_edge_fraction_0_99": 0.5840730734594107,
+              "right_edge_fraction_0_995": 0.39740126077447574,
+              "right_edge_fraction_0_999": 0.16261417728032934,
+              "min_dx": 2.402956900127151e-08,
+              "min_dx_mid": 0.9999996515712488,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 88.41097035499843,
+                  "x_at_peak": 0.9996010787170696
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.333830900089197,
+                  "x_at_peak": 0.9346587926509187
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 2.9132584335346863,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008280914015429843,
+                "Tsn_1": -0.0019190088126145428,
+                "Ms_x0": 3.6360924412888647e-06,
+                "ur_1": -0.05015424272088971,
+                "uz_x0": 20.398279157820053,
+                "phi_1": 1.055455416916332,
+                "max_abs_phi": 1.055638365241889,
+                "max_abs_Tsn": 0.0019190088126145428
+              },
+              "accepted_profile": "rescue_local",
+              "accepted_seed": "secant_profile_mesh",
+              "predictor_rel_correction": 0.00521683988687037,
+              "predictor_abs_correction": 0.10641455633403218,
+              "message": "The algorithm converged to the desired accuracy."
+            },
+            {
+              "q_mpa": 4.3433,
+              "nodes": 14805,
+              "max_rms": 0.0011981679102292813,
+              "max_bc_residual": 1.917720869023773e-18,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.024675,
+              "right_edge_fraction_0_99": 0.6132387706855792,
+              "right_edge_fraction_0_995": 0.41722391084093213,
+              "right_edge_fraction_0_999": 0.1706855791962175,
+              "min_dx": 1.2014784500635756e-08,
+              "min_dx_mid": 0.9999996335490721,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 88.39507349991618,
+                  "x_at_peak": 0.9995987056385929
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.331045633811584,
+                  "x_at_peak": 0.9346587926509187
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 2.9132281540486824,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.00828082790877852,
+                "Tsn_1": -0.0019179722203377138,
+                "Ms_x0": 3.6360950741660006e-06,
+                "ur_1": -0.05013405034161668,
+                "uz_x0": 20.39664298653494,
+                "phi_1": 1.0551526900217443,
+                "max_abs_phi": 1.0553356656823865,
+                "max_abs_Tsn": 0.0019179722203377138
+              },
+              "accepted_profile": "rescue_local",
+              "accepted_seed": "previous_profile_mesh",
+              "predictor_rel_correction": 8.662933997542055e-05,
+              "predictor_abs_correction": 0.0017669477196378125,
+              "message": "The algorithm converged to the desired accuracy."
+            }
+          ],
+          "attempts": [
+            {
+              "q_mpa": 4.335,
+              "profile_name": "rescue_local",
+              "seed_label": "anchor_projected_to_local_mesh",
+              "success": true,
+              "attempt_seconds": 0.0,
+              "message": "The algorithm converged to the desired accuracy.",
+              "nodes": 1573,
+              "max_nodes": 600000,
+              "max_rms": 0.0011420406199519127,
+              "max_bc_residual": 3.535481113834442e-19,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.0026216666666666667,
+              "right_edge_fraction_0_99": 0.3610934520025429,
+              "right_edge_fraction_0_995": 0.24602670057215512,
+              "right_edge_fraction_0_999": 0.10044500953591863,
+              "min_dx": 1.92236552343239e-07,
+              "min_dx_mid": 0.9999997116451713,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 88.58707003850532,
+                  "x_at_peak": 0.9996217054697678
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.365425013662218,
+                  "x_at_peak": 0.9346587926509187
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 3.3198311896727826,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.00827204517173847,
+                "Tsn_1": -0.0019315683348310653,
+                "Ms_x0": 3.633291716329248e-06,
+                "ur_1": -0.0504121215364608,
+                "uz_x0": 20.41346164812231,
+                "phi_1": 1.059390057738506,
+                "max_abs_phi": 1.0595726059018682,
+                "max_abs_Tsn": 0.0019315683348310653
+              },
+              "mesh_pressure_only": false,
+              "right_edge_layer_suspicion": true,
+              "branch_turning_suspicion": false,
+              "predictor_rel_correction": 0.003819037516428743,
+              "predictor_abs_correction": 0.07795977587435843
+            },
+            {
+              "q_mpa": 4.336,
+              "profile_name": "rescue_local",
+              "seed_label": "previous_raw_mesh",
+              "success": true,
+              "attempt_seconds": 29.15235870005563,
+              "message": "The algorithm converged to the desired accuracy.",
+              "nodes": 1573,
+              "max_nodes": 600000,
+              "max_rms": 0.0009300619524951277,
+              "max_bc_residual": 1.2098009413846132e-18,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.0026216666666666667,
+              "right_edge_fraction_0_99": 0.3610934520025429,
+              "right_edge_fraction_0_995": 0.24602670057215512,
+              "right_edge_fraction_0_999": 0.10044500953591863,
+              "min_dx": 1.92236552343239e-07,
+              "min_dx_mid": 0.9999997116451713,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 89.021741263673,
+                  "x_at_peak": 0.9996507947353752
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.430811770866171,
+                  "x_at_peak": 0.9346587926509187
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 3.316910069310149,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008274680327642586,
+                "Tsn_1": -0.0019578471380559425,
+                "Ms_x0": 3.632752491358476e-06,
+                "ur_1": -0.05096368979486653,
+                "uz_x0": 20.46430112413121,
+                "phi_1": 1.067770528520066,
+                "max_abs_phi": 1.0679525238748948,
+                "max_abs_Tsn": 0.0019578471380559425
+              },
+              "mesh_pressure_only": false,
+              "right_edge_layer_suspicion": true,
+              "branch_turning_suspicion": false,
+              "predictor_rel_correction": 0.0025362322705154727,
+              "predictor_abs_correction": 0.05190222090456764
+            },
+            {
+              "q_mpa": 4.337,
+              "profile_name": "rescue_local",
+              "seed_label": "secant_prev_mesh",
+              "success": true,
+              "attempt_seconds": 27.665735399990808,
+              "message": "The algorithm converged to the desired accuracy.",
+              "nodes": 1573,
+              "max_nodes": 600000,
+              "max_rms": 0.000931664488518906,
+              "max_bc_residual": 9.625002721641788e-19,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.0026216666666666667,
+              "right_edge_fraction_0_99": 0.3610934520025429,
+              "right_edge_fraction_0_995": 0.24602670057215512,
+              "right_edge_fraction_0_999": 0.10044500953591863,
+              "min_dx": 1.92236552343239e-07,
+              "min_dx_mid": 0.9999997116451713,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 88.38108860172497,
+                  "x_at_peak": 0.9995991802542882
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.332831512738835,
+                  "x_at_peak": 0.9346587926509187
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 3.3164004873631225,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.00827340893471965,
+                "Tsn_1": -0.001918592725903083,
+                "Ms_x0": 3.634174827978283e-06,
+                "ur_1": -0.05014039160780505,
+                "uz_x0": 20.39082531650029,
+                "phi_1": 1.0552539330985675,
+                "max_abs_phi": 1.0554367945356893,
+                "max_abs_Tsn": 0.001918592725903083
+              },
+              "mesh_pressure_only": false,
+              "right_edge_layer_suspicion": true,
+              "branch_turning_suspicion": false,
+              "predictor_rel_correction": 0.006288111074720988,
+              "predictor_abs_correction": 0.12821977449538657
+            },
+            {
+              "q_mpa": 4.338,
+              "profile_name": "rescue_local",
+              "seed_label": "secant_prev_mesh",
+              "success": true,
+              "attempt_seconds": 29.472493300039787,
+              "message": "The algorithm converged to the desired accuracy.",
+              "nodes": 1573,
+              "max_nodes": 600000,
+              "max_rms": 0.000978137628100326,
+              "max_bc_residual": 3.6802850235295323e-19,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.0026216666666666667,
+              "right_edge_fraction_0_99": 0.3610934520025429,
+              "right_edge_fraction_0_995": 0.24602670057215512,
+              "right_edge_fraction_0_999": 0.10044500953591863,
+              "min_dx": 1.92236552343239e-07,
+              "min_dx_mid": 0.9999997116451713,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 88.27980824015367,
+                  "x_at_peak": 0.9995915864031625
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.316912456701459,
+                  "x_at_peak": 0.9346587926509187
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 3.316710756815896,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008274183046816914,
+                "Tsn_1": -0.0019120634593765963,
+                "Ms_x0": 3.6346750548718464e-06,
+                "ur_1": -0.050008129928136136,
+                "uz_x0": 20.380105891168036,
+                "phi_1": 1.0532542807774732,
+                "max_abs_phi": 1.0534373150744951,
+                "max_abs_Tsn": 0.0019120634593765963
+              },
+              "mesh_pressure_only": false,
+              "right_edge_layer_suspicion": true,
+              "branch_turning_suspicion": false,
+              "predictor_rel_correction": 0.0031733910371668944,
+              "predictor_abs_correction": 0.06467404537154486
+            },
+            {
+              "q_mpa": 4.339,
+              "profile_name": "rescue_local",
+              "seed_label": "secant_prev_mesh",
+              "success": true,
+              "attempt_seconds": 28.23095719999401,
+              "message": "The algorithm converged to the desired accuracy.",
+              "nodes": 1573,
+              "max_nodes": 600000,
+              "max_rms": 0.0010318741685840455,
+              "max_bc_residual": 1.1521798668522691e-18,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.0026216666666666667,
+              "right_edge_fraction_0_99": 0.3610934520025429,
+              "right_edge_fraction_0_995": 0.24602670057215512,
+              "right_edge_fraction_0_999": 0.10044500953591863,
+              "min_dx": 1.92236552343239e-07,
+              "min_dx_mid": 0.9999997116451713,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 88.20185982350131,
+                  "x_at_peak": 0.9995838649216797
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.304437009991659,
+                  "x_at_peak": 0.9346587926509187
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 3.317068089235151,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008275074583889442,
+                "Tsn_1": -0.0019071341943472998,
+                "Ms_x0": 3.635122656092379e-06,
+                "ur_1": -0.0499044374849044,
+                "uz_x0": 20.371664413007483,
+                "phi_1": 1.0516729641334632,
+                "max_abs_phi": 1.0518561244464715,
+                "max_abs_Tsn": 0.0019071341943473
+              },
+              "mesh_pressure_only": false,
+              "right_edge_layer_suspicion": true,
+              "branch_turning_suspicion": false,
+              "predictor_rel_correction": 0.00011846401441868265,
+              "predictor_abs_correction": 0.0024133091467550827
+            },
+            {
+              "q_mpa": 4.34,
+              "profile_name": "rescue_local",
+              "seed_label": "secant_prev_mesh",
+              "success": true,
+              "attempt_seconds": 27.25304679997498,
+              "message": "The algorithm converged to the desired accuracy.",
+              "nodes": 1573,
+              "max_nodes": 600000,
+              "max_rms": 0.0010863600917758356,
+              "max_bc_residual": 1.065332705102434e-18,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.0026216666666666667,
+              "right_edge_fraction_0_99": 0.3610934520025429,
+              "right_edge_fraction_0_995": 0.24602670057215512,
+              "right_edge_fraction_0_999": 0.10044500953591863,
+              "min_dx": 1.92236552343239e-07,
+              "min_dx_mid": 0.9999997116451713,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 88.22521232655163,
+                  "x_at_peak": 0.9995915864031625
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.307181612398097,
+                  "x_at_peak": 0.9346587926509187
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 3.317591339802698,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008276380083530098,
+                "Tsn_1": -0.0019084417936221514,
+                "Ms_x0": 3.6353835219388172e-06,
+                "ur_1": -0.04992835750998436,
+                "uz_x0": 20.374570962734406,
+                "phi_1": 1.0520235195431475,
+                "max_abs_phi": 1.052206658819708,
+                "max_abs_Tsn": 0.0019084417936221514
+              },
+              "mesh_pressure_only": false,
+              "right_edge_layer_suspicion": true,
+              "branch_turning_suspicion": false,
+              "predictor_rel_correction": 0.0005770392195390354,
+              "predictor_abs_correction": 0.011756926526778955
+            },
+            {
+              "q_mpa": 4.341,
+              "profile_name": "rescue_local",
+              "seed_label": "secant_prev_mesh",
+              "success": true,
+              "attempt_seconds": 40.15135990001727,
+              "message": "The algorithm converged to the desired accuracy.",
+              "nodes": 2754,
+              "max_nodes": 600000,
+              "max_rms": 0.0010856344110008248,
+              "max_bc_residual": 6.138806706960266e-19,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.00459,
+              "right_edge_fraction_0_99": 0.4121278140885984,
+              "right_edge_fraction_0_995": 0.28068264342774146,
+              "right_edge_fraction_0_999": 0.11474219317356572,
+              "min_dx": 9.611827611610835e-08,
+              "min_dx_mid": 0.9999996635860333,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 88.58132924233723,
+                  "x_at_peak": 0.9996142397875909
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.361179499399896,
+                  "x_at_peak": 0.9346587926509187
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 3.318599025915988,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008278894234996493,
+                "Tsn_1": -0.0019297948752154531,
+                "Ms_x0": 3.635099859629164e-06,
+                "ur_1": -0.05038226268073017,
+                "uz_x0": 20.41691803016915,
+                "phi_1": 1.0589343284813257,
+                "max_abs_phi": 1.0591170077904297,
+                "max_abs_Tsn": 0.0019297948752154531
+              },
+              "mesh_pressure_only": false,
+              "right_edge_layer_suspicion": true,
+              "branch_turning_suspicion": false,
+              "predictor_rel_correction": 0.0019857834213466317,
+              "predictor_abs_correction": 0.04054357733930303
+            },
+            {
+              "q_mpa": 4.342,
+              "profile_name": "rescue_local",
+              "seed_label": "secant_prev_mesh",
+              "success": true,
+              "attempt_seconds": 28.711208300024737,
+              "message": "The algorithm converged to the desired accuracy.",
+              "nodes": 5131,
+              "max_nodes": 600000,
+              "max_rms": 0.0011786391619892783,
+              "max_bc_residual": 8.261043938042901e-19,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.008551666666666667,
+              "right_edge_fraction_0_99": 0.44240888715649973,
+              "right_edge_fraction_0_995": 0.3011108945624635,
+              "right_edge_fraction_0_999": 0.12317287078542194,
+              "min_dx": 4.805913800254302e-08,
+              "min_dx_mid": 0.9999996876156023,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 88.79992968318948,
+                  "x_at_peak": 0.9996327109108241
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.393387641959862,
+                  "x_at_peak": 0.9346587926509187
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 3.3194367353383276,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008280984302407852,
+                "Tsn_1": -0.0019430403082203284,
+                "Ms_x0": 3.6350066983163735e-06,
+                "ur_1": -0.05065255561511028,
+                "uz_x0": 20.44188529097517,
+                "phi_1": 1.0630239550317502,
+                "max_abs_phi": 1.0632063527050613,
+                "max_abs_Tsn": 0.0019430403082203286
+              },
+              "mesh_pressure_only": false,
+              "right_edge_layer_suspicion": true,
+              "branch_turning_suspicion": false,
+              "predictor_rel_correction": 0.0008672768032745923,
+              "predictor_abs_correction": 0.017728772928062853
+            },
+            {
+              "q_mpa": 4.343,
+              "profile_name": "rescue_local",
+              "seed_label": "secant_prev_mesh",
+              "success": true,
+              "attempt_seconds": 28.55188760004239,
+              "message": "The algorithm converged to the desired accuracy.",
+              "nodes": 5131,
+              "max_nodes": 600000,
+              "max_rms": 0.0011900613528497074,
+              "max_bc_residual": 1.7121782900175227e-18,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.008551666666666667,
+              "right_edge_fraction_0_99": 0.44240888715649973,
+              "right_edge_fraction_0_995": 0.3011108945624635,
+              "right_edge_fraction_0_999": 0.12317287078542194,
+              "min_dx": 4.805913800254302e-08,
+              "min_dx_mid": 0.9999996876156023,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 88.28183084369994,
+                  "x_at_peak": 0.9995915864031625
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.314557206769678,
+                  "x_at_peak": 0.934342738407699
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 3.3190910626143126,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008280121855519303,
+                "Tsn_1": -0.0019111232623978784,
+                "Ms_x0": 3.6362443974891535e-06,
+                "ur_1": -0.04999133678106582,
+                "uz_x0": 20.38351660934864,
+                "phi_1": 1.0529868234486377,
+                "max_abs_phi": 1.0531699508182633,
+                "max_abs_Tsn": 0.0019111232623978784
+              },
+              "mesh_pressure_only": false,
+              "right_edge_layer_suspicion": true,
+              "branch_turning_suspicion": false,
+              "predictor_rel_correction": 0.004229590419483772,
+              "predictor_abs_correction": 0.08621392656628935
+            },
+            {
+              "q_mpa": 4.3431,
+              "profile_name": "rescue_local",
+              "seed_label": "secant_profile_mesh",
+              "success": true,
+              "attempt_seconds": 30.88159419997828,
+              "message": "The algorithm converged to the desired accuracy.",
+              "nodes": 7222,
+              "max_nodes": 600000,
+              "max_rms": 0.001186611377561045,
+              "max_bc_residual": 2.869444294240082e-18,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.012036666666666666,
+              "right_edge_fraction_0_99": 0.7363611188036555,
+              "right_edge_fraction_0_995": 0.6359734145666021,
+              "right_edge_fraction_0_999": 0.22583771808363334,
+              "min_dx": 2.402956900127151e-08,
+              "min_dx_mid": 0.9999996515712488,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 88.79181475924634,
+                  "x_at_peak": 0.99962995955056
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.3902993327894535,
+                  "x_at_peak": 0.9346587926509187
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 2.9137233352558796,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008282235997825068,
+                "Tsn_1": -0.0019421894910266752,
+                "Ms_x0": 3.635412213139202e-06,
+                "ur_1": -0.05064291370425944,
+                "uz_x0": 20.44250598716953,
+                "phi_1": 1.0628885578508789,
+                "max_abs_phi": 1.0630709949141919,
+                "max_abs_Tsn": 0.0019421894910266752
+              },
+              "mesh_pressure_only": false,
+              "right_edge_layer_suspicion": true,
+              "branch_turning_suspicion": false,
+              "predictor_rel_correction": 0.0032712813436438113,
+              "predictor_abs_correction": 0.0668731884531546
+            },
+            {
+              "q_mpa": 4.3432,
+              "profile_name": "rescue_local",
+              "seed_label": "secant_profile_mesh",
+              "success": true,
+              "attempt_seconds": 29.26654059998691,
+              "message": "The algorithm converged to the desired accuracy.",
+              "nodes": 7773,
+              "max_nodes": 600000,
+              "max_rms": 0.0011960542701756436,
+              "max_bc_residual": 1.5548950733234831e-18,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.012955,
+              "right_edge_fraction_0_99": 0.5840730734594107,
+              "right_edge_fraction_0_995": 0.39740126077447574,
+              "right_edge_fraction_0_999": 0.16261417728032934,
+              "min_dx": 2.402956900127151e-08,
+              "min_dx_mid": 0.9999996515712488,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 88.41097035499843,
+                  "x_at_peak": 0.9996010787170696
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.333830900089197,
+                  "x_at_peak": 0.9346587926509187
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 2.9132584335346863,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008280914015429843,
+                "Tsn_1": -0.0019190088126145428,
+                "Ms_x0": 3.6360924412888647e-06,
+                "ur_1": -0.05015424272088971,
+                "uz_x0": 20.398279157820053,
+                "phi_1": 1.055455416916332,
+                "max_abs_phi": 1.055638365241889,
+                "max_abs_Tsn": 0.0019190088126145428
+              },
+              "mesh_pressure_only": false,
+              "right_edge_layer_suspicion": true,
+              "branch_turning_suspicion": false,
+              "predictor_rel_correction": 0.00521683988687037,
+              "predictor_abs_correction": 0.10641455633403218
+            },
+            {
+              "q_mpa": 4.3433,
+              "profile_name": "rescue_local",
+              "seed_label": "secant_profile_mesh",
+              "success": false,
+              "attempt_seconds": 67.57552559999749,
+              "message": "The maximum number of mesh nodes is exceeded.",
+              "nodes": 583686,
+              "max_nodes": 600000,
+              "max_rms": 0.0018251115587075597,
+              "max_bc_residual": 2.239688768382937e-17,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.97281,
+              "right_edge_fraction_0_99": 0.7538042714747313,
+              "right_edge_fraction_0_995": 0.6071158122689254,
+              "right_edge_fraction_0_999": 0.26674102171372965,
+              "min_dx": 3.337439213879634e-10,
+              "min_dx_mid": 0.9999996173624873,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 86.89553043944761,
+                  "x_at_peak": 0.9994815597191012
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.104162304357487,
+                  "x_at_peak": 0.9338862156119374
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 3.1710761827983847,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008275140122797384,
+                "Tsn_1": -0.0018260147934847524,
+                "Ms_x0": 3.6387634443024744e-06,
+                "ur_1": -0.04821830435710042,
+                "uz_x0": 20.224273322167193,
+                "phi_1": 1.0260835601313316,
+                "max_abs_phi": 1.0262688169599516,
+                "max_abs_Tsn": 0.0018260147934847524
+              },
+              "mesh_pressure_only": true,
+              "right_edge_layer_suspicion": true,
+              "branch_turning_suspicion": false,
+              "predictor_rel_correction": null,
+              "predictor_abs_correction": null
+            },
+            {
+              "q_mpa": 4.3433,
+              "profile_name": "rescue_local",
+              "seed_label": "previous_profile_mesh",
+              "success": true,
+              "attempt_seconds": 30.859078700013924,
+              "message": "The algorithm converged to the desired accuracy.",
+              "nodes": 14805,
+              "max_nodes": 600000,
+              "max_rms": 0.0011981679102292813,
+              "max_bc_residual": 1.917720869023773e-18,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.024675,
+              "right_edge_fraction_0_99": 0.6132387706855792,
+              "right_edge_fraction_0_995": 0.41722391084093213,
+              "right_edge_fraction_0_999": 0.1706855791962175,
+              "min_dx": 1.2014784500635756e-08,
+              "min_dx_mid": 0.9999996335490721,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 88.39507349991618,
+                  "x_at_peak": 0.9995987056385929
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.331045633811584,
+                  "x_at_peak": 0.9346587926509187
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 2.9132281540486824,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.00828082790877852,
+                "Tsn_1": -0.0019179722203377138,
+                "Ms_x0": 3.6360950741660006e-06,
+                "ur_1": -0.05013405034161668,
+                "uz_x0": 20.39664298653494,
+                "phi_1": 1.0551526900217443,
+                "max_abs_phi": 1.0553356656823865,
+                "max_abs_Tsn": 0.0019179722203377138
+              },
+              "mesh_pressure_only": false,
+              "right_edge_layer_suspicion": true,
+              "branch_turning_suspicion": false,
+              "predictor_rel_correction": 8.662933997542055e-05,
+              "predictor_abs_correction": 0.0017669477196378125
+            }
+          ]
+        },
+        "target_steps": {
+          "4.3434": {
+            "success": true,
+            "attempts": [
+              {
+                "q_mpa": 4.3434,
+                "profile_name": "rescue_local",
+                "seed_label": "secant_profile_mesh",
+                "success": true,
+                "attempt_seconds": 34.487887700030115,
+                "message": "The algorithm converged to the desired accuracy.",
+                "nodes": 49081,
+                "max_nodes": 600000,
+                "max_rms": 0.001198787062539263,
+                "max_bc_residual": 3.517235645802308e-18,
+                "min_r": 0.0016666666666666668,
+                "node_pressure": 0.08180166666666666,
+                "right_edge_fraction_0_99": 0.8825614800024449,
+                "right_edge_fraction_0_995": 0.8025916342372812,
+                "right_edge_fraction_0_999": 0.20531366516574642,
+                "min_dx": 6.007392250317878e-09,
+                "min_dx_mid": 0.9999996185305913,
+                "top_gradients": [
+                  {
+                    "state": "u_z",
+                    "max_abs_grad": 88.49668994828244,
+                    "x_at_peak": 0.9996074740131179
+                  },
+                  {
+                    "state": "varphi",
+                    "max_abs_grad": 5.346828986104356,
+                    "x_at_peak": 0.934342738407699
+                  },
+                  {
+                    "state": "T_s",
+                    "max_abs_grad": 3.1734975970951793,
+                    "x_at_peak": 0.0016666666666666668
+                  }
+                ],
+                "observables": {
+                  "Ts_x0": 0.008281460325821942,
+                  "Tsn_1": -0.001924155202806907,
+                  "Ms_x0": 3.636003307966552e-06,
+                  "ur_1": -0.050263281416830646,
+                  "uz_x0": 20.40839158225187,
+                  "phi_1": 1.0571151479625955,
+                  "max_abs_phi": 1.0572979855551652,
+                  "max_abs_Tsn": 0.001924155202806907
+                },
+                "mesh_pressure_only": false,
+                "right_edge_layer_suspicion": true,
+                "branch_turning_suspicion": false,
+                "predictor_rel_correction": 0.0006777537694849041,
+                "predictor_abs_correction": 0.013831864323995191
+              }
+            ]
+          }
+        }
+      }
+    },
+    "missing_loads_mpa": []
+  },
+  "results": [
+    {
+      "q_mpa": 0.02,
+      "variables": {
+        "theta0": {
+          "display_name": "theta0",
+          "x_at_max_abs_diff": 0.0016666666666666668,
+          "location_class": "center_side",
+          "full": {
+            "max_abs_diff": 0.020298488139284702,
+            "rel_max": 0.001328667391139073,
+            "l2_diff": 0.00110981898625864,
+            "rel_l2": 0.00011621656763073196
+          },
+          "center": {
+            "max_abs_diff": 0.020298488139284702,
+            "rel_max": 0.009242540476282958,
+            "l2_diff": 0.0008242205830130602,
+            "rel_l2": 0.001688230323534535
+          },
+          "bulk": {
+            "max_abs_diff": 0.020298488139284702,
+            "rel_max": 0.0013307961638888823,
+            "l2_diff": 0.0011097355686922506,
+            "rel_l2": 0.00012443257029987935
+          },
+          "edge": {
+            "max_abs_diff": 0.00010603092716365836,
+            "rel_max": 6.940410261488543e-06,
+            "l2_diff": 1.3558858846312595e-05,
+            "rel_l2": 3.998955422298914e-06
+          }
+        },
+        "theta0p": {
+          "display_name": "theta0'",
+          "x_at_max_abs_diff": 0.0016666666666666668,
+          "location_class": "center_side",
+          "full": {
+            "max_abs_diff": 12.189585377144795,
+            "rel_max": 0.4202101145762855,
+            "l2_diff": 0.3094534090430541,
+            "rel_l2": 0.01930418185253613
+          },
+          "center": {
+            "max_abs_diff": 12.189585377144795,
+            "rel_max": 0.4202101145762855,
+            "l2_diff": 0.3094406055930793,
+            "rel_l2": 0.054086150790806815
+          },
+          "bulk": {
+            "max_abs_diff": 12.189585377144795,
+            "rel_max": 0.4202101145762855,
+            "l2_diff": 0.30945316856441607,
+            "rel_l2": 0.019313551642234566
+          },
+          "edge": {
+            "max_abs_diff": 0.0033689834130541385,
+            "rel_max": 0.0007384214021448155,
+            "l2_diff": 0.000385323508598629,
+            "rel_l2": 0.0007772677672933195
+          }
+        },
+        "Phi0": {
+          "display_name": "Phi0",
+          "x_at_max_abs_diff": 0.0016666666666666668,
+          "location_class": "center_side",
+          "full": {
+            "max_abs_diff": 0.019155348552086806,
+            "rel_max": 0.0028674267984758876,
+            "l2_diff": 0.0010391120766152866,
+            "rel_l2": 0.00021846970519987758
+          },
+          "center": {
+            "max_abs_diff": 0.019155348552086806,
+            "rel_max": 0.007923555707139394,
+            "l2_diff": 0.0008213548948258119,
+            "rel_l2": 0.001509656340894559
+          },
+          "bulk": {
+            "max_abs_diff": 0.019155348552086806,
+            "rel_max": 0.0028674267984758876,
+            "l2_diff": 0.001039038658862205,
+            "rel_l2": 0.000218671027259944
+          },
+          "edge": {
+            "max_abs_diff": 7.29542685579121e-05,
+            "rel_max": 4.585015835629674e-05,
+            "l2_diff": 1.2341339879255371e-05,
+            "rel_l2": 5.947861187294555e-05
+          }
+        },
+        "Phi0p": {
+          "display_name": "Phi0'",
+          "x_at_max_abs_diff": 0.0016666666666666668,
+          "location_class": "center_side",
+          "full": {
+            "max_abs_diff": 11.48168947566581,
+            "rel_max": 0.33440774771710025,
+            "l2_diff": 0.2914862960926169,
+            "rel_l2": 0.018799334090176888
+          },
+          "center": {
+            "max_abs_diff": 11.48168947566581,
+            "rel_max": 0.601982329448426,
+            "l2_diff": 0.2913070485938972,
+            "rel_l2": 0.046807575820461765
+          },
+          "bulk": {
+            "max_abs_diff": 11.48168947566581,
+            "rel_max": 0.38209369665687626,
+            "l2_diff": 0.29143922104024966,
+            "rel_l2": 0.021231243217502884
+          },
+          "edge": {
+            "max_abs_diff": 0.02452073374549002,
+            "rel_max": 0.0007141739342087989,
+            "l2_diff": 0.005205554371379273,
+            "rel_l2": 0.0007258613128265209
+          }
+        }
+      },
+      "overall": {
+        "mean_bulk_rel_l2": 0.010221974614324319,
+        "mean_edge_rel_l2": 0.00039165166185377125,
+        "mean_center_rel_l2": 0.02602290331892442,
+        "max_bulk_rel_l2": 0.021231243217502884,
+        "clear_variables_at_threshold": [],
+        "clear_variable_locations": {},
+        "clear_location_summary": null,
+        "dominant_location_class": "center_side"
+      }
+    },
+    {
+      "q_mpa": 0.05,
+      "variables": {
+        "theta0": {
+          "display_name": "theta0",
+          "x_at_max_abs_diff": 0.0016666666666666668,
+          "location_class": "center_side",
+          "full": {
+            "max_abs_diff": 0.024588497576603793,
+            "rel_max": 0.000973029561025784,
+            "l2_diff": 0.002874580986822102,
+            "rel_l2": 0.00019871048808199984
+          },
+          "center": {
+            "max_abs_diff": 0.024588497576603793,
+            "rel_max": 0.009177599945715549,
+            "l2_diff": 0.0009993077088614236,
+            "rel_l2": 0.001682609429092948
+          },
+          "bulk": {
+            "max_abs_diff": 0.024588497576603793,
+            "rel_max": 0.0009792117694183327,
+            "l2_diff": 0.002865731255794224,
+            "rel_l2": 0.00021515190287519313
+          },
+          "edge": {
+            "max_abs_diff": 0.0011839426620099402,
+            "rel_max": 4.685163073124812e-05,
+            "l2_diff": 0.0002237537900613242,
+            "rel_l2": 3.9915945962481015e-05
+          }
+        },
+        "theta0p": {
+          "display_name": "theta0'",
+          "x_at_max_abs_diff": 0.0016666666666666668,
+          "location_class": "center_side",
+          "full": {
+            "max_abs_diff": 14.760282495857588,
+            "rel_max": 0.39370074615639444,
+            "l2_diff": 0.37497124026633977,
+            "rel_l2": 0.014012216364438142
+          },
+          "center": {
+            "max_abs_diff": 14.760282495857588,
+            "rel_max": 0.4201194157581604,
+            "l2_diff": 0.3748099427618023,
+            "rel_l2": 0.053702859784233274
+          },
+          "bulk": {
+            "max_abs_diff": 14.760282495857588,
+            "rel_max": 0.39370074615639444,
+            "l2_diff": 0.3749672245106351,
+            "rel_l2": 0.014026339907799628
+          },
+          "edge": {
+            "max_abs_diff": 0.015996367986029547,
+            "rel_max": 0.001610106338311596,
+            "l2_diff": 0.0017211175511012645,
+            "rel_l2": 0.0014597537757653622
+          }
+        },
+        "Phi0": {
+          "display_name": "Phi0",
+          "x_at_max_abs_diff": 0.0016666666666666668,
+          "location_class": "center_side",
+          "full": {
+            "max_abs_diff": 0.03710321674873053,
+            "rel_max": 0.0026480119182866733,
+            "l2_diff": 0.0036950732061635265,
+            "rel_l2": 0.00037175770408966744
+          },
+          "center": {
+            "max_abs_diff": 0.03710321674873053,
+            "rel_max": 0.007888238712929697,
+            "l2_diff": 0.0016648212651162327,
+            "rel_l2": 0.0015755074010999268
+          },
+          "bulk": {
+            "max_abs_diff": 0.03710321674873053,
+            "rel_max": 0.0026480119182866733,
+            "l2_diff": 0.003691329867957024,
+            "rel_l2": 0.00037185039081755373
+          },
+          "edge": {
+            "max_abs_diff": 0.001537939000436861,
+            "rel_max": 0.00041138658351770385,
+            "l2_diff": 0.00016116859535883065,
+            "rel_l2": 0.0003293837517910623
+          }
+        },
+        "Phi0p": {
+          "display_name": "Phi0'",
+          "x_at_max_abs_diff": 0.0016666666666666668,
+          "location_class": "center_side",
+          "full": {
+            "max_abs_diff": 22.237136327648432,
+            "rel_max": 0.2715532185586903,
+            "l2_diff": 0.5666016711180734,
+            "rel_l2": 0.01701933793125487
+          },
+          "center": {
+            "max_abs_diff": 22.237136327648432,
+            "rel_max": 0.6019668963826313,
+            "l2_diff": 0.5639854697314342,
+            "rel_l2": 0.04658638687062947
+          },
+          "bulk": {
+            "max_abs_diff": 22.237136327648432,
+            "rel_max": 0.3198887639225139,
+            "l2_diff": 0.5657411525251507,
+            "rel_l2": 0.01975235438731722
+          },
+          "edge": {
+            "max_abs_diff": 0.14889101552496697,
+            "rel_max": 0.0018182122861749059,
+            "l2_diff": 0.03102791917904608,
+            "rel_l2": 0.001838706946391889
+          }
+        }
+      },
+      "overall": {
+        "mean_bulk_rel_l2": 0.008591424147202398,
+        "mean_edge_rel_l2": 0.0009169401049776986,
+        "mean_center_rel_l2": 0.025886840871263906,
+        "max_bulk_rel_l2": 0.01975235438731722,
+        "clear_variables_at_threshold": [],
+        "clear_variable_locations": {},
+        "clear_location_summary": null,
+        "dominant_location_class": "center_side"
+      }
+    },
+    {
+      "q_mpa": 0.1,
+      "variables": {
+        "theta0": {
+          "display_name": "theta0",
+          "x_at_max_abs_diff": 0.0016666666666666668,
+          "location_class": "center_side",
+          "full": {
+            "max_abs_diff": 0.02842600805851063,
+            "rel_max": 0.0007802835264432243,
+            "l2_diff": 0.008587189078300174,
+            "rel_l2": 0.00044200631267162773
+          },
+          "center": {
+            "max_abs_diff": 0.02842600805851063,
+            "rel_max": 0.00916891347684965,
+            "l2_diff": 0.0011639582152111745,
+            "rel_l2": 0.0016943445504972994
+          },
+          "bulk": {
+            "max_abs_diff": 0.02842600805851063,
+            "rel_max": 0.0007901342906008068,
+            "l2_diff": 0.008433185683988242,
+            "rel_l2": 0.0004778681292371033
+          },
+          "edge": {
+            "max_abs_diff": 0.00762196980986829,
+            "rel_max": 0.0002092202840949813,
+            "l2_diff": 0.001606685348736074,
+            "rel_l2": 0.00019912082181569756
+          }
+        },
+        "theta0p": {
+          "display_name": "theta0'",
+          "x_at_max_abs_diff": 0.0016666666666666668,
+          "location_class": "center_side",
+          "full": {
+            "max_abs_diff": 17.059263725536596,
+            "rel_max": 0.2750523349307093,
+            "l2_diff": 0.43443797864527145,
+            "rel_l2": 0.010940800002714152
+          },
+          "center": {
+            "max_abs_diff": 17.059263725536596,
+            "rel_max": 0.4200540038602457,
+            "l2_diff": 0.4331519485850611,
+            "rel_l2": 0.05363650347334864
+          },
+          "bulk": {
+            "max_abs_diff": 17.059263725536596,
+            "rel_max": 0.2750523349307093,
+            "l2_diff": 0.43439910461883025,
+            "rel_l2": 0.010967390479067782
+          },
+          "edge": {
+            "max_abs_diff": 0.048832125225798606,
+            "rel_max": 0.002082264722776627,
+            "l2_diff": 0.005717301400376899,
+            "rel_l2": 0.00207991103226731
+          }
+        },
+        "Phi0": {
+          "display_name": "Phi0",
+          "x_at_max_abs_diff": 0.0016666666666666668,
+          "location_class": "center_side",
+          "full": {
+            "max_abs_diff": 0.05876633507874081,
+            "rel_max": 0.002512301824085633,
+            "l2_diff": 0.011203678261080107,
+            "rel_l2": 0.0006769003116588563
+          },
+          "center": {
+            "max_abs_diff": 0.05876633507874081,
+            "rel_max": 0.007872308610026644,
+            "l2_diff": 0.002757836178952202,
+            "rel_l2": 0.0016459133971379214
+          },
+          "bulk": {
+            "max_abs_diff": 0.05876633507874081,
+            "rel_max": 0.002512301824085633,
+            "l2_diff": 0.01115833459738871,
+            "rel_l2": 0.0006751932248123323
+          },
+          "edge": {
+            "max_abs_diff": 0.00859056578972428,
+            "rel_max": 0.001257999863823646,
+            "l2_diff": 0.0009807990389805146,
+            "rel_l2": 0.0010934833457637984
+          }
+        },
+        "Phi0p": {
+          "display_name": "Phi0'",
+          "x_at_max_abs_diff": 0.0016666666666666668,
+          "location_class": "center_side",
+          "full": {
+            "max_abs_diff": 35.207170213008766,
+            "rel_max": 0.2318441737071341,
+            "l2_diff": 0.9123363278195588,
+            "rel_l2": 0.01602893749345416
+          },
+          "center": {
+            "max_abs_diff": 35.207170213008766,
+            "rel_max": 0.6019141743113234,
+            "l2_diff": 0.8926468496455827,
+            "rel_l2": 0.04646700860220109
+          },
+          "bulk": {
+            "max_abs_diff": 35.207170213008766,
+            "rel_max": 0.281197726573954,
+            "l2_diff": 0.9047456011399353,
+            "rel_l2": 0.01897213417753248
+          },
+          "edge": {
+            "max_abs_diff": 0.5703717231588712,
+            "rel_max": 0.0037559781164355575,
+            "l2_diff": 0.11676836999003054,
+            "rel_l2": 0.003779258636730087
+          }
+        }
+      },
+      "overall": {
+        "mean_bulk_rel_l2": 0.007773146502662425,
+        "mean_edge_rel_l2": 0.0017879434591442232,
+        "mean_center_rel_l2": 0.025860942505796236,
+        "max_bulk_rel_l2": 0.01897213417753248,
+        "clear_variables_at_threshold": [],
+        "clear_variable_locations": {},
+        "clear_location_summary": null,
+        "dominant_location_class": "center_side"
+      }
+    },
+    {
+      "q_mpa": 0.25,
+      "variables": {
+        "theta0": {
+          "display_name": "theta0",
+          "x_at_max_abs_diff": 0.8441166666666666,
+          "location_class": "interior",
+          "full": {
+            "max_abs_diff": 0.083307962467984,
+            "rel_max": 0.0014255005570201367,
+            "l2_diff": 0.0411782204852502,
+            "rel_l2": 0.001454034030562179
+          },
+          "center": {
+            "max_abs_diff": 0.036055444275203415,
+            "rel_max": 0.009202877326984809,
+            "l2_diff": 0.0015098680844721872,
+            "rel_l2": 0.0017367594279453832
+          },
+          "bulk": {
+            "max_abs_diff": 0.083307962467984,
+            "rel_max": 0.0014619793023526802,
+            "l2_diff": 0.03903512563775834,
+            "rel_l2": 0.0015508858014401288
+          },
+          "edge": {
+            "max_abs_diff": 0.06165483791848203,
+            "rel_max": 0.001054989261435351,
+            "l2_diff": 0.013010319499064038,
+            "rel_l2": 0.0010089864450449303
+          }
+        },
+        "theta0p": {
+          "display_name": "theta0'",
+          "x_at_max_abs_diff": 0.0016666666666666668,
+          "location_class": "center_side",
+          "full": {
+            "max_abs_diff": 21.628069425280692,
+            "rel_max": 0.17784623026513507,
+            "l2_diff": 0.571215487034373,
+            "rel_l2": 0.008458081792087247
+          },
+          "center": {
+            "max_abs_diff": 21.628069425280692,
+            "rel_max": 0.41994550250844037,
+            "l2_diff": 0.5490212142805203,
+            "rel_l2": 0.05380789478450336
+          },
+          "bulk": {
+            "max_abs_diff": 21.628069425280692,
+            "rel_max": 0.17784623026513507,
+            "l2_diff": 0.5703243109875646,
+            "rel_l2": 0.008507308553603852
+          },
+          "edge": {
+            "max_abs_diff": 0.2405045065367375,
+            "rel_max": 0.0037311638252588417,
+            "l2_diff": 0.03125354687612594,
+            "rel_l2": 0.0038994270294727446
+          }
+        },
+        "Phi0": {
+          "display_name": "Phi0",
+          "x_at_max_abs_diff": 0.8669416666666666,
+          "location_class": "interior",
+          "full": {
+            "max_abs_diff": 0.12115980762549938,
+            "rel_max": 0.0027230871570474136,
+            "l2_diff": 0.04963179199150109,
+            "rel_l2": 0.0015785608479140232
+          },
+          "center": {
+            "max_abs_diff": 0.1062844531343636,
+            "rel_max": 0.007863115987349652,
+            "l2_diff": 0.0053067334435390745,
+            "rel_l2": 0.0017500507501693146
+          },
+          "bulk": {
+            "max_abs_diff": 0.12115980762549938,
+            "rel_max": 0.0027230871570474136,
+            "l2_diff": 0.04907225941964791,
+            "rel_l2": 0.0015638317005708393
+          },
+          "edge": {
+            "max_abs_diff": 0.060407446627737116,
+            "rel_max": 0.0041350958018269365,
+            "l2_diff": 0.007256995272607369,
+            "rel_l2": 0.0037604083020244734
+          }
+        },
+        "Phi0p": {
+          "display_name": "Phi0'",
+          "x_at_max_abs_diff": 0.0016666666666666668,
+          "location_class": "center_side",
+          "full": {
+            "max_abs_diff": 63.64738819982921,
+            "rel_max": 0.19063149565061663,
+            "l2_diff": 1.876173533977817,
+            "rel_l2": 0.016671925205188752
+          },
+          "center": {
+            "max_abs_diff": 63.64738819982921,
+            "rel_max": 0.6018528158214799,
+            "l2_diff": 1.613137052028191,
+            "rel_l2": 0.04638430203926339
+          },
+          "bulk": {
+            "max_abs_diff": 63.64738819982921,
+            "rel_max": 0.24248239503883912,
+            "l2_diff": 1.7566852699489488,
+            "rel_l2": 0.01941537795597812
+          },
+          "edge": {
+            "max_abs_diff": 3.2946330636256675,
+            "rel_max": 0.00986781777387402,
+            "l2_diff": 0.6553357862366861,
+            "rel_l2": 0.009846260925561815
+          }
+        }
+      },
+      "overall": {
+        "mean_bulk_rel_l2": 0.007759351002898235,
+        "mean_edge_rel_l2": 0.004628770675525991,
+        "mean_center_rel_l2": 0.025919751750470364,
+        "max_bulk_rel_l2": 0.01941537795597812,
+        "clear_variables_at_threshold": [],
+        "clear_variable_locations": {},
+        "clear_location_summary": null,
+        "dominant_location_class": "center_side"
+      }
+    },
+    {
+      "q_mpa": 0.5,
+      "variables": {
+        "theta0": {
+          "display_name": "theta0",
+          "x_at_max_abs_diff": 0.8828499999999999,
+          "location_class": "interior",
+          "full": {
+            "max_abs_diff": 0.2914197948771289,
+            "rel_max": 0.0035032010055663166,
+            "l2_diff": 0.1342692886723856,
+            "rel_l2": 0.0035829905959457657
+          },
+          "center": {
+            "max_abs_diff": 0.04464146525375784,
+            "rel_max": 0.009232267348667177,
+            "l2_diff": 0.0018718883472867986,
+            "rel_l2": 0.001742432735777992
+          },
+          "bulk": {
+            "max_abs_diff": 0.2914197948771289,
+            "rel_max": 0.003643548696506603,
+            "l2_diff": 0.12295496663174588,
+            "rel_l2": 0.0037657794868448963
+          },
+          "edge": {
+            "max_abs_diff": 0.25356006615324134,
+            "rel_max": 0.003048083535622617,
+            "l2_diff": 0.053532697648191976,
+            "rel_l2": 0.0029299886186993484
+          }
+        },
+        "theta0p": {
+          "display_name": "theta0'",
+          "x_at_max_abs_diff": 0.0016666666666666668,
+          "location_class": "center_side",
+          "full": {
+            "max_abs_diff": 26.777090999992545,
+            "rel_max": 0.13176994709902942,
+            "l2_diff": 0.8688740459915031,
+            "rel_l2": 0.008551724794208668
+          },
+          "center": {
+            "max_abs_diff": 26.777090999992545,
+            "rel_max": 0.41993599650190533,
+            "l2_diff": 0.6798784638186544,
+            "rel_l2": 0.05399055988901081
+          },
+          "bulk": {
+            "max_abs_diff": 26.777090999992545,
+            "rel_max": 0.13176994709902942,
+            "l2_diff": 0.8613920957257484,
+            "rel_l2": 0.008602781354096579
+          },
+          "edge": {
+            "max_abs_diff": 0.8146799548185584,
+            "rel_max": 0.006241075580180796,
+            "l2_diff": 0.11173209095353097,
+            "rel_l2": 0.006574186039402318
+          }
+        },
+        "Phi0": {
+          "display_name": "Phi0",
+          "x_at_max_abs_diff": 0.884925,
+          "location_class": "interior",
+          "full": {
+            "max_abs_diff": 0.3948748128770987,
+            "rel_max": 0.005541916340395819,
+            "l2_diff": 0.15216877998880549,
+            "rel_l2": 0.003018797285906604
+          },
+          "center": {
+            "max_abs_diff": 0.16633767801667346,
+            "rel_max": 0.007861069482092118,
+            "l2_diff": 0.008545765618864287,
+            "rel_l2": 0.0018004491762809536
+          },
+          "bulk": {
+            "max_abs_diff": 0.3948748128770987,
+            "rel_max": 0.005541916340395819,
+            "l2_diff": 0.14914135715660262,
+            "rel_l2": 0.0029656830102685727
+          },
+          "edge": {
+            "max_abs_diff": 0.23866114534152771,
+            "rel_max": 0.009373335391022504,
+            "l2_diff": 0.029533749981714798,
+            "rel_l2": 0.008734534135550531
+          }
+        },
+        "Phi0p": {
+          "display_name": "Phi0'",
+          "x_at_max_abs_diff": 0.0016666666666666668,
+          "location_class": "center_side",
+          "full": {
+            "max_abs_diff": 99.60290624298958,
+            "rel_max": 0.16606769245132352,
+            "l2_diff": 4.128412821864333,
+            "rel_l2": 0.02210465996749295
+          },
+          "center": {
+            "max_abs_diff": 99.60290624298958,
+            "rel_max": 0.6018433810105149,
+            "l2_diff": 2.52407187656621,
+            "rel_l2": 0.04636618832190146
+          },
+          "bulk": {
+            "max_abs_diff": 99.60290624298958,
+            "rel_max": 0.22075602196253052,
+            "l2_diff": 3.356244852890488,
+            "rel_l2": 0.023178428120240586
+          },
+          "edge": {
+            "max_abs_diff": 12.350605955058086,
+            "rel_max": 0.020592136401405763,
+            "l2_diff": 2.392119930879147,
+            "rel_l2": 0.02038288435274454
+          }
+        }
+      },
+      "overall": {
+        "mean_bulk_rel_l2": 0.009628167992862658,
+        "mean_edge_rel_l2": 0.009655398286599184,
+        "mean_center_rel_l2": 0.025974907530742802,
+        "max_bulk_rel_l2": 0.023178428120240586,
+        "clear_variables_at_threshold": [],
+        "clear_variable_locations": {},
+        "clear_location_summary": null,
+        "dominant_location_class": "center_side"
+      }
+    },
+    {
+      "q_mpa": 0.75,
+      "variables": {
+        "theta0": {
+          "display_name": "theta0",
+          "x_at_max_abs_diff": 0.9022166666666667,
+          "location_class": "interior",
+          "full": {
+            "max_abs_diff": 0.6099202771998335,
+            "rel_max": 0.005966110470856714,
+            "l2_diff": 0.26804528895620416,
+            "rel_l2": 0.006075241787696814
+          },
+          "center": {
+            "max_abs_diff": 0.050959781360698835,
+            "rel_max": 0.009243602846362997,
+            "l2_diff": 0.002098808710096052,
+            "rel_l2": 0.0017127210487781809
+          },
+          "bulk": {
+            "max_abs_diff": 0.6099202771998335,
+            "rel_max": 0.006269621511049391,
+            "l2_diff": 0.23966200108592528,
+            "rel_l2": 0.006316892944323933
+          },
+          "edge": {
+            "max_abs_diff": 0.5628739246766372,
+            "rel_max": 0.005505913053428838,
+            "l2_diff": 0.11912534143852123,
+            "rel_l2": 0.005323888304659001
+          }
+        },
+        "theta0p": {
+          "display_name": "theta0'",
+          "x_at_max_abs_diff": 0.0016666666666666668,
+          "location_class": "center_side",
+          "full": {
+            "max_abs_diff": 30.575060227243235,
+            "rel_max": 0.11121394704283094,
+            "l2_diff": 1.3802232573366828,
+            "rel_l2": 0.010662812608288191
+          },
+          "center": {
+            "max_abs_diff": 30.575060227243235,
+            "rel_max": 0.4200026706625917,
+            "l2_diff": 0.7766115405109021,
+            "rel_l2": 0.05408631986455195
+          },
+          "bulk": {
+            "max_abs_diff": 30.575060227243235,
+            "rel_max": 0.11121394704283094,
+            "l2_diff": 1.3606258653651597,
+            "rel_l2": 0.010732915889559654
+          },
+          "edge": {
+            "max_abs_diff": 1.5451260443745412,
+            "rel_max": 0.007974937996629178,
+            "l2_diff": 0.22817148366997433,
+            "rel_l2": 0.008816540404457212
+          }
+        },
+        "Phi0": {
+          "display_name": "Phi0",
+          "x_at_max_abs_diff": 0.8953,
+          "location_class": "interior",
+          "full": {
+            "max_abs_diff": 0.7839686320312396,
+            "rel_max": 0.008385819715252789,
+            "l2_diff": 0.29360565883849626,
+            "rel_l2": 0.0044327237335087645
+          },
+          "center": {
+            "max_abs_diff": 0.21640784230622168,
+            "rel_max": 0.007860233678832419,
+            "l2_diff": 0.011079579170124226,
+            "rel_l2": 0.001793995601365548
+          },
+          "bulk": {
+            "max_abs_diff": 0.7839686320312396,
+            "rel_max": 0.008385819715252789,
+            "l2_diff": 0.28578964325531986,
+            "rel_l2": 0.004325894395569203
+          },
+          "edge": {
+            "max_abs_diff": 0.5228994057163234,
+            "rel_max": 0.014932352222536601,
+            "l2_diff": 0.06585589678087171,
+            "rel_l2": 0.014112640988146187
+          }
+        },
+        "Phi0p": {
+          "display_name": "Phi0'",
+          "x_at_max_abs_diff": 0.0016666666666666668,
+          "location_class": "center_side",
+          "full": {
+            "max_abs_diff": 129.60683686496918,
+            "rel_max": 0.1533465689117262,
+            "l2_diff": 7.494960392384832,
+            "rel_l2": 0.0298347450952759
+          },
+          "center": {
+            "max_abs_diff": 129.60683686496918,
+            "rel_max": 0.6018669341779864,
+            "l2_diff": 3.2845685885315294,
+            "rel_l2": 0.04637049596219602
+          },
+          "bulk": {
+            "max_abs_diff": 129.60683686496918,
+            "rel_max": 0.2099985433932131,
+            "l2_diff": 5.450630352630018,
+            "rel_l2": 0.0286625129701466
+          },
+          "edge": {
+            "max_abs_diff": 26.91454692848015,
+            "rel_max": 0.031844411337621385,
+            "l2_diff": 5.120191504899244,
+            "rel_l2": 0.03134587368444729
+          }
+        }
+      },
+      "overall": {
+        "mean_bulk_rel_l2": 0.012509554049899847,
+        "mean_edge_rel_l2": 0.014899735845427422,
+        "mean_center_rel_l2": 0.025990883119222926,
+        "max_bulk_rel_l2": 0.0286625129701466,
+        "clear_variables_at_threshold": [],
+        "clear_variable_locations": {},
+        "clear_location_summary": null,
+        "dominant_location_class": "center_side"
+      }
+    },
+    {
+      "q_mpa": 1.0,
+      "variables": {
+        "theta0": {
+          "display_name": "theta0",
+          "x_at_max_abs_diff": 0.913975,
+          "location_class": "interior",
+          "full": {
+            "max_abs_diff": 1.0378736526629808,
+            "rel_max": 0.0087666088801011,
+            "l2_diff": 0.43996597289150835,
+            "rel_l2": 0.008877800480095994
+          },
+          "center": {
+            "max_abs_diff": 0.056068494080912475,
+            "rel_max": 0.009249026945744096,
+            "l2_diff": 0.0022685610197870926,
+            "rel_l2": 0.0016831879623521607
+          },
+          "bulk": {
+            "max_abs_diff": 1.0378736526629808,
+            "rel_max": 0.009290352811023934,
+            "l2_diff": 0.3859202497679929,
+            "rel_l2": 0.009147901644188484
+          },
+          "edge": {
+            "max_abs_diff": 0.9876728709829763,
+            "rel_max": 0.008342577865020644,
+            "l2_diff": 0.20966594079414175,
+            "rel_l2": 0.008114485018367482
+          }
+        },
+        "theta0p": {
+          "display_name": "theta0'",
+          "x_at_max_abs_diff": 0.0016666666666666668,
+          "location_class": "center_side",
+          "full": {
+            "max_abs_diff": 33.653370048047805,
+            "rel_max": 0.09865172158419085,
+            "l2_diff": 2.143544060986813,
+            "rel_l2": 0.013917196398961608
+          },
+          "center": {
+            "max_abs_diff": 33.653370048047805,
+            "rel_max": 0.4200999803685081,
+            "l2_diff": 0.8551910661914675,
+            "rel_l2": 0.05415534013210317
+          },
+          "bulk": {
+            "max_abs_diff": 33.653370048047805,
+            "rel_max": 0.09865172158419085,
+            "l2_diff": 2.110357297292143,
+            "rel_l2": 0.014067864897282742
+          },
+          "edge": {
+            "max_abs_diff": 2.362708416209415,
+            "rel_max": 0.009280070465557873,
+            "l2_diff": 0.3707886776220313,
+            "rel_l2": 0.010709722501581274
+          }
+        },
+        "Phi0": {
+          "display_name": "Phi0",
+          "x_at_max_abs_diff": 0.9015249999999999,
+          "location_class": "interior",
+          "full": {
+            "max_abs_diff": 1.2779491598567887,
+            "rel_max": 0.011287414821359922,
+            "l2_diff": 0.4696598923088864,
+            "rel_l2": 0.005846952382938753
+          },
+          "center": {
+            "max_abs_diff": 0.2609702714133166,
+            "rel_max": 0.007859455170209988,
+            "l2_diff": 0.01312605846274796,
+            "rel_l2": 0.0017622321350098385
+          },
+          "bulk": {
+            "max_abs_diff": 1.2779491598567887,
+            "rel_max": 0.011287414821359922,
+            "l2_diff": 0.45445963870707395,
+            "rel_l2": 0.005673383184252462
+          },
+          "edge": {
+            "max_abs_diff": 0.9093146148532156,
+            "rel_max": 0.020764225348603282,
+            "l2_diff": 0.116051874998181,
+            "rel_l2": 0.019833753389778067
+          }
+        },
+        "Phi0p": {
+          "display_name": "Phi0'",
+          "x_at_max_abs_diff": 0.0016666666666666668,
+          "location_class": "center_side",
+          "full": {
+            "max_abs_diff": 156.33432543271886,
+            "rel_max": 0.1446880207980755,
+            "l2_diff": 12.012167796688722,
+            "rel_l2": 0.03868308844956763
+          },
+          "center": {
+            "max_abs_diff": 156.33432543271886,
+            "rel_max": 0.6019016445692335,
+            "l2_diff": 3.962375813890789,
+            "rel_l2": 0.046380112766360865
+          },
+          "bulk": {
+            "max_abs_diff": 156.33432543271886,
+            "rel_max": 0.20280517198023382,
+            "l2_diff": 8.088701523911276,
+            "rel_l2": 0.0350565618712487
+          },
+          "edge": {
+            "max_abs_diff": 47.12619658337394,
+            "rel_max": 0.04361547659169644,
+            "l2_diff": 8.840477988834996,
+            "rel_l2": 0.04274377278518005
+          }
+        }
+      },
+      "overall": {
+        "mean_bulk_rel_l2": 0.015986427899243098,
+        "mean_edge_rel_l2": 0.02035043342372672,
+        "mean_center_rel_l2": 0.02599521824895651,
+        "max_bulk_rel_l2": 0.0350565618712487,
+        "clear_variables_at_threshold": [],
+        "clear_variable_locations": {},
+        "clear_location_summary": null,
+        "dominant_location_class": "center_side"
+      }
+    },
+    {
+      "q_mpa": 1.5,
+      "variables": {
+        "theta0": {
+          "display_name": "theta0",
+          "x_at_max_abs_diff": 0.9291916666666666,
+          "location_class": "interior",
+          "full": {
+            "max_abs_diff": 2.244631824857109,
+            "rel_max": 0.015385725109050459,
+            "l2_diff": 0.9010356997210321,
+            "rel_l2": 0.015408381616188623
+          },
+          "center": {
+            "max_abs_diff": 0.06422242633802873,
+            "rel_max": 0.009251149124720318,
+            "l2_diff": 0.002586942330358036,
+            "rel_l2": 0.001676031848702431
+          },
+          "bulk": {
+            "max_abs_diff": 2.244631824857109,
+            "rel_max": 0.016525154116650034,
+            "l2_diff": 0.766155362641197,
+            "rel_l2": 0.015631821113148387
+          },
+          "edge": {
+            "max_abs_diff": 2.2019928185940785,
+            "rel_max": 0.01509345801115888,
+            "l2_diff": 0.47065252174331235,
+            "rel_l2": 0.01484964884118283
+          }
+        },
+        "theta0p": {
+          "display_name": "theta0'",
+          "x_at_max_abs_diff": 0.0016666666666666668,
+          "location_class": "center_side",
+          "full": {
+            "max_abs_diff": 38.58178342675685,
+            "rel_max": 0.08316039391462912,
+            "l2_diff": 4.469673929800438,
+            "rel_l2": 0.022614542688292934
+          },
+          "center": {
+            "max_abs_diff": 38.58178342675685,
+            "rel_max": 0.42032001614463216,
+            "l2_diff": 0.981424026552305,
+            "rel_l2": 0.05426755184438363
+          },
+          "bulk": {
+            "max_abs_diff": 38.58178342675685,
+            "rel_max": 0.08316039391462912,
+            "l2_diff": 4.412797845983661,
+            "rel_l2": 0.023139983893974456
+          },
+          "edge": {
+            "max_abs_diff": 4.266720692497245,
+            "rel_max": 0.011511056457896747,
+            "l2_diff": 0.7045490151190352,
+            "rel_l2": 0.013629252228249714
+          }
+        },
+        "Phi0": {
+          "display_name": "Phi0",
+          "x_at_max_abs_diff": 0.9105166666666666,
+          "location_class": "interior",
+          "full": {
+            "max_abs_diff": 2.5716273091904185,
+            "rel_max": 0.017362289684192102,
+            "l2_diff": 0.9196078840445102,
+            "rel_l2": 0.008731491831216421
+          },
+          "center": {
+            "max_abs_diff": 0.3399874038933379,
+            "rel_max": 0.007857422494017456,
+            "l2_diff": 0.0161896354402637,
+            "rel_l2": 0.0016678825973758151
+          },
+          "bulk": {
+            "max_abs_diff": 2.5716273091904185,
+            "rel_max": 0.017362289684192102,
+            "l2_diff": 0.8806870272539067,
+            "rel_l2": 0.008387277747941737
+          },
+          "edge": {
+            "max_abs_diff": 1.9912850755120175,
+            "rel_max": 0.033288339789180776,
+            "l2_diff": 0.25941644137754105,
+            "rel_l2": 0.03232640411863657
+          }
+        },
+        "Phi0p": {
+          "display_name": "Phi0'",
+          "x_at_max_abs_diff": 0.0016666666666666668,
+          "location_class": "center_side",
+          "full": {
+            "max_abs_diff": 203.80337507698647,
+            "rel_max": 0.1324546793191508,
+            "l2_diff": 24.643778501864542,
+            "rel_l2": 0.05855444696441405
+          },
+          "center": {
+            "max_abs_diff": 203.80337507698647,
+            "rel_max": 0.6019929660808053,
+            "l2_diff": 5.167366451378882,
+            "rel_l2": 0.04640676039489201
+          },
+          "bulk": {
+            "max_abs_diff": 203.80337507698647,
+            "rel_max": 0.19259494622108805,
+            "l2_diff": 15.02866109848462,
+            "rel_l2": 0.049502779787539315
+          },
+          "edge": {
+            "max_abs_diff": 105.97452442047802,
+            "rel_max": 0.0688743336208811,
+            "l2_diff": 19.448391859875596,
+            "rel_l2": 0.06703005121509172
+          }
+        }
+      },
+      "overall": {
+        "mean_bulk_rel_l2": 0.024165465635650973,
+        "mean_edge_rel_l2": 0.031958839100790205,
+        "mean_center_rel_l2": 0.026004556671338473,
+        "max_bulk_rel_l2": 0.049502779787539315,
+        "clear_variables_at_threshold": [],
+        "clear_variable_locations": {},
+        "clear_location_summary": null,
+        "dominant_location_class": "center_side"
+      }
+    },
+    {
+      "q_mpa": 2.0,
+      "variables": {
+        "theta0": {
+          "display_name": "theta0",
+          "x_at_max_abs_diff": 0.9388749999999999,
+          "location_class": "interior",
+          "full": {
+            "max_abs_diff": 3.9974479910753473,
+            "rel_max": 0.023550934795898582,
+            "l2_diff": 1.538837324476034,
+            "rel_l2": 0.023337208558103933
+          },
+          "center": {
+            "max_abs_diff": 0.07074446309037934,
+            "rel_max": 0.009249908724431502,
+            "l2_diff": 0.002995343387721073,
+            "rel_l2": 0.0017613387383121296
+          },
+          "bulk": {
+            "max_abs_diff": 3.9974479910753473,
+            "rel_max": 0.02556427730462679,
+            "l2_diff": 1.2748028546550925,
+            "rel_l2": 0.023348024194209997
+          },
+          "edge": {
+            "max_abs_diff": 3.9734922068363403,
+            "rel_max": 0.023409799473098375,
+            "l2_diff": 0.8555525660209308,
+            "rel_l2": 0.02328631778153591
+          }
+        },
+        "theta0p": {
+          "display_name": "theta0'",
+          "x_at_max_abs_diff": 0.0016666666666666668,
+          "location_class": "center_side",
+          "full": {
+            "max_abs_diff": 42.53925128107839,
+            "rel_max": 0.07338502061014654,
+            "l2_diff": 8.023380215191189,
+            "rel_l2": 0.03383506531512236
+          },
+          "center": {
+            "max_abs_diff": 42.53925128107839,
+            "rel_max": 0.4205485975554764,
+            "l2_diff": 1.0832284409319393,
+            "rel_l2": 0.05436739878656979
+          },
+          "bulk": {
+            "max_abs_diff": 42.53925128107839,
+            "rel_max": 0.07338502061014654,
+            "l2_diff": 7.952310247574916,
+            "rel_l2": 0.03502690352881364
+          },
+          "edge": {
+            "max_abs_diff": 6.43549736824815,
+            "rel_max": 0.013386534989413307,
+            "l2_diff": 1.060720556432008,
+            "rel_l2": 0.015534031689967797
+          }
+        },
+        "Phi0": {
+          "display_name": "Phi0",
+          "x_at_max_abs_diff": 0.9167416666666666,
+          "location_class": "interior",
+          "full": {
+            "max_abs_diff": 4.292665437424034,
+            "rel_max": 0.023966668828346756,
+            "l2_diff": 1.500359364965447,
+            "rel_l2": 0.011759886500317293
+          },
+          "center": {
+            "max_abs_diff": 0.41030038644401007,
+            "rel_max": 0.007855028324584349,
+            "l2_diff": 0.018384812189351955,
+            "rel_l2": 0.00156892644164919
+          },
+          "bulk": {
+            "max_abs_diff": 4.292665437424034,
+            "rel_max": 0.023966668828346756,
+            "l2_diff": 1.423255232406172,
+            "rel_l2": 0.011191455157400141
+          },
+          "edge": {
+            "max_abs_diff": 3.515335719618534,
+            "rel_max": 0.047204311763735726,
+            "l2_diff": 0.46560966700498074,
+            "rel_l2": 0.046462556056549933
+          }
+        },
+        "Phi0p": {
+          "display_name": "Phi0'",
+          "x_at_max_abs_diff": 0.0016666666666666668,
+          "location_class": "center_side",
+          "full": {
+            "max_abs_diff": 246.136483249433,
+            "rel_max": 0.12321979166815152,
+            "l2_diff": 42.6731887176537,
+            "rel_l2": 0.08111972247356529
+          },
+          "center": {
+            "max_abs_diff": 246.136483249433,
+            "rel_max": 0.6020971455339641,
+            "l2_diff": 6.243559110757526,
+            "rel_l2": 0.04643819519841308
+          },
+          "bulk": {
+            "max_abs_diff": 246.136483249433,
+            "rel_max": 0.18459278631620465,
+            "l2_diff": 24.34842745465326,
+            "rel_l2": 0.06578516999220421
+          },
+          "edge": {
+            "max_abs_diff": 193.57067745081417,
+            "rel_max": 0.09690452318838524,
+            "l2_diff": 34.905138858113986,
+            "rel_l2": 0.09379035050321098
+          }
+        }
+      },
+      "overall": {
+        "mean_bulk_rel_l2": 0.033837888218156996,
+        "mean_edge_rel_l2": 0.044768314007816154,
+        "mean_center_rel_l2": 0.02603396479123605,
+        "max_bulk_rel_l2": 0.06578516999220421,
+        "clear_variables_at_threshold": [
+          "Phi0p"
+        ],
+        "clear_variable_locations": {
+          "Phi0p": "center_side"
+        },
+        "clear_location_summary": "center_side",
+        "dominant_location_class": "center_side"
+      }
+    },
+    {
+      "q_mpa": 3.0,
+      "variables": {
+        "theta0": {
+          "display_name": "theta0",
+          "x_at_max_abs_diff": 0.9527083333333333,
+          "location_class": "right_edge",
+          "full": {
+            "max_abs_diff": 9.956486334472004,
+            "rel_max": 0.046820810052817796,
+            "l2_diff": 3.5853938426621625,
+            "rel_l2": 0.04544891109655179
+          },
+          "center": {
+            "max_abs_diff": 0.08109374484431957,
+            "rel_max": 0.009245720486399428,
+            "l2_diff": 0.004146451786663546,
+            "rel_l2": 0.0021259427681052483
+          },
+          "bulk": {
+            "max_abs_diff": 9.952083457424209,
+            "rel_max": 0.05161702842697206,
+            "l2_diff": 2.8361383550469825,
+            "rel_l2": 0.044282067547218015
+          },
+          "edge": {
+            "max_abs_diff": 9.956486334472004,
+            "rel_max": 0.046820810052817796,
+            "l2_diff": 2.1778085692346028,
+            "rel_l2": 0.0475737898890708
+          }
+        },
+        "theta0p": {
+          "display_name": "theta0'",
+          "x_at_max_abs_diff": 0.8717833333333332,
+          "location_class": "interior",
+          "full": {
+            "max_abs_diff": 61.86826559166616,
+            "rel_max": 0.07664893362374794,
+            "l2_diff": 20.684642135458642,
+            "rel_l2": 0.06633270973881579
+          },
+          "center": {
+            "max_abs_diff": 48.844916056487136,
+            "rel_max": 0.42096643825619645,
+            "l2_diff": 1.2463466019638763,
+            "rel_l2": 0.054546185048220175
+          },
+          "bulk": {
+            "max_abs_diff": 61.86826559166616,
+            "rel_max": 0.07664893362374794,
+            "l2_diff": 20.615964087783034,
+            "rel_l2": 0.06985196706387087
+          },
+          "edge": {
+            "max_abs_diff": 11.172695964426055,
+            "rel_max": 0.01620049987693919,
+            "l2_diff": 1.6826935932328122,
+            "rel_l2": 0.01677963260355945
+          }
+        },
+        "Phi0": {
+          "display_name": "Phi0",
+          "x_at_max_abs_diff": 0.9264249999999999,
+          "location_class": "interior",
+          "full": {
+            "max_abs_diff": 9.357138545052806,
+            "rel_max": 0.03999007068015043,
+            "l2_diff": 3.1160129289036873,
+            "rel_l2": 0.018647871678426506
+          },
+          "center": {
+            "max_abs_diff": 0.5349567193358156,
+            "rel_max": 0.007850253837880928,
+            "l2_diff": 0.02212240166026707,
+            "rel_l2": 0.0014470175269176225
+          },
+          "bulk": {
+            "max_abs_diff": 9.357138545052806,
+            "rel_max": 0.03999007068015043,
+            "l2_diff": 2.897204222806716,
+            "rel_l2": 0.017398957809810083
+          },
+          "edge": {
+            "max_abs_diff": 8.264241302076428,
+            "rel_max": 0.08173261487455825,
+            "l2_diff": 1.1261125945588761,
+            "rel_l2": 0.08238000009704331
+          }
+        },
+        "Phi0p": {
+          "display_name": "Phi0'",
+          "x_at_max_abs_diff": 1.0,
+          "location_class": "right_edge",
+          "full": {
+            "max_abs_diff": 495.3032259950169,
+            "rel_max": 0.16580759028298256,
+            "l2_diff": 101.63077915256815,
+            "rel_l2": 0.13760214991314312
+          },
+          "center": {
+            "max_abs_diff": 321.3807507682079,
+            "rel_max": 0.6022977399334168,
+            "l2_diff": 8.159971527934948,
+            "rel_l2": 0.04650083386898396
+          },
+          "bulk": {
+            "max_abs_diff": 321.3807507682079,
+            "rel_max": 0.16974486693850488,
+            "l2_diff": 52.45092406781028,
+            "rel_l2": 0.10580311419335019
+          },
+          "edge": {
+            "max_abs_diff": 495.3032259950169,
+            "rel_max": 0.16580759028298256,
+            "l2_diff": 86.73528311689647,
+            "rel_l2": 0.1590869191102357
+          }
+        }
+      },
+      "overall": {
+        "mean_bulk_rel_l2": 0.059334026653562286,
+        "mean_edge_rel_l2": 0.07645508542497731,
+        "mean_center_rel_l2": 0.026154994803056754,
+        "max_bulk_rel_l2": 0.10580311419335019,
+        "clear_variables_at_threshold": [
+          "theta0p",
+          "Phi0p"
+        ],
+        "clear_variable_locations": {
+          "theta0p": "interior",
+          "Phi0p": "right_edge"
+        },
+        "clear_location_summary": "globally_mixed",
+        "dominant_location_class": "right_edge"
+      }
+    },
+    {
+      "q_mpa": 4.0,
+      "variables": {
+        "theta0": {
+          "display_name": "theta0",
+          "x_at_max_abs_diff": 0.9651583333333332,
+          "location_class": "right_edge",
+          "full": {
+            "max_abs_diff": 24.362112276703073,
+            "rel_max": 0.09435465492850097,
+            "l2_diff": 8.231898963650632,
+            "rel_l2": 0.08936486695345312
+          },
+          "center": {
+            "max_abs_diff": 0.08934693379259726,
+            "rel_max": 0.009246347883268155,
+            "l2_diff": 0.004745349015459006,
+            "rel_l2": 0.0022083306654980543
+          },
+          "bulk": {
+            "max_abs_diff": 24.074746169733572,
+            "rel_max": 0.10390596976374115,
+            "l2_diff": 6.195915562458515,
+            "rel_l2": 0.08447427606796315
+          },
+          "edge": {
+            "max_abs_diff": 24.362112276703073,
+            "rel_max": 0.09435465492850097,
+            "l2_diff": 5.382698663726328,
+            "rel_l2": 0.09717420442742532
+          }
+        },
+        "theta0p": {
+          "display_name": "theta0'",
+          "x_at_max_abs_diff": 0.8863083333333333,
+          "location_class": "interior",
+          "full": {
+            "max_abs_diff": 165.4501757121916,
+            "rel_max": 0.15367927201425638,
+            "l2_diff": 52.76999522358167,
+            "rel_l2": 0.13294835724327417
+          },
+          "center": {
+            "max_abs_diff": 53.82858032906155,
+            "rel_max": 0.4210282435249331,
+            "l2_diff": 1.3743429775886025,
+            "rel_l2": 0.05459549958764165
+          },
+          "bulk": {
+            "max_abs_diff": 165.4501757121916,
+            "rel_max": 0.15367927201425638,
+            "l2_diff": 52.657614347691236,
+            "rel_l2": 0.14092809187858066
+          },
+          "edge": {
+            "max_abs_diff": 38.87010831694795,
+            "rel_max": 0.04229607974137747,
+            "l2_diff": 3.2775712396418357,
+            "rel_l2": 0.02488700216977096
+          }
+        },
+        "Phi0": {
+          "display_name": "Phi0",
+          "x_at_max_abs_diff": 0.9347249999999999,
+          "location_class": "interior",
+          "full": {
+            "max_abs_diff": 18.824014396136107,
+            "rel_max": 0.06656629265197357,
+            "l2_diff": 5.7861106054856,
+            "rel_l2": 0.02860047132845631
+          },
+          "center": {
+            "max_abs_diff": 0.6466071463113472,
+            "rel_max": 0.00785057255995214,
+            "l2_diff": 0.02736277363835699,
+            "rel_l2": 0.0014807579609497318
+          },
+          "bulk": {
+            "max_abs_diff": 18.824014396136107,
+            "rel_max": 0.06656629265197357,
+            "l2_diff": 5.208366010991088,
+            "rel_l2": 0.025839668080494958
+          },
+          "edge": {
+            "max_abs_diff": 17.6324035388905,
+            "rel_max": 0.14064827826518642,
+            "l2_diff": 2.4770271104800567,
+            "rel_l2": 0.1456360241172211
+          }
+        },
+        "Phi0p": {
+          "display_name": "Phi0'",
+          "x_at_max_abs_diff": 1.0,
+          "location_class": "right_edge",
+          "full": {
+            "max_abs_diff": 1209.6169142954373,
+            "rel_max": 0.2787100823479112,
+            "l2_diff": 233.40604455626823,
+            "rel_l2": 0.23297507948741575
+          },
+          "center": {
+            "max_abs_diff": 388.38950893361397,
+            "rel_max": 0.6022740065469823,
+            "l2_diff": 9.858381366595381,
+            "rel_l2": 0.04648701214559266
+          },
+          "bulk": {
+            "max_abs_diff": 629.0498782039722,
+            "rel_max": 0.24232704442825453,
+            "l2_diff": 108.96989767085716,
+            "rel_l2": 0.17252859378019536
+          },
+          "edge": {
+            "max_abs_diff": 1209.6169142954373,
+            "rel_max": 0.2787100823479112,
+            "l2_diff": 205.73601541243875,
+            "rel_l2": 0.26558638218031116
+          }
+        }
+      },
+      "overall": {
+        "mean_bulk_rel_l2": 0.10594265745180853,
+        "mean_edge_rel_l2": 0.13332090322368212,
+        "mean_center_rel_l2": 0.02619290008992052,
+        "max_bulk_rel_l2": 0.17252859378019536,
+        "clear_variables_at_threshold": [
+          "theta0",
+          "theta0p",
+          "Phi0p"
+        ],
+        "clear_variable_locations": {
+          "theta0": "right_edge",
+          "theta0p": "interior",
+          "Phi0p": "right_edge"
+        },
+        "clear_location_summary": "globally_mixed",
+        "dominant_location_class": "right_edge"
+      }
+    },
+    {
+      "q_mpa": 4.2,
+      "variables": {
+        "theta0": {
+          "display_name": "theta0",
+          "x_at_max_abs_diff": 0.9686166666666666,
+          "location_class": "right_edge",
+          "full": {
+            "max_abs_diff": 31.61573737697924,
+            "rel_max": 0.11656761707120752,
+            "l2_diff": 10.49637638665538,
+            "rel_l2": 0.10955282154681369
+          },
+          "center": {
+            "max_abs_diff": 0.09082779474409175,
+            "rel_max": 0.009251111113340751,
+            "l2_diff": 0.0042088913580339655,
+            "rel_l2": 0.001927715395041532
+          },
+          "bulk": {
+            "max_abs_diff": 31.060995098746986,
+            "rel_max": 0.12773695372253818,
+            "l2_diff": 7.785453321620563,
+            "rel_l2": 0.102631487234931
+          },
+          "edge": {
+            "max_abs_diff": 31.61573737697924,
+            "rel_max": 0.11656761707120752,
+            "l2_diff": 6.9923076622932285,
+            "rel_l2": 0.12019547326263821
+          }
+        },
+        "theta0p": {
+          "display_name": "theta0'",
+          "x_at_max_abs_diff": 0.8897666666666666,
+          "location_class": "interior",
+          "full": {
+            "max_abs_diff": 219.74922046227448,
+            "rel_max": 0.18921392279589416,
+            "l2_diff": 69.32290954785617,
+            "rel_l2": 0.1639160679116816
+          },
+          "center": {
+            "max_abs_diff": 54.65948071040489,
+            "rel_max": 0.42075611927698087,
+            "l2_diff": 1.3940887822447756,
+            "rel_l2": 0.05450501655886573
+          },
+          "bulk": {
+            "max_abs_diff": 219.74922046227448,
+            "rel_max": 0.18921392279589416,
+            "l2_diff": 69.1229747642121,
+            "rel_l2": 0.17349929314427812
+          },
+          "edge": {
+            "max_abs_diff": 62.915545550222305,
+            "rel_max": 0.06418393756950695,
+            "l2_diff": 4.981068203874931,
+            "rel_l2": 0.03570437546858445
+          }
+        },
+        "Phi0": {
+          "display_name": "Phi0",
+          "x_at_max_abs_diff": 0.9368,
+          "location_class": "interior",
+          "full": {
+            "max_abs_diff": 22.61599529647947,
+            "rel_max": 0.07744775000621722,
+            "l2_diff": 6.721507618725032,
+            "rel_l2": 0.032164354582163594
+          },
+          "center": {
+            "max_abs_diff": 0.6684549712444102,
+            "rel_max": 0.007855002702281292,
+            "l2_diff": 0.03227608693804118,
+            "rel_l2": 0.001690513311214681
+          },
+          "bulk": {
+            "max_abs_diff": 22.61599529647947,
+            "rel_max": 0.07744775000621722,
+            "l2_diff": 5.963920552591321,
+            "rel_l2": 0.02864530257643981
+          },
+          "edge": {
+            "max_abs_diff": 21.490789201569413,
+            "rel_max": 0.16531404453729623,
+            "l2_diff": 3.047809022535967,
+            "rel_l2": 0.1726998734265388
+          }
+        },
+        "Phi0p": {
+          "display_name": "Phi0'",
+          "x_at_max_abs_diff": 1.0,
+          "location_class": "right_edge",
+          "full": {
+            "max_abs_diff": 1555.766652300968,
+            "rel_max": 0.32348319340927373,
+            "l2_diff": 295.33010258991743,
+            "rel_l2": 0.2719309646206374
+          },
+          "center": {
+            "max_abs_diff": 400.9519394557527,
+            "rel_max": 0.6020798947788504,
+            "l2_diff": 10.166297701139516,
+            "rel_l2": 0.04642234257539509
+          },
+          "bulk": {
+            "max_abs_diff": 789.6257339459246,
+            "rel_max": 0.27969929466970056,
+            "l2_diff": 133.79704447790397,
+            "rel_l2": 0.20005415198641133
+          },
+          "edge": {
+            "max_abs_diff": 1555.766652300968,
+            "rel_max": 0.32348319340927373,
+            "l2_diff": 262.45406362239044,
+            "rel_l2": 0.3078880907213601
+          }
+        }
+      },
+      "overall": {
+        "mean_bulk_rel_l2": 0.12620755873551506,
+        "mean_edge_rel_l2": 0.1591219532197804,
+        "mean_center_rel_l2": 0.02613639696012926,
+        "max_bulk_rel_l2": 0.20005415198641133,
+        "clear_variables_at_threshold": [
+          "theta0",
+          "theta0p",
+          "Phi0p"
+        ],
+        "clear_variable_locations": {
+          "theta0": "right_edge",
+          "theta0p": "interior",
+          "Phi0p": "right_edge"
+        },
+        "clear_location_summary": "globally_mixed",
+        "dominant_location_class": "right_edge"
+      }
+    },
+    {
+      "q_mpa": 4.3,
+      "variables": {
+        "theta0": {
+          "display_name": "theta0",
+          "x_at_max_abs_diff": 0.9714184785416077,
+          "location_class": "right_edge",
+          "full": {
+            "max_abs_diff": 39.731662856744094,
+            "rel_max": 0.14078947317328627,
+            "l2_diff": 12.996408169803514,
+            "rel_l2": 0.13142040041694458
+          },
+          "center": {
+            "max_abs_diff": 0.09155073053184201,
+            "rel_max": 0.00925950823981733,
+            "l2_diff": 0.0036491392904054554,
+            "rel_l2": 0.0016596262648798654
+          },
+          "bulk": {
+            "max_abs_diff": 38.80812044630511,
+            "rel_max": 0.15333029392264572,
+            "l2_diff": 9.519232879407953,
+            "rel_l2": 0.12218862719361785
+          },
+          "edge": {
+            "max_abs_diff": 39.731662856744094,
+            "rel_max": 0.14078947317328627,
+            "l2_diff": 8.78904901112991,
+            "rel_l2": 0.1451632308513268
+          }
+        },
+        "theta0p": {
+          "display_name": "theta0'",
+          "x_at_max_abs_diff": 0.8925333333333333,
+          "location_class": "interior",
+          "full": {
+            "max_abs_diff": 281.42504932214285,
+            "rel_max": 0.22739185814706486,
+            "l2_diff": 88.0317808133184,
+            "rel_l2": 0.1974550009563699
+          },
+          "center": {
+            "max_abs_diff": 54.98138282027983,
+            "rel_max": 0.4202555888063916,
+            "l2_diff": 1.3997251210162407,
+            "rel_l2": 0.05434249903608885
+          },
+          "bulk": {
+            "max_abs_diff": 281.42504932214285,
+            "rel_max": 0.22739185814706486,
+            "l2_diff": 87.68598063751661,
+            "rel_l2": 0.20840283970590362
+          },
+          "edge": {
+            "max_abs_diff": 92.2646054898745,
+            "rel_max": 0.08974899960172854,
+            "l2_diff": 7.391099264132886,
+            "rel_l2": 0.0510073597141541
+          }
+        },
+        "Phi0": {
+          "display_name": "Phi0",
+          "x_at_max_abs_diff": 0.9388749999999999,
+          "location_class": "interior",
+          "full": {
+            "max_abs_diff": 26.277670357295193,
+            "rel_max": 0.08860386643973887,
+            "l2_diff": 7.54902280244294,
+            "rel_l2": 0.035563925778555425
+          },
+          "center": {
+            "max_abs_diff": 0.6801857100426879,
+            "rel_max": 0.007862842069017405,
+            "l2_diff": 0.044364698235046705,
+            "rel_l2": 0.0022858980981493244
+          },
+          "bulk": {
+            "max_abs_diff": 26.277670357295193,
+            "rel_max": 0.08860386643973887,
+            "l2_diff": 6.59438341392089,
+            "rel_l2": 0.03118268732722841
+          },
+          "edge": {
+            "max_abs_diff": 25.26134396683517,
+            "rel_max": 0.19094909167845164,
+            "l2_diff": 3.613633183941397,
+            "rel_l2": 0.20115083452067167
+          }
+        },
+        "Phi0p": {
+          "display_name": "Phi0'",
+          "x_at_max_abs_diff": 1.0,
+          "location_class": "right_edge",
+          "full": {
+            "max_abs_diff": 1931.566179231313,
+            "rel_max": 0.368174108762269,
+            "l2_diff": 361.70428469360013,
+            "rel_l2": 0.311554127511557
+          },
+          "center": {
+            "max_abs_diff": 406.9887682780879,
+            "rel_max": 0.601738793796662,
+            "l2_diff": 10.303131509841801,
+            "rel_l2": 0.04632321584679674
+          },
+          "bulk": {
+            "max_abs_diff": 960.0384605212953,
+            "rel_max": 0.31721689501010913,
+            "l2_diff": 159.56951025248804,
+            "rel_l2": 0.22847992063502193
+          },
+          "edge": {
+            "max_abs_diff": 1931.566179231313,
+            "rel_max": 0.368174108762269,
+            "l2_diff": 323.60884890565325,
+            "rel_l2": 0.3502419299009082
+          }
+        }
+      },
+      "overall": {
+        "mean_bulk_rel_l2": 0.14756351871544293,
+        "mean_edge_rel_l2": 0.18689083874676518,
+        "mean_center_rel_l2": 0.026152809811478696,
+        "max_bulk_rel_l2": 0.22847992063502193,
+        "clear_variables_at_threshold": [
+          "theta0",
+          "theta0p",
+          "Phi0p"
+        ],
+        "clear_variable_locations": {
+          "theta0": "right_edge",
+          "theta0p": "interior",
+          "Phi0p": "right_edge"
+        },
+        "clear_location_summary": "globally_mixed",
+        "dominant_location_class": "right_edge"
+      }
+    },
+    {
+      "q_mpa": 4.3434,
+      "variables": {
+        "theta0": {
+          "display_name": "theta0",
+          "x_at_max_abs_diff": 0.9715056172664531,
+          "location_class": "right_edge",
+          "full": {
+            "max_abs_diff": 44.18780831082992,
+            "rel_max": 0.15351730962140483,
+            "l2_diff": 14.388199195479332,
+            "rel_l2": 0.14315261477514174
+          },
+          "center": {
+            "max_abs_diff": 0.09186101632987227,
+            "rel_max": 0.009261483937433505,
+            "l2_diff": 0.003766968389301976,
+            "rel_l2": 0.0017076214276923192
+          },
+          "bulk": {
+            "max_abs_diff": 43.12332274557775,
+            "rel_max": 0.16691334805167035,
+            "l2_diff": 10.499109932379755,
+            "rel_l2": 0.13291545106730204
+          },
+          "edge": {
+            "max_abs_diff": 44.18780831082992,
+            "rel_max": 0.15351730962140483,
+            "l2_diff": 9.77243572213139,
+            "rel_l2": 0.15819087449014382
+          }
+        },
+        "theta0p": {
+          "display_name": "theta0'",
+          "x_at_max_abs_diff": 0.8932249999999999,
+          "location_class": "interior",
+          "full": {
+            "max_abs_diff": 316.38956470096537,
+            "rel_max": 0.2475933391693258,
+            "l2_diff": 98.50220418344102,
+            "rel_l2": 0.21517919820011475
+          },
+          "center": {
+            "max_abs_diff": 55.10331256009883,
+            "rel_max": 0.4199711719973843,
+            "l2_diff": 1.4013893108114375,
+            "rel_l2": 0.05425272265161547
+          },
+          "bulk": {
+            "max_abs_diff": 316.38956470096537,
+            "rel_max": 0.2475933391693258,
+            "l2_diff": 98.09442973142944,
+            "rel_l2": 0.2267258065225582
+          },
+          "edge": {
+            "max_abs_diff": 105.82285113079342,
+            "rel_max": 0.10082589339823028,
+            "l2_diff": 8.491163052866233,
+            "rel_l2": 0.057786352925873856
+          }
+        },
+        "Phi0": {
+          "display_name": "Phi0",
+          "x_at_max_abs_diff": 0.9395666666666667,
+          "location_class": "interior",
+          "full": {
+            "max_abs_diff": 28.35282758748147,
+            "rel_max": 0.09497101663211081,
+            "l2_diff": 8.02131184683411,
+            "rel_l2": 0.037537637781633854
+          },
+          "center": {
+            "max_abs_diff": 0.6855129383860189,
+            "rel_max": 0.007867973313386147,
+            "l2_diff": 0.0530492214488841,
+            "rel_l2": 0.002713913081746742
+          },
+          "bulk": {
+            "max_abs_diff": 28.35282758748147,
+            "rel_max": 0.09497101663211081,
+            "l2_diff": 6.953059324224599,
+            "rel_l2": 0.03266035007777083
+          },
+          "edge": {
+            "max_abs_diff": 27.38852444074486,
+            "rel_max": 0.20548931290748448,
+            "l2_diff": 3.9338535417685643,
+            "rel_l2": 0.2173199804748798
+          }
+        },
+        "Phi0p": {
+          "display_name": "Phi0'",
+          "x_at_max_abs_diff": 1.0,
+          "location_class": "right_edge",
+          "full": {
+            "max_abs_diff": 2147.550026029571,
+            "rel_max": 0.39126393015378425,
+            "l2_diff": 399.7782784199332,
+            "rel_l2": 0.33253288604557063
+          },
+          "center": {
+            "max_abs_diff": 409.5464243048723,
+            "rel_max": 0.6015248439944955,
+            "l2_diff": 10.359717267969765,
+            "rel_l2": 0.04627035377845811
+          },
+          "bulk": {
+            "max_abs_diff": 1057.4933259609593,
+            "rel_max": 0.3369862127126625,
+            "l2_diff": 174.27170802981465,
+            "rel_l2": 0.24400741767602085
+          },
+          "edge": {
+            "max_abs_diff": 2147.550026029571,
+            "rel_max": 0.39126393015378425,
+            "l2_diff": 358.70525866510116,
+            "rel_l2": 0.37228549848406245
+          }
+        }
+      },
+      "overall": {
+        "mean_bulk_rel_l2": 0.15907725633591296,
+        "mean_edge_rel_l2": 0.20139567659373997,
+        "mean_center_rel_l2": 0.02623615273487816,
+        "max_bulk_rel_l2": 0.24400741767602085,
+        "clear_variables_at_threshold": [
+          "theta0",
+          "theta0p",
+          "Phi0p"
+        ],
+        "clear_variable_locations": {
+          "theta0": "right_edge",
+          "theta0p": "interior",
+          "Phi0p": "right_edge"
+        },
+        "clear_location_summary": "globally_mixed",
+        "dominant_location_class": "right_edge"
+      }
+    }
+  ],
+  "compared_loads_mpa": [
+    0.02,
+    0.05,
+    0.1,
+    0.25,
+    0.5,
+    0.75,
+    1.0,
+    1.5,
+    2.0,
+    3.0,
+    4.0,
+    4.2,
+    4.3,
+    4.3434
+  ],
+  "summary": {
+    "clear_threshold_bulk_rel_l2": 0.05,
+    "first_any_variable_clear_load_mpa": 2.0,
+    "first_overall_clear_load_mpa": 3.0,
+    "onset_summary": {
+      "q_mpa": 3.0,
+      "clear_variables_at_threshold": [
+        "theta0p",
+        "Phi0p"
+      ],
+      "clear_location_summary": "globally_mixed",
+      "dominant_location_class": "right_edge",
+      "peak_x_by_clear_variable": {
+        "theta0p": 0.8717833333333332,
+        "Phi0p": 1.0
+      }
+    },
+    "growth_label": "grows_with_load",
+    "overall_bulk_growth_ratio": 15.562282468691897,
+    "overall_bulk_pearson_vs_load": 0.9556742302059366,
+    "high_load_edge_to_center_ratio": 7.676265595374658,
+    "per_variable": {
+      "theta0": {
+        "first_clear_load_mpa": 4.0,
+        "high_load_bulk_rel_l2": 0.13291545106730204,
+        "growth_ratio": 1068.1725109991635
+      },
+      "theta0p": {
+        "first_clear_load_mpa": 3.0,
+        "high_load_bulk_rel_l2": 0.2267258065225582,
+        "growth_ratio": 11.739208340466899
+      },
+      "Phi0": {
+        "first_clear_load_mpa": null,
+        "high_load_bulk_rel_l2": 0.03266035007777083,
+        "growth_ratio": 149.35837859738965
+      },
+      "Phi0p": {
+        "first_clear_load_mpa": 2.0,
+        "high_load_bulk_rel_l2": 0.24400741767602085,
+        "growth_ratio": 11.492846423372084
+      }
+    },
+    "barrier_relevance": {
+      "label": "smooth_through_available_high_load_range",
+      "loads_considered_mpa": [
+        4.0,
+        4.2,
+        4.3,
+        4.3434
+      ],
+      "mean_bulk_rel_l2": [
+        0.10594265745180853,
+        0.12620755873551506,
+        0.14756351871544293,
+        0.15907725633591296
+      ],
+      "last_jump_ratio": 0.5532676293044415,
+      "dominant_locations": [
+        "right_edge",
+        "right_edge",
+        "right_edge",
+        "right_edge"
+      ]
+    }
+  },
+  "elapsed_seconds": 563.5172340000281
+}

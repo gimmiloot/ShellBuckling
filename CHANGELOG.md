@@ -1,4 +1,47 @@
-﻿# CHANGELOG
+# CHANGELOG
+
+## 2026-03-21 - Add pilot 17 corrected shallow-vs-non-shallow simple-support divergence sweep
+
+Affected files:
+- `proof_pilots/pilot_17_shallow_vs_nonshallow_simple_support_divergence/pilot_17_shallow_vs_nonshallow_simple_support_divergence.md`
+- `proof_pilots/pilot_17_shallow_vs_nonshallow_simple_support_divergence/comparison_problem_statement.md`
+- `proof_pilots/pilot_17_shallow_vs_nonshallow_simple_support_divergence/numerical_comparison.py`
+- `proof_pilots/pilot_17_shallow_vs_nonshallow_simple_support_divergence/term_attribution.py`
+- `proof_pilots/pilot_17_shallow_vs_nonshallow_simple_support_divergence/comparison_results.json`
+- `proof_pilots/pilot_17_shallow_vs_nonshallow_simple_support_divergence/comparison_cache.npz`
+- `proof_pilots/pilot_17_shallow_vs_nonshallow_simple_support_divergence/term_attribution_results.json`
+- `docs/theory/current_theory_verification_map.md`
+- `CHANGELOG.md`
+
+- Added a dedicated pilot-17 sweep that compares the active 6-state non-shallow simple-support branch against the new pilot-16 shallow simple-support comparator rather than the older BC-mismatched shallow path.
+- Ran the bounded corrected sweep from `0.02 MPa` to `4.3434 MPa` and recorded that the mismatch is small at low load, first becomes clearly visible in any variable at `2.0 MPa`, becomes clearly overall visible at `3.0 MPa`, and then grows with load.
+- Added a matching term-attribution pass showing that geometric hoop terms remain structurally large, while the growth of the corrected mismatch correlates most strongly with the `theta0` / `theta0'` trigonometric and cosine-factor corrections; the available high-load range stays smooth rather than showing a new barrier-localized qualitative jump.
+
+## 2026-03-21 - Add pilot 16 shallow simple-support comparator
+
+Affected files:
+- `proof_pilots/pilot_16_shallow_simple_support_comparator/pilot_16_shallow_simple_support_comparator.md`
+- `proof_pilots/pilot_16_shallow_simple_support_comparator/shallow_problem_statement.md`
+- `proof_pilots/pilot_16_shallow_simple_support_comparator/shallow_bc_derivation_check.py`
+- `proof_pilots/pilot_16_shallow_simple_support_comparator/shallow_simple_support_solver.py`
+- `CHANGELOG.md`
+
+- Added a dedicated pilot-16 shallow simple-support comparator instead of reusing the older shallow moving-clamp/sliding-clamp comparison path.
+- Recorded the compact repository-level shallow simple-support BC set `theta0(x0)=0`, `Phi0(x0)=0`, `Phi0(1)=0`, `theta0'(1)+nu*theta0(1)=0`, with the force BC exact under the live mapping and the moment BC derived from the shallow limit of the exact shell mapping.
+- Ran the structural BC derivation check and the new shallow simple-support continuation solver, which converged through the verification ladder up to `4.3434 MPa`.
+
+## 2026-03-21 - Add pilot 15 shallow BC equivalence audit
+
+Affected files:
+- `proof_pilots/pilot_15_shallow_bc_equivalence_audit/pilot_15_shallow_bc_equivalence_audit.md`
+- `proof_pilots/pilot_15_shallow_bc_equivalence_audit/bc_equivalence_audit.md`
+- `proof_pilots/pilot_15_shallow_bc_equivalence_audit/symbolic_bc_mapping_check.py`
+- `proof_pilots/pilot_15_shallow_bc_equivalence_audit/recommendation_note.md`
+- `CHANGELOG.md`
+
+- Added a dedicated pilot-15 audit to check whether the repository's current shallow comparison path uses BCs that are physically equivalent to the active 6-state non-shallow simple-support branch.
+- Recorded the exact live BC vectors from the shallow supporting path, the supporting 6-state non-shallow comparison path, and the active 6-state simple-support background path.
+- Added a structural mapping check showing that the shallow path aligns with the moving-clamp / sliding-clamp edge type through `varphi(1)=0`, not with the simple-support edge condition `M_s(1)=0`.
 
 ## 2026-03-21 - Add pilot 13 shallow-vs-non-shallow divergence source sweep and attribution
 
@@ -361,6 +404,8 @@ Affected files: `data/project_map.md`, `CHANGELOG.md`
 
 - Added `data/project_map.md` to classify the current checkout into active core, runnable tasks, supporting scripts, documentation, and non-source folders.
 - Recorded the present working direction as the mixed-weak path and noted that no dedicated archived source directory exists in this checkout.
+
+
 
 
 

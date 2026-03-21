@@ -369,6 +369,9 @@ not that every one of them is already article-level proven.
   `proof_pilots/pilot_12_high_load_branch_extension/pilot_12_high_load_branch_extension.md`;
   `proof_pilots/pilot_12_high_load_branch_extension/branch_consistency_check.md`;
   `proof_pilots/pilot_13_shallow_nonshallow_divergence_source/pilot_13_shallow_nonshallow_divergence_source.md`;
+  `proof_pilots/pilot_15_shallow_bc_equivalence_audit/bc_equivalence_audit.md`;
+  `proof_pilots/pilot_16_shallow_simple_support_comparator/shallow_problem_statement.md`;
+  `proof_pilots/pilot_17_shallow_vs_nonshallow_simple_support_divergence/pilot_17_shallow_vs_nonshallow_simple_support_divergence.md`;
   `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`.
 - Current status: `strategy only`
 - What counts as verification:
@@ -383,12 +386,16 @@ not that every one of them is already article-level proven.
   `maximum number of mesh nodes` with tiny BC residuals and strong right-edge
   concentration. This sharpens the current bottleneck from an unresolved
   `4.3433..4.3434 MPa` barrier to a reproducible `4.3434 MPa` anchor with the
-  first new ladder failure still at `4.3440 MPa`. Pilot 13 further shows that
-  the mapped shallow/non-shallow mismatch is already clearly visible from
-  `0.02 MPa`, remains predominantly right-edge localized overall, and the
-  explicit small-angle / radius corrections in the `theta0` and `theta0'` maps
-  stay tiny until much higher load, so the present high-load obstruction is not
-  well explained by a new barrier-localized non-shallow correction. The active
+  first new ladder failure still at `4.3440 MPa`. Pilot 15 then showed that
+  the old shallow comparison path was not BC-equivalent to simple support,
+  pilot 16 built the strongest currently justified shallow simple-support
+  comparator, and pilot 17 revisited the divergence sweep in that corrected BC
+  setting. In the corrected simple-support comparison, the mapped mismatch is
+  small at low load, first crosses the `0.05` bulk-rel-L2 threshold in any
+  variable at `2.0 MPa` (`Phi0'`), becomes clearly overall visible at
+  `3.0 MPa` (`theta0'` and `Phi0'`), grows with load, and remains smooth
+  through the available `4.3434 MPa` range with stable high-load right-edge
+  dominance rather than a new barrier-localized qualitative jump. The active
   mixed-weak scans still use the reduced 5-state `F_min` background.
 - Verification method:
   project-state analysis, numerical testbench.
@@ -398,7 +405,9 @@ not that every one of them is already article-level proven.
   keep the separate full 6-state simple-support background path, continue the
   staged bounded extension work above the reproducible `4.3434 MPa` anchor,
   focus on the numerically difficult `4.3440 MPa` step and its right-edge mesh
-  pressure, and only then consider any reconnection to the mixed-weak scans.
+  pressure, and use the pilot-16/pilot-17 BC-aligned shallow comparator for
+  future simple-support divergence checks before considering any reconnection to
+  the mixed-weak scans.
 
 ### V-ST2. Stabilize the background before promoting `q_cr`
 
