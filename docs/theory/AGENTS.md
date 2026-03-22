@@ -57,6 +57,7 @@ Requirements:
 - mathematically careful,
 - explicit about current status,
 - consistent with repository notation,
+- written and maintained in Russian for supervisor-facing use, while keeping notation and symbolic names unchanged,
 - not excessively long.
 
 Preferred section structure:

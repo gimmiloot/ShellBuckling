@@ -333,6 +333,7 @@ Maintain a compact article-style theory file for supervisor discussions:
 - purpose: present the current mixed-weak theory in a short, readable, discussion-oriented form
 - target reader: a mathematically informed reader who has not read the whole repository
 - target length: compact; do not let it turn into a derivation notebook
+- language: write and maintain this file in Russian for supervisor-facing discussions, while preserving notation, formulas, and claim-status distinctions
 
 Preferred contents:
 - problem statement

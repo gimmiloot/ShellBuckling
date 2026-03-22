@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 2026-03-22 - Translate supervisor theory note into Russian and make Russian maintenance explicit
+
+Affected files:
+- `docs/theory/current_mixed_weak_theory_note.tex`
+- `AGENTS.md`
+- `docs/theory/AGENTS.md`
+- `CHANGELOG.md`
+
+- Rewrote the supervisor-facing mixed-weak theory note into Russian while preserving the mathematics, notation, status distinctions, and the current repository-level caveats.
+- Kept the simple-support status aligned with the current repository record, including the separate 6-state background path, the reproducible `4.3434 MPa` anchor, the persistent `4.3440 MPa` staged failure, the mainly numerical right-edge-layer bottleneck reading, and the corrected shallow/non-shallow mismatch onset around `2..3 MPa` without a special ceiling-localized jump.
+- Made the AGENTS guidance explicit that `docs/theory/current_mixed_weak_theory_note.tex` should be written and maintained in Russian for supervisor-facing use, without changing notation, formulas, or claim-status semantics.
+
 ## 2026-03-21 - Add pilot 18 revised analytic barrier diagnosis and refresh theory-facing simple-support status
 
 Affected files:

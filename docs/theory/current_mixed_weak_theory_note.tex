@@ -1,8 +1,8 @@
 \documentclass[11pt,a4paper]{article}
 
-\usepackage[T1]{fontenc}
+\usepackage[T2A,T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage[english]{babel}
+\usepackage[english,russian]{babel}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage{geometry}
 \usepackage{booktabs}
@@ -11,8 +11,8 @@
 
 \geometry{margin=1in}
 
-\title{Current Mixed-Weak Theory Note}
-\author{ShellBuckling project}
+\title{Текущая записка по mixed-weak теории}
+\author{проект ShellBuckling}
 \date{\today}
 
 \begin{document}
@@ -20,99 +20,105 @@
 \maketitle
 
 \begin{abstract}
-This note records the current mixed-weak branch after the completed local
-proof pilots.
-Its role is discussion and synchronization, not full derivation.
-The emphasis is on the accepted working structure, the compact closed formulas
-now available at project level, the locally verified components, and the main
-open points that still prevent an article-level closed theorem.
+В этой записке фиксируется текущее состояние mixed-weak ветви после
+завершенных локальных проверочных пилотов.
+Ее назначение --- обсуждение и синхронизация, а не полное выведение.
+Основной акцент сделан на принятой рабочей структуре, компактных замкнутых
+формулах, уже доступных на уровне репозитория, локально проверенных
+компонентах и ключевых открытых пунктах, которые пока не позволяют получить
+замкнутую теорему уровня статьи.
 \end{abstract}
 
-\section{Introduction}
-The current active direction of the project is the mixed-weak branch.
-It replaced the older reduced/full architecture after that route failed to give
-a qualitatively new and stable main criterion.
-The purpose of the present note is not to re-derive the shell theory from zero,
-but to give a compact supervisor-facing summary of the current project-level
-formulation that is actually being checked and used.
+\section{Введение}
+Текущим активным направлением проекта является mixed-weak ветвь.
+Она заменила прежнюю reduced/full архитектуру после того, как тот путь не дал
+качественно нового и устойчивого основного критерия.
+Цель настоящей записки не в том, чтобы заново выводить теорию оболочки с нуля,
+а в том, чтобы дать компактное, ориентированное на обсуждение с научным
+руководителем резюме той формулировки уровня репозитория, которая сейчас
+фактически проверяется и используется.
 
-\section{Problem statement}
-The project currently studies the linearized non-axisymmetric problem around
-a corrected axisymmetric prebuckling background, within the mixed-weak branch
-and its present simple-support-oriented working boundary conditions.
-This note concerns the present verification boundary only:
+\section{Постановка задачи}
+В настоящее время в проекте рассматривается линеаризованная неосесимметричная
+задача в окрестности исправленного осесимметричного докритического фона,
+в рамках mixed-weak ветви и ее текущих рабочих граничных условий,
+ориентированных на simple support.
+Настоящая записка относится только к текущей границе верификации:
 \begin{itemize}[leftmargin=2em]
-    \item the active mixed-weak operator class,
-    \item the current boundary-pair logic,
-    \item the present center-regular mode construction,
-    \item the current mixed boundary matrix $B_{\mathrm{mix}}$,
-    \item the current working spectral indicator $\sigma_{\min}(B_{\mathrm{mix}})$.
+    \item активному классу mixed-weak операторов,
+    \item текущей логике сопряженных граничных пар,
+    \item текущему построению регулярных в центре мод,
+    \item текущей смешанной граничной матрице $B_{\mathrm{mix}}$,
+    \item текущему рабочему спектральному индикатору
+    $\sigma_{\min}(B_{\mathrm{mix}})$.
 \end{itemize}
-It is not a final theorem for the full closed shell BVP and it does not certify
-a final physical simple-support critical load.
+Это не является окончательной теоремой для полной замкнутой краевой задачи
+оболочки и не удостоверяет окончательную физическую критическую нагрузку для
+simple-support постановки.
 
-\paragraph{Boundary-condition scope.}
-Three boundary-condition layers should not be conflated.
-The current scan code still reuses an older axisymmetric $F_{\min}$ background
-line, i.e. the line that currently plays the moving-clamp / sliding-clamp side
-of the repository comparison, with right-edge conditions
+\paragraph{Область граничных условий.}
+Не следует смешивать три разных слоя граничных условий.
+Текущий код сканирования по-прежнему использует более старую осесимметричную фоновую
+линию $F_{\min}$, то есть линию, которая сейчас играет в репозитории роль
+moving-clamp / sliding-clamp стороны сравнения, с правыми краевыми условиями
 $T_{s0}(1)=0$, $\varphi_0(1)=0$.
-The mixed-weak critical testbench discussed in this note uses the right-boundary
-logic $u_n(1)=0$, $\varphi(1)=0$ with natural conditions
+Обсуждаемый в этой записке mixed-weak тестовый стенд для критичности использует
+на правой границе логику $u_n(1)=0$, $\varphi(1)=0$ с естественными условиями
 $T_s(1)=0$, $S(1)=0$, $H(1)=0$.
-The separate full simple-support axisymmetric candidate uses
-$T_s(1)=0$, $M_s(1)=0$, $u_z(1)=0$ and now has a separate active 6-state
-background path with state $(T_s,T_{sn},M_s,u_r,u_z,\varphi)$.
-That path is still not connected to the active mixed-weak scans, but it now has
-a reproducible anchor at $4.3434\,\mathrm{MPa}$ and a first persistent staged
-failure at $4.3440\,\mathrm{MPa}$.
-The failure pattern remains mainly numerical: BC residuals stay tiny, nodes pile
-up strongly near $x=1$, and the strongest gradients are dominated by $u_z$ with
-a smaller $\varphi$ shoulder.
-Pilot 15 showed that the older shallow comparator was BC-mismatched for this
-simple-support task, pilot 16 built the strongest current shallow
-simple-support comparator, and pilot 17 showed that in the corrected
-BC-aligned comparison the shallow/non-shallow mismatch becomes clearly visible
-around $2\ldots 3\,\mathrm{MPa}$, grows with load, and stays smooth through the
-available high-load range.
-So the present $4.3434\ldots 4.3440\,\mathrm{MPa}$ barrier is not currently
-explained by a sudden shallow/non-shallow split at the ceiling.
-The revised analytic diagnosis now points more toward a stiff right-edge layer
-on an already measurably non-shallow branch than toward a detected near-fold,
-but this remains heuristic and does not close the final shell problem.
-The current mixed-weak scan programs should therefore still be read as
-exploratory testbench variants rather than as a final fully separated
-simple-support solver.
+Отдельный полный осесимметричный simple-support-кандидат использует
+$T_s(1)=0$, $M_s(1)=0$, $u_z(1)=0$ и теперь имеет отдельную активную
+6-компонентную фоновую ветвь с состоянием $(T_s,T_{sn},M_s,u_r,u_z,\varphi)$.
+Этот путь по-прежнему не соединен с активными mixed-weak сканированиями, однако теперь
+имеет воспроизводимую опорную точку при $4.3434\,\mathrm{MPa}$ и первый
+устойчиво воспроизводящийся поэтапный отказ при $4.3440\,\mathrm{MPa}$.
+Картина отказа остается в основном численной: невязки BC остаются малыми,
+узлы сильно сгущаются около $x=1$, а наиболее сильные градиенты определяются
+$u_z$ с меньшим плечом по $\varphi$.
+Pilot 15 показал, что старый shallow-компаратор имел несогласование по BC для
+этой simple-support задачи, pilot 16 построил наиболее сильный на данный
+момент shallow simple-support компаратор, а pilot 17 показал, что в
+исправленном сравнении, согласованном по BC, расхождение shallow/non-shallow становится отчетливо
+видимым уже около $2\ldots 3\,\mathrm{MPa}$, растет с нагрузкой и остается
+гладким во всем доступном высоконагруженном диапазоне.
+Следовательно, текущий барьер $4.3434\ldots 4.3440\,\mathrm{MPa}$ сейчас не
+объясняется внезапным расщеплением shallow/non-shallow у верхней границы.
+Обновленный аналитический диагноз в большей степени указывает на жесткий
+правокраевой слой на ветви, которая уже заметно является non-shallow, чем на
+обнаруженный почти-fold, однако это остается эвристикой и не замыкает
+окончательную краевую задачу оболочки.
+Поэтому текущие mixed-weak программы сканирования по-прежнему следует читать как
+исследовательские тестовые варианты, а не как окончательный полностью
+отделенный решатель simple-support задачи.
 
-\section{Unknowns and Mixed-Weak Structure}
-\paragraph{Accepted working structure.}
-The retained working base of the branch is the corrected kinematics together
-with the corrected circumferential bending block already fixed in the main
-theory notebook.
-The active mixed-weak unknown/resultant blocks are
+\section{Неизвестные и mixed-weak структура}
+\paragraph{Принятая рабочая структура.}
+Сохраняемой рабочей базой ветви являются исправленная кинематика вместе с
+исправленным окружным изгибным блоком, уже зафиксированным в основном
+теоретическом файле.
+Активные mixed-weak блоки неизвестных и результант имеют вид
 \[
 U = (u_s, u_n, v, \varphi, \psi),
 \qquad
 P = (T_s, T_\theta, S, Q_s, M_s, M_\theta, H, \chi).
 \]
-In the current implementation the primary coefficient vector is realized through
+В текущей реализации первичный вектор коэффициентов задается как
 \[
 (u_s, u_n, v, \varphi, \psi, T_s, Q_s, M_s),
 \]
-while $T_\theta$, $S$, $M_\theta$, $H$, and $\chi$ are reconstructed
-algebraically from those primary fields and the axisymmetric background.
+тогда как $T_\theta$, $S$, $M_\theta$, $H$ и $\chi$ восстанавливаются
+алгебраически из этих первичных полей и осесимметричного фона.
 
-A central feature of the branch is the presence of two independent
-circumferential channels,
+Центральной особенностью ветви является наличие двух независимых окружных
+каналов,
 \[
 (v,S), \qquad (\psi,H,\chi),
 \]
-which are treated as genuine parts of the operator class rather than as
-redundant consequences of an older closure logic.
-Pilot 02 closes this separation locally at the level of the current formulas and
-abstract witness logic.
+которые рассматриваются как подлинные части класса операторов, а не как
+избыточные следствия более старой логики замыкания.
+Pilot 02 локально замыкает это разделение на уровне текущих формул и
+абстрактной логики-свидетеля.
 
-The current basic kinematic measures retained in the theory file are
+Текущие базовые кинематические меры, сохраняемые в теоретическом файле, таковы:
 \[
 \varepsilon_s(U) = u_s' - \kappa_{s0}u_n,
 \qquad
@@ -125,24 +131,25 @@ g_n(U) = u_n' + \lambda_{s0}\varphi - \kappa_{s0}u_s,
 \qquad
 \kappa_s(U) = \varphi'.
 \]
-Here $c_0=\cos\varphi_0$, $s_0=\sin\varphi_0$,
+Здесь $c_0=\cos\varphi_0$, $s_0=\sin\varphi_0$,
 $\lambda_{s0}=1+e_{s0}$, $\lambda_{\theta0}=r_0/x$,
-and $\kappa_{s0}=\varphi_0'$ are background quantities.
+а $\kappa_{s0}=\varphi_0'$ являются фоновыми величинами.
 
-\section{Current System and Clarified Formulas}
-The active mixed-weak operator is summarized at project level through
+\section{Текущая система и уточненные формулы}
+Активный mixed-weak оператор на уровне репозитория суммируется в виде
 \[
 A_n(X, \widehat X; q)
  = K_n(X, \widehat X) - G_{\mathrm{ps},n}(X, \widehat X; q)
    + B_{\mathrm{partial},n}(X, \widehat X) = 0,
 \qquad X=(U,P).
 \]
-This is the current working statement of the operator form.
-The full article-level derivation of each term is still open, but the branch is
-no longer described as a single scalar prestress potential $G(U)$.
+Это текущее рабочее утверждение об операторной форме.
+Полное выведение каждого слагаемого на уровне статьи все еще остается
+открытым, однако ветвь больше не описывается как единый скалярный потенциал
+преднапряжения $G(U)$.
 
-\subsection{Algebraic Mixed-Weak Reconstructions}
-The current implementation uses the following algebraic reconstructions:
+\subsection{Алгебраические mixed-weak реконструкции}
+Текущая реализация использует следующие алгебраические реконструкции:
 \[
 r = c_0u_s+s_0u_n,
 \qquad
@@ -159,11 +166,12 @@ H = \frac{\psi' - a_0\psi - b_s\varphi}{C_{\mathrm{twist}}},
 \qquad
 \chi = \frac{b_\theta M_\theta - H' - 2a_0H}{\lambda_{\theta0}}.
 \]
-These relations are the basis of the current channel split checked in pilot 02.
+Эти соотношения лежат в основе текущего разделения каналов, проверенного в
+pilot 02.
 
-\subsection{Current Closed Statement of the Prestress/Load Block}
-The strongest project-level closed statement currently available for the active
-prestress/load block is
+\subsection{Текущее замкнутое утверждение для блока преднапряжения/нагрузки}
+Наиболее сильное из доступных сейчас на уровне репозитория замкнутое
+утверждение для активного блока преднапряжения/нагрузки имеет вид
 \[
 G_{\mathrm{ps},n}^{\mathrm{repo}}(X,\widehat X;q)
 := \int_{x_0}^1
@@ -172,11 +180,11 @@ G_{\mathrm{ps},n}^{\mathrm{repo}}(X,\widehat X;q)
      + \widehat M_s\, g_m^{\mathrm{repo}}(X;q)
 \bigr)\,dx,
 \]
-with overall sign fixed only through
+при этом общий знак фиксируется только через
 \[
 A_n = K_n - G_{\mathrm{ps},n} + B_{\mathrm{partial},n}.
 \]
-The current trial-side forcing terms are
+Текущие форсирующие члены на пробной стороне задаются так:
 \[
 r(X)=c_0u_s+s_0u_n,
 \qquad
@@ -199,39 +207,39 @@ g_n^{\mathrm{repo}}(X;q)
 \[
 g_m^{\mathrm{repo}}(X;q) = \frac{M_\theta^0}{r_0}r_x(X).
 \]
-In the current implementation, $T_{sn}^0$ is stored as the background quantity $Q_0$.
-This closed statement is now available at project level, but it is still not
-the final article-level full formula for all of $G_{\mathrm{ps}}$.
+В текущей реализации $T_{sn}^0$ хранится как фоновая величина $Q_0$.
+Это замкнутое утверждение теперь доступно на уровне репозитория, однако оно
+все еще не является окончательной полной формулой уровня статьи для всего
+$G_{\mathrm{ps}}$.
 
-\paragraph{Status.}
-Pilots 06 and 06b clarify this block locally.
-They show that the active forcing block is bilinear in the current mixed
-trial/test slots and does not collapse to a scalar closure in $U$ alone, while
-leaving the full article-level derivation open.
+\paragraph{Статус.}
+Pilots 06 и 06b локально уточняют этот блок.
+Они показывают, что активный форсирующий блок билинеен по текущим смешанным
+пробному и тестовому слотам и не сводится к скалярному замыканию только по $U$, при том
+что полное выведение уровня статьи остается открытым.
 
-\section{Boundary Conditions and Conjugate Pairs}
-The current right-boundary conjugate pairs are
+\section{Граничные условия и сопряженные пары}
+Текущие сопряженные пары на правой границе имеют вид
 \[
 (T_s,u_s), \qquad (Q_s,u_n), \qquad (S,v), \qquad (M_s,\varphi), \qquad (H,\psi).
 \]
-For the present mixed-weak working boundary setting the essential conditions are
+Для текущей mixed-weak рабочей постановки на границе существенные условия таковы:
 \[
 u_n(1)=0, \qquad \varphi(1)=0,
 \]
-with free right-boundary variations in $u_s(1)$, $v(1)$, and $\psi(1)$.
-The resulting natural conditions are therefore
+при свободных вариациях на правой границе по $u_s(1)$, $v(1)$ и $\psi(1)$.
+Отсюда следуют естественные условия
 \[
 T_s(1)=0, \qquad S(1)=0, \qquad H(1)=0.
 \]
 
-\paragraph{Status.}
-Pilot 01 proves this reduction locally at the boundary-pair level by CAS and
-Lean.
-This is a closed local step, but not yet a complete derivation of the whole weak
-form.
+\paragraph{Статус.}
+Pilot 01 доказывает это сокращение локально на уровне сопряженных граничных
+пар с помощью CAS и Lean.
+Это замкнутый локальный шаг, но еще не полное выведение всей слабой формы.
 
-\section{Current Criticality Criterion}
-The current center-regular scaling statement is
+\section{Текущий критерий критичности}
+Текущее утверждение о center-regular scaling имеет вид
 \[
 u_s,u_n,v = O(x^n),
 \qquad
@@ -242,118 +250,128 @@ T_s,S,T_\theta = O(x^{n-1}),
 \[
 Q_s,M_s,M_\theta,H,\chi = O(x^{n-2}).
 \]
-Within the present verification boundary the physical regular family at the center
-is treated as two-dimensional.
-The current construction realizes two center-regular modes by imposing
+В пределах текущей границы верификации физическое регулярное семейство в
+центре рассматривается как двумерное.
+Текущее построение реализует две регулярные в центре моды посредством наложения
 \[
 \frac{u_n}{x^n} + \frac{\lambda_c}{n}\frac{\varphi}{x^{n-1}} = 0,
 \qquad
 \frac{\psi}{x^{n-1}} - \lambda_c\frac{\varphi}{x^{n-1}} = 0,
 \]
-while normalizing one $u_s$-led mode and one $\varphi$-led mode.
-The mixed-weak boundary matrix is then formed as
+при нормировке одной моды, ведущей по $u_s$, и одной моды, ведущей по
+$\varphi$.
+После этого mixed-weak граничная матрица строится как
 \[
 B_{\mathrm{mix}} = B_{\mathrm{full}} V_{\mathrm{reg}},
 \]
-with $V_{\mathrm{reg}}$ built from those two center-regular modes rather than
-from raw surrogate kernel directions.
-The current working spectral criterion is
+где $V_{\mathrm{reg}}$ строится из этих двух регулярных в центре мод, а не из
+сырых суррогатных направлений ядра.
+Текущий рабочий спектральный критерий имеет вид
 \[
 \sigma_{\min}(B_{\mathrm{mix}}(q)) = 0.
 \]
 
-\paragraph{Status.}
-Pilot 03 tightens the current two-dimensional center-family claim within the
-reduced-center verification boundary.
-Pilot 04 checks that $B_{\mathrm{mix}}$ is built from the two center-regular
-modes.
-Pilot 05 checks that $\sigma_{\min}(B_{\mathrm{mix}})$ is numerically usable as
-the current working criterion in the current scan workflow.
-None of these pilots proves the final closed shell BVP or the final physical
-simple-support critical load.
+\paragraph{Статус.}
+Pilot 03 уточняет текущее утверждение о двумерном центральном регулярном
+семействе в пределах редуцированной центральной границы верификации.
+Pilot 04 проверяет, что $B_{\mathrm{mix}}$ строится из двух регулярных в центре
+мод.
+Pilot 05 проверяет, что $\sigma_{\min}(B_{\mathrm{mix}})$ численно пригоден
+как текущий рабочий критерий в действующей процедуре сканирования.
+Ни один из этих пилотов не доказывает окончательную замкнутую краевую задачу
+оболочки или окончательную физическую критическую нагрузку для
+simple-support постановки.
 
-\section{Solution Procedure}
-A compact description of the present workflow is:
+\section{Процедура решения}
+Компактное описание текущей процедуры таково:
 \begin{enumerate}[leftmargin=2em]
-    \item Compute the axisymmetric prebuckling background.
-    \item Build the current mixed-weak linearized operator and the reconstructed
-    auxiliary channels around that background.
-    \item Impose the center-regular constraints and construct the two active
-    regular modes.
-    \item Form $B_{\mathrm{mix}}$ from those two regular modes.
-    \item Scan the load parameter and monitor $\sigma_{\min}(B_{\mathrm{mix}})$.
-    \item Treat any resulting candidate load as exploratory unless the remaining
-    background and full-BVP consistency issues are also resolved.
+    \item Вычислить осесимметричный докритический фон.
+    \item Построить текущий mixed-weak линеаризованный оператор и
+    реконструированные вспомогательные каналы вокруг этого фона.
+    \item Наложить условия регулярности в центре и построить две активные
+    регулярные в центре моды.
+    \item Построить $B_{\mathrm{mix}}$ по этим двум регулярным в центре модам.
+    \item Просканировать параметр нагрузки и отслеживать
+    $\sigma_{\min}(B_{\mathrm{mix}})$.
+    \item Любую полученную кандидатную нагрузку трактовать как
+    исследовательскую, если также не разрешены оставшиеся вопросы
+    согласованности фона и полной краевой задачи.
 \end{enumerate}
 
-\section{Locally Verified Components and Still-Open Points}
-\subsection{Locally Verified Components}
-The current project now has the following pilot-backed local results.
+\section{Локально проверенные компоненты и все еще открытые пункты}
+\subsection{Локально проверенные компоненты}
+В текущем проекте имеются следующие локальные результаты, подкрепленные
+пилотами.
 \begin{itemize}[leftmargin=2em]
-    \item \textbf{Boundary conjugate pairs and current natural BC logic}
-    are locally closed by pilot 01.
-    \item \textbf{Independence of $(v,S)$ and $(\psi,H,\chi)$}, together with
-    the current formula-level split in $S$, $H$, and $\chi$, is locally closed
-    by pilot 02.
-    \item \textbf{Two-dimensional center-regular family} is partially
-    confirmed and tightened by pilot 03 within the reduced-center verification
-    boundary.
-    \item \textbf{The rule $B_{\mathrm{mix}} = B_{\mathrm{full}}V_{\mathrm{reg}}$}
-    is partially confirmed and tightened by pilot 04.
-    \item \textbf{$\sigma_{\min}(B_{\mathrm{mix}})=0$ as the current working
-    spectral criterion} is partially confirmed and tightened by pilot 05 for
-    the present exploratory scan workflow.
-    \item \textbf{The prestress/load block $G_{\mathrm{ps}}$} is clarified to a
-    project-level closed statement by pilots 06 and 06b, but remains only a
-    clarified-and-still-partial component rather than an article-level closed
-    theorem.
+    \item \textbf{Сопряженные граничные пары и текущая логика естественных
+    граничных условий} локально замкнуты в pilot 01.
+    \item \textbf{Независимость $(v,S)$ и $(\psi,H,\chi)$} вместе с текущим
+    разделением $S$, $H$ и $\chi$ на уровне формул локально замкнута в
+    pilot 02.
+    \item \textbf{Двумерное регулярное семейство в центре} частично
+    подтверждено и уточнено в pilot 03 в пределах редуцированной центральной
+    границы верификации.
+    \item \textbf{Правило $B_{\mathrm{mix}} = B_{\mathrm{full}}V_{\mathrm{reg}}$}
+    частично подтверждено и уточнено в pilot 04.
+    \item \textbf{$\sigma_{\min}(B_{\mathrm{mix}})=0$ как текущий рабочий
+    спектральный критерий} частично подтвержден и уточнен в pilot 05 для
+    текущей исследовательской процедуры сканирования.
+    \item \textbf{Блок преднапряжения/нагрузки $G_{\mathrm{ps}}$} уточнен до
+    замкнутого утверждения уровня репозитория в pilot 06 и 06b, но все еще
+    остается лишь уточненным, но частичным компонентом, а не замкнутой
+    теоремой уровня статьи.
 \end{itemize}
 
-\subsection{Still-Open Points}
-The main open points remain:
+\subsection{Все еще открытые пункты}
+Основными открытыми пунктами остаются:
 \begin{itemize}[leftmargin=2em]
-    \item a full article-level derivation of the complete mixed-weak weak form,
-    including the final full formula for $G_{\mathrm{ps}}$;
-    \item the final precise partition between $G_{\mathrm{ps}}$ and the other
-    background-dependent operator pieces;
-    \item a final closed mixed BVP beyond the present surrogate verification
-    boundary;
-    \item the axisymmetric simple-support background as the main unresolved
-    bottleneck for physical closure, with the current analytic reading favoring
-    a stiff right-edge layer rather than a proved fold or branch end;
-    \item final validation of candidate critical loads for the physical problem.
+    \item полное выведение всей слабой mixed-weak формы на уровне статьи,
+    включая окончательную полную формулу для $G_{\mathrm{ps}}$;
+    \item окончательное точное разделение между $G_{\mathrm{ps}}$ и другими
+    частями оператора, зависящими от фона;
+    \item окончательная замкнутая смешанная краевая задача за пределами
+    текущей суррогатной границы верификации;
+    \item осесимметричный simple-support фон как главное пока не разрешенное
+    узкое место для физического замыкания, причем текущее аналитическое
+    прочтение скорее указывает на жесткий правокраевой слой, чем на
+    доказанный fold или конец ветви;
+    \item окончательная валидация кандидатных критических нагрузок для
+    физической задачи.
 \end{itemize}
-At present the leading exploratory mixed-weak candidate remains near
-$n=13$ with $q\approx 3.79\ldots 3.80\,\mathrm{MPa}$, with a nearby
-$n=14$ competitor near $4.28\,\mathrm{MPa}$, but these values must still be
-read as exploratory rather than final.
+В настоящий момент ведущий исследовательский mixed-weak кандидат по-прежнему
+находится около $n=13$ с $q\approx 3.79\ldots 3.80\,\mathrm{MPa}$, а близкий
+конкурент с $n=14$ находится около $4.28\,\mathrm{MPa}$, однако эти значения
+все еще должны рассматриваться как исследовательские, а не как окончательные.
 
-\section{Conclusion}
-The current mixed-weak branch now has a coherent project-level structure:
-active unknown/resultant blocks, verified boundary-pair logic, structurally
-independent circumferential channels, a project-level closed statement of the
-prestress/load block, a two-mode center-regular construction, a boundary matrix
-built from those regular modes, and a working spectral criterion based on
+\section{Заключение}
+Текущая mixed-weak ветвь теперь обладает согласованной структурой уровня
+репозитория: активными блоками неизвестных и результант, проверенной логикой
+сопряженных граничных пар, структурно независимыми окружными каналами,
+замкнутым утверждением уровня репозитория для блока преднапряжения/нагрузки,
+двухмодовым построением регулярных в центре решений, граничной матрицей,
+построенной из этих мод, и рабочим спектральным критерием на основе
 $\sigma_{\min}(B_{\mathrm{mix}})$.
-At the same time, the project still does not claim a final closed shell theorem,
-a final closed mixed BVP, or a final physical simple-support critical load.
-The purpose of this note is to keep that mixed state explicit and discussion-ready.
+При этом проект по-прежнему не заявляет ни окончательной замкнутой теоремы
+для оболочки, ни окончательной замкнутой смешанной краевой задачи, ни окончательной
+физической критической нагрузки для simple-support постановки.
+Назначение этой записки --- явно и в удобной для обсуждения форме удерживать
+это смешанное состояние.
 
 \appendix
 
-\section{Minimal Notation Table}
+\section{Минимальная таблица обозначений}
 \begin{tabular}{ll}
 \toprule
-Symbol & Meaning \\
+Обозначение & Смысл \\
 \midrule
-$U$ & primary kinematic block $(u_s,u_n,v,\varphi,\psi)$ \\
-$P$ & mixed resultants $(T_s,T_\theta,S,Q_s,M_s,M_\theta,H,\chi)$ \\
-$(v,S)$ & membrane circumferential channel \\
-$(\psi,H,\chi)$ & twist/shear circumferential channel \\
-$G_{\mathrm{ps}}$ & prestress/load bilinear block of the mixed-weak branch \\
-$V_{\mathrm{reg}}$ & two-column center-regular mode matrix \\
-$B_{\mathrm{mix}}$ & mixed-weak boundary matrix \\
-$\sigma_{\min}$ & smallest singular value used in the current criterion \\
+$U$ & первичный кинематический блок $(u_s,u_n,v,\varphi,\psi)$ \\
+$P$ & смешанные результанты $(T_s,T_\theta,S,Q_s,M_s,M_\theta,H,\chi)$ \\
+$(v,S)$ & мембранный окружной канал \\
+$(\psi,H,\chi)$ & окружной канал кручения/сдвига \\
+$G_{\mathrm{ps}}$ & билинейный блок преднапряжения/нагрузки mixed-weak ветви \\
+$V_{\mathrm{reg}}$ & двухколоночная матрица регулярных в центре мод \\
+$B_{\mathrm{mix}}$ & mixed-weak граничная матрица \\
+$\sigma_{\min}$ & наименьшее сингулярное значение, используемое в текущем критерии \\
 \bottomrule
 \end{tabular}
 
