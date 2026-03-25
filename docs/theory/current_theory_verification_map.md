@@ -377,6 +377,9 @@ not that every one of them is already article-level proven.
   `proof_pilots/pilot_18_revised_analytic_barrier_diagnosis/jacobian_conditioning_check.py`;
   `proof_pilots/pilot_18_revised_analytic_barrier_diagnosis/term_balance_check.py`;
   `proof_pilots/pilot_19_edge_stretched_simple_support_continuation/comparison_note.md`;
+  `proof_pilots/pilot_20_method_sweep_for_simple_support_ceiling/pilot_20_method_sweep_for_simple_support_ceiling.md`;
+  `proof_pilots/pilot_20_method_sweep_for_simple_support_ceiling/method_comparison_table.md`;
+  `proof_pilots/pilot_20_method_sweep_for_simple_support_ceiling/method_sweep.py`;
   `docs/theory/current_simple_support_status.md`;
   `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`.
 - Current status: `strategy only`
@@ -385,46 +388,46 @@ not that every one of them is already article-level proven.
   `docs/theory/current_simple_support_status.md`.
 - What counts as verification:
   not a theorem; it is supported only insofar as current evidence points to the
-  background as the dominant unresolved node, now sharpened by the fact that a
-  separate active full-state simple-support background path exists, its live
-  6-state BC function matches the intended simple-support BC set, its active
-  equations match the supporting 6-state non-shallow block, and a dedicated
-  local branch-following / staged rescue workflow now makes `4.3434 MPa`
-  reproducible on the same `secant_profile_mesh` strategy, while the next
-  staged ladder step `4.3440 MPa` still fails for every tried seed by
-  `maximum number of mesh nodes` with tiny BC residuals and strong right-edge
-  concentration. This sharpens the current bottleneck from an unresolved
-  `4.3433..4.3434 MPa` barrier to a reproducible `4.3434 MPa` anchor with the
-  first new ladder failure still at `4.3440 MPa`. Pilot 15 then showed that
-  the old shallow comparison path was not BC-equivalent to simple support,
-  pilot 16 built the strongest currently justified shallow simple-support
-  comparator, and pilot 17 revisited the divergence sweep in that corrected BC
-  setting. In the corrected simple-support comparison, the mapped mismatch is
-  small at low load, first crosses the `0.05` bulk-rel-L2 threshold in any
-  variable at `2.0 MPa` (`Phi0'`), becomes clearly overall visible at
-  `3.0 MPa` (`theta0'` and `Phi0'`), grows with load, and remains smooth
-  through the available `4.3434 MPa` range with stable high-load right-edge
-  dominance rather than a new barrier-localized qualitative jump. Pilot 18 adds
-  a revised analytic diagnosis: a coarse discretized BVP Jacobian in the
-  `4.3400..4.3434 MPa` band remains severely ill-conditioned but shows no
-  collapsing near-zero-singular-value trend, while the right-edge term balance
-  stays smooth and is dominated by the geometric hoop term `u_r/x` inside
-  `T_theta`, by the `T_sn -> M_s -> varphi` coupling chain, and by a large
-  `u_z` response with only moderate trig-gap corrections. This sharpens the
-  current reading toward a stiff right-edge layer on an already non-shallow
-  branch rather than a detected near-fold, while remaining strategy only. The
-  active mixed-weak scans still use the reduced 5-state `F_min` background.
+  background as the dominant unresolved node. A separate active full-state
+  simple-support background path exists, its live 6-state BC function matches
+  the intended simple-support BC set, and its active equations match the
+  supporting 6-state non-shallow block. On the old single-domain rescue-local
+  workflow, `4.3434 MPa` remains reproducible while `4.3440 MPa` remains the
+  first persistent failure with tiny BC residuals and strong right-edge
+  concentration. Pilot 15 then showed that the old shallow comparison path was
+  not BC-equivalent to simple support, pilot 16 built the strongest currently
+  justified shallow simple-support comparator, and pilot 17 revisited the
+  divergence sweep in that corrected BC setting. In the corrected simple-support
+  comparison, the mapped mismatch is small at low load, first crosses the
+  `0.05` bulk-rel-L2 threshold in any variable at `2.0 MPa` (`Phi0'`), becomes
+  clearly overall visible at `3.0 MPa` (`theta0'` and `Phi0'`), grows with
+  load, and remains smooth through the available high-load range rather than as
+  a new barrier-localized qualitative jump. Pilot 18 adds a revised analytic
+  diagnosis: a coarse discretized BVP Jacobian in the `4.3400..4.3434 MPa` band
+  remains severely ill-conditioned but shows no collapsing near-zero-singular-
+  value trend, while the right-edge term balance stays smooth and is dominated
+  by the geometric hoop term `u_r/x` inside `T_theta`, by the `T_sn -> M_s ->
+  varphi` coupling chain, and by a large `u_z` response with only moderate
+  trig-gap corrections. Pilot 19 then shows that simple edge-focused mesh
+  changes alone do not move the ceiling materially. Pilot 20 sharpens the
+  numerical reading further: predictor-only and pseudo-arclength-like changes
+  help only modestly, while an equation-preserving state-representation change
+  (`u_z`-scaled solve) moves the bounded ceiling to `4.3520 MPa` without a
+  bounded failure being hit in the packaged ladder. This keeps the bottleneck on
+  the numerical side, but now more as formulation / conditioning sensitivity
+  than as a simple raw-mesh limit. The active mixed-weak scans still use the
+  reduced 5-state `F_min` background.
 - Verification method:
   project-state analysis, numerical testbench.
 - Verification boundary:
   not a theorem, only a current research strategy.
 - Next action:
-  keep the separate full 6-state simple-support background path, continue the
-  staged bounded extension work above the reproducible `4.3434 MPa` anchor,
-  focus on the numerically difficult `4.3440 MPa` step and its right-edge mesh
-  pressure, and use the pilot-16/pilot-17 BC-aligned shallow comparator plus
-  the pilot-18 edge-layer diagnosis as guidance before considering any
-  reconnection to the mixed-weak scans.
+  keep the separate full 6-state simple-support background path, prioritize the
+  pilot-20 `u_z`-scaled continuation path, treat the arc-like surrogate only as
+  a lower-priority backup, stop spending time on simple edge-mesh concentration
+  alone, and use the pilot-16/pilot-17 BC-aligned shallow comparator plus the
+  pilot-18 diagnosis before considering any reconnection to the mixed-weak
+  scans.
 
 ### V-ST2. Stabilize the background before promoting `q_cr`
 

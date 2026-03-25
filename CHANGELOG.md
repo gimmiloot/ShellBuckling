@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 2026-03-25 - Add pilot 20 simple-support method sweep and update ceiling status
+
+Affected files:
+- `proof_pilots/pilot_20_method_sweep_for_simple_support_ceiling/pilot_20_method_sweep_for_simple_support_ceiling.md`
+- `proof_pilots/pilot_20_method_sweep_for_simple_support_ceiling/method_sweep.py`
+- `proof_pilots/pilot_20_method_sweep_for_simple_support_ceiling/method_sweep_results.json`
+- `proof_pilots/pilot_20_method_sweep_for_simple_support_ceiling/method_comparison_table.md`
+- `docs/theory/current_simple_support_status.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/theory/current_mixed_weak_theory_note.tex`
+- `CHANGELOG.md`
+
+- Added a bounded pilot-20 method sweep that keeps the active 6-state simple-support equations and BCs fixed while comparing the old continuation path, a stronger predictor bundle, an arc-like step-control surrogate, a `u_z`-scaled state representation, and a packaged bulk/right-edge domain-split prototype.
+- Ran the sweep and recorded that the old single-domain path still stops at the reproducible `4.3434 / 4.3440 MPa` ceiling/failure pair, while the best bounded packaged result comes from the unchanged-equation `u_z`-scaled solve, which reaches `4.3520 MPa` without a bounded failure being hit in the pilot-20 ladder.
+- Updated the canonical simple-support status and the compact theory / verification notes so they now reflect the sharper interpretation that the present ceiling remains mainly numerical but is more sensitive to formulation and conditioning than to simple right-edge mesh concentration alone.
+
 ## 2026-03-25 - Add canonical simple-support status page and conservative documentation deduplication
 
 Affected files:
