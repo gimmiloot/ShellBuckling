@@ -22,8 +22,9 @@ What the current checkout now has is:
 - an active mixed-weak scan path that is `simple-support`-oriented at the
   boundary-matrix level but still reuses the older `F_min` background;
 - a separate active full-state axisymmetric simple-support background path,
-  which is runnable and reaches `4.30 MPa` in the current implementation but
-  still fails near `4.33 MPa` and is not yet connected to the mixed-weak scans.
+  whose current operational state is tracked in
+  `docs/theory/current_simple_support_status.md`, and which is not yet
+  connected to the mixed-weak scans.
 
 ## Runnable Scripts by Task
 
@@ -131,9 +132,9 @@ Repository status:
   problem;
 - a separate active full-state background path now exists in
   `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`;
-- that path is runnable but not yet closed: in the current implementation it
-  reaches `4.30 MPa` and fails near `4.33 MPa`, and it is not yet connected to
-  the active mixed-weak scans.
+- that path is runnable but not yet closed; its current operational status
+  is tracked in `docs/theory/current_simple_support_status.md`, and it is not
+  yet connected to the active mixed-weak scans.
 
 ## Where the BCs Are Currently Stated
 
@@ -162,7 +163,7 @@ Before this audit, the project map called the active mixed-weak core the
 
 - the supporting moving-clamp/sliding-clamp axisymmetric comparison path,
 - the hybrid mixed-weak scan/testbench path,
-- the still-missing full simple-support background program.
+- the then-still-missing full simple-support background program.
 
 ### In `docs/theory/current_mixed_weak_theory_note.tex`
 
@@ -204,4 +205,7 @@ After the documentation updates linked to this audit, the intended reading is:
 - supporting axisymmetric comparison scripts -> moving-clamp / sliding-clamp side;
 - active mixed-weak scan scripts -> hybrid simple-support-oriented testbench,
   still using the older `F_min` background;
-- full `simple support` axisymmetric background task -> separate active full-state`r`n  background path now exists, but it is still only partially stabilized and is`r`n  not yet the background used by the active mixed-weak scans.
+- full `simple support` axisymmetric background task -> separate active full-state
+  background path now exists; its operational state is tracked in
+  `docs/theory/current_simple_support_status.md`, and it is still not yet the
+  background used by the active mixed-weak scans.

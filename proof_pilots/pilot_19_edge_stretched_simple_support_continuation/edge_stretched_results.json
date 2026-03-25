@@ -1,0 +1,1749 @@
+{
+  "metadata": {
+    "pilot": "pilot_19_edge_stretched_simple_support_continuation",
+    "baseline_source_json": "D:\\PHD\\ShellBuckling\\proof_pilots\\pilot_12_high_load_branch_extension\\extension_results.json",
+    "branch_cache_source_json": "D:\\PHD\\ShellBuckling\\proof_pilots\\pilot_18_revised_analytic_barrier_diagnosis\\branch_state_cache.json",
+    "anchor_loads_mpa": [
+      4.34,
+      4.343,
+      4.3432,
+      4.3434
+    ],
+    "first_stage_loads_mpa": [
+      4.344,
+      4.3445,
+      4.345
+    ],
+    "second_stage_loads_mpa": [
+      4.346,
+      4.3475
+    ],
+    "material_edge_shift_threshold_mpa": 4.3445,
+    "same_equations_as_active_6_state_path": true,
+    "same_simple_support_bcs": true,
+    "changes_only_numerical_representation_near_x1": true,
+    "budget_seconds": 1800.0
+  },
+  "baseline_old_path": {
+    "source": "pilot_12_high_load_branch_extension",
+    "highest_converged_q_mpa": 4.3434,
+    "first_failure_q_mpa": 4.344,
+    "highest_success": {
+      "q_mpa": 4.3434,
+      "nodes": 49081,
+      "max_rms": 0.001198787062539263,
+      "max_bc_residual": 3.517235645802308e-18,
+      "min_r": 0.0016666666666666668,
+      "node_pressure": 0.08180166666666666,
+      "right_edge_fraction_0_99": 0.8825614800024449,
+      "right_edge_fraction_0_995": 0.8025916342372812,
+      "right_edge_fraction_0_999": 0.20531366516574642,
+      "min_dx": 6.007392250317878e-09,
+      "min_dx_mid": 0.9999996185305913,
+      "top_gradients": [
+        {
+          "state": "u_z",
+          "max_abs_grad": 88.49668994828244,
+          "x_at_peak": 0.9996074740131179
+        },
+        {
+          "state": "varphi",
+          "max_abs_grad": 5.346828986104356,
+          "x_at_peak": 0.934342738407699
+        },
+        {
+          "state": "T_s",
+          "max_abs_grad": 3.1734975970951793,
+          "x_at_peak": 0.0016666666666666668
+        }
+      ],
+      "observables": {
+        "Ts_x0": 0.008281460325821942,
+        "Tsn_1": -0.001924155202806907,
+        "Ms_x0": 3.636003307966552e-06,
+        "ur_1": -0.050263281416830646,
+        "uz_x0": 20.40839158225187,
+        "phi_1": 1.0571151479625955,
+        "max_abs_phi": 1.0572979855551652,
+        "max_abs_Tsn": 0.001924155202806907
+      },
+      "accepted_profile": "rescue_local",
+      "accepted_seed": "secant_profile_mesh",
+      "predictor_rel_correction": 0.0006777537694849041,
+      "predictor_abs_correction": 0.013831864323995191,
+      "message": "The algorithm converged to the desired accuracy."
+    },
+    "first_failure": {
+      "q_mpa": 4.344,
+      "profile_name": "rescue_local",
+      "seed_label": "secant_profile_mesh",
+      "success": false,
+      "attempt_seconds": 58.86328140000114,
+      "message": "The maximum number of mesh nodes is exceeded.",
+      "nodes": 311944,
+      "max_nodes": 600000,
+      "max_rms": 0.001333246566558634,
+      "max_bc_residual": 7.500629368316599e-17,
+      "min_r": 0.0016666666666666668,
+      "node_pressure": 0.5199066666666666,
+      "right_edge_fraction_0_99": 0.9910080014361552,
+      "right_edge_fraction_0_995": 0.9823750416741467,
+      "right_edge_fraction_0_999": 0.5182628933398302,
+      "min_dx": 1.877309419029416e-10,
+      "min_dx_mid": 0.9999996158084917,
+      "top_gradients": [
+        {
+          "state": "u_z",
+          "max_abs_grad": 89.30164080904797,
+          "x_at_peak": 0.9996700862064436
+        },
+        {
+          "state": "varphi",
+          "max_abs_grad": 5.468357232707945,
+          "x_at_peak": 0.9346587926509187
+        },
+        {
+          "state": "T_s",
+          "max_abs_grad": 2.9147892685112984,
+          "x_at_peak": 0.0016666666666666668
+        }
+      ],
+      "observables": {
+        "Ts_x0": 0.008285267079608511,
+        "Tsn_1": -0.0019731091490626977,
+        "Ms_x0": 3.634810783429572e-06,
+        "ur_1": -0.05129066146028336,
+        "uz_x0": 20.50185255982888,
+        "phi_1": 1.0727260563304817,
+        "max_abs_phi": 1.0729078511649792,
+        "max_abs_Tsn": 0.0019731091490626977
+      },
+      "mesh_pressure_only": true,
+      "right_edge_layer_suspicion": true,
+      "branch_turning_suspicion": false,
+      "predictor_rel_correction": null,
+      "predictor_abs_correction": null
+    },
+    "bottleneck_summary": {
+      "failure_count": 5,
+      "mesh_pressure_failure_count": 5,
+      "right_edge_layer_failure_count": 5,
+      "turning_suspicion_count": 0,
+      "mesh_pressure_dominant": true,
+      "right_edge_layer_dominant": true,
+      "last_failure_messages": [
+        "The maximum number of mesh nodes is exceeded.",
+        "The maximum number of mesh nodes is exceeded.",
+        "The maximum number of mesh nodes is exceeded."
+      ]
+    },
+    "retest_4_3434_reproducible": true
+  },
+  "edge_aware_runs": [
+    {
+      "strategy": {
+        "name": "edge_power_tail",
+        "description": "Single power-stretched tail mesh with moderately stronger clustering near x=1 than the current rescue-local profile.",
+        "mesh_kind": "power_tail",
+        "config": {
+          "x0": 0.0016666666666666668,
+          "nd_bvp": 1150,
+          "tol": 0.00025,
+          "relaxed_tol": 0.0012,
+          "max_nodes": 600000,
+          "template_q_mpa": 0.5,
+          "right_edge_cluster_start": 0.978,
+          "right_edge_cluster_fraction": 0.72,
+          "right_edge_cluster_power": 2.6
+        }
+      },
+      "anchor_results": [
+        {
+          "q_mpa": 4.34,
+          "attempts": [
+            {
+              "q_mpa": 4.34,
+              "profile_name": "edge_power_tail",
+              "seed_label": "cached_branch_projection",
+              "success": true,
+              "attempt_seconds": 42.361254399991594,
+              "message": "The algorithm converged to the desired accuracy.",
+              "nodes": 1987,
+              "max_nodes": 600000,
+              "max_rms": 0.0010470099957439229,
+              "max_bc_residual": 1.005200451223627e-18,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.0033116666666666668,
+              "right_edge_fraction_0_99": 0.6129843985908404,
+              "right_edge_fraction_0_995": 0.46904881731253145,
+              "right_edge_fraction_0_999": 0.25163563160543534,
+              "min_dx": 5.71358071965733e-10,
+              "min_dx_mid": 0.999999999714321,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 88.61404028658126,
+                  "x_at_peak": 0.9996177597631414
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.363339002394042,
+                  "x_at_peak": 0.9356821465428277
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 2.8207523382394912,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008277888575171649,
+                "Tsn_1": -0.0019320580270617096,
+                "Ms_x0": 3.6347437606661842e-06,
+                "ur_1": -0.0504274396110888,
+                "uz_x0": 20.41990492002935,
+                "phi_1": 1.0596178357036843,
+                "max_abs_phi": 1.059800447855272,
+                "max_abs_Tsn": 0.0019320580270617096
+              },
+              "mesh_pressure_only": false,
+              "right_edge_layer_suspicion": true,
+              "branch_turning_suspicion": false,
+              "predictor_rel_correction": 0.002288024415344165,
+              "predictor_abs_correction": 0.04672124101603359
+            }
+          ],
+          "success": true
+        },
+        {
+          "q_mpa": 4.343,
+          "attempts": [
+            {
+              "q_mpa": 4.343,
+              "profile_name": "edge_power_tail",
+              "seed_label": "previous_anchor_solution",
+              "success": false,
+              "attempt_seconds": 81.77171200001612,
+              "message": "The maximum number of mesh nodes is exceeded.",
+              "nodes": 527152,
+              "max_nodes": 600000,
+              "max_rms": 0.0025965372689524756,
+              "max_bc_residual": 5.160691692251415e-17,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.8785866666666666,
+              "right_edge_fraction_0_99": 0.9106045315203205,
+              "right_edge_fraction_0_995": 0.8293433393025161,
+              "right_edge_fraction_0_999": 0.4852699031778311,
+              "min_dx": 1.1158851620507448e-12,
+              "min_dx_mid": 0.9999999994303159,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 86.01353222038597,
+                  "x_at_peak": 0.9994126644502981
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 4.971364157338485,
+                  "x_at_peak": 0.9334151186790505
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 2.818518146516545,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008271329070980762,
+                "Tsn_1": -0.0017723246958271965,
+                "Ms_x0": 3.6402442471442904e-06,
+                "ur_1": -0.04709856426892597,
+                "uz_x0": 20.123288402466525,
+                "phi_1": 1.009082796858655,
+                "max_abs_phi": 1.0092695316380644,
+                "max_abs_Tsn": 0.0017723246958271965
+              },
+              "mesh_pressure_only": true,
+              "right_edge_layer_suspicion": true,
+              "branch_turning_suspicion": false,
+              "predictor_rel_correction": null,
+              "predictor_abs_correction": null
+            },
+            {
+              "q_mpa": 4.343,
+              "profile_name": "edge_power_tail",
+              "seed_label": "cached_branch_projection",
+              "success": true,
+              "attempt_seconds": 44.344167400035076,
+              "message": "The algorithm converged to the desired accuracy.",
+              "nodes": 24110,
+              "max_nodes": 600000,
+              "max_rms": 0.0011940648967234358,
+              "max_bc_residual": 5.499214650777813e-18,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.040183333333333335,
+              "right_edge_fraction_0_99": 0.8105350476980506,
+              "right_edge_fraction_0_995": 0.6208627125673994,
+              "right_edge_fraction_0_999": 0.33434259643301534,
+              "min_dx": 1.7854939748929155e-11,
+              "min_dx_mid": 0.9999999994375695,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 88.81259356102964,
+                  "x_at_peak": 0.9996327407058948
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.391608208976152,
+                  "x_at_peak": 0.9356821465428277
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 3.290375911216685,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008282088230934107,
+                "Tsn_1": -0.0019435619222191688,
+                "Ms_x0": 3.6352756855159425e-06,
+                "ur_1": -0.050668439053439415,
+                "uz_x0": 20.444515077008734,
+                "phi_1": 1.0632676599340758,
+                "max_abs_phi": 1.0634500614702074,
+                "max_abs_Tsn": 0.0019435619222191686
+              },
+              "mesh_pressure_only": false,
+              "right_edge_layer_suspicion": true,
+              "branch_turning_suspicion": false,
+              "predictor_rel_correction": 0.0030806386263136187,
+              "predictor_abs_correction": 0.06298216284248426
+            }
+          ],
+          "success": true
+        },
+        {
+          "q_mpa": 4.3432,
+          "attempts": [
+            {
+              "q_mpa": 4.3432,
+              "profile_name": "edge_power_tail",
+              "seed_label": "previous_anchor_solution",
+              "success": true,
+              "attempt_seconds": 37.324951399932615,
+              "message": "The algorithm converged to the desired accuracy.",
+              "nodes": 24110,
+              "max_nodes": 600000,
+              "max_rms": 0.0011838877596898635,
+              "max_bc_residual": 6.3934593105195075e-18,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.040183333333333335,
+              "right_edge_fraction_0_99": 0.8105350476980506,
+              "right_edge_fraction_0_995": 0.6208627125673994,
+              "right_edge_fraction_0_999": 0.33434259643301534,
+              "min_dx": 1.7854939748929155e-11,
+              "min_dx_mid": 0.9999999994375695,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 88.49354983490775,
+                  "x_at_peak": 0.9996073169516585
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.342990065909021,
+                  "x_at_peak": 0.9356821465428277
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 3.289940516413219,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008280992166954588,
+                "Tsn_1": -0.0019240278957596113,
+                "Ms_x0": 3.635869075993561e-06,
+                "ur_1": -0.05026072913692364,
+                "uz_x0": 20.407900227007403,
+                "phi_1": 1.0570773549085937,
+                "max_abs_phi": 1.0572601910405566,
+                "max_abs_Tsn": 0.0019240278957596113
+              },
+              "mesh_pressure_only": false,
+              "right_edge_layer_suspicion": true,
+              "branch_turning_suspicion": false,
+              "predictor_rel_correction": 0.0018547923150928525,
+              "predictor_abs_correction": 0.03785241650823501
+            }
+          ],
+          "success": true
+        },
+        {
+          "q_mpa": 4.3434,
+          "attempts": [
+            {
+              "q_mpa": 4.3434,
+              "profile_name": "edge_power_tail",
+              "seed_label": "previous_anchor_solution",
+              "success": false,
+              "attempt_seconds": 80.38884360005613,
+              "message": "The maximum number of mesh nodes is exceeded.",
+              "nodes": 336992,
+              "max_nodes": 600000,
+              "max_rms": 0.001597490923334702,
+              "max_bc_residual": 2.6199212253137233e-17,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.5616533333333333,
+              "right_edge_fraction_0_99": 0.9531442882917102,
+              "right_edge_fraction_0_995": 0.8458509400816636,
+              "right_edge_fraction_0_999": 0.4375089022884816,
+              "min_dx": 2.788880237858393e-13,
+              "min_dx_mid": 0.9999999995741318,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 88.94073327281512,
+                  "x_at_peak": 0.9996421029354481
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.410833012653825,
+                  "x_at_peak": 0.9356821465428277
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 3.29076259832395,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008283061677234449,
+                "Tsn_1": -0.0019513178704851798,
+                "Ms_x0": 3.6351767023252144e-06,
+                "ur_1": -0.05083019220243912,
+                "uz_x0": 20.45946008990325,
+                "phi_1": 1.065721658705885,
+                "max_abs_phi": 1.0659038976153286,
+                "max_abs_Tsn": 0.0019513178704851798
+              },
+              "mesh_pressure_only": true,
+              "right_edge_layer_suspicion": true,
+              "branch_turning_suspicion": false,
+              "predictor_rel_correction": null,
+              "predictor_abs_correction": null
+            },
+            {
+              "q_mpa": 4.3434,
+              "profile_name": "edge_power_tail",
+              "seed_label": "cached_branch_projection",
+              "success": true,
+              "attempt_seconds": 44.131817399989814,
+              "message": "The algorithm converged to the desired accuracy.",
+              "nodes": 30793,
+              "max_nodes": 600000,
+              "max_rms": 0.0011883851633883607,
+              "max_bc_residual": 3.4625630750561446e-18,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.05132166666666667,
+              "right_edge_fraction_0_99": 0.9605754554606566,
+              "right_edge_fraction_0_995": 0.926216997369532,
+              "right_edge_fraction_0_999": 0.3029259896729776,
+              "min_dx": 7.141975899571662e-11,
+              "min_dx_mid": 0.9999999994643518,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 88.54480606642028,
+                  "x_at_peak": 0.9996112980083649
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.350696973900881,
+                  "x_at_peak": 0.9356821465428277
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 2.822042327983201,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008281675895704298,
+                "Tsn_1": -0.0019270463576208825,
+                "Ms_x0": 3.6359506264303447e-06,
+                "ur_1": -0.05032605907462422,
+                "uz_x0": 20.41420080496131,
+                "phi_1": 1.0580746516402133,
+                "max_abs_phi": 1.0582574267768836,
+                "max_abs_Tsn": 0.0019270463576208825
+              },
+              "mesh_pressure_only": false,
+              "right_edge_layer_suspicion": true,
+              "branch_turning_suspicion": false,
+              "predictor_rel_correction": 0.0002930046817588182,
+              "predictor_abs_correction": 0.0059814564102183
+            }
+          ],
+          "success": true
+        }
+      ],
+      "stages": [
+        {
+          "name": "first_stage",
+          "loads_mpa": [
+            4.344,
+            4.3445,
+            4.345
+          ],
+          "steps": [
+            {
+              "q_target_mpa": 4.344,
+              "attempts": [
+                {
+                  "q_mpa": 4.344,
+                  "profile_name": "edge_power_tail",
+                  "seed_label": "secant_predictor",
+                  "success": false,
+                  "attempt_seconds": 94.13922009989619,
+                  "message": "The maximum number of mesh nodes is exceeded.",
+                  "nodes": 486769,
+                  "max_nodes": 600000,
+                  "max_rms": 0.0016131710520986017,
+                  "max_bc_residual": 4.6226577901179485e-17,
+                  "min_r": 0.0016666666666666668,
+                  "node_pressure": 0.8112816666666667,
+                  "right_edge_fraction_0_99": 0.9722455620633196,
+                  "right_edge_fraction_0_995": 0.937450823696661,
+                  "right_edge_fraction_0_999": 0.30659512006721873,
+                  "min_dx": 4.463651670505442e-12,
+                  "min_dx_mid": 0.999999999444265,
+                  "top_gradients": [
+                    {
+                      "state": "u_z",
+                      "max_abs_grad": 87.25063985015731,
+                      "x_at_peak": 0.9995100649019673
+                    },
+                    {
+                      "state": "varphi",
+                      "max_abs_grad": 5.157341646995633,
+                      "x_at_peak": 0.9341707946336428
+                    },
+                    {
+                      "state": "T_s",
+                      "max_abs_grad": 2.820592606852391,
+                      "x_at_peak": 0.0016666666666666668
+                    }
+                  ],
+                  "observables": {
+                    "Ts_x0": 0.008277419591183955,
+                    "Tsn_1": -0.001847907814476391,
+                    "Ms_x0": 3.6383763002987737e-06,
+                    "ur_1": -0.04866874582340845,
+                    "uz_x0": 20.26513419927284,
+                    "phi_1": 1.0328962670220123,
+                    "max_abs_phi": 1.0330809430568764,
+                    "max_abs_Tsn": 0.001847907814476391
+                  },
+                  "mesh_pressure_only": true,
+                  "right_edge_layer_suspicion": true,
+                  "branch_turning_suspicion": false,
+                  "predictor_rel_correction": null,
+                  "predictor_abs_correction": null
+                },
+                {
+                  "q_mpa": 4.344,
+                  "profile_name": "edge_power_tail",
+                  "seed_label": "previous_solution",
+                  "success": false,
+                  "attempt_seconds": 92.17506889998913,
+                  "message": "The maximum number of mesh nodes is exceeded.",
+                  "nodes": 474612,
+                  "max_nodes": 600000,
+                  "max_rms": 0.001224575618985847,
+                  "max_bc_residual": 1.986557048810106e-17,
+                  "min_r": 0.0016666666666666668,
+                  "node_pressure": 0.79102,
+                  "right_edge_fraction_0_99": 0.9842566138235022,
+                  "right_edge_fraction_0_995": 0.9614632584089741,
+                  "right_edge_fraction_0_999": 0.3144484336679224,
+                  "min_dx": 4.463651670505442e-12,
+                  "min_dx_mid": 0.999999999444265,
+                  "top_gradients": [
+                    {
+                      "state": "u_z",
+                      "max_abs_grad": 88.58661370945629,
+                      "x_at_peak": 0.9996142632143119
+                    },
+                    {
+                      "state": "varphi",
+                      "max_abs_grad": 5.359464132786115,
+                      "x_at_peak": 0.9341707946336428
+                    },
+                    {
+                      "state": "T_s",
+                      "max_abs_grad": 2.822347313917172,
+                      "x_at_peak": 0.0016666666666666668
+                    }
+                  ],
+                  "observables": {
+                    "Ts_x0": 0.008282571324027847,
+                    "Tsn_1": -0.001929542983730396,
+                    "Ms_x0": 3.636056437758782e-06,
+                    "ur_1": -0.050375602700653985,
+                    "uz_x0": 20.41907409601333,
+                    "phi_1": 1.058817509128976,
+                    "max_abs_phi": 1.0590002333670936,
+                    "max_abs_Tsn": 0.001929542983730396
+                  },
+                  "mesh_pressure_only": true,
+                  "right_edge_layer_suspicion": true,
+                  "branch_turning_suspicion": false,
+                  "predictor_rel_correction": null,
+                  "predictor_abs_correction": null
+                },
+                {
+                  "q_mpa": 4.344,
+                  "profile_name": "edge_power_tail",
+                  "seed_label": "anchor_solution",
+                  "success": false,
+                  "attempt_seconds": 92.18378700001631,
+                  "message": "The maximum number of mesh nodes is exceeded.",
+                  "nodes": 474612,
+                  "max_nodes": 600000,
+                  "max_rms": 0.001224575618985847,
+                  "max_bc_residual": 1.986557048810106e-17,
+                  "min_r": 0.0016666666666666668,
+                  "node_pressure": 0.79102,
+                  "right_edge_fraction_0_99": 0.9842566138235022,
+                  "right_edge_fraction_0_995": 0.9614632584089741,
+                  "right_edge_fraction_0_999": 0.3144484336679224,
+                  "min_dx": 4.463651670505442e-12,
+                  "min_dx_mid": 0.999999999444265,
+                  "top_gradients": [
+                    {
+                      "state": "u_z",
+                      "max_abs_grad": 88.58661370945629,
+                      "x_at_peak": 0.9996142632143119
+                    },
+                    {
+                      "state": "varphi",
+                      "max_abs_grad": 5.359464132786115,
+                      "x_at_peak": 0.9341707946336428
+                    },
+                    {
+                      "state": "T_s",
+                      "max_abs_grad": 2.822347313917172,
+                      "x_at_peak": 0.0016666666666666668
+                    }
+                  ],
+                  "observables": {
+                    "Ts_x0": 0.008282571324027847,
+                    "Tsn_1": -0.001929542983730396,
+                    "Ms_x0": 3.636056437758782e-06,
+                    "ur_1": -0.050375602700653985,
+                    "uz_x0": 20.41907409601333,
+                    "phi_1": 1.058817509128976,
+                    "max_abs_phi": 1.0590002333670936,
+                    "max_abs_Tsn": 0.001929542983730396
+                  },
+                  "mesh_pressure_only": true,
+                  "right_edge_layer_suspicion": true,
+                  "branch_turning_suspicion": false,
+                  "predictor_rel_correction": null,
+                  "predictor_abs_correction": null
+                }
+              ],
+              "success": false,
+              "failure_representative": {
+                "q_mpa": 4.344,
+                "profile_name": "edge_power_tail",
+                "seed_label": "secant_predictor",
+                "success": false,
+                "attempt_seconds": 94.13922009989619,
+                "message": "The maximum number of mesh nodes is exceeded.",
+                "nodes": 486769,
+                "max_nodes": 600000,
+                "max_rms": 0.0016131710520986017,
+                "max_bc_residual": 4.6226577901179485e-17,
+                "min_r": 0.0016666666666666668,
+                "node_pressure": 0.8112816666666667,
+                "right_edge_fraction_0_99": 0.9722455620633196,
+                "right_edge_fraction_0_995": 0.937450823696661,
+                "right_edge_fraction_0_999": 0.30659512006721873,
+                "min_dx": 4.463651670505442e-12,
+                "min_dx_mid": 0.999999999444265,
+                "top_gradients": [
+                  {
+                    "state": "u_z",
+                    "max_abs_grad": 87.25063985015731,
+                    "x_at_peak": 0.9995100649019673
+                  },
+                  {
+                    "state": "varphi",
+                    "max_abs_grad": 5.157341646995633,
+                    "x_at_peak": 0.9341707946336428
+                  },
+                  {
+                    "state": "T_s",
+                    "max_abs_grad": 2.820592606852391,
+                    "x_at_peak": 0.0016666666666666668
+                  }
+                ],
+                "observables": {
+                  "Ts_x0": 0.008277419591183955,
+                  "Tsn_1": -0.001847907814476391,
+                  "Ms_x0": 3.6383763002987737e-06,
+                  "ur_1": -0.04866874582340845,
+                  "uz_x0": 20.26513419927284,
+                  "phi_1": 1.0328962670220123,
+                  "max_abs_phi": 1.0330809430568764,
+                  "max_abs_Tsn": 0.001847907814476391
+                },
+                "mesh_pressure_only": true,
+                "right_edge_layer_suspicion": true,
+                "branch_turning_suspicion": false,
+                "predictor_rel_correction": null,
+                "predictor_abs_correction": null
+              }
+            }
+          ],
+          "stopped_reason": "failure at 4.3440 MPa",
+          "first_failure_q_mpa": 4.344
+        }
+      ],
+      "highest_converged_q_mpa": 4.3434,
+      "first_failure_q_mpa": 4.344,
+      "highest_success": {
+        "q_mpa": 4.3434,
+        "nodes": 30793,
+        "max_rms": 0.0011883851633883607,
+        "max_bc_residual": 3.4625630750561446e-18,
+        "min_r": 0.0016666666666666668,
+        "node_pressure": 0.05132166666666667,
+        "right_edge_fraction_0_99": 0.9605754554606566,
+        "right_edge_fraction_0_995": 0.926216997369532,
+        "right_edge_fraction_0_999": 0.3029259896729776,
+        "min_dx": 7.141975899571662e-11,
+        "min_dx_mid": 0.9999999994643518,
+        "top_gradients": [
+          {
+            "state": "u_z",
+            "max_abs_grad": 88.54480606642028,
+            "x_at_peak": 0.9996112980083649
+          },
+          {
+            "state": "varphi",
+            "max_abs_grad": 5.350696973900881,
+            "x_at_peak": 0.9356821465428277
+          },
+          {
+            "state": "T_s",
+            "max_abs_grad": 2.822042327983201,
+            "x_at_peak": 0.0016666666666666668
+          }
+        ],
+        "observables": {
+          "Ts_x0": 0.008281675895704298,
+          "Tsn_1": -0.0019270463576208825,
+          "Ms_x0": 3.6359506264303447e-06,
+          "ur_1": -0.05032605907462422,
+          "uz_x0": 20.41420080496131,
+          "phi_1": 1.0580746516402133,
+          "max_abs_phi": 1.0582574267768836,
+          "max_abs_Tsn": 0.0019270463576208825
+        },
+        "accepted_profile": "edge_power_tail",
+        "accepted_seed": "cached_branch_projection",
+        "predictor_rel_correction": 0.0002930046817588182,
+        "predictor_abs_correction": 0.0059814564102183,
+        "message": "The algorithm converged to the desired accuracy."
+      },
+      "first_failure": {
+        "q_mpa": 4.344,
+        "profile_name": "edge_power_tail",
+        "seed_label": "secant_predictor",
+        "success": false,
+        "attempt_seconds": 94.13922009989619,
+        "message": "The maximum number of mesh nodes is exceeded.",
+        "nodes": 486769,
+        "max_nodes": 600000,
+        "max_rms": 0.0016131710520986017,
+        "max_bc_residual": 4.6226577901179485e-17,
+        "min_r": 0.0016666666666666668,
+        "node_pressure": 0.8112816666666667,
+        "right_edge_fraction_0_99": 0.9722455620633196,
+        "right_edge_fraction_0_995": 0.937450823696661,
+        "right_edge_fraction_0_999": 0.30659512006721873,
+        "min_dx": 4.463651670505442e-12,
+        "min_dx_mid": 0.999999999444265,
+        "top_gradients": [
+          {
+            "state": "u_z",
+            "max_abs_grad": 87.25063985015731,
+            "x_at_peak": 0.9995100649019673
+          },
+          {
+            "state": "varphi",
+            "max_abs_grad": 5.157341646995633,
+            "x_at_peak": 0.9341707946336428
+          },
+          {
+            "state": "T_s",
+            "max_abs_grad": 2.820592606852391,
+            "x_at_peak": 0.0016666666666666668
+          }
+        ],
+        "observables": {
+          "Ts_x0": 0.008277419591183955,
+          "Tsn_1": -0.001847907814476391,
+          "Ms_x0": 3.6383763002987737e-06,
+          "ur_1": -0.04866874582340845,
+          "uz_x0": 20.26513419927284,
+          "phi_1": 1.0328962670220123,
+          "max_abs_phi": 1.0330809430568764,
+          "max_abs_Tsn": 0.001847907814476391
+        },
+        "mesh_pressure_only": true,
+        "right_edge_layer_suspicion": true,
+        "branch_turning_suspicion": false,
+        "predictor_rel_correction": null,
+        "predictor_abs_correction": null
+      },
+      "ceiling_moved_materially": false,
+      "bottleneck_still_looks_numerical": true,
+      "stopped_reason": "failure at 4.3440 MPa"
+    },
+    {
+      "strategy": {
+        "name": "edge_double_tail",
+        "description": "Two-zone stretched tail mesh with a separate ultra-edge layer inside x in [0.992, 1].",
+        "mesh_kind": "double_tail",
+        "config": {
+          "x0": 0.0016666666666666668,
+          "nd_bvp": 1250,
+          "tol": 0.00025,
+          "relaxed_tol": 0.0012,
+          "max_nodes": 600000,
+          "template_q_mpa": 0.5,
+          "right_edge_cluster_start": 1.0,
+          "right_edge_cluster_fraction": 0.0,
+          "right_edge_cluster_power": 1.0
+        }
+      },
+      "anchor_results": [
+        {
+          "q_mpa": 4.34,
+          "attempts": [
+            {
+              "q_mpa": 4.34,
+              "profile_name": "edge_double_tail",
+              "seed_label": "cached_branch_projection",
+              "success": true,
+              "attempt_seconds": 44.240276900003664,
+              "message": "The algorithm converged to the desired accuracy.",
+              "nodes": 3882,
+              "max_nodes": 600000,
+              "max_rms": 0.001069616680952115,
+              "max_bc_residual": 1.2184941048487755e-18,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.00647,
+              "right_edge_fraction_0_99": 0.5762493560020608,
+              "right_edge_fraction_0_995": 0.39000515198351365,
+              "right_edge_fraction_0_999": 0.25708397733127253,
+              "min_dx": 8.803291429160254e-12,
+              "min_dx_mid": 0.999999999986795,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 88.3414714070077,
+                  "x_at_peak": 0.9995970222395592
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.32471592563968,
+                  "x_at_peak": 0.9338488888888888
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 3.165771720700443,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.00827684750363245,
+                "Tsn_1": -0.0019155194156170242,
+                "Ms_x0": 3.635195080643834e-06,
+                "ur_1": -0.05007727538317712,
+                "uz_x0": 20.388058177737076,
+                "phi_1": 1.0542877641256196,
+                "max_abs_phi": 1.0544707421013786,
+                "max_abs_Tsn": 0.0019155194156170242
+              },
+              "mesh_pressure_only": false,
+              "right_edge_layer_suspicion": true,
+              "branch_turning_suspicion": false,
+              "predictor_rel_correction": 0.0006832167169909398,
+              "predictor_abs_correction": 0.013929462174013807
+            }
+          ],
+          "success": true
+        },
+        {
+          "q_mpa": 4.343,
+          "attempts": [
+            {
+              "q_mpa": 4.343,
+              "profile_name": "edge_double_tail",
+              "seed_label": "previous_anchor_solution",
+              "success": false,
+              "attempt_seconds": 110.77241910004523,
+              "message": "The maximum number of mesh nodes is exceeded.",
+              "nodes": 421728,
+              "max_nodes": 600000,
+              "max_rms": 0.24287987780690903,
+              "max_bc_residual": 1.674057770615382e-19,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.70288,
+              "right_edge_fraction_0_99": 0.9157347864026102,
+              "right_edge_fraction_0_995": 0.8532063320434023,
+              "right_edge_fraction_0_999": 0.6147303475225738,
+              "min_dx": 5.551115123125783e-16,
+              "min_dx_mid": 0.9999999999933384,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 92.62680254830047,
+                  "x_at_peak": 0.9999338759697846
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.973741395064621,
+                  "x_at_peak": 0.9357855555555554
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 3.1735141798680933,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008297094435304957,
+                "Tsn_1": -0.0021774979841481064,
+                "Ms_x0": 3.628623952427291e-06,
+                "ur_1": -0.05552793473159384,
+                "uz_x0": 20.88117498394185,
+                "phi_1": 1.136990640975874,
+                "max_abs_phi": 1.1371688135448905,
+                "max_abs_Tsn": 0.002177497984148107
+              },
+              "mesh_pressure_only": true,
+              "right_edge_layer_suspicion": true,
+              "branch_turning_suspicion": false,
+              "predictor_rel_correction": null,
+              "predictor_abs_correction": null
+            },
+            {
+              "q_mpa": 4.343,
+              "profile_name": "edge_double_tail",
+              "seed_label": "cached_branch_projection",
+              "success": false,
+              "attempt_seconds": 155.22148659999948,
+              "message": "The maximum number of mesh nodes is exceeded.",
+              "nodes": 567329,
+              "max_nodes": 600000,
+              "max_rms": null,
+              "max_bc_residual": 5.887143265217975e-18,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.9455483333333333,
+              "right_edge_fraction_0_99": 0.9689351328770431,
+              "right_edge_fraction_0_995": 0.8706693999425378,
+              "right_edge_fraction_0_999": 0.5866578299364213,
+              "min_dx": 0.0,
+              "min_dx_mid": 0.9999999999823993,
+              "top_gradients": [
+                {
+                  "state": "T_s",
+                  "max_abs_grad": null,
+                  "x_at_peak": 0.9999999999823993
+                },
+                {
+                  "state": "T_sn",
+                  "max_abs_grad": null,
+                  "x_at_peak": 0.9999999999823993
+                },
+                {
+                  "state": "M_s",
+                  "max_abs_grad": null,
+                  "x_at_peak": 0.9999999999823993
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008278687136577352,
+                "Tsn_1": -0.0018899431149583376,
+                "Ms_x0": 3.636806381037026e-06,
+                "ur_1": -0.0495494326974742,
+                "uz_x0": 20.34372757864627,
+                "phi_1": 1.0462790922819176,
+                "max_abs_phi": 1.0464627172867949,
+                "max_abs_Tsn": 0.0018899431149583376
+              },
+              "mesh_pressure_only": true,
+              "right_edge_layer_suspicion": true,
+              "branch_turning_suspicion": false,
+              "predictor_rel_correction": null,
+              "predictor_abs_correction": null
+            }
+          ],
+          "success": false
+        }
+      ],
+      "stages": [],
+      "highest_converged_q_mpa": null,
+      "first_failure_q_mpa": 4.343,
+      "highest_success": null,
+      "first_failure": {
+        "q_mpa": 4.343,
+        "profile_name": "edge_double_tail",
+        "seed_label": "cached_branch_projection",
+        "success": false,
+        "attempt_seconds": 155.22148659999948,
+        "message": "The maximum number of mesh nodes is exceeded.",
+        "nodes": 567329,
+        "max_nodes": 600000,
+        "max_rms": null,
+        "max_bc_residual": 5.887143265217975e-18,
+        "min_r": 0.0016666666666666668,
+        "node_pressure": 0.9455483333333333,
+        "right_edge_fraction_0_99": 0.9689351328770431,
+        "right_edge_fraction_0_995": 0.8706693999425378,
+        "right_edge_fraction_0_999": 0.5866578299364213,
+        "min_dx": 0.0,
+        "min_dx_mid": 0.9999999999823993,
+        "top_gradients": [
+          {
+            "state": "T_s",
+            "max_abs_grad": null,
+            "x_at_peak": 0.9999999999823993
+          },
+          {
+            "state": "T_sn",
+            "max_abs_grad": null,
+            "x_at_peak": 0.9999999999823993
+          },
+          {
+            "state": "M_s",
+            "max_abs_grad": null,
+            "x_at_peak": 0.9999999999823993
+          }
+        ],
+        "observables": {
+          "Ts_x0": 0.008278687136577352,
+          "Tsn_1": -0.0018899431149583376,
+          "Ms_x0": 3.636806381037026e-06,
+          "ur_1": -0.0495494326974742,
+          "uz_x0": 20.34372757864627,
+          "phi_1": 1.0462790922819176,
+          "max_abs_phi": 1.0464627172867949,
+          "max_abs_Tsn": 0.0018899431149583376
+        },
+        "mesh_pressure_only": true,
+        "right_edge_layer_suspicion": true,
+        "branch_turning_suspicion": false,
+        "predictor_rel_correction": null,
+        "predictor_abs_correction": null
+      },
+      "ceiling_moved_materially": false,
+      "bottleneck_still_looks_numerical": true,
+      "stopped_reason": "anchor failure at 4.3430 MPa"
+    }
+  ],
+  "status": "completed",
+  "elapsed_seconds": 920.0633272000123,
+  "best_edge_aware": {
+    "strategy": {
+      "name": "edge_power_tail",
+      "description": "Single power-stretched tail mesh with moderately stronger clustering near x=1 than the current rescue-local profile.",
+      "mesh_kind": "power_tail",
+      "config": {
+        "x0": 0.0016666666666666668,
+        "nd_bvp": 1150,
+        "tol": 0.00025,
+        "relaxed_tol": 0.0012,
+        "max_nodes": 600000,
+        "template_q_mpa": 0.5,
+        "right_edge_cluster_start": 0.978,
+        "right_edge_cluster_fraction": 0.72,
+        "right_edge_cluster_power": 2.6
+      }
+    },
+    "anchor_results": [
+      {
+        "q_mpa": 4.34,
+        "attempts": [
+          {
+            "q_mpa": 4.34,
+            "profile_name": "edge_power_tail",
+            "seed_label": "cached_branch_projection",
+            "success": true,
+            "attempt_seconds": 42.361254399991594,
+            "message": "The algorithm converged to the desired accuracy.",
+            "nodes": 1987,
+            "max_nodes": 600000,
+            "max_rms": 0.0010470099957439229,
+            "max_bc_residual": 1.005200451223627e-18,
+            "min_r": 0.0016666666666666668,
+            "node_pressure": 0.0033116666666666668,
+            "right_edge_fraction_0_99": 0.6129843985908404,
+            "right_edge_fraction_0_995": 0.46904881731253145,
+            "right_edge_fraction_0_999": 0.25163563160543534,
+            "min_dx": 5.71358071965733e-10,
+            "min_dx_mid": 0.999999999714321,
+            "top_gradients": [
+              {
+                "state": "u_z",
+                "max_abs_grad": 88.61404028658126,
+                "x_at_peak": 0.9996177597631414
+              },
+              {
+                "state": "varphi",
+                "max_abs_grad": 5.363339002394042,
+                "x_at_peak": 0.9356821465428277
+              },
+              {
+                "state": "T_s",
+                "max_abs_grad": 2.8207523382394912,
+                "x_at_peak": 0.0016666666666666668
+              }
+            ],
+            "observables": {
+              "Ts_x0": 0.008277888575171649,
+              "Tsn_1": -0.0019320580270617096,
+              "Ms_x0": 3.6347437606661842e-06,
+              "ur_1": -0.0504274396110888,
+              "uz_x0": 20.41990492002935,
+              "phi_1": 1.0596178357036843,
+              "max_abs_phi": 1.059800447855272,
+              "max_abs_Tsn": 0.0019320580270617096
+            },
+            "mesh_pressure_only": false,
+            "right_edge_layer_suspicion": true,
+            "branch_turning_suspicion": false,
+            "predictor_rel_correction": 0.002288024415344165,
+            "predictor_abs_correction": 0.04672124101603359
+          }
+        ],
+        "success": true
+      },
+      {
+        "q_mpa": 4.343,
+        "attempts": [
+          {
+            "q_mpa": 4.343,
+            "profile_name": "edge_power_tail",
+            "seed_label": "previous_anchor_solution",
+            "success": false,
+            "attempt_seconds": 81.77171200001612,
+            "message": "The maximum number of mesh nodes is exceeded.",
+            "nodes": 527152,
+            "max_nodes": 600000,
+            "max_rms": 0.0025965372689524756,
+            "max_bc_residual": 5.160691692251415e-17,
+            "min_r": 0.0016666666666666668,
+            "node_pressure": 0.8785866666666666,
+            "right_edge_fraction_0_99": 0.9106045315203205,
+            "right_edge_fraction_0_995": 0.8293433393025161,
+            "right_edge_fraction_0_999": 0.4852699031778311,
+            "min_dx": 1.1158851620507448e-12,
+            "min_dx_mid": 0.9999999994303159,
+            "top_gradients": [
+              {
+                "state": "u_z",
+                "max_abs_grad": 86.01353222038597,
+                "x_at_peak": 0.9994126644502981
+              },
+              {
+                "state": "varphi",
+                "max_abs_grad": 4.971364157338485,
+                "x_at_peak": 0.9334151186790505
+              },
+              {
+                "state": "T_s",
+                "max_abs_grad": 2.818518146516545,
+                "x_at_peak": 0.0016666666666666668
+              }
+            ],
+            "observables": {
+              "Ts_x0": 0.008271329070980762,
+              "Tsn_1": -0.0017723246958271965,
+              "Ms_x0": 3.6402442471442904e-06,
+              "ur_1": -0.04709856426892597,
+              "uz_x0": 20.123288402466525,
+              "phi_1": 1.009082796858655,
+              "max_abs_phi": 1.0092695316380644,
+              "max_abs_Tsn": 0.0017723246958271965
+            },
+            "mesh_pressure_only": true,
+            "right_edge_layer_suspicion": true,
+            "branch_turning_suspicion": false,
+            "predictor_rel_correction": null,
+            "predictor_abs_correction": null
+          },
+          {
+            "q_mpa": 4.343,
+            "profile_name": "edge_power_tail",
+            "seed_label": "cached_branch_projection",
+            "success": true,
+            "attempt_seconds": 44.344167400035076,
+            "message": "The algorithm converged to the desired accuracy.",
+            "nodes": 24110,
+            "max_nodes": 600000,
+            "max_rms": 0.0011940648967234358,
+            "max_bc_residual": 5.499214650777813e-18,
+            "min_r": 0.0016666666666666668,
+            "node_pressure": 0.040183333333333335,
+            "right_edge_fraction_0_99": 0.8105350476980506,
+            "right_edge_fraction_0_995": 0.6208627125673994,
+            "right_edge_fraction_0_999": 0.33434259643301534,
+            "min_dx": 1.7854939748929155e-11,
+            "min_dx_mid": 0.9999999994375695,
+            "top_gradients": [
+              {
+                "state": "u_z",
+                "max_abs_grad": 88.81259356102964,
+                "x_at_peak": 0.9996327407058948
+              },
+              {
+                "state": "varphi",
+                "max_abs_grad": 5.391608208976152,
+                "x_at_peak": 0.9356821465428277
+              },
+              {
+                "state": "T_s",
+                "max_abs_grad": 3.290375911216685,
+                "x_at_peak": 0.0016666666666666668
+              }
+            ],
+            "observables": {
+              "Ts_x0": 0.008282088230934107,
+              "Tsn_1": -0.0019435619222191688,
+              "Ms_x0": 3.6352756855159425e-06,
+              "ur_1": -0.050668439053439415,
+              "uz_x0": 20.444515077008734,
+              "phi_1": 1.0632676599340758,
+              "max_abs_phi": 1.0634500614702074,
+              "max_abs_Tsn": 0.0019435619222191686
+            },
+            "mesh_pressure_only": false,
+            "right_edge_layer_suspicion": true,
+            "branch_turning_suspicion": false,
+            "predictor_rel_correction": 0.0030806386263136187,
+            "predictor_abs_correction": 0.06298216284248426
+          }
+        ],
+        "success": true
+      },
+      {
+        "q_mpa": 4.3432,
+        "attempts": [
+          {
+            "q_mpa": 4.3432,
+            "profile_name": "edge_power_tail",
+            "seed_label": "previous_anchor_solution",
+            "success": true,
+            "attempt_seconds": 37.324951399932615,
+            "message": "The algorithm converged to the desired accuracy.",
+            "nodes": 24110,
+            "max_nodes": 600000,
+            "max_rms": 0.0011838877596898635,
+            "max_bc_residual": 6.3934593105195075e-18,
+            "min_r": 0.0016666666666666668,
+            "node_pressure": 0.040183333333333335,
+            "right_edge_fraction_0_99": 0.8105350476980506,
+            "right_edge_fraction_0_995": 0.6208627125673994,
+            "right_edge_fraction_0_999": 0.33434259643301534,
+            "min_dx": 1.7854939748929155e-11,
+            "min_dx_mid": 0.9999999994375695,
+            "top_gradients": [
+              {
+                "state": "u_z",
+                "max_abs_grad": 88.49354983490775,
+                "x_at_peak": 0.9996073169516585
+              },
+              {
+                "state": "varphi",
+                "max_abs_grad": 5.342990065909021,
+                "x_at_peak": 0.9356821465428277
+              },
+              {
+                "state": "T_s",
+                "max_abs_grad": 3.289940516413219,
+                "x_at_peak": 0.0016666666666666668
+              }
+            ],
+            "observables": {
+              "Ts_x0": 0.008280992166954588,
+              "Tsn_1": -0.0019240278957596113,
+              "Ms_x0": 3.635869075993561e-06,
+              "ur_1": -0.05026072913692364,
+              "uz_x0": 20.407900227007403,
+              "phi_1": 1.0570773549085937,
+              "max_abs_phi": 1.0572601910405566,
+              "max_abs_Tsn": 0.0019240278957596113
+            },
+            "mesh_pressure_only": false,
+            "right_edge_layer_suspicion": true,
+            "branch_turning_suspicion": false,
+            "predictor_rel_correction": 0.0018547923150928525,
+            "predictor_abs_correction": 0.03785241650823501
+          }
+        ],
+        "success": true
+      },
+      {
+        "q_mpa": 4.3434,
+        "attempts": [
+          {
+            "q_mpa": 4.3434,
+            "profile_name": "edge_power_tail",
+            "seed_label": "previous_anchor_solution",
+            "success": false,
+            "attempt_seconds": 80.38884360005613,
+            "message": "The maximum number of mesh nodes is exceeded.",
+            "nodes": 336992,
+            "max_nodes": 600000,
+            "max_rms": 0.001597490923334702,
+            "max_bc_residual": 2.6199212253137233e-17,
+            "min_r": 0.0016666666666666668,
+            "node_pressure": 0.5616533333333333,
+            "right_edge_fraction_0_99": 0.9531442882917102,
+            "right_edge_fraction_0_995": 0.8458509400816636,
+            "right_edge_fraction_0_999": 0.4375089022884816,
+            "min_dx": 2.788880237858393e-13,
+            "min_dx_mid": 0.9999999995741318,
+            "top_gradients": [
+              {
+                "state": "u_z",
+                "max_abs_grad": 88.94073327281512,
+                "x_at_peak": 0.9996421029354481
+              },
+              {
+                "state": "varphi",
+                "max_abs_grad": 5.410833012653825,
+                "x_at_peak": 0.9356821465428277
+              },
+              {
+                "state": "T_s",
+                "max_abs_grad": 3.29076259832395,
+                "x_at_peak": 0.0016666666666666668
+              }
+            ],
+            "observables": {
+              "Ts_x0": 0.008283061677234449,
+              "Tsn_1": -0.0019513178704851798,
+              "Ms_x0": 3.6351767023252144e-06,
+              "ur_1": -0.05083019220243912,
+              "uz_x0": 20.45946008990325,
+              "phi_1": 1.065721658705885,
+              "max_abs_phi": 1.0659038976153286,
+              "max_abs_Tsn": 0.0019513178704851798
+            },
+            "mesh_pressure_only": true,
+            "right_edge_layer_suspicion": true,
+            "branch_turning_suspicion": false,
+            "predictor_rel_correction": null,
+            "predictor_abs_correction": null
+          },
+          {
+            "q_mpa": 4.3434,
+            "profile_name": "edge_power_tail",
+            "seed_label": "cached_branch_projection",
+            "success": true,
+            "attempt_seconds": 44.131817399989814,
+            "message": "The algorithm converged to the desired accuracy.",
+            "nodes": 30793,
+            "max_nodes": 600000,
+            "max_rms": 0.0011883851633883607,
+            "max_bc_residual": 3.4625630750561446e-18,
+            "min_r": 0.0016666666666666668,
+            "node_pressure": 0.05132166666666667,
+            "right_edge_fraction_0_99": 0.9605754554606566,
+            "right_edge_fraction_0_995": 0.926216997369532,
+            "right_edge_fraction_0_999": 0.3029259896729776,
+            "min_dx": 7.141975899571662e-11,
+            "min_dx_mid": 0.9999999994643518,
+            "top_gradients": [
+              {
+                "state": "u_z",
+                "max_abs_grad": 88.54480606642028,
+                "x_at_peak": 0.9996112980083649
+              },
+              {
+                "state": "varphi",
+                "max_abs_grad": 5.350696973900881,
+                "x_at_peak": 0.9356821465428277
+              },
+              {
+                "state": "T_s",
+                "max_abs_grad": 2.822042327983201,
+                "x_at_peak": 0.0016666666666666668
+              }
+            ],
+            "observables": {
+              "Ts_x0": 0.008281675895704298,
+              "Tsn_1": -0.0019270463576208825,
+              "Ms_x0": 3.6359506264303447e-06,
+              "ur_1": -0.05032605907462422,
+              "uz_x0": 20.41420080496131,
+              "phi_1": 1.0580746516402133,
+              "max_abs_phi": 1.0582574267768836,
+              "max_abs_Tsn": 0.0019270463576208825
+            },
+            "mesh_pressure_only": false,
+            "right_edge_layer_suspicion": true,
+            "branch_turning_suspicion": false,
+            "predictor_rel_correction": 0.0002930046817588182,
+            "predictor_abs_correction": 0.0059814564102183
+          }
+        ],
+        "success": true
+      }
+    ],
+    "stages": [
+      {
+        "name": "first_stage",
+        "loads_mpa": [
+          4.344,
+          4.3445,
+          4.345
+        ],
+        "steps": [
+          {
+            "q_target_mpa": 4.344,
+            "attempts": [
+              {
+                "q_mpa": 4.344,
+                "profile_name": "edge_power_tail",
+                "seed_label": "secant_predictor",
+                "success": false,
+                "attempt_seconds": 94.13922009989619,
+                "message": "The maximum number of mesh nodes is exceeded.",
+                "nodes": 486769,
+                "max_nodes": 600000,
+                "max_rms": 0.0016131710520986017,
+                "max_bc_residual": 4.6226577901179485e-17,
+                "min_r": 0.0016666666666666668,
+                "node_pressure": 0.8112816666666667,
+                "right_edge_fraction_0_99": 0.9722455620633196,
+                "right_edge_fraction_0_995": 0.937450823696661,
+                "right_edge_fraction_0_999": 0.30659512006721873,
+                "min_dx": 4.463651670505442e-12,
+                "min_dx_mid": 0.999999999444265,
+                "top_gradients": [
+                  {
+                    "state": "u_z",
+                    "max_abs_grad": 87.25063985015731,
+                    "x_at_peak": 0.9995100649019673
+                  },
+                  {
+                    "state": "varphi",
+                    "max_abs_grad": 5.157341646995633,
+                    "x_at_peak": 0.9341707946336428
+                  },
+                  {
+                    "state": "T_s",
+                    "max_abs_grad": 2.820592606852391,
+                    "x_at_peak": 0.0016666666666666668
+                  }
+                ],
+                "observables": {
+                  "Ts_x0": 0.008277419591183955,
+                  "Tsn_1": -0.001847907814476391,
+                  "Ms_x0": 3.6383763002987737e-06,
+                  "ur_1": -0.04866874582340845,
+                  "uz_x0": 20.26513419927284,
+                  "phi_1": 1.0328962670220123,
+                  "max_abs_phi": 1.0330809430568764,
+                  "max_abs_Tsn": 0.001847907814476391
+                },
+                "mesh_pressure_only": true,
+                "right_edge_layer_suspicion": true,
+                "branch_turning_suspicion": false,
+                "predictor_rel_correction": null,
+                "predictor_abs_correction": null
+              },
+              {
+                "q_mpa": 4.344,
+                "profile_name": "edge_power_tail",
+                "seed_label": "previous_solution",
+                "success": false,
+                "attempt_seconds": 92.17506889998913,
+                "message": "The maximum number of mesh nodes is exceeded.",
+                "nodes": 474612,
+                "max_nodes": 600000,
+                "max_rms": 0.001224575618985847,
+                "max_bc_residual": 1.986557048810106e-17,
+                "min_r": 0.0016666666666666668,
+                "node_pressure": 0.79102,
+                "right_edge_fraction_0_99": 0.9842566138235022,
+                "right_edge_fraction_0_995": 0.9614632584089741,
+                "right_edge_fraction_0_999": 0.3144484336679224,
+                "min_dx": 4.463651670505442e-12,
+                "min_dx_mid": 0.999999999444265,
+                "top_gradients": [
+                  {
+                    "state": "u_z",
+                    "max_abs_grad": 88.58661370945629,
+                    "x_at_peak": 0.9996142632143119
+                  },
+                  {
+                    "state": "varphi",
+                    "max_abs_grad": 5.359464132786115,
+                    "x_at_peak": 0.9341707946336428
+                  },
+                  {
+                    "state": "T_s",
+                    "max_abs_grad": 2.822347313917172,
+                    "x_at_peak": 0.0016666666666666668
+                  }
+                ],
+                "observables": {
+                  "Ts_x0": 0.008282571324027847,
+                  "Tsn_1": -0.001929542983730396,
+                  "Ms_x0": 3.636056437758782e-06,
+                  "ur_1": -0.050375602700653985,
+                  "uz_x0": 20.41907409601333,
+                  "phi_1": 1.058817509128976,
+                  "max_abs_phi": 1.0590002333670936,
+                  "max_abs_Tsn": 0.001929542983730396
+                },
+                "mesh_pressure_only": true,
+                "right_edge_layer_suspicion": true,
+                "branch_turning_suspicion": false,
+                "predictor_rel_correction": null,
+                "predictor_abs_correction": null
+              },
+              {
+                "q_mpa": 4.344,
+                "profile_name": "edge_power_tail",
+                "seed_label": "anchor_solution",
+                "success": false,
+                "attempt_seconds": 92.18378700001631,
+                "message": "The maximum number of mesh nodes is exceeded.",
+                "nodes": 474612,
+                "max_nodes": 600000,
+                "max_rms": 0.001224575618985847,
+                "max_bc_residual": 1.986557048810106e-17,
+                "min_r": 0.0016666666666666668,
+                "node_pressure": 0.79102,
+                "right_edge_fraction_0_99": 0.9842566138235022,
+                "right_edge_fraction_0_995": 0.9614632584089741,
+                "right_edge_fraction_0_999": 0.3144484336679224,
+                "min_dx": 4.463651670505442e-12,
+                "min_dx_mid": 0.999999999444265,
+                "top_gradients": [
+                  {
+                    "state": "u_z",
+                    "max_abs_grad": 88.58661370945629,
+                    "x_at_peak": 0.9996142632143119
+                  },
+                  {
+                    "state": "varphi",
+                    "max_abs_grad": 5.359464132786115,
+                    "x_at_peak": 0.9341707946336428
+                  },
+                  {
+                    "state": "T_s",
+                    "max_abs_grad": 2.822347313917172,
+                    "x_at_peak": 0.0016666666666666668
+                  }
+                ],
+                "observables": {
+                  "Ts_x0": 0.008282571324027847,
+                  "Tsn_1": -0.001929542983730396,
+                  "Ms_x0": 3.636056437758782e-06,
+                  "ur_1": -0.050375602700653985,
+                  "uz_x0": 20.41907409601333,
+                  "phi_1": 1.058817509128976,
+                  "max_abs_phi": 1.0590002333670936,
+                  "max_abs_Tsn": 0.001929542983730396
+                },
+                "mesh_pressure_only": true,
+                "right_edge_layer_suspicion": true,
+                "branch_turning_suspicion": false,
+                "predictor_rel_correction": null,
+                "predictor_abs_correction": null
+              }
+            ],
+            "success": false,
+            "failure_representative": {
+              "q_mpa": 4.344,
+              "profile_name": "edge_power_tail",
+              "seed_label": "secant_predictor",
+              "success": false,
+              "attempt_seconds": 94.13922009989619,
+              "message": "The maximum number of mesh nodes is exceeded.",
+              "nodes": 486769,
+              "max_nodes": 600000,
+              "max_rms": 0.0016131710520986017,
+              "max_bc_residual": 4.6226577901179485e-17,
+              "min_r": 0.0016666666666666668,
+              "node_pressure": 0.8112816666666667,
+              "right_edge_fraction_0_99": 0.9722455620633196,
+              "right_edge_fraction_0_995": 0.937450823696661,
+              "right_edge_fraction_0_999": 0.30659512006721873,
+              "min_dx": 4.463651670505442e-12,
+              "min_dx_mid": 0.999999999444265,
+              "top_gradients": [
+                {
+                  "state": "u_z",
+                  "max_abs_grad": 87.25063985015731,
+                  "x_at_peak": 0.9995100649019673
+                },
+                {
+                  "state": "varphi",
+                  "max_abs_grad": 5.157341646995633,
+                  "x_at_peak": 0.9341707946336428
+                },
+                {
+                  "state": "T_s",
+                  "max_abs_grad": 2.820592606852391,
+                  "x_at_peak": 0.0016666666666666668
+                }
+              ],
+              "observables": {
+                "Ts_x0": 0.008277419591183955,
+                "Tsn_1": -0.001847907814476391,
+                "Ms_x0": 3.6383763002987737e-06,
+                "ur_1": -0.04866874582340845,
+                "uz_x0": 20.26513419927284,
+                "phi_1": 1.0328962670220123,
+                "max_abs_phi": 1.0330809430568764,
+                "max_abs_Tsn": 0.001847907814476391
+              },
+              "mesh_pressure_only": true,
+              "right_edge_layer_suspicion": true,
+              "branch_turning_suspicion": false,
+              "predictor_rel_correction": null,
+              "predictor_abs_correction": null
+            }
+          }
+        ],
+        "stopped_reason": "failure at 4.3440 MPa",
+        "first_failure_q_mpa": 4.344
+      }
+    ],
+    "highest_converged_q_mpa": 4.3434,
+    "first_failure_q_mpa": 4.344,
+    "highest_success": {
+      "q_mpa": 4.3434,
+      "nodes": 30793,
+      "max_rms": 0.0011883851633883607,
+      "max_bc_residual": 3.4625630750561446e-18,
+      "min_r": 0.0016666666666666668,
+      "node_pressure": 0.05132166666666667,
+      "right_edge_fraction_0_99": 0.9605754554606566,
+      "right_edge_fraction_0_995": 0.926216997369532,
+      "right_edge_fraction_0_999": 0.3029259896729776,
+      "min_dx": 7.141975899571662e-11,
+      "min_dx_mid": 0.9999999994643518,
+      "top_gradients": [
+        {
+          "state": "u_z",
+          "max_abs_grad": 88.54480606642028,
+          "x_at_peak": 0.9996112980083649
+        },
+        {
+          "state": "varphi",
+          "max_abs_grad": 5.350696973900881,
+          "x_at_peak": 0.9356821465428277
+        },
+        {
+          "state": "T_s",
+          "max_abs_grad": 2.822042327983201,
+          "x_at_peak": 0.0016666666666666668
+        }
+      ],
+      "observables": {
+        "Ts_x0": 0.008281675895704298,
+        "Tsn_1": -0.0019270463576208825,
+        "Ms_x0": 3.6359506264303447e-06,
+        "ur_1": -0.05032605907462422,
+        "uz_x0": 20.41420080496131,
+        "phi_1": 1.0580746516402133,
+        "max_abs_phi": 1.0582574267768836,
+        "max_abs_Tsn": 0.0019270463576208825
+      },
+      "accepted_profile": "edge_power_tail",
+      "accepted_seed": "cached_branch_projection",
+      "predictor_rel_correction": 0.0002930046817588182,
+      "predictor_abs_correction": 0.0059814564102183,
+      "message": "The algorithm converged to the desired accuracy."
+    },
+    "first_failure": {
+      "q_mpa": 4.344,
+      "profile_name": "edge_power_tail",
+      "seed_label": "secant_predictor",
+      "success": false,
+      "attempt_seconds": 94.13922009989619,
+      "message": "The maximum number of mesh nodes is exceeded.",
+      "nodes": 486769,
+      "max_nodes": 600000,
+      "max_rms": 0.0016131710520986017,
+      "max_bc_residual": 4.6226577901179485e-17,
+      "min_r": 0.0016666666666666668,
+      "node_pressure": 0.8112816666666667,
+      "right_edge_fraction_0_99": 0.9722455620633196,
+      "right_edge_fraction_0_995": 0.937450823696661,
+      "right_edge_fraction_0_999": 0.30659512006721873,
+      "min_dx": 4.463651670505442e-12,
+      "min_dx_mid": 0.999999999444265,
+      "top_gradients": [
+        {
+          "state": "u_z",
+          "max_abs_grad": 87.25063985015731,
+          "x_at_peak": 0.9995100649019673
+        },
+        {
+          "state": "varphi",
+          "max_abs_grad": 5.157341646995633,
+          "x_at_peak": 0.9341707946336428
+        },
+        {
+          "state": "T_s",
+          "max_abs_grad": 2.820592606852391,
+          "x_at_peak": 0.0016666666666666668
+        }
+      ],
+      "observables": {
+        "Ts_x0": 0.008277419591183955,
+        "Tsn_1": -0.001847907814476391,
+        "Ms_x0": 3.6383763002987737e-06,
+        "ur_1": -0.04866874582340845,
+        "uz_x0": 20.26513419927284,
+        "phi_1": 1.0328962670220123,
+        "max_abs_phi": 1.0330809430568764,
+        "max_abs_Tsn": 0.001847907814476391
+      },
+      "mesh_pressure_only": true,
+      "right_edge_layer_suspicion": true,
+      "branch_turning_suspicion": false,
+      "predictor_rel_correction": null,
+      "predictor_abs_correction": null
+    },
+    "ceiling_moved_materially": false,
+    "bottleneck_still_looks_numerical": true,
+    "stopped_reason": "failure at 4.3440 MPa"
+  },
+  "overall": {
+    "old_highest_converged_q_mpa": 4.3434,
+    "old_first_failure_q_mpa": 4.344,
+    "best_edge_aware_highest_converged_q_mpa": 4.3434,
+    "best_edge_aware_first_failure_q_mpa": 4.344,
+    "best_edge_aware_strategy": "edge_power_tail",
+    "ceiling_shift_mpa": 0.0,
+    "ceiling_moved_materially": false,
+    "bottleneck_still_looks_numerical": true
+  }
+}

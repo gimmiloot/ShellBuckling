@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Purpose:
-#   Run the targeted mixed-weak follow-up scan around the current candidate windows.
+#   Run the targeted mixed-weak follow-up scan around the current candidate
+#   windows on the hybrid F_min-backed testbench path.
 # Typical use:
 #   Use this after the broad scan when you want a narrower search near the best candidates.
 # Edit parameters in:

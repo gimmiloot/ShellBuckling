@@ -1,5 +1,37 @@
 # CHANGELOG
 
+## 2026-03-25 - Add canonical simple-support status page and conservative documentation deduplication
+
+Affected files:
+- `README.md`
+- `docs/project_map.md`
+- `docs/project_layering_refactor_note.md`
+- `docs/theory/current_simple_support_status.md`
+- `docs/theory/current_mixed_weak_theory_note.tex`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/theory/boundary_condition_task_audit.md`
+- `docs/theory/boundary_conditions_summary.md`
+- `tasks/run_mixed_weak_boundary_matrix_scan.py`
+- `tasks/run_mixed_weak_targeted_scan.py`
+- `CHANGELOG.md`
+
+- Added `docs/theory/current_simple_support_status.md` as the canonical operational status page for the separate active 6-state simple-support background path, including the active module, reproducible `4.3434 MPa` anchor, persistent `4.3440 MPa` failure, current barrier reading, shallow/non-shallow status, next step, and canonical runnable entry points.
+- Reduced duplicated simple-support status text across README, project map, BC audit/summary notes, and the compact theory note by replacing stale repeated operational blurbs with short role-appropriate pointers to the new canonical status page.
+- Added `docs/project_layering_refactor_note.md` and refreshed nearby script/document wording so the active mixed-weak `F_min` testbench path, the separate 6-state simple-support path, the supporting moving-clamp/sliding-clamp path, and the old-vs-new shallow-comparator situation are easier to distinguish without moving code.
+
+## 2026-03-25 - Add pilot 19 edge-stretched simple-support continuation comparison
+
+Affected files:
+- `proof_pilots/pilot_19_edge_stretched_simple_support_continuation/pilot_19_edge_stretched_simple_support_continuation.md`
+- `proof_pilots/pilot_19_edge_stretched_simple_support_continuation/edge_stretched_continuation.py`
+- `proof_pilots/pilot_19_edge_stretched_simple_support_continuation/edge_stretched_results.json`
+- `proof_pilots/pilot_19_edge_stretched_simple_support_continuation/comparison_note.md`
+- `CHANGELOG.md`
+
+- Added a dedicated pilot-19 package that keeps the active 6-state simple-support equations and BCs unchanged while testing two edge-aware right-edge mesh representations against the current documented pilot-12 continuation ceiling.
+- Ran the bounded comparison and recorded that the best usable edge-aware path `edge_power_tail` still reaches `4.3434 MPa` and still fails first at `4.3440 MPa`, with small BC residuals and strong right-edge concentration, so no material upward ceiling shift was observed.
+- Recorded that the more aggressive two-zone ultra-edge mesh does not produce a usable continuation path in the bounded pilot-19 run because the anchor ramp already fails by mesh-node exhaustion.
+
 ## 2026-03-22 - Translate supervisor theory note into Russian and make Russian maintenance explicit
 
 Affected files:

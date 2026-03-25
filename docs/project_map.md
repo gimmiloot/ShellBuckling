@@ -17,9 +17,10 @@ project memory even when they are not present here as separate source files.
   - `src/shell_buckling/mixed_weak/solver_patched_core.py`
   - `src/shell_buckling/mixed_weak/boundary_matrix_targeted_scan.py`
   - `tasks/run_mixed_weak_targeted_scan.py`
-- Current mixed-weak candidate loads remain exploratory. The main open issue is
-  no longer the absence of a separate full-state simple-support background path,
-  but stabilizing and reconnecting that path to the active mixed-weak scans.
+- Current mixed-weak candidate loads remain exploratory. The current
+  operational snapshot of the separate 6-state simple-support background path
+  lives in `docs/theory/current_simple_support_status.md`; the main open issue
+  is stabilizing and reconnecting that path to the active mixed-weak scans.
 
 ## Boundary-condition task separation
 
@@ -37,9 +38,9 @@ project memory even when they are not present here as separate source files.
   full-state background path in
   `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`,
   with task wrappers in `tasks/`.
-  In the current implementation that path reaches `4.30 MPa` and fails near
-  `4.33 MPa`, so it is runnable but not yet fully stabilized or connected to
-  the active mixed-weak scans.
+  Its current ceiling, barrier interpretation, and next-step diagnosis are
+  maintained in `docs/theory/current_simple_support_status.md`; the path is
+  runnable but not yet reconnected to the active mixed-weak scans.
 
 ## Active core
 
@@ -63,8 +64,8 @@ project memory even when they are not present here as separate source files.
 - `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`
   Separate active full-state axisymmetric simple-support background module with
   state `[T_s, T_sn, M_s, u_r, u_z, varphi]`, fixed-load solves first, and a
-  continuation wrapper added on top. In the current implementation it reaches
-  `4.30 MPa` and fails near `4.33 MPa`.
+  continuation wrapper added on top. Operational status is maintained in
+  `docs/theory/current_simple_support_status.md`.
 
 ## Runnable task scripts
 
@@ -122,9 +123,17 @@ project memory even when they are not present here as separate source files.
 - `docs/theory/current_mixed_weak_theory_note.tex`
   Compact supervisor-facing note for the current mixed-weak theory.
 
+- `docs/theory/current_simple_support_status.md`
+  Canonical operational status page for the separate 6-state simple-support
+  background path.
+
 - `docs/theory/boundary_condition_task_audit.md`
   Audit note separating the moving-clamp, hybrid mixed-weak testbench, and full
   simple-support tasks.
+
+- `docs/project_layering_refactor_note.md`
+  Conservative note on safe layering improvements, current duplication, and
+  postponed risky refactors.
 
 - `docs/theory/boundary_conditions_summary.md`
   Compact BC summary table for the moving-clamp and simple-support tasks.

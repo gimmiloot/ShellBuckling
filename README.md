@@ -8,7 +8,9 @@ circumferential channels `(v, S)` and `(psi, H, chi)`. Supporting determinant
 and dimensionless-comparison scripts are kept for comparison and diagnostics.
 Candidate critical loads from the current mixed-weak scans should still be read
 as exploratory unless they are confirmed in the theory and project-state
-materials.
+materials. For the current operational status of the separate 6-state
+axisymmetric simple-support background path, see
+`docs/theory/current_simple_support_status.md`.
 
 ## Repository structure
 
@@ -45,11 +47,11 @@ materials.
   A separate active full-state background path now exists in
   `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`
   with task wrappers
-  `tasks/run_axisymmetric_simple_support_background.py` and
-  `tasks/run_axisymmetric_simple_support_background_report.py`.
-  In the current implementation fixed-load solves and seeded continuation reach
-  `4.30 MPa` and fail near `4.33 MPa`, so the path is runnable but not yet
-  fully stabilized or connected to the active mixed-weak scans.
+  `tasks/run_axisymmetric_simple_support_background.py`,
+  `tasks/run_axisymmetric_simple_support_background_report.py`, and
+  `tasks/run_axisymmetric_simple_support_local_branch_following.py`.
+  Its current operational snapshot is maintained in
+  `docs/theory/current_simple_support_status.md`.
 - Current mixed-weak scans:
   `tasks/run_mixed_weak_boundary_matrix_scan.py` and
   `tasks/run_mixed_weak_targeted_scan.py` are exploratory
@@ -161,8 +163,9 @@ Input assumptions:
   `T_s(1)=0`, `M_s(1)=0`, `u_z(1)=0`, `T_sn(x0)=0`, `u_r(x0)=0`, `phi(x0)=0`.
 - This path is separate from the older 5-state `F_min` fallback used by the
   active mixed-weak scans.
-- In the current implementation the default schedules reach `4.30 MPa` and
-  fail near `4.33 MPa`.
+- Its current operational ceiling, persistent failure band, barrier reading,
+  and canonical follow-up pilots are maintained in
+  `docs/theory/current_simple_support_status.md`.
 
 Exact commands:
 
@@ -239,9 +242,11 @@ Where to change parameters:
 - `docs/theory/vyvod_uravneniy_updated17.md`
 - `docs/theory/current_theory_verification_map.md`
 - `docs/theory/current_mixed_weak_theory_note.tex`
+- `docs/theory/current_simple_support_status.md`
 - `docs/theory/boundary_condition_task_audit.md`
 - `docs/theory/boundary_conditions_summary.md`
 - `docs/assumptions/assumptions.md`
 - `docs/journal/project_journal_updated14.md`
 - `docs/project_map.md`
+- `docs/project_layering_refactor_note.md`
 - `docs/literature/SOURCE_INDEX.md`

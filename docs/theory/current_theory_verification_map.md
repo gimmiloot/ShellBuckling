@@ -376,8 +376,13 @@ not that every one of them is already article-level proven.
   `proof_pilots/pilot_18_revised_analytic_barrier_diagnosis/edge_layer_scaling.md`;
   `proof_pilots/pilot_18_revised_analytic_barrier_diagnosis/jacobian_conditioning_check.py`;
   `proof_pilots/pilot_18_revised_analytic_barrier_diagnosis/term_balance_check.py`;
+  `proof_pilots/pilot_19_edge_stretched_simple_support_continuation/comparison_note.md`;
+  `docs/theory/current_simple_support_status.md`;
   `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`.
 - Current status: `strategy only`
+- Operational pointer:
+  The live operational snapshot for this separate 6-state path is maintained in
+  `docs/theory/current_simple_support_status.md`.
 - What counts as verification:
   not a theorem; it is supported only insofar as current evidence points to the
   background as the dominant unresolved node, now sharpened by the fact that a

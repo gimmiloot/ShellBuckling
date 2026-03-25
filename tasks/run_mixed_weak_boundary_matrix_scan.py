@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Purpose:
-#   Run the broad active mixed-weak boundary-matrix scan on the simple-support branch.
+#   Run the broad active mixed-weak boundary-matrix scan on the
+#   simple-support-oriented hybrid testbench path.
 # Typical use:
 #   Use this first when you want the main active scan, including baseline and follow-up studies.
 # Edit parameters in:
