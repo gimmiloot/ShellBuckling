@@ -49,5 +49,9 @@ critical load claim.
 | `4.3800` | `4.3800` | yes | not reached | `u_z, varphi, T_s` | no non-numerical signal seen in the bounded stage; still consistent with a numerical / conditioning barrier |
 
 ## Files
-- runnable script: `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/u_z_scaled_arc_like_continuation.py`
-- recorded results: `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/u_z_scaled_arc_like_results.json`
+- audited pilot script: `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/u_z_scaled_arc_like_continuation.py`
+- audited pilot results: `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/u_z_scaled_arc_like_results.json`
+- fast checkpointed runner: `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_u_z_scaled_arc_like_continuation.py`
+- milestone confirm runner: `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/confirm_u_z_scaled_arc_like_continuation.py`
+- shared checkpoint/runtime helper: `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/continuation_runtime.py`
+- fast workflow note: `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_continuation_workflow.md`

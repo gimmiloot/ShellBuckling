@@ -40,7 +40,12 @@ project memory even when they are not present here as separate source files.
   with task wrappers in `tasks/`.
   Its current ceiling, barrier interpretation, and next-step diagnosis are
   maintained in `docs/theory/current_simple_support_status.md`; the path is
-  runnable but not yet reconnected to the active mixed-weak scans.
+  runnable but not yet reconnected to the active mixed-weak scans. The current
+  preferred high-load operational workflow above the audited pilot-21
+  `4.3800 MPa` ceiling is the pilot-21 checkpointed fast runner plus a separate
+  milestone confirm runner, while keeping any higher fast-run checkpoints
+  separate from the canonical audited status language until they are promoted
+  explicitly.
 
 ## Active core
 
@@ -65,7 +70,8 @@ project memory even when they are not present here as separate source files.
   Separate active full-state axisymmetric simple-support background module with
   state `[T_s, T_sn, M_s, u_r, u_z, varphi]`, fixed-load solves first, and a
   continuation wrapper added on top. Operational status is maintained in
-  `docs/theory/current_simple_support_status.md`.
+  `docs/theory/current_simple_support_status.md`, while the preferred
+  checkpointed high-load continuation wrappers now live in the pilot-21 package.
 
 ## Runnable task scripts
 
@@ -82,6 +88,14 @@ project memory even when they are not present here as separate source files.
 
 - `tasks/run_axisymmetric_simple_support_background_report.py`
   Compact diagnostic/report entry point for the same full-state background path.
+
+### Proof-pilot operational runners
+
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_u_z_scaled_arc_like_continuation.py`
+  Checkpointed fast continuation runner for the separate simple-support path.
+
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/confirm_u_z_scaled_arc_like_continuation.py`
+  Pointwise confirm/audit runner that reads fast-run checkpoints.
 
 ### Supporting tasks
 

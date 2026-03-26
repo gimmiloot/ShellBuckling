@@ -52,6 +52,10 @@ axisymmetric simple-support background path, see
   `tasks/run_axisymmetric_simple_support_local_branch_following.py`.
   Its current operational snapshot is maintained in
   `docs/theory/current_simple_support_status.md`.
+  The preferred high-load workflow now uses the pilot-21 `u_z`-scaled path with
+  auxiliary arc-like control in two layers: a bounded audited pilot run plus a
+  newer checkpointed fast runner with a separate confirm runner for milestone
+  loads.
 - Current mixed-weak scans:
   `tasks/run_mixed_weak_boundary_matrix_scan.py` and
   `tasks/run_mixed_weak_targeted_scan.py` are exploratory
@@ -85,6 +89,10 @@ If you already activated `.venv`, replace `.\.venv\Scripts\python.exe` with
   `.\.venv\Scripts\python.exe tasks/run_axisymmetric_simple_support_background.py`
 - Short simple-support background diagnostic:
   `.\.venv\Scripts\python.exe tasks/run_axisymmetric_simple_support_background_report.py`
+- Pilot-21 fast high-load continuation:
+  `.\.venv\Scripts\python.exe proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_u_z_scaled_arc_like_continuation.py --target-load-mpa 4.50`
+- Pilot-21 milestone confirm run:
+  `.\.venv\Scripts\python.exe proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/confirm_u_z_scaled_arc_like_continuation.py --load-mpa 4.3800`
 - Supporting determinant comparison:
   `.\.venv\Scripts\python.exe experiments/supporting/run_supporting_determinant_comparison.py`
 - Supporting dimensionless comparison:
@@ -166,6 +174,11 @@ Input assumptions:
 - Its current operational ceiling, persistent failure band, barrier reading,
   and canonical follow-up pilots are maintained in
   `docs/theory/current_simple_support_status.md`.
+- For practical high-load work above the audited pilot-21 `4.3800 MPa` ceiling,
+  the preferred operational split is now the checkpointed fast runner
+  `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_u_z_scaled_arc_like_continuation.py`
+  plus the milestone confirm runner
+  `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/confirm_u_z_scaled_arc_like_continuation.py`.
 
 Exact commands:
 

@@ -1,4 +1,4 @@
-# Журнал проекта
+﻿# Журнал проекта
 
 ## 1. Паспорт проекта
 
@@ -257,3 +257,50 @@ c) ближайший обязательный шаг — честно пров�
 - потерю новой информации в центре;
 - полное исчезновение каналов `S` и `H` в bulk;
 - чисто формальный характер нового mixed-weak класса.
+
+
+---
+
+## 11. Обновление по separate 6-state simple-support background и continuation architecture
+
+### 11.1. Что теперь фиксировать как текущий статус
+Для separate 6-state full-state simple-support background path нужно явно
+разделять несколько численных маркеров, а не схлопывать их в один “current
+ceiling”:
+
+- канонический old-path anchor/failure pair: `4.3434 / 4.3440 MPa`;
+- bounded method-sweep ceiling из pilot 20: `4.3520 MPa` при `u_z`-scaled state;
+- bounded audited pilot-21 ceiling: `4.3800 MPa` при `u_z`-scaled continuation + auxiliary arc-like control.
+
+Из этого следует важная интерпретация: старый барьер около `4.344 MPa` больше
+нельзя читать как физический потолок ветви. Текущий reading барьера остается
+численным и прежде всего conditioning-related, а не как доказанный physical end
+of branch.
+
+### 11.2. Что теперь считать preferred workflow
+Для высоких нагрузок предпочтительный путь теперь таков:
+
+- базовая formulation: `u_z`-scaled state representation;
+- поверх нее: bounded arc-like step adaptation;
+- operational split: быстрый checkpointed continuation runner + отдельный
+  confirm/audit runner для milestone-точек.
+
+Это не меняет equations и не меняет simple-support BC set. Active mixed-weak
+scans при этом по-прежнему не переподключены к honest full-state simple-support
+background.
+
+### 11.3. Что уже показал новый fast/confirm слой
+Локальный инженерный smoke run нового fast runner уже дошел до `4.4000 MPa`, а
+pointwise confirm для milestone loads не дал branch-jump suspicion и не нашел
+короткую bounded first-failure neighborhood вплоть до `4.4040 MPa`.
+
+Эти новые fast-run значения пока не нужно автоматически продвигать в роль
+канонического audited ceiling. На уровне project-state это означает следующее:
+
+- practical continuation architecture стала заметно лучше приспособлена к
+  подъему к нагрузкам порядка `10 MPa`;
+- но новый candidate load по-прежнему не следует объявлять final physical
+  critical load;
+- канонический audited status для separate simple-support path пока остается
+  привязанным к явно задокументированным маркерам `4.3434 / 4.3440`, `4.3520`,
+  `4.3800`.

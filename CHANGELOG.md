@@ -1,5 +1,30 @@
-# CHANGELOG
+﻿# CHANGELOG
 
+## 2026-03-26 - Add pilot 21 fast checkpointed continuation layer and full simple-support status sync
+
+Affected files:
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/continuation_runtime.py`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_u_z_scaled_arc_like_continuation.py`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/confirm_u_z_scaled_arc_like_continuation.py`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_continuation_workflow.md`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/pilot_21_u_z_scaled_arc_like_continuation.md`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/fast_progress.json`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/progress_log.jsonl`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/confirm_results.json`
+- `docs/theory/current_simple_support_status.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/theory/current_mixed_weak_theory_note.tex`
+- `README.md`
+- `docs/project_map.md`
+- `docs/journal/project_journal_updated14.md`
+- `docs/theory/vyvod_uravneniy_updated17.md`
+- `docs/assumptions/assumptions.md`
+- `CHANGELOG.md`
+
+- Added a reusable pilot-21 runtime layer with checkpoint I/O, a fast resumable continuation runner, and a separate confirm runner, while keeping the same 6-state equations and the same simple-support BC set unchanged.
+- Ran a first from-scratch fast continuation from the current audited pilot-21 path to `4.3900 MPa`, then resumed the stored path to `4.4000 MPa` without replaying the full ladder, and kept the confirm logic pointwise instead of repeating a broad pilot audit.
+- Recorded that the milestone confirm at `4.4000 MPa` remains `near_reproducible` with the same accepted seed, shows no branch-jump suspicion, and does not hit a short first-failure probe through `4.4040 MPa`; this is still operational continuation evidence, not a new canonical audited ceiling or a final physical critical load claim.
+- Synchronized the key status/theory/project-memory documents so they now consistently distinguish the old-path `4.3434 / 4.3440 MPa` pair, the pilot-20 `4.3520 MPa` ceiling, the audited pilot-21 `4.3800 MPa` ceiling, and the newer fast-run checkpoints above that audited level.
 ## 2026-03-26 - Add pilot 21 u_z-scaled arc-like continuation and refresh simple-support status
 
 Affected files:
@@ -499,6 +524,8 @@ Affected files: `data/project_map.md`, `CHANGELOG.md`
 
 - Added `data/project_map.md` to classify the current checkout into active core, runnable tasks, supporting scripts, documentation, and non-source folders.
 - Recorded the present working direction as the mixed-weak path and noted that no dedicated archived source directory exists in this checkout.
+
+
 
 
 

@@ -1,4 +1,4 @@
-# Current Simple-Support Operational Status
+﻿# Current Simple-Support Operational Status
 
 ## Scope
 This file is the canonical operational snapshot for the separate active 6-state
@@ -31,14 +31,18 @@ Several load markers should now be kept separate:
 - old-path first persistent failure load: `4.3440 MPa`
 - best bounded method-sweep ceiling from pilot 20: `4.3520 MPa` (`u_z_scaled_state`)
 - best bounded staged continuation ceiling from pilot 21: `4.3800 MPa` (`u_z`-scaled continuation + auxiliary arc-like step adaptation)
-- best bounded staged continuation first failure: not reached within the packaged pilot-21 ladder
+- current fast-engine checkpointed smoke run: `4.4000 MPa` (`fast_u_z_scaled_arc_like_continuation.py` + pointwise confirm), not yet promoted to the canonical audited ceiling language
+- best bounded staged continuation first failure in the audited pilot-21 ladder: not reached
+- current fast-engine pointwise confirm probe from the `4.4000 MPa` checkpoint: no failure reached through `4.4040 MPa`
 
 The `4.3434 / 4.3440 MPa` pair is still the canonical old-path reference for
 the original single-domain rescue-local continuation workflow. The `4.3520 MPa`
 value remains the bounded pilot-20 method ceiling for the standalone
-`u_z`-scaled solve. The new `4.3800 MPa` value is a bounded pilot-21
-continuation result on the same 6-state equations and BC set, not a final
-physical critical load claim.
+`u_z`-scaled solve. The `4.3800 MPa` value remains the current audited
+pilot-21 continuation ceiling on the same 6-state equations and BC set. The
+new `4.4000 MPa` checkpoint belongs to the newer fast/resumable operational
+workflow and is being kept separate until it is promoted by a dedicated audited
+status pass. None of these values is a final physical critical load claim.
 
 ## Current Barrier Interpretation
 The current reading is still mainly numerical, but now more sharply numerical
@@ -52,11 +56,16 @@ formulation / conditioning dominated:
 - pilot 20 showed that predictor-only changes help only modestly, while an
   unchanged-equation state representation change (`u_z`-scaled solve) moves the
   bounded ceiling to `4.3520 MPa`;
-- pilot 21 then turned that into one main high-load workflow: the exact
+- pilot 21 then turned that into one main audited high-load workflow: the exact
   `u_z`-scaled continuation path plus auxiliary arc-like step adaptation
   reproduced `4.3520 MPa` and carried the bounded staged ladder through
   `4.3550`, `4.3600`, `4.3700`, and `4.3800 MPa` with reproducible stage
   retests and no bounded failure in the packaged ladder;
+- the new fast/confirm operational split reuses the same equations and BCs,
+  adds checkpoint/resume, and in the current engineering smoke run moves the
+  stored path to `4.4000 MPa` while milestone confirm reruns stay
+  near-reproducible, show no branch-jump suspicion, and still do not hit a
+  short first-failure probe;
 - the dominant gradient ordering remains `u_z`, then `varphi`, then `T_s`.
 
 So the barrier still reads as numerical rather than as a verified physical fold,
@@ -78,13 +87,20 @@ The current shallow-comparison picture is unchanged:
 ## Current Next Step
 The current next step is still conservative numerical stabilization of the
 separate 6-state simple-support background path, but the preferred high-load
-workflow is now clearer:
+workflow is now explicitly split into two layers:
 
 - use `u_z`-scaled continuation with auxiliary arc-like step adaptation as the
   default high-load path;
+- use `fast_u_z_scaled_arc_like_continuation.py` for resumable upward progress
+  from the latest checkpoint rather than replaying the whole path from scratch;
+- use `confirm_u_z_scaled_arc_like_continuation.py` only at milestone loads,
+  first-failure neighborhoods, or when branch-jump suspicion needs to be
+  checked more carefully;
 - keep the old `4.3434 / 4.3440 MPa` pair explicit as the canonical old-path
   anchor/failure reference rather than merging it with the newer bounded
   ceilings;
+- keep the audited pilot-21 `4.3800 MPa` ceiling explicit even when the fast
+  runner temporarily moves higher in an operational smoke run;
 - do not spend more time on simple edge-mesh concentration by itself;
 - do not reconnect the mixed-weak scans to this path yet;
 - keep reporting candidate loads as exploratory.
@@ -104,6 +120,8 @@ Canonical bounded high-load / diagnosis scripts:
 - `proof_pilots/pilot_19_edge_stretched_simple_support_continuation/edge_stretched_continuation.py`
 - `proof_pilots/pilot_20_method_sweep_for_simple_support_ceiling/method_sweep.py`
 - `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/u_z_scaled_arc_like_continuation.py`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_u_z_scaled_arc_like_continuation.py`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/confirm_u_z_scaled_arc_like_continuation.py`
 
 For comparison context only, not as the canonical simple-support background
 solver path:

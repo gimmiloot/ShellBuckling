@@ -1,4 +1,4 @@
-# Assumptions used in the project
+﻿# Assumptions used in the project
 
 ## Статус документа
 
@@ -170,15 +170,16 @@
 
 ---
 
-## A11. Срыв осесимметрического BVP около `q≈4.36 MPa` является физической точкой потери устойчивости
+## A11. Ранний continuation ceiling в районе `q≈4.344..4.36 MPa` является физической точкой потери устойчивости
 
-**Формулировка.** После первых неудачных запусков simple-support background solver’а можно было бы интерпретировать `q≈4.36 MPa` как физическую точку срыва ветви.
+**Формулировка.** После первых неудачных запусков simple-support background solver’а можно было бы интерпретировать старый барьер около `4.344 MPa` или более ранние срывы около `4.36 MPa` как физическую точку потери устойчивости.
 
 **Проверялось ли:** да.
 
 **Как проверялось:**
 - сравнением с FEM-оценкой критической нагрузки порядка `10 MPa`;
-- анализом того, что это именно первая неудачная точка continuation-алгоритма;
+- анализом того, что continuation ceiling заметно сдвигается без изменения equations и без изменения simple-support BC set: old path `4.3434 / 4.3440 MPa`, pilot 20 `4.3520 MPa`, audited pilot 21 `4.3800 MPa`;
+- новым checkpointed fast run, который локально дошёл до `4.4000 MPa` и в коротком confirm probe не дал bounded first failure до `4.4040 MPa`;
 - сопоставлением с литературой по hinged support.
 
 **Результат проверки:** такая интерпретация не выдерживает проверки.
@@ -233,10 +234,28 @@
 
 ---
 
+## A15. Для продвижения separate 6-state simple-support ветви к нагрузкам порядка `10 MPa` правильнее разделять быстрый checkpointed continuation и редкий confirm/audit
+
+**Формулировка.** Предполагается, что повторять тяжёлый pilot-style audit при каждом новом подъёме по нагрузке методически и вычислительно невыгодно; вместо этого лучше использовать один быстрый resumable runner на `u_z`-scaled + auxiliary arc-like workflow и отдельный confirm runner только для milestone-точек.
+
+**Проверялось ли:** частично.
+
+**Как проверялось:**
+- прямой реализацией нового checkpoint/resume слоя поверх pilot 21;
+- from-scratch fast run до `4.3900 MPa`;
+- resume-run продолжением до `4.4000 MPa` без повторного прогрева всей ветви снизу;
+- milestone confirm run на сохранённых checkpoint’ах.
+
+**Результат проверки:** как инженерная workflow-стратегия это уже выглядит существенно дешевле и лучше масштабируется, но это пока не математическое утверждение о самой физической ветви.
+
+**Текущий статус:** **частично подтверждено как operational strategy**, не как theorem-level claim.
+
+---
+
 ## Короткая сводка по статусам
 
 ### Подтверждено / частично подтверждено
-- A3, A4, A5, A6, A7, A10, A12, A13.
+- A3, A4, A5, A6, A7, A10, A12, A13, A15.
 
 ### Не подтверждено
 - A8, A14.
@@ -248,10 +267,13 @@
 
 ## Источники, на которые опирался этот файл
 
-- `project_journal_updated14.md`
-- `vyvod_uravneniy_V16_mixed_weak_criterion.txt`
-- `mixed_weak_solver_v1.py`
-- `mixed_weak_boundary_matrix_test_v2.py`
+- `docs/journal/project_journal_updated14.md`
+- `docs/theory/vyvod_uravneniy_updated17.md`
+- `docs/theory/current_simple_support_status.md`
+- `proof_pilots/pilot_20_method_sweep_for_simple_support_ceiling/pilot_20_method_sweep_for_simple_support_ceiling.md`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/pilot_21_u_z_scaled_arc_like_continuation.md`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_continuation_workflow.md`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/fast_progress.json`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/confirm_results.json`
 - `holm3.pdf`
 - `BauerVoronkovaSemenov-vestnik2022_1.pdf`
-

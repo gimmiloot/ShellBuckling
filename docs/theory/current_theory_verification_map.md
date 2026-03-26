@@ -383,6 +383,12 @@ not that every one of them is already article-level proven.
   `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/pilot_21_u_z_scaled_arc_like_continuation.md`;
   `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/u_z_scaled_arc_like_continuation.py`;
   `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/u_z_scaled_arc_like_results.json`;
+  `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/continuation_runtime.py`;
+  `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_u_z_scaled_arc_like_continuation.py`;
+  `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/confirm_u_z_scaled_arc_like_continuation.py`;
+  `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_continuation_workflow.md`;
+  `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/fast_progress.json`;
+  `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/confirm_results.json`;
   `docs/theory/current_simple_support_status.md`;
   `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`.
 - Current status: `strategy only`
@@ -421,8 +427,15 @@ not that every one of them is already article-level proven.
   augmented only by auxiliary arc-like step adaptation, reproduces `4.3520 MPa`
   and carries the bounded staged ladder through `4.3550`, `4.3600`, `4.3700`,
   and `4.3800 MPa` with reproducible stage retests and no bounded failure in
-  the packaged ladder. This keeps the bottleneck on the numerical side and now
-  more specifically on formulation / conditioning sensitivity than on a simple
+  the packaged ladder. A newer checkpointed fast/confirm layer now reuses the
+  same equations, BCs, and scaled continuation kernel in a more operational
+  form: a first from-scratch fast run reaches `4.3900 MPa`, resume runs carry
+  the stored path to `4.4000 MPa`, and the pointwise confirm runner stays
+  near-reproducible at selected milestone loads with no branch-jump suspicion
+  and no short first-failure probe through `4.4040 MPa`. This newer `4.4000 MPa`
+  value is still operational evidence rather than the current canonical audited
+  ceiling, so the bottleneck remains on the numerical side and now more
+  specifically on formulation / conditioning sensitivity than on a simple
   raw-mesh limit or a verified physical end of branch. The active mixed-weak
   scans still use the reduced 5-state `F_min` background.
 - Verification method:
@@ -432,11 +445,14 @@ not that every one of them is already article-level proven.
 - Next action:
   keep the separate full 6-state simple-support background path, use the
   pilot-21 `u_z`-scaled continuation with auxiliary arc-like step adaptation as
-  the current high-load workflow, keep the `4.3434 / 4.3440 MPa` pair explicit
-  as the canonical old-path anchor/failure reference, stop spending time on
-  simple edge-mesh concentration alone, and use the pilot-16/pilot-17
-  BC-aligned shallow comparator plus the pilot-18 diagnosis before considering
-  any reconnection to the mixed-weak scans.
+  the current high-load workflow, split it operationally into a checkpointed
+  fast runner plus a milestone confirm runner, keep the `4.3434 / 4.3440 MPa`
+  pair explicit as the canonical old-path anchor/failure reference, keep the
+  audited `4.3800 MPa` pilot-21 ceiling explicit even when newer fast-run
+  checkpoints move higher, stop spending time on simple edge-mesh concentration
+  alone, and use the pilot-16/pilot-17 BC-aligned shallow comparator plus the
+  pilot-18 diagnosis before considering any reconnection to the mixed-weak
+  scans.
 
 ### V-ST2. Stabilize the background before promoting `q_cr`
 
