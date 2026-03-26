@@ -120,6 +120,31 @@ Documentation is part of the project, not clutter.
 
 ---
 
+## Runtime artifact policy
+Treat mass runtime outputs as local cache by default, not as ordinary tracked
+repository artifacts.
+
+This includes files such as:
+- checkpoints,
+- append-only progress logs,
+- ad hoc confirm dumps,
+- temporary resume caches.
+
+In git, prefer to keep only:
+- code,
+- workflow documentation,
+- compact summary artifacts,
+- deliberately curated milestone exports when they are intentionally promoted.
+
+If a new pilot or task introduces the same kind of runtime cache, it should
+either:
+- reuse an already ignored standard cache layout, or
+- come with an explicit `.gitignore` update.
+
+Do not silently turn large local runtime caches into tracked repository state.
+
+---
+
 ## Documentation policy
 Documentation must be updated carefully and by role.
 

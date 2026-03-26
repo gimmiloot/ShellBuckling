@@ -12,6 +12,37 @@
       "preferred_workflow": "u_z-scaled continuation + auxiliary arc-like step adaptation",
       "barrier_reading": "still numerical / conditioning-related, not a proven physical end of branch"
     },
+    "audit_policy": {
+      "same_branch_indicators": {
+        "same_accepted_seed": "repeat solve keeps the same accepted seed family",
+        "branch_jump_suspicion": "continuity check remains free of branch-jump warnings",
+        "repeat_drift_smoothness": "repeat drift changes gradually across checked milestones",
+        "repeat_vs_adjacent_step_ratio": "repeat drift stays smaller than an ordinary adjacent continuation step",
+        "strongest_gradient_order_consistency": [
+          "u_z",
+          "varphi",
+          "T_s"
+        ],
+        "bc_residual_sanity_max": 1e-06
+      },
+      "promotion_policy": {
+        "strict_reproducible": {
+          "definition": "same-load repeat solve closes under the inherited pilot-12 gate",
+          "max_rel_l2": 1e-07,
+          "max_rel_max": 1e-06
+        },
+        "near_reproducible": {
+          "definition": "same-load repeat solve closes under the relaxed fast-workflow gate and keeps the same accepted seed",
+          "requires_same_accepted_seed": true,
+          "max_rel_l2": 2e-05,
+          "max_rel_max": 0.0002
+        },
+        "stronger_milestone": "same-branch indicators stay strong, near_reproducible remains true, and a short confirm probe is recorded",
+        "audited_ceiling": "promotion above the current audited ceiling requires explicit milestone audit closure, including strict_reproducible",
+        "operational_continuation_evidence": "accepted fast-run continuation result without milestone-promotion closure",
+        "open_policy_issue": "the inherited strict thresholds may be too rigid for the newer fast continuation workflow; this is tracked explicitly as an audit-policy issue rather than treated as silent branch loss"
+      }
+    },
     "source_progress": "D:\\PHD\\ShellBuckling\\proof_pilots\\pilot_21_u_z_scaled_arc_like_continuation\\fast_run\\fast_progress.json",
     "profile": {
       "name": "u_z_scaled_arc_like_continuation",
@@ -28,1238 +59,219 @@
         "right_edge_cluster_power": 1.8
       }
     },
-    "failure_probe_step_mpa": 0.002,
+    "failure_probe_step_mpa": null,
+    "failure_probe_step_factor": 1.0,
+    "failure_probe_min_step_mpa": 0.002,
+    "failure_probe_high_load_step_mpa": 0.004,
+    "failure_probe_high_load_threshold_mpa": 5.0,
     "failure_probe_count": 2
   },
   "results": [
     {
-      "q_mpa": 5.0,
-      "step_index": 277,
+      "q_mpa": 7.0,
+      "step_index": 781,
+      "accepted_step_mpa": 0.00377559999999999,
       "accepted_point": {
-        "q_mpa": 5.0,
-        "nodes": 965,
-        "max_rms": 0.0002035947989420091,
-        "max_bc_residual": 1.5016835327216475e-27,
+        "q_mpa": 7.0,
+        "nodes": 966,
+        "max_rms": 0.00020075584717537605,
+        "max_bc_residual": 1.7149967914205002e-27,
         "min_r": 0.0016666666666666668,
-        "node_pressure": 0.0016083333333333334,
-        "right_edge_fraction_0_99": 0.29430051813471503,
-        "right_edge_fraction_0_995": 0.20103626943005182,
-        "right_edge_fraction_0_999": 0.08186528497409326,
+        "node_pressure": 0.00161,
+        "right_edge_fraction_0_99": 0.2939958592132505,
+        "right_edge_fraction_0_995": 0.20082815734989648,
+        "right_edge_fraction_0_999": 0.08178053830227744,
         "min_dx": 3.844731047975003e-07,
         "min_dx_mid": 0.9999998077634475,
         "top_gradients": [
           {
             "state": "u_z",
-            "max_abs_grad": 101.45691960646218,
-            "x_at_peak": 0.9666432644926785
+            "max_abs_grad": 101.3328212099101,
+            "x_at_peak": 0.9624715660542432
           },
           {
             "state": "varphi",
-            "max_abs_grad": 14.810062893263478,
+            "max_abs_grad": 17.156220075546315,
             "x_at_peak": 0.9270734908136483
           },
           {
             "state": "T_s",
-            "max_abs_grad": 3.0221881713115923,
+            "max_abs_grad": 3.821670744342126,
             "x_at_peak": 0.0016666666666666668
           }
         ],
         "observables": {
-          "Ts_x0": 0.007886527392928146,
-          "Tsn_1": 0.004365637689186907,
-          "Ms_x0": 4.413992287445662e-06,
-          "ur_1": -0.09012409300021887,
-          "uz_x0": -0.45629727152534927,
-          "phi_1": -1.802654458022854,
-          "max_abs_phi": 1.802762830815264,
-          "max_abs_Tsn": 0.004365637689186907
+          "Ts_x0": 0.009973349040715245,
+          "Tsn_1": 0.004774716180334736,
+          "Ms_x0": 4.87534059313354e-06,
+          "ur_1": -0.09301330902337746,
+          "uz_x0": 2.7991739739799906,
+          "phi_1": -1.8671491288084567,
+          "max_abs_phi": 1.8672453582190447,
+          "max_abs_Tsn": 0.004774716180334735
         },
         "accepted_profile": "u_z_scaled_arc_like_continuation",
         "accepted_seed": "scaled_secant_profile_mesh",
-        "predictor_rel_correction": 0.9499999990396998,
-        "predictor_abs_correction": 10.592277555009126,
+        "predictor_rel_correction": 0.9499999975648714,
+        "predictor_abs_correction": 9.72260998825399,
         "message": "The algorithm converged to the desired accuracy."
       },
       "repeat_point": {
-        "q_mpa": 5.0,
-        "nodes": 965,
-        "max_rms": 0.000203594798942265,
-        "max_bc_residual": 1.2933629130904769e-27,
+        "q_mpa": 7.0,
+        "nodes": 966,
+        "max_rms": 0.00020075584717523185,
+        "max_bc_residual": 2.5599450343124564e-27,
         "min_r": 0.0016666666666666668,
-        "node_pressure": 0.0016083333333333334,
-        "right_edge_fraction_0_99": 0.29430051813471503,
-        "right_edge_fraction_0_995": 0.20103626943005182,
-        "right_edge_fraction_0_999": 0.08186528497409326,
+        "node_pressure": 0.00161,
+        "right_edge_fraction_0_99": 0.2939958592132505,
+        "right_edge_fraction_0_995": 0.20082815734989648,
+        "right_edge_fraction_0_999": 0.08178053830227744,
         "min_dx": 3.844731047975003e-07,
         "min_dx_mid": 0.9999998077634475,
         "top_gradients": [
           {
             "state": "u_z",
-            "max_abs_grad": 101.45691960646218,
-            "x_at_peak": 0.9666432644926785
+            "max_abs_grad": 101.3328212099101,
+            "x_at_peak": 0.9624715660542432
           },
           {
             "state": "varphi",
-            "max_abs_grad": 14.810062893263478,
+            "max_abs_grad": 17.156220075546315,
             "x_at_peak": 0.9270734908136483
           },
           {
             "state": "T_s",
-            "max_abs_grad": 3.022188171311576,
+            "max_abs_grad": 3.8216707443421587,
             "x_at_peak": 0.0016666666666666668
           }
         ],
         "observables": {
-          "Ts_x0": 0.007886527392928128,
-          "Tsn_1": 0.004365637689186907,
-          "Ms_x0": 4.413992287445663e-06,
-          "ur_1": -0.09012409300021887,
-          "uz_x0": -0.45629727152534894,
-          "phi_1": -1.802654458022854,
-          "max_abs_phi": 1.802762830815264,
-          "max_abs_Tsn": 0.004365637689186907
-        },
-        "accepted_profile": "u_z_scaled_arc_like_continuation",
-        "accepted_seed": "scaled_secant_profile_mesh",
-        "predictor_rel_correction": 0.95,
-        "predictor_abs_correction": 10.592277565716248,
-        "message": "The algorithm converged to the desired accuracy."
-      },
-      "repeat_attempts": [
-        {
-          "q_mpa": 5.0,
-          "profile_name": "u_z_scaled_arc_like_continuation",
-          "seed_label": "scaled_secant_profile_mesh",
-          "success": true,
-          "attempt_seconds": 0.039301799959503114,
-          "message": "The algorithm converged to the desired accuracy.",
-          "nodes": 965,
-          "max_nodes": 600000,
-          "max_rms": 0.000203594798942265,
-          "max_bc_residual": 1.2933629130904769e-27,
-          "min_r": 0.0016666666666666668,
-          "node_pressure": 0.0016083333333333334,
-          "right_edge_fraction_0_99": 0.29430051813471503,
-          "right_edge_fraction_0_995": 0.20103626943005182,
-          "right_edge_fraction_0_999": 0.08186528497409326,
-          "min_dx": 3.844731047975003e-07,
-          "min_dx_mid": 0.9999998077634475,
-          "top_gradients": [
-            {
-              "state": "u_z",
-              "max_abs_grad": 101.45691960646218,
-              "x_at_peak": 0.9666432644926785
-            },
-            {
-              "state": "varphi",
-              "max_abs_grad": 14.810062893263478,
-              "x_at_peak": 0.9270734908136483
-            },
-            {
-              "state": "T_s",
-              "max_abs_grad": 3.022188171311576,
-              "x_at_peak": 0.0016666666666666668
-            }
-          ],
-          "observables": {
-            "Ts_x0": 0.007886527392928128,
-            "Tsn_1": 0.004365637689186907,
-            "Ms_x0": 4.413992287445663e-06,
-            "ur_1": -0.09012409300021887,
-            "uz_x0": -0.45629727152534894,
-            "phi_1": -1.802654458022854,
-            "max_abs_phi": 1.802762830815264,
-            "max_abs_Tsn": 0.004365637689186907
-          },
-          "mesh_pressure_only": false,
-          "right_edge_layer_suspicion": false,
-          "branch_turning_suspicion": false,
-          "predictor_rel_correction": 0.95,
-          "predictor_abs_correction": 10.592277565716248
-        }
-      ],
-      "reproducibility": {
-        "same_load_q_mpa": 5.0,
-        "accepted_seed_a": "scaled_secant_profile_mesh",
-        "accepted_seed_b": "scaled_secant_profile_mesh",
-        "same_accepted_seed": true,
-        "solution_delta": {
-          "max_rel_l2": 2.299636171938388e-05,
-          "max_rel_max": 0.0001561852617819361,
-          "states": {
-            "T_s": {
-              "rel_l2": 1.1335616234579053e-05,
-              "rel_max": 0.0001254099665693563,
-              "max_abs_diff": 9.890491366954315e-07
-            },
-            "T_sn": {
-              "rel_l2": 1.0360643379681891e-05,
-              "rel_max": 3.43763252427277e-05,
-              "max_abs_diff": 1.5007458109539927e-07
-            },
-            "M_s": {
-              "rel_l2": 2.299636171938388e-05,
-              "rel_max": 0.0001561852617819361,
-              "max_abs_diff": 2.160922176706057e-08
-            },
-            "u_r": {
-              "rel_l2": 4.165021878649796e-06,
-              "rel_max": 1.8723160892246124e-05,
-              "max_abs_diff": 1.6874078935108505e-06
-            },
-            "u_z": {
-              "rel_l2": 2.3619082061883366e-06,
-              "rel_max": 2.685956887177709e-05,
-              "max_abs_diff": 0.0002994805128349043
-            },
-            "varphi": {
-              "rel_l2": 2.6325389205859223e-06,
-              "rel_max": 1.759840797558374e-05,
-              "max_abs_diff": 3.172575607091055e-05
-            }
-          },
-          "top_states_by_rel_l2": [
-            {
-              "state": "M_s",
-              "rel_l2": 2.299636171938388e-05,
-              "rel_max": 0.0001561852617819361,
-              "max_abs_diff": 2.160922176706057e-08
-            },
-            {
-              "state": "T_s",
-              "rel_l2": 1.1335616234579053e-05,
-              "rel_max": 0.0001254099665693563,
-              "max_abs_diff": 9.890491366954315e-07
-            },
-            {
-              "state": "T_sn",
-              "rel_l2": 1.0360643379681891e-05,
-              "rel_max": 3.43763252427277e-05,
-              "max_abs_diff": 1.5007458109539927e-07
-            }
-          ]
-        },
-        "reproducible": false,
-        "reasons": [
-          "repeat solves at the same load are not close enough"
-        ]
-      },
-      "strict_reproducible": false,
-      "near_reproducible": false,
-      "continuity": {
-        "q_previous_mpa": 4.9975,
-        "q_current_mpa": 5.0,
-        "dq_mpa": 0.002500000000000391,
-        "step_state_metrics": {
-          "max_rel_l2": 0.0006411851969655932,
-          "max_rel_max": 0.0004086608987094007,
-          "states": {
-            "T_s": {
-              "rel_l2": 0.0003590360841484879,
-              "rel_max": 0.0003473846493455498,
-              "max_abs_diff": 2.739658552946417e-06
-            },
-            "T_sn": {
-              "rel_l2": 0.00021671489031668738,
-              "rel_max": 0.00011356059397435256,
-              "max_abs_diff": 4.957644090608851e-07
-            },
-            "M_s": {
-              "rel_l2": 0.00018587838540523908,
-              "rel_max": 0.0001923415174654743,
-              "max_abs_diff": 2.6608751252073584e-08
-            },
-            "u_r": {
-              "rel_l2": 0.00012114978726924167,
-              "rel_max": 5.8717252595866506e-05,
-              "max_abs_diff": 5.291839133667216e-06
-            },
-            "u_z": {
-              "rel_l2": 0.0006411851969655932,
-              "rel_max": 0.0004086608987094007,
-              "max_abs_diff": 0.00455699685014721
-            },
-            "varphi": {
-              "rel_l2": 0.00016848085559017362,
-              "rel_max": 0.00011444352771964702,
-              "max_abs_diff": 0.00020631453799346833
-            }
-          },
-          "top_states_by_rel_l2": [
-            {
-              "state": "u_z",
-              "rel_l2": 0.0006411851969655932,
-              "rel_max": 0.0004086608987094007,
-              "max_abs_diff": 0.00455699685014721
-            },
-            {
-              "state": "T_s",
-              "rel_l2": 0.0003590360841484879,
-              "rel_max": 0.0003473846493455498,
-              "max_abs_diff": 2.739658552946417e-06
-            },
-            {
-              "state": "T_sn",
-              "rel_l2": 0.00021671489031668738,
-              "rel_max": 0.00011356059397435256,
-              "max_abs_diff": 4.957644090608851e-07
-            }
-          ]
-        },
-        "observable_deltas": {
-          "phi_1": {
-            "current": -1.802654458022854,
-            "previous": -1.8025654621349516,
-            "abs_delta": 8.899588790245438e-05,
-            "rel_delta": 4.936935501219951e-05
-          },
-          "ur_1": {
-            "current": -0.09012409300021887,
-            "previous": -0.09012023061124926,
-            "abs_delta": 3.8623889696137725e-06,
-            "rel_delta": 3.8623889696137725e-06
-          },
-          "Tsn_1": {
-            "current": 0.004365637689186907,
-            "previous": 0.004365141924777845,
-            "abs_delta": 4.957644090617525e-07,
-            "rel_delta": 4.957644090617525e-07
-          },
-          "max_abs_phi": {
-            "current": 1.802762830815264,
-            "previous": 1.8026738513628968,
-            "abs_delta": 8.897945236707727e-05,
-            "rel_delta": 4.9357270322041236e-05
-          },
-          "max_abs_Tsn": {
-            "current": 0.004365637689186907,
-            "previous": 0.004365141924777845,
-            "abs_delta": 4.957644090617525e-07,
-            "rel_delta": 4.957644090617525e-07
-          }
-        },
-        "previous_step_state_metrics": {
-          "max_rel_l2": 0.0006411485436281858,
-          "max_rel_max": 0.0004087430271571881,
-          "states": {
-            "T_s": {
-              "rel_l2": 0.000359203212807216,
-              "rel_max": 0.0003475526597397918,
-              "max_abs_diff": 2.740031395906048e-06
-            },
-            "T_sn": {
-              "rel_l2": 0.00021672967116230014,
-              "rel_max": 0.00011356403084927336,
-              "max_abs_diff": 4.957231122069278e-07
-            },
-            "M_s": {
-              "rel_l2": 0.00018591681841125492,
-              "rel_max": 0.0001923717843244835,
-              "max_abs_diff": 2.6607859592280708e-08
-            },
-            "u_r": {
-              "rel_l2": 0.00012115972619638603,
-              "rel_max": 5.871717455359414e-05,
-              "max_abs_diff": 5.291605311610881e-06
-            },
-            "u_z": {
-              "rel_l2": 0.0006411485436281858,
-              "rel_max": 0.0004087430271571881,
-              "max_abs_diff": 0.0045584444534158
-            },
-            "varphi": {
-              "rel_l2": 0.00016852560792450286,
-              "rel_max": 0.00011446331086792952,
-              "max_abs_diff": 0.00020634001743456178
-            }
-          },
-          "top_states_by_rel_l2": [
-            {
-              "state": "u_z",
-              "rel_l2": 0.0006411485436281858,
-              "rel_max": 0.0004087430271571881,
-              "max_abs_diff": 0.0045584444534158
-            },
-            {
-              "state": "T_s",
-              "rel_l2": 0.000359203212807216,
-              "rel_max": 0.0003475526597397918,
-              "max_abs_diff": 2.740031395906048e-06
-            },
-            {
-              "state": "T_sn",
-              "rel_l2": 0.00021672967116230014,
-              "rel_max": 0.00011356403084927336,
-              "max_abs_diff": 4.957231122069278e-07
-            }
-          ]
-        },
-        "normalized_state_growth": 1.0000571682452435,
-        "observable_growth": {
-          "phi_1": 0.9997479582033729,
-          "ur_1": 0.9998171736665535,
-          "Tsn_1": 1.000083306294379,
-          "max_abs_phi": 0.9997478910180603,
-          "max_abs_Tsn": 1.000083306294379
-        },
-        "branch_jump_suspicion": false,
-        "branch_jump_reasons": []
-      },
-      "branch_jump_suspicion": false,
-      "failure_probe": [
-        {
-          "q_target_mpa": 5.002,
-          "success": true,
-          "attempt_count": 1,
-          "attempts": [
-            {
-              "q_mpa": 5.002,
-              "seed_label": "scaled_secant_profile_mesh",
-              "success": true,
-              "nodes": 965,
-              "message": "The algorithm converged to the desired accuracy.",
-              "max_bc_residual": 3.323748158294165e-27,
-              "node_pressure": 0.0016083333333333334,
-              "right_edge_fraction_0_995": 0.20103626943005182,
-              "predictor_rel_correction": 0.9499999993092946,
-              "mesh_pressure_only": false,
-              "branch_turning_suspicion": false
-            }
-          ],
-          "accepted_point": {
-            "q_mpa": 5.002,
-            "nodes": 965,
-            "max_rms": 0.0002036472026821342,
-            "max_bc_residual": 3.323748158294165e-27,
-            "min_r": 0.0016666666666666668,
-            "node_pressure": 0.0016083333333333334,
-            "right_edge_fraction_0_99": 0.29430051813471503,
-            "right_edge_fraction_0_995": 0.20103626943005182,
-            "right_edge_fraction_0_999": 0.08186528497409326,
-            "min_dx": 3.844731047975003e-07,
-            "min_dx_mid": 0.9999998077634475,
-            "top_gradients": [
-              {
-                "state": "u_z",
-                "max_abs_grad": 101.4567802434558,
-                "x_at_peak": 0.9666432644926785
-              },
-              {
-                "state": "varphi",
-                "max_abs_grad": 14.812385379347461,
-                "x_at_peak": 0.9270734908136483
-              },
-              {
-                "state": "T_s",
-                "max_abs_grad": 3.023027786593898,
-                "x_at_peak": 0.0016666666666666668
-              }
-            ],
-            "observables": {
-              "Ts_x0": 0.007888718851457695,
-              "Tsn_1": 0.004366034330440774,
-              "Ms_x0": 4.41451680806489e-06,
-              "ur_1": -0.09012718240309674,
-              "uz_x0": -0.45265271560858156,
-              "phi_1": -1.8027256385830726,
-              "max_abs_phi": 1.802833998225732,
-              "max_abs_Tsn": 0.004366034330440774
-            },
-            "accepted_profile": "u_z_scaled_arc_like_continuation",
-            "accepted_seed": "scaled_secant_profile_mesh",
-            "predictor_rel_correction": 0.9499999993092946,
-            "predictor_abs_correction": 10.591288767778027,
-            "message": "The algorithm converged to the desired accuracy."
-          }
-        },
-        {
-          "q_target_mpa": 5.004,
-          "success": true,
-          "attempt_count": 1,
-          "attempts": [
-            {
-              "q_mpa": 5.004,
-              "seed_label": "scaled_secant_profile_mesh",
-              "success": true,
-              "nodes": 965,
-              "message": "The algorithm converged to the desired accuracy.",
-              "max_bc_residual": 3.8052728914583516e-27,
-              "node_pressure": 0.0016083333333333334,
-              "right_edge_fraction_0_995": 0.20103626943005182,
-              "predictor_rel_correction": 0.9499999993866218,
-              "mesh_pressure_only": false,
-              "branch_turning_suspicion": false
-            }
-          ],
-          "accepted_point": {
-            "q_mpa": 5.004,
-            "nodes": 965,
-            "max_rms": 0.00020369959873127417,
-            "max_bc_residual": 3.8052728914583516e-27,
-            "min_r": 0.0016666666666666668,
-            "node_pressure": 0.0016083333333333334,
-            "right_edge_fraction_0_99": 0.29430051813471503,
-            "right_edge_fraction_0_995": 0.20103626943005182,
-            "right_edge_fraction_0_999": 0.08186528497409326,
-            "min_dx": 3.844731047975003e-07,
-            "min_dx_mid": 0.9999998077634475,
-            "top_gradients": [
-              {
-                "state": "u_z",
-                "max_abs_grad": 101.45664070642124,
-                "x_at_peak": 0.9666432644926785
-              },
-              {
-                "state": "varphi",
-                "max_abs_grad": 14.81470795568535,
-                "x_at_peak": 0.9270734908136483
-              },
-              {
-                "state": "T_s",
-                "max_abs_grad": 3.023867310446381,
-                "x_at_peak": 0.0016666666666666668
-              }
-            ],
-            "observables": {
-              "Ts_x0": 0.007890910071596964,
-              "Tsn_1": 0.004366430998112433,
-              "Ms_x0": 4.415041170913121e-06,
-              "ur_1": -0.09013027135433627,
-              "uz_x0": -0.4490090849396554,
-              "phi_1": -1.8027968047909932,
-              "max_abs_phi": 1.8029051512827283,
-              "max_abs_Tsn": 0.004366430998112433
-            },
-            "accepted_profile": "u_z_scaled_arc_like_continuation",
-            "accepted_seed": "scaled_secant_profile_mesh",
-            "predictor_rel_correction": 0.9499999993866218,
-            "predictor_abs_correction": 10.590299848485857,
-            "message": "The algorithm converged to the desired accuracy."
-          }
-        }
-      ],
-      "strongest_gradient_order": [
-        "u_z",
-        "varphi",
-        "T_s"
-      ]
-    },
-    {
-      "q_mpa": 5.5,
-      "step_index": 477,
-      "accepted_point": {
-        "q_mpa": 5.5,
-        "nodes": 965,
-        "max_rms": 0.00021646425807704368,
-        "max_bc_residual": 9.863897721035928e-28,
-        "min_r": 0.0016666666666666668,
-        "node_pressure": 0.0016083333333333334,
-        "right_edge_fraction_0_99": 0.29430051813471503,
-        "right_edge_fraction_0_995": 0.20103626943005182,
-        "right_edge_fraction_0_999": 0.08186528497409326,
-        "min_dx": 3.844731047975003e-07,
-        "min_dx_mid": 0.9999998077634475,
-        "top_gradients": [
-          {
-            "state": "u_z",
-            "max_abs_grad": 101.42511196716805,
-            "x_at_peak": 0.9655516557891616
-          },
-          {
-            "state": "varphi",
-            "max_abs_grad": 15.393129387885523,
-            "x_at_peak": 0.9270734908136483
-          },
-          {
-            "state": "T_s",
-            "max_abs_grad": 3.229342599441984,
-            "x_at_peak": 0.0016666666666666668
-          }
-        ],
-        "observables": {
-          "Ts_x0": 0.008427223434969735,
-          "Tsn_1": 0.004465606931811732,
-          "Ms_x0": 4.540505888900809e-06,
-          "ur_1": -0.0908828081173176,
-          "uz_x0": 0.427358344373698,
-          "phi_1": -1.8200107183308214,
-          "max_abs_phi": 1.8201159213377323,
-          "max_abs_Tsn": 0.004465606931811732
-        },
-        "accepted_profile": "u_z_scaled_arc_like_continuation",
-        "accepted_seed": "scaled_secant_profile_mesh",
-        "predictor_rel_correction": 0.949999999150374,
-        "predictor_abs_correction": 10.354658294742329,
-        "message": "The algorithm converged to the desired accuracy."
-      },
-      "repeat_point": {
-        "q_mpa": 5.5,
-        "nodes": 965,
-        "max_rms": 0.00021646425807706434,
-        "max_bc_residual": 9.282255878006219e-28,
-        "min_r": 0.0016666666666666668,
-        "node_pressure": 0.0016083333333333334,
-        "right_edge_fraction_0_99": 0.29430051813471503,
-        "right_edge_fraction_0_995": 0.20103626943005182,
-        "right_edge_fraction_0_999": 0.08186528497409326,
-        "min_dx": 3.844731047975003e-07,
-        "min_dx_mid": 0.9999998077634475,
-        "top_gradients": [
-          {
-            "state": "u_z",
-            "max_abs_grad": 101.42511196716805,
-            "x_at_peak": 0.9655516557891616
-          },
-          {
-            "state": "varphi",
-            "max_abs_grad": 15.393129387885523,
-            "x_at_peak": 0.9270734908136483
-          },
-          {
-            "state": "T_s",
-            "max_abs_grad": 3.2293425994420004,
-            "x_at_peak": 0.0016666666666666668
-          }
-        ],
-        "observables": {
-          "Ts_x0": 0.008427223434969796,
-          "Tsn_1": 0.004465606931811732,
-          "Ms_x0": 4.540505888900806e-06,
-          "ur_1": -0.0908828081173176,
-          "uz_x0": 0.4273583443736981,
-          "phi_1": -1.8200107183308214,
-          "max_abs_phi": 1.8201159213377323,
-          "max_abs_Tsn": 0.004465606931811732
-        },
-        "accepted_profile": "u_z_scaled_arc_like_continuation",
-        "accepted_seed": "scaled_secant_profile_mesh",
-        "predictor_rel_correction": 0.95,
-        "predictor_abs_correction": 10.354658304002946,
-        "message": "The algorithm converged to the desired accuracy."
-      },
-      "repeat_attempts": [
-        {
-          "q_mpa": 5.5,
-          "profile_name": "u_z_scaled_arc_like_continuation",
-          "seed_label": "scaled_secant_profile_mesh",
-          "success": true,
-          "attempt_seconds": 0.03784210002049804,
-          "message": "The algorithm converged to the desired accuracy.",
-          "nodes": 965,
-          "max_nodes": 600000,
-          "max_rms": 0.00021646425807706434,
-          "max_bc_residual": 9.282255878006219e-28,
-          "min_r": 0.0016666666666666668,
-          "node_pressure": 0.0016083333333333334,
-          "right_edge_fraction_0_99": 0.29430051813471503,
-          "right_edge_fraction_0_995": 0.20103626943005182,
-          "right_edge_fraction_0_999": 0.08186528497409326,
-          "min_dx": 3.844731047975003e-07,
-          "min_dx_mid": 0.9999998077634475,
-          "top_gradients": [
-            {
-              "state": "u_z",
-              "max_abs_grad": 101.42511196716805,
-              "x_at_peak": 0.9655516557891616
-            },
-            {
-              "state": "varphi",
-              "max_abs_grad": 15.393129387885523,
-              "x_at_peak": 0.9270734908136483
-            },
-            {
-              "state": "T_s",
-              "max_abs_grad": 3.2293425994420004,
-              "x_at_peak": 0.0016666666666666668
-            }
-          ],
-          "observables": {
-            "Ts_x0": 0.008427223434969796,
-            "Tsn_1": 0.004465606931811732,
-            "Ms_x0": 4.540505888900806e-06,
-            "ur_1": -0.0908828081173176,
-            "uz_x0": 0.4273583443736981,
-            "phi_1": -1.8200107183308214,
-            "max_abs_phi": 1.8201159213377323,
-            "max_abs_Tsn": 0.004465606931811732
-          },
-          "mesh_pressure_only": false,
-          "right_edge_layer_suspicion": false,
-          "branch_turning_suspicion": false,
-          "predictor_rel_correction": 0.95,
-          "predictor_abs_correction": 10.354658304002946
-        }
-      ],
-      "reproducibility": {
-        "same_load_q_mpa": 5.5,
-        "accepted_seed_a": "scaled_secant_profile_mesh",
-        "accepted_seed_b": "scaled_secant_profile_mesh",
-        "same_accepted_seed": true,
-        "solution_delta": {
-          "max_rel_l2": 2.856539085294437e-05,
-          "max_rel_max": 0.00019771380540563633,
-          "states": {
-            "T_s": {
-              "rel_l2": 1.2794103399153727e-05,
-              "rel_max": 0.00012539212049360912,
-              "max_abs_diff": 1.056707416384299e-06
-            },
-            "T_sn": {
-              "rel_l2": 9.977876700700717e-06,
-              "rel_max": 3.338558901297711e-05,
-              "max_abs_diff": 1.490869177189682e-07
-            },
-            "M_s": {
-              "rel_l2": 2.856539085294437e-05,
-              "rel_max": 0.00019771380540563633,
-              "max_abs_diff": 2.8406421673205602e-08
-            },
-            "u_r": {
-              "rel_l2": 4.227501830056372e-06,
-              "rel_max": 1.916513460048992e-05,
-              "max_abs_diff": 1.7417812504388896e-06
-            },
-            "u_z": {
-              "rel_l2": 4.527832516945731e-06,
-              "rel_max": 5.094643059828331e-05,
-              "max_abs_diff": 0.0005553243196771973
-            },
-            "varphi": {
-              "rel_l2": 2.6612369188506933e-06,
-              "rel_max": 1.8236690520546754e-05,
-              "max_abs_diff": 3.319289097714062e-05
-            }
-          },
-          "top_states_by_rel_l2": [
-            {
-              "state": "M_s",
-              "rel_l2": 2.856539085294437e-05,
-              "rel_max": 0.00019771380540563633,
-              "max_abs_diff": 2.8406421673205602e-08
-            },
-            {
-              "state": "T_s",
-              "rel_l2": 1.2794103399153727e-05,
-              "rel_max": 0.00012539212049360912,
-              "max_abs_diff": 1.056707416384299e-06
-            },
-            {
-              "state": "T_sn",
-              "rel_l2": 9.977876700700717e-06,
-              "rel_max": 3.338558901297711e-05,
-              "max_abs_diff": 1.490869177189682e-07
-            }
-          ]
-        },
-        "reproducible": false,
-        "reasons": [
-          "repeat solves at the same load are not close enough"
-        ]
-      },
-      "strict_reproducible": false,
-      "near_reproducible": false,
-      "continuity": {
-        "q_previous_mpa": 5.4975,
-        "q_current_mpa": 5.5,
-        "dq_mpa": 0.002500000000000391,
-        "step_state_metrics": {
-          "max_rel_l2": 0.0006465501210086663,
-          "max_rel_max": 0.0003932917779764263,
-          "states": {
-            "T_s": {
-              "rel_l2": 0.000328350355223712,
-              "rel_max": 0.0003166970519139221,
-              "max_abs_diff": 2.668876817674831e-06
-            },
-            "T_sn": {
-              "rel_l2": 0.00021344915356244634,
-              "rel_max": 0.00011282300929462221,
-              "max_abs_diff": 5.038232123739245e-07
-            },
-            "M_s": {
-              "rel_l2": 0.00017842262424160667,
-              "rel_max": 0.000186331909637168,
-              "max_abs_diff": 2.6766205049334182e-08
-            },
-            "u_r": {
-              "rel_l2": 0.00011910801953462827,
-              "rel_max": 5.86884273813761e-05,
-              "max_abs_diff": 5.333769084408732e-06
-            },
-            "u_z": {
-              "rel_l2": 0.0006465501210086663,
-              "rel_max": 0.0003932917779764263,
-              "max_abs_diff": 0.004287204955591761
-            },
-            "varphi": {
-              "rel_l2": 0.00016005826778849985,
-              "rel_max": 0.00011064366663524124,
-              "max_abs_diff": 0.00020138429923766826
-            }
-          },
-          "top_states_by_rel_l2": [
-            {
-              "state": "u_z",
-              "rel_l2": 0.0006465501210086663,
-              "rel_max": 0.0003932917779764263,
-              "max_abs_diff": 0.004287204955591761
-            },
-            {
-              "state": "T_s",
-              "rel_l2": 0.000328350355223712,
-              "rel_max": 0.0003166970519139221,
-              "max_abs_diff": 2.668876817674831e-06
-            },
-            {
-              "state": "T_sn",
-              "rel_l2": 0.00021344915356244634,
-              "rel_max": 0.00011282300929462221,
-              "max_abs_diff": 5.038232123739245e-07
-            }
-          ]
-        },
-        "observable_deltas": {
-          "phi_1": {
-            "current": -1.8200107183308214,
-            "previous": -1.8199260907196833,
-            "abs_delta": 8.462761113814388e-05,
-            "rel_delta": 4.649841360041991e-05
-          },
-          "ur_1": {
-            "current": -0.0908828081173176,
-            "previous": -0.09087908059755635,
-            "abs_delta": 3.72751976124297e-06,
-            "rel_delta": 3.72751976124297e-06
-          },
-          "Tsn_1": {
-            "current": 0.004465606931811732,
-            "previous": 0.004465103108599359,
-            "abs_delta": 5.038232123730571e-07,
-            "rel_delta": 5.038232123730571e-07
-          },
-          "max_abs_phi": {
-            "current": 1.8201159213377323,
-            "previous": 1.8200313096821046,
-            "abs_delta": 8.461165562767547e-05,
-            "rel_delta": 4.6486959778632325e-05
-          },
-          "max_abs_Tsn": {
-            "current": 0.004465606931811732,
-            "previous": 0.004465103108599359,
-            "abs_delta": 5.038232123730571e-07,
-            "rel_delta": 5.038232123730571e-07
-          }
-        },
-        "previous_step_state_metrics": {
-          "max_rel_l2": 0.0006465346294502867,
-          "max_rel_max": 0.0003933644270558667,
-          "states": {
-            "T_s": {
-              "rel_l2": 0.0003284912800507472,
-              "rel_max": 0.00031683728501653017,
-              "max_abs_diff": 2.6692129936785325e-06
-            },
-            "T_sn": {
-              "rel_l2": 0.00021346682984334502,
-              "rel_max": 0.00011282692486928827,
-              "max_abs_diff": 5.037838529675653e-07
-            },
-            "M_s": {
-              "rel_l2": 0.00017845875966825697,
-              "rel_max": 0.00018636218439175404,
-              "max_abs_diff": 2.6765587317719624e-08
-            },
-            "u_r": {
-              "rel_l2": 0.00011911844925752442,
-              "rel_max": 5.8688964014147065e-05,
-              "max_abs_diff": 5.333599090828756e-06
-            },
-            "u_z": {
-              "rel_l2": 0.0006465346294502867,
-              "rel_max": 0.0003933644270558667,
-              "max_abs_diff": 0.00428846332256666
-            },
-            "varphi": {
-              "rel_l2": 0.00016009792758208302,
-              "rel_max": 0.00011066191727351264,
-              "max_abs_diff": 0.00020140815422691263
-            }
-          },
-          "top_states_by_rel_l2": [
-            {
-              "state": "u_z",
-              "rel_l2": 0.0006465346294502867,
-              "rel_max": 0.0003933644270558667,
-              "max_abs_diff": 0.00428846332256666
-            },
-            {
-              "state": "T_s",
-              "rel_l2": 0.0003284912800507472,
-              "rel_max": 0.00031683728501653017,
-              "max_abs_diff": 2.6692129936785325e-06
-            },
-            {
-              "state": "T_sn",
-              "rel_l2": 0.00021346682984334502,
-              "rel_max": 0.00011282692486928827,
-              "max_abs_diff": 5.037838529675653e-07
-            }
-          ]
-        },
-        "normalized_state_growth": 1.0000239609101262,
-        "observable_growth": {
-          "phi_1": 0.9997487921348005,
-          "ur_1": 0.9998273284332688,
-          "Tsn_1": 1.0000781275641943,
-          "max_abs_phi": 0.9997487269735397,
-          "max_abs_Tsn": 1.0000781275641943
-        },
-        "branch_jump_suspicion": false,
-        "branch_jump_reasons": []
-      },
-      "branch_jump_suspicion": false,
-      "failure_probe": [
-        {
-          "q_target_mpa": 5.502,
-          "success": true,
-          "attempt_count": 1,
-          "attempts": [
-            {
-              "q_mpa": 5.502,
-              "seed_label": "scaled_secant_profile_mesh",
-              "success": true,
-              "nodes": 965,
-              "message": "The algorithm converged to the desired accuracy.",
-              "max_bc_residual": 2.3563911520704158e-27,
-              "node_pressure": 0.0016083333333333334,
-              "right_edge_fraction_0_995": 0.20103626943005182,
-              "predictor_rel_correction": 0.9499999993888287,
-              "mesh_pressure_only": false,
-              "branch_turning_suspicion": false
-            }
-          ],
-          "accepted_point": {
-            "q_mpa": 5.502,
-            "nodes": 965,
-            "max_rms": 0.00021651483338825853,
-            "max_bc_residual": 2.3563911520704158e-27,
-            "min_r": 0.0016666666666666668,
-            "node_pressure": 0.0016083333333333334,
-            "right_edge_fraction_0_99": 0.29430051813471503,
-            "right_edge_fraction_0_995": 0.20103626943005182,
-            "right_edge_fraction_0_999": 0.08186528497409326,
-            "min_dx": 3.844731047975003e-07,
-            "min_dx_mid": 0.9999998077634475,
-            "top_gradients": [
-              {
-                "state": "u_z",
-                "max_abs_grad": 101.4249928772133,
-                "x_at_peak": 0.9655516557891616
-              },
-              {
-                "state": "varphi",
-                "max_abs_grad": 15.395470080681463,
-                "x_at_peak": 0.9270734908136483
-              },
-              {
-                "state": "T_s",
-                "max_abs_grad": 3.2301605070299537,
-                "x_at_peak": 0.0016666666666666668
-              }
-            ],
-            "observables": {
-              "Ts_x0": 0.008429358294490609,
-              "Tsn_1": 0.004466010018714467,
-              "Ms_x0": 4.540994437398528e-06,
-              "ur_1": -0.0908857896698282,
-              "uz_x0": 0.4307872028815127,
-              "phi_1": -1.8200784051131322,
-              "max_abs_phi": 1.8201835953545513,
-              "max_abs_Tsn": 0.004466010018714467
-            },
-            "accepted_profile": "u_z_scaled_arc_like_continuation",
-            "accepted_seed": "scaled_secant_profile_mesh",
-            "predictor_rel_correction": 0.9499999993888287,
-            "predictor_abs_correction": 10.35375715910587,
-            "message": "The algorithm converged to the desired accuracy."
-          }
-        },
-        {
-          "q_target_mpa": 5.504,
-          "success": true,
-          "attempt_count": 1,
-          "attempts": [
-            {
-              "q_mpa": 5.504,
-              "seed_label": "scaled_secant_profile_mesh",
-              "success": true,
-              "nodes": 965,
-              "message": "The algorithm converged to the desired accuracy.",
-              "max_bc_residual": 1.35436499898597e-27,
-              "node_pressure": 0.0016083333333333334,
-              "right_edge_fraction_0_995": 0.20103626943005182,
-              "predictor_rel_correction": 0.9499999994571947,
-              "mesh_pressure_only": false,
-              "branch_turning_suspicion": false
-            }
-          ],
-          "accepted_point": {
-            "q_mpa": 5.504,
-            "nodes": 965,
-            "max_rms": 0.00021656540174571804,
-            "max_bc_residual": 1.35436499898597e-27,
-            "min_r": 0.0016666666666666668,
-            "node_pressure": 0.0016083333333333334,
-            "right_edge_fraction_0_99": 0.29430051813471503,
-            "right_edge_fraction_0_995": 0.20103626943005182,
-            "right_edge_fraction_0_999": 0.08186528497409326,
-            "min_dx": 3.844731047975003e-07,
-            "min_dx_mid": 0.9999998077634475,
-            "top_gradients": [
-              {
-                "state": "u_z",
-                "max_abs_grad": 101.42487365983288,
-                "x_at_peak": 0.9655516557891616
-              },
-              {
-                "state": "varphi",
-                "max_abs_grad": 15.397810829504692,
-                "x_at_peak": 0.9270734908136483
-              },
-              {
-                "state": "T_s",
-                "max_abs_grad": 3.23097833217272,
-                "x_at_peak": 0.0016666666666666668
-              }
-            ],
-            "observables": {
-              "Ts_x0": 0.00843149293905296,
-              "Tsn_1": 0.0044664131307970475,
-              "Ms_x0": 4.54148285466626e-06,
-              "ur_1": -0.09088877081068297,
-              "uz_x0": 0.43421525700696717,
-              "phi_1": -1.8201460782927257,
-              "max_abs_phi": 1.8202512557676895,
-              "max_abs_Tsn": 0.0044664131307970475
-            },
-            "accepted_profile": "u_z_scaled_arc_like_continuation",
-            "accepted_seed": "scaled_secant_profile_mesh",
-            "predictor_rel_correction": 0.9499999994571947,
-            "predictor_abs_correction": 10.35285590922368,
-            "message": "The algorithm converged to the desired accuracy."
-          }
-        }
-      ],
-      "strongest_gradient_order": [
-        "u_z",
-        "varphi",
-        "T_s"
-      ]
-    },
-    {
-      "q_mpa": 6.0,
-      "step_index": 677,
-      "accepted_point": {
-        "q_mpa": 6.0,
-        "nodes": 965,
-        "max_rms": 0.00022889833627832507,
-        "max_bc_residual": 1.8131026413354102e-27,
-        "min_r": 0.0016666666666666668,
-        "node_pressure": 0.0016083333333333334,
-        "right_edge_fraction_0_99": 0.29430051813471503,
-        "right_edge_fraction_0_995": 0.20103626943005182,
-        "right_edge_fraction_0_999": 0.08186528497409326,
-        "min_dx": 3.844731047975003e-07,
-        "min_dx_mid": 0.9999998077634475,
-        "top_gradients": [
-          {
-            "state": "u_z",
-            "max_abs_grad": 101.39635251117215,
-            "x_at_peak": 0.965
-          },
-          {
-            "state": "varphi",
-            "max_abs_grad": 15.979727497741806,
-            "x_at_peak": 0.9270734908136483
-          },
-          {
-            "state": "T_s",
-            "max_abs_grad": 3.4313350603727177,
-            "x_at_peak": 0.0016666666666666668
-          }
-        ],
-        "observables": {
-          "Ts_x0": 0.008954460729117228,
-          "Tsn_1": 0.00456715125551424,
-          "Ms_x0": 4.658777919293177e-06,
-          "ur_1": -0.09161576624606114,
-          "uz_x0": 1.2605913888870575,
-          "phi_1": -1.836516386870973,
-          "max_abs_phi": 1.836618506440162,
-          "max_abs_Tsn": 0.00456715125551424
-        },
-        "accepted_profile": "u_z_scaled_arc_like_continuation",
-        "accepted_seed": "scaled_secant_profile_mesh",
-        "predictor_rel_correction": 0.9499999992537896,
-        "predictor_abs_correction": 10.131721724394296,
-        "message": "The algorithm converged to the desired accuracy."
-      },
-      "repeat_point": {
-        "q_mpa": 6.0,
-        "nodes": 965,
-        "max_rms": 0.00022889833627815054,
-        "max_bc_residual": 1.1555305115268943e-27,
-        "min_r": 0.0016666666666666668,
-        "node_pressure": 0.0016083333333333334,
-        "right_edge_fraction_0_99": 0.29430051813471503,
-        "right_edge_fraction_0_995": 0.20103626943005182,
-        "right_edge_fraction_0_999": 0.08186528497409326,
-        "min_dx": 3.844731047975003e-07,
-        "min_dx_mid": 0.9999998077634475,
-        "top_gradients": [
-          {
-            "state": "u_z",
-            "max_abs_grad": 101.39635251117215,
-            "x_at_peak": 0.965
-          },
-          {
-            "state": "varphi",
-            "max_abs_grad": 15.979727497741806,
-            "x_at_peak": 0.9270734908136483
-          },
-          {
-            "state": "T_s",
-            "max_abs_grad": 3.431335060372734,
-            "x_at_peak": 0.0016666666666666668
-          }
-        ],
-        "observables": {
-          "Ts_x0": 0.008954460729117262,
-          "Tsn_1": 0.00456715125551424,
-          "Ms_x0": 4.658777919293178e-06,
-          "ur_1": -0.09161576624606114,
-          "uz_x0": 1.2605913888870575,
-          "phi_1": -1.836516386870973,
-          "max_abs_phi": 1.836618506440162,
-          "max_abs_Tsn": 0.00456715125551424
+          "Ts_x0": 0.009973349040715276,
+          "Tsn_1": 0.004774716180334736,
+          "Ms_x0": 4.875340593133537e-06,
+          "ur_1": -0.09301330902337746,
+          "uz_x0": 2.7991739739799906,
+          "phi_1": -1.8671491288084567,
+          "max_abs_phi": 1.8672453582190447,
+          "max_abs_Tsn": 0.004774716180334735
         },
         "accepted_profile": "u_z_scaled_arc_like_continuation",
         "accepted_seed": "scaled_secant_profile_mesh",
         "predictor_rel_correction": 0.9500000000000001,
-        "predictor_abs_correction": 10.131721732352608,
+        "predictor_abs_correction": 9.72261001317589,
         "message": "The algorithm converged to the desired accuracy."
       },
       "repeat_attempts": [
         {
-          "q_mpa": 6.0,
+          "q_mpa": 7.0,
           "profile_name": "u_z_scaled_arc_like_continuation",
           "seed_label": "scaled_secant_profile_mesh",
           "success": true,
-          "attempt_seconds": 0.03737230005208403,
+          "attempt_seconds": 0.0413084999890998,
           "message": "The algorithm converged to the desired accuracy.",
-          "nodes": 965,
+          "nodes": 966,
           "max_nodes": 600000,
-          "max_rms": 0.00022889833627815054,
-          "max_bc_residual": 1.1555305115268943e-27,
+          "max_rms": 0.00020075584717523185,
+          "max_bc_residual": 2.5599450343124564e-27,
           "min_r": 0.0016666666666666668,
-          "node_pressure": 0.0016083333333333334,
-          "right_edge_fraction_0_99": 0.29430051813471503,
-          "right_edge_fraction_0_995": 0.20103626943005182,
-          "right_edge_fraction_0_999": 0.08186528497409326,
+          "node_pressure": 0.00161,
+          "right_edge_fraction_0_99": 0.2939958592132505,
+          "right_edge_fraction_0_995": 0.20082815734989648,
+          "right_edge_fraction_0_999": 0.08178053830227744,
           "min_dx": 3.844731047975003e-07,
           "min_dx_mid": 0.9999998077634475,
           "top_gradients": [
             {
               "state": "u_z",
-              "max_abs_grad": 101.39635251117215,
-              "x_at_peak": 0.965
+              "max_abs_grad": 101.3328212099101,
+              "x_at_peak": 0.9624715660542432
             },
             {
               "state": "varphi",
-              "max_abs_grad": 15.979727497741806,
+              "max_abs_grad": 17.156220075546315,
               "x_at_peak": 0.9270734908136483
             },
             {
               "state": "T_s",
-              "max_abs_grad": 3.431335060372734,
+              "max_abs_grad": 3.8216707443421587,
               "x_at_peak": 0.0016666666666666668
             }
           ],
           "observables": {
-            "Ts_x0": 0.008954460729117262,
-            "Tsn_1": 0.00456715125551424,
-            "Ms_x0": 4.658777919293178e-06,
-            "ur_1": -0.09161576624606114,
-            "uz_x0": 1.2605913888870575,
-            "phi_1": -1.836516386870973,
-            "max_abs_phi": 1.836618506440162,
-            "max_abs_Tsn": 0.00456715125551424
+            "Ts_x0": 0.009973349040715276,
+            "Tsn_1": 0.004774716180334736,
+            "Ms_x0": 4.875340593133537e-06,
+            "ur_1": -0.09301330902337746,
+            "uz_x0": 2.7991739739799906,
+            "phi_1": -1.8671491288084567,
+            "max_abs_phi": 1.8672453582190447,
+            "max_abs_Tsn": 0.004774716180334735
           },
           "mesh_pressure_only": false,
           "right_edge_layer_suspicion": false,
           "branch_turning_suspicion": false,
           "predictor_rel_correction": 0.9500000000000001,
-          "predictor_abs_correction": 10.131721732352608
+          "predictor_abs_correction": 9.72261001317589
         }
       ],
       "reproducibility": {
-        "same_load_q_mpa": 6.0,
+        "same_load_q_mpa": 7.0,
         "accepted_seed_a": "scaled_secant_profile_mesh",
         "accepted_seed_b": "scaled_secant_profile_mesh",
         "same_accepted_seed": true,
         "solution_delta": {
-          "max_rel_l2": 3.2330633689169996e-05,
-          "max_rel_max": 0.00022328582499460574,
+          "max_rel_l2": 3.2991659950301435e-05,
+          "max_rel_max": 0.0002241908927751787,
           "states": {
             "T_s": {
-              "rel_l2": 1.104817758086084e-05,
-              "rel_max": 0.00012537471736563912,
-              "max_abs_diff": 1.1226629830747917e-06
+              "rel_l2": 1.2268807539391517e-05,
+              "rel_max": 0.00011942681994595292,
+              "max_abs_diff": 1.1910853601436455e-06
             },
             "T_sn": {
-              "rel_l2": 8.401537434742994e-06,
-              "rel_max": 2.1530711000259318e-05,
-              "max_abs_diff": 9.83340137769486e-08
+              "rel_l2": 1.0584642457744047e-05,
+              "rel_max": 3.4391484048674214e-05,
+              "max_abs_diff": 1.6420957535292872e-07
             },
             "M_s": {
-              "rel_l2": 3.2330633689169996e-05,
-              "rel_max": 0.00022328582499460574,
-              "max_abs_diff": 3.327615799748884e-08
+              "rel_l2": 3.2991659950301435e-05,
+              "rel_max": 0.0002241908927751787,
+              "max_abs_diff": 3.582238895466039e-08
             },
             "u_r": {
-              "rel_l2": 4.577052413918619e-06,
-              "rel_max": 1.9614221210727137e-05,
-              "max_abs_diff": 1.796971905540512e-06
+              "rel_l2": 4.642759306350488e-06,
+              "rel_max": 2.0530375961673955e-05,
+              "max_abs_diff": 1.9095982036893e-06
             },
             "u_z": {
-              "rel_l2": 4.54265014892187e-06,
-              "rel_max": 4.7830841601984386e-05,
-              "max_abs_diff": 0.0005101348414822127
+              "rel_l2": 3.404765615081397e-06,
+              "rel_max": 3.2791673209377335e-05,
+              "max_abs_diff": 0.0003356025781826588
             },
             "varphi": {
-              "rel_l2": 2.8541597408351908e-06,
-              "rel_max": 1.8887031000298093e-05,
-              "max_abs_diff": 3.4688270790228515e-05
+              "rel_l2": 3.636684454257478e-06,
+              "rel_max": 2.0216155881098313e-05,
+              "max_abs_diff": 3.7748523229241826e-05
             }
           },
           "top_states_by_rel_l2": [
             {
               "state": "M_s",
-              "rel_l2": 3.2330633689169996e-05,
-              "rel_max": 0.00022328582499460574,
-              "max_abs_diff": 3.327615799748884e-08
+              "rel_l2": 3.2991659950301435e-05,
+              "rel_max": 0.0002241908927751787,
+              "max_abs_diff": 3.582238895466039e-08
             },
             {
               "state": "T_s",
-              "rel_l2": 1.104817758086084e-05,
-              "rel_max": 0.00012537471736563912,
-              "max_abs_diff": 1.1226629830747917e-06
+              "rel_l2": 1.2268807539391517e-05,
+              "rel_max": 0.00011942681994595292,
+              "max_abs_diff": 1.1910853601436455e-06
             },
             {
               "state": "T_sn",
-              "rel_l2": 8.401537434742994e-06,
-              "rel_max": 2.1530711000259318e-05,
-              "max_abs_diff": 9.83340137769486e-08
+              "rel_l2": 1.0584642457744047e-05,
+              "rel_max": 3.4391484048674214e-05,
+              "max_abs_diff": 1.6420957535292872e-07
             }
           ]
         },
@@ -1271,293 +283,294 @@
       "strict_reproducible": false,
       "near_reproducible": false,
       "continuity": {
-        "q_previous_mpa": 5.9975,
-        "q_current_mpa": 6.0,
-        "dq_mpa": 0.002500000000000391,
+        "q_previous_mpa": 6.9962244,
+        "q_current_mpa": 7.0,
+        "dq_mpa": 0.00377559999999999,
         "step_state_metrics": {
-          "max_rel_l2": 0.0006467610069458568,
-          "max_rel_max": 0.00037983780553374523,
+          "max_rel_l2": 0.0009460303054640291,
+          "max_rel_max": 0.0005397077769988044,
           "states": {
             "T_s": {
-              "rel_l2": 0.00030232245126969923,
-              "rel_max": 0.00029089998437429123,
-              "max_abs_diff": 2.6048524861804062e-06
+              "rel_l2": 0.0003936559493138807,
+              "rel_max": 0.00037755413360426307,
+              "max_abs_diff": 3.765479156200152e-06
             },
             "T_sn": {
-              "rel_l2": 0.00020970658956412182,
-              "rel_max": 0.00011200145764347935,
-              "max_abs_diff": 5.115275978958417e-07
+              "rel_l2": 0.0003041933861944802,
+              "rel_max": 0.00016664360169824864,
+              "max_abs_diff": 7.956759013778847e-07
             },
             "M_s": {
-              "rel_l2": 0.0001714244618489015,
-              "rel_max": 0.00018019414565607233,
-              "max_abs_diff": 2.684825105118971e-08
+              "rel_l2": 0.00023974178333138396,
+              "rel_max": 0.00025445931986151814,
+              "max_abs_diff": 4.065005807451453e-08
             },
             "u_r": {
-              "rel_l2": 0.00011699318303693374,
-              "rel_max": 5.855604375892026e-05,
-              "max_abs_diff": 5.364656817311367e-06
+              "rel_l2": 0.0001701902390287108,
+              "rel_max": 8.773368465358777e-05,
+              "max_abs_diff": 8.160400322443709e-06
             },
             "u_z": {
-              "rel_l2": 0.0006467610069458568,
-              "rel_max": 0.00037983780553374523,
-              "max_abs_diff": 0.004051378859458055
+              "rel_l2": 0.0009460303054640291,
+              "rel_max": 0.0005397077769988044,
+              "max_abs_diff": 0.0055243822399342335
             },
             "varphi": {
-              "rel_l2": 0.00015256542749055976,
-              "rel_max": 0.00010714546242266132,
-              "max_abs_diff": 0.0001967853390899381
+              "rel_l2": 0.0002111487326333071,
+              "rel_max": 0.0001524461487693971,
+              "max_abs_diff": 0.00028465436351509353
             }
           },
           "top_states_by_rel_l2": [
             {
               "state": "u_z",
-              "rel_l2": 0.0006467610069458568,
-              "rel_max": 0.00037983780553374523,
-              "max_abs_diff": 0.004051378859458055
+              "rel_l2": 0.0009460303054640291,
+              "rel_max": 0.0005397077769988044,
+              "max_abs_diff": 0.0055243822399342335
             },
             {
               "state": "T_s",
-              "rel_l2": 0.00030232245126969923,
-              "rel_max": 0.00029089998437429123,
-              "max_abs_diff": 2.6048524861804062e-06
+              "rel_l2": 0.0003936559493138807,
+              "rel_max": 0.00037755413360426307,
+              "max_abs_diff": 3.765479156200152e-06
             },
             {
               "state": "T_sn",
-              "rel_l2": 0.00020970658956412182,
-              "rel_max": 0.00011200145764347935,
-              "max_abs_diff": 5.115275978958417e-07
+              "rel_l2": 0.0003041933861944802,
+              "rel_max": 0.00016664360169824864,
+              "max_abs_diff": 7.956759013778847e-07
             }
           ]
         },
         "observable_deltas": {
           "phi_1": {
-            "current": -1.836516386870973,
-            "previous": -1.8364359004380522,
-            "abs_delta": 8.048643292091207e-05,
-            "rel_delta": 4.382560019409549e-05
+            "current": -1.8671491288084567,
+            "previous": -1.8670391319990225,
+            "abs_delta": 0.00010999680943424295,
+            "rel_delta": 5.8911635785856436e-05
           },
           "ur_1": {
-            "current": -0.09161576624606114,
-            "previous": -0.09161216167660734,
-            "abs_delta": 3.6045694538078266e-06,
-            "rel_delta": 3.6045694538078266e-06
+            "current": -0.09301330902337746,
+            "previous": -0.09300818867705303,
+            "abs_delta": 5.120346324424818e-06,
+            "rel_delta": 5.120346324424818e-06
           },
           "Tsn_1": {
-            "current": 0.00456715125551424,
-            "previous": 0.0045666397279163435,
-            "abs_delta": 5.11527597896709e-07,
-            "rel_delta": 5.11527597896709e-07
+            "current": 0.004774716180334736,
+            "previous": 0.0047739216643634995,
+            "abs_delta": 7.945159712363647e-07,
+            "rel_delta": 7.945159712363647e-07
           },
           "max_abs_phi": {
-            "current": 1.836618506440162,
-            "previous": 1.8365380354381229,
-            "abs_delta": 8.047100203900648e-05,
-            "rel_delta": 4.381476161588938e-05
+            "current": 1.8672453582190447,
+            "previous": 1.867135382992464,
+            "abs_delta": 0.00010997522658073855,
+            "rel_delta": 5.889704108603678e-05
           },
           "max_abs_Tsn": {
-            "current": 0.00456715125551424,
-            "previous": 0.004566639727916344,
-            "abs_delta": 5.115275978958417e-07,
-            "rel_delta": 5.115275978958417e-07
+            "current": 0.004774716180334735,
+            "previous": 0.0047739216643634995,
+            "abs_delta": 7.945159712354974e-07,
+            "rel_delta": 7.945159712354974e-07
           }
         },
         "previous_step_state_metrics": {
-          "max_rel_l2": 0.0006467755429971411,
-          "max_rel_max": 0.0003799015868192717,
+          "max_rel_l2": 0.0025063391960860166,
+          "max_rel_max": 0.0014298333098625381,
           "states": {
             "T_s": {
-              "rel_l2": 0.0003024426985120878,
-              "rel_max": 0.0002910187094762552,
-              "max_abs_diff": 2.605157544634598e-06
+              "rel_l2": 0.0010432891027039517,
+              "rel_max": 0.001000644872461352,
+              "max_abs_diff": 9.976012671449042e-06
             },
             "T_sn": {
-              "rel_l2": 0.000209726189601689,
-              "rel_max": 0.00011200573896547118,
-              "max_abs_diff": 5.114898573143484e-07
+              "rel_l2": 0.0008057393009943378,
+              "rel_max": 0.0004413516853445035,
+              "max_abs_diff": 2.1069783722694677e-06
             },
             "M_s": {
-              "rel_l2": 0.0001714583313792602,
-              "rel_max": 0.00018022439955235161,
-              "max_abs_diff": 2.6847920213618828e-08
+              "rel_l2": 0.000635205565994765,
+              "rel_max": 0.0006741333748023954,
+              "max_abs_diff": 1.0766588450815471e-07
             },
             "u_r": {
-              "rel_l2": 0.00011700386872506949,
-              "rel_max": 5.85569743347738e-05,
-              "max_abs_diff": 5.364531000050243e-06
+              "rel_l2": 0.00045084753237170113,
+              "rel_max": 0.00023237546290692587,
+              "max_abs_diff": 2.16128208979649e-05
             },
             "u_z": {
-              "rel_l2": 0.0006467755429971411,
-              "rel_max": 0.0003799015868192717,
-              "max_abs_diff": 0.004052484764663022
+              "rel_l2": 0.0025063391960860166,
+              "rel_max": 0.0014298333098625381,
+              "max_abs_diff": 0.014641471066029421
             },
             "varphi": {
-              "rel_l2": 0.00015260083992673688,
-              "rel_max": 0.00010716226380510393,
-              "max_abs_diff": 0.0001968075733656191
+              "rel_l2": 0.0005595444834387977,
+              "rel_max": 0.0004039051823402021,
+              "max_abs_diff": 0.0007541456569094846
             }
           },
           "top_states_by_rel_l2": [
             {
               "state": "u_z",
-              "rel_l2": 0.0006467755429971411,
-              "rel_max": 0.0003799015868192717,
-              "max_abs_diff": 0.004052484764663022
+              "rel_l2": 0.0025063391960860166,
+              "rel_max": 0.0014298333098625381,
+              "max_abs_diff": 0.014641471066029421
             },
             {
               "state": "T_s",
-              "rel_l2": 0.0003024426985120878,
-              "rel_max": 0.0002910187094762552,
-              "max_abs_diff": 2.605157544634598e-06
+              "rel_l2": 0.0010432891027039517,
+              "rel_max": 0.001000644872461352,
+              "max_abs_diff": 9.976012671449042e-06
             },
             {
               "state": "T_sn",
-              "rel_l2": 0.000209726189601689,
-              "rel_max": 0.00011200573896547118,
-              "max_abs_diff": 5.114898573143484e-07
+              "rel_l2": 0.0008057393009943378,
+              "rel_max": 0.0004413516853445035,
+              "max_abs_diff": 2.1069783722694677e-06
             }
           ]
         },
-        "normalized_state_growth": 0.9999775253537778,
+        "normalized_state_growth": 0.9997219452204227,
         "observable_growth": {
-          "phi_1": 0.9997495282216143,
-          "ur_1": 0.999837198248465,
-          "Tsn_1": 1.0000737855941946,
-          "max_abs_phi": 0.9997494649415349,
-          "max_abs_Tsn": 1.0000737855908028
+          "phi_1": 0.9993129221604342,
+          "ur_1": 0.9996036661144999,
+          "Tsn_1": 1.0001846679752244,
+          "max_abs_phi": 0.9993127572354672,
+          "max_abs_Tsn": 1.0001846679741326
         },
         "branch_jump_suspicion": false,
         "branch_jump_reasons": []
       },
       "branch_jump_suspicion": false,
+      "failure_probe_step_mpa": 0.004,
       "failure_probe": [
         {
-          "q_target_mpa": 6.002,
+          "q_target_mpa": 7.004,
           "success": true,
           "attempt_count": 1,
           "attempts": [
             {
-              "q_mpa": 6.002,
+              "q_mpa": 7.004,
               "seed_label": "scaled_secant_profile_mesh",
               "success": true,
-              "nodes": 965,
+              "nodes": 966,
               "message": "The algorithm converged to the desired accuracy.",
-              "max_bc_residual": 1.759575574076302e-27,
-              "node_pressure": 0.0016083333333333334,
-              "right_edge_fraction_0_995": 0.20103626943005182,
-              "predictor_rel_correction": 0.9499999994631887,
+              "max_bc_residual": 2.732989127026749e-27,
+              "node_pressure": 0.00161,
+              "right_edge_fraction_0_995": 0.20082815734989648,
+              "predictor_rel_correction": 0.9499999985467646,
               "mesh_pressure_only": false,
               "branch_turning_suspicion": false
             }
           ],
           "accepted_point": {
-            "q_mpa": 6.002,
-            "nodes": 965,
-            "max_rms": 0.0002289472530100976,
-            "max_bc_residual": 1.759575574076302e-27,
+            "q_mpa": 7.004,
+            "nodes": 966,
+            "max_rms": 0.00020078467594971175,
+            "max_bc_residual": 2.732989127026749e-27,
             "min_r": 0.0016666666666666668,
-            "node_pressure": 0.0016083333333333334,
-            "right_edge_fraction_0_99": 0.29430051813471503,
-            "right_edge_fraction_0_995": 0.20103626943005182,
-            "right_edge_fraction_0_999": 0.08186528497409326,
+            "node_pressure": 0.00161,
+            "right_edge_fraction_0_99": 0.2939958592132505,
+            "right_edge_fraction_0_995": 0.20082815734989648,
+            "right_edge_fraction_0_999": 0.08178053830227744,
             "min_dx": 3.844731047975003e-07,
             "min_dx_mid": 0.9999998077634475,
             "top_gradients": [
               {
                 "state": "u_z",
-                "max_abs_grad": 101.3962339972204,
-                "x_at_peak": 0.965
+                "max_abs_grad": 101.33272904489479,
+                "x_at_peak": 0.9624715660542432
               },
               {
                 "state": "varphi",
-                "max_abs_grad": 15.982078380088865,
+                "max_abs_grad": 17.16092191947547,
                 "x_at_peak": 0.9270734908136483
               },
               {
                 "state": "T_s",
-                "max_abs_grad": 3.432133331566231,
+                "max_abs_grad": 3.823198750956488,
                 "x_at_peak": 0.0016666666666666668
               }
             ],
             "observables": {
-              "Ts_x0": 0.008956544391560413,
-              "Tsn_1": 0.0045675605047608096,
-              "Ms_x0": 4.6592362568380015e-06,
-              "ur_1": -0.09161864947921979,
-              "uz_x0": 1.2638316961844902,
-              "phi_1": -1.8365807615023526,
-              "max_abs_phi": 1.8366828687259518,
-              "max_abs_Tsn": 0.004567560504760809
+              "Ts_x0": 0.009977337682594305,
+              "Tsn_1": 0.004775558005468403,
+              "Ms_x0": 4.876160802929621e-06,
+              "ur_1": -0.0930187324810162,
+              "uz_x0": 2.805024512984497,
+              "phi_1": -1.8672656179992488,
+              "max_abs_phi": 1.8673618245422383,
+              "max_abs_Tsn": 0.004775558005468403
             },
             "accepted_profile": "u_z_scaled_arc_like_continuation",
             "accepted_seed": "scaled_secant_profile_mesh",
-            "predictor_rel_correction": 0.9499999994631887,
-            "predictor_abs_correction": 10.130871261707341,
+            "predictor_rel_correction": 0.9499999985467646,
+            "predictor_abs_correction": 9.721048151408072,
             "message": "The algorithm converged to the desired accuracy."
           }
         },
         {
-          "q_target_mpa": 6.004,
+          "q_target_mpa": 7.008,
           "success": true,
           "attempt_count": 1,
           "attempts": [
             {
-              "q_mpa": 6.004,
+              "q_mpa": 7.008,
               "seed_label": "scaled_secant_profile_mesh",
               "success": true,
-              "nodes": 965,
+              "nodes": 966,
               "message": "The algorithm converged to the desired accuracy.",
-              "max_bc_residual": 3.331762266901165e-27,
-              "node_pressure": 0.0016083333333333334,
-              "right_edge_fraction_0_995": 0.20103626943005182,
-              "predictor_rel_correction": 0.9499999995232111,
+              "max_bc_residual": 2.356759745439842e-27,
+              "node_pressure": 0.00161,
+              "right_edge_fraction_0_995": 0.20082815734989648,
+              "predictor_rel_correction": 0.9499999985067583,
               "mesh_pressure_only": false,
               "branch_turning_suspicion": false
             }
           ],
           "accepted_point": {
-            "q_mpa": 6.004,
-            "nodes": 965,
-            "max_rms": 0.00022899616341391982,
-            "max_bc_residual": 3.331762266901165e-27,
+            "q_mpa": 7.008,
+            "nodes": 966,
+            "max_rms": 0.00020081348556341341,
+            "max_bc_residual": 2.356759745439842e-27,
             "min_r": 0.0016666666666666668,
-            "node_pressure": 0.0016083333333333334,
-            "right_edge_fraction_0_99": 0.29430051813471503,
-            "right_edge_fraction_0_995": 0.20103626943005182,
-            "right_edge_fraction_0_999": 0.08186528497409326,
+            "node_pressure": 0.00161,
+            "right_edge_fraction_0_99": 0.2939958592132505,
+            "right_edge_fraction_0_995": 0.20082815734989648,
+            "right_edge_fraction_0_999": 0.08178053830227744,
             "min_dx": 3.844731047975003e-07,
             "min_dx_mid": 0.9999998077634475,
             "top_gradients": [
               {
                 "state": "u_z",
-                "max_abs_grad": 101.39611539575344,
-                "x_at_peak": 0.965
+                "max_abs_grad": 101.33263670618055,
+                "x_at_peak": 0.9624715660542432
               },
               {
                 "state": "varphi",
-                "max_abs_grad": 15.984429288447728,
+                "max_abs_grad": 17.165623667490223,
                 "x_at_peak": 0.9270734908136483
               },
               {
                 "state": "T_s",
-                "max_abs_grad": 3.4329315279397616,
+                "max_abs_grad": 3.8247265068402654,
                 "x_at_peak": 0.0016666666666666668
               }
             ],
             "observables": {
-              "Ts_x0": 0.008958627858931522,
-              "Tsn_1": 0.004567969778152838,
-              "Ms_x0": 4.659694483111385e-06,
-              "ur_1": -0.09162153233705814,
-              "uz_x0": 1.2670712964935917,
-              "phi_1": -1.836645123234499,
-              "max_abs_phi": 1.8367472181117235,
-              "max_abs_Tsn": 0.004567969778152838
+              "Ts_x0": 0.00998132567079969,
+              "Tsn_1": 0.004776399920803929,
+              "Ms_x0": 4.876980678601938e-06,
+              "ur_1": -0.09302415469187905,
+              "uz_x0": 2.8108728101430773,
+              "phi_1": -1.8673820607065406,
+              "max_abs_phi": 1.8674782443798934,
+              "max_abs_Tsn": 0.004776399920803929
             },
             "accepted_profile": "u_z_scaled_arc_like_continuation",
             "accepted_seed": "scaled_secant_profile_mesh",
-            "predictor_rel_correction": 0.9499999995232111,
-            "predictor_abs_correction": 10.13002070082958,
+            "predictor_rel_correction": 0.9499999985067583,
+            "predictor_abs_correction": 9.719486013832983,
             "message": "The algorithm converged to the desired accuracy."
           }
         }
@@ -1566,7 +579,581 @@
         "u_z",
         "varphi",
         "T_s"
-      ]
+      ],
+      "repeat_drift_smooth": true,
+      "repeat_drift_smoothness": "baseline",
+      "same_branch_indicators": {
+        "same_accepted_seed": true,
+        "branch_jump_suspicion": false,
+        "branch_jump_reasons": [],
+        "repeat_drift_smooth": true,
+        "repeat_drift_smoothness": "baseline",
+        "repeat_vs_adjacent_step_l2_ratio": 28.674831969325798,
+        "repeat_smaller_than_adjacent_step": true,
+        "strongest_gradient_order": [
+          "u_z",
+          "varphi",
+          "T_s"
+        ],
+        "strongest_gradient_order_consistent": true,
+        "bc_residual": 1.7149967914205002e-27,
+        "bc_residual_sane": true,
+        "overall_same_branch_signal": true
+      },
+      "promotion_policy": {
+        "strict_reproducible": false,
+        "near_reproducible": false,
+        "stronger_milestone": false,
+        "eligible_for_audited_promotion": false,
+        "operational_continuation_evidence": true,
+        "probe_without_failure": true,
+        "classification": "operational_continuation_evidence",
+        "open_audit_policy_issue": false
+      }
+    },
+    {
+      "q_mpa": 10.0,
+      "step_index": 1082,
+      "accepted_step_mpa": 0.009999999999999787,
+      "accepted_point": {
+        "q_mpa": 10.0,
+        "nodes": 966,
+        "max_rms": 0.00021815710286593037,
+        "max_bc_residual": 2.145974406484081e-27,
+        "min_r": 0.0016666666666666668,
+        "node_pressure": 0.00161,
+        "right_edge_fraction_0_99": 0.2939958592132505,
+        "right_edge_fraction_0_995": 0.20082815734989648,
+        "right_edge_fraction_0_999": 0.08178053830227744,
+        "min_dx": 3.844731047975003e-07,
+        "min_dx_mid": 0.9999998077634475,
+        "top_gradients": [
+          {
+            "state": "u_z",
+            "max_abs_grad": 101.25683687114554,
+            "x_at_peak": 0.9624715660542432
+          },
+          {
+            "state": "varphi",
+            "max_abs_grad": 20.642029445780167,
+            "x_at_peak": 0.9296019247594051
+          },
+          {
+            "state": "T_s",
+            "max_abs_grad": 4.906885893505741,
+            "x_at_peak": 0.0016666666666666668
+          }
+        ],
+        "observables": {
+          "Ts_x0": 0.012806354579914461,
+          "Tsn_1": 0.0054302641743357105,
+          "Ms_x0": 5.415391325252774e-06,
+          "ur_1": -0.0967886210019193,
+          "uz_x0": 6.666343731617708,
+          "phi_1": -1.9426727708412395,
+          "max_abs_phi": 1.942753651768938,
+          "max_abs_Tsn": 0.0054302641743357105
+        },
+        "accepted_profile": "u_z_scaled_arc_like_continuation",
+        "accepted_seed": "scaled_secant_profile_mesh",
+        "predictor_rel_correction": 0.9499999941744819,
+        "predictor_abs_correction": 8.714291524116604,
+        "message": "The algorithm converged to the desired accuracy."
+      },
+      "repeat_point": {
+        "q_mpa": 10.0,
+        "nodes": 966,
+        "max_rms": 0.0002181571028658417,
+        "max_bc_residual": 2.0832408911790306e-27,
+        "min_r": 0.0016666666666666668,
+        "node_pressure": 0.00161,
+        "right_edge_fraction_0_99": 0.2939958592132505,
+        "right_edge_fraction_0_995": 0.20082815734989648,
+        "right_edge_fraction_0_999": 0.08178053830227744,
+        "min_dx": 3.844731047975003e-07,
+        "min_dx_mid": 0.9999998077634475,
+        "top_gradients": [
+          {
+            "state": "u_z",
+            "max_abs_grad": 101.25683687114554,
+            "x_at_peak": 0.9624715660542432
+          },
+          {
+            "state": "varphi",
+            "max_abs_grad": 20.642029445780167,
+            "x_at_peak": 0.9296019247594051
+          },
+          {
+            "state": "T_s",
+            "max_abs_grad": 4.906885893505757,
+            "x_at_peak": 0.0016666666666666668
+          }
+        ],
+        "observables": {
+          "Ts_x0": 0.01280635457991447,
+          "Tsn_1": 0.0054302641743357105,
+          "Ms_x0": 5.415391325252775e-06,
+          "ur_1": -0.0967886210019193,
+          "uz_x0": 6.666343731617708,
+          "phi_1": -1.9426727708412395,
+          "max_abs_phi": 1.942753651768938,
+          "max_abs_Tsn": 0.0054302641743357105
+        },
+        "accepted_profile": "u_z_scaled_arc_like_continuation",
+        "accepted_seed": "scaled_secant_profile_mesh",
+        "predictor_rel_correction": 0.9500000000000001,
+        "predictor_abs_correction": 8.714291577553723,
+        "message": "The algorithm converged to the desired accuracy."
+      },
+      "repeat_attempts": [
+        {
+          "q_mpa": 10.0,
+          "profile_name": "u_z_scaled_arc_like_continuation",
+          "seed_label": "scaled_secant_profile_mesh",
+          "success": true,
+          "attempt_seconds": 0.04041230003349483,
+          "message": "The algorithm converged to the desired accuracy.",
+          "nodes": 966,
+          "max_nodes": 600000,
+          "max_rms": 0.0002181571028658417,
+          "max_bc_residual": 2.0832408911790306e-27,
+          "min_r": 0.0016666666666666668,
+          "node_pressure": 0.00161,
+          "right_edge_fraction_0_99": 0.2939958592132505,
+          "right_edge_fraction_0_995": 0.20082815734989648,
+          "right_edge_fraction_0_999": 0.08178053830227744,
+          "min_dx": 3.844731047975003e-07,
+          "min_dx_mid": 0.9999998077634475,
+          "top_gradients": [
+            {
+              "state": "u_z",
+              "max_abs_grad": 101.25683687114554,
+              "x_at_peak": 0.9624715660542432
+            },
+            {
+              "state": "varphi",
+              "max_abs_grad": 20.642029445780167,
+              "x_at_peak": 0.9296019247594051
+            },
+            {
+              "state": "T_s",
+              "max_abs_grad": 4.906885893505757,
+              "x_at_peak": 0.0016666666666666668
+            }
+          ],
+          "observables": {
+            "Ts_x0": 0.01280635457991447,
+            "Tsn_1": 0.0054302641743357105,
+            "Ms_x0": 5.415391325252775e-06,
+            "ur_1": -0.0967886210019193,
+            "uz_x0": 6.666343731617708,
+            "phi_1": -1.9426727708412395,
+            "max_abs_phi": 1.942753651768938,
+            "max_abs_Tsn": 0.0054302641743357105
+          },
+          "mesh_pressure_only": false,
+          "right_edge_layer_suspicion": false,
+          "branch_turning_suspicion": false,
+          "predictor_rel_correction": 0.9500000000000001,
+          "predictor_abs_correction": 8.714291577553723
+        }
+      ],
+      "reproducibility": {
+        "same_load_q_mpa": 10.0,
+        "accepted_seed_a": "scaled_secant_profile_mesh",
+        "accepted_seed_b": "scaled_secant_profile_mesh",
+        "same_accepted_seed": true,
+        "solution_delta": {
+          "max_rel_l2": 2.847312051215749e-05,
+          "max_rel_max": 0.0001809136358836534,
+          "states": {
+            "T_s": {
+              "rel_l2": 9.956329117840693e-06,
+              "rel_max": 0.00011943209770621915,
+              "max_abs_diff": 1.529489791448832e-06
+            },
+            "T_sn": {
+              "rel_l2": 2.64564239628392e-05,
+              "rel_max": 0.00010738499001159773,
+              "max_abs_diff": 5.831288641213773e-07
+            },
+            "M_s": {
+              "rel_l2": 2.847312051215749e-05,
+              "rel_max": 0.0001809136358836534,
+              "max_abs_diff": 3.467108694317055e-08
+            },
+            "u_r": {
+              "rel_l2": 5.140442077476928e-06,
+              "rel_max": 2.3380184141030938e-05,
+              "max_abs_diff": 2.262935781781328e-06
+            },
+            "u_z": {
+              "rel_l2": 3.5652189990543797e-06,
+              "rel_max": 3.1749948126803675e-05,
+              "max_abs_diff": 0.00029123927824770135
+            },
+            "varphi": {
+              "rel_l2": 3.8704418370446e-06,
+              "rel_max": 2.4334716347646706e-05,
+              "max_abs_diff": 4.72763590682046e-05
+            }
+          },
+          "top_states_by_rel_l2": [
+            {
+              "state": "M_s",
+              "rel_l2": 2.847312051215749e-05,
+              "rel_max": 0.0001809136358836534,
+              "max_abs_diff": 3.467108694317055e-08
+            },
+            {
+              "state": "T_sn",
+              "rel_l2": 2.64564239628392e-05,
+              "rel_max": 0.00010738499001159773,
+              "max_abs_diff": 5.831288641213773e-07
+            },
+            {
+              "state": "T_s",
+              "rel_l2": 9.956329117840693e-06,
+              "rel_max": 0.00011943209770621915,
+              "max_abs_diff": 1.529489791448832e-06
+            }
+          ]
+        },
+        "reproducible": false,
+        "reasons": [
+          "repeat solves at the same load are not close enough"
+        ]
+      },
+      "strict_reproducible": false,
+      "near_reproducible": false,
+      "continuity": {
+        "q_previous_mpa": 9.99,
+        "q_current_mpa": 10.0,
+        "dq_mpa": 0.009999999999999787,
+        "step_state_metrics": {
+          "max_rel_l2": 0.0017821949873794713,
+          "max_rel_max": 0.0012477745217799993,
+          "states": {
+            "T_s": {
+              "rel_l2": 0.0007345753400968823,
+              "rel_max": 0.0007016338326934921,
+              "max_abs_diff": 8.985371646737239e-06
+            },
+            "T_sn": {
+              "rel_l2": 0.0007042198474027722,
+              "rel_max": 0.0004201164745798311,
+              "max_abs_diff": 2.2813434409590765e-06
+            },
+            "M_s": {
+              "rel_l2": 0.0005177591200848667,
+              "rel_max": 0.0005563456712737743,
+              "max_abs_diff": 1.0661143998188616e-07
+            },
+            "u_r": {
+              "rel_l2": 0.00040175473513923723,
+              "rel_max": 0.00022451011021891587,
+              "max_abs_diff": 2.1730023969077777e-05
+            },
+            "u_z": {
+              "rel_l2": 0.0017821949873794713,
+              "rel_max": 0.0012477745217799993,
+              "max_abs_diff": 0.0114495241371122
+            },
+            "varphi": {
+              "rel_l2": 0.00045301829391906163,
+              "rel_max": 0.0003483561496656036,
+              "max_abs_diff": 0.0006767701815356304
+            }
+          },
+          "top_states_by_rel_l2": [
+            {
+              "state": "u_z",
+              "rel_l2": 0.0017821949873794713,
+              "rel_max": 0.0012477745217799993,
+              "max_abs_diff": 0.0114495241371122
+            },
+            {
+              "state": "T_s",
+              "rel_l2": 0.0007345753400968823,
+              "rel_max": 0.0007016338326934921,
+              "max_abs_diff": 8.985371646737239e-06
+            },
+            {
+              "state": "T_sn",
+              "rel_l2": 0.0007042198474027722,
+              "rel_max": 0.0004201164745798311,
+              "max_abs_diff": 2.2813434409590765e-06
+            }
+          ]
+        },
+        "observable_deltas": {
+          "phi_1": {
+            "current": -1.9426727708412395,
+            "previous": -1.942456773789584,
+            "abs_delta": 0.0002159970516555365,
+            "rel_delta": 0.0001111855042689474
+          },
+          "ur_1": {
+            "current": -0.0967886210019193,
+            "previous": -0.09677683761268534,
+            "abs_delta": 1.1783389233965824e-05,
+            "rel_delta": 1.1783389233965824e-05
+          },
+          "Tsn_1": {
+            "current": 0.0054302641743357105,
+            "previous": 0.005428001504556379,
+            "abs_delta": 2.2626697793312264e-06,
+            "rel_delta": 2.2626697793312264e-06
+          },
+          "max_abs_phi": {
+            "current": 1.942753651768938,
+            "previous": 1.942537699899262,
+            "abs_delta": 0.0002159518696760454,
+            "rel_delta": 0.00011115761871270423
+          },
+          "max_abs_Tsn": {
+            "current": 0.0054302641743357105,
+            "previous": 0.005428001504556379,
+            "abs_delta": 2.2626697793312264e-06,
+            "rel_delta": 2.2626697793312264e-06
+          }
+        },
+        "previous_step_state_metrics": {
+          "max_rel_l2": 0.001784817274636678,
+          "max_rel_max": 0.001248234221794518,
+          "states": {
+            "T_s": {
+              "rel_l2": 0.0007353052753147451,
+              "rel_max": 0.0007023357665736032,
+              "max_abs_diff": 8.988050113014137e-06
+            },
+            "T_sn": {
+              "rel_l2": 0.000704536995869898,
+              "rel_max": 0.0004201012139364869,
+              "max_abs_diff": 2.2803100213132123e-06
+            },
+            "M_s": {
+              "rel_l2": 0.0005180787966216661,
+              "rel_max": 0.0005566788498725992,
+              "max_abs_diff": 1.0661750426439872e-07
+            },
+            "u_r": {
+              "rel_l2": 0.00040190631595522026,
+              "rel_max": 0.00022453842783707679,
+              "max_abs_diff": 2.1730118968596446e-05
+            },
+            "u_z": {
+              "rel_l2": 0.001784817274636678,
+              "rel_max": 0.001248234221794518,
+              "max_abs_diff": 0.011457588562007182
+            },
+            "varphi": {
+              "rel_l2": 0.0004532909563257799,
+              "rel_max": 0.0003485042608977492,
+              "max_abs_diff": 0.0006769826650406697
+            }
+          },
+          "top_states_by_rel_l2": [
+            {
+              "state": "u_z",
+              "rel_l2": 0.001784817274636678,
+              "rel_max": 0.001248234221794518,
+              "max_abs_diff": 0.011457588562007182
+            },
+            {
+              "state": "T_s",
+              "rel_l2": 0.0007353052753147451,
+              "rel_max": 0.0007023357665736032,
+              "max_abs_diff": 8.988050113014137e-06
+            },
+            {
+              "state": "T_sn",
+              "rel_l2": 0.000704536995869898,
+              "rel_max": 0.0004201012139364869,
+              "max_abs_diff": 2.2803100213132123e-06
+            }
+          ]
+        },
+        "normalized_state_growth": 0.9985307811088167,
+        "observable_growth": {
+          "phi_1": 0.998996110090759,
+          "ur_1": 0.999632135111074,
+          "Tsn_1": 1.000222814531296,
+          "max_abs_phi": 0.9989958891162339,
+          "max_abs_Tsn": 1.000222814531296
+        },
+        "branch_jump_suspicion": false,
+        "branch_jump_reasons": []
+      },
+      "branch_jump_suspicion": false,
+      "failure_probe_step_mpa": 0.009999999999999787,
+      "failure_probe": [
+        {
+          "q_target_mpa": 10.01,
+          "success": true,
+          "attempt_count": 1,
+          "attempts": [
+            {
+              "q_mpa": 10.01,
+              "seed_label": "scaled_secant_profile_mesh",
+              "success": true,
+              "nodes": 966,
+              "message": "The algorithm converged to the desired accuracy.",
+              "max_bc_residual": 4.648945529897634e-27,
+              "node_pressure": 0.00161,
+              "right_edge_fraction_0_995": 0.20082815734989648,
+              "predictor_rel_correction": 0.9499999941870182,
+              "mesh_pressure_only": false,
+              "branch_turning_suspicion": false
+            }
+          ],
+          "accepted_point": {
+            "q_mpa": 10.01,
+            "nodes": 966,
+            "max_rms": 0.00021820400303696367,
+            "max_bc_residual": 4.648945529897634e-27,
+            "min_r": 0.0016666666666666668,
+            "node_pressure": 0.00161,
+            "right_edge_fraction_0_99": 0.2939958592132505,
+            "right_edge_fraction_0_995": 0.20082815734989648,
+            "right_edge_fraction_0_999": 0.08178053830227744,
+            "min_dx": 3.844731047975003e-07,
+            "min_dx_mid": 0.9999998077634475,
+            "top_gradients": [
+              {
+                "state": "u_z",
+                "max_abs_grad": 101.2566590872267,
+                "x_at_peak": 0.9624715660542432
+              },
+              {
+                "state": "varphi",
+                "max_abs_grad": 20.653408236915595,
+                "x_at_peak": 0.9296019247594051
+              },
+              {
+                "state": "T_s",
+                "max_abs_grad": 4.910326565212062,
+                "x_at_peak": 0.0016666666666666668
+              }
+            ],
+            "observables": {
+              "Ts_x0": 0.012815337276330475,
+              "Tsn_1": 0.005432527348057225,
+              "Ms_x0": 5.416988468260485e-06,
+              "ur_1": -0.09680040006405341,
+              "uz_x0": 6.677785204210894,
+              "phi_1": -1.9428885510384628,
+              "max_abs_phi": 1.9429693867817843,
+              "max_abs_Tsn": 0.005432527348057225
+            },
+            "accepted_profile": "u_z_scaled_arc_like_continuation",
+            "accepted_seed": "scaled_secant_profile_mesh",
+            "predictor_rel_correction": 0.9499999941870182,
+            "predictor_abs_correction": 8.711365344121885,
+            "message": "The algorithm converged to the desired accuracy."
+          }
+        },
+        {
+          "q_target_mpa": 10.02,
+          "success": true,
+          "attempt_count": 1,
+          "attempts": [
+            {
+              "q_mpa": 10.02,
+              "seed_label": "scaled_secant_profile_mesh",
+              "success": true,
+              "nodes": 966,
+              "message": "The algorithm converged to the desired accuracy.",
+              "max_bc_residual": 2.577577085883537e-27,
+              "node_pressure": 0.00161,
+              "right_edge_fraction_0_995": 0.20082815734989648,
+              "predictor_rel_correction": 0.9499999941995391,
+              "mesh_pressure_only": false,
+              "branch_turning_suspicion": false
+            }
+          ],
+          "accepted_point": {
+            "q_mpa": 10.02,
+            "nodes": 966,
+            "max_rms": 0.0002182508451169468,
+            "max_bc_residual": 2.577577085883537e-27,
+            "min_r": 0.0016666666666666668,
+            "node_pressure": 0.00161,
+            "right_edge_fraction_0_99": 0.2939958592132505,
+            "right_edge_fraction_0_995": 0.20082815734989648,
+            "right_edge_fraction_0_999": 0.08178053830227744,
+            "min_dx": 3.844731047975003e-07,
+            "min_dx_mid": 0.9999998077634475,
+            "top_gradients": [
+              {
+                "state": "u_z",
+                "max_abs_grad": 101.25648222288964,
+                "x_at_peak": 0.9624715660542432
+              },
+              {
+                "state": "varphi",
+                "max_abs_grad": 20.664784626831533,
+                "x_at_peak": 0.9296019247594051
+              },
+              {
+                "state": "T_s",
+                "max_abs_grad": 4.913766211855292,
+                "x_at_peak": 0.0016666666666666668
+              }
+            ],
+            "observables": {
+              "Ts_x0": 0.012824317300744228,
+              "Tsn_1": 0.005434791025620199,
+              "Ms_x0": 5.4185845128644435e-06,
+              "ur_1": -0.09681217480826541,
+              "uz_x0": 6.6892186381098595,
+              "phi_1": -1.9431041145817234,
+              "max_abs_phi": 1.943184905138284,
+              "max_abs_Tsn": 0.005434791025620199
+            },
+            "accepted_profile": "u_z_scaled_arc_like_continuation",
+            "accepted_seed": "scaled_secant_profile_mesh",
+            "predictor_rel_correction": 0.9499999941995391,
+            "predictor_abs_correction": 8.70843815386784,
+            "message": "The algorithm converged to the desired accuracy."
+          }
+        }
+      ],
+      "strongest_gradient_order": [
+        "u_z",
+        "varphi",
+        "T_s"
+      ],
+      "repeat_drift_smooth": true,
+      "repeat_drift_smoothness": "smooth_change",
+      "same_branch_indicators": {
+        "same_accepted_seed": true,
+        "branch_jump_suspicion": false,
+        "branch_jump_reasons": [],
+        "repeat_drift_smooth": true,
+        "repeat_drift_smoothness": "smooth_change",
+        "repeat_vs_adjacent_step_l2_ratio": 62.59219064585869,
+        "repeat_smaller_than_adjacent_step": true,
+        "strongest_gradient_order": [
+          "u_z",
+          "varphi",
+          "T_s"
+        ],
+        "strongest_gradient_order_consistent": true,
+        "bc_residual": 2.145974406484081e-27,
+        "bc_residual_sane": true,
+        "overall_same_branch_signal": true
+      },
+      "promotion_policy": {
+        "strict_reproducible": false,
+        "near_reproducible": false,
+        "stronger_milestone": false,
+        "eligible_for_audited_promotion": false,
+        "operational_continuation_evidence": true,
+        "probe_without_failure": true,
+        "classification": "operational_continuation_evidence",
+        "open_audit_policy_issue": false
+      }
     }
   ]
 }

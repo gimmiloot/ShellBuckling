@@ -239,6 +239,19 @@ def maybe_stop(invocation_start: float, args: argparse.Namespace, accepted_new_s
         return "paused_after_runtime_budget"
     return None
 
+
+def recover_named_checkpoint_pointer(*, run_dir: Path, checkpoints: dict[str, Any], key: str, filename: str) -> tuple[str | None, bool]:
+    relpath = checkpoints.get(key)
+    if runtime.checkpoint_exists(run_dir, relpath):
+        return relpath, False
+    default_rel = runtime.named_checkpoint_relpath(filename)
+    if runtime.checkpoint_exists(run_dir, default_rel):
+        normalized = str(default_rel).replace("\\", "/")
+        checkpoints[key] = normalized
+        return normalized, True
+    return None, False
+
+
 def ensure_resume_bootstrap_anchors(
     *,
     progress: dict[str, Any],
@@ -248,18 +261,58 @@ def ensure_resume_bootstrap_anchors(
     invocation_start: float,
 ) -> None:
     checkpoints = progress.setdefault("checkpoints", {})
-    scaled_anchor_path = checkpoints.get("scaled_anchor_checkpoint")
-    bootstrap_previous_path = checkpoints.get("bootstrap_previous_checkpoint")
+    removed_stale_bootstrap_older = bool(checkpoints.pop("bootstrap_older_checkpoint", None) is not None)
+    scaled_anchor_path, scaled_recovered = recover_named_checkpoint_pointer(
+        run_dir=run_dir,
+        checkpoints=checkpoints,
+        key="scaled_anchor_checkpoint",
+        filename=runtime.SCALED_ANCHOR_FILENAME,
+    )
+    bootstrap_previous_path, previous_recovered = recover_named_checkpoint_pointer(
+        run_dir=run_dir,
+        checkpoints=checkpoints,
+        key="bootstrap_previous_checkpoint",
+        filename=runtime.BOOTSTRAP_PREVIOUS_FILENAME,
+    )
+    metadata_normalized = bool(removed_stale_bootstrap_older or scaled_recovered or previous_recovered)
+
     if runtime.checkpoint_exists(run_dir, scaled_anchor_path) and runtime.checkpoint_exists(run_dir, bootstrap_previous_path):
+        if metadata_normalized:
+            policy_stats = runtime.apply_checkpoint_policy(progress, run_dir)
+            runtime.refresh_progress_summary(progress)
+            runtime.save_json(progress_path, progress)
+            runtime.append_jsonl(
+                log_path,
+                {
+                    "event": "resume_anchor_metadata_normalized",
+                    "scaled_anchor_recovered": bool(scaled_recovered),
+                    "bootstrap_previous_recovered": bool(previous_recovered),
+                    "removed_stale_bootstrap_older_pointer": bool(removed_stale_bootstrap_older),
+                    "checkpoint_file_count": int(policy_stats.get("checkpoint_file_count", 0)),
+                    "deleted_checkpoint_count": int(policy_stats.get("deleted_checkpoint_count", 0)),
+                    "elapsed_seconds": float(time.perf_counter() - invocation_start),
+                },
+            )
         return
 
     context = runtime.pilot20.build_context()
+    repaired: list[str] = []
     if not runtime.checkpoint_exists(run_dir, bootstrap_previous_path):
-        previous_rel = runtime.save_named_point_checkpoint(run_dir, "bootstrap_previous_4p3433_mpa.npz", context["branch_points"][4.3433])
+        previous_rel = runtime.save_named_point_checkpoint(
+            run_dir,
+            runtime.BOOTSTRAP_PREVIOUS_FILENAME,
+            context["branch_points"][4.3433],
+        )
         checkpoints["bootstrap_previous_checkpoint"] = str(previous_rel).replace("\\", "/")
+        repaired.append("bootstrap_previous_checkpoint")
     if not runtime.checkpoint_exists(run_dir, scaled_anchor_path):
-        anchor_rel = runtime.save_named_point_checkpoint(run_dir, "scaled_anchor_4p3434_mpa.npz", context["point_43434"])
+        anchor_rel = runtime.save_named_point_checkpoint(
+            run_dir,
+            runtime.SCALED_ANCHOR_FILENAME,
+            context["point_43434"],
+        )
         checkpoints["scaled_anchor_checkpoint"] = str(anchor_rel).replace("\\", "/")
+        repaired.append("scaled_anchor_checkpoint")
 
     policy_stats = runtime.apply_checkpoint_policy(progress, run_dir)
     runtime.refresh_progress_summary(progress)
@@ -268,6 +321,10 @@ def ensure_resume_bootstrap_anchors(
         log_path,
         {
             "event": "resume_anchor_repair",
+            "repaired": repaired,
+            "scaled_anchor_recovered": bool(scaled_recovered),
+            "bootstrap_previous_recovered": bool(previous_recovered),
+            "removed_stale_bootstrap_older_pointer": bool(removed_stale_bootstrap_older),
             "checkpoint_file_count": int(policy_stats.get("checkpoint_file_count", 0)),
             "deleted_checkpoint_count": int(policy_stats.get("deleted_checkpoint_count", 0)),
             "elapsed_seconds": float(time.perf_counter() - invocation_start),
@@ -312,7 +369,7 @@ def bootstrap_if_needed(
     older_point = context["branch_points"][4.3432]
     previous_point = context["branch_points"][4.3433]
     local_anchor = context["local_anchor"]
-    previous_checkpoint_rel = runtime.save_named_point_checkpoint(run_dir, "bootstrap_previous_4p3433_mpa.npz", previous_point)
+    previous_checkpoint_rel = runtime.save_named_point_checkpoint(run_dir, runtime.BOOTSTRAP_PREVIOUS_FILENAME, previous_point)
     progress["checkpoints"]["bootstrap_previous_checkpoint"] = str(previous_checkpoint_rel).replace("\\", "/")
     runtime.apply_checkpoint_policy(progress, run_dir)
     runtime.refresh_progress_summary(progress)
@@ -377,7 +434,7 @@ def bootstrap_if_needed(
         )
         if scaled_anchor_point is None:
             scaled_anchor_point = point
-            scaled_anchor_rel = runtime.save_named_point_checkpoint(run_dir, "scaled_anchor_4p3434_mpa.npz", point)
+            scaled_anchor_rel = runtime.save_named_point_checkpoint(run_dir, runtime.SCALED_ANCHOR_FILENAME, point)
             progress["checkpoints"]["scaled_anchor_checkpoint"] = str(scaled_anchor_rel).replace("\\", "/")
             runtime.apply_checkpoint_policy(progress, run_dir)
             runtime.refresh_progress_summary(progress)

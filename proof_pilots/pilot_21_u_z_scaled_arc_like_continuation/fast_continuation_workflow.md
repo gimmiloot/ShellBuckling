@@ -93,13 +93,14 @@ The milestone schedule is now explicit. By default the fast layer retains:
 - the audited pilot-21 ceiling `4.3800 MPa`;
 - the strongest non-promoted milestone `4.4000 MPa`;
 - every `0.5 MPa` round milestone;
+- the planned `6 -> 10 MPa` confirm schedule `6.5`, `7.0`, `8.0`, `9.0`, `10.0 MPa`;
 - the current `--bootstrap-target-mpa` and `--target-load-mpa`;
 - any extra user-requested milestone passed via repeated `--milestone-load-mpa`.
 
 This keeps ordinary local runs far below the old ?hundreds of `npz`? pattern
 while preserving resume capability and sparse confirm on milestone loads. If a
 confirm target was pruned, rerun the fast layer with a more archival
-checkpoint policy or add that load explicitly via `--milestone-load-mpa`.
+checkpoint policy or add that load explicitly via `--milestone-load-mpa`. If a copied or legacy run directory still contains the named bootstrap files but has lost their metadata pointers, the fast runner now normalizes those pointers before falling back to an expensive bootstrap-anchor rebuild.
 
 ## Tracked vs Runtime Artifacts
 The pilot-21 fast workflow separates compact repository artifacts from local
@@ -121,6 +122,10 @@ runtime cache:
 - `confirm_*.json`
   Ad hoc milestone-audit dumps from custom `--output-json` runs. These are also
   treated as local runtime cache unless a result is promoted manually.
+
+This now follows the repo-wide convention: future pilots that generate the same
+kind of runtime cache should either reuse the standard `proof_pilots/<pilot>/fast_run/`
+layout or come with an explicit `.gitignore` update.
 
 ## Audit Policy
 The confirm layer now keeps an explicit split between same-branch indicators and
@@ -179,8 +184,8 @@ Keep the status language separated:
 - canonical audited pilot-21 bounded ceiling: `4.3800 MPa`.
 
 Separately from those audited markers, the fast workflow has shown operational
-continuation evidence through `6.0000 MPa`, a stronger dedicated milestone at
-`4.4000 MPa`, and sparse confirms through `6.0040 MPa`. These newer loads are
+continuation evidence through `10.0000 MPa`, a stronger dedicated milestone at
+`4.4000 MPa`, and sparse confirms through `10.0200 MPa`. These newer loads are
 still operational continuation results, not a final physical critical load and
 not yet a replacement for the current audited pilot-21 `4.3800 MPa` ceiling
 language.

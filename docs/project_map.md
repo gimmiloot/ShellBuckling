@@ -102,7 +102,14 @@ project memory even when they are not present here as separate source files.
   Split artifact area for the pilot-21 operational path: `fast_progress.json`
   and `confirm_results.json` are the compact tracked summaries, while raw
   checkpoints, `progress_log.jsonl`, and ad hoc `confirm_*.json` outputs are
-  treated as local runtime cache and ignored from git by default.
+  treated as local runtime cache and ignored from git by default. This layout
+  is now also the repo-wide convention for future proof-pilot fast runners.
+
+- `proof_pilots/pilot_22_exact_load_shallow_vs_current_simple_support_comparison/compare_exact_loads.py`
+  Supporting exact-load comparison pilot that plots the old shallow simple-support
+  system against the mapped current 6-state simple-support fields at selected
+  loads using exact shallow solves, an exact low-load 6-state solve at `4 MPa`,
+  and retained pilot-21 fast-run checkpoints at `7` and `10 MPa`.
 
 ### Supporting tasks
 

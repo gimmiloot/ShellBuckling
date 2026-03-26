@@ -182,12 +182,15 @@ Input assumptions:
   By default the fast layer now uses `--checkpoint-policy rolling+milestones`: raw
   `fast_run/checkpoints/`, `progress_log.jsonl`, and ad hoc `confirm_*.json`
   files are local runtime cache, while `fast_progress.json` and
-  `confirm_results.json` remain the compact tracked summaries. The fast layer
-  now also uses an explicit runtime-controlled step policy, so `--max-step-mpa`
-  is no longer silently capped by the historical pilot-21 `0.0025 MPa` limit,
-  and extra confirm-critical loads can be retained explicitly with repeated
-  `--milestone-load-mpa`. Use `--checkpoint-policy all` only for
-  debug/archive-style runs.
+  `confirm_results.json` remain the compact tracked summaries. This cache split
+  is now the repo-wide default for future proof-pilot fast runners as well:
+  either reuse the standard `proof_pilots/<pilot>/fast_run/` layout or update
+  `.gitignore` together with the new cache path. The fast layer now also uses
+  an explicit runtime-controlled step policy, so `--max-step-mpa` is no longer
+  silently capped by the historical pilot-21 `0.0025 MPa` limit, and the next
+  planned confirm-critical loads `6.5`, `7.0`, `8.0`, `9.0`, `10.0 MPa` are
+  retained by default in addition to any repeated `--milestone-load-mpa`.
+  Use `--checkpoint-policy all` only for debug/archive-style runs.
 
 Exact commands:
 

@@ -389,6 +389,9 @@ not that every one of them is already article-level proven.
   `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_continuation_workflow.md`;
   `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/fast_progress.json`;
   `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/confirm_results.json`;
+  `proof_pilots/pilot_22_exact_load_shallow_vs_current_simple_support_comparison/compare_exact_loads.py`;
+  `proof_pilots/pilot_22_exact_load_shallow_vs_current_simple_support_comparison/pilot_22_exact_load_shallow_vs_current_simple_support_comparison.md`;
+  `proof_pilots/pilot_22_exact_load_shallow_vs_current_simple_support_comparison/comparison_results.json`;
   `docs/theory/current_simple_support_status.md`;
   `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`.
 - Current status: `strategy only`
@@ -432,18 +435,17 @@ not that every one of them is already article-level proven.
   form: the first from-scratch fast run reaches `4.3900 MPa`, later resume runs
   carry the stored path first through `4.5000 MPa` and then onward through
   `4.6000`, `4.7000`, `4.8000`, `4.9000`, `5.0000`, `5.2000`, `5.4000`,
-  `5.6000`, `5.8000`, and `6.0000 MPa` without a bounded failure event in the
-  saved ladder. A dedicated `4.4000 MPa` milestone audit repeats the same
-  accepted seed in two independent pointwise confirm passes, stays
-  `near_reproducible`, shows no branch-jump suspicion, and does not hit a short
-  failure probe through `4.4100 MPa`, but still leaves
-  `strict_reproducible = false`. Sparse confirms at `5.0000`, `5.5000`, and
-  `6.0000 MPa` keep the same accepted seed, show no branch-jump suspicion, and
-  do not hit short first-failure probes through `6.0040 MPa`, but their repeat
-  drift gradually grows from about `2.30e-5 / 1.56e-4` to
-  `3.23e-5 / 2.23e-4` in the max-relative-L2 / max-relative-max metrics, so
-  they no longer satisfy the current `near_reproducible` threshold above
-  `5.0 MPa` even while remaining smooth, `M_s`-dominated, and still much
+  `5.6000`, `5.8000`, `6.0000`, `6.5000`, `7.0000`, `8.0000`, `9.0000`, and
+  `10.0000 MPa` without a bounded failure event in the saved ladder. A
+  dedicated `4.4000 MPa` milestone audit repeats the same accepted seed in two
+  independent pointwise confirm passes, stays `near_reproducible`, shows no
+  branch-jump suspicion, and does not hit a short failure probe through
+  `4.4100 MPa`, but still leaves `strict_reproducible = false`. New sparse
+  confirms at `7.0000` and `10.0000 MPa` also keep the same accepted seed, show
+  no branch-jump suspicion, and do not hit short first-failure probes through
+  `10.0200 MPa`, but their repeat drift remains in the same smooth
+  `2.85e-5..3.30e-5` max-relative-L2 band and still fails the current
+  `near_reproducible` threshold even while remaining `M_s`-dominated and much
   smaller than the ordinary adjacent-step branch drift. Because the strict gate
   is still inherited from pilot 12 as `1e-7 / 1e-6`, the present
   `strict_reproducible = false` signal is now better read as an explicit open
@@ -452,13 +454,20 @@ not that every one of them is already article-level proven.
   pilot-21 internal `0.0025 MPa` step cap: that bound remains part of the
   historical audited pilot artifact only, while the operational fast layer now
   uses its own runtime-controlled min/max/growth/shrink policy plus explicit
-  milestone retention. These newer `4.4000..6.0000 MPa` values are still
-  operational continuation evidence rather than the current canonical audited
-  ceiling, so the bottleneck remains on the numerical side and now more
-  specifically on formulation / conditioning sensitivity plus confirm-policy
-  sensitivity rather than on a simple raw-mesh limit or a verified physical end
-  of branch. The active mixed-weak scans still use the reduced 5-state `F_min`
-  background.
+  milestone retention. A new exact-load comparison pilot then reuses the
+  pilot-16 shallow simple-support comparator together with the same
+  `arrays_nepol_sin(...)` mapping logic already used in pilot 17 at `4.0`,
+  `7.0`, and `10.0 MPa`: the mismatch is already moderately visible at
+  `4.0 MPa`, becomes clearly visible at `7.0 MPa`, stays clearly visible at
+  `10.0 MPa`, and remains dominated by right-edge differences while still
+  staying smooth through the available high-load range rather than producing a
+  new barrier-localized qualitative jump. These newer `4.4000..10.0000 MPa`
+  values are still operational continuation evidence rather than the current
+  canonical audited ceiling, so the bottleneck remains on the numerical side
+  and now more specifically on formulation / conditioning sensitivity plus
+  confirm-policy sensitivity rather than on a simple raw-mesh limit or a
+  verified physical end of branch. The active mixed-weak scans still use the
+  reduced 5-state `F_min` background.
 - Verification method:
   project-state analysis, numerical testbench.
 - Verification boundary:

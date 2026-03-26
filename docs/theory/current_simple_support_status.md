@@ -32,10 +32,10 @@ Several load markers should now be kept separate:
 - best bounded method-sweep ceiling from pilot 20: `4.3520 MPa` (`u_z_scaled_state`)
 - best bounded staged continuation ceiling from pilot 21: `4.3800 MPa` (`u_z`-scaled continuation + auxiliary arc-like step adaptation)
 - stronger dedicated milestone point above the audited ceiling: `4.4000 MPa` (same accepted seed, repeated pointwise confirm, `near_reproducible = true`, no branch-jump suspicion, but `strict_reproducible = false`)
-- current fast-engine highest stored operational continuation load: `6.0000 MPa` (`fast_u_z_scaled_arc_like_continuation.py`), still kept separate from the canonical audited ceiling language
-- sparse milestone confirms at `5.0000`, `5.5000`, and `6.0000 MPa`: same accepted seed, no branch-jump suspicion, `strict_reproducible = false` throughout, and `near_reproducible = false` above `5.0 MPa` because the repeat drift gradually exceeds the current confirm threshold
+- current fast-engine highest stored operational continuation load: `10.0000 MPa` (`fast_u_z_scaled_arc_like_continuation.py`), still kept separate from the canonical audited ceiling language
+- newer sparse milestone confirms at `7.0000` and `10.0000 MPa`: same accepted seed, no branch-jump suspicion, `strict_reproducible = false`, `near_reproducible = false`, and the points remain classified as operational continuation evidence rather than an audited ceiling
 - best bounded staged continuation first failure in the audited pilot-21 ladder: not reached
-- current short confirm probes above the newer fast-engine checkpoints: no failure reached through `4.4100 MPa` from the dedicated `4.4000 MPa` audit and through `6.0040 MPa` from the sparse `5.0000 / 5.5000 / 6.0000 MPa` confirms
+- current short confirm probes above the newer fast-engine checkpoints: no failure reached through `4.4100 MPa` from the dedicated `4.4000 MPa` audit and through `10.0200 MPa` from the sparse `7.0000 / 10.0000 MPa` confirms
 
 The `4.3434 / 4.3440 MPa` pair is still the canonical old-path reference for
 the original single-domain rescue-local continuation workflow. The `4.3520 MPa`
@@ -44,7 +44,7 @@ value remains the bounded pilot-20 method ceiling for the standalone
 pilot-21 continuation ceiling on the same 6-state equations and BC set. The
 `4.4000 MPa` point is still the strongest post-`4.3800 MPa` milestone because
 it already has repeated same-seed near-reproducible confirms and no
-branch-jump signal. The higher `5.0000..6.0000 MPa` points belong to the
+branch-jump signal. The higher `5.0000..10.0000 MPa` points belong to the
 fast/resumable continuation workflow as operational continuation evidence with
 same-branch indicators, but without audit closure under the current confirm
 policy. None of these values is a final physical critical load claim.
@@ -114,19 +114,20 @@ formulation / conditioning dominated:
 - the fast/confirm operational split reuses the same equations and BCs, adds
   checkpoint/resume, and now carries the stored path through `4.4200`,
   `4.4400`, `4.4600`, `4.4800`, `4.5000`, `4.6000`, `4.7000`, `4.8000`,
-  `4.9000`, `5.0000`, `5.2000`, `5.4000`, `5.6000`, `5.8000`, and `6.0000 MPa`
-  without a bounded failure event in the saved fast ladder;
+  `4.9000`, `5.0000`, `5.2000`, `5.4000`, `5.6000`, `5.8000`, `6.0000`,
+  `6.5000`, `7.0000`, `8.0000`, `9.0000`, and `10.0000 MPa` without a bounded
+  failure event in the saved fast ladder;
 - a stricter dedicated audit at `4.4000 MPa` repeats the same accepted seed in
   two independent pointwise confirm passes, stays `near_reproducible`, shows no
   branch-jump suspicion, and does not hit a short failure probe through
   `4.4100 MPa`, but still does not satisfy the stricter
   `strict_reproducible` gate;
-- sparse confirms at `5.0000`, `5.5000`, and `6.0000 MPa` keep the same
-  accepted seed, show no branch-jump suspicion, and do not hit short failure
-  probes through `6.0040 MPa`, but their repeat drift grows smoothly from about
-  `2.30e-5` to `3.23e-5` in max-relative-L2, so they no longer satisfy the
-  current `near_reproducible` threshold above `5.0 MPa` even while remaining
-  much closer to the retest point than an ordinary adjacent continuation step;
+- sparse confirms at `7.0000` and `10.0000 MPa` keep the same accepted
+  seed, show no branch-jump suspicion, and do not hit short failure probes
+  through `10.0200 MPa`; their repeat drift stays in the same smooth
+  `2.85e-5..3.30e-5` max-relative-L2 band and still fails the current
+  `near_reproducible` threshold even while remaining much smaller than an
+  ordinary adjacent continuation step;
 - the repeat drift is smooth and currently dominated by `M_s`, while the
   strongest gradient ordering inside the accepted branch still remains `u_z`,
   then `varphi`, then `T_s`;
@@ -141,7 +142,7 @@ plus confirm-policy sensitivity rather than toward a verified physical end of
 branch.
 
 ## Shallow / Non-Shallow Comparison Status
-The current shallow-comparison picture is unchanged:
+The shallow-comparison picture is now sharper but still conservative:
 
 - the old shallow comparison path was BC-mismatched for simple support;
 - pilot 16 built the strongest current BC-aligned shallow simple-support
@@ -149,8 +150,13 @@ The current shallow-comparison picture is unchanged:
 - pilot 17 showed that the corrected shallow/non-shallow mismatch becomes
   clearly visible around `2..3 MPa`, grows with load, and stays smooth through
   the available high-load range;
-- there is still no special new shallow/non-shallow jump localized exactly at
-  the old `4.3434..4.3440 MPa` ceiling band.
+- a new exact-load comparison pilot at `4.0`, `7.0`, and `10.0 MPa` reuses the
+  same corrected shallow comparator and the same mapped `arrays_nepol_sin(...)`
+  logic from the current 6-state system: the mismatch is already moderately
+  visible at `4.0 MPa`, becomes clearly visible at `7.0 MPa`, stays clearly
+  visible at `10.0 MPa`, and remains dominated by right-edge differences rather
+  than by a special new jump localized exactly at the old `4.3434..4.3440 MPa`
+  ceiling band.
 
 ## Current Next Step
 The current next step is still conservative numerical stabilization of the

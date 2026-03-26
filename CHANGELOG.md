@@ -1,5 +1,46 @@
 # CHANGELOG
 
+## 2026-03-26 - Extend pilot-21 operational continuation to 10 MPa and add exact-load shallow-vs-current plots
+
+Affected files:
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/fast_progress.json`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/confirm_results.json`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_continuation_workflow.md`
+- `proof_pilots/pilot_22_exact_load_shallow_vs_current_simple_support_comparison/compare_exact_loads.py`
+- `proof_pilots/pilot_22_exact_load_shallow_vs_current_simple_support_comparison/pilot_22_exact_load_shallow_vs_current_simple_support_comparison.md`
+- `proof_pilots/pilot_22_exact_load_shallow_vs_current_simple_support_comparison/comparison_results.json`
+- `proof_pilots/pilot_22_exact_load_shallow_vs_current_simple_support_comparison/figures/current_vs_shallow_exact_4.0_mpa.png`
+- `proof_pilots/pilot_22_exact_load_shallow_vs_current_simple_support_comparison/figures/current_vs_shallow_exact_7.0_mpa.png`
+- `proof_pilots/pilot_22_exact_load_shallow_vs_current_simple_support_comparison/figures/current_vs_shallow_exact_10.0_mpa.png`
+- `docs/theory/current_simple_support_status.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/project_map.md`
+- `CHANGELOG.md`
+
+- Continued the separate pilot-21 fast `u_z`-scaled + auxiliary arc-like path from `6.0000 MPa` through retained exact targets `6.5000`, `7.0000`, `8.0000`, `9.0000`, and `10.0000 MPa` without replaying the branch from scratch and without hitting a bounded failure event in the saved fast ladder.
+- Ran sparse confirms at `7.0000` and `10.0000 MPa`; both kept the same accepted seed, showed no branch-jump suspicion, stayed classified as operational continuation evidence, and did not hit short probe failures through `10.0200 MPa`, while `strict_reproducible` and `near_reproducible` both remained false under the current policy.
+- Added a new exact-load comparison pilot that reuses the pilot-16 shallow simple-support solver together with the existing `arrays_nepol_sin(...)` mapping from the current 6-state path to plot `theta`, `theta'`, `Phi`, and `Phi'` at exact loads `4.0`, `7.0`, and `10.0 MPa`.
+- Recorded that the exact-load shallow-vs-current mismatch is already moderately visible at `4.0 MPa`, becomes clearly visible at `7.0 MPa`, stays clearly visible at `10.0 MPa`, and remains dominated by right-edge differences while still staying smooth through the available high-load range rather than showing a new barrier-localized jump.
+- Refreshed the pilot-21 workflow note, the current simple-support operational status page, the verification-map strategy note, and the project map so they now reflect operational continuation evidence through `10.0000 MPa`, sparse confirms through `10.0200 MPa`, and the new exact-load comparison pilot without promoting any post-`4.3800 MPa` load to audited-ceiling language.
+
+## 2026-03-26 - Generalize runtime-cache policy and harden pilot-21 bootstrap-anchor repair
+
+Affected files:
+- `AGENTS.md`
+- `.gitignore`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/continuation_runtime.py`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_u_z_scaled_arc_like_continuation.py`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_continuation_workflow.md`
+- `README.md`
+- `docs/project_map.md`
+- `CHANGELOG.md`
+
+- Added a repo-wide rule that mass runtime artifacts such as checkpoints, append-only progress logs, ad hoc confirm dumps, and temporary resume caches are local runtime cache by default, while compact summaries and deliberately curated exports remain the normal tracked artifacts.
+- Generalized `.gitignore` from pilot-21-specific cache paths to the reusable `proof_pilots/*/fast_run/` cache layout without hiding compact tracked summaries such as `confirm_results.json`.
+- Hardened the pilot-21 fast-run bootstrap-anchor repair path so copied or legacy run directories can recover the named `bootstrap_previous` / `scaled_anchor` pointers from disk before falling back to an expensive rebuild, and stale `bootstrap_older_checkpoint` metadata is normalized away explicitly.
+- Made the next planned `6 -> 10 MPa` confirm-critical milestones `6.5`, `7.0`, `8.0`, `9.0`, and `10.0 MPa` explicit in the runtime checkpoint policy so pruning does not silently drop them once they are reached.
+- Refreshed the operational workflow docs to describe the repo-wide cache convention, the repaired bootstrap-anchor behavior, and the explicit long-climb milestone-retention schedule.
+
 ## 2026-03-26 - Remove the hidden fast-run step cap and formalize pilot-21 audit policy
 
 Affected files:

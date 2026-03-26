@@ -52,6 +52,9 @@ FAST_RUN_DIR = PILOT_DIR / "fast_run"
 DEFAULT_PROGRESS_JSON = FAST_RUN_DIR / "fast_progress.json"
 DEFAULT_PROGRESS_LOG = FAST_RUN_DIR / "progress_log.jsonl"
 DEFAULT_CONFIRM_JSON = FAST_RUN_DIR / "confirm_results.json"
+CHECKPOINTS_SUBDIR = Path("checkpoints")
+BOOTSTRAP_PREVIOUS_FILENAME = "bootstrap_previous_4p3433_mpa.npz"
+SCALED_ANCHOR_FILENAME = "scaled_anchor_4p3434_mpa.npz"
 DEFAULT_BOOTSTRAP_TARGET_MPA = float(pilot21.EXTENSION_STAGE_TARGETS_MPA[-1])
 DEFAULT_CHECKPOINT_POLICY = "rolling+milestones"
 DEFAULT_MAX_ROLLING_CHECKPOINTS = 24
@@ -61,6 +64,7 @@ DEFAULT_KEEP_FAILURE_CHECKPOINTS = True
 DEFAULT_KEEP_BOOTSTRAP_CHECKPOINTS = True
 DEFAULT_PRUNE_OLD_CHECKPOINTS = True
 DEFAULT_MILESTONE_GRID_MPA = 0.5
+DEFAULT_NEXT_CLIMB_MILESTONES_MPA = (6.5, 7.0, 8.0, 9.0, 10.0)
 DEFAULT_SUCCESS_GROWTH = float(pilot21.SUCCESS_GROWTH)
 DEFAULT_CONDITIONING_SHRINK = 0.75
 DEFAULT_SMOOTH_NODE_PRESSURE_MAX = 0.02
@@ -155,11 +159,15 @@ def sanitize_load(q_mpa: float) -> str:
 
 
 def make_checkpoint_relpath(step_index: int, q_mpa: float) -> Path:
-    return Path("checkpoints") / f"point_{step_index:05d}_q_{sanitize_load(q_mpa)}_mpa.npz"
+    return CHECKPOINTS_SUBDIR / f"point_{step_index:05d}_q_{sanitize_load(q_mpa)}_mpa.npz"
+
+
+def named_checkpoint_relpath(filename: str) -> Path:
+    return CHECKPOINTS_SUBDIR / str(filename)
 
 
 def checkpoint_dir(run_dir: Path) -> Path:
-    return run_dir / "checkpoints"
+    return run_dir / CHECKPOINTS_SUBDIR
 
 
 def unique_sorted_loads(values: Any) -> list[float]:
@@ -206,6 +214,7 @@ def checkpoint_policy_summary(
             round(float(STATUS_CONVENTION["pilot21_bounded_ceiling_mpa"]), 4),
             4.4000,
         ],
+        "planned_long_climb_milestones_mpa": unique_sorted_loads(DEFAULT_NEXT_CLIMB_MILESTONES_MPA),
         "minimum_resume_anchors_always_retained": True,
     }
 
@@ -525,7 +534,7 @@ def save_point_checkpoint(run_dir: Path, step_index: int, point) -> Path:
 
 
 def save_named_point_checkpoint(run_dir: Path, filename: str, point) -> Path:
-    relative_path = Path("checkpoints") / filename
+    relative_path = named_checkpoint_relpath(filename)
     full_path = run_dir / relative_path
     full_path.parent.mkdir(parents=True, exist_ok=True)
     np.savez_compressed(
@@ -620,6 +629,7 @@ def milestone_marker_loads(progress: dict[str, Any]) -> set[float]:
         round(float(STATUS_CONVENTION["pilot21_bounded_ceiling_mpa"]), 4),
         4.4000,
     }
+    markers.update(float(value) for value in unique_sorted_loads(DEFAULT_NEXT_CLIMB_MILESTONES_MPA))
     markers.update(float(value) for value in unique_sorted_loads(policy.get("explicit_milestone_loads_mpa") or []))
     for key in ("target_load_mpa", "bootstrap_target_mpa"):
         value = float_or_none(metadata.get(key))
@@ -668,6 +678,9 @@ def checkpoint_policy_config(progress: dict[str, Any]) -> dict[str, Any]:
     grid = float_or_none(policy.get("milestone_grid_mpa", DEFAULT_MILESTONE_GRID_MPA))
     policy["milestone_grid_mpa"] = None if grid is None else float(grid)
     policy["explicit_milestone_loads_mpa"] = unique_sorted_loads(policy.get("explicit_milestone_loads_mpa") or [])
+    policy["planned_long_climb_milestones_mpa"] = unique_sorted_loads(
+        policy.get("planned_long_climb_milestones_mpa") or DEFAULT_NEXT_CLIMB_MILESTONES_MPA
+    )
     return policy
 
 
@@ -869,6 +882,9 @@ def refresh_progress_summary(progress: dict[str, Any]) -> None:
         "failure_event_count": len(progress.get("failure_events") or []),
         "suggested_confirm_loads_mpa": suggested,
         "retained_confirmable_loads_mpa": sorted({float(value) for value in retained_milestones}),
+        "planned_long_climb_milestones_mpa": unique_sorted_loads(
+            checkpoint_policy_config(progress).get("planned_long_climb_milestones_mpa") or DEFAULT_NEXT_CLIMB_MILESTONES_MPA
+        ),
         "checkpoint_policy": checkpoint_policy_config(progress),
         "audit_policy": audit_policy_summary(),
         "status_convention": STATUS_CONVENTION,

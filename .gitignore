@@ -10,8 +10,8 @@ __pycache__/
 # Generated outputs
 output/
 
-# Pilot 21 runtime cache
-proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/checkpoints/
-proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/progress_log.jsonl
-proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/confirm_*.json
-!proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/confirm_results.json
+# Proof-pilot runtime cache
+proof_pilots/*/fast_run/checkpoints/
+proof_pilots/*/fast_run/progress_log.jsonl
+proof_pilots/*/fast_run/confirm_*.json
+!proof_pilots/*/fast_run/confirm_results.json
