@@ -25,20 +25,23 @@ scan tasks still use the older reduced `F_min` background and should not be read
 as the fully consistent simple-support background solver.
 
 ## Current Reproducible Loads
-Two load markers should now be kept separate:
+Several load markers should now be kept separate:
 
 - old-path reproducible anchor load: `4.3434 MPa`
 - old-path first persistent failure load: `4.3440 MPa`
-- best bounded method-sweep ceiling to date: `4.3520 MPa`
-- best bounded method-sweep first failure: not reached within the packaged pilot-20 ladder
+- best bounded method-sweep ceiling from pilot 20: `4.3520 MPa` (`u_z_scaled_state`)
+- best bounded staged continuation ceiling from pilot 21: `4.3800 MPa` (`u_z`-scaled continuation + auxiliary arc-like step adaptation)
+- best bounded staged continuation first failure: not reached within the packaged pilot-21 ladder
 
-The `4.3434 / 4.3440 MPa` pair is still the reproducible reference for the
-original single-domain rescue-local continuation path. The new `4.3520 MPa`
-value is a bounded numerical-method result from pilot 20, not a final physical
-critical load claim.
+The `4.3434 / 4.3440 MPa` pair is still the canonical old-path reference for
+the original single-domain rescue-local continuation workflow. The `4.3520 MPa`
+value remains the bounded pilot-20 method ceiling for the standalone
+`u_z`-scaled solve. The new `4.3800 MPa` value is a bounded pilot-21
+continuation result on the same 6-state equations and BC set, not a final
+physical critical load claim.
 
 ## Current Barrier Interpretation
-The current reading is still mainly numerical, but more specifically numerical
+The current reading is still mainly numerical, but now more sharply numerical
 formulation / conditioning dominated:
 
 - the old single-domain path still reaches a reproducible `4.3434 MPa` anchor
@@ -47,13 +50,18 @@ formulation / conditioning dominated:
 - pilot 19 showed that simple right-edge mesh concentration alone does not move
   the ceiling materially;
 - pilot 20 showed that predictor-only changes help only modestly, while an
-  unchanged-equation state representation change (`u_z`-scaled solve) can move
-  the bounded ceiling materially upward;
+  unchanged-equation state representation change (`u_z`-scaled solve) moves the
+  bounded ceiling to `4.3520 MPa`;
+- pilot 21 then turned that into one main high-load workflow: the exact
+  `u_z`-scaled continuation path plus auxiliary arc-like step adaptation
+  reproduced `4.3520 MPa` and carried the bounded staged ladder through
+  `4.3550`, `4.3600`, `4.3700`, and `4.3800 MPa` with reproducible stage
+  retests and no bounded failure in the packaged ladder;
 - the dominant gradient ordering remains `u_z`, then `varphi`, then `T_s`.
 
 So the barrier still reads as numerical rather than as a verified physical fold,
-but the evidence now points more toward solver formulation / conditioning than
-toward raw right-edge mesh density by itself.
+but the evidence now points even more strongly toward solver formulation /
+conditioning than toward raw right-edge mesh density by itself.
 
 ## Shallow / Non-Shallow Comparison Status
 The current shallow-comparison picture is unchanged:
@@ -69,11 +77,14 @@ The current shallow-comparison picture is unchanged:
 
 ## Current Next Step
 The current next step is still conservative numerical stabilization of the
-separate 6-state simple-support background path, but the preferred next methods
-are now sharper:
+separate 6-state simple-support background path, but the preferred high-load
+workflow is now clearer:
 
-- continue the `u_z`-scaled state path first;
-- treat the arc-like continuation surrogate as lower-priority backup only;
+- use `u_z`-scaled continuation with auxiliary arc-like step adaptation as the
+  default high-load path;
+- keep the old `4.3434 / 4.3440 MPa` pair explicit as the canonical old-path
+  anchor/failure reference rather than merging it with the newer bounded
+  ceilings;
 - do not spend more time on simple edge-mesh concentration by itself;
 - do not reconnect the mixed-weak scans to this path yet;
 - keep reporting candidate loads as exploratory.
@@ -92,6 +103,7 @@ Canonical bounded high-load / diagnosis scripts:
 - `proof_pilots/pilot_18_revised_analytic_barrier_diagnosis/term_balance_check.py`
 - `proof_pilots/pilot_19_edge_stretched_simple_support_continuation/edge_stretched_continuation.py`
 - `proof_pilots/pilot_20_method_sweep_for_simple_support_ceiling/method_sweep.py`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/u_z_scaled_arc_like_continuation.py`
 
 For comparison context only, not as the canonical simple-support background
 solver path:

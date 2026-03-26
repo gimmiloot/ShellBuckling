@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 2026-03-26 - Add pilot 21 u_z-scaled arc-like continuation and refresh simple-support status
+
+Affected files:
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/pilot_21_u_z_scaled_arc_like_continuation.md`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/u_z_scaled_arc_like_continuation.py`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/u_z_scaled_arc_like_results.json`
+- `docs/theory/current_simple_support_status.md`
+- `docs/theory/current_theory_verification_map.md`
+- `CHANGELOG.md`
+
+- Added a dedicated pilot-21 package that stops treating arc-like control as a separate competing method and instead uses the exact pilot-20 `u_z`-scaled path as the main continuation formulation with bounded arc-like step adaptation layered on top.
+- Ran the staged ladder through `4.3520`, `4.3550`, `4.3600`, `4.3700`, and `4.3800 MPa`, recording reproducible stage retests at every planned target and no bounded failure inside the packaged ladder while keeping the 6-state equations and simple-support BC set unchanged.
+- Updated the canonical simple-support status and verification map so they now distinguish the old-path `4.3434 / 4.3440 MPa` anchor/failure pair, the pilot-20 standalone `4.3520 MPa` method ceiling, and the new pilot-21 bounded continuation ceiling `4.3800 MPa` without promoting any of them to a final physical critical load.
+
 ## 2026-03-25 - Add pilot 20 simple-support method sweep and update ceiling status
 
 Affected files:

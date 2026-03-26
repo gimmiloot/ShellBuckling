@@ -380,6 +380,9 @@ not that every one of them is already article-level proven.
   `proof_pilots/pilot_20_method_sweep_for_simple_support_ceiling/pilot_20_method_sweep_for_simple_support_ceiling.md`;
   `proof_pilots/pilot_20_method_sweep_for_simple_support_ceiling/method_comparison_table.md`;
   `proof_pilots/pilot_20_method_sweep_for_simple_support_ceiling/method_sweep.py`;
+  `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/pilot_21_u_z_scaled_arc_like_continuation.md`;
+  `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/u_z_scaled_arc_like_continuation.py`;
+  `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/u_z_scaled_arc_like_results.json`;
   `docs/theory/current_simple_support_status.md`;
   `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`.
 - Current status: `strategy only`
@@ -413,21 +416,27 @@ not that every one of them is already article-level proven.
   numerical reading further: predictor-only and pseudo-arclength-like changes
   help only modestly, while an equation-preserving state-representation change
   (`u_z`-scaled solve) moves the bounded ceiling to `4.3520 MPa` without a
-  bounded failure being hit in the packaged ladder. This keeps the bottleneck on
-  the numerical side, but now more as formulation / conditioning sensitivity
-  than as a simple raw-mesh limit. The active mixed-weak scans still use the
-  reduced 5-state `F_min` background.
+  bounded failure being hit in the packaged ladder. Pilot 21 then consolidates
+  the practical continuation strategy: the exact pilot-20 `u_z`-scaled path,
+  augmented only by auxiliary arc-like step adaptation, reproduces `4.3520 MPa`
+  and carries the bounded staged ladder through `4.3550`, `4.3600`, `4.3700`,
+  and `4.3800 MPa` with reproducible stage retests and no bounded failure in
+  the packaged ladder. This keeps the bottleneck on the numerical side and now
+  more specifically on formulation / conditioning sensitivity than on a simple
+  raw-mesh limit or a verified physical end of branch. The active mixed-weak
+  scans still use the reduced 5-state `F_min` background.
 - Verification method:
   project-state analysis, numerical testbench.
 - Verification boundary:
   not a theorem, only a current research strategy.
 - Next action:
-  keep the separate full 6-state simple-support background path, prioritize the
-  pilot-20 `u_z`-scaled continuation path, treat the arc-like surrogate only as
-  a lower-priority backup, stop spending time on simple edge-mesh concentration
-  alone, and use the pilot-16/pilot-17 BC-aligned shallow comparator plus the
-  pilot-18 diagnosis before considering any reconnection to the mixed-weak
-  scans.
+  keep the separate full 6-state simple-support background path, use the
+  pilot-21 `u_z`-scaled continuation with auxiliary arc-like step adaptation as
+  the current high-load workflow, keep the `4.3434 / 4.3440 MPa` pair explicit
+  as the canonical old-path anchor/failure reference, stop spending time on
+  simple edge-mesh concentration alone, and use the pilot-16/pilot-17
+  BC-aligned shallow comparator plus the pilot-18 diagnosis before considering
+  any reconnection to the mixed-weak scans.
 
 ### V-ST2. Stabilize the background before promoting `q_cr`
 
