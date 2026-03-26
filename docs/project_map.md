@@ -92,7 +92,8 @@ project memory even when they are not present here as separate source files.
 ### Proof-pilot operational runners
 
 - `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_u_z_scaled_arc_like_continuation.py`
-  Checkpointed fast continuation runner for the separate simple-support path.
+  Checkpointed fast continuation runner for the separate simple-support path,
+  with runtime-controlled step limits and explicit milestone retention.
 
 - `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/confirm_u_z_scaled_arc_like_continuation.py`
   Pointwise confirm/audit runner that reads fast-run checkpoints.

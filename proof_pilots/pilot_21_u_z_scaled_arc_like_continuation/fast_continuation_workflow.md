@@ -21,7 +21,7 @@ Two runnable layers now sit inside the pilot-21 package:
 
 - `fast_u_z_scaled_arc_like_continuation.py`
   Fast checkpointed continuation runner. It reuses the exact pilot-20
-  `u_z`-scaled solve, keeps the same auxiliary arc-like step adaptation,
+  `u_z`-scaled solve, keeps the same auxiliary arc-like continuation logic,
   starts from the latest checkpoint when available, and writes lightweight
   machine-readable progress after every accepted step.
 - `confirm_u_z_scaled_arc_like_continuation.py`
@@ -33,12 +33,35 @@ Two runnable layers now sit inside the pilot-21 package:
 Shared runtime helper:
 
 - `continuation_runtime.py`
-  Local helper for checkpoint I/O, profile reconstruction, and compact log
-  serialization inside the pilot-21 package.
+  Local helper for checkpoint I/O, runtime-controlled fast-step adaptation,
+  milestone retention, compact log serialization, and explicit audit-policy
+  summaries inside the pilot-21 package.
+
+## Fast Step Policy
+The historical bounded pilot artifact
+`u_z_scaled_arc_like_continuation.py` keeps its original internal controller,
+including the old audited cap `MAX_STEP_MPA = 0.0025`.
+
+The operational fast runner is now separate from that historical controller.
+Its accepted-step adaptation is runtime-controlled and respects the current CLI
+limits rather than silently reusing the old pilot cap. The fast layer exposes:
+
+- `--initial-step-mpa`
+- `--min-step-mpa`
+- `--max-step-mpa`
+- `--success-growth`
+- `--conditioning-shrink`
+- `--failure-shrink`
+
+The decision logic is intentionally unchanged in structure: smooth accepted
+steps may grow, crowded accepted steps may shrink, and failed solves still use
+a separate failure shrink. What changed is only where the limits live: the
+runtime layer now owns them explicitly.
 
 ## Checkpoint Policy
-Fast-run artifacts live in `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/`.
-The default checkpoint mode is now `rolling+milestones`, with four explicit
+Fast-run artifacts live in
+`proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/`.
+The default checkpoint mode is `rolling+milestones`, with four explicit
 policies available from the CLI:
 
 - `all`
@@ -64,18 +87,28 @@ Default retention keeps:
   latest `24` rolling points;
 - failure/suspicious context checkpoints if they appear.
 
-This keeps ordinary local runs far below the old "hundreds of `npz`" pattern
+The milestone schedule is now explicit. By default the fast layer retains:
+
+- the canonical pilot-20 marker `4.3520 MPa`;
+- the audited pilot-21 ceiling `4.3800 MPa`;
+- the strongest non-promoted milestone `4.4000 MPa`;
+- every `0.5 MPa` round milestone;
+- the current `--bootstrap-target-mpa` and `--target-load-mpa`;
+- any extra user-requested milestone passed via repeated `--milestone-load-mpa`.
+
+This keeps ordinary local runs far below the old ?hundreds of `npz`? pattern
 while preserving resume capability and sparse confirm on milestone loads. If a
-confirm target was pruned, rerun the fast layer with a more archival checkpoint
-policy or keep that load as a milestone.
+confirm target was pruned, rerun the fast layer with a more archival
+checkpoint policy or add that load explicitly via `--milestone-load-mpa`.
 
 ## Tracked vs Runtime Artifacts
-The pilot-21 fast workflow now separates compact repository artifacts from local
+The pilot-21 fast workflow separates compact repository artifacts from local
 runtime cache:
 
 - `fast_progress.json`
-  Current machine-readable state, accepted-step table, and checkpoint pointers.
-  This remains the compact tracked summary.
+  Current machine-readable state, accepted-step table, checkpoint pointers,
+  retained milestone list, and the active fast/audit policy summaries. This
+  remains the compact tracked summary.
 - `confirm_results.json`
   Default pointwise confirm output. This remains the compact tracked confirm
   summary.
@@ -89,6 +122,55 @@ runtime cache:
   Ad hoc milestone-audit dumps from custom `--output-json` runs. These are also
   treated as local runtime cache unless a result is promoted manually.
 
+## Audit Policy
+The confirm layer now keeps an explicit split between same-branch indicators and
+promotion policy.
+
+Same-branch indicators:
+
+- same accepted seed;
+- no `branch_jump_suspicion` in the continuity check;
+- repeat drift smoothness across checked milestones;
+- repeat drift smaller than an ordinary adjacent continuation step;
+- consistent strongest gradient ordering, currently `u_z > varphi > T_s`;
+- sane BC residuals.
+
+Promotion language:
+
+- `strict_reproducible`
+  Same-load repeat solve closes under the inherited pilot-12 gate
+  `1e-7 / 1e-6` in max-relative-L2 / max-relative-max.
+- `near_reproducible`
+  Same-load repeat solve keeps the same accepted seed and closes under the
+  relaxed fast-workflow gate `2e-5 / 2e-4`.
+- `stronger milestone`
+  Same-branch indicators stay strong, `near_reproducible` remains true, and a
+  short confirm probe is recorded without failure.
+- `audited ceiling`
+  Promotion above the current audited ceiling still requires explicit milestone
+  audit closure, including `strict_reproducible`.
+- `operational continuation evidence`
+  Accepted fast-run continuation result without that milestone-promotion
+  closure.
+
+This keeps the repo conservative: loads above `4.3800 MPa` are not silently
+relabelled as audited just because same-branch indicators stay strong. The
+current `strict_reproducible = false` signal is tracked explicitly as an open
+audit-policy issue rather than silently reinterpreted as branch loss.
+
+## Confirm Probe Policy
+The confirm runner still stays cheap, but the failure probe is now slightly more
+meaningful at high load:
+
+- an explicit `--failure-probe-step-mpa` still overrides everything;
+- otherwise the probe step follows the accepted operational step size;
+- a separate high-load floor is available through
+  `--failure-probe-high-load-step-mpa` and
+  `--failure-probe-high-load-threshold-mpa`.
+
+So the default probe can widen modestly at higher loads without turning confirm
+into a heavy replay audit.
+
 ## Current Smoke Outcome
 Keep the status language separated:
 
@@ -96,40 +178,9 @@ Keep the status language separated:
 - canonical pilot-20 bounded ceiling: `4.3520 MPa`;
 - canonical audited pilot-21 bounded ceiling: `4.3800 MPa`.
 
-Separately from those audited markers, the fast workflow has now shown:
-
-- a first from-scratch checkpointed run reached `4.3900 MPa` in about `798 s`;
-- resume runs then extended the saved path through `4.4200`, `4.4400`,
-  `4.4600`, `4.4800`, and `4.5000 MPa` in about `3.9 s` total across the five
-  post-`4.4000 MPa` chunks on the same workspace;
-- two further resume runs then carried the stored path from `4.5000 MPa` to
-  `5.7500 MPa` and on to `6.0000 MPa` in about `34.9 s` total, again without a
-  bounded failure in the saved ladder;
-- a dedicated `4.4000 MPa` milestone audit ran twice and both passes returned
-  `strict_reproducible = false` but `near_reproducible = true`, with the same
-  accepted seed, no branch-jump suspicion, and no failure in the short probe
-  through `4.4100 MPa`;
-- sparse confirm at `5.0000`, `5.5000`, and `6.0000 MPa` kept the same accepted
-  seed, showed no branch-jump suspicion, and did not hit short failure probes
-  through `6.0040 MPa`, but `near_reproducible` turned false above `5.0 MPa`
-  because the repeat drift gradually exceeded the current confirm threshold;
-- the observed repeat drift stays smooth and is currently `M_s`-dominated,
-  while the ordinary adjacent-step branch drift remains roughly `20x..38x`
-  larger in max-relative-L2 than the repeat drift across the checked
-  milestones.
-
-Open method notes:
-
-- the current strict gate is still inherited from pilot 12 as `1e-7 / 1e-6`,
-  so the remaining `strict_reproducible = false` signal is presently better
-  read as an audit-policy / metric issue than as evidence of branch loss;
-- the current fast runner cannot actually exceed the pilot-21 package cap
-  `MAX_STEP_MPA = 0.0025`, because `adapt_step_size()` already clamps there,
-  so the workflow is now cheap enough for further operational climbing but not
-  yet aggressively optimized for a much faster march toward `~10 MPa`.
-
-These fast-run loads are operational continuation results, not a final physical
-critical load and not yet a replacement for the current audited pilot-21
-`4.3800 MPa` ceiling language; the stronger `4.4000 MPa` audit still remains
-below canonical audited status because the stricter reproducibility gate has not
-closed.
+Separately from those audited markers, the fast workflow has shown operational
+continuation evidence through `6.0000 MPa`, a stronger dedicated milestone at
+`4.4000 MPa`, and sparse confirms through `6.0040 MPa`. These newer loads are
+still operational continuation results, not a final physical critical load and
+not yet a replacement for the current audited pilot-21 `4.3800 MPa` ceiling
+language.

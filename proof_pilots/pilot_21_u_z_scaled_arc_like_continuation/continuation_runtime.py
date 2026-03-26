@@ -60,6 +60,23 @@ DEFAULT_KEEP_MILESTONE_CHECKPOINTS = True
 DEFAULT_KEEP_FAILURE_CHECKPOINTS = True
 DEFAULT_KEEP_BOOTSTRAP_CHECKPOINTS = True
 DEFAULT_PRUNE_OLD_CHECKPOINTS = True
+DEFAULT_MILESTONE_GRID_MPA = 0.5
+DEFAULT_SUCCESS_GROWTH = float(pilot21.SUCCESS_GROWTH)
+DEFAULT_CONDITIONING_SHRINK = 0.75
+DEFAULT_SMOOTH_NODE_PRESSURE_MAX = 0.02
+DEFAULT_SMOOTH_RIGHT_EDGE_FRACTION_MAX = 0.25
+DEFAULT_CROWDED_NODE_PRESSURE_MIN = 0.10
+DEFAULT_CROWDED_RIGHT_EDGE_FRACTION_MIN = 0.40
+STRICT_REPRO_MAX_REL_L2 = 1.0e-7
+STRICT_REPRO_MAX_REL_MAX = 1.0e-6
+NEAR_REPRO_MAX_REL_L2 = 2.0e-5
+NEAR_REPRO_MAX_REL_MAX = 2.0e-4
+BC_RESIDUAL_SANITY_MAX = 1.0e-6
+EXPECTED_GRADIENT_ORDER = ("u_z", "varphi", "T_s")
+DEFAULT_FAILURE_PROBE_STEP_FACTOR = 1.0
+DEFAULT_FAILURE_PROBE_MIN_STEP_MPA = 0.002
+DEFAULT_FAILURE_PROBE_HIGH_LOAD_STEP_MPA = 0.004
+DEFAULT_FAILURE_PROBE_HIGH_LOAD_THRESHOLD_MPA = 5.0
 STATUS_CONVENTION = {
     "old_path_anchor_mpa": float(pilot21.OLD_PATH_ANCHOR_MPA),
     "old_path_first_failure_mpa": float(pilot21.OLD_PATH_FAILURE_MPA),
@@ -145,6 +162,21 @@ def checkpoint_dir(run_dir: Path) -> Path:
     return run_dir / "checkpoints"
 
 
+def unique_sorted_loads(values: Any) -> list[float]:
+    if values in (None, ""):
+        return []
+    ordered: list[float] = []
+    for item in values:
+        value = float_or_none(item)
+        if value is None:
+            continue
+        rounded = round(float(value), 4)
+        if not any(abs(rounded - existing) <= 1.0e-9 for existing in ordered):
+            ordered.append(rounded)
+    ordered.sort()
+    return ordered
+
+
 def checkpoint_policy_summary(
     *,
     checkpoint_policy: str,
@@ -154,7 +186,10 @@ def checkpoint_policy_summary(
     keep_failure_checkpoints: bool,
     keep_bootstrap_checkpoints: bool,
     prune_old_checkpoints: bool,
+    milestone_grid_mpa: float = DEFAULT_MILESTONE_GRID_MPA,
+    explicit_milestone_loads_mpa: list[float] | tuple[float, ...] | None = None,
 ) -> dict[str, Any]:
+    grid = float_or_none(milestone_grid_mpa)
     return {
         "mode": str(checkpoint_policy),
         "max_rolling_checkpoints": max(0, int(max_rolling_checkpoints)),
@@ -163,8 +198,269 @@ def checkpoint_policy_summary(
         "keep_failure_checkpoints": bool(keep_failure_checkpoints),
         "keep_bootstrap_checkpoints": bool(keep_bootstrap_checkpoints),
         "prune_old_checkpoints": bool(prune_old_checkpoints),
+        "milestone_grid_mpa": None if grid is None else float(grid),
+        "explicit_milestone_loads_mpa": unique_sorted_loads(explicit_milestone_loads_mpa),
         "default_recommended_mode": DEFAULT_CHECKPOINT_POLICY,
+        "canonical_milestones_mpa": [
+            round(float(STATUS_CONVENTION["pilot20_bounded_ceiling_mpa"]), 4),
+            round(float(STATUS_CONVENTION["pilot21_bounded_ceiling_mpa"]), 4),
+            4.4000,
+        ],
         "minimum_resume_anchors_always_retained": True,
+    }
+
+
+def step_control_summary(
+    *,
+    initial_step_mpa: float,
+    min_step_mpa: float,
+    max_step_mpa: float,
+    success_growth: float,
+    conditioning_shrink: float,
+    failure_shrink: float,
+    smooth_node_pressure_max: float = DEFAULT_SMOOTH_NODE_PRESSURE_MAX,
+    smooth_right_edge_fraction_max: float = DEFAULT_SMOOTH_RIGHT_EDGE_FRACTION_MAX,
+    crowded_node_pressure_min: float = DEFAULT_CROWDED_NODE_PRESSURE_MIN,
+    crowded_right_edge_fraction_min: float = DEFAULT_CROWDED_RIGHT_EDGE_FRACTION_MIN,
+) -> dict[str, Any]:
+    return {
+        "initial_step_mpa": float(initial_step_mpa),
+        "min_step_mpa": float(min_step_mpa),
+        "max_step_mpa": float(max_step_mpa),
+        "success_growth": float(success_growth),
+        "conditioning_shrink": float(conditioning_shrink),
+        "failure_shrink": float(failure_shrink),
+        "smooth_node_pressure_max": float(smooth_node_pressure_max),
+        "smooth_right_edge_fraction_max": float(smooth_right_edge_fraction_max),
+        "crowded_node_pressure_min": float(crowded_node_pressure_min),
+        "crowded_right_edge_fraction_min": float(crowded_right_edge_fraction_min),
+        "historical_bounded_pilot21_cap_mpa": float(pilot21.MAX_STEP_MPA),
+        "adapt_rule": (
+            "runtime-controlled fast-step policy: grow on smooth accepted steps, "
+            "shrink on crowded accepted steps, and use failure_shrink after failed solves"
+        ),
+        "historical_reference": "pilot21.adapt_step_size remains only in the bounded historical pilot artifact",
+    }
+
+
+def step_control_config(progress: dict[str, Any]) -> dict[str, Any]:
+    metadata = progress.get("metadata") or {}
+    step_control = dict(metadata.get("step_control") or {})
+    if not step_control:
+        step_control = step_control_summary(
+            initial_step_mpa=pilot21.INITIAL_STEP_MPA,
+            min_step_mpa=pilot21.MIN_STEP_MPA,
+            max_step_mpa=pilot21.MAX_STEP_MPA,
+            success_growth=DEFAULT_SUCCESS_GROWTH,
+            conditioning_shrink=DEFAULT_CONDITIONING_SHRINK,
+            failure_shrink=pilot21.FAILURE_SHRINK,
+        )
+    step_control["initial_step_mpa"] = float(step_control.get("initial_step_mpa", pilot21.INITIAL_STEP_MPA))
+    step_control["min_step_mpa"] = float(step_control.get("min_step_mpa", pilot21.MIN_STEP_MPA))
+    step_control["max_step_mpa"] = float(step_control.get("max_step_mpa", pilot21.MAX_STEP_MPA))
+    step_control["success_growth"] = float(step_control.get("success_growth", DEFAULT_SUCCESS_GROWTH))
+    step_control["conditioning_shrink"] = float(step_control.get("conditioning_shrink", DEFAULT_CONDITIONING_SHRINK))
+    step_control["failure_shrink"] = float(step_control.get("failure_shrink", pilot21.FAILURE_SHRINK))
+    step_control["smooth_node_pressure_max"] = float(step_control.get("smooth_node_pressure_max", DEFAULT_SMOOTH_NODE_PRESSURE_MAX))
+    step_control["smooth_right_edge_fraction_max"] = float(step_control.get("smooth_right_edge_fraction_max", DEFAULT_SMOOTH_RIGHT_EDGE_FRACTION_MAX))
+    step_control["crowded_node_pressure_min"] = float(step_control.get("crowded_node_pressure_min", DEFAULT_CROWDED_NODE_PRESSURE_MIN))
+    step_control["crowded_right_edge_fraction_min"] = float(step_control.get("crowded_right_edge_fraction_min", DEFAULT_CROWDED_RIGHT_EDGE_FRACTION_MIN))
+    return step_control
+
+
+def adapt_fast_step_size(current_step_mpa: float, point, step_control: dict[str, Any]) -> float:
+    config = step_control_config({"metadata": {"step_control": step_control}})
+    current_step = min(config["max_step_mpa"], max(config["min_step_mpa"], float(current_step_mpa)))
+    node_pressure = float(getattr(point, "node_pressure", float("nan")))
+    right_edge_fraction = float(getattr(point, "right_edge_fraction_0_995", float("nan")))
+
+    if (
+        node_pressure < config["smooth_node_pressure_max"]
+        and right_edge_fraction < config["smooth_right_edge_fraction_max"]
+    ):
+        proposed = current_step * config["success_growth"]
+    elif (
+        node_pressure > config["crowded_node_pressure_min"]
+        or right_edge_fraction > config["crowded_right_edge_fraction_min"]
+    ):
+        proposed = current_step * config["conditioning_shrink"]
+    else:
+        proposed = current_step
+
+    return min(config["max_step_mpa"], max(config["min_step_mpa"], float(proposed)))
+
+
+def audit_policy_summary() -> dict[str, Any]:
+    return {
+        "same_branch_indicators": {
+            "same_accepted_seed": "repeat solve keeps the same accepted seed family",
+            "branch_jump_suspicion": "continuity check remains free of branch-jump warnings",
+            "repeat_drift_smoothness": "repeat drift changes gradually across checked milestones",
+            "repeat_vs_adjacent_step_ratio": "repeat drift stays smaller than an ordinary adjacent continuation step",
+            "strongest_gradient_order_consistency": list(EXPECTED_GRADIENT_ORDER),
+            "bc_residual_sanity_max": BC_RESIDUAL_SANITY_MAX,
+        },
+        "promotion_policy": {
+            "strict_reproducible": {
+                "definition": "same-load repeat solve closes under the inherited pilot-12 gate",
+                "max_rel_l2": STRICT_REPRO_MAX_REL_L2,
+                "max_rel_max": STRICT_REPRO_MAX_REL_MAX,
+            },
+            "near_reproducible": {
+                "definition": "same-load repeat solve closes under the relaxed fast-workflow gate and keeps the same accepted seed",
+                "requires_same_accepted_seed": True,
+                "max_rel_l2": NEAR_REPRO_MAX_REL_L2,
+                "max_rel_max": NEAR_REPRO_MAX_REL_MAX,
+            },
+            "stronger_milestone": "same-branch indicators stay strong, near_reproducible remains true, and a short confirm probe is recorded",
+            "audited_ceiling": "promotion above the current audited ceiling requires explicit milestone audit closure, including strict_reproducible",
+            "operational_continuation_evidence": "accepted fast-run continuation result without milestone-promotion closure",
+            "open_policy_issue": "the inherited strict thresholds may be too rigid for the newer fast continuation workflow; this is tracked explicitly as an audit-policy issue rather than treated as silent branch loss",
+        },
+    }
+
+
+def strict_reproducible(repeat_assessment: dict[str, Any] | None) -> bool:
+    return bool((repeat_assessment or {}).get("reproducible"))
+
+
+def near_reproducible(repeat_assessment: dict[str, Any] | None) -> bool:
+    delta = (repeat_assessment or {}).get("solution_delta") or {}
+    max_rel_l2 = float_or_none(delta.get("max_rel_l2"))
+    max_rel_max = float_or_none(delta.get("max_rel_max"))
+    return (
+        bool((repeat_assessment or {}).get("same_accepted_seed"))
+        and max_rel_l2 is not None
+        and max_rel_max is not None
+        and max_rel_l2 <= NEAR_REPRO_MAX_REL_L2
+        and max_rel_max <= NEAR_REPRO_MAX_REL_MAX
+    )
+
+
+def bc_residual_sane(max_bc_residual: Any) -> bool:
+    residual = float_or_none(max_bc_residual)
+    return residual is not None and residual <= BC_RESIDUAL_SANITY_MAX
+
+
+def gradient_order_consistent(order: list[str] | tuple[str, ...] | None) -> bool:
+    values = list(order or [])
+    expected = list(EXPECTED_GRADIENT_ORDER)
+    return values[: len(expected)] == expected
+
+
+def repeat_vs_adjacent_step_ratio(repeat_assessment: dict[str, Any] | None, continuity: dict[str, Any] | None) -> float | None:
+    repeat_delta = (repeat_assessment or {}).get("solution_delta") or {}
+    continuity_metrics = (continuity or {}).get("step_state_metrics") or {}
+    repeat_l2 = float_or_none(repeat_delta.get("max_rel_l2"))
+    adjacent_l2 = float_or_none(continuity_metrics.get("max_rel_l2"))
+    if repeat_l2 is None or adjacent_l2 is None or repeat_l2 <= 0.0:
+        return None
+    return float(adjacent_l2 / repeat_l2)
+
+
+def choose_failure_probe_step(
+    *,
+    load_mpa: float,
+    accepted_step_mpa: float | None,
+    explicit_step_mpa: float | None,
+    step_factor: float,
+    min_step_mpa: float,
+    high_load_step_mpa: float,
+    high_load_threshold_mpa: float,
+) -> float:
+    if explicit_step_mpa is not None:
+        return float(explicit_step_mpa)
+    accepted = 0.0 if accepted_step_mpa is None else float(accepted_step_mpa)
+    base = max(float(min_step_mpa), accepted * float(step_factor))
+    if float(load_mpa) >= float(high_load_threshold_mpa):
+        base = max(base, float(high_load_step_mpa))
+    return float(base)
+
+
+def annotate_repeat_drift_smoothness(results: list[dict[str, Any]]) -> None:
+    previous_l2 = None
+    for item in sorted(results, key=lambda entry: float(entry.get("q_mpa", 0.0))):
+        repeat_delta = ((item.get("reproducibility") or {}).get("solution_delta") or {})
+        current_l2 = float_or_none(repeat_delta.get("max_rel_l2"))
+        if current_l2 is None or previous_l2 is None or previous_l2 <= 0.0:
+            item["repeat_drift_smooth"] = True
+            item["repeat_drift_smoothness"] = "baseline"
+        else:
+            ratio = current_l2 / previous_l2
+            smooth = 0.5 <= ratio <= 2.0
+            item["repeat_drift_smooth"] = bool(smooth)
+            item["repeat_drift_smoothness"] = "smooth_change" if smooth else "abrupt_change"
+        if current_l2 is not None:
+            previous_l2 = current_l2
+
+
+def same_branch_indicators(
+    *,
+    accepted_point_summary: dict[str, Any],
+    repeat_assessment: dict[str, Any] | None,
+    continuity: dict[str, Any] | None,
+    strongest_gradient_order: list[str],
+    repeat_drift_smooth: bool | None,
+    repeat_drift_smoothness: str | None,
+) -> dict[str, Any]:
+    ratio = repeat_vs_adjacent_step_ratio(repeat_assessment, continuity)
+    branch_jump = False if continuity is None else bool(continuity.get("branch_jump_suspicion"))
+    same_seed = bool((repeat_assessment or {}).get("same_accepted_seed"))
+    residual = accepted_point_summary.get("max_bc_residual")
+    return {
+        "same_accepted_seed": same_seed,
+        "branch_jump_suspicion": branch_jump,
+        "branch_jump_reasons": [] if continuity is None else list(continuity.get("branch_jump_reasons") or []),
+        "repeat_drift_smooth": repeat_drift_smooth,
+        "repeat_drift_smoothness": repeat_drift_smoothness,
+        "repeat_vs_adjacent_step_l2_ratio": ratio,
+        "repeat_smaller_than_adjacent_step": None if ratio is None else bool(ratio > 1.0),
+        "strongest_gradient_order": strongest_gradient_order,
+        "strongest_gradient_order_consistent": gradient_order_consistent(strongest_gradient_order),
+        "bc_residual": float_or_none(residual),
+        "bc_residual_sane": bc_residual_sane(residual),
+        "overall_same_branch_signal": bool(
+            same_seed
+            and not branch_jump
+            and bc_residual_sane(residual)
+            and gradient_order_consistent(strongest_gradient_order)
+            and (ratio is None or ratio > 1.0)
+            and (repeat_drift_smooth is None or bool(repeat_drift_smooth))
+        ),
+    }
+
+
+def promotion_policy_assessment(
+    *,
+    strict_reproducible_flag: bool,
+    near_reproducible_flag: bool,
+    same_branch: dict[str, Any],
+    failure_probe: list[dict[str, Any]],
+) -> dict[str, Any]:
+    probe_without_failure = bool(failure_probe) and all(bool(item.get("success")) for item in failure_probe)
+    stronger_milestone = bool(
+        near_reproducible_flag
+        and same_branch.get("overall_same_branch_signal")
+        and probe_without_failure
+    )
+    eligible_for_audited_promotion = bool(stronger_milestone and strict_reproducible_flag)
+    if eligible_for_audited_promotion:
+        classification = "eligible_for_audited_promotion"
+    elif stronger_milestone:
+        classification = "stronger_milestone"
+    elif same_branch.get("overall_same_branch_signal"):
+        classification = "operational_continuation_evidence"
+    else:
+        classification = "ambiguous_follow_up_required"
+    return {
+        "strict_reproducible": bool(strict_reproducible_flag),
+        "near_reproducible": bool(near_reproducible_flag),
+        "stronger_milestone": stronger_milestone,
+        "eligible_for_audited_promotion": eligible_for_audited_promotion,
+        "operational_continuation_evidence": classification == "operational_continuation_evidence",
+        "probe_without_failure": probe_without_failure,
+        "classification": classification,
+        "open_audit_policy_issue": bool(stronger_milestone and not strict_reproducible_flag),
     }
 
 
@@ -318,11 +614,13 @@ def count_checkpoint_files(run_dir: Path) -> int:
 
 def milestone_marker_loads(progress: dict[str, Any]) -> set[float]:
     metadata = progress.get("metadata") or {}
+    policy = checkpoint_policy_config(progress)
     markers = {
         round(float(STATUS_CONVENTION["pilot20_bounded_ceiling_mpa"]), 4),
         round(float(STATUS_CONVENTION["pilot21_bounded_ceiling_mpa"]), 4),
         4.4000,
     }
+    markers.update(float(value) for value in unique_sorted_loads(policy.get("explicit_milestone_loads_mpa") or []))
     for key in ("target_load_mpa", "bootstrap_target_mpa"):
         value = float_or_none(metadata.get(key))
         if value is not None:
@@ -330,7 +628,9 @@ def milestone_marker_loads(progress: dict[str, Any]) -> set[float]:
     return markers
 
 
-def is_round_milestone(q_mpa: float, step_mpa: float = 0.5, tol: float = 1.0e-9) -> bool:
+def is_round_milestone(q_mpa: float, step_mpa: float | None = DEFAULT_MILESTONE_GRID_MPA, tol: float = 1.0e-9) -> bool:
+    if step_mpa is None or float(step_mpa) <= 0.0:
+        return False
     scaled = float(q_mpa) / float(step_mpa)
     return abs(scaled - round(scaled)) <= tol
 
@@ -339,7 +639,8 @@ def is_milestone_step(progress: dict[str, Any], step_entry: dict[str, Any]) -> b
     q_value = float_or_none(step_entry.get("q_mpa"))
     if q_value is None:
         return False
-    if is_round_milestone(q_value):
+    milestone_grid = checkpoint_policy_config(progress).get("milestone_grid_mpa")
+    if is_round_milestone(q_value, milestone_grid):
         return True
     return any(abs(q_value - marker) <= 1.0e-6 for marker in milestone_marker_loads(progress))
 
@@ -364,6 +665,9 @@ def checkpoint_policy_config(progress: dict[str, Any]) -> dict[str, Any]:
     policy["keep_failure_checkpoints"] = bool(policy.get("keep_failure_checkpoints", DEFAULT_KEEP_FAILURE_CHECKPOINTS))
     policy["keep_bootstrap_checkpoints"] = bool(policy.get("keep_bootstrap_checkpoints", DEFAULT_KEEP_BOOTSTRAP_CHECKPOINTS))
     policy["prune_old_checkpoints"] = bool(policy.get("prune_old_checkpoints", DEFAULT_PRUNE_OLD_CHECKPOINTS))
+    grid = float_or_none(policy.get("milestone_grid_mpa", DEFAULT_MILESTONE_GRID_MPA))
+    policy["milestone_grid_mpa"] = None if grid is None else float(grid)
+    policy["explicit_milestone_loads_mpa"] = unique_sorted_loads(policy.get("explicit_milestone_loads_mpa") or [])
     return policy
 
 
@@ -529,7 +833,7 @@ def ensure_step_checkpoint_available(run_dir: Path, step_entry: dict[str, Any]) 
     q_value = float_or_none(step_entry.get("q_mpa"))
     raise RuntimeError(
         f"Checkpoint for q={q_value:.4f} MPa is not currently retained in this run directory. "
-        "Rerun the fast runner with a more archival checkpoint policy or keep that load as a milestone."
+        "Rerun the fast runner with a more archival checkpoint policy or add that load via --milestone-load-mpa."
     )
 
 
@@ -541,6 +845,7 @@ def refresh_progress_summary(progress: dict[str, Any]) -> None:
     for marker in (
         STATUS_CONVENTION["pilot20_bounded_ceiling_mpa"],
         STATUS_CONVENTION["pilot21_bounded_ceiling_mpa"],
+        4.4000,
         highest_q,
     ):
         if marker is None:
@@ -549,6 +854,11 @@ def refresh_progress_summary(progress: dict[str, Any]) -> None:
             if not any(abs(existing - float(marker)) < 1.0e-9 for existing in suggested):
                 suggested.append(float(marker))
     run_dir = Path((progress.get("metadata") or {}).get("run_dir", FAST_RUN_DIR))
+    retained_milestones = [
+        round(float(step.get("q_mpa")), 4)
+        for step in accepted_steps
+        if bool(step.get("checkpoint_retained")) and "milestone" in list(step.get("checkpoint_tags") or [])
+    ]
     progress["summary"] = {
         "highest_converged_q_mpa": highest_q,
         "terminal_failure_q_mpa": float_or_none((progress.get("state") or {}).get("terminal_failure_q_mpa")),
@@ -558,7 +868,9 @@ def refresh_progress_summary(progress: dict[str, Any]) -> None:
         "checkpoint_file_count": count_checkpoint_files(run_dir),
         "failure_event_count": len(progress.get("failure_events") or []),
         "suggested_confirm_loads_mpa": suggested,
+        "retained_confirmable_loads_mpa": sorted({float(value) for value in retained_milestones}),
         "checkpoint_policy": checkpoint_policy_config(progress),
+        "audit_policy": audit_policy_summary(),
         "status_convention": STATUS_CONVENTION,
     }
 

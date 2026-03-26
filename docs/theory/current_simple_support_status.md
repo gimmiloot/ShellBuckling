@@ -49,6 +49,51 @@ fast/resumable continuation workflow as operational continuation evidence with
 same-branch indicators, but without audit closure under the current confirm
 policy. None of these values is a final physical critical load claim.
 
+## Current Milestone / Audit Policy
+The confirm language is now explicit and split into two layers.
+
+Same-branch indicators:
+
+- same accepted seed;
+- no `branch_jump_suspicion` in the continuity check;
+- repeat drift remains smooth across checked milestones;
+- repeat drift remains smaller than an ordinary adjacent continuation step;
+- strongest gradient ordering remains `u_z > varphi > T_s`;
+- BC residuals remain sane.
+
+Promotion policy:
+
+- `strict_reproducible`
+  same-load repeat solve closes under the inherited pilot-12 gate
+  `1e-7 / 1e-6` in max-relative-L2 / max-relative-max;
+- `near_reproducible`
+  same-load repeat solve keeps the same accepted seed and closes under the
+  relaxed fast-workflow gate `2e-5 / 2e-4`;
+- `stronger milestone`
+  same-branch indicators stay strong, `near_reproducible` remains true, and a
+  short confirm probe is recorded without failure;
+- `audited ceiling`
+  promotion above the current audited ceiling still requires explicit milestone
+  audit closure, including `strict_reproducible`;
+- `operational continuation evidence`
+  accepted fast-run continuation result without that milestone-promotion
+  closure.
+
+This keeps the status language conservative. Loads above `4.3800 MPa` are not
+promoted silently, and the current `strict_reproducible = false` signal remains
+an explicit open audit-policy issue rather than a silent branch-loss claim.
+
+Milestone retention is also explicit in the fast workflow. By default the
+retained confirmable milestone schedule includes:
+
+- `4.3520 MPa`;
+- `4.3800 MPa`;
+- `4.4000 MPa`;
+- the `0.5 MPa` round grid;
+- the current bootstrap/target loads;
+- any extra user-requested `--milestone-load-mpa` values that are actually
+  reached.
+
 ## Current Barrier Interpretation
 The current reading is still mainly numerical, but now more sharply numerical
 formulation / conditioning dominated:
@@ -127,8 +172,10 @@ workflow is now explicitly split into two layers:
 - treat the current `strict_reproducible` thresholds themselves as an open
   audit-policy question before promoting loads above `4.3800 MPa` to audited
   status;
-- keep the current pilot-21 controller cap `MAX_STEP_MPA = 0.0025` visible as a
-  runtime-policy bottleneck if the goal is a faster climb toward `~10 MPa`;
+- keep the historical bounded pilot-21 script unchanged with its old
+  `MAX_STEP_MPA = 0.0025` record, but use the fast runner's explicit
+  runtime-controlled step policy for operational climbing so `--max-step-mpa`
+  is no longer silently shadowed by the historical cap;
 - do not spend more time on simple edge-mesh concentration by itself;
 - do not reconnect the mixed-weak scans to this path yet;
 - keep reporting candidate loads as exploratory.

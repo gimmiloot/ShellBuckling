@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 2026-03-26 - Remove the hidden fast-run step cap and formalize pilot-21 audit policy
+
+Affected files:
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/continuation_runtime.py`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_u_z_scaled_arc_like_continuation.py`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/confirm_u_z_scaled_arc_like_continuation.py`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_continuation_workflow.md`
+- `docs/theory/current_simple_support_status.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/theory/current_mixed_weak_theory_note.tex`
+- `README.md`
+- `docs/project_map.md`
+- `CHANGELOG.md`
+
+- Removed the hidden fast-run dependence on the historical pilot-21 `MAX_STEP_MPA = 0.0025` controller cap by moving the operational step-growth / conditioning-shrink policy into the pilot-21 runtime layer, while leaving the bounded historical pilot script unchanged as the audited artifact.
+- Added explicit runtime-controlled fast-step parameters (`min`, `max`, `success_growth`, `conditioning_shrink`, `failure_shrink`) plus explicit milestone retention controls (`milestone_grid_mpa`, repeated `--milestone-load-mpa`) so the fast runner now respects user-configured step limits and preserves confirm-critical loads intentionally.
+- Formalized the pilot-21 audit policy by separating same-branch indicators from promotion language, keeping the inherited `strict_reproducible` thresholds explicit as an open audit-policy issue rather than a silent branch-loss interpretation.
+- Updated the confirm runner to report same-branch indicators, promotion-policy classification, and an adaptive high-load probe step, while keeping confirm cheap and milestone-focused.
+- Ran a short ignored validation campaign from `6.0000` to `6.0200 MPa` with `--max-step-mpa 0.0050`: the accepted steps reached `0.003375`, `0.00455625`, and `0.0050 MPa`, so the fast layer now genuinely exceeds the old hidden `0.0025 MPa` cap without breaking resume, pruning, or confirm mode.
+
 ## 2026-03-26 - Add rolling+milestones checkpoint retention and untrack pilot-21 runtime cache
 
 Affected files:

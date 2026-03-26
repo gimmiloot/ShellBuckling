@@ -23,6 +23,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--initial-step-mpa", type=float, default=runtime.pilot21.INITIAL_STEP_MPA)
     parser.add_argument("--min-step-mpa", type=float, default=runtime.pilot21.MIN_STEP_MPA)
     parser.add_argument("--max-step-mpa", type=float, default=runtime.pilot21.MAX_STEP_MPA)
+    parser.add_argument("--success-growth", type=float, default=runtime.DEFAULT_SUCCESS_GROWTH)
+    parser.add_argument("--conditioning-shrink", type=float, default=runtime.DEFAULT_CONDITIONING_SHRINK)
     parser.add_argument("--failure-shrink", type=float, default=runtime.pilot21.FAILURE_SHRINK)
     parser.add_argument("--max-new-steps", type=int, default=200)
     parser.add_argument("--max-runtime-seconds", type=float, default=3600.0)
@@ -30,6 +32,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--checkpoint-policy", choices=CHECKPOINT_POLICY_CHOICES, default=runtime.DEFAULT_CHECKPOINT_POLICY)
     parser.add_argument("--max-rolling-checkpoints", type=int, default=runtime.DEFAULT_MAX_ROLLING_CHECKPOINTS)
     parser.add_argument("--checkpoint-every-n-accepted-steps", type=int, default=runtime.DEFAULT_CHECKPOINT_EVERY_N_ACCEPTED_STEPS)
+    parser.add_argument("--milestone-grid-mpa", type=float, default=runtime.DEFAULT_MILESTONE_GRID_MPA)
+    parser.add_argument("--milestone-load-mpa", dest="milestone_loads_mpa", action="append", type=float)
     parser.add_argument("--keep-milestone-checkpoints", type=runtime.parse_bool, default=runtime.DEFAULT_KEEP_MILESTONE_CHECKPOINTS)
     parser.add_argument("--keep-failure-checkpoints", type=runtime.parse_bool, default=runtime.DEFAULT_KEEP_FAILURE_CHECKPOINTS)
     parser.add_argument("--keep-bootstrap-checkpoints", type=runtime.parse_bool, default=runtime.DEFAULT_KEEP_BOOTSTRAP_CHECKPOINTS)
@@ -50,6 +54,19 @@ def checkpoint_policy_from_args(args: argparse.Namespace) -> dict[str, Any]:
         keep_failure_checkpoints=bool(args.keep_failure_checkpoints),
         keep_bootstrap_checkpoints=bool(args.keep_bootstrap_checkpoints),
         prune_old_checkpoints=bool(args.prune_old_checkpoints),
+        milestone_grid_mpa=float(args.milestone_grid_mpa),
+        explicit_milestone_loads_mpa=list(args.milestone_loads_mpa or []),
+    )
+
+
+def step_control_from_args(args: argparse.Namespace) -> dict[str, Any]:
+    return runtime.step_control_summary(
+        initial_step_mpa=float(args.initial_step_mpa),
+        min_step_mpa=float(args.min_step_mpa),
+        max_step_mpa=float(args.max_step_mpa),
+        success_growth=float(args.success_growth),
+        conditioning_shrink=float(args.conditioning_shrink),
+        failure_shrink=float(args.failure_shrink),
     )
 
 
@@ -67,6 +84,7 @@ def build_progress_payload(run_dir: Path, target_load_mpa: float, bootstrap_targ
             "profile": runtime.profile_summary(profile),
             "step_control": {},
             "checkpoint_policy": {},
+            "audit_policy": runtime.audit_policy_summary(),
             "run_dir": str(run_dir),
         },
         "bootstrap": {},
@@ -236,9 +254,6 @@ def ensure_resume_bootstrap_anchors(
         return
 
     context = runtime.pilot20.build_context()
-    if not runtime.checkpoint_exists(run_dir, bootstrap_older_path):
-        older_rel = runtime.save_named_point_checkpoint(run_dir, "bootstrap_older_4p3432_mpa.npz", context["branch_points"][4.3432])
-        checkpoints["bootstrap_older_checkpoint"] = str(older_rel).replace("\\", "/")
     if not runtime.checkpoint_exists(run_dir, bootstrap_previous_path):
         previous_rel = runtime.save_named_point_checkpoint(run_dir, "bootstrap_previous_4p3433_mpa.npz", context["branch_points"][4.3433])
         checkpoints["bootstrap_previous_checkpoint"] = str(previous_rel).replace("\\", "/")
@@ -285,13 +300,7 @@ def bootstrap_if_needed(
     context = runtime.pilot20.build_context()
     profile = runtime.pilot21.continuation_profile(context)
     progress["metadata"]["profile"] = runtime.profile_summary(profile)
-    progress["metadata"]["step_control"] = {
-        "initial_step_mpa": float(args.initial_step_mpa),
-        "min_step_mpa": float(args.min_step_mpa),
-        "max_step_mpa": float(args.max_step_mpa),
-        "failure_shrink": float(args.failure_shrink),
-        "adapt_rule": "pilot21.adapt_step_size on success, shrink on failure",
-    }
+    progress["metadata"]["step_control"] = step_control_from_args(args)
     progress["bootstrap"] = {
         "bootstrap_elapsed_seconds": context.get("bootstrap_elapsed_seconds"),
         "bootstrap_payload": context.get("bootstrap_payload"),
@@ -303,8 +312,6 @@ def bootstrap_if_needed(
     older_point = context["branch_points"][4.3432]
     previous_point = context["branch_points"][4.3433]
     local_anchor = context["local_anchor"]
-    older_checkpoint_rel = runtime.save_named_point_checkpoint(run_dir, "bootstrap_older_4p3432_mpa.npz", older_point)
-    progress["checkpoints"]["bootstrap_older_checkpoint"] = str(older_checkpoint_rel).replace("\\", "/")
     previous_checkpoint_rel = runtime.save_named_point_checkpoint(run_dir, "bootstrap_previous_4p3433_mpa.npz", previous_point)
     progress["checkpoints"]["bootstrap_previous_checkpoint"] = str(previous_checkpoint_rel).replace("\\", "/")
     runtime.apply_checkpoint_policy(progress, run_dir)
@@ -429,7 +436,7 @@ def bootstrap_if_needed(
                 return scaled_anchor_point, older_point, previous_point, step_mpa, profile
             continue
 
-        step_mpa = min(float(args.max_step_mpa), float(runtime.pilot21.adapt_step_size(raw_step, point)))
+        step_mpa = runtime.adapt_fast_step_size(raw_step, point, progress["metadata"]["step_control"])
         checkpoint_rel = record_accepted_step(
             progress=progress,
             run_dir=run_dir,
@@ -523,7 +530,7 @@ def continue_adaptively(
                 return
             continue
 
-        step_mpa = min(float(args.max_step_mpa), float(runtime.pilot21.adapt_step_size(raw_step, point)))
+        step_mpa = runtime.adapt_fast_step_size(raw_step, point, progress["metadata"]["step_control"])
         checkpoint_rel = record_accepted_step(
             progress=progress,
             run_dir=run_dir,
@@ -567,13 +574,7 @@ def main() -> None:
     progress["metadata"]["bootstrap_target_mpa"] = float(args.bootstrap_target_mpa)
     progress["metadata"]["run_dir"] = str(run_dir)
     progress["metadata"]["checkpoint_policy"] = checkpoint_policy_from_args(args)
-    progress["metadata"]["step_control"] = {
-        "initial_step_mpa": float(args.initial_step_mpa),
-        "min_step_mpa": float(args.min_step_mpa),
-        "max_step_mpa": float(args.max_step_mpa),
-        "failure_shrink": float(args.failure_shrink),
-        "adapt_rule": "pilot21.adapt_step_size on success, shrink on failure",
-    }
+    progress["metadata"]["step_control"] = step_control_from_args(args)
     policy_stats = runtime.apply_checkpoint_policy(progress, run_dir)
     runtime.refresh_progress_summary(progress)
     runtime.save_json(progress_path, progress)

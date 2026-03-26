@@ -446,9 +446,13 @@ not that every one of them is already article-level proven.
   `5.0 MPa` even while remaining smooth, `M_s`-dominated, and still much
   smaller than the ordinary adjacent-step branch drift. Because the strict gate
   is still inherited from pilot 12 as `1e-7 / 1e-6`, the present
-  `strict_reproducible = false` signal is now better read as an open
+  `strict_reproducible = false` signal is now better read as an explicit open
   audit-policy / metric issue than as evidence that the branch has physically
-  ended or jumped. These newer `4.4000..6.0000 MPa` values are still
+  ended or jumped. The fast runner also no longer needs to inherit the old
+  pilot-21 internal `0.0025 MPa` step cap: that bound remains part of the
+  historical audited pilot artifact only, while the operational fast layer now
+  uses its own runtime-controlled min/max/growth/shrink policy plus explicit
+  milestone retention. These newer `4.4000..6.0000 MPa` values are still
   operational continuation evidence rather than the current canonical audited
   ceiling, so the bottleneck remains on the numerical side and now more
   specifically on formulation / conditioning sensitivity plus confirm-policy
@@ -466,11 +470,13 @@ not that every one of them is already article-level proven.
   fast runner plus a milestone confirm runner, keep the `4.3434 / 4.3440 MPa`
   pair explicit as the canonical old-path anchor/failure reference, keep the
   audited `4.3800 MPa` pilot-21 ceiling explicit even when newer fast-run
-  checkpoints move higher, treat the current strict-threshold policy itself as
-  an open method question before promoting higher loads to audited status, stop
-  spending time on simple edge-mesh concentration alone, and use the
-  pilot-16/pilot-17 BC-aligned shallow comparator plus the pilot-18 diagnosis
-  before considering any reconnection to the mixed-weak scans.
+  checkpoints move higher, treat the strict-threshold policy itself as an open
+  method question before promoting higher loads to audited status, use the fast
+  runner's explicit runtime-controlled step limits rather than the historical
+  pilot cap for future operational climbing, stop spending time on simple
+  edge-mesh concentration alone, and use the pilot-16/pilot-17 BC-aligned
+  shallow comparator plus the pilot-18 diagnosis before considering any
+  reconnection to the mixed-weak scans.
 
 ### V-ST2. Stabilize the background before promoting `q_cr`
 
