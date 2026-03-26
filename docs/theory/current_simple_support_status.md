@@ -31,9 +31,9 @@ Several load markers should now be kept separate:
 - old-path first persistent failure load: `4.3440 MPa`
 - best bounded method-sweep ceiling from pilot 20: `4.3520 MPa` (`u_z_scaled_state`)
 - best bounded staged continuation ceiling from pilot 21: `4.3800 MPa` (`u_z`-scaled continuation + auxiliary arc-like step adaptation)
-- stronger dedicated milestone point above the audited ceiling: `4.4000 MPa` (same accepted seed, repeated pointwise confirm, `near_reproducible = true`, no branch-jump suspicion, but `strict_reproducible = false`)
-- current fast-engine highest stored operational continuation load: `10.0000 MPa` (`fast_u_z_scaled_arc_like_continuation.py`), still kept separate from the canonical audited ceiling language
-- newer sparse milestone confirms at `7.0000` and `10.0000 MPa`: same accepted seed, no branch-jump suspicion, `strict_reproducible = false`, `near_reproducible = false`, and the points remain classified as operational continuation evidence rather than an audited ceiling
+- strongest post-audited validated operational milestone: `4.4000 MPa` (same accepted seed, repeated pointwise confirm, `near_reproducible = true`, no branch-jump suspicion, short probe through `4.4100 MPa`, but `strict_reproducible = false`)
+- higher validated operational milestones from the fast/confirm workflow: `7.0000 MPa` and `10.0000 MPa` (same accepted seed, no branch-jump suspicion, smooth repeat drift smaller than adjacent-step drift, short confirm probes through `7.0080` and `10.0200 MPa`, `strict_reproducible = false`, `near_reproducible = false`)
+- current fast-engine highest stored accepted load: `10.0000 MPa` (`fast_u_z_scaled_arc_like_continuation.py`), still kept separate from the canonical audited ceiling language
 - best bounded staged continuation first failure in the audited pilot-21 ladder: not reached
 - current short confirm probes above the newer fast-engine checkpoints: no failure reached through `4.4100 MPa` from the dedicated `4.4000 MPa` audit and through `10.0200 MPa` from the sparse `7.0000 / 10.0000 MPa` confirms
 
@@ -42,15 +42,17 @@ the original single-domain rescue-local continuation workflow. The `4.3520 MPa`
 value remains the bounded pilot-20 method ceiling for the standalone
 `u_z`-scaled solve. The `4.3800 MPa` value remains the current audited
 pilot-21 continuation ceiling on the same 6-state equations and BC set. The
-`4.4000 MPa` point is still the strongest post-`4.3800 MPa` milestone because
-it already has repeated same-seed near-reproducible confirms and no
-branch-jump signal. The higher `5.0000..10.0000 MPa` points belong to the
-fast/resumable continuation workflow as operational continuation evidence with
-same-branch indicators, but without audit closure under the current confirm
-policy. None of these values is a final physical critical load claim.
+`4.4000 MPa`, `7.0000 MPa`, and `10.0000 MPa` points should now be read as
+validated operational milestones: they have dedicated milestone confirms with
+strong same-branch indicators and successful short probes, but they do not have
+strict audit closure and therefore do not replace the canonical audited
+ceiling. Intermediate accepted points on the fast/resumable path remain
+operational continuation evidence unless they are explicitly rechecked. None of
+these values is a final physical critical load claim.
 
 ## Current Milestone / Audit Policy
-The confirm language is now explicit and split into two layers.
+The confirm language is now explicit and split into same-branch indicators plus
+a three-level reporting ladder.
 
 Same-branch indicators:
 
@@ -69,17 +71,25 @@ Promotion policy:
 - `near_reproducible`
   same-load repeat solve keeps the same accepted seed and closes under the
   relaxed fast-workflow gate `2e-5 / 2e-4`;
-- `stronger milestone`
-  same-branch indicators stay strong, `near_reproducible` remains true, and a
-  short confirm probe is recorded without failure;
+- `operational continuation evidence`
+  accepted fast-run continuation result without dedicated milestone validation;
+- `validated operational milestone`
+  dedicated milestone confirm keeps the same accepted seed, stays free of
+  `branch_jump_suspicion`, keeps repeat drift smooth and smaller than an
+  ordinary adjacent continuation step, preserves the current strongest
+  gradient ordering and BC sanity checks, and records a short confirm probe
+  without failure. `strict_reproducible` is not required; `near_reproducible`
+  is supportive but not mandatory if the repeat drift still looks like a small
+  smooth same-branch drift;
 - `audited ceiling`
   promotion above the current audited ceiling still requires explicit milestone
-  audit closure, including `strict_reproducible`;
-- `operational continuation evidence`
-  accepted fast-run continuation result without that milestone-promotion
-  closure.
+  audit closure under the stricter current standard, including
+  `strict_reproducible`.
 
-This keeps the status language conservative. Loads above `4.3800 MPa` are not
+This reporting change is about project discipline, not changed equations or BCs.
+It keeps the status language conservative while preventing high-load same-branch
+points from getting stuck between overly weak generic operational wording and
+overly strong audited-ceiling wording. Loads above `4.3800 MPa` are still not
 promoted silently, and the current `strict_reproducible = false` signal remains
 an explicit open audit-policy issue rather than a silent branch-loss claim.
 
@@ -90,6 +100,8 @@ retained confirmable milestone schedule includes:
 - `4.3800 MPa`;
 - `4.4000 MPa`;
 - the `0.5 MPa` round grid;
+- the next `10 -> 15 MPa` confirm-critical schedule `11.0`, `12.0`, `12.5`,
+  `13.0`, `13.5`, `14.0`, `15.0 MPa`;
 - the current bootstrap/target loads;
 - any extra user-requested `--milestone-load-mpa` values that are actually
   reached.
@@ -120,14 +132,17 @@ formulation / conditioning dominated:
 - a stricter dedicated audit at `4.4000 MPa` repeats the same accepted seed in
   two independent pointwise confirm passes, stays `near_reproducible`, shows no
   branch-jump suspicion, and does not hit a short failure probe through
-  `4.4100 MPa`, but still does not satisfy the stricter
-  `strict_reproducible` gate;
+  `4.4100 MPa`; under the new reporting policy this closes `4.4000 MPa` as a
+  validated operational milestone, but it still does not satisfy the stricter
+  `strict_reproducible` gate and therefore does not replace the audited ceiling;
 - sparse confirms at `7.0000` and `10.0000 MPa` keep the same accepted
   seed, show no branch-jump suspicion, and do not hit short failure probes
   through `10.0200 MPa`; their repeat drift stays in the same smooth
   `2.85e-5..3.30e-5` max-relative-L2 band and still fails the current
   `near_reproducible` threshold even while remaining much smaller than an
-  ordinary adjacent continuation step;
+  ordinary adjacent continuation step, so under the new reporting policy they
+  also qualify as validated operational milestones rather than as audited
+  ceiling replacements;
 - the repeat drift is smooth and currently dominated by `M_s`, while the
   strongest gradient ordering inside the accepted branch still remains `u_z`,
   then `varphi`, then `T_s`;
@@ -175,6 +190,9 @@ workflow is now explicitly split into two layers:
   ceilings;
 - keep the audited pilot-21 `4.3800 MPa` ceiling explicit even when the fast
   runner temporarily moves higher in operational continuation runs;
+- use the new `validated operational milestone` class for high-load same-branch
+  points that have dedicated milestone confirm discipline but still lack strict
+  audited-ceiling closure;
 - treat the current `strict_reproducible` thresholds themselves as an open
   audit-policy question before promoting loads above `4.3800 MPa` to audited
   status;

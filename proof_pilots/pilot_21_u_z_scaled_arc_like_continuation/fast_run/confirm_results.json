@@ -37,9 +37,20 @@
           "max_rel_l2": 2e-05,
           "max_rel_max": 0.0002
         },
-        "stronger_milestone": "same-branch indicators stay strong, near_reproducible remains true, and a short confirm probe is recorded",
-        "audited_ceiling": "promotion above the current audited ceiling requires explicit milestone audit closure, including strict_reproducible",
-        "operational_continuation_evidence": "accepted fast-run continuation result without milestone-promotion closure",
+        "validated_operational_milestone": {
+          "definition": "dedicated milestone confirm keeps strong same-branch indicators and records a short confirm probe without failure",
+          "requires_same_accepted_seed": true,
+          "requires_branch_jump_suspicion_false": true,
+          "requires_repeat_drift_smooth": true,
+          "requires_repeat_smaller_than_adjacent_step": true,
+          "requires_bc_residual_sane": true,
+          "requires_strongest_gradient_order_consistent": true,
+          "requires_probe_without_failure": true,
+          "requires_strict_reproducible": false,
+          "near_reproducible_supportive_but_not_required": true
+        },
+        "audited_ceiling": "repo-level canonical ceiling status still requires explicit milestone audit closure under the current strict standard; validated operational milestones do not silently replace it",
+        "operational_continuation_evidence": "accepted fast-run continuation result without dedicated milestone validation",
         "open_policy_issue": "the inherited strict thresholds may be too rigid for the newer fast continuation workflow; this is tracked explicitly as an audit-policy issue rather than treated as silent branch loss"
       }
     },
@@ -604,11 +615,12 @@
         "strict_reproducible": false,
         "near_reproducible": false,
         "stronger_milestone": false,
+        "validated_operational_milestone": true,
         "eligible_for_audited_promotion": false,
-        "operational_continuation_evidence": true,
+        "operational_continuation_evidence": false,
         "probe_without_failure": true,
-        "classification": "operational_continuation_evidence",
-        "open_audit_policy_issue": false
+        "classification": "validated_operational_milestone",
+        "open_audit_policy_issue": true
       }
     },
     {
@@ -1148,11 +1160,12 @@
         "strict_reproducible": false,
         "near_reproducible": false,
         "stronger_milestone": false,
+        "validated_operational_milestone": true,
         "eligible_for_audited_promotion": false,
-        "operational_continuation_evidence": true,
+        "operational_continuation_evidence": false,
         "probe_without_failure": true,
-        "classification": "operational_continuation_evidence",
-        "open_audit_policy_issue": false
+        "classification": "validated_operational_milestone",
+        "open_audit_policy_issue": true
       }
     }
   ]

@@ -440,34 +440,41 @@ not that every one of them is already article-level proven.
   dedicated `4.4000 MPa` milestone audit repeats the same accepted seed in two
   independent pointwise confirm passes, stays `near_reproducible`, shows no
   branch-jump suspicion, and does not hit a short failure probe through
-  `4.4100 MPa`, but still leaves `strict_reproducible = false`. New sparse
-  confirms at `7.0000` and `10.0000 MPa` also keep the same accepted seed, show
-  no branch-jump suspicion, and do not hit short first-failure probes through
-  `10.0200 MPa`, but their repeat drift remains in the same smooth
-  `2.85e-5..3.30e-5` max-relative-L2 band and still fails the current
-  `near_reproducible` threshold even while remaining `M_s`-dominated and much
-  smaller than the ordinary adjacent-step branch drift. Because the strict gate
-  is still inherited from pilot 12 as `1e-7 / 1e-6`, the present
+  `4.4100 MPa`; under the current reporting policy this makes `4.4000 MPa` a
+  validated operational milestone rather than a new audited ceiling, because
+  `strict_reproducible` still remains false. New sparse confirms at `7.0000`
+  and `10.0000 MPa` also keep the same accepted seed, show no branch-jump
+  suspicion, and do not hit short first-failure probes through `10.0200 MPa`,
+  while their repeat drift remains in the same smooth `2.85e-5..3.30e-5`
+  max-relative-L2 band and stays much smaller than the ordinary adjacent-step
+  branch drift even though it no longer satisfies the current
+  `near_reproducible` threshold. Under the same reporting policy these
+  `7.0000 / 10.0000 MPa` markers also count as validated operational milestones
+  rather than as generic operational evidence. Because the strict gate is still
+  inherited from pilot 12 as `1e-7 / 1e-6`, the present
   `strict_reproducible = false` signal is now better read as an explicit open
   audit-policy / metric issue than as evidence that the branch has physically
   ended or jumped. The fast runner also no longer needs to inherit the old
   pilot-21 internal `0.0025 MPa` step cap: that bound remains part of the
   historical audited pilot artifact only, while the operational fast layer now
   uses its own runtime-controlled min/max/growth/shrink policy plus explicit
-  milestone retention. A new exact-load comparison pilot then reuses the
-  pilot-16 shallow simple-support comparator together with the same
-  `arrays_nepol_sin(...)` mapping logic already used in pilot 17 at `4.0`,
-  `7.0`, and `10.0 MPa`: the mismatch is already moderately visible at
+  milestone retention. The next confirm-critical retention schedule for the
+  planned `10 -> 15 MPa` search is now explicitly fixed at `11.0`, `12.0`,
+  `12.5`, `13.0`, `13.5`, `14.0`, and `15.0 MPa`. A new exact-load comparison
+  pilot then reuses the pilot-16 shallow simple-support comparator together with
+  the same `arrays_nepol_sin(...)` mapping logic already used in pilot 17 at
+  `4.0`, `7.0`, and `10.0 MPa`: the mismatch is already moderately visible at
   `4.0 MPa`, becomes clearly visible at `7.0 MPa`, stays clearly visible at
   `10.0 MPa`, and remains dominated by right-edge differences while still
   staying smooth through the available high-load range rather than producing a
-  new barrier-localized qualitative jump. These newer `4.4000..10.0000 MPa`
-  values are still operational continuation evidence rather than the current
-  canonical audited ceiling, so the bottleneck remains on the numerical side
-  and now more specifically on formulation / conditioning sensitivity plus
-  confirm-policy sensitivity rather than on a simple raw-mesh limit or a
-  verified physical end of branch. The active mixed-weak scans still use the
-  reduced 5-state `F_min` background.
+  new barrier-localized qualitative jump. These newer `4.4000`, `7.0000`, and
+  `10.0000 MPa` values now sit in an explicit intermediate reporting class:
+  they are validated operational milestones, not the current canonical audited
+  ceiling. So the bottleneck remains on the numerical side and now more
+  specifically on formulation / conditioning sensitivity plus confirm-policy
+  sensitivity rather than on a simple raw-mesh limit or a verified physical end
+  of branch. The active mixed-weak scans still use the reduced 5-state `F_min`
+  background.
 - Verification method:
   project-state analysis, numerical testbench.
 - Verification boundary:

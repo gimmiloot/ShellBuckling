@@ -78,24 +78,18 @@ $T_s(1)=0$, $M_s(1)=0$, $u_z(1)=0$ и теперь имеет отдельную
 continuation с теми же уравнениями и тем же BC-набором доводит аудированный
 ceiling до $4.3800\,\mathrm{MPa}$. Поверх этого теперь выделен быстрый
 checkpointed continuation + pointwise confirm workflow, который уже довел
-operational continuation evidence до $6.0000\,\mathrm{MPa}$ и short confirm
-probes до $6.0040\,\mathrm{MPa}$. ??? ???? ???????????? bounded pilot-21 script ????????? ???? ?????????? controller cap $0.0025\,\mathrm{MPa}$ ?????? ??? ??????????????? audited artifact, ????? ??? fast/resumable layer ?????? ?????????? ????????? explicit runtime-controlled step policy ? ?????? ??????????? min/max/growth/shrink. Pointwise confirm ?????? ????? ???? ????????? same-branch indicators (same accepted seed, no branch-jump signal, small smooth repeat drift, consistent gradient ordering, sane BC residuals) ? promotion language (`strict_reproducible`, `near_reproducible`, `stronger milestone`, `audited ceiling`, `operational continuation evidence`), ??? ??? ?????? `strict_reproducible = false` ??????????? ??? ???????? audit-policy ??????, ? ?? ??? ?????????? ?????????????? ?????? ?????. Для $4.4000\,\mathrm{MPa}$ выполнен более
-строгий milestone-audit: две независимые pointwise confirm-проверки дают один
-и тот же accepted seed, остаются near-reproducible, не показывают
-branch-jump signal и не дают короткого failure probe до
-$4.4100\,\mathrm{MPa}$, однако строгий признак reproducibility все еще не
-закрыт. Более высокие sparse milestone-confirm на $5.0000$, $5.5000$ и
-$6.0000\,\mathrm{MPa}$ тоже идут по тому же accepted seed, не показывают
-branch-jump signal и не дают short-probe failure до $6.0040\,\mathrm{MPa}$,
-но уже выходят за текущий near-reproducible threshold из-за малого гладкого
-repeat-solve drift'а, который сейчас больше похож на вопрос
-confirm-метрики/порогов, чем на потерю ветви. Поэтому ни
-$4.4000\,\mathrm{MPa}$, ни более высокий operational checkpoint
-$6.0000\,\mathrm{MPa}$ пока не продвигаются в этой записке как новый
-канонический ceiling. Общая трактовка барьера остается
-formulation/conditioning-dominated численной трудностью, а не доказанным
-physical end of branch; при этом активные mixed-weak scans по-прежнему не
-переподключены к этому отдельному full-state simple-support path.
+operational continuation evidence до $10.0000\,\mathrm{MPa}$ и short confirm
+probes до $10.0200\,\mathrm{MPa}$. Для reporting language здесь теперь явно
+вводится промежуточный статус \texttt{validated operational milestone}:
+его теперь получают точки $4.4000\,\mathrm{MPa}$,
+$7.0000\,\mathrm{MPa}$ и $10.0000\,\mathrm{MPa}$, поскольку они сохраняют same accepted
+seed, не показывают branch-jump signal и проходят короткий confirm probe.
+Однако strict audited closure по-прежнему не достигнута,
+поэтому эти точки не заменяют canonical audited ceiling
+$4.3800\,\mathrm{MPa}$ и не превращаются в final physical critical-load claim.
+Общая трактовка барьера остается formulation/conditioning-dominated
+numerical difficulty, а active mixed-weak scans по-прежнему не переподключены
+к этому отдельному full-state simple-support path.
 
 \section{Неизвестные и mixed-weak структура}
 \paragraph{Принятая рабочая структура.}

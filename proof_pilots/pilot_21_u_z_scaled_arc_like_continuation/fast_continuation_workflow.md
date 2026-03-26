@@ -91,9 +91,9 @@ The milestone schedule is now explicit. By default the fast layer retains:
 
 - the canonical pilot-20 marker `4.3520 MPa`;
 - the audited pilot-21 ceiling `4.3800 MPa`;
-- the strongest non-promoted milestone `4.4000 MPa`;
+- the strongest post-audited validated operational milestone `4.4000 MPa`;
 - every `0.5 MPa` round milestone;
-- the planned `6 -> 10 MPa` confirm schedule `6.5`, `7.0`, `8.0`, `9.0`, `10.0 MPa`;
+- the next `10 -> 15 MPa` confirm-critical schedule `11.0`, `12.0`, `12.5`, `13.0`, `13.5`, `14.0`, `15.0 MPa`;
 - the current `--bootstrap-target-mpa` and `--target-load-mpa`;
 - any extra user-requested milestone passed via repeated `--milestone-load-mpa`.
 
@@ -148,20 +148,26 @@ Promotion language:
 - `near_reproducible`
   Same-load repeat solve keeps the same accepted seed and closes under the
   relaxed fast-workflow gate `2e-5 / 2e-4`.
-- `stronger milestone`
-  Same-branch indicators stay strong, `near_reproducible` remains true, and a
-  short confirm probe is recorded without failure.
+- `validated operational milestone`
+  Dedicated milestone confirm keeps the same accepted seed, stays free of
+  branch-jump suspicion, keeps repeat drift smooth and smaller than an ordinary
+  adjacent continuation step, preserves the current strongest gradient ordering
+  / BC sanity checks, and records a short confirm probe without failure.
+  `strict_reproducible` is not required; `near_reproducible` is supportive but
+  not mandatory if the repeat drift still behaves as a small same-branch drift.
 - `audited ceiling`
   Promotion above the current audited ceiling still requires explicit milestone
-  audit closure, including `strict_reproducible`.
+  audit closure under the stricter current standard, including
+  `strict_reproducible`.
 - `operational continuation evidence`
-  Accepted fast-run continuation result without that milestone-promotion
-  closure.
+  Accepted fast-run continuation result without dedicated milestone validation.
 
-This keeps the repo conservative: loads above `4.3800 MPa` are not silently
-relabelled as audited just because same-branch indicators stay strong. The
-current `strict_reproducible = false` signal is tracked explicitly as an open
-audit-policy issue rather than silently reinterpreted as branch loss.
+This reporting change is about project discipline, not changed equations or BCs.
+It keeps the repo conservative: loads above `4.3800 MPa` are no longer forced to
+sit between overly weak generic operational language and overly strong
+audited-ceiling language, but they are still not silently relabelled as audited.
+The current `strict_reproducible = false` signal remains an explicit open
+audit-policy issue rather than a silent branch-loss claim.
 
 ## Confirm Probe Policy
 The confirm runner still stays cheap, but the failure probe is now slightly more
@@ -184,8 +190,8 @@ Keep the status language separated:
 - canonical audited pilot-21 bounded ceiling: `4.3800 MPa`.
 
 Separately from those audited markers, the fast workflow has shown operational
-continuation evidence through `10.0000 MPa`, a stronger dedicated milestone at
-`4.4000 MPa`, and sparse confirms through `10.0200 MPa`. These newer loads are
-still operational continuation results, not a final physical critical load and
-not yet a replacement for the current audited pilot-21 `4.3800 MPa` ceiling
-language.
+continuation evidence through `10.0000 MPa`, with validated operational
+milestones now recorded at `4.4000 MPa`, `7.0000 MPa`, and `10.0000 MPa`, and
+sparse confirm probes through `10.0200 MPa`. These newer loads still do not
+replace the current audited pilot-21 `4.3800 MPa` ceiling language and do not
+constitute a final physical critical-load claim.

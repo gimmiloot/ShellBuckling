@@ -64,7 +64,7 @@ DEFAULT_KEEP_FAILURE_CHECKPOINTS = True
 DEFAULT_KEEP_BOOTSTRAP_CHECKPOINTS = True
 DEFAULT_PRUNE_OLD_CHECKPOINTS = True
 DEFAULT_MILESTONE_GRID_MPA = 0.5
-DEFAULT_NEXT_CLIMB_MILESTONES_MPA = (6.5, 7.0, 8.0, 9.0, 10.0)
+DEFAULT_NEXT_CLIMB_MILESTONES_MPA = (11.0, 12.0, 12.5, 13.0, 13.5, 14.0, 15.0)
 DEFAULT_SUCCESS_GROWTH = float(pilot21.SUCCESS_GROWTH)
 DEFAULT_CONDITIONING_SHRINK = 0.75
 DEFAULT_SMOOTH_NODE_PRESSURE_MAX = 0.02
@@ -321,9 +321,20 @@ def audit_policy_summary() -> dict[str, Any]:
                 "max_rel_l2": NEAR_REPRO_MAX_REL_L2,
                 "max_rel_max": NEAR_REPRO_MAX_REL_MAX,
             },
-            "stronger_milestone": "same-branch indicators stay strong, near_reproducible remains true, and a short confirm probe is recorded",
-            "audited_ceiling": "promotion above the current audited ceiling requires explicit milestone audit closure, including strict_reproducible",
-            "operational_continuation_evidence": "accepted fast-run continuation result without milestone-promotion closure",
+            "validated_operational_milestone": {
+                "definition": "dedicated milestone confirm keeps strong same-branch indicators and records a short confirm probe without failure",
+                "requires_same_accepted_seed": True,
+                "requires_branch_jump_suspicion_false": True,
+                "requires_repeat_drift_smooth": True,
+                "requires_repeat_smaller_than_adjacent_step": True,
+                "requires_bc_residual_sane": True,
+                "requires_strongest_gradient_order_consistent": True,
+                "requires_probe_without_failure": True,
+                "requires_strict_reproducible": False,
+                "near_reproducible_supportive_but_not_required": True,
+            },
+            "audited_ceiling": "repo-level canonical ceiling status still requires explicit milestone audit closure under the current strict standard; validated operational milestones do not silently replace it",
+            "operational_continuation_evidence": "accepted fast-run continuation result without dedicated milestone validation",
             "open_policy_issue": "the inherited strict thresholds may be too rigid for the newer fast continuation workflow; this is tracked explicitly as an audit-policy issue rather than treated as silent branch loss",
         },
     }
@@ -447,16 +458,18 @@ def promotion_policy_assessment(
     failure_probe: list[dict[str, Any]],
 ) -> dict[str, Any]:
     probe_without_failure = bool(failure_probe) and all(bool(item.get("success")) for item in failure_probe)
-    stronger_milestone = bool(
+    legacy_stronger_milestone = bool(
         near_reproducible_flag
         and same_branch.get("overall_same_branch_signal")
         and probe_without_failure
     )
-    eligible_for_audited_promotion = bool(stronger_milestone and strict_reproducible_flag)
-    if eligible_for_audited_promotion:
-        classification = "eligible_for_audited_promotion"
-    elif stronger_milestone:
-        classification = "stronger_milestone"
+    validated_operational_milestone = bool(
+        same_branch.get("overall_same_branch_signal")
+        and probe_without_failure
+    )
+    eligible_for_audited_promotion = bool(validated_operational_milestone and strict_reproducible_flag)
+    if validated_operational_milestone:
+        classification = "validated_operational_milestone"
     elif same_branch.get("overall_same_branch_signal"):
         classification = "operational_continuation_evidence"
     else:
@@ -464,12 +477,13 @@ def promotion_policy_assessment(
     return {
         "strict_reproducible": bool(strict_reproducible_flag),
         "near_reproducible": bool(near_reproducible_flag),
-        "stronger_milestone": stronger_milestone,
+        "stronger_milestone": legacy_stronger_milestone,
+        "validated_operational_milestone": validated_operational_milestone,
         "eligible_for_audited_promotion": eligible_for_audited_promotion,
         "operational_continuation_evidence": classification == "operational_continuation_evidence",
         "probe_without_failure": probe_without_failure,
         "classification": classification,
-        "open_audit_policy_issue": bool(stronger_milestone and not strict_reproducible_flag),
+        "open_audit_policy_issue": bool(validated_operational_milestone and not strict_reproducible_flag),
     }
 
 

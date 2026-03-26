@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 2026-03-26 - Add validated-operational-milestone policy for post-audited simple-support loads
+
+Affected files:
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/continuation_runtime.py`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_continuation_workflow.md`
+- `docs/theory/current_simple_support_status.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/theory/current_mixed_weak_theory_note.tex`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Introduced an explicit intermediate reporting class `validated operational milestone` for the separate 6-state simple-support path so high-load same-branch points do not have to be described either as generic operational evidence or as audited ceiling replacements.
+- Kept the audited-ceiling meaning unchanged: the canonical pilot-21 audited ceiling remains `4.3800 MPa`, and promotion beyond it still requires explicit strict audit closure under the current standard.
+- Reclassified the already documented `4.4000 MPa`, `7.0000 MPa`, and `10.0000 MPa` points as validated operational milestones on the basis of their stored same-seed, no-branch-jump, smooth-repeat-drift, sane-BC, unchanged-gradient-order, and short-probe-no-failure evidence.
+- Updated the pilot-21 runtime policy and workflow note so future confirm summaries use the new status class, and made the next `10 -> 15 MPa` confirm-critical retention schedule explicit at `11.0`, `12.0`, `12.5`, `13.0`, `13.5`, `14.0`, and `15.0 MPa`.
+- Recorded explicitly that this is a reporting / project-discipline change only: equations, simple-support BCs, mixed-weak scans, and the current numerical-vs-physical barrier reading are unchanged.
+
 ## 2026-03-26 - Extend pilot-21 operational continuation to 10 MPa and add exact-load shallow-vs-current plots
 
 Affected files:
