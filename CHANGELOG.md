@@ -1,6 +1,21 @@
 # CHANGELOG
 
 
+## 2026-03-26 - Upgrade the clean full simple-support search to the proven high-load background path
+
+Affected files:
+- `src/shell_buckling/mixed_weak/simple_support_high_load_background_continuation.py`
+- `src/shell_buckling/mixed_weak/full_simple_support_critical_search.py`
+- `docs/theory/current_simple_support_status.md`
+- `docs/project_map.md`
+- `CHANGELOG.md`
+
+- Added a new reusable `src/...` bridge that lets the standalone clean full simple-support critical-search program reuse the proven honest high-load background continuation discipline from the separate pilot-21 path without shelling out to the old pilot runner and without falling back to the hybrid `F_min` background.
+- Split the clean background handling into a directly solved low-load band plus high-load continuation from retained honest checkpoints using the same `u_z`-scaled secant solve and runtime-controlled step adaptation that had already been demonstrated separately on the active 6-state simple-support path.
+- Re-ran the clean standalone `0..15 MPa` mixed-weak search for modes `n=2..6`; the honest background now stays converged through the full scheduled band, so the clean program genuinely probes the FEM-oriented `12..14 MPa` region instead of stalling near the earlier implementation loss at `4.3..4.5 MPa`.
+- Narrow local refinements now place the main clean target-band candidates near `11.8 MPa` for `n=3`, `13.95 MPa` for `n=5`, and `14.25 MPa` for `n=6`, while keeping the language conservative: these are still exploratory clean-program candidates rather than final physical critical-load claims.
+
+
 ## 2026-03-26 - Run the first clean full simple-support critical-search campaign
 
 Affected files:

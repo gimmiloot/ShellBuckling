@@ -11,6 +11,7 @@ rejected directions.
   independent circumferential channels `(v, S)` and `(psi, H, chi)`.
 - For the full hinged/simple-support physical target, the preferred clean
   critical-search program is now:
+  - `src/shell_buckling/mixed_weak/simple_support_high_load_background_continuation.py`
   - `src/shell_buckling/mixed_weak/full_simple_support_critical_search.py`
   - `tasks/run_full_simple_support_critical_search.py`
 - The older mixed-weak scan paths are preserved as hybrid testbenches and still
@@ -45,6 +46,7 @@ rejected directions.
 - The new clean full simple-support critical-search path reconnects that honest
   background to the patched critical layer with boundary rows
   `[u_n(1), varphi(1), T_s(1), S(1), H(1)]` in:
+  - `src/shell_buckling/mixed_weak/simple_support_high_load_background_continuation.py`
   - `src/shell_buckling/mixed_weak/full_simple_support_critical_search.py`
   - `tasks/run_full_simple_support_critical_search.py`
 - The pilot-21 fast/confirm continuation path remains the preferred high-load
@@ -61,6 +63,12 @@ rejected directions.
   Reusable clean mixed-weak critical-search core for the full hinged/simple-
   support task. It uses the honest background plus the patched critical
   boundary-row set `[u_n(1), varphi(1), T_s(1), S(1), H(1)]`.
+
+- `src/shell_buckling/mixed_weak/simple_support_high_load_background_continuation.py`
+  Reusable bridge that lets the clean full simple-support critical-search
+  program inherit the proven honest high-load background continuation
+  discipline and retained pilot-21 checkpoint history without falling back to
+  the hybrid `F_min` line.
 
 - `src/shell_buckling/mixed_weak/solver_simple_support_core.py`
   Reusable mixed-weak prototype for the preserved broad hybrid testbench. It

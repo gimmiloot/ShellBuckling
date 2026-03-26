@@ -27,6 +27,7 @@ critical-search program now also exists:
 
 - core module: `src/shell_buckling/mixed_weak/full_simple_support_critical_search.py`
 - task wrapper: `tasks/run_full_simple_support_critical_search.py`
+- background continuation bridge: `src/shell_buckling/mixed_weak/simple_support_high_load_background_continuation.py`
 - critical-layer boundary rows: `[u_n(1), varphi(1), T_s(1), S(1), H(1)]`
 
 This new path reconnects the mixed-weak criticality layer to the honest full-
@@ -35,7 +36,7 @@ state simple-support background without reusing the older `F_min` line.
 
 ## First Clean Full Critical-Search Campaign
 The first full exploratory run of the standalone clean simple-support critical
-search has now been executed with:
+search is still kept in memory as an implementation baseline:
 
 - runner: `tasks/run_full_simple_support_critical_search.py`
 - honest background BC set: center `T_sn(x0)=0`, `u_r(x0)=0`, `varphi(x0)=0`;
@@ -43,35 +44,62 @@ search has now been executed with:
 - critical rows: `[u_n(1), varphi(1), T_s(1), S(1), H(1)]`
 - first mode range: `n=2..6`
 
-Current numerical reading from that clean program is still limited by the
-honest background continuation itself rather than by a detected high-load
-critical region:
+That first clean campaign used the right formulation but not yet the proven
+high-load continuation discipline of the separate honest background path:
 
-- the first moderate scan on `0..15 MPa` with 31 load points succeeded only
+- the initial moderate scan on `0..15 MPa` with 31 load points succeeded only
   through `4.0 MPa` and then lost the background at `4.5 MPa`;
 - a narrow upper-edge refinement on `3.0..4.4 MPa` pushed the clean program to
   `4.3 MPa` and then lost the background at `4.4 MPa`;
 - a second upper-edge refinement on `4.30..4.343 MPa` reached `4.3246 MPa` and
-  then failed at `4.3276 MPa`;
-- no clean-program search point reached the FEM-oriented `12..14 MPa` band in
-  this first campaign.
+  then failed at `4.3276 MPa`.
 
-Current exploratory candidate loads from the clean program are:
+This earlier `4.32..4.5 MPa` clean-program loss should now be read only as a
+superseded continuation bottleneck inside the first standalone implementation.
+It is not evidence that the honest full-state simple-support background
+physically ends there.
 
-- `n=2`: `4.3215 MPa`, smooth upper-edge local minimum before background loss;
-- `n=3`: `4.3215 MPa`, smooth upper-edge local minimum before background loss;
-- `n=4`: `2.9 MPa`, broad interior minimum on the refined grid;
-- `n=5`: about `1.84 MPa`, currently the lowest raw `sigma_bal` point but with
-  noticeably more local oscillation / sensitivity than the smoother `n=2,4,6`
-  trends;
-- `n=6`: `4.3154 MPa`, smooth upper-edge local minimum before background loss.
+## High-Load-Enabled Clean Critical Search
+The clean standalone search now also reuses the proven honest high-load
+background-following discipline through:
 
-So within the range currently reachable by the clean standalone program, the
-lowest raw criterion value comes from `n=5`, but the smoother and more
-numerically believable downward trends currently appear for `n=2` and `n=6` as
-both continue decreasing toward the same background-loss barrier near
-`4.32..4.33 MPa`. These are exploratory candidates only, not final physical
-critical loads.
+- reusable bridge: `src/shell_buckling/mixed_weak/simple_support_high_load_background_continuation.py`
+- same equations and same honest simple-support BC set as the active 6-state
+  background path;
+- exact retained high-load checkpoints from the separate pilot-21 background
+  path where they already exist;
+- the same `u_z`-scaled secant continuation attempts and runtime-controlled
+  bounded step adaptation above the directly solved low-load band;
+- no fallback to the old hybrid `F_min` background line.
+
+With that upgrade the clean standalone `0..15 MPa` search for `n=2..6` now
+succeeds through the full scheduled band with no background failure:
+
+- successful background solves: `31 / 31`;
+- highest reached clean-program load: `15.0 MPa`;
+- first background failure in the scheduled clean run: not reached;
+- the clean program now genuinely probes the FEM-oriented `12..14 MPa` region.
+
+Current exploratory mode-by-mode reading from the clean program is:
+
+- `n=2`: current best point remains a smooth interior low-load minimum near
+  `2.5 MPa`; no comparably strong new high-load minimum has appeared for this
+  mode in `12..15 MPa`;
+- `n=3`: refined interior local minimum near `11.8 MPa`, smooth and numerically
+  believable on the current grid;
+- `n=4`: broad interior minimum near `11.0 MPa`, weaker than the later `n=5,6`
+  target-band minima;
+- `n=5`: refined interior local minimum near `13.95 MPa`;
+- `n=6`: refined interior local minimum near `14.25 MPa`, currently the weakest
+  balanced boundary metric inside the `12..15 MPa` band.
+
+So the clean full simple-support solver now does reach the physically
+interesting band, and within that band the strongest current candidates come
+from `n=5` and especially `n=6` near `13.95..14.25 MPa`. At the same time,
+across the full scanned interval `0..15 MPa` the raw balanced metric still has
+comparable or even smaller low-load minima (notably for `n=2` and also
+marginally for `n=6` near `2.5 MPa`), so the present clean-program reading is
+still exploratory and not yet a final physical critical-load claim.
 
 
 ## Current Reproducible Loads
@@ -83,6 +111,7 @@ Several load markers should now be kept separate:
 - best bounded staged continuation ceiling from pilot 21: `4.3800 MPa` (`u_z`-scaled continuation + auxiliary arc-like step adaptation)
 - strongest post-audited validated operational milestone: `4.4000 MPa` (same accepted seed, repeated pointwise confirm, `near_reproducible = true`, no branch-jump suspicion, short probe through `4.4100 MPa`, but `strict_reproducible = false`)
 - higher validated operational milestones from the fast/confirm workflow: `7.0000 MPa` and `10.0000 MPa` (same accepted seed, no branch-jump suspicion, smooth repeat drift smaller than adjacent-step drift, short confirm probes through `7.0080` and `10.0200 MPa`, `strict_reproducible = false`, `near_reproducible = false`)
+- current clean full simple-support critical-search background reach with the high-load bridge: `15.0000 MPa` in the standalone `n=2..6` campaign, without a background failure inside the scheduled band
 - current fast-engine highest stored accepted load: `10.0000 MPa` (`fast_u_z_scaled_arc_like_continuation.py`), still kept separate from the canonical audited ceiling language
 - best bounded staged continuation first failure in the audited pilot-21 ladder: not reached
 - current short confirm probes above the newer fast-engine checkpoints: no failure reached through `4.4100 MPa` from the dedicated `4.4000 MPa` audit and through `10.0200 MPa` from the sparse `7.0000 / 10.0000 MPa` confirms
@@ -193,6 +222,11 @@ formulation / conditioning dominated:
   ordinary adjacent continuation step, so under the new reporting policy they
   also qualify as validated operational milestones rather than as audited
   ceiling replacements;
+- after the clean standalone critical-search path was upgraded to reuse the
+  same high-load continuation discipline, the honest background also stays
+  alive through the clean `0..15 MPa` mixed-weak search; this confirms that the
+  earlier standalone `4.32..4.5 MPa` loss was a solver-workflow bottleneck,
+  not evidence of a physical end of the honest background branch;
 - the repeat drift is smooth and currently dominated by `M_s`, while the
   strongest gradient ordering inside the accepted branch still remains `u_z`,
   then `varphi`, then `T_s`;
@@ -253,8 +287,10 @@ workflow is now explicitly split into two layers:
 - do not spend more time on simple edge-mesh concentration by itself;
 - use the new standalone clean critical-search program `tasks/run_full_simple_support_critical_search.py` when the goal is the consistent full simple-support mixed-weak search rather than the preserved hybrid testbenches;
 - keep the preserved hybrid scan wrappers separate and readable as legacy/exploratory testbenches rather than as the preferred clean simple-support solver;
-- treat the present clean-program bottleneck as a background-continuation issue: the standalone search now works and yields exploratory mode candidates, but with its current honest background stepping it still loses the branch near `4.32..4.5 MPa` and therefore does not yet probe the expected `12..14 MPa` region;
-- the next unresolved engineering step before a real clean `12..15 MPa` search is to give this standalone critical-search path access to the same kind of robust high-load background continuation discipline already demonstrated separately on the 6-state simple-support path, without falling back to the old hybrid `F_min` line;
+- the clean standalone critical-search path now already inherits the same class of robust high-load background continuation discipline that was demonstrated separately on the honest 6-state path, so the old standalone `4.32..4.5 MPa` loss should be treated as a closed implementation bottleneck rather than as an active barrier reading;
+- use the clean standalone search itself, not the preserved hybrid path, when the goal is the full simple-support critical-load region around the FEM-oriented `12..14 MPa` band;
+- the next unresolved task is no longer basic background reach but conservative mode-by-mode confirmation of the new clean target-band candidates, especially the `n=5` / `n=6` minima near `13.95..14.25 MPa`, together with explanation of why the raw balanced metric still keeps low-load minima in the same `0..15 MPa` scan;
+- if the `n=5` / `n=6` target-band minima remain stable under further confirmation, extend the same clean standalone search above `15 MPa` before making any stronger physical interpretation;
 - keep reporting candidate loads as exploratory.
 
 ## Canonical Runnable Entry Points

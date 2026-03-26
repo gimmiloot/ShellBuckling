@@ -15,6 +15,7 @@ from typing import Sequence
 import numpy as np
 
 from shell_buckling.mixed_weak import axisymmetric_simple_support_background as simple_bg
+from shell_buckling.mixed_weak import simple_support_high_load_background_continuation as high_bg
 from shell_buckling.mixed_weak import solver_patched_core as mw
 
 
@@ -275,7 +276,7 @@ def build_boundary_matrix_objects(
 def run_full_simple_support_critical_search(
     load_grid_mpa: Sequence[float],
     modes: Sequence[int] = DEFAULT_SIMPLE_SUPPORT_CRITICAL_MODES,
-    background_config: simple_bg.AxisymmetricSimpleSupportConfig = simple_bg.AxisymmetricSimpleSupportConfig(),
+    background_config: simple_bg.AxisymmetricSimpleSupportConfig | None = None,
     x0: float | None = None,
     m_basis: int = 6,
     n_collocation: int = 120,
@@ -286,12 +287,15 @@ def run_full_simple_support_critical_search(
     modes_tuple = tuple(int(mode) for mode in modes)
     if not modes_tuple:
         raise ValueError("At least one circumferential mode must be requested.")
+    if background_config is None:
+        background_config = high_bg.default_high_load_background_config()
     if x0 is None:
         x0 = float(background_config.x0)
 
-    background_results = simple_bg.solve_axisymmetric_simple_support_continuation(
+    background_results = high_bg.solve_axisymmetric_simple_support_high_load_schedule(
         load_grid.tolist(),
         config=background_config,
+        verbose=verbose,
     )
     points_by_mode: dict[int, list[FullSimpleSupportCriticalPoint]] = {mode: [] for mode in modes_tuple}
 
@@ -352,6 +356,7 @@ def print_search_header(
 ) -> None:
     print("=== Full simple-support critical-load search ===")
     print("background source: src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py")
+    print("background continuation: src/shell_buckling/mixed_weak/simple_support_high_load_background_continuation.py")
     print("background BCs: " + "; ".join(BACKGROUND_BC_LABELS[:3]) + "; " + "; ".join(BACKGROUND_BC_LABELS[3:]))
     print("critical boundary rows: [" + ", ".join(CRITICAL_BOUNDARY_ROW_LABELS) + "]")
     print("modes: " + ", ".join(str(int(mode)) for mode in modes))
@@ -404,7 +409,7 @@ def print_search_summary(result: FullSimpleSupportCriticalSearchResult) -> None:
 
 
 def build_arg_parser() -> ArgumentParser:
-    defaults = simple_bg.AxisymmetricSimpleSupportConfig()
+    defaults = high_bg.default_high_load_background_config()
     parser = ArgumentParser(
         description=(
             "Standalone clean mixed-weak critical-load search for the full "
