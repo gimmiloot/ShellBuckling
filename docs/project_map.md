@@ -97,6 +97,12 @@ project memory even when they are not present here as separate source files.
 - `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/confirm_u_z_scaled_arc_like_continuation.py`
   Pointwise confirm/audit runner that reads fast-run checkpoints.
 
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/`
+  Split artifact area for the pilot-21 operational path: `fast_progress.json`
+  and `confirm_results.json` are the compact tracked summaries, while raw
+  checkpoints, `progress_log.jsonl`, and ad hoc `confirm_*.json` outputs are
+  treated as local runtime cache and ignored from git by default.
+
 ### Supporting tasks
 
 - `experiments/supporting/run_supporting_determinant_comparison.py`

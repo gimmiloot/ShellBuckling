@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import argparse
 import time
@@ -6,6 +6,9 @@ from pathlib import Path
 from typing import Any
 
 import continuation_runtime as runtime
+
+
+CHECKPOINT_POLICY_CHOICES = ("all", "rolling", "milestones", "rolling+milestones")
 
 
 def parse_args() -> argparse.Namespace:
@@ -24,11 +27,30 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max-new-steps", type=int, default=200)
     parser.add_argument("--max-runtime-seconds", type=float, default=3600.0)
     parser.add_argument("--run-dir", type=Path, default=runtime.FAST_RUN_DIR)
+    parser.add_argument("--checkpoint-policy", choices=CHECKPOINT_POLICY_CHOICES, default=runtime.DEFAULT_CHECKPOINT_POLICY)
+    parser.add_argument("--max-rolling-checkpoints", type=int, default=runtime.DEFAULT_MAX_ROLLING_CHECKPOINTS)
+    parser.add_argument("--checkpoint-every-n-accepted-steps", type=int, default=runtime.DEFAULT_CHECKPOINT_EVERY_N_ACCEPTED_STEPS)
+    parser.add_argument("--keep-milestone-checkpoints", type=runtime.parse_bool, default=runtime.DEFAULT_KEEP_MILESTONE_CHECKPOINTS)
+    parser.add_argument("--keep-failure-checkpoints", type=runtime.parse_bool, default=runtime.DEFAULT_KEEP_FAILURE_CHECKPOINTS)
+    parser.add_argument("--keep-bootstrap-checkpoints", type=runtime.parse_bool, default=runtime.DEFAULT_KEEP_BOOTSTRAP_CHECKPOINTS)
+    parser.add_argument("--prune-old-checkpoints", type=runtime.parse_bool, default=runtime.DEFAULT_PRUNE_OLD_CHECKPOINTS)
     return parser.parse_args()
 
 
 def compact_attempts(attempts: list[Any]) -> list[dict[str, Any]]:
     return [runtime.compact_attempt_summary(runtime.pilot21.attempt_summary(item)) for item in attempts]
+
+
+def checkpoint_policy_from_args(args: argparse.Namespace) -> dict[str, Any]:
+    return runtime.checkpoint_policy_summary(
+        checkpoint_policy=str(args.checkpoint_policy),
+        max_rolling_checkpoints=int(args.max_rolling_checkpoints),
+        checkpoint_every_n_accepted_steps=int(args.checkpoint_every_n_accepted_steps),
+        keep_milestone_checkpoints=bool(args.keep_milestone_checkpoints),
+        keep_failure_checkpoints=bool(args.keep_failure_checkpoints),
+        keep_bootstrap_checkpoints=bool(args.keep_bootstrap_checkpoints),
+        prune_old_checkpoints=bool(args.prune_old_checkpoints),
+    )
 
 
 def build_progress_payload(run_dir: Path, target_load_mpa: float, bootstrap_target_mpa: float, profile) -> dict[str, Any]:
@@ -44,10 +66,14 @@ def build_progress_payload(run_dir: Path, target_load_mpa: float, bootstrap_targ
             "bootstrap_target_mpa": float(bootstrap_target_mpa),
             "profile": runtime.profile_summary(profile),
             "step_control": {},
+            "checkpoint_policy": {},
             "run_dir": str(run_dir),
         },
         "bootstrap": {},
-        "checkpoints": {},
+        "checkpoints": {
+            "failure_context_step_indices": [],
+            "suspicious_step_indices": [],
+        },
         "state": {
             "status": "initialized",
             "current_load_mpa": None,
@@ -80,6 +106,7 @@ def record_accepted_step(
     step_index = len(progress["accepted_steps"])
     checkpoint_rel = runtime.save_point_checkpoint(run_dir, step_index, point)
     point_payload = runtime.pilot21.point_summary(point)
+    attempt_payload = compact_attempts(attempts)
     entry = {
         "index": step_index,
         "stage": stage,
@@ -89,11 +116,15 @@ def record_accepted_step(
         "checkpoint": str(checkpoint_rel).replace("\\", "/"),
         "accepted_point": runtime.compact_point_summary(point_payload),
         "attempt_count": len(attempts),
-        "attempts": compact_attempts(attempts),
+        "attempts": attempt_payload,
         "strongest_gradient_order": runtime.pilot21.strongest_states(point_payload),
         "elapsed_seconds": float(elapsed_seconds),
+        "checkpoint_retained": True,
+        "checkpoint_tags": [],
     }
     progress["accepted_steps"].append(entry)
+    if any(bool(item.get("branch_turning_suspicion")) for item in attempt_payload):
+        runtime.add_special_step_indices(progress, "suspicious_step_indices", [step_index, step_index - 1, step_index - 2])
     if not progress["checkpoints"].get("scaled_anchor_checkpoint"):
         progress["checkpoints"]["scaled_anchor_checkpoint"] = str(checkpoint_rel).replace("\\", "/")
     progress["state"]["status"] = "running"
@@ -101,8 +132,10 @@ def record_accepted_step(
     progress["state"]["current_step_size_mpa"] = float(next_step_mpa)
     progress["state"]["resume_older_checkpoint"] = str(older_checkpoint_rel).replace("\\", "/")
     progress["state"]["resume_previous_checkpoint"] = str(checkpoint_rel).replace("\\", "/")
+    policy_stats = runtime.apply_checkpoint_policy(progress, run_dir)
     runtime.refresh_progress_summary(progress)
     runtime.save_json(progress_path, progress)
+    step_entry = progress["accepted_steps"][step_index]
     runtime.append_jsonl(
         log_path,
         {
@@ -113,6 +146,10 @@ def record_accepted_step(
             "step_size_mpa": float(step_size_mpa),
             "attempt_count": len(attempts),
             "checkpoint": str(checkpoint_rel).replace("\\", "/"),
+            "checkpoint_retained": bool(step_entry.get("checkpoint_retained")),
+            "checkpoint_tags": list(step_entry.get("checkpoint_tags") or []),
+            "checkpoint_file_count": int(policy_stats.get("checkpoint_file_count", 0)),
+            "deleted_checkpoint_count": int(policy_stats.get("deleted_checkpoint_count", 0)),
             "accepted_seed": point_payload.get("accepted_seed"),
             "node_pressure": point_payload.get("node_pressure"),
             "right_edge_fraction_0_995": point_payload.get("right_edge_fraction_0_995"),
@@ -126,6 +163,7 @@ def record_accepted_step(
 def record_failure_event(
     *,
     progress: dict[str, Any],
+    run_dir: Path,
     progress_path: Path,
     log_path: Path,
     attempts: list[Any],
@@ -152,6 +190,10 @@ def record_failure_event(
     progress["state"]["current_step_size_mpa"] = float(next_step_mpa)
     if terminal:
         progress["state"]["terminal_failure_q_mpa"] = float(q_target_mpa)
+    if runtime.checkpoint_policy_config(progress)["keep_failure_checkpoints"]:
+        current_index = len(progress["accepted_steps"]) - 1
+        runtime.add_special_step_indices(progress, "failure_context_step_indices", [current_index, current_index - 1, current_index - 2])
+    policy_stats = runtime.apply_checkpoint_policy(progress, run_dir)
     runtime.refresh_progress_summary(progress)
     runtime.save_json(progress_path, progress)
     runtime.append_jsonl(
@@ -165,6 +207,8 @@ def record_failure_event(
             "terminal": bool(terminal),
             "message": None if failed_summary is None else failed_summary.get("message"),
             "seed_label": None if failed_summary is None else failed_summary.get("seed_label"),
+            "checkpoint_file_count": int(policy_stats.get("checkpoint_file_count", 0)),
+            "deleted_checkpoint_count": int(policy_stats.get("deleted_checkpoint_count", 0)),
             "elapsed_seconds": float(elapsed_seconds),
         },
     )
@@ -177,6 +221,44 @@ def maybe_stop(invocation_start: float, args: argparse.Namespace, accepted_new_s
         return "paused_after_runtime_budget"
     return None
 
+def ensure_resume_bootstrap_anchors(
+    *,
+    progress: dict[str, Any],
+    run_dir: Path,
+    progress_path: Path,
+    log_path: Path,
+    invocation_start: float,
+) -> None:
+    checkpoints = progress.setdefault("checkpoints", {})
+    scaled_anchor_path = checkpoints.get("scaled_anchor_checkpoint")
+    bootstrap_previous_path = checkpoints.get("bootstrap_previous_checkpoint")
+    if runtime.checkpoint_exists(run_dir, scaled_anchor_path) and runtime.checkpoint_exists(run_dir, bootstrap_previous_path):
+        return
+
+    context = runtime.pilot20.build_context()
+    if not runtime.checkpoint_exists(run_dir, bootstrap_older_path):
+        older_rel = runtime.save_named_point_checkpoint(run_dir, "bootstrap_older_4p3432_mpa.npz", context["branch_points"][4.3432])
+        checkpoints["bootstrap_older_checkpoint"] = str(older_rel).replace("\\", "/")
+    if not runtime.checkpoint_exists(run_dir, bootstrap_previous_path):
+        previous_rel = runtime.save_named_point_checkpoint(run_dir, "bootstrap_previous_4p3433_mpa.npz", context["branch_points"][4.3433])
+        checkpoints["bootstrap_previous_checkpoint"] = str(previous_rel).replace("\\", "/")
+    if not runtime.checkpoint_exists(run_dir, scaled_anchor_path):
+        anchor_rel = runtime.save_named_point_checkpoint(run_dir, "scaled_anchor_4p3434_mpa.npz", context["point_43434"])
+        checkpoints["scaled_anchor_checkpoint"] = str(anchor_rel).replace("\\", "/")
+
+    policy_stats = runtime.apply_checkpoint_policy(progress, run_dir)
+    runtime.refresh_progress_summary(progress)
+    runtime.save_json(progress_path, progress)
+    runtime.append_jsonl(
+        log_path,
+        {
+            "event": "resume_anchor_repair",
+            "checkpoint_file_count": int(policy_stats.get("checkpoint_file_count", 0)),
+            "deleted_checkpoint_count": int(policy_stats.get("deleted_checkpoint_count", 0)),
+            "elapsed_seconds": float(time.perf_counter() - invocation_start),
+        },
+    )
+
 
 def bootstrap_if_needed(
     *,
@@ -188,9 +270,17 @@ def bootstrap_if_needed(
     invocation_start: float,
 ) -> tuple[Any, Any, Any, float, Any]:
     if progress["accepted_steps"]:
+        ensure_resume_bootstrap_anchors(
+            progress=progress,
+            run_dir=run_dir,
+            progress_path=progress_path,
+            log_path=log_path,
+            invocation_start=invocation_start,
+        )
         profile = runtime.profile_from_metadata(progress["metadata"]["profile"])
         scaled_anchor, older_point, previous_point = runtime.load_resume_points(progress, run_dir)
-        return scaled_anchor, older_point, previous_point, float(progress["state"]["current_step_size_mpa"]), profile
+        step_mpa = runtime.float_or_none(progress["state"].get("current_step_size_mpa"))
+        return scaled_anchor, older_point, previous_point, float(args.initial_step_mpa if step_mpa is None else step_mpa), profile
 
     context = runtime.pilot20.build_context()
     profile = runtime.pilot21.continuation_profile(context)
@@ -207,13 +297,18 @@ def bootstrap_if_needed(
         "bootstrap_payload": context.get("bootstrap_payload"),
         "reproduced_old_anchor_4_3434": runtime.compact_point_summary(runtime.pilot21.point_summary(context["point_43434"])),
     }
+    runtime.refresh_progress_summary(progress)
     runtime.save_json(progress_path, progress)
 
     older_point = context["branch_points"][4.3432]
     previous_point = context["branch_points"][4.3433]
     local_anchor = context["local_anchor"]
+    older_checkpoint_rel = runtime.save_named_point_checkpoint(run_dir, "bootstrap_older_4p3432_mpa.npz", older_point)
+    progress["checkpoints"]["bootstrap_older_checkpoint"] = str(older_checkpoint_rel).replace("\\", "/")
     previous_checkpoint_rel = runtime.save_named_point_checkpoint(run_dir, "bootstrap_previous_4p3433_mpa.npz", previous_point)
     progress["checkpoints"]["bootstrap_previous_checkpoint"] = str(previous_checkpoint_rel).replace("\\", "/")
+    runtime.apply_checkpoint_policy(progress, run_dir)
+    runtime.refresh_progress_summary(progress)
     runtime.save_json(progress_path, progress)
 
     scaled_anchor_point = None
@@ -242,6 +337,7 @@ def bootstrap_if_needed(
             next_step = max(float(args.min_step_mpa), float(q_target_mpa - previous_point.q_mpa) * float(args.failure_shrink))
             record_failure_event(
                 progress=progress,
+                run_dir=run_dir,
                 progress_path=progress_path,
                 log_path=log_path,
                 attempts=attempts,
@@ -253,6 +349,7 @@ def bootstrap_if_needed(
                 terminal=True,
             )
             progress["state"]["status"] = "stopped_during_bootstrap_warmup"
+            runtime.refresh_progress_summary(progress)
             runtime.save_json(progress_path, progress)
             raise RuntimeError(f"Bootstrap warmup failed at {q_target_mpa:.4f} MPa.")
 
@@ -273,13 +370,17 @@ def bootstrap_if_needed(
         )
         if scaled_anchor_point is None:
             scaled_anchor_point = point
-            progress["checkpoints"]["scaled_anchor_checkpoint"] = str(checkpoint_rel).replace("\\", "/")
+            scaled_anchor_rel = runtime.save_named_point_checkpoint(run_dir, "scaled_anchor_4p3434_mpa.npz", point)
+            progress["checkpoints"]["scaled_anchor_checkpoint"] = str(scaled_anchor_rel).replace("\\", "/")
+            runtime.apply_checkpoint_policy(progress, run_dir)
+            runtime.refresh_progress_summary(progress)
             runtime.save_json(progress_path, progress)
         older_point, previous_point = previous_point, point
         previous_checkpoint_rel = checkpoint_rel
         stop_reason = maybe_stop(invocation_start, args, 0)
         if stop_reason is not None and previous_point.q_mpa < min(float(args.target_load_mpa), float(args.bootstrap_target_mpa)) - 1.0e-12:
             progress["state"]["status"] = stop_reason
+            runtime.refresh_progress_summary(progress)
             runtime.save_json(progress_path, progress)
             return scaled_anchor_point, older_point, previous_point, step_mpa, profile
 
@@ -310,6 +411,7 @@ def bootstrap_if_needed(
             terminal = raw_step <= float(args.min_step_mpa) + 1.0e-12
             record_failure_event(
                 progress=progress,
+                run_dir=run_dir,
                 progress_path=progress_path,
                 log_path=log_path,
                 attempts=attempts,
@@ -322,6 +424,7 @@ def bootstrap_if_needed(
             )
             if terminal:
                 progress["state"]["status"] = "stopped_during_bootstrap_extension"
+                runtime.refresh_progress_summary(progress)
                 runtime.save_json(progress_path, progress)
                 return scaled_anchor_point, older_point, previous_point, step_mpa, profile
             continue
@@ -347,6 +450,7 @@ def bootstrap_if_needed(
         stop_reason = maybe_stop(invocation_start, args, accepted_new_steps)
         if stop_reason is not None and previous_point.q_mpa < bootstrap_target - 1.0e-12:
             progress["state"]["status"] = stop_reason
+            runtime.refresh_progress_summary(progress)
             runtime.save_json(progress_path, progress)
             return scaled_anchor_point, older_point, previous_point, step_mpa, profile
 
@@ -401,6 +505,7 @@ def continue_adaptively(
             terminal = raw_step <= float(args.min_step_mpa) + 1.0e-12
             record_failure_event(
                 progress=progress,
+                run_dir=run_dir,
                 progress_path=progress_path,
                 log_path=log_path,
                 attempts=attempts,
@@ -413,6 +518,7 @@ def continue_adaptively(
             )
             if terminal:
                 progress["state"]["status"] = "stopped_at_min_step_failure"
+                runtime.refresh_progress_summary(progress)
                 runtime.save_json(progress_path, progress)
                 return
             continue
@@ -456,13 +562,32 @@ def main() -> None:
             config=runtime.AxisymmetricSimpleSupportConfig(),
         )
         progress = build_progress_payload(run_dir, float(args.target_load_mpa), float(args.bootstrap_target_mpa), placeholder_profile)
-        runtime.refresh_progress_summary(progress)
-        runtime.save_json(progress_path, progress)
 
     progress["metadata"]["target_load_mpa"] = float(args.target_load_mpa)
     progress["metadata"]["bootstrap_target_mpa"] = float(args.bootstrap_target_mpa)
+    progress["metadata"]["run_dir"] = str(run_dir)
+    progress["metadata"]["checkpoint_policy"] = checkpoint_policy_from_args(args)
+    progress["metadata"]["step_control"] = {
+        "initial_step_mpa": float(args.initial_step_mpa),
+        "min_step_mpa": float(args.min_step_mpa),
+        "max_step_mpa": float(args.max_step_mpa),
+        "failure_shrink": float(args.failure_shrink),
+        "adapt_rule": "pilot21.adapt_step_size on success, shrink on failure",
+    }
+    policy_stats = runtime.apply_checkpoint_policy(progress, run_dir)
     runtime.refresh_progress_summary(progress)
     runtime.save_json(progress_path, progress)
+    runtime.append_jsonl(
+        log_path,
+        {
+            "event": "checkpoint_policy_refresh",
+            "checkpoint_policy": progress["metadata"]["checkpoint_policy"],
+            "checkpoint_file_count": int(policy_stats.get("checkpoint_file_count", 0)),
+            "deleted_checkpoint_count": int(policy_stats.get("deleted_checkpoint_count", 0)),
+            "target_load_mpa": float(args.target_load_mpa),
+            "elapsed_seconds": float(time.perf_counter() - invocation_start),
+        },
+    )
 
     scaled_anchor_point, older_point, previous_point, step_mpa, profile = bootstrap_if_needed(
         args=args,
@@ -494,9 +619,10 @@ def main() -> None:
     print(f"Highest converged load: {summary.get('highest_converged_q_mpa')} MPa")
     print(f"Terminal failure: {summary.get('terminal_failure_q_mpa')}")
     print(f"Accepted steps stored: {summary.get('accepted_step_count')}")
+    print(f"Retained step checkpoints: {summary.get('retained_step_checkpoint_count')}")
+    print(f"Checkpoint files on disk: {summary.get('checkpoint_file_count')}")
     print(f"Suggested confirm loads: {summary.get('suggested_confirm_loads_mpa')}")
 
 
 if __name__ == "__main__":
     main()
-

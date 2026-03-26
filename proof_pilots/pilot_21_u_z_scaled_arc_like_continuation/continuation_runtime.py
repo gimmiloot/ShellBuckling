@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import importlib.util
 import json
@@ -53,6 +53,13 @@ DEFAULT_PROGRESS_JSON = FAST_RUN_DIR / "fast_progress.json"
 DEFAULT_PROGRESS_LOG = FAST_RUN_DIR / "progress_log.jsonl"
 DEFAULT_CONFIRM_JSON = FAST_RUN_DIR / "confirm_results.json"
 DEFAULT_BOOTSTRAP_TARGET_MPA = float(pilot21.EXTENSION_STAGE_TARGETS_MPA[-1])
+DEFAULT_CHECKPOINT_POLICY = "rolling+milestones"
+DEFAULT_MAX_ROLLING_CHECKPOINTS = 24
+DEFAULT_CHECKPOINT_EVERY_N_ACCEPTED_STEPS = 5
+DEFAULT_KEEP_MILESTONE_CHECKPOINTS = True
+DEFAULT_KEEP_FAILURE_CHECKPOINTS = True
+DEFAULT_KEEP_BOOTSTRAP_CHECKPOINTS = True
+DEFAULT_PRUNE_OLD_CHECKPOINTS = True
 STATUS_CONVENTION = {
     "old_path_anchor_mpa": float(pilot21.OLD_PATH_ANCHOR_MPA),
     "old_path_first_failure_mpa": float(pilot21.OLD_PATH_FAILURE_MPA),
@@ -98,6 +105,17 @@ def append_jsonl(path: Path, payload: dict[str, Any]) -> None:
         handle.write(json.dumps(serializable(payload), ensure_ascii=False) + "\n")
 
 
+def parse_bool(value: Any) -> bool:
+    if isinstance(value, bool):
+        return value
+    text = str(value).strip().lower()
+    if text in {"1", "true", "yes", "y", "on"}:
+        return True
+    if text in {"0", "false", "no", "n", "off"}:
+        return False
+    raise ValueError(f"Could not interpret boolean value: {value!r}")
+
+
 def float_or_none(value: Any) -> float | None:
     if value is None:
         return None
@@ -121,6 +139,33 @@ def sanitize_load(q_mpa: float) -> str:
 
 def make_checkpoint_relpath(step_index: int, q_mpa: float) -> Path:
     return Path("checkpoints") / f"point_{step_index:05d}_q_{sanitize_load(q_mpa)}_mpa.npz"
+
+
+def checkpoint_dir(run_dir: Path) -> Path:
+    return run_dir / "checkpoints"
+
+
+def checkpoint_policy_summary(
+    *,
+    checkpoint_policy: str,
+    max_rolling_checkpoints: int,
+    checkpoint_every_n_accepted_steps: int,
+    keep_milestone_checkpoints: bool,
+    keep_failure_checkpoints: bool,
+    keep_bootstrap_checkpoints: bool,
+    prune_old_checkpoints: bool,
+) -> dict[str, Any]:
+    return {
+        "mode": str(checkpoint_policy),
+        "max_rolling_checkpoints": max(0, int(max_rolling_checkpoints)),
+        "checkpoint_every_n_accepted_steps": max(1, int(checkpoint_every_n_accepted_steps)),
+        "keep_milestone_checkpoints": bool(keep_milestone_checkpoints),
+        "keep_failure_checkpoints": bool(keep_failure_checkpoints),
+        "keep_bootstrap_checkpoints": bool(keep_bootstrap_checkpoints),
+        "prune_old_checkpoints": bool(prune_old_checkpoints),
+        "default_recommended_mode": DEFAULT_CHECKPOINT_POLICY,
+        "minimum_resume_anchors_always_retained": True,
+    }
 
 
 class StoredSolutionProxy:
@@ -205,6 +250,12 @@ def load_point_checkpoint(run_dir: Path, relative_path: str | Path):
     return build_branch_point_from_checkpoint(summary, x, y)
 
 
+def checkpoint_exists(run_dir: Path, relative_path: str | Path | None) -> bool:
+    if relative_path in (None, ""):
+        return False
+    return (run_dir / Path(relative_path)).exists()
+
+
 def compact_attempt_summary(attempt_payload: dict[str, Any]) -> dict[str, Any]:
     return {
         "q_mpa": float_or_none(attempt_payload.get("q_mpa")),
@@ -258,7 +309,232 @@ def current_highest_q(progress: dict[str, Any]) -> float | None:
     return float_or_none(accepted_steps[-1].get("q_mpa"))
 
 
+def count_checkpoint_files(run_dir: Path) -> int:
+    base = checkpoint_dir(run_dir)
+    if not base.exists():
+        return 0
+    return sum(1 for path in base.rglob("*.npz") if path.is_file())
+
+
+def milestone_marker_loads(progress: dict[str, Any]) -> set[float]:
+    metadata = progress.get("metadata") or {}
+    markers = {
+        round(float(STATUS_CONVENTION["pilot20_bounded_ceiling_mpa"]), 4),
+        round(float(STATUS_CONVENTION["pilot21_bounded_ceiling_mpa"]), 4),
+        4.4000,
+    }
+    for key in ("target_load_mpa", "bootstrap_target_mpa"):
+        value = float_or_none(metadata.get(key))
+        if value is not None:
+            markers.add(round(float(value), 4))
+    return markers
+
+
+def is_round_milestone(q_mpa: float, step_mpa: float = 0.5, tol: float = 1.0e-9) -> bool:
+    scaled = float(q_mpa) / float(step_mpa)
+    return abs(scaled - round(scaled)) <= tol
+
+
+def is_milestone_step(progress: dict[str, Any], step_entry: dict[str, Any]) -> bool:
+    q_value = float_or_none(step_entry.get("q_mpa"))
+    if q_value is None:
+        return False
+    if is_round_milestone(q_value):
+        return True
+    return any(abs(q_value - marker) <= 1.0e-6 for marker in milestone_marker_loads(progress))
+
+
+def checkpoint_policy_config(progress: dict[str, Any]) -> dict[str, Any]:
+    metadata = progress.get("metadata") or {}
+    policy = dict(metadata.get("checkpoint_policy") or {})
+    if not policy:
+        policy = checkpoint_policy_summary(
+            checkpoint_policy=DEFAULT_CHECKPOINT_POLICY,
+            max_rolling_checkpoints=DEFAULT_MAX_ROLLING_CHECKPOINTS,
+            checkpoint_every_n_accepted_steps=DEFAULT_CHECKPOINT_EVERY_N_ACCEPTED_STEPS,
+            keep_milestone_checkpoints=DEFAULT_KEEP_MILESTONE_CHECKPOINTS,
+            keep_failure_checkpoints=DEFAULT_KEEP_FAILURE_CHECKPOINTS,
+            keep_bootstrap_checkpoints=DEFAULT_KEEP_BOOTSTRAP_CHECKPOINTS,
+            prune_old_checkpoints=DEFAULT_PRUNE_OLD_CHECKPOINTS,
+        )
+    policy["mode"] = str(policy.get("mode", DEFAULT_CHECKPOINT_POLICY))
+    policy["max_rolling_checkpoints"] = max(0, int(policy.get("max_rolling_checkpoints", DEFAULT_MAX_ROLLING_CHECKPOINTS)))
+    policy["checkpoint_every_n_accepted_steps"] = max(1, int(policy.get("checkpoint_every_n_accepted_steps", DEFAULT_CHECKPOINT_EVERY_N_ACCEPTED_STEPS)))
+    policy["keep_milestone_checkpoints"] = bool(policy.get("keep_milestone_checkpoints", DEFAULT_KEEP_MILESTONE_CHECKPOINTS))
+    policy["keep_failure_checkpoints"] = bool(policy.get("keep_failure_checkpoints", DEFAULT_KEEP_FAILURE_CHECKPOINTS))
+    policy["keep_bootstrap_checkpoints"] = bool(policy.get("keep_bootstrap_checkpoints", DEFAULT_KEEP_BOOTSTRAP_CHECKPOINTS))
+    policy["prune_old_checkpoints"] = bool(policy.get("prune_old_checkpoints", DEFAULT_PRUNE_OLD_CHECKPOINTS))
+    return policy
+
+
+def ensure_checkpoint_tracking(progress: dict[str, Any]) -> None:
+    checkpoints = progress.setdefault("checkpoints", {})
+    checkpoints.setdefault("failure_context_step_indices", [])
+    checkpoints.setdefault("suspicious_step_indices", [])
+    accepted_steps = progress.get("accepted_steps") or []
+    run_dir = Path((progress.get("metadata") or {}).get("run_dir", FAST_RUN_DIR))
+    for step in accepted_steps:
+        step.setdefault("checkpoint_tags", [])
+        if "checkpoint_retained" not in step:
+            step["checkpoint_retained"] = checkpoint_exists(run_dir, step.get("checkpoint"))
+
+
+def add_special_step_indices(progress: dict[str, Any], bucket: str, indices: list[int]) -> None:
+    checkpoints = progress.setdefault("checkpoints", {})
+    items = checkpoints.setdefault(bucket, [])
+    accepted_steps = progress.get("accepted_steps") or []
+    allowed = set(range(len(accepted_steps)))
+    merged = sorted({int(idx) for idx in items if int(idx) in allowed} | {int(idx) for idx in indices if int(idx) in allowed and int(idx) >= 0})
+    checkpoints[bucket] = merged
+
+
+def rolling_candidate_indices(progress: dict[str, Any], every_n: int) -> list[int]:
+    accepted_steps = progress.get("accepted_steps") or []
+    stride = max(1, int(every_n))
+    return [idx for idx, _ in enumerate(accepted_steps) if ((idx + 1) % stride) == 0]
+
+
+def milestone_context_indices(progress: dict[str, Any]) -> set[int]:
+    accepted_steps = progress.get("accepted_steps") or []
+    keep: set[int] = set()
+    for idx, step in enumerate(accepted_steps):
+        if not is_milestone_step(progress, step):
+            continue
+        keep.add(idx)
+        if idx >= 1:
+            keep.add(idx - 1)
+        if idx >= 2:
+            keep.add(idx - 2)
+    return keep
+
+
+def active_resume_indices(progress: dict[str, Any]) -> set[int]:
+    accepted_steps = progress.get("accepted_steps") or []
+    keep: set[int] = set()
+    if accepted_steps:
+        keep.add(len(accepted_steps) - 1)
+    if len(accepted_steps) >= 2:
+        keep.add(len(accepted_steps) - 2)
+    return keep
+
+
+def named_checkpoint_paths(progress: dict[str, Any]) -> set[str]:
+    checkpoints = progress.get("checkpoints") or {}
+    keep: set[str] = set()
+    for key in ("scaled_anchor_checkpoint", "bootstrap_previous_checkpoint"):
+        path = checkpoints.get(key)
+        if path:
+            keep.add(str(path))
+    return keep
+
+
+def checkpoint_retention_targets(progress: dict[str, Any]) -> tuple[set[int], set[str]]:
+    ensure_checkpoint_tracking(progress)
+    policy = checkpoint_policy_config(progress)
+    accepted_steps = progress.get("accepted_steps") or []
+    keep_step_indices = active_resume_indices(progress)
+    mode = str(policy["mode"])
+
+    if mode == "all":
+        keep_step_indices.update(range(len(accepted_steps)))
+    else:
+        if "rolling" in mode and int(policy["max_rolling_checkpoints"]) > 0:
+            eligible = rolling_candidate_indices(progress, int(policy["checkpoint_every_n_accepted_steps"]))
+            keep_step_indices.update(eligible[-int(policy["max_rolling_checkpoints"]):])
+        if "milestones" in mode and bool(policy["keep_milestone_checkpoints"]):
+            keep_step_indices.update(milestone_context_indices(progress))
+
+    checkpoints = progress.get("checkpoints") or {}
+    if bool(policy["keep_failure_checkpoints"]):
+        keep_step_indices.update(int(idx) for idx in checkpoints.get("failure_context_step_indices") or [])
+        keep_step_indices.update(int(idx) for idx in checkpoints.get("suspicious_step_indices") or [])
+
+    return keep_step_indices, named_checkpoint_paths(progress)
+
+
+def apply_checkpoint_policy(progress: dict[str, Any], run_dir: Path) -> dict[str, int]:
+    ensure_checkpoint_tracking(progress)
+    policy = checkpoint_policy_config(progress)
+    accepted_steps = progress.get("accepted_steps") or []
+    keep_step_indices, keep_named = checkpoint_retention_targets(progress)
+    active_indices = active_resume_indices(progress)
+    milestone_indices = milestone_context_indices(progress)
+    rolling_indices: set[int] = set()
+    if "rolling" in str(policy["mode"]) and int(policy["max_rolling_checkpoints"]) > 0:
+        rolling_indices = set(
+            rolling_candidate_indices(progress, int(policy["checkpoint_every_n_accepted_steps"]))[-int(policy["max_rolling_checkpoints"]):]
+        )
+    failure_indices = set(int(idx) for idx in (progress.get("checkpoints") or {}).get("failure_context_step_indices") or [])
+    suspicious_indices = set(int(idx) for idx in (progress.get("checkpoints") or {}).get("suspicious_step_indices") or [])
+
+    deleted = 0
+    for idx, step in enumerate(accepted_steps):
+        relpath = step.get("checkpoint")
+        tags: list[str] = []
+        if idx in active_indices:
+            tags.append("active")
+        if idx in milestone_indices:
+            tags.append("milestone")
+        if idx in rolling_indices:
+            tags.append("rolling")
+        if idx in failure_indices:
+            tags.append("failure_context")
+        if idx in suspicious_indices:
+            tags.append("suspicious")
+        step["checkpoint_tags"] = tags
+
+        if not relpath:
+            step["checkpoint_retained"] = False
+            continue
+
+        full_path = run_dir / Path(relpath)
+        should_keep = (str(policy["mode"]) == "all") or (idx in keep_step_indices)
+        if should_keep:
+            step["checkpoint_retained"] = full_path.exists()
+            continue
+
+        if bool(policy["prune_old_checkpoints"]):
+            if full_path.exists():
+                full_path.unlink()
+                deleted += 1
+            step["checkpoint_retained"] = False
+        else:
+            step["checkpoint_retained"] = full_path.exists()
+
+    referenced = {str(step.get("checkpoint")) for idx, step in enumerate(accepted_steps) if idx in keep_step_indices and step.get("checkpoint")}
+    referenced.update(keep_named)
+    if bool(policy["prune_old_checkpoints"]):
+        base = checkpoint_dir(run_dir)
+        if base.exists():
+            for file_path in base.rglob("*.npz"):
+                relpath = str(file_path.relative_to(run_dir)).replace("\\", "/")
+                if relpath not in referenced:
+                    file_path.unlink()
+                    deleted += 1
+
+    return {
+        "retained_step_checkpoints": sum(1 for step in accepted_steps if bool(step.get("checkpoint_retained"))),
+        "named_checkpoint_count": sum(1 for relpath in keep_named if checkpoint_exists(run_dir, relpath)),
+        "checkpoint_file_count": count_checkpoint_files(run_dir),
+        "deleted_checkpoint_count": int(deleted),
+    }
+
+
+def ensure_step_checkpoint_available(run_dir: Path, step_entry: dict[str, Any]) -> None:
+    relpath = step_entry.get("checkpoint")
+    if not relpath:
+        raise RuntimeError("Accepted step has no stored checkpoint path.")
+    if checkpoint_exists(run_dir, relpath):
+        return
+    q_value = float_or_none(step_entry.get("q_mpa"))
+    raise RuntimeError(
+        f"Checkpoint for q={q_value:.4f} MPa is not currently retained in this run directory. "
+        "Rerun the fast runner with a more archival checkpoint policy or keep that load as a milestone."
+    )
+
+
 def refresh_progress_summary(progress: dict[str, Any]) -> None:
+    ensure_checkpoint_tracking(progress)
     highest_q = current_highest_q(progress)
     accepted_steps = progress.get("accepted_steps") or []
     suggested: list[float] = []
@@ -272,12 +548,17 @@ def refresh_progress_summary(progress: dict[str, Any]) -> None:
         if any(abs(float(step.get("q_mpa")) - float(marker)) < 1.0e-9 for step in accepted_steps):
             if not any(abs(existing - float(marker)) < 1.0e-9 for existing in suggested):
                 suggested.append(float(marker))
+    run_dir = Path((progress.get("metadata") or {}).get("run_dir", FAST_RUN_DIR))
     progress["summary"] = {
         "highest_converged_q_mpa": highest_q,
         "terminal_failure_q_mpa": float_or_none((progress.get("state") or {}).get("terminal_failure_q_mpa")),
         "accepted_step_count": len(accepted_steps),
+        "retained_step_checkpoint_count": sum(1 for step in accepted_steps if bool(step.get("checkpoint_retained"))),
+        "named_checkpoint_count": sum(1 for relpath in named_checkpoint_paths(progress) if checkpoint_exists(run_dir, relpath)),
+        "checkpoint_file_count": count_checkpoint_files(run_dir),
         "failure_event_count": len(progress.get("failure_events") or []),
         "suggested_confirm_loads_mpa": suggested,
+        "checkpoint_policy": checkpoint_policy_config(progress),
         "status_convention": STATUS_CONVENTION,
     }
 

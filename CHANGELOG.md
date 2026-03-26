@@ -1,4 +1,69 @@
-﻿# CHANGELOG
+# CHANGELOG
+
+## 2026-03-26 - Add rolling+milestones checkpoint retention and untrack pilot-21 runtime cache
+
+Affected files:
+- `.gitignore`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/continuation_runtime.py`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_u_z_scaled_arc_like_continuation.py`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/confirm_u_z_scaled_arc_like_continuation.py`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_continuation_workflow.md`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/fast_progress.json`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/progress_log.jsonl`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/checkpoints/*`
+- `README.md`
+- `docs/project_map.md`
+- `CHANGELOG.md`
+
+- Added explicit checkpoint retention modes `all`, `rolling`, `milestones`, and `rolling+milestones`, with `rolling+milestones` as the default operational policy for the pilot-21 fast continuation runner.
+- Made the default policy retain only the bootstrap anchor files, the active resume pair, milestone-context checkpoints, a bounded rolling history, and any failure/suspicious context instead of keeping every accepted-step checkpoint.
+- Updated the confirm runner so it fails explicitly when a requested load was pruned from the local cache, rather than assuming every historical checkpoint is always retained.
+- Marked the pilot-21 runtime checkpoint directory and append-only progress log as local cache in `.gitignore`, kept `fast_progress.json` and `confirm_results.json` as the tracked summaries, and removed the previously tracked runtime cache files from the git index.
+- Validated the new default policy with a no-op prune refresh on the canonical `fast_run` directory and a separate ignored resume test in `output/`, where a pruned copy resumed from `6.0000` to `6.0050 MPa` and then reopened cleanly as a no-op run.
+
+## 2026-03-26 - Extend fast simple-support continuation to 6.0000 MPa and diagnose strict reproducibility drift
+
+Affected files:
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/fast_progress.json`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/progress_log.jsonl`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/confirm_results.json`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/confirm_5p0000_5p5000_6p0000_milestones.json`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_continuation_workflow.md`
+- `docs/theory/current_simple_support_status.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/theory/current_mixed_weak_theory_note.tex`
+- `docs/journal/project_journal_updated14.md`
+- `docs/theory/vyvod_uravneniy_updated17.md`
+- `docs/assumptions/assumptions.md`
+- `CHANGELOG.md`
+
+- Resumed the stored pilot-21 fast path from `4.5000 MPa` to `6.0000 MPa` without replaying the lower ladder, without changing the 6-state equations or the simple-support BC set, and without hitting a bounded failure event in the saved fast ladder.
+- Ran sparse milestone confirms at `5.0000`, `5.5000`, and `6.0000 MPa`; all three kept the same accepted seed, showed no branch-jump suspicion, and did not hit short failure probes through `6.0040 MPa`, while `strict_reproducible` stayed false throughout and `near_reproducible` turned false above `5.0 MPa` because the repeat drift gradually exceeded the current threshold.
+- Recorded a targeted diagnosis that the remaining `strict_reproducible = false` signal is presently dominated by the inherited pilot-12 threshold policy (`1e-7 / 1e-6`) rather than by clear branch loss: the observed repeat drift stays smooth, same-seed, and much smaller than the ordinary adjacent-step continuation drift.
+- Refreshed the pilot-21 workflow note and the key status/theory/project-memory documents so they now keep the audited `4.3800 MPa` ceiling explicit, keep `4.4000 MPa` as the strongest non-promoted milestone point, and record operational continuation evidence through `6.0000 MPa` plus short confirm probes through `6.0040 MPa`.
+
+## 2026-03-26 - Audit 4.4000 milestone and extend fast continuation to 4.5000
+
+Affected files:
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/fast_progress.json`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/progress_log.jsonl`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/confirm_results.json`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/confirm_4p4000_audit_pass1.json`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/confirm_4p4000_audit_pass2.json`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/confirm_4p4600_4p5000_milestones.json`
+- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_continuation_workflow.md`
+- `docs/theory/current_simple_support_status.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/theory/current_mixed_weak_theory_note.tex`
+- `docs/journal/project_journal_updated14.md`
+- `docs/theory/vyvod_uravneniy_updated17.md`
+- `docs/assumptions/assumptions.md`
+- `CHANGELOG.md`
+
+- Ran a stricter dedicated milestone audit at `4.4000 MPa`: two independent pointwise confirm passes stayed `near_reproducible` on the same accepted seed, showed no branch-jump suspicion, and did not hit a short failure probe through `4.4100 MPa`, but `strict_reproducible` still remained false.
+- Resumed the stored fast pilot-21 path through `4.4200`, `4.4400`, `4.4600`, `4.4800`, and `4.5000 MPa` without replaying the lower ladder, without changing the 6-state equations or the simple-support BC set, and without recording a bounded failure event in the saved fast ladder.
+- Ran sparse milestone confirms at `4.4600 MPa` and `4.5000 MPa`; both stayed `near_reproducible`, showed no branch-jump suspicion, and did not hit short failure probes through `4.4640 MPa` and `4.5040 MPa`, so the newer loads remain operational continuation evidence rather than a new canonical audited ceiling.
+- Refreshed the pilot-21 workflow note and the key status/theory/project-memory documents so they now distinguish the audited pilot-21 `4.3800 MPa` ceiling from the stronger-but-still-non-audited `4.4000 MPa` milestone audit and the newer operational continuation evidence through `4.5000 MPa`.
 
 ## 2026-03-26 - Add pilot 21 fast checkpointed continuation layer and full simple-support status sync
 

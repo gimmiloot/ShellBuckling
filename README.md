@@ -179,6 +179,11 @@ Input assumptions:
   `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_u_z_scaled_arc_like_continuation.py`
   plus the milestone confirm runner
   `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/confirm_u_z_scaled_arc_like_continuation.py`.
+  By default the fast layer now uses `--checkpoint-policy rolling+milestones`: raw
+  `fast_run/checkpoints/`, `progress_log.jsonl`, and ad hoc `confirm_*.json`
+  files are local runtime cache, while `fast_progress.json` and
+  `confirm_results.json` remain the compact tracked summaries. Use
+  `--checkpoint-policy all` only for debug/archive-style runs.
 
 Exact commands:
 

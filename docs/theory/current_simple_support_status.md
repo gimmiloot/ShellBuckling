@@ -1,4 +1,4 @@
-﻿# Current Simple-Support Operational Status
+# Current Simple-Support Operational Status
 
 ## Scope
 This file is the canonical operational snapshot for the separate active 6-state
@@ -31,18 +31,23 @@ Several load markers should now be kept separate:
 - old-path first persistent failure load: `4.3440 MPa`
 - best bounded method-sweep ceiling from pilot 20: `4.3520 MPa` (`u_z_scaled_state`)
 - best bounded staged continuation ceiling from pilot 21: `4.3800 MPa` (`u_z`-scaled continuation + auxiliary arc-like step adaptation)
-- current fast-engine checkpointed smoke run: `4.4000 MPa` (`fast_u_z_scaled_arc_like_continuation.py` + pointwise confirm), not yet promoted to the canonical audited ceiling language
+- stronger dedicated milestone point above the audited ceiling: `4.4000 MPa` (same accepted seed, repeated pointwise confirm, `near_reproducible = true`, no branch-jump suspicion, but `strict_reproducible = false`)
+- current fast-engine highest stored operational continuation load: `6.0000 MPa` (`fast_u_z_scaled_arc_like_continuation.py`), still kept separate from the canonical audited ceiling language
+- sparse milestone confirms at `5.0000`, `5.5000`, and `6.0000 MPa`: same accepted seed, no branch-jump suspicion, `strict_reproducible = false` throughout, and `near_reproducible = false` above `5.0 MPa` because the repeat drift gradually exceeds the current confirm threshold
 - best bounded staged continuation first failure in the audited pilot-21 ladder: not reached
-- current fast-engine pointwise confirm probe from the `4.4000 MPa` checkpoint: no failure reached through `4.4040 MPa`
+- current short confirm probes above the newer fast-engine checkpoints: no failure reached through `4.4100 MPa` from the dedicated `4.4000 MPa` audit and through `6.0040 MPa` from the sparse `5.0000 / 5.5000 / 6.0000 MPa` confirms
 
 The `4.3434 / 4.3440 MPa` pair is still the canonical old-path reference for
 the original single-domain rescue-local continuation workflow. The `4.3520 MPa`
 value remains the bounded pilot-20 method ceiling for the standalone
 `u_z`-scaled solve. The `4.3800 MPa` value remains the current audited
 pilot-21 continuation ceiling on the same 6-state equations and BC set. The
-new `4.4000 MPa` checkpoint belongs to the newer fast/resumable operational
-workflow and is being kept separate until it is promoted by a dedicated audited
-status pass. None of these values is a final physical critical load claim.
+`4.4000 MPa` point is still the strongest post-`4.3800 MPa` milestone because
+it already has repeated same-seed near-reproducible confirms and no
+branch-jump signal. The higher `5.0000..6.0000 MPa` points belong to the
+fast/resumable continuation workflow as operational continuation evidence with
+same-branch indicators, but without audit closure under the current confirm
+policy. None of these values is a final physical critical load claim.
 
 ## Current Barrier Interpretation
 The current reading is still mainly numerical, but now more sharply numerical
@@ -61,16 +66,34 @@ formulation / conditioning dominated:
   reproduced `4.3520 MPa` and carried the bounded staged ladder through
   `4.3550`, `4.3600`, `4.3700`, and `4.3800 MPa` with reproducible stage
   retests and no bounded failure in the packaged ladder;
-- the new fast/confirm operational split reuses the same equations and BCs,
-  adds checkpoint/resume, and in the current engineering smoke run moves the
-  stored path to `4.4000 MPa` while milestone confirm reruns stay
-  near-reproducible, show no branch-jump suspicion, and still do not hit a
-  short first-failure probe;
-- the dominant gradient ordering remains `u_z`, then `varphi`, then `T_s`.
+- the fast/confirm operational split reuses the same equations and BCs, adds
+  checkpoint/resume, and now carries the stored path through `4.4200`,
+  `4.4400`, `4.4600`, `4.4800`, `4.5000`, `4.6000`, `4.7000`, `4.8000`,
+  `4.9000`, `5.0000`, `5.2000`, `5.4000`, `5.6000`, `5.8000`, and `6.0000 MPa`
+  without a bounded failure event in the saved fast ladder;
+- a stricter dedicated audit at `4.4000 MPa` repeats the same accepted seed in
+  two independent pointwise confirm passes, stays `near_reproducible`, shows no
+  branch-jump suspicion, and does not hit a short failure probe through
+  `4.4100 MPa`, but still does not satisfy the stricter
+  `strict_reproducible` gate;
+- sparse confirms at `5.0000`, `5.5000`, and `6.0000 MPa` keep the same
+  accepted seed, show no branch-jump suspicion, and do not hit short failure
+  probes through `6.0040 MPa`, but their repeat drift grows smoothly from about
+  `2.30e-5` to `3.23e-5` in max-relative-L2, so they no longer satisfy the
+  current `near_reproducible` threshold above `5.0 MPa` even while remaining
+  much closer to the retest point than an ordinary adjacent continuation step;
+- the repeat drift is smooth and currently dominated by `M_s`, while the
+  strongest gradient ordering inside the accepted branch still remains `u_z`,
+  then `varphi`, then `T_s`;
+- the current `strict_reproducible` gate is still inherited from the older
+  pilot-12 threshold pair `1e-7 / 1e-6`, so the remaining strict-false signal
+  presently reads more like an open audit-policy / metric issue than like
+  evidence of branch loss.
 
 So the barrier still reads as numerical rather than as a verified physical fold,
-but the evidence now points even more strongly toward solver formulation /
-conditioning than toward raw right-edge mesh density by itself.
+and the newer data sharpen that reading toward solver formulation / conditioning
+plus confirm-policy sensitivity rather than toward a verified physical end of
+branch.
 
 ## Shallow / Non-Shallow Comparison Status
 The current shallow-comparison picture is unchanged:
@@ -100,7 +123,12 @@ workflow is now explicitly split into two layers:
   anchor/failure reference rather than merging it with the newer bounded
   ceilings;
 - keep the audited pilot-21 `4.3800 MPa` ceiling explicit even when the fast
-  runner temporarily moves higher in an operational smoke run;
+  runner temporarily moves higher in operational continuation runs;
+- treat the current `strict_reproducible` thresholds themselves as an open
+  audit-policy question before promoting loads above `4.3800 MPa` to audited
+  status;
+- keep the current pilot-21 controller cap `MAX_STEP_MPA = 0.0025` visible as a
+  runtime-policy bottleneck if the goal is a faster climb toward `~10 MPa`;
 - do not spend more time on simple edge-mesh concentration by itself;
 - do not reconnect the mixed-weak scans to this path yet;
 - keep reporting candidate loads as exploratory.

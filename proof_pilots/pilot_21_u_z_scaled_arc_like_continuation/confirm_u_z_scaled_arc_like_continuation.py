@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import argparse
 from pathlib import Path
@@ -23,6 +23,7 @@ def parse_args() -> argparse.Namespace:
 
 
 def load_step_point(run_dir: Path, accepted_steps: list[dict[str, Any]], index: int):
+    runtime.ensure_step_checkpoint_available(run_dir, accepted_steps[index])
     return runtime.load_point_checkpoint(run_dir, accepted_steps[index]["checkpoint"])
 
 
@@ -197,7 +198,6 @@ def main() -> None:
 
     print("=== Pilot 21 confirm runner ===")
     for item in results:
-        repro = item.get("reproducibility") or {}
         failure_probe = item.get("failure_probe") or []
         first_probe_failure = next((probe.get("q_target_mpa") for probe in failure_probe if not probe.get("success")), None)
         print(

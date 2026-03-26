@@ -1,4 +1,4 @@
-﻿# Журнал проекта
+# Журнал проекта
 
 ## 1. Паспорт проекта
 
@@ -290,17 +290,42 @@ scans при этом по-прежнему не переподключены к
 background.
 
 ### 11.3. Что уже показал новый fast/confirm слой
-Локальный инженерный smoke run нового fast runner уже дошел до `4.4000 MPa`, а
-pointwise confirm для milestone loads не дал branch-jump suspicion и не нашел
-короткую bounded first-failure neighborhood вплоть до `4.4040 MPa`.
+Локальный инженерный fast ladder нового resumable runner теперь уже дошел до
+`6.0000 MPa` и не дал в сохраненной лестнице bounded first failure. Короткие
+sparse confirm probes также не показали bounded failure через `6.0040 MPa`.
 
-Эти новые fast-run значения пока не нужно автоматически продвигать в роль
-канонического audited ceiling. На уровне project-state это означает следующее:
+При этом для `4.4000 MPa` остается более строгий milestone-audit: две
+независимые pointwise confirm-проверки дают один и тот же accepted seed,
+остаются `near_reproducible`, не показывают branch-jump suspicion и не дают
+короткого bounded failure probe вплоть до `4.4100 MPa`, но
+`strict_reproducible` все еще остается `false`.
 
-- practical continuation architecture стала заметно лучше приспособлена к
-  подъему к нагрузкам порядка `10 MPa`;
-- но новый candidate load по-прежнему не следует объявлять final physical
-  critical load;
-- канонический audited status для separate simple-support path пока остается
-  привязанным к явно задокументированным маркерам `4.3434 / 4.3440`, `4.3520`,
-  `4.3800`.
+Sparse milestone-confirm для `5.0000`, `5.5000` и `6.0000 MPa` тоже идет по
+тому же accepted seed и не показывает branch-jump suspicion, но здесь уже
+важно различать две вещи: branch discipline и confirm policy. По branch
+indicators эти точки все еще выглядят как продолжение той же ветви, однако
+`near_reproducible` выше `5.0 MPa` уже становится `false`, потому что repeat
+solution drift плавно выходит выше текущего порога `2e-5` по max-relative-L2.
+Сам drift при этом остается малым, гладким и по-прежнему заметно меньше
+обычного соседнего continuation-step drift; он сейчас в первую очередь
+`M_s`-dominated, а не похож на резкий branch-loss signal.
+
+На уровне project-state это дает следующую более точную картину:
+
+- practical continuation architecture уже действительно приспособлена к
+  дальнейшему подъему без повторного прогрева всей ветви снизу: участок от
+  `4.5000` до `6.0000 MPa` занял около `35 s` суммарно по двум resume-run,
+  а sparse confirm на `5.0000 / 5.5000 / 6.0000 MPa` занял около `1 s`;
+- текущий канонический audited status для separate simple-support path все еще
+  остается привязанным к явно задокументированным маркерам `4.3434 / 4.3440`,
+  `4.3520`, `4.3800`;
+- `4.4000 MPa` остается самой сильной post-`4.3800 MPa` milestone-точкой, но
+  не продвигается в роль нового audited ceiling из-за незакрытого strict
+  reproducibility gate;
+- значения `5.0000..6.0000 MPa` нужно продолжать держать как operational
+  continuation evidence, а не как final physical critical load;
+- методический bottleneck сейчас выглядит скорее как вопрос confirm-metric /
+  threshold policy и runtime step-policy, чем как доказанный physical end of
+  branch; отдельно видно, что текущий cap `MAX_STEP_MPA = 0.0025` уже стал
+  следующим инженерным ограничителем для дальнейшего ускорения подъема к
+  нагрузкам порядка `10 MPa`.

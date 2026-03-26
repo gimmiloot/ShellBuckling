@@ -1,4 +1,4 @@
-﻿# Current Theory Verification Map
+# Current Theory Verification Map
 
 ## 1. Introduction
 
@@ -429,15 +429,32 @@ not that every one of them is already article-level proven.
   and `4.3800 MPa` with reproducible stage retests and no bounded failure in
   the packaged ladder. A newer checkpointed fast/confirm layer now reuses the
   same equations, BCs, and scaled continuation kernel in a more operational
-  form: a first from-scratch fast run reaches `4.3900 MPa`, resume runs carry
-  the stored path to `4.4000 MPa`, and the pointwise confirm runner stays
-  near-reproducible at selected milestone loads with no branch-jump suspicion
-  and no short first-failure probe through `4.4040 MPa`. This newer `4.4000 MPa`
-  value is still operational evidence rather than the current canonical audited
+  form: the first from-scratch fast run reaches `4.3900 MPa`, later resume runs
+  carry the stored path first through `4.5000 MPa` and then onward through
+  `4.6000`, `4.7000`, `4.8000`, `4.9000`, `5.0000`, `5.2000`, `5.4000`,
+  `5.6000`, `5.8000`, and `6.0000 MPa` without a bounded failure event in the
+  saved ladder. A dedicated `4.4000 MPa` milestone audit repeats the same
+  accepted seed in two independent pointwise confirm passes, stays
+  `near_reproducible`, shows no branch-jump suspicion, and does not hit a short
+  failure probe through `4.4100 MPa`, but still leaves
+  `strict_reproducible = false`. Sparse confirms at `5.0000`, `5.5000`, and
+  `6.0000 MPa` keep the same accepted seed, show no branch-jump suspicion, and
+  do not hit short first-failure probes through `6.0040 MPa`, but their repeat
+  drift gradually grows from about `2.30e-5 / 1.56e-4` to
+  `3.23e-5 / 2.23e-4` in the max-relative-L2 / max-relative-max metrics, so
+  they no longer satisfy the current `near_reproducible` threshold above
+  `5.0 MPa` even while remaining smooth, `M_s`-dominated, and still much
+  smaller than the ordinary adjacent-step branch drift. Because the strict gate
+  is still inherited from pilot 12 as `1e-7 / 1e-6`, the present
+  `strict_reproducible = false` signal is now better read as an open
+  audit-policy / metric issue than as evidence that the branch has physically
+  ended or jumped. These newer `4.4000..6.0000 MPa` values are still
+  operational continuation evidence rather than the current canonical audited
   ceiling, so the bottleneck remains on the numerical side and now more
-  specifically on formulation / conditioning sensitivity than on a simple
-  raw-mesh limit or a verified physical end of branch. The active mixed-weak
-  scans still use the reduced 5-state `F_min` background.
+  specifically on formulation / conditioning sensitivity plus confirm-policy
+  sensitivity rather than on a simple raw-mesh limit or a verified physical end
+  of branch. The active mixed-weak scans still use the reduced 5-state `F_min`
+  background.
 - Verification method:
   project-state analysis, numerical testbench.
 - Verification boundary:
@@ -449,10 +466,11 @@ not that every one of them is already article-level proven.
   fast runner plus a milestone confirm runner, keep the `4.3434 / 4.3440 MPa`
   pair explicit as the canonical old-path anchor/failure reference, keep the
   audited `4.3800 MPa` pilot-21 ceiling explicit even when newer fast-run
-  checkpoints move higher, stop spending time on simple edge-mesh concentration
-  alone, and use the pilot-16/pilot-17 BC-aligned shallow comparator plus the
-  pilot-18 diagnosis before considering any reconnection to the mixed-weak
-  scans.
+  checkpoints move higher, treat the current strict-threshold policy itself as
+  an open method question before promoting higher loads to audited status, stop
+  spending time on simple edge-mesh concentration alone, and use the
+  pilot-16/pilot-17 BC-aligned shallow comparator plus the pilot-18 diagnosis
+  before considering any reconnection to the mixed-weak scans.
 
 ### V-ST2. Stabilize the background before promoting `q_cr`
 

@@ -1,4 +1,4 @@
-﻿# Вывод уравнений — обновлённая версия
+# Вывод уравнений — обновлённая версия
 
 ## Статус документа
 
@@ -350,45 +350,65 @@ n_cr = 13.
 - bounded audited pilot-21 ceiling для `u_z`-scaled continuation + auxiliary arc-like control: `4.3800 MPa`.
 
 Поверх этого теперь существует быстрый checkpointed continuation + pointwise
-confirm workflow на тех же уравнениях и тех же BC, который в текущем
-инженерном smoke run уже дошёл до `4.4000 MPa`, но пока не продвигается в этом
-файле как новый канонический audited ceiling.
+confirm workflow на тех же уравнениях и тех же BC, который уже довел
+operational continuation evidence до `6.0000 MPa`. Для `4.4000 MPa` при этом
+уже выполнен более строгий milestone-audit: две независимые pointwise
+confirm-проверки остаются near-reproducible на одном и том же accepted seed,
+не показывают branch-jump suspicion и не дают short failure probe через
+`4.4100 MPa`, но strict reproducibility пока все еще не закрыт, поэтому
+`4.4000 MPa` не продвигается как новый canonical audited ceiling.
+
+Более высокие sparse milestone-confirm на `5.0000`, `5.5000` и `6.0000 MPa`
+тоже идут по тому же accepted seed, не показывают branch-jump suspicion и не
+дают short failure probe через `6.0040 MPa`, однако выше `5.0 MPa` уже не
+попадают под текущий near-reproducible threshold: repeat-solve drift растет
+плавно, остается малым и заметно меньше обычного соседнего continuation-step
+расхождения, но выходит выше текущего confirm-порога. Поэтому и эти точки пока
+следует читать как operational continuation evidence, а не как новый audited
+ceiling.
 
 Этот набор фактов относится к **текущей численной реализации continuation- и
 confirm-алгоритмов**, а не автоматически к физической критической нагрузке.
 
-**Проверено:** да, по серии dedicated proof pilots и новому checkpointed fast run.
+**Проверено:** да, по серии dedicated proof pilots и checkpointed fast/confirm run.
 
-**Не проверено:** не доказано, что достигнутый на сегодня continuation ceiling
+**Не проверено:** не доказано, что достигнутый на сегодня operational ceiling
 совпадает с физической предельной точкой осесимметрической ветви.
 
 ---
 
 ### 2.4.4. Ни old-path барьер около `4.344 MPa`, ни ранние срывы около `4.36 MPa` нельзя считать физическим критическим давлением
 
-Зафиксировано, что FEM для той же задачи даёт критическую нагрузку порядка
+Зафиксировано, что FEM для той же задачи дает критическую нагрузку порядка
 `10 MPa`, а в литературе по круглым пластинам и annular plates отдельно
-подчёркивается, что при hinged support и больших нагрузках уравнения пологих
+подчеркивается, что при hinged support и больших нагрузках уравнения пологих
 оболочек хуже описывают докритическое состояние и требуется более общая
 shell-theory постановка.
 
 Кроме того, сам continuation ceiling заметно меняется без изменения equations и
-без изменения simple-support BC set: old-path даёт `4.3434 / 4.3440 MPa`,
+без изменения simple-support BC set: old-path дает `4.3434 / 4.3440 MPa`,
 pilot 20 поднимает bounded ceiling до `4.3520 MPa`, pilot 21 — до
-`4.3800 MPa`, а новый checkpointed fast workflow локально идёт до `4.4000 MPa`
-и в коротком confirm probe не показывает bounded first failure до `4.4040 MPa`.
+`4.3800 MPa`, а новый checkpointed fast workflow локально идет до `6.0000 MPa`
+и не показывает bounded failure даже в short confirm probes через `6.0040 MPa`.
+Для `4.4000 MPa` уже есть более строгий near-reproducible milestone-audit без
+branch-jump suspicion, а для `5.0000`, `5.5000` и `6.0000 MPa` confirm по
+той же ветви остается same-seed и no-branch-jump, но выходит за текущий
+near-reproducible threshold из-за малого гладкого drift'а repeat solve.
 
 Следовательно, ни старый барьер около `4.344 MPa`, ни более ранние неудачи
-около `4.36 MPa` нельзя интерпретировать как надёжно найденную физическую
-точку потери устойчивости. Текущий reading барьера остаётся прежде всего
-численным / conditioning-related.
+около `4.36 MPa` нельзя интерпретировать как надежно найденную физическую
+точку потери устойчивости. Текущий reading барьера остается прежде всего
+численным / conditioning-related; дополнительно теперь видно, что открытым
+остается и вопрос о том, насколько сама confirm-метрика для strict audit
+согласована с наблюдаемым smooth same-branch drift.
 
 **Проверено:** да, как проектный вывод.
 
 **Не проверено:** не локализовано окончательно, что именно ломается первым —
-перевод BC в переменные, сам осесимметрический BVP или continuation-алгоритм;
-не доказано и то, что текущая ветвь действительно продолжается до физического
-предела без скрытого branch change.
+перевод BC в переменные, сам осесимметрический BVP, continuation-алгоритм или
+слишком жесткая audit-policy для repeat solve; не доказано и то, что текущая
+ветвь действительно продолжается до физического предела без скрытого branch
+change.
 
 ---
 

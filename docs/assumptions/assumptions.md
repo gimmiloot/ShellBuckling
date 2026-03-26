@@ -1,4 +1,4 @@
-﻿# Assumptions used in the project
+# Assumptions used in the project
 
 ## Статус документа
 
@@ -179,14 +179,15 @@
 **Как проверялось:**
 - сравнением с FEM-оценкой критической нагрузки порядка `10 MPa`;
 - анализом того, что continuation ceiling заметно сдвигается без изменения equations и без изменения simple-support BC set: old path `4.3434 / 4.3440 MPa`, pilot 20 `4.3520 MPa`, audited pilot 21 `4.3800 MPa`;
-- новым checkpointed fast run, который локально дошёл до `4.4000 MPa` и в коротком confirm probe не дал bounded first failure до `4.4040 MPa`;
+- новым checkpointed fast run, который локально дошел до `6.0000 MPa` без bounded failure в сохраненной ladder;
+- более строгим milestone-audit на `4.4000 MPa`, который в двух независимых pointwise confirm-проверках остается near-reproducible на том же accepted seed, не показывает branch-jump suspicion и не дает bounded failure до `4.4100 MPa`;
+- sparse confirm на `5.0000`, `5.5000` и `6.0000 MPa`, который не показывает bounded first failure до `6.0040 MPa`, сохраняет тот же accepted seed и отсутствие branch-jump suspicion, но выше `5.0 MPa` выходит за текущий near-reproducible threshold из-за малого гладкого repeat drift;
+- targeted diagnostic того, что strict-false сейчас в первую очередь задается текущей confirm-policy / threshold logic, а не явным branch-loss signal;
 - сопоставлением с литературой по hinged support.
 
 **Результат проверки:** такая интерпретация не выдерживает проверки.
 
 **Текущий статус:** **снято / отвергнуто**.
-
----
 
 ## A12. Главная проблема полной simple-support задачи — в осесимметрическом background solver’е
 
@@ -236,21 +237,21 @@
 
 ## A15. Для продвижения separate 6-state simple-support ветви к нагрузкам порядка `10 MPa` правильнее разделять быстрый checkpointed continuation и редкий confirm/audit
 
-**Формулировка.** Предполагается, что повторять тяжёлый pilot-style audit при каждом новом подъёме по нагрузке методически и вычислительно невыгодно; вместо этого лучше использовать один быстрый resumable runner на `u_z`-scaled + auxiliary arc-like workflow и отдельный confirm runner только для milestone-точек.
+**Формулировка.** Предполагается, что повторять тяжелый pilot-style audit при каждом новом подъеме по нагрузке методически и вычислительно невыгодно; вместо этого лучше использовать один быстрый resumable runner на `u_z`-scaled + auxiliary arc-like workflow и отдельный confirm runner только для milestone-точек.
 
 **Проверялось ли:** частично.
 
 **Как проверялось:**
 - прямой реализацией нового checkpoint/resume слоя поверх pilot 21;
 - from-scratch fast run до `4.3900 MPa`;
-- resume-run продолжением до `4.4000 MPa` без повторного прогрева всей ветви снизу;
-- milestone confirm run на сохранённых checkpoint’ах.
+- resume-run продолжением через `4.4200`, `4.4400`, `4.4600`, `4.4800` и `4.5000 MPa` без повторного прогрева всей ветви снизу;
+- двумя дополнительными resume-run, которые довели ветвь от `4.5000` до `6.0000 MPa` примерно за `35 s` суммарно без bounded failure;
+- dedicated `4.4000 MPa` milestone-audit и sparse confirm run на сохраненных checkpoint’ах для `5.0000`, `5.5000` и `6.0000 MPa`;
+- targeted comparison confirm-метрик на `4.4000`, `4.4600`, `4.5000`, `5.0000`, `5.5000` и `6.0000 MPa`.
 
-**Результат проверки:** как инженерная workflow-стратегия это уже выглядит существенно дешевле и лучше масштабируется, но это пока не математическое утверждение о самой физической ветви.
+**Результат проверки:** как инженерная workflow-стратегия это уже выглядит существенно дешевле и лучше масштабируется, но два открытых ограничения остаются явными: текущий strict reproducibility gate, похоже, слишком жесток относительно smooth same-branch drift, а текущий controller cap `MAX_STEP_MPA = 0.0025` уже сам становится следующим runtime bottleneck для дальнейшего ускорения подъема.
 
 **Текущий статус:** **частично подтверждено как operational strategy**, не как theorem-level claim.
-
----
 
 ## Короткая сводка по статусам
 
