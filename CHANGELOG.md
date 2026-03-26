@@ -1,5 +1,34 @@
 # CHANGELOG
 
+
+## 2026-03-26 - Run the first clean full simple-support critical-search campaign
+
+Affected files:
+- `docs/theory/current_simple_support_status.md`
+- `CHANGELOG.md`
+
+- Ran the first standalone clean full simple-support critical-search campaign with `tasks/run_full_simple_support_critical_search.py` on the honest 6-state background and the patched critical rows `[u_n(1), varphi(1), T_s(1), S(1), H(1)]` for modes `n=2..6`.
+- The moderate `0..15 MPa` campaign did not reach the expected `12..14 MPa` band because the clean program lost the honest background at `4.5 MPa`; narrow local refinements then pushed the same clean path only to about `4.3246 MPa` before another background failure near `4.3276 MPa`.
+- Recorded the current exploratory clean-program candidate loads as approximately `4.3215 MPa` (`n=2`), `4.3215 MPa` (`n=3`), `2.9 MPa` (`n=4`), `1.84 MPa` (`n=5`, but more oscillatory / sensitive), and `4.3154 MPa` (`n=6`), with the present unresolved bottleneck reading as honest-background continuation rather than a verified critical region near `12..14 MPa`.
+- Kept the scientific language conservative: no equations or BC meanings changed, the old hybrid path was not reused for this campaign, and the reported loads remain exploratory numerical candidates rather than final physical critical loads.
+
+
+## 2026-03-26 - Add standalone clean full simple-support critical-search program
+
+Affected files:
+- `src/shell_buckling/mixed_weak/full_simple_support_critical_search.py`
+- `tasks/run_full_simple_support_critical_search.py`
+- `docs/project_map.md`
+- `docs/theory/boundary_condition_task_audit.md`
+- `docs/theory/boundary_conditions_summary.md`
+- `docs/theory/current_simple_support_status.md`
+- `CHANGELOG.md`
+
+- Added a new standalone reusable core module and task wrapper for the full hinged/simple-support critical-load search, keeping it in `src/...` and `tasks/...` instead of treating it as a pilot-only script.
+- Reconnected the mixed-weak critical layer to the honest 6-state axisymmetric simple-support background, while keeping the preserved hybrid `F_min`-backed scan paths unchanged for comparison and diagnostics.
+- Fixed the clean critical-layer boundary reading for the new program to `[u_n(1), varphi(1), T_s(1), S(1), H(1)]`, and set the first-pass default circumferential range explicitly to `n=2..6` with no automatic legacy `13/14` targeted windows.
+- Updated the project map, BC audit, BC summary, and current simple-support status page so the repository now classifies the new path as the preferred clean full simple-support critical-search program while preserving the older hybrid scans.
+
 ## 2026-03-26 - Add validated-operational-milestone policy for post-audited simple-support loads
 
 Affected files:

@@ -1,167 +1,150 @@
-# Project Map
+﻿# Project Map
 
-This map describes the repository after the structural refactor.
-It covers the files and directories that exist in the current checkout.
-Historical branches discussed in the theory and journal documents remain part of
-project memory even when they are not present here as separate source files.
+This map describes the repository after the current conservative cleanup pass.
+It covers the files and directories present in the current checkout, while the
+historical theory/journal documents continue to preserve older branches and
+rejected directions.
 
-## Current main working direction
+## Current Main Working Direction
 
-- The active research path is the mixed-weak criterion branch with independent
-  circumferential channels `(v, S)` and `(psi, H, chi)`.
-- The main active code path is:
+- The active research direction is still the mixed-weak criterion branch with
+  independent circumferential channels `(v, S)` and `(psi, H, chi)`.
+- For the full hinged/simple-support physical target, the preferred clean
+  critical-search program is now:
+  - `src/shell_buckling/mixed_weak/full_simple_support_critical_search.py`
+  - `tasks/run_full_simple_support_critical_search.py`
+- The older mixed-weak scan paths are preserved as hybrid testbenches and still
+  matter for comparison and diagnostics:
   - `src/shell_buckling/mixed_weak/solver_simple_support_core.py`
   - `src/shell_buckling/mixed_weak/boundary_matrix_scan.py`
   - `tasks/run_mixed_weak_boundary_matrix_scan.py`
-- A nearby working variant is kept for targeted follow-up scans:
   - `src/shell_buckling/mixed_weak/solver_patched_core.py`
   - `src/shell_buckling/mixed_weak/boundary_matrix_targeted_scan.py`
   - `tasks/run_mixed_weak_targeted_scan.py`
-- Current mixed-weak candidate loads remain exploratory. The current
-  operational snapshot of the separate 6-state simple-support background path
-  lives in `docs/theory/current_simple_support_status.md`; the main open issue
-  is stabilizing and reconnecting that path to the active mixed-weak scans.
+- Current mixed-weak candidate loads remain exploratory. The operational memory
+  for the separate 6-state simple-support path lives in
+  `docs/theory/current_simple_support_status.md`.
 
-## Boundary-condition task separation
+## Boundary-Condition Task Separation
 
-- Moving clamp / sliding clamp (`подвижная заделка`) currently appears most
-  cleanly in the supporting axisymmetric comparison modules
-  `src/shell_buckling/supporting/dimensionless_background_comparison.py` and
-  `src/shell_buckling/supporting/determinant_criterion_comparison.py`, together
-  with their runnable wrappers in `experiments/supporting/`.
-- The active mixed-weak scan tasks are not yet a separate full simple-support
-  program. They reuse the older `F_min` background line, and the two active
-  scan variants currently differ on the second right-boundary row:
-  `M_s(1)` in the broad scan and `varphi(1)` in the targeted patched scan.
-- The full hinged/simple-support axisymmetric task
-  (`подвижный шарнир / simple support`) is now available as a separate active
-  full-state background path in
-  `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`,
-  with task wrappers in `tasks/`.
-  Its current ceiling, barrier interpretation, and next-step diagnosis are
-  maintained in `docs/theory/current_simple_support_status.md`; the path is
-  runnable but not yet reconnected to the active mixed-weak scans. The current
-  preferred high-load operational workflow above the audited pilot-21
-  `4.3800 MPa` ceiling is the pilot-21 checkpointed fast runner plus a separate
-  milestone confirm runner, while keeping any higher fast-run checkpoints
-  separate from the canonical audited status language until they are promoted
-  explicitly.
+- Moving clamp / sliding clamp (`РїРѕРґРІРёР¶РЅР°СЏ Р·Р°РґРµР»РєР°`) appears most cleanly in the
+  supporting comparison modules:
+  - `src/shell_buckling/supporting/dimensionless_background_comparison.py`
+  - `src/shell_buckling/supporting/determinant_criterion_comparison.py`
+  - `experiments/supporting/run_supporting_dimensionless_comparison.py`
+  - `experiments/supporting/run_supporting_determinant_comparison.py`
+- The preserved hybrid mixed-weak scan tasks still reuse the older `F_min`
+  background line. Their second right-boundary row differs:
+  - broad scan: `M_s(1)`
+  - targeted patched scan: `varphi(1)`
+- The honest full-state axisymmetric simple-support background is kept in:
+  - `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`
+  - `tasks/run_axisymmetric_simple_support_background.py`
+  - `tasks/run_axisymmetric_simple_support_background_report.py`
+  - `tasks/run_axisymmetric_simple_support_local_branch_following.py`
+- The new clean full simple-support critical-search path reconnects that honest
+  background to the patched critical layer with boundary rows
+  `[u_n(1), varphi(1), T_s(1), S(1), H(1)]` in:
+  - `src/shell_buckling/mixed_weak/full_simple_support_critical_search.py`
+  - `tasks/run_full_simple_support_critical_search.py`
+- The pilot-21 fast/confirm continuation path remains the preferred high-load
+  operational continuation workflow above the audited `4.3800 MPa` ceiling.
 
-## Active core
-
-- `src/shell_buckling/mixed_weak/solver_simple_support_core.py`
-  Reusable mixed-weak prototype for the broad hybrid simple-support-oriented
-  testbench. It still uses the older `F_min` continuation/background and its
-  boundary matrix currently uses the `M_s(1)` broad-scan row variant.
-
-- `src/shell_buckling/mixed_weak/solver_patched_core.py`
-  Patched working variant of the same mixed-weak prototype. It is kept as a
-  separate active branch for targeted numerical follow-up and currently uses the
-  `varphi(1)` right-boundary testbench row in the patched scan path.
-
-- `src/shell_buckling/mixed_weak/boundary_matrix_scan.py`
-  Reusable broad-scan module for the active mixed-weak boundary-matrix workflow.
-
-- `src/shell_buckling/mixed_weak/boundary_matrix_targeted_scan.py`
-  Reusable targeted-scan module for local follow-up around selected candidate
-  windows.
+## Active Core
 
 - `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`
-  Separate active full-state axisymmetric simple-support background module with
-  state `[T_s, T_sn, M_s, u_r, u_z, varphi]`, fixed-load solves first, and a
-  continuation wrapper added on top. Operational status is maintained in
-  `docs/theory/current_simple_support_status.md`, while the preferred
-  checkpointed high-load continuation wrappers now live in the pilot-21 package.
+  Honest 6-state axisymmetric simple-support background module with state
+  `[T_s, T_sn, M_s, u_r, u_z, varphi]` and BCs
+  `T_sn(x0)=0`, `u_r(x0)=0`, `varphi(x0)=0`, `T_s(1)=0`, `M_s(1)=0`, `u_z(1)=0`.
 
-## Runnable task scripts
+- `src/shell_buckling/mixed_weak/full_simple_support_critical_search.py`
+  Reusable clean mixed-weak critical-search core for the full hinged/simple-
+  support task. It uses the honest background plus the patched critical
+  boundary-row set `[u_n(1), varphi(1), T_s(1), S(1), H(1)]`.
 
-### Active tasks
+- `src/shell_buckling/mixed_weak/solver_simple_support_core.py`
+  Reusable mixed-weak prototype for the preserved broad hybrid testbench. It
+  still uses the older `F_min` continuation/background and the `M_s(1)` row.
 
-- `tasks/run_mixed_weak_boundary_matrix_scan.py`
-  Main active entry point for the broad mixed-weak scan.
+- `src/shell_buckling/mixed_weak/solver_patched_core.py`
+  Patched reusable operator core kept both for hybrid follow-up and for the new
+  clean simple-support critical-search program.
 
-- `tasks/run_mixed_weak_targeted_scan.py`
-  Active entry point for targeted follow-up scans.
+- `src/shell_buckling/mixed_weak/boundary_matrix_scan.py`
+  Preserved broad-scan hybrid boundary-matrix workflow.
+
+- `src/shell_buckling/mixed_weak/boundary_matrix_targeted_scan.py`
+  Preserved targeted hybrid boundary-matrix workflow.
+
+## Runnable Task Scripts
+
+### Active Tasks
+
+- `tasks/run_full_simple_support_critical_search.py`
+  Preferred clean runnable entry point for the standalone full simple-support
+  critical-load search. The first-pass default mode range is `n=2..6`.
 
 - `tasks/run_axisymmetric_simple_support_background.py`
-  Active entry point for the separate full-state simple-support background path.
+  Active entry point for the full-state axisymmetric simple-support background.
 
 - `tasks/run_axisymmetric_simple_support_background_report.py`
-  Compact diagnostic/report entry point for the same full-state background path.
+  Compact report entry point for the same full-state background path.
 
-### Proof-pilot operational runners
+- `tasks/run_axisymmetric_simple_support_local_branch_following.py`
+  Local branch-following entry point for the same honest background family.
+
+- `tasks/run_mixed_weak_boundary_matrix_scan.py`
+  Preserved runnable entry point for the broad hybrid mixed-weak scan.
+
+- `tasks/run_mixed_weak_targeted_scan.py`
+  Preserved runnable entry point for targeted hybrid follow-up scans.
+
+### Proof-Pilot Operational Runners
 
 - `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_u_z_scaled_arc_like_continuation.py`
-  Checkpointed fast continuation runner for the separate simple-support path,
-  with runtime-controlled step limits and explicit milestone retention.
+  Checkpointed fast continuation runner for the separate simple-support path.
 
 - `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/confirm_u_z_scaled_arc_like_continuation.py`
   Pointwise confirm/audit runner that reads fast-run checkpoints.
 
-- `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/`
-  Split artifact area for the pilot-21 operational path: `fast_progress.json`
-  and `confirm_results.json` are the compact tracked summaries, while raw
-  checkpoints, `progress_log.jsonl`, and ad hoc `confirm_*.json` outputs are
-  treated as local runtime cache and ignored from git by default. This layout
-  is now also the repo-wide convention for future proof-pilot fast runners.
-
 - `proof_pilots/pilot_22_exact_load_shallow_vs_current_simple_support_comparison/compare_exact_loads.py`
-  Supporting exact-load comparison pilot that plots the old shallow simple-support
-  system against the mapped current 6-state simple-support fields at selected
-  loads using exact shallow solves, an exact low-load 6-state solve at `4 MPa`,
-  and retained pilot-21 fast-run checkpoints at `7` and `10 MPa`.
+  Exact-load shallow-vs-current comparison pilot for selected loads.
 
-### Supporting tasks
+### Supporting Tasks
 
 - `experiments/supporting/run_supporting_determinant_comparison.py`
-  Runnable entry point for the determinant-based comparison workflow.
-
 - `experiments/supporting/run_supporting_dimensionless_comparison.py`
-  Runnable entry point for the dimensionless background-comparison workflow.
 
-## Supporting scripts and modules
+## Supporting And Legacy Material
 
 - `src/shell_buckling/supporting/determinant_criterion_comparison.py`
-  Supporting comparison module for shallow vs non-shallow determinant scans.
+  Supporting shallow/non-shallow determinant comparison module.
 
 - `src/shell_buckling/supporting/dimensionless_background_comparison.py`
-  Supporting diagnostic module for dimensionless fields and branch-A checks on
-  the axisymmetric comparison line that currently plays the moving-clamp /
-  sliding-clamp role in the repository discussion.
-
-## Archived / legacy path
+  Supporting axisymmetric comparison module.
 
 - `experiments/legacy/README.md`
-  Placeholder note for archived work. The current checkout does not contain
-  separate legacy source files from the older reduced/full branches.
+  Placeholder note for archived work; older branches remain preserved mainly in
+  the theory and journal documentation.
 
-- Historical legacy branches are still documented in:
-  - `docs/theory/vyvod_uravneniy_updated17.md`
-  - `docs/assumptions/assumptions.md`
-  - `docs/journal/project_journal_updated14.md`
-
-## Theory, assumptions, and project-state documents
+## Theory, Assumptions, And Project-State Documents
 
 - `docs/theory/vyvod_uravneniy_updated17.md`
   Main theory-development document.
 
 - `docs/theory/current_theory_verification_map.md`
-  Verification boundary and status map for the current mixed-weak theory.
+  Verification/status map for the current mixed-weak theory.
 
 - `docs/theory/current_mixed_weak_theory_note.tex`
   Compact supervisor-facing note for the current mixed-weak theory.
 
 - `docs/theory/current_simple_support_status.md`
   Canonical operational status page for the separate 6-state simple-support
-  background path.
+  path and for the preferred clean full simple-support critical-search program.
 
 - `docs/theory/boundary_condition_task_audit.md`
-  Audit note separating the moving-clamp, hybrid mixed-weak testbench, and full
+  Audit note separating the moving-clamp, hybrid mixed-weak, and full
   simple-support tasks.
-
-- `docs/project_layering_refactor_note.md`
-  Conservative note on safe layering improvements, current duplication, and
-  postponed risky refactors.
 
 - `docs/theory/boundary_conditions_summary.md`
   Compact BC summary table for the moving-clamp and simple-support tasks.
@@ -170,21 +153,10 @@ project memory even when they are not present here as separate source files.
   Register of active assumptions and their current status.
 
 - `docs/journal/project_journal_updated14.md`
-  Global project-state document with current stage, accepted/rejected paths, and
-  open problems.
+  Global project-state document with current stage, accepted/rejected paths,
+  and open problems.
 
-## Literature and reference material
-
-- `docs/literature/SOURCE_INDEX.md`
-  Literature map for the current project configuration.
-
-- `docs/literature/notes/*.md`
-  Repository-specific notes for the source literature.
-
-- `docs/literature/pdf/*.pdf`
-  Source PDFs and scans used for theory checks and comparison.
-
-## Top-level project files and folders
+## Top-Level Project Files And Folders
 
 - `README.md`
   Main human-oriented overview and manual run guide.
@@ -209,9 +181,6 @@ project memory even when they are not present here as separate source files.
 
 - `output/`
   Reserved directory for generated artifacts.
-
-- `notes/`
-  Present but empty in the current checkout.
 
 - `.venv/`, `__pycache__/`
   Local environment and generated cache folders, not scientific source files.

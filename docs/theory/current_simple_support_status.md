@@ -20,9 +20,59 @@ The active full-state simple-support background path is:
 - BC set: center `T_sn(x0)=0`, `u_r(x0)=0`, `varphi(x0)=0`; edge `T_s(1)=0`,
   `M_s(1)=0`, `u_z(1)=0`
 
-This path is separate from the active mixed-weak scans. The active mixed-weak
-scan tasks still use the older reduced `F_min` background and should not be read
-as the fully consistent simple-support background solver.
+This path is separate from the preserved hybrid mixed-weak scans. Those older
+scan tasks still use the reduced `F_min` background and should not be read as
+the fully consistent simple-support solver path. A new clean standalone
+critical-search program now also exists:
+
+- core module: `src/shell_buckling/mixed_weak/full_simple_support_critical_search.py`
+- task wrapper: `tasks/run_full_simple_support_critical_search.py`
+- critical-layer boundary rows: `[u_n(1), varphi(1), T_s(1), S(1), H(1)]`
+
+This new path reconnects the mixed-weak criticality layer to the honest full-
+state simple-support background without reusing the older `F_min` line.
+
+
+## First Clean Full Critical-Search Campaign
+The first full exploratory run of the standalone clean simple-support critical
+search has now been executed with:
+
+- runner: `tasks/run_full_simple_support_critical_search.py`
+- honest background BC set: center `T_sn(x0)=0`, `u_r(x0)=0`, `varphi(x0)=0`;
+  edge `T_s(1)=0`, `M_s(1)=0`, `u_z(1)=0`
+- critical rows: `[u_n(1), varphi(1), T_s(1), S(1), H(1)]`
+- first mode range: `n=2..6`
+
+Current numerical reading from that clean program is still limited by the
+honest background continuation itself rather than by a detected high-load
+critical region:
+
+- the first moderate scan on `0..15 MPa` with 31 load points succeeded only
+  through `4.0 MPa` and then lost the background at `4.5 MPa`;
+- a narrow upper-edge refinement on `3.0..4.4 MPa` pushed the clean program to
+  `4.3 MPa` and then lost the background at `4.4 MPa`;
+- a second upper-edge refinement on `4.30..4.343 MPa` reached `4.3246 MPa` and
+  then failed at `4.3276 MPa`;
+- no clean-program search point reached the FEM-oriented `12..14 MPa` band in
+  this first campaign.
+
+Current exploratory candidate loads from the clean program are:
+
+- `n=2`: `4.3215 MPa`, smooth upper-edge local minimum before background loss;
+- `n=3`: `4.3215 MPa`, smooth upper-edge local minimum before background loss;
+- `n=4`: `2.9 MPa`, broad interior minimum on the refined grid;
+- `n=5`: about `1.84 MPa`, currently the lowest raw `sigma_bal` point but with
+  noticeably more local oscillation / sensitivity than the smoother `n=2,4,6`
+  trends;
+- `n=6`: `4.3154 MPa`, smooth upper-edge local minimum before background loss.
+
+So within the range currently reachable by the clean standalone program, the
+lowest raw criterion value comes from `n=5`, but the smoother and more
+numerically believable downward trends currently appear for `n=2` and `n=6` as
+both continue decreasing toward the same background-loss barrier near
+`4.32..4.33 MPa`. These are exploratory candidates only, not final physical
+critical loads.
+
 
 ## Current Reproducible Loads
 Several load markers should now be kept separate:
@@ -201,15 +251,19 @@ workflow is now explicitly split into two layers:
   runtime-controlled step policy for operational climbing so `--max-step-mpa`
   is no longer silently shadowed by the historical cap;
 - do not spend more time on simple edge-mesh concentration by itself;
-- do not reconnect the mixed-weak scans to this path yet;
+- use the new standalone clean critical-search program `tasks/run_full_simple_support_critical_search.py` when the goal is the consistent full simple-support mixed-weak search rather than the preserved hybrid testbenches;
+- keep the preserved hybrid scan wrappers separate and readable as legacy/exploratory testbenches rather than as the preferred clean simple-support solver;
+- treat the present clean-program bottleneck as a background-continuation issue: the standalone search now works and yields exploratory mode candidates, but with its current honest background stepping it still loses the branch near `4.32..4.5 MPa` and therefore does not yet probe the expected `12..14 MPa` region;
+- the next unresolved engineering step before a real clean `12..15 MPa` search is to give this standalone critical-search path access to the same kind of robust high-load background continuation discipline already demonstrated separately on the 6-state simple-support path, without falling back to the old hybrid `F_min` line;
 - keep reporting candidate loads as exploratory.
 
 ## Canonical Runnable Entry Points
-Baseline and report entry points:
+Baseline, report, and clean critical-search entry points:
 
 - `tasks/run_axisymmetric_simple_support_background.py`
 - `tasks/run_axisymmetric_simple_support_background_report.py`
 - `tasks/run_axisymmetric_simple_support_local_branch_following.py`
+- `tasks/run_full_simple_support_critical_search.py`
 
 Canonical bounded high-load / diagnosis scripts:
 

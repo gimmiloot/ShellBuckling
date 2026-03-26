@@ -1,34 +1,30 @@
-# Boundary-Condition Task Audit
+﻿# Boundary-Condition Task Audit
 
 ## Purpose
-This note separates the boundary-condition tasks that are currently easy to mix
-up in the repository:
+This note separates the boundary-condition tasks that are easy to mix up in the
+repository:
 
-1. `подвижная заделка` / moving clamp / sliding clamp
-2. `подвижный шарнир` / hinged / `simple support`
+1. `РїРѕРґРІРёР¶РЅР°СЏ Р·Р°РґРµР»РєР°` / moving clamp / sliding clamp
+2. preserved hybrid mixed-weak scan/testbench paths
+3. `РїРѕРґРІРёР¶РЅС‹Р№ С€Р°СЂРЅРёСЂ` / hinged / `simple support`
 
-The goal is to state which runnable code paths belong to which task, where the
-current mixed-weak scan workflow is still hybrid, and where the documentation
-was previously ambiguous.
+The goal is to state which runnable code paths belong to which task and to make
+explicit where the clean full simple-support critical-search program now lives.
 
 ## Executive Result
-The repository now has a cleaner separation than before, but it is still not a
-fully closed two-path story.
+The current checkout now contains a role-explicit separation:
 
-What the current checkout now has is:
+- a supporting axisymmetric comparison path for the moving-clamp/sliding-clamp
+  side;
+- preserved hybrid mixed-weak scan paths that are simple-support-oriented at the
+  boundary-matrix level but still reuse the older `F_min` background;
+- a separate honest full-state axisymmetric simple-support background path;
+- a separate standalone clean full simple-support critical-search program that
+  reconnects the patched mixed-weak critical layer to that honest background.
 
-- a supporting axisymmetric comparison path whose written BC set matches the
-  moving-clamp / sliding-clamp side;
-- an active mixed-weak scan path that is `simple-support`-oriented at the
-  boundary-matrix level but still reuses the older `F_min` background;
-- a separate active full-state axisymmetric simple-support background path,
-  whose current operational state is tracked in
-  `docs/theory/current_simple_support_status.md`, and which is not yet
-  connected to the mixed-weak scans.
+## Runnable Scripts By Task
 
-## Runnable Scripts by Task
-
-### 1. Moving clamp / sliding clamp side (`подвижная заделка`)
+### 1. Moving clamp / sliding clamp side (`РїРѕРґРІРёР¶РЅР°СЏ Р·Р°РґРµР»РєР°`)
 
 Runnable scripts:
 
@@ -47,11 +43,11 @@ BCs written down in code:
 
 Audit interpretation:
 
-- This is the clearest runnable axisymmetric BC path in the checkout that
-  matches the moving-clamp / sliding-clamp side of the project comparison.
+- This is the clearest runnable axisymmetric BC path in the checkout for the
+  moving-clamp / sliding-clamp side.
 - It is supporting comparison tooling, not the main mixed-weak criterion path.
 
-### 2. Active mixed-weak scan/testbench path
+### 2. Preserved hybrid mixed-weak scan/testbench path
 
 Runnable scripts:
 
@@ -65,56 +61,23 @@ Code path:
 - `src/shell_buckling/mixed_weak/solver_patched_core.py`
 - `src/shell_buckling/mixed_weak/boundary_matrix_targeted_scan.py`
 
-Shared axisymmetric background actually used in both mixed-weak cores:
+Shared axisymmetric background actually used there:
 
 - center/background BCs: `Q_0(x0)=0`, `r_0(x0)=x0`, `varphi_0(x0)=0`
 - edge/background BCs: `T_{s0}(1)=0`, `varphi_0(1)=0`
 
-This means the active mixed-weak scans still reuse the older `F_min`
-axisymmetric background line rather than a separately stabilized full
-`simple support` background solver.
-
-#### Broad scan variant
-
-Runnable script:
-
-- `tasks/run_mixed_weak_boundary_matrix_scan.py`
-
 Actual right-boundary matrix rows in code:
 
-- `[u_n(1), M_s(1), T_s(1), S(1), H(1)]`
+- broad scan: `[u_n(1), M_s(1), T_s(1), S(1), H(1)]`
+- targeted patched scan: `[u_n(1), varphi(1), T_s(1), S(1), H(1)]`
 
-Documentation issue:
+Audit interpretation:
 
-- the core file still contains an earlier nearby comment about
-  `u_n(1), varphi(1), T_s(1), S(1), H(1)`, but the actual `bvec` used by the
-  broad scan is the `M_s(1)` variant;
-- `boundary_matrix_scan.py` prints row labels with `M_s(1)`.
+- This remains an **exploratory hybrid testbench path**.
+- It should not be relabeled as a finalized physical simple-support solver.
+- It is preserved for comparison and diagnostics.
 
-#### Targeted patched variant
-
-Runnable script:
-
-- `tasks/run_mixed_weak_targeted_scan.py`
-
-Actual right-boundary matrix rows in code:
-
-- `[u_n(1), varphi(1), T_s(1), S(1), H(1)]`
-
-Documentation issue:
-
-- this matches the pilot-backed mixed-weak testbench boundary logic, but it is
-  still paired with the older `F_min` background rather than a full
-  `simple support` axisymmetric background solver.
-
-Audit interpretation of the active mixed-weak path:
-
-- It is an **exploratory hybrid testbench path**.
-- It should not be relabeled as a finalized physical `simple support` solver.
-- It is also not identical to the moving-clamp comparison path, because its
-  right-boundary criterion is different.
-
-### 3. Full hinged / simple-support task (`подвижный шарнир / simple support`)
+### 3. Full hinged / simple-support task (`РїРѕРґРІРёР¶РЅС‹Р№ С€Р°СЂРЅРёСЂ / simple support`)
 
 Written down in theory-facing documents:
 
@@ -128,84 +91,26 @@ BCs written down there for the full axisymmetric problem:
 
 Repository status:
 
-- this task is documented as the intended full `simple support` background
-  problem;
-- a separate active full-state background path now exists in
+- the honest full-state background path exists in
   `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`;
-- that path is runnable but not yet closed; its current operational status
-  is tracked in `docs/theory/current_simple_support_status.md`, and it is not
-  yet connected to the active mixed-weak scans.
-
-## Where the BCs Are Currently Stated
-
-### In code
-
-- Moving-clamp/sliding-clamp-side BCs appear in the supporting axisymmetric
-  comparison modules.
-- The shared `F_min` background BCs appear in both active mixed-weak cores.
-- The broad and targeted mixed-weak scans use different second right-boundary
-  rows: `M_s(1)` in the broad scan, `varphi(1)` in the targeted patched scan.
-
-### In `README.md`
-
-Before this audit, the active mixed-weak scans were described simply as the
-`simple-support branch`, without explaining that:
-
-- they still reuse the older `F_min` background;
-- the broad and targeted scan variants do not use the same right-boundary row
-  set;
-- a clean full `simple support` background program is not yet present.
-
-### In `docs/project_map.md`
-
-Before this audit, the project map called the active mixed-weak core the
-`simple-support line`, but it did not separate:
-
-- the supporting moving-clamp/sliding-clamp axisymmetric comparison path,
-- the hybrid mixed-weak scan/testbench path,
-- the then-still-missing full simple-support background program.
-
-### In `docs/theory/current_mixed_weak_theory_note.tex`
-
-The theory note correctly states the pilot-backed mixed-weak testbench boundary
-logic
-
-- `u_n(1)=0`, `varphi(1)=0`
-- natural `T_s(1)=0`, `S(1)=0`, `H(1)=0`
-
-but by itself it did not make sufficiently explicit that this is not yet the
-same thing as the full axisymmetric `simple support` background task.
-
-### In `docs/assumptions/assumptions.md`
-
-The assumptions file already records that:
-
-- the earlier `simple support` interpretation was too strong;
-- a full `simple support` background requires `T_s(1)=0`, `M_s(1)=0`, `u_z(1)=0`;
-- the main open bottleneck is the axisymmetric `simple support` background.
-
-## Where the Documentation Was Incomplete or Ambiguous
-
-The pre-audit ambiguities were:
-
-- `solver_simple_support_core.py` and README language suggested a clean
-  `simple support` path even though the active scans still reuse the older
-  `F_min` background;
-- the broad and targeted mixed-weak scan variants were not documented as using
-  different second right-boundary rows;
-- the repository did not yet have one compact place that separated moving clamp,
-  full `simple support`, and the current hybrid mixed-weak testbench.
+- the standalone clean full simple-support critical-search program now exists in
+  `src/shell_buckling/mixed_weak/full_simple_support_critical_search.py`, with
+  runnable entry point `tasks/run_full_simple_support_critical_search.py`;
+- this new clean path uses the honest background BC set together with the
+  patched critical-layer boundary rows `[u_n(1), varphi(1), T_s(1), S(1), H(1)]`;
+- the older hybrid mixed-weak scan tasks remain preserved and separate from this
+  clean full simple-support program.
 
 ## Audit Conclusion
+Current separation status: **cleaner and now role-explicit**.
 
-Current separation status: **not clean enough before documentation repair**.
-
-After the documentation updates linked to this audit, the intended reading is:
+The intended reading is now:
 
 - supporting axisymmetric comparison scripts -> moving-clamp / sliding-clamp side;
-- active mixed-weak scan scripts -> hybrid simple-support-oriented testbench,
+- preserved mixed-weak scan scripts -> hybrid simple-support-oriented testbench,
   still using the older `F_min` background;
-- full `simple support` axisymmetric background task -> separate active full-state
-  background path now exists; its operational state is tracked in
-  `docs/theory/current_simple_support_status.md`, and it is still not yet the
-  background used by the active mixed-weak scans.
+- full `simple support` axisymmetric background task -> separate honest full-state
+  background path;
+- full `simple support` critical-load search -> separate standalone clean program
+  that uses the honest full-state background together with the patched mixed-weak
+  critical boundary rows.
