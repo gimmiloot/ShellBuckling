@@ -290,17 +290,33 @@ space, который должен задавать theorem-level criticality.
 - CAS / algebra checks для leading center block и двухпараметрической
   parameterization regular leading data;
 - live checks для rank / dimension facts и для совпадения `im(V_adm)` с
-  current KKT-selected amplitude family на representative clean points.
+  current KKT-selected amplitude family на representative clean points;
+- отдельным principal-part local derivation helper для leading singular block
+  current mixed equations.
 
 **Результат проверки:** текущий repository теперь знает следующее точно:
 - leading admissible center data действительно двумерны;
+- singular leading block current principal center model тоже использует те же
+  free amplitudes `(A_us, A_phi)`;
 - `A_repo = im(V_adm)` совпадает с exact current KKT-selected amplitude family
   внутри weighted trial ansatz;
-- но `A_repo` не равно всему coefficient-level space `ker(C_reg)`, и equality
-  между `A_repo` и full theorem-facing clean admissible tangent space пока не
-  доказана.
+- но fully frozen principal higher-order recurrence даёт более жёсткую
+  finite-order картину: generic full leading layer зануляется, next layer
+  оставляет только one-parameter membrane mode `T1`, а checked second layer
+  снова uniquely zero;
+- дополнительная C3c-проверка показала, что и restored first-finite center
+  coefficients current clean background тоже недостаточны: they start only at
+  `O(x^2)` / `O(x^3)` and do not alter the same lowest obstruction layer in
+  `R_Ts`, `R_Ms`, and `R_v`, so the richer checked local model still forces
+  `P0 = 0` generically on the active clean path;
+- поэтому equality между `A_repo` и full theorem-facing clean admissible tangent
+  space по-прежнему не доказана. Main missing ingredient now narrowed again:
+  нужен local ingredient that can act at the same lowest obstruction orders, or
+  же нужен пересмотр exact theorem-facing local comparison object; simply adding
+  the first omitted finite center coefficients is already known to be
+  insufficient.
 
-**Текущий статус:** **не подтверждено как theorem-level факт; закрыто только ansatz-level characterization текущего selected family**.
+**Текущий статус:** **не подтверждено как theorem-level факт; закрыты ansatz-level characterization текущего selected family, singular leading-block matching и finite-order frozen-principal obstruction, но full local/global completeness ещё открыта**.
 
 ## Короткая сводка по статусам
 

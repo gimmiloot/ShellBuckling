@@ -832,3 +832,51 @@ Affected files:
 - Added a sharper center-space derivation: in the current weighted basis only the `k = 0` coefficients contribute to the leading center block, the leading regular data is exactly two-parameter, but `C_reg = 0` alone still leaves a much larger coefficient space, so the present reduction cannot be declared continuum-lossless from center constraints alone.
 - Recorded the new ansatz-level closure: `A_repo = im(V_adm)` is now identified exactly with the current constrained least-squares amplitude family inside the weighted trial construction, while equality to the full theorem-facing clean admissible tangent space remains explicitly open.
 - Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, broad scans, or hybrid `F_min` reuse policy were changed.
+
+## 2026-03-27 - Derive the continuum/local leading family and isolate the higher-order completeness gap
+
+- Affected files:
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/assumptions/assumptions.md`
+- `docs/theory/vyvod_uravneniy_updated17.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Added a dedicated continuum/local helper for the next theorem-facing step after C3b: it extracts the current principal center block from the live mixed equations, derives the two-parameter leading clean center-regular family symbolically, and records the exact leading relations for `u_n`, `psi`, and `M_s`.
+- Recorded the stronger but still conservative closure boundary: the current repository now matches the continuum/local family at leading center order, not just at the weighted-trial ansatz level, but this still does not prove `A_full^th = A_ls`.
+- Isolated the exact new gap explicitly in the theory docs: the frozen principal truncation does not yet close the full higher-order local formal family, so the next theorem-facing step is a regular-singular center recurrence/completeness derivation rather than a criterion rewrite.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, broad scans, or hybrid `F_min` reuse policy were changed.
+
+## 2026-03-27 - Derive the finite-order frozen-principal recurrence pattern for clean `simple support / подвижный шарнир`
+
+- Affected files:
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`
+- `docs/theory/vyvod_uravneniy_updated17.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/assumptions/assumptions.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Replaced the earlier vague higher-order gap wording with an explicit finite-order frozen-principal recurrence result: the singular leading block stays two-parameter, the full frozen-principal leading layer is generically zero, the next checked layer leaves one membrane parameter, and the checked second layer is again uniquely zero.
+- Updated pilot 23 and the theory-facing docs so this finite-order obstruction is recorded conservatively as a formula-level result for the fully frozen principal model only, without upgrading it to theorem-level continuum completeness.
+- Clarified the next proof-oriented step: restore the first omitted finite center coefficients / forcing terms of the clean mixed equations and derive the richer regular-singular local recurrence there.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, broad scans, or hybrid `F_min` reuse policy were changed.
+
+## 2026-03-27 - Check the richer first-finite center layer for clean `simple support / подвижный шарнир`
+
+- Affected files:
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`
+- `docs/theory/vyvod_uravneniy_updated17.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/assumptions/assumptions.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Added the C3c theory-facing check for the richer local center model with the first omitted honest finite background terms, and recorded the exact restored center-term orders used in that layer.
+- Closed a sharper negative boundary than before: these first `O(x^2)` / `O(x^3)` center corrections do not change the same low-order obstruction layer in `R_Ts`, `R_Ms`, and `R_v`, so the checked richer local model still forces the `P0` branch to vanish generically on the active clean path.
+- Updated the pilot note, derivation file, verification map, assumptions register, and project journal conservatively so this is tracked as a formula-level obstruction result for the first restored finite-center layer only, not as theorem-level closure of `A_full^th = A_ls`.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, broad scans, or hybrid `F_min` reuse policy were changed.

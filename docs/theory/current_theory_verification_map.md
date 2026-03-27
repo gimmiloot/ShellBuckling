@@ -1,4 +1,4 @@
-﻿# Current Theory Verification Map
+# Current Theory Verification Map
 
 ## 1. Introduction
 
@@ -443,6 +443,124 @@ not that every one of them is already article-level proven.
   additional theorem beyond the current center constraints and selected-family
   construction.
 
+### V-S9. The singular leading center block is two-parameter in the current principal center model
+
+- ID: `V-S9`
+- Claim / Hypothesis:
+  In the current principal center model extracted from the live mixed
+  equations, the singular leading center block is parameterized by the same
+  amplitudes used by the current repository reduction, namely
+  `(u_s/x^n, varphi/x^(n-1))`, and determines the accompanying leading
+  relations for `u_n`, `psi`, `M_s`, and one `T_s` relation.
+- Type: `structural`
+- Source file(s):
+  `docs/theory/vyvod_uravneniy_updated17.md` section 1.10;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `src/shell_buckling/mixed_weak/solver_patched_core.py`.
+- Current status: `closed at the singular leading-block level`
+- What counts as verification:
+  symbolic extraction of the leading singular block from the current mixed
+  equations and explicit solution of the leading center relations for
+  `u_n`, `psi`, and `M_s` in terms of the two free amplitudes.
+- Verification method:
+  manual derivation, CAS.
+- Verification boundary:
+  this is not yet a full local formal family of the fully frozen principal
+  model; it is only the singular leading-block compatibility statement.
+- Next action:
+  compare that singular leading block with the full frozen-principal layer
+  equations instead of promoting it directly to continuum completeness.
+
+### V-F5. The full frozen principal leading layer is generically zero under nonresonance
+
+- ID: `V-F5`
+- Claim / Hypothesis:
+  Once the full frozen principal leading layer is assembled from
+  `R_us`, `R_un`, `R_Ts`, `R_gtheta`, `R_phi`, `R_Ms`, and `R_v`, its exact
+  determinant is generically nonzero, so the leading coefficient layer
+  `U0, N0, V0, P0, Y0, T0, M0` is forced to zero under nonresonance.
+- Type: `formula`
+- Source file(s):
+  `docs/theory/vyvod_uravneniy_updated17.md` section 1.10;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`.
+- Current status: `closed for the fully frozen principal leading layer`
+- What counts as verification:
+  a CAS derivation of the exact membrane and flexural leading determinants and
+  of the combined leading determinant in the frozen principal model.
+- Verification method:
+  CAS, manual derivation.
+- Verification boundary:
+  this is a formula-level statement only for the fully frozen principal model;
+  it does not disprove the existence of a richer continuum local family once the
+  omitted finite center coefficients are restored.
+- Next action:
+  inspect the next and subsequent frozen-principal layers instead of reading the
+  singular leading-block amplitudes as a completed local family.
+
+### V-F6. After the zero leading layer, the frozen principal recurrence shows a one-parameter next membrane mode and a zero checked second layer
+
+- ID: `V-F6`
+- Claim / Hypothesis:
+  After the leading frozen-principal layer is zero, the next coefficient layer
+  has full rank `7` and nullity `1`: it leaves one membrane parameter `T1`
+  free, forces `N1 = P1 = Y1 = M1 = Q0 = 0`, and determines `U1` and `V1`
+  from `T1`; after substituting that mode, the checked second layer is again
+  uniquely zero under nonresonance.
+- Type: `formula`
+- Source file(s):
+  `docs/theory/vyvod_uravneniy_updated17.md` section 1.10;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`.
+- Current status: `closed through the checked finite orders of the fully frozen principal model`
+- What counts as verification:
+  a CAS derivation of the next-layer rank/nullspace, the explicit membrane
+  nullvector and flexural determinant, and the invertible checked second-layer
+  system after substituting the generic next membrane mode.
+- Verification method:
+  CAS, manual derivation, representative live clean evaluation of the derived
+  determinant factors.
+- Verification boundary:
+  this is still a finite-order result for the fully frozen principal model; it
+  does not yet identify the full theorem-facing clean local family.
+- Next action:
+  restore the first omitted finite center coefficients / forcing terms of the
+  clean mixed equations and derive the richer regular-singular recurrence there.
+
+
+### V-F7. The first restored finite center coefficients do not change the low-order obstruction layer
+
+- ID: `V-F7`
+- Claim / Hypothesis:
+  After restoring the first honest finite center coefficients of the clean
+  background, the richer local model still leaves the same low-order
+  `P0`-obstruction in `R_Ts`, `R_Ms`, and `R_v`: the restored corrections start
+  only at `O(x^2)` / `O(x^3)`, while the decisive obstruction sits at
+  `x^(n-3)`, so the checked low-order formulas remain the same as in the
+  constant-finite model.
+- Type: `formula`
+- Source file(s):
+  `docs/theory/vyvod_uravneniy_updated17.md` section 1.10.7;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`.
+- Current status: `closed for the first restored finite-center layer`
+- What counts as verification:
+  explicit order counting showing that the restored terms cannot enter the same
+  obstruction layer, symbolic formulas for the unchanged low-order rows after
+  substituting the singular relations, and representative live clean evaluation
+  that `K = kappa_s0(x0)` and the derived obstruction factors stay far from
+  zero on the active competition set.
+- Verification method:
+  manual derivation, CAS, representative live clean evaluation.
+- Verification boundary:
+  this is still not a theorem-level description of the final local clean family;
+  it only shows that the first `O(x^2)` / `O(x^3)` background corrections are
+  insufficient to restore the expected two-amplitude continuation.
+- Next action:
+  identify a local ingredient that can act at the same lowest obstruction
+  orders, or reconsider the exact theorem-facing local comparison object before
+  trying to prove `A_full^th = A_ls`.
+
 ### V-N1. `sigma_min(B_mix(q)) = 0` is the current raw working criterion
 
 - ID: `V-N1`
@@ -723,15 +841,21 @@ Relatively solid inside the current repository boundary:
 - the exact ansatz-level characterization of the current selected reduced
   family `A_repo = im(V_adm)` as the KKT-selected amplitude family inside the
   weighted trial construction;
+- the singular leading-block center relations in the current principal center
+  model and their agreement with the amplitudes used by `A_ls`;
+- the finite-order frozen-principal obstruction pattern: zero full leading
+  layer, one-parameter next membrane mode, and zero checked second layer;
 - the use of raw `B_mix` as the current baseline criterion together with the
   clean `n = 4, 6, 7, 8` competition set as the live operational benchmark.
 
 Most urgent items to verify next:
 
-- the missing continuum/completeness theorem that would identify the current
-  selected family `im(V_adm)` with the full admissible clean center-regular
-  tangent problem, rather than only with the current weighted-ansatz/KKT
-  family;
+- restore the first omitted finite center coefficients / forcing terms and
+  derive the richer local regular-singular recurrence beyond the fully frozen
+  principal model;
+- after that, prove or disprove that the resulting fuller local family matches
+  the current selected family `im(V_adm)` rather than only the weighted-
+  ansatz/KKT family;
 - whether and when the reduced stacked operator can be replaced by the
   boundary-only object `B_red` / the raw baseline `B_mix`;
 - whether a genuine quadratic-form object exists on the reduced admissible
@@ -741,11 +865,13 @@ Most urgent items to verify next:
 
 Most valuable next proof pilots:
 
-1. A Lean-oriented abstraction pilot that formalizes the leading-data space,
-   the KKT-selected amplitude family, and the already-closed reduced-family
-   kernel equivalence.
-2. A theorem-oriented step that derives or proves completeness of the full
-   continuum clean admissible center-regular family relative to the current
+1. A Lean-oriented abstraction pilot that formalizes the singular leading-data
+   space, the KKT-selected amplitude family, and the already-closed reduced-
+   family kernel equivalence.
+2. A theorem-oriented local derivation that reinstates the first omitted finite
+   center coefficients and closes the richer regular-singular recurrence for the
+   continuum clean admissible family.
+3. A completeness step that compares that richer local family to the global
    weighted-ansatz/KKT construction.
-3. A C4 pilot that compares candidate spectral, generalized, and quadratic-form
+4. A C4 pilot that compares candidate spectral, generalized, and quadratic-form
    criteria on `L_red` and records exactly where equivalence holds or fails.

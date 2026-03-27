@@ -397,3 +397,298 @@ From the repository root:
 ```powershell
 .\.venv\Scripts\python.exe proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator\reduction_check.py
 ```
+
+## Continuum/local completeness step after C3b
+
+This pilot now also records the next theorem-facing step after C3b.
+
+### Exact target of the step
+
+The new target is to compare
+
+```text
+A_full^th,n(q)
+```
+
+the full theorem-facing clean admissible center-regular local tangent family,
+with
+
+```text
+A_ls,n(q) = im(M_amp,n(q)) = im(V_adm,n(q)),
+```
+
+the current weighted-trial KKT-selected two-parameter family.
+
+The sharpest currently tractable success statement is not full equality yet.
+It is:
+
+- derive the continuum/local leading regular family directly from the current
+  mixed equations at the principal center level;
+- prove whether it is two-parameter;
+- compare that leading local family to the current amplitudes used by `A_ls`;
+- identify the exact missing step between that local family and a full theorem-
+  level losslessness result.
+
+### What the new local helper checks
+
+`formal_local_family_check.py` introduces the current principal center model
+used only for the theorem-facing local-leading derivation:
+
+```text
+c0 -> 1,
+s0 -> 0,
+a0 -> 1/x,
+a0' -> -1/x^2,
+lambda_s0 -> lambda_c,
+lambda_theta0 -> 1,
+```
+
+while the fields are written in the current regular orders
+
+```text
+u_s = A_us x^n,
+u_n = A_un x^n,
+v = A_v x^n,
+varphi = A_phi x^(n-1),
+psi = A_psi x^(n-1),
+T_s = A_Ts x^(n-1),
+Q_s = A_Qs x^(n-2),
+M_s = A_Ms x^(n-2).
+```
+
+From the leading singular block of the live mixed equations it derives
+
+```text
+A_un = -(lambda_c / n) A_phi,
+A_psi = lambda_c A_phi,
+A_Ms  = ((n + nu - 1) + nu n lambda_c) A_phi / (Lambda (1 - nu^2)),
+```
+
+and one leading relation tying `A_Ts` to `A_us` and `A_v`.
+
+So the current mixed equations do support a two-parameter leading local center
+family parameterized by `(A_us, A_phi)`.
+
+### What remains open even after this local derivation
+
+The same helper also shows that the fully frozen principal truncation does not
+close the whole higher-order local family by itself: solving all frozen
+principal equations simultaneously does not produce a nontrivial closed family.
+
+So the current repository boundary after this step is:
+
+- the local **leading-order** clean center-regular family is two-parameter and
+  matches the same amplitudes used by `A_ls`;
+- this is stronger than a pure trial-space statement;
+- but a full local formal-completeness theorem still needs the next regular-
+  singular recurrence layer, and only after that can one compare the resulting
+  local family to the global weighted-trial KKT family in a lossless theorem-
+  level sense.
+
+### Resulting conservative reading
+
+After this step the project should read the situation as follows:
+
+- `A_ls = im(V_adm)` is exactly the current selected ansatz-level family;
+- the continuum/local principal center model yields the same two leading free
+  amplitudes;
+- therefore the current ansatz matches the continuum/local family at leading
+  order;
+- but full equality `A_full^th = A_ls` is still not proved, because the local
+  higher-order formal continuation / completeness step is still missing.
+
+## Higher-order frozen-principal recurrence refinement
+
+The next theorem-facing step after the previous leading-order note was to stop
+reading the singular leading block as if it were already a full local family,
+and instead assemble the full frozen principal layer-by-layer system on the same
+current scaling orders.
+
+### Exact target of this refinement
+
+The target here is intentionally narrower than a full continuum theorem:
+
+- keep the same current principal center replacements
+  `c0 -> 1`, `s0 -> 0`, `a0 -> 1/x`, `a0' -> -1/x^2`,
+  `lambda_s0 -> lambda_c`, `lambda_theta0 -> 1`;
+- do **not** yet restore the first omitted finite center coefficients;
+- derive the first checked recurrence layers of the fully frozen principal
+  model;
+- determine whether that fully frozen model really supports the expected clean
+  two-amplitude local family.
+
+### Finite-order result in the fully frozen principal model
+
+The symbolic helper now gives a sharper answer than the earlier leading-order
+reading.
+
+1. The singular leading block remains two-parameter in `(A_us, A_phi)` and
+   determines the accompanying leading relations for `u_n`, `psi`, and `M_s`.
+2. But once the full frozen principal leading layer is assembled from
+   `R_us`, `R_un`, `R_Ts`, `R_gtheta`, `R_phi`, `R_Ms`, and `R_v`, the exact
+   physical determinant becomes
+
+```text
+n^2 (2n - 1) (2n + 1)
+[lambda_c n nu^3 - lambda_c n nu^2 + lambda_c n
+ - 2 lambda_c nu^3 + 2 lambda_c nu^2 + lambda_c nu - 3 lambda_c
+ - n nu^3 + n nu^2 + n nu - 2]
+/ [2 (nu + 1)],
+```
+
+   so under generic nonresonance the full leading layer is forced to
+
+```text
+U0 = V0 = T0 = N0 = P0 = Y0 = M0 = 0.
+```
+
+3. After that zero leading layer, the next checked layer has full rank `7` and
+   nullity `1`. Its generic solution is
+
+```text
+N1 = P1 = Y1 = M1 = Q0 = 0,
+U1 = T1 (-n nu - n - 2 nu + 2) / (-n^2 + n + 2),
+V1 = T1 (n nu + n + 4) / (-n^2 + n + 2),
+```
+
+   so only one membrane parameter `T1` remains free. The denominator exposes
+   the same special factor `(n - 2)(n + 1)`.
+4. After substituting that generic next-layer membrane mode, the checked second
+   layer becomes invertible again and forces
+
+```text
+U2 = N2 = V2 = P2 = Y2 = T2 = M2 = Q1 = 0.
+```
+
+### Representative live clean check
+
+The helper evaluates the derived determinant factors on the representative clean
+competition set `(n, q) = (4, 11.1), (6, 17.6), (7, 17.3), (8, 17.8)` using the
+live clean value `lambda_c = lambda_s0(x0)`. On that set the leading full-layer
+factor, the next flexural determinant, and the checked second-layer determinant
+are all far from zero, so this finite-order pattern is not a sample-point
+resonance artifact on the current live clean path.
+
+### Conservative reading after this refinement
+
+This does **not** prove or disprove the theorem-facing equality
+`A_full^th = A_ls`.
+
+What it does prove is narrower and more useful:
+
+- the earlier two-amplitude principal-center statement must now be read only as
+  a singular leading-block compatibility result;
+- the fully frozen principal model itself does **not** realize the expected
+  clean two-amplitude local family through the checked finite orders;
+- therefore the next theorem-facing step is no longer “push the same frozen
+  model further”, but “restore the first omitted finite center coefficients /
+  forcing terms and derive the richer regular-singular recurrence there”.
+
+## C3c: Richer Local Center Model With First Omitted Finite Coefficients
+
+The next theorem-facing step was to restore the first honest finite center terms
+of the clean background instead of staying inside the fully frozen principal
+model.
+
+### What was restored
+
+At the richer local level the background is now read as
+
+```text
+c0 = 1 + O(x^2),
+s0 = K x + O(x^3),
+a0 = 1/x + O(x),
+a0' = -1/x^2 + O(1),
+lambda_s0 = lambda_c + O(x^2),
+lambda_theta0 = lambda_c + O(x^2),
+kappa_s0 = K + O(x^2),
+kappa_theta0 = K / lambda_c + O(x^2),
+T_s^0 = T_s^0(0) + O(x^2),
+T_theta^0 = T_theta^0(0) + O(x^2),
+M_theta^0 = M_theta^0(0) + O(x^2),
+T_sn^0 = Q1 x + O(x^3).
+```
+
+The honest background recurrence fixes the first omitted coefficients
+`Ts2, U3, K3, Ms2, Q3` uniquely. Their full CAS formulas are long, but the key
+point for C3c is their order: all of them enter only at `O(x^2)` or `O(x^3)`.
+
+### Exact C3c result
+
+This richer first-finite layer still does **not** repair the decisive low-order
+obstruction.
+
+By direct order counting:
+
+- in `R_Ts`, the obstruction layer sits in
+  `-(s0 c0 / r0^2) Mtheta ~ x^(-1) x^(n-2) = x^(n-3)`;
+- in `R_Ms`, the obstruction layer sits in
+  `Ms_x`, `a0 M_s`, `-a0 M_theta`, `-Q_s`, and `(n/x) H`, again at `x^(n-3)`;
+- in `R_v`, the obstruction layer sits in `kappa_theta0 chi` with
+  `chi ~ x^(n-3)`.
+
+Since the restored background corrections start only at `O(x^2)` or `O(x^3)`,
+they first affect these rows at `x^(n-1)` or higher. Therefore the low-order
+obstruction formulas remain exactly the same as in the constant-finite model.
+
+After the singular leading relations
+
+```text
+N0 = -(lambda_c / n) P0,
+Y0 = P0,
+M0 = (n - 1) P0 / [12 mu^2 (1 - nu^2)^2],
+```
+
+the unchanged low-order rows are
+
+```text
+R_Ts[-1] = -K P0 [lambda_c n nu - lambda_c nu + n + 1]
+           / [12 lambda_c^3 mu^2 (1 - nu^2)^2],
+
+R_Ms[-1] = -P0 [ ... ] / [12 lambda_c mu^2 (1 - nu^2)^2],
+
+R_v[-1]  =  K P0 n [ ... ] / [12 lambda_c^4 mu^2 (1 - nu^2)^2].
+```
+
+The simplest factor is already enough:
+
+```text
+lambda_c n nu - lambda_c nu + n + 1
+= lambda_c nu (n - 1) + n + 1 > 0
+```
+
+for the active nonshallow clean regime with `lambda_c > 0`, `nu > 0`, and
+`n >= 4`.
+
+So, whenever `K != 0`, the richer first-finite layer still forces
+
+```text
+P0 = 0.
+```
+
+### Representative live clean check
+
+On the current clean competition set `(n, q) = (4, 11.1), (6, 17.6), (7, 17.3),
+(8, 17.8)` the helper now confirms that
+
+- `K = kappa_s0(x0)` is nonzero on all sample points;
+- the `R_Ts[-1]`, `R_Ms[-1]`, and `R_v[-1]` obstruction factors are all far
+  from zero.
+
+So the richer first-finite-corrections layer does not rescue a nontrivial
+`P0` branch on the live clean path either.
+
+### Conservative reading after C3c
+
+This is **not** a theorem-level proof about the final clean local family.
+But it is already a stronger negative boundary than before:
+
+- the fully frozen principal model was too crude;
+- restoring the first omitted finite center coefficients is still not enough;
+- therefore the main completeness gap remains open, and `A_full^th = A_ls` is
+  still not proved.
+
+The next theorem-facing step is no longer "add only the first `O(x^2)` /
+`O(x^3)` center corrections". It is to identify a local ingredient that can
+act at the same low orders as the unchanged obstruction, or else to reconsider
+what the exact theorem-facing local comparison object should be.

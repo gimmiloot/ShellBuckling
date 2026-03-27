@@ -445,3 +445,66 @@ C3b sharpened эту формулировку ещё сильнее.
 family, хотя само это family теперь описано существенно точнее и уже не
 смешивается с более широким `ker(C_reg)`.
 
+### 12.8. Что дал continuum/local step после C3b
+Следующий theorem-facing derivation после C3b дал ещё одно важное уточнение.
+
+- current mixed equations теперь уже поддерживают не только ansatz-level
+  two-parameter family, но и local leading-order clean center-regular family в
+  current principal center model;
+- этот local leading family again parameterized теми же amplitudes
+  `(u_s/x^n, varphi/x^(n-1))`, которые current repository использует в `A_ls`;
+- однако full local formal-completeness theorem всё ещё не закрыт: frozen
+  principal truncation сам по себе не замыкает higher-order local family;
+- значит, theorem-level bottleneck сузился ещё сильнее: сначала нужен
+  higher-order regular-singular center recurrence step, и только потом можно
+  честно решать вопрос `A_full^th = A_ls`.
+
+
+### 12.9. Что уточнил higher-order recurrence step в fully frozen principal center model
+Следующий theorem-facing шаг дал более жёсткий и менее оптимистичный reading,
+чем формулировка 12.8 сама по себе.
+
+- previous local two-amplitude statement теперь нужно читать только как
+  statement о singular leading block current principal center model;
+- если собрать уже полный frozen principal leading layer, то на generic
+  nonresonance он forcing'ом зануляет все leading coefficients
+  `U0, V0, T0, N0, P0, Y0, M0`;
+- после этого next layer не становится full two-amplitude continuation, а даёт
+  только one-parameter membrane mode `T1`, при нулевом flexural block;
+- checked second layer после подстановки этого membrane mode снова оказывается
+  uniquely zero.
+
+Значит, текущий fully frozen principal model не реализует expected clean
+local two-amplitude family через проверенные finite orders. Это не опровержение
+clean theorem-level target, но это уже явный сигнал, что прежний local-leading
+agreement нельзя quietly читать как почти-complete local family.
+
+Project-level consequence теперь такая: следующий обязательный proof-oriented
+шаг — не продолжать ту же fully frozen principal truncation, а вернуть первые
+omitted finite center coefficients / forcing terms current mixed equations и
+уже там выводить richer regular-singular recurrence. Только после этого будет
+честно снова спрашивать про local/global completeness и `A_full^th = A_ls`.
+
+### 12.10. Что уточнил C3c richer first-finite center layer
+Следующий theorem-facing step показал, что одного only-first-finite repair тоже
+недостаточно.
+
+- richer local model действительно возвращает первые honest finite center terms
+  current clean background: `c0 = 1 + O(x^2)`, `s0 = K x + O(x^3)`,
+  `a0 = 1/x + O(x)`, `lambda_s0 = lambda_c + O(x^2)`,
+  `lambda_theta0 = lambda_c + O(x^2)`, `kappa_s0 = K + O(x^2)`,
+  `kappa_theta0 = K / lambda_c + O(x^2)`, and the corresponding finite
+  prestress / forcing terms;
+- но exact order counting now shows that these restored terms start only at
+  `O(x^2)` / `O(x^3)` and therefore do not enter the same lowest obstruction
+  layer in `R_Ts`, `R_Ms`, and `R_v`;
+- consequently the checked richer local model still keeps the same generic
+  `P0`-obstruction as the constant-finite layer, so the expected clean
+  two-amplitude local family is still not recovered.
+
+Project-level consequence теперь ещё строже: main completeness gap is still
+open, and simply “adding the first omitted finite center coefficients” уже не
+является достаточным next step. Дальше нужен либо local ingredient, который
+может действовать на тех же lowest obstruction orders, либо более точная
+reformulation of the theorem-facing local comparison object before снова
+спрашивать про `A_full^th = A_ls`.

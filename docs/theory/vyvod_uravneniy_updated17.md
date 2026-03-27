@@ -618,6 +618,313 @@ clean admissible tangent space.
 Именно этот шаг, а не ещё одна численная refinement-проверка, сейчас остаётся
 главным theorem-level bottleneck после C3b.
 
+## 1.10. Continuum/local completeness step: что удаётся вывести из current mixed equations
+
+Следующий theorem-facing вопрос после C3b теперь можно формулировать так:
+
+```text
+совпадает ли A_full^th,n(q) с A_ls,n(q) = im(M_amp,n(q)) = im(V_adm,n(q))?
+```
+
+На текущей repository boundary полный continuum/local proof этого равенства
+всё ещё не получен. Но current mixed equations позволяют продвинуться на один
+слой глубже: вывести local **leading-order** clean center-regular family
+непосредственно из principal center block, а не только из current trial-space
+ansatz.
+
+### 1.10.1. Current principal center model
+
+Для local-leading derivation current repository использует тот же principal
+center model, который уже неявно зашит в active center reduction:
+
+```text
+c_0 -> 1,
+s_0 -> 0,
+a_0 -> 1/x,
+a_0' -> -1/x^2,
+lambda_s0 -> lambda_c,
+lambda_theta0 -> 1,
+```
+
+а поля записываются в regular orders
+
+```text
+u_s = A_us x^n,
+u_n = A_un x^n,
+v   = A_v x^n,
+varphi = A_phi x^(n-1),
+psi    = A_psi x^(n-1),
+T_s    = A_Ts x^(n-1),
+Q_s    = A_Qs x^(n-2),
+M_s    = A_Ms x^(n-2).
+```
+
+Это уже не pure finite-basis statement, а local principal-part model для
+continuum mixed equations в current repository sense.
+
+### 1.10.2. Что даёт leading singular block
+
+Из leading parts `R_un`, `R_gtheta`, `R_phi`, `R_us` получаются relations:
+
+```text
+A_un = -(lambda_c / n) A_phi,
+A_psi = lambda_c A_phi,
+A_Ms  = ((n + nu - 1) + nu n lambda_c) A_phi / (Lambda (1 - nu^2)),
+```
+
+и одна linear relation, связывающая `A_Ts` с `A_us` и `A_v`.
+
+Следовательно, на уровне local **leading-order** continuum family свободными
+остаются те же две amplitudes
+
+```text
+(A_us, A_phi),
+```
+
+которые current repository already uses in `C_amp`.
+
+Итак, теперь можно честно зафиксировать:
+
+- continuum/local leading regular family действительно двумерно в current
+  principal center model;
+- current ansatz-level amplitudes совпадают с amplitudes этого local-leading
+  family.
+
+### 1.10.3. Почему этого всё ещё недостаточно для theorem-level losslessness
+
+Когда пытаются замкнуть не только `R_un`, `R_gtheta`, `R_phi`, `R_us`, но и
+весь frozen principal truncation (`R_Ts`, `R_v`, `R_Qs`, `R_Ms`) на том же
+leading-level model, nontrivial closed family не получается.
+
+То есть current repository now knows:
+
+1. local **leading-order** clean center-regular family is two-parameter;
+2. `A_ls` matches that family at leading amplitude level;
+3. но full local formal-completeness theorem всё ещё требует следующего слоя:
+   regular-singular recurrence / higher-order center expansion of the continuum
+   mixed system.
+
+### 1.10.4. Точный результат этого шага
+
+Поэтому на этом шаге можно утверждать только следующее:
+
+- full equality
+
+```text
+A_full^th,n(q) = A_ls,n(q)
+```
+
+  всё ещё **не доказано**;
+- proved stronger intermediate statement:
+  current continuum/local principal center model has a two-parameter
+  leading-order clean admissible family parameterized by the same amplitudes as
+  `A_ls`;
+- exact missing step:
+  prove the higher-order local regular-singular continuation/completeness
+  theorem and only then compare that full local family with the global
+  weighted-trial KKT-selected family.
+
+### 1.10.5. Higher-order recurrence inside the fully frozen principal model
+
+Следующий шаг после 1.10.4 был уже не про один singular leading block, а про
+полную frozen principal layer-by-layer систему на тех же scaling orders
+
+```text
+u_s = U0 x^n + U1 x^(n+1) + U2 x^(n+2),
+u_n = N0 x^n + N1 x^(n+1) + N2 x^(n+2),
+v   = V0 x^n + V1 x^(n+1) + V2 x^(n+2),
+varphi = P0 x^(n-1) + P1 x^n + P2 x^(n+1),
+psi    = Y0 x^(n-1) + Y1 x^n + Y2 x^(n+1),
+T_s    = T0 x^(n-1) + T1 x^n + T2 x^(n+1),
+Q_s    = Q0 x^(n-2) + Q1 x^(n-1) + Q2 x^n,
+M_s    = M0 x^(n-2) + M1 x^(n-1) + M2 x^n,
+```
+
+при тех же frozen background replacements
+
+```text
+c0 -> 1,
+s0 -> 0,
+a0 -> 1/x,
+a0' -> -1/x^2,
+lambda_s0 -> lambda_c,
+lambda_theta0 -> 1,
+```
+
+и без возврата omitted finite center coefficients `kappa_s0`, `kappa_theta0`,
+`g_s`, `g_n`.
+
+На этом уровне выясняется важная поправка к 1.10.2: two-parameter object
+`(A_us, A_phi)` относится только к singular leading block, но не к полной
+frozen principal layer system.
+
+### 1.10.6. Точный finite-order result для fully frozen principal model
+
+Если собрать полный leading layer из
+
+```text
+R_us, R_un, R_Ts, R_gtheta, R_phi, R_Ms, R_v,
+```
+
+то его determinant в physical substitution имеет вид
+
+```text
+delta_leading =
+  n^2 (2n - 1) (2n + 1)
+  [lambda_c n nu^3 - lambda_c n nu^2 + lambda_c n
+   - 2 lambda_c nu^3 + 2 lambda_c nu^2 + lambda_c nu - 3 lambda_c
+   - n nu^3 + n nu^2 + n nu - 2]
+  / [2 (nu + 1)].
+```
+
+Поэтому при generic nonresonance full frozen principal leading layer forces
+
+```text
+U0 = V0 = T0 = N0 = P0 = Y0 = M0 = 0.
+```
+
+После этого next layer уже не invertible как full `8 x 8` system: its rank is
+`7`, nullity is `1`, and the generic solution is
+
+```text
+N1 = P1 = Y1 = M1 = Q0 = 0,
+U1 = T1 (-n nu - n - 2 nu + 2) / (-n^2 + n + 2),
+V1 = T1 (n nu + n + 4) / (-n^2 + n + 2),
+```
+
+so one membrane parameter `T1` remains free. The denominator reveals the same
+special resonance location
+
+```text
+(n - 2)(n + 1) = 0.
+```
+
+After substituting this generic next-layer membrane mode, the checked second
+layer becomes invertible again, with physical determinant
+
+```text
+delta_second =
+  -3 n^2 (2n + 1) (2n + 3)
+  [lambda_c n^2 nu + lambda_c n^2
+   - 2 lambda_c n nu^3 + 2 lambda_c n nu^2 + 3 lambda_c n nu - 3 lambda_c n
+   + n^2 nu + n^2 + 2 n nu^3 - 2 n nu^2 + n nu + 7 n
+   + 4 nu^3 - 4 nu^2 - 2 nu + 10]
+  / [2 (nu + 1)],
+```
+
+and the checked second-layer coefficients are uniquely zero:
+
+```text
+U2 = N2 = V2 = P2 = Y2 = T2 = M2 = Q1 = 0.
+```
+
+Representative live clean evaluation on `n = 4, 6, 7, 8` with honest
+`lambda_c = lambda_s0(x0)` confirms that `delta_leading`, the next flexural
+subdeterminant, and `delta_second` are all far from zero on the active
+competition set.
+
+Следовательно, на текущем repository boundary можно зафиксировать только более
+жёсткое formula-level statement:
+
+1. singular leading block действительно дает two-amplitude compatibility data;
+2. full fully frozen principal model через проверенные finite orders **не**
+   реализует ожидаемое clean two-amplitude local family;
+3. значит, следующий theorem-facing шаг — не продолжать тот же fully frozen
+   principal truncation, а вернуть первые omitted finite center coefficients /
+   forcing terms и уже на richer local model выводить regular-singular
+   recurrence.
+
+### 1.10.7. C3c: richer local center model with first omitted finite coefficients
+
+На этом шаге richer local model берётся уже не в fully frozen principal виде,
+а с первыми honest finite center corrections of the clean background:
+
+```text
+c0 = 1 + O(x^2),
+s0 = K x + O(x^3),
+a0 = 1/x + O(x),
+a0' = -1/x^2 + O(1),
+lambda_s0 = lambda_c + O(x^2),
+lambda_theta0 = lambda_c + O(x^2),
+kappa_s0 = K + O(x^2),
+kappa_theta0 = K / lambda_c + O(x^2),
+T_s^0 = T_s^0(0) + O(x^2),
+T_theta^0 = T_theta^0(0) + O(x^2),
+M_theta^0 = M_theta^0(0) + O(x^2),
+T_sn^0 = Q1 x + O(x^3).
+```
+
+Honest background recurrence fixes the first omitted coefficients
+`Ts2, U3, K3, Ms2, Q3` uniquely. Для C3c критична не столько сама громоздкая
+CAS-формула для каждого из них, сколько их order: все эти corrections начинают
+влиять только с `O(x^2)` / `O(x^3)`.
+
+Ключевое observation теперь такое: restored first-finite background terms не
+могут изменить тот obstruction layer, который уже виден в `R_Ts`, `R_Ms`, и
+`R_v`.
+
+1. In `R_Ts`, decisive low-order term comes from
+   `-(s0 c0 / r0^2) Mtheta ~ x^(-1) x^(n-2) = x^(n-3)`.
+   Restored corrections change `s0 c0 / r0^2` only by `O(x)`, so they first
+   enter this row only at `x^(n-1)`.
+2. In `R_Ms`, the low layer comes from `Ms_x`, `a0 M_s`, `-a0 M_theta`, `-Q_s`,
+   and `(n/x) H`, again at `x^(n-3)`. First restored finite background terms
+   also reach this row only at `x^(n-1)` or higher.
+3. In `R_v`, the obstruction layer comes from `kappa_theta0 chi` with
+   `chi ~ x^(n-3)`. Since `kappa_theta0 = K / lambda_c + O(x^2)`, restored
+   terms again start only at `x^(n-1)`.
+
+Значит, after the same singular leading relations
+
+```text
+N0 = -(lambda_c / n) P0,
+Y0 = P0,
+M0 = (n - 1) P0 / [12 mu^2 (1 - nu^2)^2],
+```
+
+низкоуровневые obstruction rows остаются exactly the same as in the
+constant-finite model:
+
+```text
+R_Ts[-1] = -K P0 [lambda_c n nu - lambda_c nu + n + 1]
+           / [12 lambda_c^3 mu^2 (1 - nu^2)^2],
+
+R_Ms[-1] = -P0 [ ... ] / [12 lambda_c mu^2 (1 - nu^2)^2],
+
+R_v[-1]  =  K P0 n [ ... ] / [12 lambda_c^4 mu^2 (1 - nu^2)^2].
+```
+
+Уже simplest factor in `R_Ts[-1]` enough for the active clean regime:
+
+```text
+lambda_c n nu - lambda_c nu + n + 1
+= lambda_c nu (n - 1) + n + 1 > 0
+```
+
+for `lambda_c > 0`, `nu > 0`, `n >= 4`.
+
+Поэтому whenever `K != 0`, richer first-finite layer still forces
+
+```text
+P0 = 0.
+```
+
+Representative live clean evaluation on `n = 4, 6, 7, 8` confirms that the
+center curvature `K = kappa_s0(x0)` is nonzero and all three obstruction
+factors are far from zero on the active competition set.
+
+Итак, C3c closes only the following conservative statement:
+
+1. first omitted finite center coefficients were restored honestly;
+2. but they do **not** change the decisive low-order obstruction layer;
+3. so they do **not** restore the expected clean two-amplitude local family;
+4. consequently `A_full^th = A_ls` is still not proved.
+
+Следующий theorem-facing шаг теперь уже уже не формулируется как simply
+"restore the first omitted finite coefficients". Эти coefficients уже checked
+and are insufficient. Нужен local ingredient, который может действовать на тех
+же lowest obstruction orders, или же нужен пересмотр того, что именно project
+должен считать theorem-facing local comparison object.
 # Часть 2. Проверенные численные и проектные выводы
 
 ## 2.1. Что уже проверено по старой архитектуре
