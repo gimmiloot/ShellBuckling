@@ -1,4 +1,4 @@
-# Current Theory Verification Map
+﻿# Current Theory Verification Map
 
 ## 1. Introduction
 
@@ -250,59 +250,64 @@ not that every one of them is already article-level proven.
   keep V-S5 at this tightened pilot-backed status and re-check it whenever the
   boundary-matrix builder changes.
 
-### V-N1. `sigma_min(B_mix(q)) = 0` is the current working criterion
+### V-N1. `sigma_min(B_mix(q)) = 0` is the current raw working criterion
 
 - ID: `V-N1`
 - Claim / Hypothesis:
-  `sigma_min(B_mix(q)) = 0` is the correct **working** spectral criterion for
-  the present mixed-weak branch.
+  `sigma_min(B_mix(q)) = 0` is the correct **raw working** spectral criterion
+  and baseline comparison reading for the present mixed-weak branch on the
+  active clean `simple support` path.
 - Type: `numerical`
 - Source file(s):
   `docs/theory/vyvod_uravneniy_updated17.md` sections 2.2.2 and 2.3;
   `docs/assumptions/assumptions.md` A7;
-  `docs/journal/project_journal_updated14.md` sections 4 and 10.
-- Current status: `partially confirmed, tightened by pilot 05`
+  `docs/theory/current_simple_support_status.md`;
+  `docs/journal/project_journal_updated14.md` sections 12.3-12.4.
+- Current status: `partially confirmed as a raw baseline, but non-decisive`
 - What counts as verification:
-  live computability of `sigma_min(B_mix)` on the active q-range, reproducible
-  refined minima under the current fine/adaptive/targeted scan workflow,
-  moderate resolution robustness in the present testbench, and repository-level
-  comparison evidence that this picture differs from the rejected old
-  reduced/full architecture.
+  live computability of `sigma_min(B_mix)` on the active clean q-ranges,
+  reproducible refined minima under the current local-window workflow, moderate
+  nearby discretization robustness in the present testbench, and explicit use
+  of this reading as the reference baseline when comparing lighter diagnostic
+  pilots.
 - Verification method:
   numerical testbench, project-state comparison.
 - Verification boundary:
-  working criterion inside the current mixed-weak exploratory/testbench branch
-  only; the pilot does not prove the final closed mixed BVP criterion or the
-  final physical simple-support critical load.
+  working baseline inside the current mixed-weak exploratory/testbench branch
+  only; it is not yet the theorem-level criterion of the final mixed BVP and it
+  does not by itself settle the final physical `simple support` critical load.
 - Next action:
-  keep this tightened working-criterion status, but continue linking the
-  testbench spectral signal to the final mixed BVP before promoting stronger
-  claims.
+  keep this criterion as the raw reference reading, but derive a stronger
+  theorem-level criticality object before promoting stronger mode-selection or
+  `q_cr` claims.
 
-### V-N2. Current candidate load `n=13`, `qРІвЂ°в‚¬3.79..3.80 MPa`
+### V-N2. Current operational clean `simple support` competition reading
 
 - ID: `V-N2`
 - Claim / Hypothesis:
-  The present best mixed-weak candidate is
-  `n = 13`, `q РІвЂ°в‚¬ 3.79..3.80 MPa`, with the nearest competitor near
-  `n = 14`, `q РІвЂ°в‚¬ 4.28 MPa`.
+  On the active clean standalone `simple support` path, the current operational
+  reading is: `n = 6`, `q ~ 17.6 MPa` as the best supported candidate,
+  `n = 8` as the main rival, `n = 7` as a persistent reserve/raw competitor,
+  and `n = 4` as the control mode.
 - Type: `numerical`
 - Source file(s):
-  `docs/theory/vyvod_uravneniy_updated17.md` sections 2.3 and 3.1;
-  `docs/assumptions/assumptions.md` A8;
-  `docs/journal/project_journal_updated14.md` section 10.
-- Current status: `exploratory`
+  `docs/theory/current_simple_support_status.md`;
+  `docs/journal/project_journal_updated14.md` sections 12.3-12.4;
+  `tasks/run_full_simple_support_critical_search.py`.
+- Current status: `exploratory operational reading`
 - What counts as verification:
-  reproducible localization under resolution/fine/adaptive/targeted scans and a
-  clear statement of what the result does and does not mean.
+  reproducible local-window comparisons on the clean path, limited nearby
+  discretization checks, and explicit separation between supported candidate,
+  methodological rival, reserve/raw competitor, and control mode.
 - Verification method:
-  numerical testbench.
+  numerical testbench, project-state comparison.
 - Verification boundary:
-  exploratory mixed-weak candidate only; not validated as the final physical
-  `simple support` critical load.
+  operational reading inside the current clean search only; not a validated
+  final physical critical load and not a theorem-level proof of mode selection.
 - Next action:
-  keep the candidate archived, but do not promote it until the background and
-  critical problem are fully consistent.
+  keep this clean competition set as the live benchmark for criterion rework,
+  while leaving the older hybrid candidate memories archived for historical
+  comparison only.
 
 ### V-I1. Mixed-weak branch gives a qualitatively new picture
 
@@ -327,193 +332,88 @@ not that every one of them is already article-level proven.
 - Next action:
   retain the comparison baseline so the qualitative shift remains reproducible.
 
-### V-I2. The current exploratory candidate is limited by problem consistency
+### V-I2. Current operational candidates are limited mainly by criterion closure
 
 - ID: `V-I2`
 - Claim / Hypothesis:
-  The main reason the current `3.79..3.80 MPa` candidate cannot be treated as a
-  final `simple support` result is inconsistency between the axisymmetric
-  background and the critical problem setup.
+  Even on the active clean standalone `simple support` path, the current
+  operational candidates cannot be treated as final because the theorem-level
+  criticality object linking the admissible mixed problem to mode selection is
+  still not closed.
 - Type: `interpretation`
 - Source file(s):
-  `docs/theory/vyvod_uravneniy_updated17.md` sections 2.4 and 3.1;
-  `docs/assumptions/assumptions.md` A8 and A9.
+  `docs/theory/current_simple_support_status.md`;
+  `docs/journal/project_journal_updated14.md` sections 12.3-12.4.
 - Current status: `partially confirmed`
 - What counts as verification:
-  direct architecture analysis showing that the earlier simple-support result
-  did not come from a fully consistent full problem.
+  explicit evidence that the raw `sigma_min(B_mix)` reading and the lighter
+  `A + C`, `D`, and `E` pilots improve diagnostics only partially and do not
+  robustly settle the `n = 6` versus `n = 8` competition.
 - Verification method:
-  manual derivation, project-state analysis.
+  project-state analysis, numerical testbench.
 - Verification boundary:
-  interpretation inside the current repository architecture; not yet a complete
-  rebuilt solver proof.
+  interpretation of the current clean-path evidence only; not yet a theorem
+  about the final mixed BVP.
 - Next action:
-  keep this limitation explicit in every summary of the candidate load.
+  keep this limitation explicit in every summary of the present candidate loads
+  and treat criterion rework as the next theory task.
 
-### V-ST1. Main open problem is the axisymmetric simple-support background
+### V-ST1. Main open problem on the clean standalone `simple support` path is theorem-level criterion closure
 
 - ID: `V-ST1`
 - Claim / Hypothesis:
-  The main remaining bottleneck is the axisymmetric simple-support background
-  solver, not the existence of the mixed-weak critical structure itself.
+  On the active clean standalone `simple support` path, the main remaining
+  bottleneck is no longer basic background reach but the absence of a
+  theorem-level criticality object that links the full linearized mixed BVP to
+  stable mode selection on the admissible center-regular space.
 - Type: `strategy`
 - Source file(s):
-  `docs/assumptions/assumptions.md` A12;
-  `docs/theory/vyvod_uravneniy_updated17.md` sections 2.4 and 3.1;
-  `proof_pilots/pilot_07_axisymmetric_simple_support_background/pilot_07_axisymmetric_simple_support_background.md`;
-  `proof_pilots/pilot_08_simple_support_background_stabilization/pilot_08_simple_support_background_stabilization.md`;
-  `proof_pilots/pilot_09_simple_support_local_branch_following/pilot_09_simple_support_local_branch_following.md`;
-  `proof_pilots/pilot_10_high_load_simple_support_continuation/pilot_10_high_load_simple_support_continuation.md`;
-  `proof_pilots/pilot_10_high_load_simple_support_continuation/branch_diagnostics.md`;
-  `proof_pilots/pilot_11_shallow_vs_nonshallow_barrier_comparison/comparison_problem_statement.md`;
-  `proof_pilots/pilot_12_high_load_branch_extension/pilot_12_high_load_branch_extension.md`;
-  `proof_pilots/pilot_12_high_load_branch_extension/branch_consistency_check.md`;
-  `proof_pilots/pilot_13_shallow_nonshallow_divergence_source/pilot_13_shallow_nonshallow_divergence_source.md`;
-  `proof_pilots/pilot_15_shallow_bc_equivalence_audit/bc_equivalence_audit.md`;
-  `proof_pilots/pilot_16_shallow_simple_support_comparator/shallow_problem_statement.md`;
-  `proof_pilots/pilot_17_shallow_vs_nonshallow_simple_support_divergence/pilot_17_shallow_vs_nonshallow_simple_support_divergence.md`;
-  `proof_pilots/pilot_18_revised_analytic_barrier_diagnosis/pilot_18_revised_analytic_barrier_diagnosis.md`;
-  `proof_pilots/pilot_18_revised_analytic_barrier_diagnosis/edge_layer_scaling.md`;
-  `proof_pilots/pilot_18_revised_analytic_barrier_diagnosis/jacobian_conditioning_check.py`;
-  `proof_pilots/pilot_18_revised_analytic_barrier_diagnosis/term_balance_check.py`;
-  `proof_pilots/pilot_19_edge_stretched_simple_support_continuation/comparison_note.md`;
-  `proof_pilots/pilot_20_method_sweep_for_simple_support_ceiling/pilot_20_method_sweep_for_simple_support_ceiling.md`;
-  `proof_pilots/pilot_20_method_sweep_for_simple_support_ceiling/method_comparison_table.md`;
-  `proof_pilots/pilot_20_method_sweep_for_simple_support_ceiling/method_sweep.py`;
-  `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/pilot_21_u_z_scaled_arc_like_continuation.md`;
-  `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/u_z_scaled_arc_like_continuation.py`;
-  `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/u_z_scaled_arc_like_results.json`;
-  `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/continuation_runtime.py`;
-  `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_u_z_scaled_arc_like_continuation.py`;
-  `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/confirm_u_z_scaled_arc_like_continuation.py`;
-  `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_continuation_workflow.md`;
-  `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/fast_progress.json`;
-  `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_run/confirm_results.json`;
-  `proof_pilots/pilot_22_exact_load_shallow_vs_current_simple_support_comparison/compare_exact_loads.py`;
-  `proof_pilots/pilot_22_exact_load_shallow_vs_current_simple_support_comparison/pilot_22_exact_load_shallow_vs_current_simple_support_comparison.md`;
-  `proof_pilots/pilot_22_exact_load_shallow_vs_current_simple_support_comparison/comparison_results.json`;
   `docs/theory/current_simple_support_status.md`;
-  `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`.
+  `docs/journal/project_journal_updated14.md` sections 12.3-12.4;
+  `src/shell_buckling/mixed_weak/full_simple_support_critical_search.py`;
+  `tasks/run_simple_support_criterion_pilot_d.py`;
+  `tasks/run_simple_support_criterion_pilot_e.py`.
 - Current status: `strategy only`
 - Operational pointer:
-  The live operational snapshot for this separate 6-state path is maintained in
+  The live operational snapshot for this clean path is maintained in
   `docs/theory/current_simple_support_status.md`.
 - What counts as verification:
-  not a theorem; it is supported only insofar as current evidence points to the
-  background as the dominant unresolved node. A separate active full-state
-  simple-support background path exists, its live 6-state BC function matches
-  the intended simple-support BC set, and its active equations match the
-  supporting 6-state non-shallow block. On the old single-domain rescue-local
-  workflow, `4.3434 MPa` remains reproducible while `4.3440 MPa` remains the
-  first persistent failure with tiny BC residuals and strong right-edge
-  concentration. Pilot 15 then showed that the old shallow comparison path was
-  not BC-equivalent to simple support, pilot 16 built the strongest currently
-  justified shallow simple-support comparator, and pilot 17 revisited the
-  divergence sweep in that corrected BC setting. In the corrected simple-support
-  comparison, the mapped mismatch is small at low load, first crosses the
-  `0.05` bulk-rel-L2 threshold in any variable at `2.0 MPa` (`Phi0'`), becomes
-  clearly overall visible at `3.0 MPa` (`theta0'` and `Phi0'`), grows with
-  load, and remains smooth through the available high-load range rather than as
-  a new barrier-localized qualitative jump. Pilot 18 adds a revised analytic
-  diagnosis: a coarse discretized BVP Jacobian in the `4.3400..4.3434 MPa` band
-  remains severely ill-conditioned but shows no collapsing near-zero-singular-
-  value trend, while the right-edge term balance stays smooth and is dominated
-  by the geometric hoop term `u_r/x` inside `T_theta`, by the `T_sn -> M_s ->
-  varphi` coupling chain, and by a large `u_z` response with only moderate
-  trig-gap corrections. Pilot 19 then shows that simple edge-focused mesh
-  changes alone do not move the ceiling materially. Pilot 20 sharpens the
-  numerical reading further: predictor-only and pseudo-arclength-like changes
-  help only modestly, while an equation-preserving state-representation change
-  (`u_z`-scaled solve) moves the bounded ceiling to `4.3520 MPa` without a
-  bounded failure being hit in the packaged ladder. Pilot 21 then consolidates
-  the practical continuation strategy: the exact pilot-20 `u_z`-scaled path,
-  augmented only by auxiliary arc-like step adaptation, reproduces `4.3520 MPa`
-  and carries the bounded staged ladder through `4.3550`, `4.3600`, `4.3700`,
-  and `4.3800 MPa` with reproducible stage retests and no bounded failure in
-  the packaged ladder. A newer checkpointed fast/confirm layer now reuses the
-  same equations, BCs, and scaled continuation kernel in a more operational
-  form: the first from-scratch fast run reaches `4.3900 MPa`, later resume runs
-  carry the stored path first through `4.5000 MPa` and then onward through
-  `4.6000`, `4.7000`, `4.8000`, `4.9000`, `5.0000`, `5.2000`, `5.4000`,
-  `5.6000`, `5.8000`, `6.0000`, `6.5000`, `7.0000`, `8.0000`, `9.0000`, and
-  `10.0000 MPa` without a bounded failure event in the saved ladder. A
-  dedicated `4.4000 MPa` milestone audit repeats the same accepted seed in two
-  independent pointwise confirm passes, stays `near_reproducible`, shows no
-  branch-jump suspicion, and does not hit a short failure probe through
-  `4.4100 MPa`; under the current reporting policy this makes `4.4000 MPa` a
-  validated operational milestone rather than a new audited ceiling, because
-  `strict_reproducible` still remains false. New sparse confirms at `7.0000`
-  and `10.0000 MPa` also keep the same accepted seed, show no branch-jump
-  suspicion, and do not hit short first-failure probes through `10.0200 MPa`,
-  while their repeat drift remains in the same smooth `2.85e-5..3.30e-5`
-  max-relative-L2 band and stays much smaller than the ordinary adjacent-step
-  branch drift even though it no longer satisfies the current
-  `near_reproducible` threshold. Under the same reporting policy these
-  `7.0000 / 10.0000 MPa` markers also count as validated operational milestones
-  rather than as generic operational evidence. Because the strict gate is still
-  inherited from pilot 12 as `1e-7 / 1e-6`, the present
-  `strict_reproducible = false` signal is now better read as an explicit open
-  audit-policy / metric issue than as evidence that the branch has physically
-  ended or jumped. The fast runner also no longer needs to inherit the old
-  pilot-21 internal `0.0025 MPa` step cap: that bound remains part of the
-  historical audited pilot artifact only, while the operational fast layer now
-  uses its own runtime-controlled min/max/growth/shrink policy plus explicit
-  milestone retention. The next confirm-critical retention schedule for the
-  planned `10 -> 15 MPa` search is now explicitly fixed at `11.0`, `12.0`,
-  `12.5`, `13.0`, `13.5`, `14.0`, and `15.0 MPa`. A new exact-load comparison
-  pilot then reuses the pilot-16 shallow simple-support comparator together with
-  the same `arrays_nepol_sin(...)` mapping logic already used in pilot 17 at
-  `4.0`, `7.0`, and `10.0 MPa`: the mismatch is already moderately visible at
-  `4.0 MPa`, becomes clearly visible at `7.0 MPa`, stays clearly visible at
-  `10.0 MPa`, and remains dominated by right-edge differences while still
-  staying smooth through the available high-load range rather than producing a
-  new barrier-localized qualitative jump. These newer `4.4000`, `7.0000`, and
-  `10.0000 MPa` values now sit in an explicit intermediate reporting class:
-  they are validated operational milestones, not the current canonical audited
-  ceiling. So the bottleneck remains on the numerical side and now more
-  specifically on formulation / conditioning sensitivity plus confirm-policy
-  sensitivity rather than on a simple raw-mesh limit or a verified physical end
-  of branch. The active mixed-weak scans still use the reduced 5-state `F_min`
-  background.
+  not a theorem; it is supported only insofar as the honest clean background
+  path now already reaches the active competition region, while the completed
+  `A + C`, `D`, and `E` pilots remain diagnostically useful but non-decisive
+  for mode selection on the local competition set `n = 4, 6, 7, 8`.
 - Verification method:
   project-state analysis, numerical testbench.
 - Verification boundary:
   not a theorem, only a current research strategy.
 - Next action:
-  keep the separate full 6-state simple-support background path, use the
-  pilot-21 `u_z`-scaled continuation with auxiliary arc-like step adaptation as
-  the current high-load workflow, split it operationally into a checkpointed
-  fast runner plus a milestone confirm runner, keep the `4.3434 / 4.3440 MPa`
-  pair explicit as the canonical old-path anchor/failure reference, keep the
-  audited `4.3800 MPa` pilot-21 ceiling explicit even when newer fast-run
-  checkpoints move higher, treat the strict-threshold policy itself as an open
-  method question before promoting higher loads to audited status, use the fast
-  runner's explicit runtime-controlled step limits rather than the historical
-  pilot cap for future operational climbing, stop spending time on simple
-  edge-mesh concentration alone, and use the pilot-16/pilot-17 BC-aligned
-  shallow comparator plus the pilot-18 diagnosis before considering any
-  reconnection to the mixed-weak scans.
+  move from cheap pilot iteration to a theorem-level criterion rework on the
+  clean architecture before promoting stronger `q_cr` claims or launching a new
+  broad scan.
 
-### V-ST2. Stabilize the background before promoting `q_cr`
+### V-ST2. Next correct project step is criterion-theory rework before stronger `q_cr` claims
 
 - ID: `V-ST2`
 - Claim / Hypothesis:
-  The correct project strategy is to stabilize the axisymmetric background
-  before returning to final claims about `q_cr`.
+  The correct current project strategy is to derive and verify a stronger
+  criterion object before returning to stronger claims about `q_cr` on the full
+  `simple support` problem.
 - Type: `strategy`
 - Source file(s):
-  `docs/assumptions/assumptions.md` A14;
-  `docs/theory/vyvod_uravneniy_updated17.md` section 3.1.
+  `docs/theory/current_simple_support_status.md`;
+  `docs/journal/project_journal_updated14.md` section 12.4.
 - Current status: `strategy only`
 - What counts as verification:
-  none in theorem form; this is an organizational consequence of the current
-  dependency structure.
+  none in theorem form; this is an organizational consequence of the present
+  dependency structure and of the completed non-decisive pilot sequence.
 - Verification method:
   project-state analysis.
 - Verification boundary:
   not a theorem, only a strategy-level rule for the next project step.
 - Next action:
-  keep separate from structural or numerical claims in reports.
+  keep this separate from structural or formula-level claims and schedule the
+  rework through explicit manual/CAS/Lean checkpoints rather than as unchecked
+  prose.
 
 ## 5. Existing Proof Pilots Already Integrated
 
@@ -613,24 +513,27 @@ Relatively solid inside the current repository boundary:
   reduced ansatz and `v2` workflow;
 - the pilot-backed rule that the current `B_mix` builders use the
   center-regular mode pair rather than raw surrogate directions;
-- the use of `B_mix` as the current exploratory criterion.
+- the use of raw `B_mix` as the current baseline criterion together with the
+  clean `n = 4, 6, 7, 8` competition set as the live operational benchmark.
 
 Most urgent items to verify next:
 
-- the bridge from the current testbench criterion to a fully consistent
-  simple-support problem.
-- the gap between the current reduced center ansatz and a fuller shell-center
-  derivation.
+- the exact theorem-level operator or quadratic-form object whose degeneration
+  should define criticality on the admissible clean `simple support`
+  center-regular space;
+- the reduction of that object from the full linearized mixed BVP to the actual
+  reduced admissible coordinates used by the clean solver;
+- the precise reason why `n = 6`, `n = 7`, and `n = 8` separate differently
+  under the raw boundary-only reading and the lighter diagnostic pilots.
 
 Most valuable next proof pilots:
 
-1. A pilot that isolates the current `B_mix` construction rule from the two
-   central modes and checks its rows symbolically/numerically.
-2. A pilot for the current prestress/load block boundary between what is already
-   structurally fixed and what is still only a working formula package.
-3. A proof-oriented check comparing the current reduced center ansatz against
-   broader regular mixed extensions, if that boundary becomes verification
-   critical.
-
-
-
+1. A derivation/CAS pilot that isolates the full tangent mixed operator of the
+   clean `simple support` problem and its reduction to admissible
+   center-regular coordinates.
+2. A proof-oriented pilot that compares candidate spectral, generalized, and
+   quadratic-form criteria on that reduced object and records exactly where
+   equivalence holds or fails.
+3. A small numerical verification pilot that compares the new theorem-level
+   criterion against the raw `B_mix` baseline on `n = 4, 6, 7, 8` without a new
+   broad search.

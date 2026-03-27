@@ -1,5 +1,17 @@
 ﻿# CHANGELOG
 
+## 2026-03-27 - Sync criterion-planning docs after the non-decisive clean simple support pilot sequence
+
+Affected files:
+- `docs/theory/current_theory_verification_map.md`
+- `docs/project_map.md`
+- `CHANGELOG.md`
+
+- Updated the verification map so it now reflects the live clean `simple support` competition set `n=4,6,7,8`, treats raw `sigma_min(B_mix)` explicitly as the current baseline rather than as a closed final criterion, and records that the main unresolved bottleneck has shifted from background reach to theorem-level criterion closure.
+- Updated the project map so it now lists the clean criterion-diagnostic runners `run_simple_support_criterion_pilot_ac.py`, `run_simple_support_criterion_pilot_d.py`, and `run_simple_support_criterion_pilot_e.py`, and states that the next planned stage is a more theoretical criterion rework rather than another broad scan.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, or active clean `simple support` architecture were changed.
+
+
 ## 2026-03-27 - Add clean full simple support criterion pilot E and record that it remains non-decisive
 
 Affected files:
@@ -749,6 +761,10 @@ Affected files: `data/project_map.md`, `CHANGELOG.md`
 
 - Added `data/project_map.md` to classify the current checkout into active core, runnable tasks, supporting scripts, documentation, and non-source folders.
 - Recorded the present working direction as the mixed-weak path and noted that no dedicated archived source directory exists in this checkout.
+
+
+
+
 
 
 

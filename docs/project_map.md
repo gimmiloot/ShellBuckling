@@ -9,7 +9,7 @@ rejected directions.
 
 - The active research direction is still the mixed-weak criterion branch with
   independent circumferential channels `(v, S)` and `(psi, H, chi)`.
-- For the full hinged/simple-support physical target, the preferred clean
+- For the full simple-support physical target, the preferred clean
   critical-search program is now:
   - `src/shell_buckling/mixed_weak/simple_support_high_load_background_continuation.py`
   - `src/shell_buckling/mixed_weak/full_simple_support_critical_search.py`
@@ -25,6 +25,12 @@ rejected directions.
 - Current mixed-weak candidate loads remain exploratory. The operational memory
   for the separate 6-state simple-support path lives in
   `docs/theory/current_simple_support_status.md`.
+- The light clean criterion-diagnostic runners `tasks/run_simple_support_criterion_pilot_ac.py`,
+  `tasks/run_simple_support_criterion_pilot_d.py`, and
+  `tasks/run_simple_support_criterion_pilot_e.py` are preserved as diagnostic
+  add-ons around the same clean architecture; after their non-decisive outcome,
+  the next planned stage is a more theoretical criterion rework rather than
+  another broad scan.
 
 ## Boundary-Condition Task Separation
 
@@ -60,8 +66,8 @@ rejected directions.
   `T_sn(x0)=0`, `u_r(x0)=0`, `varphi(x0)=0`, `T_s(1)=0`, `M_s(1)=0`, `u_z(1)=0`.
 
 - `src/shell_buckling/mixed_weak/full_simple_support_critical_search.py`
-  Reusable clean mixed-weak critical-search core for the full hinged/simple-
-  support task. It uses the honest background plus the patched critical
+  Reusable clean mixed-weak critical-search core for the full simple-support
+  task. It uses the honest background plus the patched critical
   boundary-row set `[u_n(1), varphi(1), T_s(1), S(1), H(1)]`.
 
 - `src/shell_buckling/mixed_weak/simple_support_high_load_background_continuation.py`
@@ -117,6 +123,17 @@ rejected directions.
 
 - `proof_pilots/pilot_22_exact_load_shallow_vs_current_simple_support_comparison/compare_exact_loads.py`
   Exact-load shallow-vs-current comparison pilot for selected loads.
+
+### Clean Criterion-Diagnostic Tasks
+
+- `tasks/run_simple_support_criterion_pilot_ac.py`
+  Light branch-aware / bordered diagnostic on the clean standalone simple-support path.
+
+- `tasks/run_simple_support_criterion_pilot_d.py`
+  Local tangent-bundle restricted operator diagnostic on the same clean path.
+
+- `tasks/run_simple_support_criterion_pilot_e.py`
+  Energy-like reduced-coercivity surrogate diagnostic on the same clean path.
 
 ### Supporting Tasks
 
@@ -192,3 +209,4 @@ rejected directions.
 
 - `.venv/`, `__pycache__/`
   Local environment and generated cache folders, not scientific source files.
+
