@@ -384,3 +384,64 @@ operational candidate, `n=8` усиливается как methodological rival,
 появится более principled reduced-energy construction, следующим шагом должен
 быть уже не очередной cheap pilot, а более theoretical criterion rework.
 
+### 12.5. Как теперь фиксировать exact target object criterion rework
+Этот более theoretical criterion rework теперь нужно понимать уже не как
+абстрактный лозунг, а как конкретный C1/C2 target:
+
+- theorem-level target object на clean full `simple support / подвижный шарнир`
+  path нужно фиксировать как full reduced tangent operator на admissible
+  center-regular space, а не как один только raw `B_mix`;
+- в live clean architecture его текущий конечномерный представитель имеет вид
+  `[A_int(q); B_full(q)]`, где boundary rows остаются
+  `[u_n(1), varphi(1), T_s(1), S(1), H(1)]`;
+- preferred reduced object для следующего proof-oriented шага нужно брать как
+  `L_red,n(q) = [A_int(q); B_full(q)] V_adm,n(q)`, где `V_adm` — просто
+  center-normalized rebasing того же admissible span, который сейчас задаётся
+  `V_reg`;
+- raw `B_mix` после этого не удаляется и не отвергается: он остаётся текущим
+  baseline reading, но уже как boundary-only descendant более полного reduced
+  object;
+- ближайшие обязательства после такого freeze: C3 kernel-equivalence step и C4
+  решение вопроса, существует ли на том же reduced admissible space genuine
+  quadratic-form / second-variation object.
+
+### 12.6. Что реально закрылось в C3, а что осталось открытым
+Следующий C3-шаг теперь можно формулировать уже точнее.
+
+- exact kernel-equivalence удалось закрыть только на текущем выбранном
+  двумерном reduced family `A_repo = im(V_adm)`: на нём
+  `ker(L_red) <-> A_repo ∩ ker(L_full)` через координатное отображение
+  `a -> V_adm a`;
+- это уже достаточно, чтобы считать `L_red` корректным reduced object именно
+  на текущем repo-selected family и чтобы отделить его от чисто boundary-only
+  descendants;
+- `B_red` и raw `B_mix` теперь нужно понимать как один и тот же
+  boundary-only descendant на том же family, только в разных reduced
+  координатах;
+- при этом два важных вопроса остаются открытыми: совпадает ли `A_repo` с
+  полным exact admissible center-regular tangent space clean mixed problem, и
+  можно ли вообще честно заменить `L_red` на boundary-only object.
+
+То есть после C3 ближайший обязательный theoretical шаг уже не в том, чтобы
+заново «найти объект», а в том, чтобы решить вопрос о losslessness текущего
+reduction и только затем переходить к C4 criterion comparison / quadratic-form
+decision.
+
+### 12.7. Что C3b уточнил про losslessness
+C3b sharpened эту формулировку ещё сильнее.
+
+- current repo-selected family `A_repo = im(V_adm)` теперь уже можно понимать
+  не просто как “тот span, который сейчас использует код”, а как exact current
+  KKT-selected amplitude family внутри weighted trial ansatz;
+- при этом стало явно видно, что `A_repo` не совпадает просто с
+  coefficient-level space `ker(C_reg)`: одного current center-regular
+  constraints block недостаточно, чтобы получить 2D family;
+- значит, текущий theorem-facing bottleneck уже не в том, чтобы лучше описать
+  сам selected family, а в том, чтобы доказать, что он действительно exhausts
+  full clean admissible center-regular tangent space, а не только current
+  ansatz-level construction.
+
+То есть после C3b theorem-level target всё ещё опирается на repo-selected
+family, хотя само это family теперь описано существенно точнее и уже не
+смешивается с более широким `ker(C_reg)`.
+

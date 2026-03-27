@@ -253,13 +253,62 @@
 
 **Текущий статус:** **частично подтверждено как operational strategy**, не как theorem-level claim.
 
+---
+
+## A16. Для clean full `simple support / подвижный шарнир` theorem-level target объектом должно быть вырождение reduced tangent operator на admissible center-regular space, а не сразу raw `B_mix`
+
+**Формулировка.** Предполагается, что для clean standalone full `simple support / подвижный шарнир` задачи правильный theorem-level target должен задаваться не одним только raw boundary-only object `B_mix`, а полным reduced tangent operator `L_red,n(q)`, полученным из stacked full operator `[A_int(q); B_full(q)]` после редукции на admissible center-regular двумерное пространство.
+
+**Проверялось ли:** частично.
+
+**Как проверялось:**
+- ручным выводом из live clean architecture (`A_int`, `B_full`, `C_center`, `V_reg`);
+- CAS-проверкой block identities и reduction formulas в `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/reduction_check.py`;
+- representative numerical checks на clean competition set `n=4,6,7,8`.
+
+**Результат проверки:** как repository-level structural/formal target этот объект уже можно зафиксировать явно; кроме того, на текущем выбранном reduced family `A_repo = im(V_adm)` теперь уже есть точная конечномерная C3-идентификация
+`ker(L_red) <-> A_repo ∩ ker(L_full)`.
+При этом всё ещё не доказано, что `A_repo` совпадает с полным admissible clean center-regular tangent space, и не доказана equivalence между `ker(L_red)` и boundary-only reading `sigma_min(B_mix)=0`.
+
+**Текущий статус:** **частично подтверждено как finite-dimensional algebraic reduction на текущем reduced family; full theorem-level closure ещё открыта**.
+
+---
+
+## A17. Для clean full `simple support / подвижный шарнир` текущий repo-selected family `A_repo = im(V_adm)` должен быть lossless, то есть совпадать с full admissible clean center-regular tangent space
+
+**Формулировка.** Предполагается, что current repo-selected reduced family
+`A_repo,n(q) = im(V_adm,n(q))` не просто является удобным current construction,
+а действительно совпадает с тем full admissible clean center-regular tangent
+space, который должен задавать theorem-level criticality.
+
+**Проверялось ли:** частично.
+
+**Как проверялось:**
+- ручным разделением theorem-facing full admissible space, weighted trial
+  coefficient space `X_trial`, pure center-regular coefficient space
+  `W_reg = ker(C_reg)`, и current selected KKT-family;
+- CAS / algebra checks для leading center block и двухпараметрической
+  parameterization regular leading data;
+- live checks для rank / dimension facts и для совпадения `im(V_adm)` с
+  current KKT-selected amplitude family на representative clean points.
+
+**Результат проверки:** текущий repository теперь знает следующее точно:
+- leading admissible center data действительно двумерны;
+- `A_repo = im(V_adm)` совпадает с exact current KKT-selected amplitude family
+  внутри weighted trial ansatz;
+- но `A_repo` не равно всему coefficient-level space `ker(C_reg)`, и equality
+  между `A_repo` и full theorem-facing clean admissible tangent space пока не
+  доказана.
+
+**Текущий статус:** **не подтверждено как theorem-level факт; закрыто только ansatz-level characterization текущего selected family**.
+
 ## Короткая сводка по статусам
 
 ### Подтверждено / частично подтверждено
-- A3, A4, A5, A6, A7, A10, A12, A13, A15.
+- A3, A4, A5, A6, A7, A10, A12, A13, A15, A16.
 
 ### Не подтверждено
-- A8, A14.
+- A8, A14, A17.
 
 ### Снято / отвергнуто
 - A1, A2, A9, A11.
@@ -271,6 +320,7 @@
 - `docs/journal/project_journal_updated14.md`
 - `docs/theory/vyvod_uravneniy_updated17.md`
 - `docs/theory/current_simple_support_status.md`
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`
 - `proof_pilots/pilot_20_method_sweep_for_simple_support_ceiling/pilot_20_method_sweep_for_simple_support_ceiling.md`
 - `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/pilot_21_u_z_scaled_arc_like_continuation.md`
 - `proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/fast_continuation_workflow.md`

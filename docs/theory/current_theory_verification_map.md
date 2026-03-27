@@ -250,6 +250,199 @@ not that every one of them is already article-level proven.
   keep V-S5 at this tightened pilot-backed status and re-check it whenever the
   boundary-matrix builder changes.
 
+### V-S6. The clean `simple support` theorem-level target object is the full reduced tangent operator
+
+- ID: `V-S6`
+- Claim / Hypothesis:
+  On the active clean standalone `simple support` path, the theorem-level
+  criticality object should be the full linearized mixed operator with interior
+  residual block plus boundary rows
+  `[u_n(1), varphi(1), T_s(1), S(1), H(1)]`, reduced to the admissible
+  center-regular space, rather than the boundary-only object alone.
+- Type: `structural`
+- Source file(s):
+  `docs/theory/vyvod_uravneniy_updated17.md` section 1.7;
+  `docs/assumptions/assumptions.md` A16;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `src/shell_buckling/mixed_weak/full_simple_support_critical_search.py`.
+- Current status: `frozen as the current target object, not yet proved`
+- What counts as verification:
+  an explicit repository-level derivation of the full stacked operator,
+  an explicit split of the center rows into free amplitudes and true regularity
+  constraints, and a reduced operator definition that is basis-clean on the
+  same two-dimensional admissible family.
+- Verification method:
+  manual derivation, CAS, numerical representative check, Lean abstraction
+  target.
+- Verification boundary:
+  repository-level target freeze only; not yet a proof of the final shell BVP,
+  not yet a proof of exact kernel equivalence, and not yet a proof that the
+  boundary-only object is sufficient.
+- Next action:
+  prove the kernel-equivalence step from the admissible full operator to the
+  reduced operator, and only then decide whether a further collapse to a
+  boundary-only criterion is justified.
+
+### V-F2. Current reduced tangent operator candidate from the live clean objects
+
+- ID: `V-F2`
+- Claim / Hypothesis:
+  With the live clean objects
+  `L_full = [A_int; B_full]`, `C_center = [C_amp; C_reg]`,
+  `G_amp = C_amp V_reg`, and `V_adm = V_reg G_amp^(-1)`, the preferred reduced
+  operator candidate is
+  `L_red = [A_int; B_full] V_adm`, while
+  `B_red = B_full V_adm` and the current raw baseline satisfies
+  `B_mix = B_red G_amp`.
+- Type: `formula`
+- Source file(s):
+  `docs/theory/vyvod_uravneniy_updated17.md` section 1.7;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/reduction_check.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `src/shell_buckling/mixed_weak/full_simple_support_critical_search.py`.
+- Current status: `formula-level target derived and partially checked`
+- What counts as verification:
+  CAS confirmation of the block identities used in the stacked reduction,
+  live representative checks that `C_reg V_reg ≈ 0`,
+  `det(C_amp V_reg) != 0`, `C_center V_adm ≈ [[I_2],[0]]`,
+  and `B_mix ≈ B_red G_amp`.
+- Verification method:
+  manual derivation, CAS, numerical representative check.
+- Verification boundary:
+  current finite-dimensional clean architecture only; this does not yet prove
+  the exact continuum reduction, exact vanishing of `A_int V_adm`, or final
+  equivalence of kernels.
+- Next action:
+  isolate the exact C3 kernel-equivalence statement and decide in C4 whether a
+  genuine quadratic-form object exists beyond the current reduced stacked
+  operator and its Gram surrogate.
+
+### V-S7. On the current reduced family, `ker(L_red)` is exactly the restricted admissible kernel of the full clean operator
+
+- ID: `V-S7`
+- Claim / Hypothesis:
+  Let `A_repo = im(V_adm)` be the current chosen two-dimensional reduced family
+  in the clean standalone `simple support` architecture. Then the map
+  `a -> c = V_adm a` identifies `ker(L_red)` exactly with
+  `A_repo ∩ ker(L_full)`, where `L_full = [A_int; B_full]` and
+  `L_red = L_full V_adm`.
+- Type: `structural`
+- Source file(s):
+  `docs/theory/vyvod_uravneniy_updated17.md` section 1.8;
+  `docs/assumptions/assumptions.md` A16;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/reduction_check.py`.
+- Current status: `closed at the finite-dimensional restricted-family level`
+- What counts as verification:
+  an explicit proof that `C_amp V_adm = I_2` and `C_reg V_adm = 0` make
+  `a -> V_adm a` a bijection from `R^2` onto `A_repo`, together with the exact
+  identity `L_red = L_full V_adm`.
+- Verification method:
+  manual derivation, CAS, numerical representative check, Lean abstraction
+  target.
+- Verification boundary:
+  this does not yet prove that `A_repo` equals the full exact clean admissible
+  center-regular tangent space; it closes only the current repository-level
+  reduction on the chosen two-dimensional family.
+- Next action:
+  formalize the abstract finite-dimensional bijection in Lean, then decide
+  whether the restriction to `A_repo` is lossless for the full clean problem.
+
+### V-F3. The reduced clean kernel question is basis-independent, and `B_red` / `B_mix` differ only by reduced coordinates
+
+- ID: `V-F3`
+- Claim / Hypothesis:
+  For any invertible reduced coordinate change `T`, replacing `V_adm` by
+  `V_adm T` leaves `im(V_adm)` unchanged and gives
+  `L_full(V_adm T) = L_red T`, `B_full(V_adm T) = B_red T`. Also, with
+  `G_amp = C_amp V_reg`, one has `V_reg = V_adm G_amp` and
+  `B_mix = B_red G_amp`, so `ker(B_mix) = G_amp^(-1)(ker(B_red))` whenever
+  `det(G_amp) != 0`.
+- Type: `formula`
+- Source file(s):
+  `docs/theory/vyvod_uravneniy_updated17.md` section 1.8;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/reduction_check.py`.
+- Current status: `formula-level closed on the current reduced family`
+- What counts as verification:
+  CAS confirmation of the right-multiplication identities and live checks that
+  `det(G_amp) != 0`, `V_reg ≈ V_adm G_amp`,
+  `L_full V_reg ≈ L_red G_amp`, and `B_mix ≈ B_red G_amp`.
+- Verification method:
+  manual derivation, CAS, numerical representative check.
+- Verification boundary:
+  this is a coordinate-equivalence statement only; it does not prove
+  `ker(L_red) <-> ker(B_red)` and does not justify replacing the interior block
+  by boundary rows alone.
+- Next action:
+  keep this as the basis-clean coordinate layer and isolate separately the
+  additional theorem that would be needed for a boundary-only collapse.
+
+### V-S8. The current `A_repo = im(V_adm)` is exactly the KKT-selected two-parameter family of the weighted trial ansatz
+
+- ID: `V-S8`
+- Claim / Hypothesis:
+  Inside the current weighted polynomial trial ansatz, the current repository
+  family `A_repo = im(V_adm)` is exactly the image of the amplitude-to-
+  coefficient map produced by the constrained regularized least-squares KKT
+  problem with free center amplitudes and zero regularity rows. In that sense,
+  the current reduction is lossless relative to the present selected ansatz-
+  level family.
+- Type: `structural`
+- Source file(s):
+  `docs/theory/vyvod_uravneniy_updated17.md` section 1.9;
+  `docs/assumptions/assumptions.md` A17;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/reduction_check.py`;
+  `src/shell_buckling/mixed_weak/full_simple_support_critical_search.py`;
+  `src/shell_buckling/mixed_weak/solver_patched_core.py`.
+- Current status: `closed at the current weighted-ansatz / selected-family level`
+- What counts as verification:
+  an explicit derivation of the leading center block from the weighted basis,
+  an explicit definition of the KKT-selected amplitude family, and a check that
+  the canonical `V_adm` span coincides with that family on representative live
+  clean objects.
+- Verification method:
+  manual derivation, CAS, numerical representative check.
+- Verification boundary:
+  this does not prove that the selected family already equals the full theorem-
+  facing clean admissible tangent space of the continuous problem; it closes
+  only the exact current ansatz-level family used by the repository.
+- Next action:
+  isolate the separate continuum/completeness theorem that would be needed to
+  upgrade this ansatz-level equality to theorem-level losslessness.
+
+### V-F4. `C_reg = 0` alone leaves a much larger trial coefficient space than `A_repo`
+
+- ID: `V-F4`
+- Claim / Hypothesis:
+  In the current `48`-unknown weighted trial basis (`m_basis = 6`), the
+  center-regular constraint block has rank `2`, so `ker(C_reg)` is
+  `46`-dimensional, while `ker(C_center)` is `44`-dimensional. Therefore the
+  current reduced family `A_repo` cannot be identified with the whole
+  coefficient-level center-regular trial space from the existing center
+  constraints alone.
+- Type: `formula`
+- Source file(s):
+  `docs/theory/vyvod_uravneniy_updated17.md` section 1.9;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/reduction_check.py`;
+  `src/shell_buckling/mixed_weak/solver_patched_core.py`.
+- Current status: `formula-level closed on the active trial basis`
+- What counts as verification:
+  exact derivation of the four-by-four leading center block from the weighted
+  basis together with live rank/dimension checks on the active representative
+  clean points.
+- Verification method:
+  manual derivation, CAS, numerical representative check.
+- Verification boundary:
+  this is a statement about the current weighted trial basis only; it does not
+  by itself determine the dimension of the full continuum admissible clean
+  tangent space.
+- Next action:
+  keep this as the explicit reason why continuum losslessness still requires an
+  additional theorem beyond the current center constraints and selected-family
+  construction.
+
 ### V-N1. `sigma_min(B_mix(q)) = 0` is the current raw working criterion
 
 - ID: `V-N1`
@@ -369,7 +562,7 @@ not that every one of them is already article-level proven.
 - Type: `strategy`
 - Source file(s):
   `docs/theory/current_simple_support_status.md`;
-  `docs/journal/project_journal_updated14.md` sections 12.3-12.4;
+  `docs/journal/project_journal_updated14.md` sections 12.3-12.5;
   `src/shell_buckling/mixed_weak/full_simple_support_critical_search.py`;
   `tasks/run_simple_support_criterion_pilot_d.py`;
   `tasks/run_simple_support_criterion_pilot_e.py`.
@@ -401,7 +594,7 @@ not that every one of them is already article-level proven.
 - Type: `strategy`
 - Source file(s):
   `docs/theory/current_simple_support_status.md`;
-  `docs/journal/project_journal_updated14.md` section 12.4.
+  `docs/journal/project_journal_updated14.md` sections 12.4-12.5.
 - Current status: `strategy only`
 - What counts as verification:
   none in theorem form; this is an organizational consequence of the present
@@ -446,6 +639,12 @@ not that every one of them is already article-level proven.
   `G_ps^repo ~ int [hat(T_s) g_s + hat(Q_s) g_n + hat(M_s) g_m] dx` and
   formula-checks it against both active solver cores without upgrading the claim
   beyond the current repository boundary.
+- Proof pilot 23 supports `V-S6` and `V-F2`:
+  it freezes the clean full reduced tangent target object from the live clean
+  architecture, CAS-checks the stacked reduction identities, and numerically
+  checks the current admissible rebasing
+  `V_adm = V_reg (C_amp V_reg)^(-1)` on representative clean competition
+  points.
 
 These pilots close only local steps. They do **not** prove the whole mixed-weak
 theory.
@@ -513,27 +712,40 @@ Relatively solid inside the current repository boundary:
   reduced ansatz and `v2` workflow;
 - the pilot-backed rule that the current `B_mix` builders use the
   center-regular mode pair rather than raw surrogate directions;
+- the explicit target-object freeze
+  “full admissible operator -> reduced tangent operator `L_red`” for the clean
+  `simple support` rework;
+- the exact finite-dimensional C3 statement
+  `ker(L_red) <-> im(V_adm) ∩ ker(L_full)` on the current chosen reduced
+  family;
+- basis-independence of the reduced kernel question on that same family and the
+  coordinate-equivalence `B_mix = B_red G_amp`;
+- the exact ansatz-level characterization of the current selected reduced
+  family `A_repo = im(V_adm)` as the KKT-selected amplitude family inside the
+  weighted trial construction;
 - the use of raw `B_mix` as the current baseline criterion together with the
   clean `n = 4, 6, 7, 8` competition set as the live operational benchmark.
 
 Most urgent items to verify next:
 
-- the exact theorem-level operator or quadratic-form object whose degeneration
-  should define criticality on the admissible clean `simple support`
-  center-regular space;
-- the reduction of that object from the full linearized mixed BVP to the actual
-  reduced admissible coordinates used by the clean solver;
+- the missing continuum/completeness theorem that would identify the current
+  selected family `im(V_adm)` with the full admissible clean center-regular
+  tangent problem, rather than only with the current weighted-ansatz/KKT
+  family;
+- whether and when the reduced stacked operator can be replaced by the
+  boundary-only object `B_red` / the raw baseline `B_mix`;
+- whether a genuine quadratic-form object exists on the reduced admissible
+  space, rather than only the current stacked-operator / Gram surrogate;
 - the precise reason why `n = 6`, `n = 7`, and `n = 8` separate differently
   under the raw boundary-only reading and the lighter diagnostic pilots.
 
 Most valuable next proof pilots:
 
-1. A derivation/CAS pilot that isolates the full tangent mixed operator of the
-   clean `simple support` problem and its reduction to admissible
-   center-regular coordinates.
-2. A proof-oriented pilot that compares candidate spectral, generalized, and
-   quadratic-form criteria on that reduced object and records exactly where
-   equivalence holds or fails.
-3. A small numerical verification pilot that compares the new theorem-level
-   criterion against the raw `B_mix` baseline on `n = 4, 6, 7, 8` without a new
-   broad search.
+1. A Lean-oriented abstraction pilot that formalizes the leading-data space,
+   the KKT-selected amplitude family, and the already-closed reduced-family
+   kernel equivalence.
+2. A theorem-oriented step that derives or proves completeness of the full
+   continuum clean admissible center-regular family relative to the current
+   weighted-ansatz/KKT construction.
+3. A C4 pilot that compares candidate spectral, generalized, and quadratic-form
+   criteria on `L_red` and records exactly where equivalence holds or fails.

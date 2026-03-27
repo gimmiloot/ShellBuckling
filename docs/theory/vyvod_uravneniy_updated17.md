@@ -216,6 +216,408 @@ Q_s, M_s, M_theta, H, chi = O(x^(n-2)).
 
 ---
 
+## 1.7. Целевой theorem-level объект для clean full `simple support / подвижный шарнир`
+
+Для активной clean standalone full `simple support / подвижный шарнир` ветви
+теперь нужно явно отделять:
+
+1. **полный linearized mixed operator**, который должен задавать критичность;
+2. **reduced boundary-only baseline** `B_mix`, который пока остаётся лишь raw
+   working criterion;
+3. **будущий theorem-level шаг equivalence**, который ещё не закрыт.
+
+На уровне живой clean architecture полный дискретный mixed operator имеет вид
+
+```text
+L_full,n(q) = [A_int,n(q); B_full,n(q)],
+```
+
+где:
+
+- `A_int,n(q)` — interior collocation block текущего mixed operator;
+- `B_full,n(q)` — edge trace block с active critical rows
+  `[u_n(1), varphi(1), T_s(1), S(1), H(1)]`.
+
+В current clean center reduction используется матрица
+
+```text
+C_center,n(q) = [C_amp,n(q); C_reg,n(q)],
+```
+
+где
+
+```text
+C_amp(c) =
+  [u_s/x^n,
+   varphi/x^(n-1)] at x = x0,
+
+C_reg(c) =
+  [u_n/x^n + (lambda_c/n) varphi/x^(n-1),
+   psi/x^(n-1) - lambda_c varphi/x^(n-1)] at x = x0.
+```
+
+Смысл этого разбиения такой:
+
+- `C_reg(c)=0` — это именно admissible center-regular constraints;
+- `C_amp(c)` — две свободные reduced center amplitudes;
+- overall scaling не является частью theorem statement и фиксируется только при
+  выборе координат на одном и том же двумерном admissible family.
+
+Текущий solver строит span `V_reg,n(q)` из двух constrained modes. После
+коэффициентной нормировки и ортогонализации это уже не буквально
+center-normalized basis, поэтому для theory-facing редукции нужно использовать
+canonical rebasing
+
+```text
+G_amp,n(q) = C_amp,n(q) V_reg,n(q),
+V_adm,n(q) = V_reg,n(q) G_amp,n(q)^(-1),
+```
+
+если `det G_amp,n(q) ≠ 0`.
+
+Тогда preferred reduced tangent operator имеет вид
+
+```text
+L_red,n(q) = [A_int,n(q); B_full,n(q)] V_adm,n(q).
+```
+
+Его boundary-only descendant:
+
+```text
+B_red,n(q) = B_full,n(q) V_adm,n(q),
+```
+
+а текущий raw clean object удовлетворяет relation
+
+```text
+B_mix,n(q) = B_red,n(q) G_amp,n(q).
+```
+
+Следовательно, на этом шаге как **theorem-level target object** проекта нужно
+фиксировать не `B_mix` сам по себе, а nontrivial-kernel problem для полного
+reduced operator `L_red,n(q)` на admissible center-regular space. Будущая
+эквивалентность
+
+```text
+ker(L_red,n(q)) != {0}
+```
+
+с boundary-only degeneration `sigma_min(B_mix)=0` пока ещё **не доказана** и
+должна оформляться как отдельный C3-обязательный шаг.
+
+**Проверено:** на уровне repository derivation из live clean objects, через CAS
+для block identities и через representative numerical checks в
+`proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator`.
+
+**Не проверено:**
+- exact continuum-level kernel equivalence между полным clean mixed BVP и
+  `L_red`;
+- exact interior elimination step, при котором `A_int V_adm` должен перейти в
+  нуль уже на theorem level, а не только в least-squares sense текущего кода;
+- существование genuine quadratic form / second-variation object на том же
+  reduced admissible space.
+
+## 1.8. C3: что именно уже доказано для `L_red`, а что ещё нет
+
+После фиксации объекта `L_red` нужно различать три уровня утверждений.
+
+### 1.8.1. Полный admissible clean problem как theorem-level цель
+
+Итоговая theorem-level цель проекта по-прежнему состоит в том, чтобы связать
+критичность clean full `simple support / подвижный шарнир` задачи с
+существованием нетривиального admissible center-regular возмущения в ядре
+полного mixed operator.
+
+На этом шаге **не доказано**, что текущий конечномерный span `V_adm` уже
+исчерпывает всё это пространство admissible perturbations.
+
+### 1.8.2. Текущий repo-selected reduced family
+
+Для текущей live clean architecture можно точно определить лишь выбранное
+двумерное reduced family
+
+```text
+A_repo,n(q) = im(V_adm,n(q)).
+```
+
+Здесь `V_adm` определяется из `V_reg` формулой
+
+```text
+V_adm = V_reg (C_amp V_reg)^(-1),
+```
+
+так что
+
+```text
+C_amp V_adm = I_2,
+C_reg V_adm = 0.
+```
+
+Из этого немедленно следует:
+
+- `V_adm` имеет полный столбцовый ранг 2, потому что имеет left inverse
+  `C_amp` на своём image;
+- отображение
+
+```text
+Phi_n,q : R^2 -> A_repo,n(q),
+Phi_n,q(a) = V_adm,n(q) a
+```
+
+  является линейной биекцией;
+- для любого `c = V_adm a` из `A_repo,n(q)` выполнено
+
+```text
+C_reg c = 0,
+C_amp c = a.
+```
+
+То есть на выбранном reduced family reduced coordinates совпадают с двумя
+center amplitudes.
+
+### 1.8.3. Exact C3 kernel-equivalence, который уже можно фиксировать
+
+Пусть
+
+```text
+L_full,n(q) = [A_int,n(q); B_full,n(q)],
+L_red,n(q) = L_full,n(q) V_adm,n(q).
+```
+
+Тогда для любого `a in R^2` имеем точную конечномерную эквивалентность
+
+```text
+L_red,n(q) a = 0
+iff
+c := V_adm,n(q) a belongs to A_repo,n(q) ∩ ker(L_full,n(q)).
+```
+
+Эквивалентно,
+
+```text
+ker(L_red,n(q))  <->  A_repo,n(q) ∩ ker(L_full,n(q))
+```
+
+через биекцию `a -> V_adm a`.
+
+Это и есть точный C3-результат текущего шага: `ker(L_red)` уже можно строго
+идентифицировать с ядром полного оператора, **но только после ограничения на
+текущий выбранный reduced family** `A_repo = im(V_adm)`.
+
+### 1.8.4. Basis-independence и boundary-only descendants
+
+Если `T in GL(2)` и `V_tilde = V_adm T`, то
+
+```text
+im(V_tilde) = im(V_adm),
+L_tilde = L_full V_tilde = L_red T,
+B_tilde = B_full V_tilde = B_red T.
+```
+
+Значит, nontrivial-kernel question для `L_red` не зависит от выбора basis на
+том же reduced family.
+
+Кроме того,
+
+```text
+V_reg = V_adm G_amp,
+B_mix = B_full V_reg = B_red G_amp.
+```
+
+Поэтому при `det G_amp ≠ 0`
+
+```text
+ker(B_mix) = G_amp^(-1)(ker(B_red)).
+```
+
+Итак, `B_red` и `B_mix` несут одну и ту же boundary-only information на
+`A_repo`, но это **не означает**, что они уже эквивалентны полному reduced
+operator `L_red`.
+
+### 1.8.5. Что именно остаётся открытым после C3
+
+На этом шаге всё ещё **не доказано**:
+
+- что `A_repo = im(V_adm)` совпадает с полным exact admissible center-regular
+  tangent space clean mixed problem;
+- что `ker(L_red)` эквивалентно `ker(B_red)`;
+- что `ker(L_red)` эквивалентно raw boundary-only reading `ker(B_mix)` или
+  `sigma_min(B_mix)=0`;
+- что на том же space существует genuine quadratic form / second variation.
+
+Единственное безусловное включение, которое уже можно писать немедленно:
+
+```text
+ker(L_red) ⊆ ker(B_red),
+```
+
+поскольку `B_red` есть boundary block внутри stacked operator `L_red`.
+
+## 1.9. C3b: что именно означает losslessness и что сейчас реально закрыто
+
+После C3 следующий вопрос нельзя формулировать расплывчато. Здесь нужно
+разделять три разных пространства.
+
+### 1.9.1. Theorem-facing full admissible space
+
+Искомое theorem-level пространство для clean full
+`simple support / подвижный шарнир` задачи — это пространство всех
+center-regular perturbations полного linearized mixed problem до наложения
+окончательного критического edge condition. Обозначим его
+
+```text
+A_full^th,n(q).
+```
+
+На текущей repository boundary это пространство **не закрыто как отдельный
+готовый объект**: нет ещё article-level local solution-family derivation,
+которая бы прямо отождествляла его с текущим конечномерным construction.
+
+### 1.9.2. Что current code знает точно: weighted trial space и center constraints
+
+Current code задаёт weighted polynomial trial space коэффициентов
+
+```text
+X_trial,n = R^N,
+N = 8 * m_basis,
+```
+
+через `TrialSpace` и `field_exponent(...)`. Для него степени у центра уже
+зашиты прямо в basis:
+
+```text
+u_s, u_n, v ~ x^n,
+varphi, psi, T_s ~ x^(n-1),
+Q_s, M_s ~ x^(n-2).
+```
+
+Поэтому на уровне current ansatz principal-part scaling уже встроен.
+
+Явное coefficient-level center-regular constraint space внутри этого ansatz:
+
+```text
+W_reg,n(q) = { c in X_trial,n : C_reg,n(q) c = 0 }.
+```
+
+### 1.9.3. Leading center data действительно двумерны
+
+Поскольку basis functions имеют вид
+
+```text
+x^p * t^k,   t = (x - x0)/(1 - x0),
+```
+
+а `t(x0)=0`, в leading center data участвуют только `k=0` coefficients.
+Следовательно, на leading amplitudes
+
+```text
+(a_us, a_un, a_phi, a_psi)
+```
+
+матрица `C_center` имеет точный block
+
+```text
+[1  0      0       0]
+[0  0      1       0]
+[0  1  lambda_c/n  0]
+[0  0   -lambda_c  1].
+```
+
+Отсюда:
+
+- `det(C_center,lead) = -1`, то есть full leading block имеет rank `4`;
+- `C_reg,lead` имеет rank `2`;
+- regular leading family задаётся двумя free amplitudes `(a_us, a_phi)`, а
+  остальные leading coefficients определяются формулами
+
+```text
+a_un = -(lambda_c/n) a_phi,
+a_psi = lambda_c a_phi.
+```
+
+Итак, current repository действительно знает, что **leading admissible center
+data** двумерны.
+
+### 1.9.4. Почему этого ещё недостаточно для losslessness
+
+Это двумерное утверждение относится только к leading center data. Оно **не**
+означает, что всё coefficient-level пространство `W_reg = ker(C_reg)` уже
+двумерно.
+
+На текущем active trial basis (`N = 48` при `m_basis = 6`) имеем:
+
+```text
+rank(C_reg) = 2,
+dim ker(C_reg) = 46,
+rank(C_center) = 4,
+dim ker(C_center) = 44.
+```
+
+Значит, одного условия `C_reg c = 0` недостаточно, чтобы получить current
+two-dimensional reduced family. Следовательно, `A_repo` нельзя отождествлять с
+полным center-regular coefficient space только по center constraints.
+
+### 1.9.5. Что current repo-selected family означает на самом деле
+
+Current solver выбирает не всё `W_reg`, а специальное двумерное семейство,
+определяемое constrained regularized least-squares rule:
+
+```text
+minimize ||A_int c||^2 + reg ||c||^2
+subject to C_center c = [a_1, a_2, 0, 0].
+```
+
+Если обозначить через `M_amp,n(q)` coefficient block соответствующего KKT map,
+то exact current selected family inside the weighted ansatz равно
+
+```text
+A_ls,n(q) = im(M_amp,n(q)).
+```
+
+Именно это пространство current repository фактически использует как reduced
+family; после normalization / orthogonalization и canonical rebasing оно даёт
+
+```text
+A_repo,n(q) = im(V_adm,n(q)) = A_ls,n(q)
+```
+
+на уровне current ansatz/construction.
+
+### 1.9.6. Точный результат C3b
+
+На этом шаге можно честно зафиксировать:
+
+1. `A_repo = im(V_adm)` **не** равно всему `ker(C_reg)`; оно является только
+   special 2D subfamily внутри much larger trial coefficient space.
+2. `A_repo` уже можно точно идентифицировать с current KKT-selected amplitude
+   family `A_ls = im(M_amp)` внутри weighted trial ansatz.
+3. Равенство
+
+```text
+A_repo,n(q) = A_full^th,n(q)
+```
+
+   всё ещё **не доказано**.
+
+То есть reduction уже lossless относительно **current repo-selected
+constrained-LS family**, но ещё не lossless относительно полного theorem-facing
+clean admissible tangent space.
+
+### 1.9.7. Exact missing ingredient после C3b
+
+Чтобы получить настоящее theorem-level losslessness, нужен следующий шаг,
+которого в repository пока нет:
+
+- либо article-level derivation / theorem, что full clean center-regular local
+  solution family действительно двумерно и полностью parameterized текущими
+  two leading amplitudes в том смысле, который совместим с `M_amp`;
+- либо отдельное completeness statement, что current weighted trial +
+  constrained-LS construction не теряет admissible perturbations из
+  `A_full^th`.
+
+Именно этот шаг, а не ещё одна численная refinement-проверка, сейчас остаётся
+главным theorem-level bottleneck после C3b.
+
 # Часть 2. Проверенные численные и проектные выводы
 
 ## 2.1. Что уже проверено по старой архитектуре
@@ -512,7 +914,7 @@ T_s(1)=0, M_s(1)=0, u_z(1)=0.
 - `project_journal_updated14.md`
 - `mixed_weak_solver_v1.py`
 - `mixed_weak_boundary_matrix_test_v2.py`
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`
 - `Huang 1964 - Unsymmetrical Buckling of Thin Shallow.pdf`
 - `holm3.pdf`
 - `BauerVoronkovaSemenov-vestnik2022_1.pdf`
-

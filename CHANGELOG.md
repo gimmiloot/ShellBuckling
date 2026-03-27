@@ -1,5 +1,7 @@
 ﻿# CHANGELOG
 
+
+
 ## 2026-03-27 - Sync criterion-planning docs after the non-decisive clean simple support pilot sequence
 
 Affected files:
@@ -783,3 +785,50 @@ Affected files: `data/project_map.md`, `CHANGELOG.md`
 
 
 
+## 2026-03-27 - Freeze the clean `simple support` theorem target and derive the reduced tangent operator candidate
+
+Affected files:
+- `docs/theory/current_theory_verification_map.md`
+- `docs/assumptions/assumptions.md`
+- `docs/theory/vyvod_uravneniy_updated17.md`
+- `docs/journal/project_journal_updated14.md`
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/reduction_check.py`
+- `CHANGELOG.md`
+
+- Froze the clean theorem-facing C1 target on the active `simple support / подвижный шарнир` path: the full stacked linearized mixed object is now recorded explicitly as the preferred theorem-level target, while raw `B_mix` is kept only as the current boundary-only baseline.
+- Added proof pilot 23 with a live/CAS check of the current reduction layer: it splits `C_center` into amplitude and true regularity rows, rebases the current `V_reg` span to canonical reduced coordinates, and derives the preferred reduced tangent candidate `L_red = [A_int; B_full] V_adm`.
+- Updated the verification map, assumptions register, theory derivation file, and project journal so the next proof obligations are now explicit: C3 kernel-equivalence for the clean reduced object and C4 the decision whether a genuine quadratic-form / second-variation object exists.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, broad scans, or hybrid `F_min` reuse policy were changed.
+
+## 2026-03-27 - Close the restricted C3 kernel-equivalence statement for the clean reduced family
+
+- Affected files:
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/reduction_check.py`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/assumptions/assumptions.md`
+- `docs/theory/vyvod_uravneniy_updated17.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Extended pilot 23 from C1/C2 into C3 by making the exact restricted statement explicit: on the current chosen reduced family `A_repo = im(V_adm)`, the coordinate map `a -> V_adm a` identifies `ker(L_red)` with `A_repo ∩ ker(L_full)`.
+- Added the matching basis-change and boundary-descendant logic: right multiplication by an invertible reduced-coordinate matrix leaves the reduced-kernel question unchanged, and `B_mix = B_red G_amp` is now recorded explicitly as a coordinate change on the same family rather than as a new theorem-level object.
+- Updated the verification map, assumptions register, theory derivation file, and project journal to separate what is now closed at the finite-dimensional reduced-family level from what remains open: losslessness of the restriction to `im(V_adm)`, any collapse `ker(L_red) <-> ker(B_red) / ker(B_mix)`, and the later C4 quadratic-form decision.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, broad scans, or hybrid `F_min` reuse policy were changed.
+
+## 2026-03-27 - Delimit C3b losslessness: exact current KKT family closed, continuum equality still open
+
+- Affected files:
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/reduction_check.py`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/assumptions/assumptions.md`
+- `docs/theory/vyvod_uravneniy_updated17.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Extended pilot 23 into C3b by separating three layers explicitly: the theorem-facing full admissible clean tangent space, the large weighted-trial coefficient space satisfying `C_reg = 0`, and the exact current KKT-selected two-parameter family actually used by `V_reg` / `V_adm`.
+- Added a sharper center-space derivation: in the current weighted basis only the `k = 0` coefficients contribute to the leading center block, the leading regular data is exactly two-parameter, but `C_reg = 0` alone still leaves a much larger coefficient space, so the present reduction cannot be declared continuum-lossless from center constraints alone.
+- Recorded the new ansatz-level closure: `A_repo = im(V_adm)` is now identified exactly with the current constrained least-squares amplitude family inside the weighted trial construction, while equality to the full theorem-facing clean admissible tangent space remains explicitly open.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, broad scans, or hybrid `F_min` reuse policy were changed.
