@@ -1,5 +1,43 @@
-# CHANGELOG
+﻿# CHANGELOG
 
+## 2026-03-27 - Add clean full simple support criterion pilot E and record that it remains non-decisive
+
+Affected files:
+- `docs/theory/current_simple_support_status.md`
+- `docs/journal/project_journal_updated14.md`
+- `tasks/run_simple_support_criterion_pilot_e.py`
+- `CHANGELOG.md`
+
+- Added `tasks/run_simple_support_criterion_pilot_e.py`, a non-invasive helper runner that keeps the main clean solver unchanged while evaluating an energy-like reduced-coercivity surrogate on the current competition set `n=4,6,7,8`.
+- Ran the new pilot on broad/focused local windows and included targeted discretization checks for `n=6` and `n=8`, saving machine-readable summaries under `output/clean_full_simple_support/criterion_pilot_e_*.{json,csv}`.
+- Updated the operational status and journal notes so they now record explicitly that `D` was useful but not decisive, that the first light `E` pilot gives interior-distributed reduced-coercivity signals without changing equations or BC meaning, and that `E` still does not settle the `n=6` versus `n=8` competition strongly enough to replace the conservative operational memory.
+- Kept the scientific meaning unchanged: the main clean solver path, equations, honest background BC set, and critical boundary rows are unchanged; the E pilot is a diagnostic add-on and does not reconnect the old hybrid `F_min` path.
+
+## 2026-03-27 - Add clean full simple support criterion pilot D and refresh post-A+C status
+
+Affected files:
+- `docs/theory/current_simple_support_status.md`
+- `docs/journal/project_journal_updated14.md`
+- `tasks/run_simple_support_criterion_pilot_d.py`
+- `CHANGELOG.md`
+
+- Added `tasks/run_simple_support_criterion_pilot_d.py`, a non-invasive helper runner that keeps the main clean solver unchanged while evaluating a local tangent-bundle restricted operator diagnostic on the current competition set `n=4,6,7,8`.
+- Ran the new pilot on broad/focused local windows and included targeted discretization checks for `n=6` and `n=8`, saving machine-readable summaries under `output/clean_full_simple_support/criterion_pilot_d_*.{json,csv}`.
+- Updated the operational status and journal notes so they now record explicitly that `A + C` did not materially improve discrimination, that the first light `D` pilot gives interior-dominated local signals without changing equations or BC meaning, and that `E` remains the explicit fallback / next heavier layer if `D` is not refined further.
+- Kept the scientific meaning unchanged: the main clean solver path, equations, honest background BC set, and critical boundary rows are unchanged; the D pilot is a diagnostic add-on and does not reconnect the old hybrid `F_min` path.
+
+## 2026-03-27 - Add clean full simple support criterion pilot A+C and refresh competition-memory docs
+
+Affected files:
+- `docs/theory/current_simple_support_status.md`
+- `docs/journal/project_journal_updated14.md`
+- `tasks/run_simple_support_criterion_pilot_ac.py`
+- `CHANGELOG.md`
+
+- Refreshed the canonical clean simple-support status snapshot so it now records the current clean competition picture around the exploratory `n=6` supported candidate near `17.6 MPa`, the `n=8` unstable rival, the `n=7` raw-but-unsupported reserve dips, the weak `n=4` control reading, and the shift of the unresolved bottleneck from background reach to criterion discrimination.
+- Added a project-level journal update that fixes the next preferred strategy as the lighter criterion pilot `A + C`, while explicitly preserving `D` and then possibly `E` as fallback directions if the lighter pilot does not materially improve candidate discrimination or stability.
+- Added `tasks/run_simple_support_criterion_pilot_ac.py`, a non-invasive helper runner that keeps the main clean solver unchanged while evaluating branch-aware local-valley descriptors together with an augmented / bordered solvability diagnostic on the current competition set `n=4,6,7,8`.
+- Kept the scientific meaning unchanged: the pilot reuses the same clean simple-support equations, the same background BC set, and the same critical boundary rows, and it does not reconnect the old hybrid `F_min` path.
 
 ## 2026-03-26 - Upgrade the clean full simple-support search to the proven high-load background path
 
@@ -711,6 +749,13 @@ Affected files: `data/project_map.md`, `CHANGELOG.md`
 
 - Added `data/project_map.md` to classify the current checkout into active core, runnable tasks, supporting scripts, documentation, and non-source folders.
 - Recorded the present working direction as the mixed-weak path and noted that no dedicated archived source directory exists in this checkout.
+
+
+
+
+
+
+
 
 
 

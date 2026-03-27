@@ -1,4 +1,4 @@
-# Current Simple-Support Operational Status
+﻿# Current Simple-Support Operational Status
 
 ## Scope
 This file is the canonical operational snapshot for the separate active 6-state
@@ -80,26 +80,55 @@ succeeds through the full scheduled band with no background failure:
 - first background failure in the scheduled clean run: not reached;
 - the clean program now genuinely probes the FEM-oriented `12..14 MPa` region.
 
-Current exploratory mode-by-mode reading from the clean program is:
+Current exploratory mode-by-mode reading from the clean program is now broader:
 
-- `n=2`: current best point remains a smooth interior low-load minimum near
-  `2.5 MPa`; no comparably strong new high-load minimum has appeared for this
-  mode in `12..15 MPa`;
-- `n=3`: refined interior local minimum near `11.8 MPa`, smooth and numerically
-  believable on the current grid;
-- `n=4`: broad interior minimum near `11.0 MPa`, weaker than the later `n=5,6`
-  target-band minima;
-- `n=5`: refined interior local minimum near `13.95 MPa`;
-- `n=6`: refined interior local minimum near `14.25 MPa`, currently the weakest
-  balanced boundary metric inside the `12..15 MPa` band.
+- `n=4`: weak control-mode interior minimum remains near `11.1 MPa`; this mode
+  is still kept in the competition set because of the older FEM-oriented prior,
+  not because the clean broad scan now makes it numerically strong;
+- `n=6`: current leading supported clean candidate is an interior minimum near
+  `17.6 MPa`; it remains exploratory and not yet a final physical claim, but it
+  is still the strongest current candidate that has survived the clean
+  competition workflow with at least moderate stability support;
+- `n=8`: main unstable rival now sits near `17.8 MPa`; on some local windows it
+  can beat `n=6` in raw `sigma_bal`, but its advantage remains sensitive to the
+  exact local window and selected discretization;
+- `n=7`: reserve mode can produce very sharp raw dips near `17.2..17.4 MPa`,
+  including raw `sigma_bal` values below the current supported candidate, but
+  these sharp dips have not yet shown acceptable robustness and should stay
+  classified as raw-but-unsupported reserve readings;
+- `n=14`: reserve mode also produces an interior point above the older
+  `18 MPa` broad ceiling neighborhood, near `19.3 MPa`, but it has not yet
+  upgraded into a stable real competitor;
+- the earlier `n=5` / `n=6` target-band reading near `13.95..14.25 MPa`
+  remains part of the project memory, but it is no longer the full current
+  clean competition reading.
 
-So the clean full simple-support solver now does reach the physically
-interesting band, and within that band the strongest current candidates come
-from `n=5` and especially `n=6` near `13.95..14.25 MPa`. At the same time,
-across the full scanned interval `0..15 MPa` the raw balanced metric still has
-comparable or even smaller low-load minima (notably for `n=2` and also
-marginally for `n=6` near `2.5 MPa`), so the present clean-program reading is
-still exploratory and not yet a final physical critical-load claim.
+So the unresolved bottleneck is no longer honest-background reach. It is now
+criterion discrimination / candidate selection inside the clean full
+simple-support search: how to separate supported interior valleys from raw
+window-sensitive sharp dips. The leading supported reading is presently `n=6`
+near `17.6 MPa`; `n=8` remains the main unstable rival; `n=7` remains a raw
+reserve dip without acceptable robustness; `n=4` remains a weak control mode.
+None of these values is yet a final physical critical-load claim.
+
+The later `A + C` criterion pilot did not materially improve this competition
+picture: branch-aware descriptors were useful mainly negatively, while the
+augmented / bordered solvability reading stayed boundary-led and unstable. A
+first light `D` pilot on the same clean architecture then gave interior-
+dominated local signals for `n=6`, `n=7`, and `n=8`, no longer read `n=7` as
+the single strongest point-like dip, and placed `n=8` first in the focused
+baseline D ranking; however, it did not settle the `n=6` versus `n=8`
+competition robustly enough to replace the conservative supported-candidate
+operational memory. A first light `E` pilot has now also been checked on the
+same clean architecture: it uses an energy-like reduced-coercivity surrogate
+based on the local tangent bundle plus an amplitude norm built from current
+strain / curvature channels. This `E` reading is much more interpretable than
+the raw boundary-only metric and stays interior-distributed on the checked
+windows, but it still places `n=8` first in the focused baseline E ranking,
+keeps `n=7` competitive, and therefore also does not yet settle the
+competition strongly enough to replace the current conservative operational
+memory.
+
 
 
 ## Current Reproducible Loads
@@ -111,7 +140,8 @@ Several load markers should now be kept separate:
 - best bounded staged continuation ceiling from pilot 21: `4.3800 MPa` (`u_z`-scaled continuation + auxiliary arc-like step adaptation)
 - strongest post-audited validated operational milestone: `4.4000 MPa` (same accepted seed, repeated pointwise confirm, `near_reproducible = true`, no branch-jump suspicion, short probe through `4.4100 MPa`, but `strict_reproducible = false`)
 - higher validated operational milestones from the fast/confirm workflow: `7.0000 MPa` and `10.0000 MPa` (same accepted seed, no branch-jump suspicion, smooth repeat drift smaller than adjacent-step drift, short confirm probes through `7.0080` and `10.0200 MPa`, `strict_reproducible = false`, `near_reproducible = false`)
-- current clean full simple-support critical-search background reach with the high-load bridge: `15.0000 MPa` in the standalone `n=2..6` campaign, without a background failure inside the scheduled band
+- current clean full simple-support critical-search broad compatible scan reach: `18.0000 MPa` with `38 / 38` scheduled background points on the clean compatible load ladder
+- selected local competition / reserve windows have also been checked up to `22.0000 MPa` with retained-checkpoint-seeded clean helper continuation using the same equations and BC set; these local checks have not yet established a deeper supported candidate above `18 MPa`
 - current fast-engine highest stored accepted load: `10.0000 MPa` (`fast_u_z_scaled_arc_like_continuation.py`), still kept separate from the canonical audited ceiling language
 - best bounded staged continuation first failure in the audited pilot-21 ladder: not reached
 - current short confirm probes above the newer fast-engine checkpoints: no failure reached through `4.4100 MPa` from the dedicated `4.4000 MPa` audit and through `10.0200 MPa` from the sparse `7.0000 / 10.0000 MPa` confirms
@@ -288,10 +318,16 @@ workflow is now explicitly split into two layers:
 - use the new standalone clean critical-search program `tasks/run_full_simple_support_critical_search.py` when the goal is the consistent full simple-support mixed-weak search rather than the preserved hybrid testbenches;
 - keep the preserved hybrid scan wrappers separate and readable as legacy/exploratory testbenches rather than as the preferred clean simple-support solver;
 - the clean standalone critical-search path now already inherits the same class of robust high-load background continuation discipline that was demonstrated separately on the honest 6-state path, so the old standalone `4.32..4.5 MPa` loss should be treated as a closed implementation bottleneck rather than as an active barrier reading;
-- use the clean standalone search itself, not the preserved hybrid path, when the goal is the full simple-support critical-load region around the FEM-oriented `12..14 MPa` band;
-- the next unresolved task is no longer basic background reach but conservative mode-by-mode confirmation of the new clean target-band candidates, especially the `n=5` / `n=6` minima near `13.95..14.25 MPa`, together with explanation of why the raw balanced metric still keeps low-load minima in the same `0..15 MPa` scan;
-- if the `n=5` / `n=6` target-band minima remain stable under further confirmation, extend the same clean standalone search above `15 MPa` before making any stronger physical interpretation;
-- keep reporting candidate loads as exploratory.
+- use the clean standalone search itself, not the preserved hybrid path, when the goal is the full simple-support critical-load region around the active clean competition set rather than around the older `12..14 MPa` memory only;
+- the next unresolved task is no longer basic background reach but criterion discrimination: how to rank `n=6`, `n=8`, `n=7`, and the control mode `n=4` by supported-valley quality rather than by the single smallest raw `sigma_bal`;
+- the lighter `A + C` pilot did not materially improve candidate discrimination; branch-aware descriptors were mainly negative and the augmented / bordered solvability reading remained boundary-led / unstable;
+- the first light `D` pilot was useful but not decisive: it used a local tangent-bundle restricted operator built from the clean blocks `[A_int(q); B_bal(q)]`, gave interior-dominated local signals, and no longer made `n=7` the strongest point-like dip, but it still left the `n=6` versus `n=8` competition only moderately resolved and often favored `n=8`;
+- the next preferred criterion direction was then checked as `E`, read conservatively as an energy-like reduced-coercivity surrogate on the same clean architecture rather than as a theorem-level second variation;
+- the first light `E` pilot now uses the same local tangent bundle together with an amplitude norm built from current reconstructed strain / curvature channels `e_s`, `e_theta`, `gamma_theta`, `S`, `phi_x`, `kappa_theta_new`, and `H`;
+- this first `E` reading gives interior-distributed local signals and stabilizes the local-window reading for `n=6` and `n=8`, but it still favors `n=8`, keeps `n=7` competitive, and therefore does not yet settle the clean competition materially better than the current operational reading;
+- if no clearly stronger non-invasive `E` refinement is ready, the next step should be a more theoretical criterion rework rather than continued cheap pilot iteration;
+- keep reporting candidate loads as exploratory, supported, unstable-rival, or
+  reserve readings rather than as final physical critical loads.
 
 ## Canonical Runnable Entry Points
 Baseline, report, and clean critical-search entry points:
@@ -317,3 +353,5 @@ solver path:
 
 - `experiments/supporting/run_supporting_dimensionless_comparison.py`
 - `experiments/supporting/run_supporting_determinant_comparison.py`
+
+

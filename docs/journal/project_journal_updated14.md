@@ -1,4 +1,4 @@
-# Журнал проекта
+﻿# Журнал проекта
 
 ## 1. Паспорт проекта
 
@@ -310,3 +310,77 @@ equations, BCs или physical interpretation. Для следующего `10 -
 этапа теперь явно фиксируется confirm-critical plan:
 `11.0`, `12.0`, `13.0`, `14.0`, `15.0 MPa`, с дополнительными half-step diagnostics
 `12.5` и `13.5 MPa`.
+
+---
+
+## 12. Обновление по clean full simple support / подвижный шарнир competition reading и следующему criterion pilot
+
+### 12.1. Что теперь считать текущим clean competition reading
+После расширения clean standalone full simple support / подвижный шарнир
+search до broad `0..18 MPa` band и после локальных competition checks на
+активном наборе мод текущая project-level memory должна быть такой:
+
+- лучший raw minimum сейчас не следует автоматически читать как лучший
+  physical candidate;
+- текущий лучший **supported** clean candidate соответствует моде `n=6` и
+  лежит около `q ≈ 17.6 MPa`;
+- мода `n=8` остаётся главным unstable rival: в некоторых локальных окнах она
+  даёт более глубокий raw `sigma_bal`, но пока не показала достаточно
+  устойчивого superiority reading;
+- мода `n=7` даёт sharp raw dips около `17.2..17.4 MPa`, включая dips глубже
+  текущего supported candidate, но пока без acceptable robustness и поэтому
+  должна оставаться reserve/raw-only mode;
+- мода `n=4` по-прежнему полезна как control mode из-за старого
+  FEM-oriented prior, но в текущем clean reading остаётся weak branch и не
+  апгрейдится в ведущего конкурента.
+
+Все эти значения пока следует описывать как exploratory clean full
+simple-support readings, а не как final physical critical load claim.
+
+### 12.2. Что теперь считать главным открытым местом
+Для clean full simple support / подвижный шарнир path текущий bottleneck больше
+не читается как basic honest-background reach problem. Honest full-state
+background уже доведён до широкого operational band, а selected reserve windows
+были дополнительно просмотрены выше старого `18 MPa` ceiling neighborhood.
+
+Главное открытое место теперь другое: **criterion discrimination / candidate
+selection**. Нужно отделить:
+
+- supported interior valleys,
+- window-sensitive unstable rivals,
+- raw sharp dips, которые выглядят сильными только по одному числу
+  `sigma_bal`.
+
+Именно это, а не прежний background ceiling, теперь является центральным
+вопросом clean full simple-support stage.
+
+### 12.3. Какой следующий шаг теперь считать предпочтительным
+Pilot `A + C` в текущей форме materially better discrimination не дал.
+Branch-aware part оказался полезен в основном отрицательно, а bordered /
+augmented solvability reading не дал достаточно устойчивого separation between
+`n=6` и `n=8`.
+
+После этого был опробован лёгкий pilot `D` на той же clean architecture:
+local tangent-bundle reading, использующий текущие clean blocks
+`[A_int(q); B_bal(q)]` и соседние regular subspaces `V_reg`.
+
+Этот первый `D` pilot даёт interior-dominated local signals для `n=6`, `n=7`,
+`n=8`, перестаёт делать `n=7` strongest point-like raw dip, но robustly не
+закрывает competition between `n=6` и `n=8`; в focused baseline D ranking чаще
+лидирует `n=8`.
+
+После этого был отдельно проверен и первый лёгкий pilot `E`: energy-like
+reduced-coercivity surrogate на том же local tangent bundle, но уже с
+amplitude norm по текущим reconstructed strain / curvature channels.
+
+### 12.4. Что теперь считать резервным / следующим fallback path
+`E` оказался полезен diagnostically, но materially competition тоже не закрыл:
+reading стал заметно более интерпретируемым и interior-distributed, локальная
+window stability для `n=6` и `n=8` улучшилась, но в focused baseline E ranking
+всё равно лидирует `n=8`, а `n=7` остаётся competitive.
+
+Следовательно, на project level `n=6` пока остаётся best supported
+operational candidate, `n=8` усиливается как methodological rival, а если не
+появится более principled reduced-energy construction, следующим шагом должен
+быть уже не очередной cheap pilot, а более theoretical criterion rework.
+
