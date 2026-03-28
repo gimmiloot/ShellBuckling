@@ -1,4 +1,4 @@
-# Вывод уравнений — обновлённая версия
+﻿# Вывод уравнений — обновлённая версия
 
 ## Статус документа
 
@@ -925,6 +925,330 @@ factors are far from zero on the active competition set.
 and are insufficient. Нужен local ingredient, который может действовать на тех
 же lowest obstruction orders, или же нужен пересмотр того, что именно project
 должен считать theorem-facing local comparison object.
+### 1.10.8. Что именно теперь нужно сравнивать с `A_ls`
+
+После C3c вопрос больше нельзя читать как
+
+```text
+«совпадает ли current A_ls со всей unrestricted local center-regular family?»
+```
+
+без дополнительного уточнения. На этом месте нужно различать как минимум
+четыре candidate objects:
+
+1. `O1`: полное local center-regular formal family current clean mixed
+   equations;
+2. `O2`: то же family + лишь admissibility / normalization;
+3. `O3`: local center-regular family + weak/interior residual-minimizing or
+   KKT-type selection;
+4. `O4`: local germ family, получающаяся как center trace глобально selected
+   weak family, которую current repository фактически использует.
+
+Новый helper
+`proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/selection_object_check.py`
+показывает, что в live clean code `A_ls` означает не просто chart для regular
+center data.
+
+Для каждого amplitude vector `a = (a1, a2)` current weighted ansatz содержит
+full affine fiber
+
+```text
+F_n,q(a) = { c in X_trial,n : C_center,n(q) c = [a1, a2, 0, 0] }.
+```
+
+Current repository family есть образ unique constrained minimizer
+
+```text
+c*(a) = argmin ( ||A_int,n(q) c||^2 + reg ||c||^2 )
+        subject to C_center,n(q) c = [a1, a2, 0, 0].
+```
+
+То есть при
+
+```text
+H_n,q = A_int,n(q)^T A_int,n(q) + reg I
+```
+
+имеем KKT stationarity
+
+```text
+H_n,q c*(a) + C_center,n(q)^T lambda(a) = 0,
+```
+
+а значит для любого fiber direction `z in ker(C_center)` выполнено
+
+```text
+z^T H_n,q c*(a) = 0.
+```
+
+Иначе говоря, `A_ls = im(M_amp)` — это `H_n,q`-minimal section гораздо более
+широкого amplitude fiber, а не просто «все center-regular local solutions».
+
+Representative checks на active clean competition set `(n, q) = (4, 11.1),
+(6, 17.6), (7, 17.3), (8, 17.8)` дают:
+
+- `dim X_trial = 48`, `rank(C_center) = 4`, значит fixed-amplitude fiber остаётся
+  `44`-мерным;
+- KKT-selected map satisfies center constraints and fiber-orthogonality to
+  numerical tolerance;
+- простой constraint-only feasible reference имеет full objective больше на
+  факторы порядка `10^6 .. 10^11`;
+- если заменить full interior block `A_int` только first `5%`, `10%`, `20%`
+  или `50%` collocation rows, получающийся selected map сильно меняется и не
+  reproduces full-selection result.
+
+Отсюда следует conservative reading:
+
+- `O1` теперь выглядит слишком широким как direct comparison object для `A_ls`,
+  потому что забывает already-present weak/interior selection layer;
+- `O2` тоже недостаточен, если admissibility сама не кодирует тот же selection,
+  а current repo этого не показывает;
+- `O3` — наиболее plausibly correct local object, если настаивать именно на
+  genuinely local theorem-facing formulation;
+- `O4` ещё ближе к live architecture, потому что current selection строится из
+  full interior operator `A_int`, а не только из center germs.
+
+Значит, текущий theorem-facing bottleneck после C3c лучше формулировать так:
+
+```text
+нужно либо вывести selected local object, matching KKT/global weak selection,
+либо доказать global-to-local theorem, что именно local trace of the selected
+weak family является correct comparison object.
+```
+
+Следовательно, main missing theorem теперь уже не выглядит как raw local
+completeness theorem for `O1`. Нужна теорема о selection/comparison object.
+
+### 1.10.9. C3e: какой local selected object теперь разумно сравнивать с `A_ls`
+
+После object-selection stage и C3e полезно явно разделить три объекта:
+
+1. `A_reg^loc` — raw local center-regular formal family clean mixed equations;
+2. `A_ls` — current global weighted-trial KKT-selected family live clean code;
+3. `A_sel^loc` — theorem-facing local selected object, который должен
+   сравниваться с `A_ls`, если сравнение вообще формулируется на local/germ
+   языке.
+
+Live clean architecture теперь позволяет выписать `A_ls` точнее. Обозначим
+
+```text
+C_center,n(q) = [C_amp,n(q); C_reg,n(q)],
+D_amp = [[I_2], [0]],
+H_n,q = A_int,n(q)^T A_int,n(q) + reg I.
+```
+
+Тогда полный selected center-data lift задаётся формулой
+
+```text
+P_sel,n(q) = H_n,q^(-1) C_center,n(q)^T
+             (C_center,n(q) H_n,q^(-1) C_center,n(q)^T)^(-1),
+```
+
+и удовлетворяет
+
+```text
+C_center,n(q) P_sel,n(q) = I_4.
+```
+
+Его образ
+
+```text
+X_sel,n(q) = im(P_sel,n(q))
+```
+
+есть 4-мерный `H_n,q`-orthogonal lift полного center-data space. Current
+selected family then reads as the regularity-zero amplitude slice
+
+```text
+A_ls,n(q) = im(P_sel,n(q) D_amp)
+          = { c in X_sel,n(q) : C_reg,n(q) c = 0 }.
+```
+
+Значит, сами center constraints фиксируют только affine fiber
+
+```text
+F_n,q(a) = { c : C_center,n(q) c = [a1, a2, 0, 0] },
+```
+
+который в current weighted trial space остаётся 44-мерным. То, что превращает
+этот fiber в current 2D family `A_ls`, есть не raw regularity, а глобальный
+weak/KKT selection: unique `H_n,q`-minimal representative in each fiber.
+
+Обновлённый helper
+`proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/selection_object_check.py`
+проверяет на representative active clean points `(n, q) = (4, 11.1), (6,
+17.6), (7, 17.3), (8, 17.8)`, что:
+
+- `rank(C_amp) = 2`, `rank(C_reg) = 2`, `rank(C_center) = 4`, так что fixed-
+  amplitude fiber действительно остаётся 44-мерным inside 48D trial space;
+- KKT-selected 4D lift satisfies `C_center P_sel ≈ I_4` и expected
+  `H`-orthogonality to `ker(C_center)`;
+- amplitude slice `im(P_sel D_amp)` matches the current selected family;
+- near-center-only surrogate objectives still do not reproduce the same
+  selected map.
+
+Отсюда следует более sharp conservative reading.
+
+1. По умолчанию больше не следует сравнивать `A_ls` со всей raw family
+   `A_reg^loc`.
+2. Лучший точно определённый faithful candidate для theorem-facing local object,
+   который сейчас реально виден в repo, есть
+
+```text
+A_sel,trace^loc := J_0(A_ls),
+```
+
+   то есть local germ / center trace глобально selected family.
+3. Более сильный intrinsic object `A_sel,weak^loc` внутри `A_reg^loc`,
+   определяемый через canonical local weak/KKT-type selection rule, пока не
+   выведен.
+
+Итак, C3e закрывает только делимитирующее утверждение:
+
+```text
+correct theorem-facing comparison object should already be selected,
+and the best exact current candidate is the local trace of the globally
+selected family, not the unrestricted local center-regular family.
+```
+
+Следующий theorem-facing step therefore должен быть уже не raw local
+completeness theorem against `A_reg^loc`, а либо global-to-local trace theorem
+for `A_ls`, либо intrinsic characterization theorem showing how the same local
+trace is selected inside `A_reg^loc`.
+### 1.10.10. C3f: какой trace/germ object реально задаёт `J_0(A_ls)`
+
+После C3e следующий вопрос уже не о том, что такое selected family `A_ls`, а о
+том, что именно project должен понимать под local trace / germ map `J_0`.
+
+На current repository boundary нужно различать по крайней мере три candidate
+readings:
+
+1. `J_amp(c) = C_amp c` — только две leading amplitudes;
+2. `J_0(c) = C_center c = [C_amp c; C_reg c]` — полный finite leading-center
+   jet, уже реально encoded in the clean code;
+3. some higher-order local germ/jet extractor — пока not canonical, because the
+   full intrinsic local selected family is still open.
+
+Лучший theorem-facing choice сейчас есть именно second option:
+
+```text
+J_0(c) := C_center c.
+```
+
+Причина в том, что этот object ещё остаётся exact on the current repository
+boundary, но уже distinguishes raw center data from the selected regularity-zero
+slice. `J_amp` становится эквивалентным только после restriction to `A_ls`, а
+higher-order germ extractor пока не имеет canonical live-code definition.
+
+### Почему `J_0 = C_center` является exact current trace map
+
+По live code `make_center_constraint_matrix(...)` и `TrialSpace.basis_eval(...)`
+trace map `C_center` строится из значений trial basis at `x = x0`, divided by
+`x0^n` or `x0^(n-1)` for the relevant channels. Так как basis functions имеют
+вид
+
+```text
+x^p * t^k,   t = (x - x0)/(1 - x0),
+```
+
+то при `x = x0` все columns with `k > 0` vanish exactly. Поэтому `C_center`
+вообще не видит higher center coefficients current trial ansatz. Он видит только
+четыре `k = 0` columns of
+
+```text
+u_s, u_n, varphi, psi.
+```
+
+На этих columns получается exact block
+
+```text
+[ 1      0      0      0 ]
+[ 0      0      1      0 ]
+[ 0      1    lambda_c/n  0 ]
+[ 0      0    -lambda_c   1 ]
+```
+
+с determinant `-1`. Значит, `J_0 = C_center` — это exact rank-4 finite
+leading-center-jet extractor current weighted ansatz, а не просто heuristic
+small-`x` probe.
+
+Что `J_0` forgets:
+
+- все higher `k >= 1` local center coefficients;
+- все channels вне этого leading center jet;
+- any intrinsic higher-order local selected-germ structure.
+
+То есть `J_0` — это finite leading-center trace, но не full local formal germ.
+
+### Exact selected trace theorem at the current weighted-ansatz boundary
+
+Для current selected family
+
+```text
+A_ls = im(P_sel D_amp),
+P_sel = H^(-1) C_center^T (C_center H^(-1) C_center^T)^(-1),
+D_amp = [[I_2], [0]],
+```
+
+имеем exact identity
+
+```text
+J_0(A_ls) = C_center(im(P_sel D_amp)) = im(D_amp).
+```
+
+Итак, selected local trace object now reads exactly as the 2D plane
+
+```text
+A_sel,trace^loc = J_0(A_ls) = im(D_amp)
+```
+
+inside the 4D center-data space.
+
+Moreover,
+
+```text
+J_0|_{A_ls} : A_ls -> im(D_amp)
+```
+
+is bijective, with inverse given by the selected lift `P_sel` on that plane:
+
+```text
+c in A_ls  <->  c = P_sel J_0(c),
+J_0(c) in im(D_amp).
+```
+
+Отсюда сразу следует coordinate-independence: если заменить basis of `A_ls` на
+`M T` with invertible `T`, image plane `J_0(A_ls)` не меняется, меняются только
+coordinates inside the same 2D selected plane.
+
+### Relation to previously studied local objects
+
+Этот trace reading exactly matches the already studied leading local data:
+
+- first two coordinates of `J_0` are the same leading amplitudes `(A_us, A_phi)`
+  that earlier center analysis tracked explicitly;
+- the last two coordinates are the leading regularity-defect rows whose
+  vanishing gave the earlier two-parameter leading regular family condition;
+- therefore `J_0(A_ls)` is much narrower than the previously too-broad raw local
+  object `A_reg^loc`.
+
+But `J_0(A_ls)` still lives only at the finite leading-center-jet layer. It does
+not yet identify a full intrinsic higher-order local selected family.
+
+### Conservative C3f conclusion
+
+C3f closes the following statement at the current weighted-ansatz boundary:
+
+1. best current theorem-facing meaning of `J_0` is the exact finite leading-
+   center jet map `J_0 = C_center`;
+2. the selected trace object is exactly
+   `J_0(A_ls) = im(D_amp)`, a basis-independent 2D plane;
+3. `J_0|_{A_ls}` is bijective, with inverse selected lift `P_sel`;
+4. higher-order intrinsic local-germ selection is still open.
+
+Следовательно, следующий comparison stage уже разумно формулировать first
+against this selected leading-center trace plane `J_0(A_ls)`, а не against the
+full unrestricted local center-regular family.
 # Часть 2. Проверенные численные и проектные выводы
 
 ## 2.1. Что уже проверено по старой архитектуре
@@ -1225,3 +1549,557 @@ T_s(1)=0, M_s(1)=0, u_z(1)=0.
 - `Huang 1964 - Unsymmetrical Buckling of Thin Shallow.pdf`
 - `holm3.pdf`
 - `BauerVoronkovaSemenov-vestnik2022_1.pdf`
+
+
+### 1.10.11. C3g: recovering `im(D_amp)` on the continuum/local side
+
+After C3f the next theorem-facing question is no longer a full intrinsic
+higher-order local selector. At this step the target is narrower: can the
+current continuum/local side already recover the same selected leading-center
+trace plane that is closed on the weighted-ansatz boundary as
+
+```text
+J_0(A_ls) = im(D_amp).
+```
+
+#### Which local object should now be compared
+
+The best current theorem-facing local candidate here is not a full higher-order
+selected germ family. It is only the selected leading-center trace object,
+written in the same coordinates as the exact current trace map
+
+```text
+J_0 = C_center.
+```
+
+So one should compare not an arbitrary quadruple `(U0, N0, P0, Y0)`, but the
+trace vector
+
+```text
+tau(U0, N0, P0, Y0)
+  = [U0, P0, N0 + (lambda_c / n) P0, Y0 - lambda_c P0].
+```
+
+This is the smallest current continuum/local object that is directly comparable
+with the already closed global selected trace plane `im(D_amp)`.
+
+#### Why the current `J_0` coordinates are fixed this way
+
+The updated `formal_local_family_check.py` now makes explicit a structural fact
+of the live clean background path itself.
+
+On the active clean boundary the imposed background BCs are
+
+```text
+T_sn(x0) = 0,
+u_r(x0) = 0,
+varphi(x0) = 0,
+```
+
+and in the live clean background
+
+```text
+lambda_theta0 = r_0 / x.
+```
+
+Therefore, on the current truncated clean boundary,
+
+```text
+lambda_theta0(x0) = r_0(x0) / x0 = 1
+```
+
+exactly, because `u_r(x0) = 0` means `r_0(x0) = x0`.
+Representative live clean checks at `q = 11.1, 17.3, 17.6, 17.8` MPa confirm
+that the current path indeed gives
+
+```text
+u_r(x0) = 0,
+T_sn(x0) = 0,
+varphi(x0) = 0,
+lambda_theta0(x0) = 1,
+lambda_s0(x0) > 1.
+```
+
+So the theorem-facing local comparison with `J_0(A_ls)` must preserve exactly
+this same `x0`-trace convention. If one silently changes the fourth coordinate,
+one is already comparing with another local trace object.
+
+#### Symbolic recovery of `im(D_amp)` from the local leading block
+
+At the singular leading-center level the clean mixed equations give
+
+```text
+E_un     = n N0 + lambda_c P0 = 0,
+E_gtheta = n N0 + Y0 = 0.
+```
+
+Hence
+
+```text
+N0 = -(lambda_c / n) P0,
+Y0 = lambda_c P0.
+```
+
+Substituting into the current theorem-facing trace coordinates gives
+
+```text
+tau(U0, N0, P0, Y0) = [U0, P0, 0, 0] = D_amp [U0, P0].
+```
+
+Therefore, at the current leading-center-jet level, the selected
+continuum/local trace plane agrees exactly with the global selected trace plane:
+
+```text
+A_sel,lead-trace^loc = im(D_amp).
+```
+
+This is already an exact symbolic identity at the selected leading-center-trace
+level.
+
+#### Why the older richer local object is not a direct contradiction
+
+The same helper now also checks the coordinate sensitivity explicitly.
+If one keeps the same first three coordinates but replaces the fourth by
+
+```text
+Y0 - P0,
+```
+
+then after the same singular substitution one gets
+
+```text
+[U0, P0, 0, (lambda_c - 1) P0].
+```
+
+So equality with `im(D_amp)` then fails generically unless `lambda_c = 1`.
+Therefore the older richer local object written through `Y0 = P0` does not yet
+give a direct contradiction to the selected trace theorem. It corresponds to
+another local trace normalization, and that normalization has not yet been
+reconciled with the current exact `J_0 = C_center` coordinates.
+
+#### Conservative C3g conclusion
+
+C3g closes exactly the following statement.
+
+1. The correct theorem-facing local comparison object for the selected trace
+   stage is the selected leading-center trace written in the same coordinates
+   as `J_0 = C_center`.
+2. In these coordinates the singular local compatibility block recovers exactly
+   the selected trace plane `im(D_amp)`.
+3. This is **not** a proof of a full intrinsic higher-order local selector.
+4. The exact remaining gap is now a higher-order intrinsic selected-family
+   theorem, or an explicit reconciliation theorem between the current `J_0`
+   coordinates and any alternative richer-local trace normalization.
+
+
+### 1.10.12. C3h: reconciling richer local trace charts with `J_0 = C_center`
+
+After C3g the next theorem-facing question is no longer whether the leading
+selected trace plane is `im(D_amp)`. That part is already closed in current
+`J_0` coordinates.
+
+The exact C3h target is to reconcile this canonical leading trace with the
+richer local trace objects suggested by the regular-singular expansions.
+
+#### Best current richer trace candidate
+
+The best current richer theorem-facing object is the first truncated
+regular-singular jet
+
+```text
+Xi_rich^(1,eta)
+  = [U0, P0, Delta_un^(0), Delta_psi,eta^(0), U1, N1, P1, Y1],
+```
+
+with
+
+```text
+Delta_un^(0)      = N0 + (lambda_c / n) P0,
+Delta_psi,eta^(0) = Y0 - eta P0.
+```
+
+This object extends `J_0` by one post-leading layer and keeps the
+fourth-coordinate normalization explicit. It is not yet canonical because it
+depends both on the chosen parameter `eta` and on how many higher coefficients
+are retained.
+
+#### Canonical projection to the current selected trace
+
+For every such richer trace chart there is an exact triangular projection
+
+```text
+Pi_eta_to_J0 : Xi_rich^(1,eta) -> J_0,
+```
+
+given by
+
+```text
+[U0, P0, Delta_un^(0), Delta_psi,eta^(0), U1, N1, P1, Y1]
+  |->
+[U0, P0, Delta_un^(0), Delta_psi,eta^(0) + (eta - lambda_c) P0].
+```
+
+This is just the identity
+
+```text
+Y0 - lambda_c P0 = (Y0 - eta P0) + (eta - lambda_c) P0.
+```
+
+So the fourth defect coordinate by itself is not canonical, but its projection
+back to current `J_0` coordinates is canonical.
+
+#### The selected object inside the richer trace
+
+Using the current live local selected relations
+
+```text
+N0 = -(lambda_c / n) P0,
+Y0 = lambda_c P0,
+```
+
+the selected richer trace is not generally the zero-defect slice. Instead it is
+the 2D lifted plane
+
+```text
+im(D_rich,eta),
+
+D_rich,eta =
+[[1, 0],
+ [0, 1],
+ [0, 0],
+ [0, lambda_c - eta],
+ [0, 0],
+ [0, 0],
+ [0, 0],
+ [0, 0]].
+```
+
+The exact checked reconciliation identity is
+
+```text
+Pi_eta_to_J0(im(D_rich,eta)) = im(D_amp).
+```
+
+Hence the invariant core that should be preserved at higher order is not
+"zero fourth defect in every richer chart". It is the 2D lifted selected object
+whose canonical `J_0` projection equals `im(D_amp)`.
+
+#### Special case `eta = 1`
+
+The older richer local note corresponds to `eta = 1`.
+Then the selected richer trace carries the lifted fourth component
+
+```text
+(lambda_c - 1) P0,
+```
+
+which is nonzero on the representative active clean points because
+`lambda_c = lambda_s0(x0)` is slightly above `1` there.
+So the older richer local trace was not a direct contradiction to the selected
+trace theorem; it was simply another trace normalization chart.
+
+#### Conservative C3h conclusion
+
+C3h closes exactly the following statement.
+
+1. The best current richer local trace object is a truncated regular-singular
+   jet with explicit normalization parameter `eta`.
+2. There is an explicit projection `Pi_eta_to_J0` from that richer trace chart
+   to the canonical selected trace coordinates.
+3. The invariant selected object to preserve at higher order is a 2D lifted
+   plane in the richer trace space whose `J_0` projection is exactly
+   `im(D_amp)`.
+4. This is still not a full higher-order selected-family theorem.
+
+
+### 1.10.13. C3i: first higher-order preservation for the lifted selected family
+
+After C3h the correct question is no longer whether the raw 2D lifted plane
+`im(D_rich,eta)` survives unchanged. The first checked post-leading recurrence
+shows that the preserved object is slightly larger.
+
+#### First checked post-leading recurrence
+
+In the richer trace chart
+
+```text
+Xi_rich^(1,eta)
+  = [U0, P0, Delta_un^(0), Delta_psi,eta^(0), U1, N1, P1, Y1],
+```
+
+the first post-leading recurrence is exactly independent of the already selected
+leading amplitudes `(U0, P0)`: the Jacobian of the checked first post-leading
+rows with respect to `(U0, P0)` is identically zero.
+
+At this layer the flexural block is still rigid under nonresonance:
+
+```text
+N1 = P1 = Y1 = M1 = Q0c = 0.
+```
+
+But the membrane block leaves one free parameter `T1`, with
+
+```text
+U1 = alpha * T1,
+V1 = beta  * T1,
+
+alpha = (-n*nu - n - 2*nu + 2)/(-n^2 + n + 2),
+beta  = (n*nu + n + 4)/(-n^2 + n + 2).
+```
+
+For `n > 2` and positive `nu` the zero loci of `alpha` and `beta` lie outside
+that regime, so this membrane nullmode is visible already in the current richer
+jet.
+
+#### Consequence for the selected lifted object
+
+The raw lifted selected plane from C3h,
+
+```text
+im(D_rich,eta),
+```
+
+fixes `U1 = N1 = P1 = Y1 = 0`, so it is too small for the first checked
+post-leading recurrence. Therefore it is **not** exactly preserved.
+
+The smallest corrected object visible in the current richer jet is the 3D plane
+
+```text
+Xi_sel,corr^(1,eta)
+  = {[U0, P0, 0, (lambda_c - eta) P0, U1, 0, 0, 0]}
+  = im(D_rich,eta^corr),
+```
+
+with
+
+```text
+D_rich,eta^corr =
+[[1, 0, 0],
+ [0, 1, 0],
+ [0, 0, 0],
+ [0, lambda_c - eta, 0],
+ [0, 0, 1],
+ [0, 0, 0],
+ [0, 0, 0],
+ [0, 0, 0]].
+```
+
+If one wants a coefficient-faithful object that keeps the hidden membrane
+parameter explicit, one should enlarge the jet to
+
+```text
+Xi_rich^(1+,eta)
+  = [U0, P0, Delta_un^(0), Delta_psi,eta^(0), U1, N1, P1, Y1, V1, T1],
+```
+
+and use the exact 3D plane spanned by the two leading selected amplitudes and
+by the membrane nullmode `(U1, V1, T1) = T1 * (alpha, beta, 1)`.
+
+#### Canonical trace is still preserved
+
+The crucial invariant stays the same:
+
+```text
+Pi_eta_to_J0(im(D_rich,eta^corr)) = im(D_amp),
+Pi_eta_to_J0(im(D_rich,eta^aug))  = im(D_amp).
+```
+
+So the first checked higher-order correction does not destroy the already closed
+selected leading-center trace plane. It only thickens the richer lift above it
+by one membrane direction.
+
+#### Checked next support and conservative conclusion
+
+Within the same frozen-principal recurrence model, once this membrane thickening
+is admitted, the next checked layer closes uniquely to zero under the same
+nonresonance assumptions. Thus the current verified statement is:
+
+1. raw `im(D_rich,eta)` is not exactly preserved at the first checked
+   post-leading order;
+2. a corrected one-parameter membrane thickening is preserved instead;
+3. its canonical `J_0` projection remains exactly `im(D_amp)`;
+4. this is still not an all-orders intrinsic higher-order selected-family
+   theorem.
+
+
+### 1.10.14. C3j: canonical treatment of the membrane thickening direction
+
+After C3i the main question is no longer whether a raw 2D lifted family is
+preserved. The correct question is what the extra membrane direction means
+canonically.
+
+#### Kernel structure of the corrected higher-order family
+
+The corrected higher-order selected family from C3i is 3D. In the visible richer
+jet it is
+
+```text
+Xi_sel,corr^(1,eta) = im(D_rich,eta^corr),
+```
+
+and in the coefficient-faithful augmented jet it is
+
+```text
+Xi_sel,corr^(1+,eta) = im(D_rich,eta^aug).
+```
+
+For both objects the canonical projection back to `J_0` acts on the coefficient
+space as
+
+```text
+(a, b, s) |-> [a, b, 0, 0],
+```
+
+so its kernel is exactly one-dimensional. In the visible chart it is the pure
+`U1` direction; in the augmented chart it is the membrane nullmode
+
+```text
+g_mem^aug = [0, 0, 0, 0, alpha, 0, 0, 0, beta, 1].
+```
+
+The next checked recurrence layer still does not kill this kernel direction.
+So the membrane thickening line survives all currently checked local tests.
+
+#### No canonical 2D section from the checked local data
+
+The checked local data do not yet provide a canonical normalization that removes
+this line. The reason is exact: there is a whole family of 2D sections of the
+corrected 3D family, namely the graphs of arbitrary linear maps from the two
+selected quotient coordinates into the membrane parameter. On the coefficient
+space this family is
+
+```text
+S_(ell1,ell2) =
+[[1, 0],
+ [0, 1],
+ [ell1, ell2]].
+```
+
+For every choice of `(ell1, ell2)` one has
+
+```text
+Pi_eta_to_J0(D_rich,eta^corr S_(ell1,ell2)) = D_amp,
+```
+
+and similarly in the augmented chart.
+Thus the current recurrence and trace data do not select one preferred 2D
+section. Conditions like `U1 = 0` are section choices, not yet canonical
+higher-order normalizations.
+
+#### Conservative theorem-facing reading
+
+At the checked order the membrane thickening direction should therefore be read
+as quotient-like.
+This is stronger than merely saying ?open?, because the canonical quotient object
+is now clear; and it is weaker than claiming a proved gauge symmetry.
+
+The best current theorem-facing local object is
+
+```text
+im(D_rich,eta^corr) / span(g_mem),
+```
+
+or equivalently its augmented version
+
+```text
+im(D_rich,eta^aug) / span(g_mem^aug).
+```
+
+This quotient is canonically identified by the `J_0` projection with the already
+closed selected leading-center trace plane `im(D_amp)`.
+
+#### Conservative C3j conclusion
+
+The checked local theory now supports the following statement.
+
+1. The membrane thickening direction is not canonically removed by the current
+   checked local recurrence data.
+2. The correct current theorem-facing local object is the quotient class of the
+   corrected 3D higher-order selected family modulo that membrane direction.
+3. This quotient still carries exactly the same canonical selected leading trace
+   plane `im(D_amp)`.
+4. The next open question is whether a later intrinsic higher-order rule picks a
+   distinguished representative of this quotient or whether the quotient itself
+   is the final local selected object.
+
+
+### 1.10.15. C3k: no intrinsic canonical representative is yet justified beyond the membrane quotient
+
+After C3j the local selected object at the checked higher-order level was the
+quotient
+
+```text
+im(D_rich,eta^corr) / span(g_mem),
+```
+
+because the corrected 3D family carried an exact one-dimensional membrane kernel
+of the canonical `J_0` projection. The next question is whether the checked
+local equations already contain an intrinsic rule that picks one distinguished
+representative from each quotient class.
+
+The current checked local boundary does not support such a rule.
+
+First, the next checked local compatibility layer does not distinguish
+representatives inside the membrane-thickened corrected family. Second, the
+checked residual is already exactly zero along that membrane direction inside
+the coefficient-faithful corrected family, so checked local residual
+minimization also does not select a unique representative. Third, chart
+conditions such as `U1 = 0` are not intrinsic: after a quotient-preserving chart
+change they become arbitrary 2D sections of the same corrected 3D family.
+Finally, orthogonality or minimal-norm rules do produce a unique section once an
+SPD metric is chosen, but the resulting section depends on that metric. On the
+current local boundary no intrinsic local metric has been derived that would
+canonically reproduce one representative per quotient class.
+
+So at the present checked level the strongest theorem-facing statement is not a
+canonical 2D normalization theorem. It is the strengthened quotient theorem:
+all currently justified local selected invariants factor through the membrane
+quotient, and all representatives of one quotient class have the same canonical
+selected leading-center trace plane `im(D_amp)`.
+
+Therefore the best current local selected object remains the quotient itself,
+not a canonically normalized representative. What remains open is whether a
+later intrinsic higher-order selector exists, or whether this quotient is
+already the final theorem-facing local selected object.
+
+
+### 1.10.16. C3l: on the current checked local boundary the quotient object is final
+
+C3l is the controlled stop-rule decision for the current local fork.
+After C3j/C3k the remaining alternatives were:
+
+1. derive an intrinsic higher-order selector that canonically chooses one
+   representative of each membrane-quotient class;
+2. justify that the quotient itself is already the final local theorem-facing
+   object on the current checked boundary;
+3. leave the fork unresolved.
+
+On the current checked boundary the second alternative is the strongest
+responsible conclusion.
+
+The reason is now twofold.
+First, none of the strongest plausible intrinsic selectors survives checking:
+next checked local compatibility does not distinguish representatives, checked
+local residual minimization does not distinguish them either, chart conditions
+such as `U1 = 0` are only section choices, and orthogonality / minimal-norm
+rules require an extra metric choice. Second, every currently justified local
+selected invariant factors through the membrane quotient. The canonical `J_0`
+trace on the corrected 3D family is exactly `D_amp` composed with the quotient
+map `(a, b, s) -> (a, b)`, the checked residual vanishes identically on the
+corrected family, and the next checked local compatibility layer contributes no
+representative-level invariant on this boundary.
+
+Therefore on the current checked local boundary the correct theorem-facing local
+selected object is the quotient
+
+```text
+im(D_rich,eta^corr) / span(g_mem),
+```
+
+or equivalently its coefficient-faithful augmented version. This is a
+boundary-scoped finality statement: it does not exclude the possibility that a
+future unchecked higher-order intrinsic selector could appear outside the
+current checked boundary. It does mean that, within the currently checked local
+theory, canonical comparison to the global selected family must proceed through
+this quotient object.
+

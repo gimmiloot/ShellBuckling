@@ -1,4 +1,4 @@
-# Current Theory Verification Map
+﻿# Current Theory Verification Map
 
 ## 1. Introduction
 
@@ -561,6 +561,125 @@ not that every one of them is already article-level proven.
   orders, or reconsider the exact theorem-facing local comparison object before
   trying to prove `A_full^th = A_ls`.
 
+### V-S10. `A_ls` is a KKT-selected `H`-minimal section of a much larger amplitude fiber, not merely a chart for center regularity
+
+- ID: `V-S10`
+- Claim / Hypothesis:
+  For the live clean construction, fixing amplitudes
+  `a = (u_s/x^n, varphi/x^(n-1))` defines the affine weighted-trial fiber
+  `F(a) = {c : C_center c = [a1, a2, 0, 0]}`. The current family
+  `A_ls = im(M_amp) = im(V_adm)` is the image of the unique minimizer of
+  `||A_int c||^2 + reg ||c||^2` on that fiber. Equivalently, with
+  `H = A_int^T A_int + reg I`, the selected map satisfies
+  `H M_amp + C_center^T Lambda = 0` and is `H`-orthogonal to
+  `ker(C_center)`. So `A_ls` already carries a global weak/interior selection
+  layer and is not merely the full unrestricted local center-regular family.
+- Type: `structural`
+- Source file(s):
+  `docs/theory/vyvod_uravneniy_updated17.md` section 1.10.8;
+  `docs/assumptions/assumptions.md` A18;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/selection_object_check.py`;
+  `src/shell_buckling/mixed_weak/full_simple_support_critical_search.py`.
+- Current status: `closed at the current weighted-ansatz / global-KKT level`
+- What counts as verification:
+  explicit code inspection of the KKT solve defining `M_amp`, representative
+  checks that the current amplitude fiber still has large dimension while the
+  selected family is 2D, representative checks of KKT stationarity / fiber
+  orthogonality, and a check that near-center-only surrogate objectives do not
+  reproduce the same selected map.
+- Verification method:
+  structural code inspection, linear algebra check, representative live clean
+  evaluation.
+- Verification boundary:
+  this still does not provide a purely local theorem-facing selected object for
+  the continuous clean problem. It only closes the meaning of `A_ls` inside the
+  current live clean architecture and shows why comparing it directly to the
+  raw unrestricted local center-regular family is likely mismatched.
+- Next action:
+  identify the correct selected local/germ comparison object for `A_ls`, or
+  prove a global-to-local theorem showing that the center traces of the
+  globally weak-selected family are the right theorem-facing comparison partner.
+
+### V-S11. The best current theorem-facing local selected object is the local trace of the global KKT-selected family, while an intrinsic local selector remains open
+
+- ID: `V-S11`
+- Claim / Hypothesis:
+  After the object-selection step and C3e, the best exact faithful local
+  comparison object currently visible in the repository is not the raw local
+  center-regular family `A_reg^loc`, but the extrinsic trace object
+  `A_sel,trace^loc = J_0(A_ls)`, where `A_ls` is the global KKT-selected family
+  already used by the clean code. What remains open is an intrinsic local
+  characterization of that same object inside `A_reg^loc`, for example via a
+  canonical local weak/KKT-type selection rule.
+- Type: `structural`
+- Source file(s):
+  `docs/theory/vyvod_uravneniy_updated17.md` section 1.10.9;
+  `docs/assumptions/assumptions.md` A19;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/selection_object_check.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`.
+- Current status: `partially delimited; exact extrinsic candidate identified, intrinsic local selector still open`
+- What counts as verification:
+  an explicit theorem-facing decomposition of the live clean family into the
+  selected 4D center-data lift plus its regularity-zero amplitude slice,
+  explicit distinction between what the center constraints fix and what the
+  global minimization fixes, and representative checks that naive near-center
+  surrogate objectives do not reproduce the same selected family.
+- Verification method:
+  structural code inspection, linear algebra check, representative live clean
+  evaluation, prior CAS/local obstruction check.
+- Verification boundary:
+  this does not yet prove that `J_0(A_ls)` has a canonical intrinsic local weak
+  description, and it does not prove `A_full^th = A_ls`. It only sharpens the
+  theorem-facing object: compare against a selected local trace, not against the
+  unrestricted local center-regular family by default.
+- Next action:
+  prove a global-to-local trace theorem for `A_ls`, or derive an intrinsic local
+  selected-object theorem that identifies the same trace inside `A_reg^loc`.
+
+### V-S12. The best current theorem-facing trace map is the finite leading-center jet `J_0 = C_center`, and on `A_ls` its image is the basis-independent 2D selected trace plane `im(D_amp)`
+
+- ID: `V-S12`
+- Claim / Hypothesis:
+  On the current clean weighted-trial boundary, the best theorem-facing meaning
+  of `J_0` is the finite leading-center jet map `J_0(c) = C_center c`, not a
+  full higher-order local germ extractor. This map is exact at the current
+  ansatz level because evaluation at `x0` kills all `k > 0` trial columns and
+  leaves an invertible 4x4 center block on the `k = 0` columns of
+  `(u_s, u_n, varphi, psi)`. For the selected family
+  `A_ls = im(P_sel D_amp)`, one then has exactly
+  `J_0(A_ls) = im(D_amp)`, and the restriction `J_0|_{A_ls}` is a basis-
+  independent bijection onto that 2D plane with inverse given by the selected
+  lift `P_sel` on `im(D_amp)`.
+- Type: `structural`
+- Source file(s):
+  `docs/theory/vyvod_uravneniy_updated17.md` section 1.10.10;
+  `docs/assumptions/assumptions.md` A20;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/selection_object_check.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/reduction_check.py`;
+  `src/shell_buckling/mixed_weak/full_simple_support_critical_search.py`;
+  `src/shell_buckling/mixed_weak/solver_patched_core.py`.
+- Current status: `closed at the current weighted-ansatz / leading-center-jet level`
+- What counts as verification:
+  explicit code inspection showing what `C_center` extracts, exact confirmation
+  that only the four `k = 0` center columns survive and form an invertible
+  center block, explicit KKT/lift identities for `P_sel`, representative checks
+  that `C_center P_sel ≈ I_4`, `C_center M_amp ≈ D_amp`, reconstruction from
+  selected trace works, and basis changes inside `A_ls` preserve the same trace
+  plane.
+- Verification method:
+  structural code inspection, linear algebra check, representative live clean
+  evaluation, symbolic center-block check.
+- Verification boundary:
+  this does not identify a higher-order intrinsic local selector and does not
+  prove a full continuum local germ theorem. It closes only the exact finite
+  leading-center trace layer currently available in the repository.
+- Next action:
+  compare the continuous/local selected object against this selected leading-
+  center trace plane, or derive an intrinsic local theorem that recovers the
+  same trace plane from the full local selected family.
 ### V-N1. `sigma_min(B_mix(q)) = 0` is the current raw working criterion
 
 - ID: `V-N1`
@@ -841,6 +960,9 @@ Relatively solid inside the current repository boundary:
 - the exact ansatz-level characterization of the current selected reduced
   family `A_repo = im(V_adm)` as the KKT-selected amplitude family inside the
   weighted trial construction;
+- the sharper structural meaning of that family: `A_ls` is the `H`-minimal
+  KKT-selected section of a much larger amplitude fiber, not merely a chart for
+  raw center regularity;
 - the singular leading-block center relations in the current principal center
   model and their agreement with the amplitudes used by `A_ls`;
 - the finite-order frozen-principal obstruction pattern: zero full leading
@@ -850,12 +972,12 @@ Relatively solid inside the current repository boundary:
 
 Most urgent items to verify next:
 
-- restore the first omitted finite center coefficients / forcing terms and
-  derive the richer local regular-singular recurrence beyond the fully frozen
-  principal model;
-- after that, prove or disprove that the resulting fuller local family matches
-  the current selected family `im(V_adm)` rather than only the weighted-
-  ansatz/KKT family;
+- identify a theorem-facing selected local object `A_sel^loc`, or prove a
+  global-to-local statement showing that the center traces of the globally
+  weak-selected family are the right comparison partner for `im(V_adm)`;
+- only after that, prove or disprove that this selected local/germ object
+  matches the current selected family `im(V_adm)` rather than comparing
+  `im(V_adm)` directly to the raw unrestricted local center-regular family;
 - whether and when the reduced stacked operator can be replaced by the
   boundary-only object `B_red` / the raw baseline `B_mix`;
 - whether a genuine quadratic-form object exists on the reduced admissible
@@ -868,10 +990,261 @@ Most valuable next proof pilots:
 1. A Lean-oriented abstraction pilot that formalizes the singular leading-data
    space, the KKT-selected amplitude family, and the already-closed reduced-
    family kernel equivalence.
-2. A theorem-oriented local derivation that reinstates the first omitted finite
-   center coefficients and closes the richer regular-singular recurrence for the
-   continuum clean admissible family.
-3. A completeness step that compares that richer local family to the global
-   weighted-ansatz/KKT construction.
+2. A theorem-oriented object-selection pilot that derives a selected local
+   family or proves a global-to-local comparison object matching the current
+   weak/KKT-selected family.
+3. A completeness step that compares that selected local/germ family to the
+   global weighted-ansatz/KKT construction.
 4. A C4 pilot that compares candidate spectral, generalized, and quadratic-form
    criteria on `L_red` and records exactly where equivalence holds or fails.
+
+
+### V-S13. At the current theorem-facing leading-center-jet layer, the continuum/local selected trace equals `im(D_amp)` when written in the same coordinates as `J_0 = C_center`
+
+- ID: `V-S13`
+- Claim / Hypothesis:
+  The current theorem-facing local comparison object for the selected trace
+  stage is the leading-center trace written in the same coordinates as the live
+  exact trace map `J_0 = C_center`, namely
+  `[U0, P0, N0 + (lambda_c / n) P0, Y0 - lambda_c P0]`. On that coordinate
+  choice, the singular local compatibility equations
+  `n N0 + lambda_c P0 = 0` and `n N0 + Y0 = 0` imply
+  `[U0, P0, N0 + (lambda_c / n) P0, Y0 - lambda_c P0] = D_amp [U0, P0]`, so
+  the continuum/local selected leading-center trace plane is exactly
+  `im(D_amp)`.
+- Type: `formula-level claim`
+- Source file(s):
+  `docs/theory/vyvod_uravneniy_updated17.md` section 1.10.11;
+  `docs/assumptions/assumptions.md` A21;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`;
+  `src/shell_buckling/mixed_weak/solver_patched_core.py`.
+- Current status: `closed at the leading-center-jet / current J_0-coordinate level`
+- What counts as verification:
+  symbolic derivation of the selected leading local relations, explicit recovery
+  of the trace vector as `D_amp [U0, P0]`, structural inspection that the live
+  clean background uses `lambda_theta0 = r0 / x`, and explicit confirmation on
+  the representative clean path that the truncated background BCs give
+  `u_r(x0) = 0` and therefore `lambda_theta0(x0) = 1` at the current selected
+  `x0`-trace layer.
+- Verification method:
+  CAS, structural code inspection, representative live clean evaluation.
+- Verification boundary:
+  this does not yet produce a full intrinsic higher-order local selected family.
+  It closes only the selected leading-center trace plane in the current
+  theorem-facing coordinates. If one changes the fourth local trace coordinate,
+  the exact equality with `im(D_amp)` is no longer automatic.
+- Next action:
+  prove a higher-order intrinsic local selected-family theorem preserving this
+  same trace plane, or explicitly reconcile the current `J_0` coordinates with
+  any alternative richer-local trace normalization.
+
+
+### V-S14. Richer local trace charts are reconciled with `J_0` by an explicit projection, and the invariant selected object is a 2D lifted plane projecting to `im(D_amp)`
+
+- ID: `V-S14`
+- Claim / Hypothesis:
+  Let the richer local trace chart be written as
+  `Xi_rich^(1,eta) = [U0, P0, Delta_un^(0), Delta_psi,eta^(0), U1, N1, P1, Y1]`
+  with `Delta_un^(0) = N0 + (lambda_c / n) P0` and
+  `Delta_psi,eta^(0) = Y0 - eta P0`. Then there is an explicit triangular
+  projection `Pi_eta_to_J0` sending
+  `[U0, P0, Delta_un^(0), Delta_psi,eta^(0), U1, N1, P1, Y1]` to
+  `[U0, P0, Delta_un^(0), Delta_psi,eta^(0) + (eta - lambda_c) P0]`, i.e. to
+  the canonical current `J_0` trace. Under the current local selected leading
+  relations, the selected object inside the richer trace is the 2D lifted plane
+  `im(D_rich,eta)`, and `Pi_eta_to_J0(im(D_rich,eta)) = im(D_amp)` exactly.
+- Type: `formula-level claim`
+- Source file(s):
+  `docs/theory/vyvod_uravneniy_updated17.md` section 1.10.12;
+  `docs/assumptions/assumptions.md` A22;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`.
+- Current status: `closed at the trace-reconciliation / truncated-jet level`
+- What counts as verification:
+  symbolic derivation of the projection identity, symbolic construction of the
+  lifted plane `im(D_rich,eta)`, symbolic proof that its projection equals
+  `im(D_amp)`, and representative live clean checks that the special case
+  `eta = 1` indeed gives a small but nonzero lifted fourth component on the
+  active clean path.
+- Verification method:
+  CAS, structural code inspection, limited representative live clean evaluation.
+- Verification boundary:
+  this does not yet produce a full higher-order selected-family theorem. It
+  closes only the trace-normalization reconciliation and identifies the
+  invariant object that the higher-order theorem should preserve.
+- Next action:
+  formulate and prove a higher-order theorem for a 2D lifted selected family in
+  the richer trace space whose canonical `J_0` projection remains `im(D_amp)`.
+
+
+### V-S15. The first checked post-leading recurrence preserves a corrected one-parameter membrane thickening, not the raw 2D lifted plane
+
+- ID: `V-S15`
+- Claim / Hypothesis:
+  Let
+  `Xi_rich^(1,eta) = [U0, P0, Delta_un^(0), Delta_psi,eta^(0), U1, N1, P1, Y1]`
+  and let `im(D_rich,eta)` be the lifted 2D selected plane from C3h. Then at the
+  first checked post-leading recurrence the equations are exactly independent of
+  the leading selected amplitudes `(U0, P0)`. Under the same nonresonance
+  assumption as the checked frozen-principal recurrence, the flexural
+  post-leading coefficients satisfy `N1 = P1 = Y1 = M1 = Q0c = 0`, while the
+  membrane sector leaves one free parameter `T1` with
+  `U1 = alpha*T1`, `V1 = beta*T1`. Therefore raw `im(D_rich,eta)` is not
+  exactly preserved; the smallest corrected object is a one-parameter membrane
+  thickening over that lifted plane, and its canonical `J_0` projection is still
+  exactly `im(D_amp)`.
+- Type: `formula-level claim`
+- Source file(s):
+  `docs/theory/vyvod_uravneniy_updated17.md` section 1.10.13;
+  `docs/assumptions/assumptions.md` A23;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`.
+- Current status: `closed at the first checked post-leading recurrence level`
+- What counts as verification:
+  symbolic derivation of the first post-leading recurrence restricted to the
+  selected leading trace, symbolic proof that its Jacobian with respect to
+  `(U0, P0)` is zero, symbolic solution of the flexural and membrane blocks,
+  symbolic construction of the corrected visible and augmented selected objects,
+  symbolic proof that their canonical `J_0` projection remains `im(D_amp)`, and
+  limited representative live clean checks that the membrane-mode visibility
+  coefficient is nonzero on the active clean path.
+- Verification method:
+  CAS, structural code inspection, limited representative live clean evaluation.
+- Verification boundary:
+  this is not an all-orders theorem. It closes only the first corrected
+  higher-order selected object and leaves open the intrinsic higher-order rule
+  that should select, normalize, or quotient out the membrane thickening
+  direction.
+- Next action:
+  formulate the intrinsic higher-order theorem for the corrected lifted family,
+  or identify the canonical local normalization that removes the extra membrane
+  parameter without changing the canonical `J_0` projection.
+
+
+### V-S16. The membrane thickening direction is currently canonical only as a quotient kernel, not as a canonically normalized removable mode
+
+- ID: `V-S16`
+- Claim / Hypothesis:
+  Let the corrected higher-order selected family from C3i be written as the 3D
+  family `im(D_rich,eta^corr)` in the visible richer jet, or equivalently as the
+  coefficient-faithful 3D family `im(D_rich,eta^aug)` in the augmented jet.
+  Then the canonical `J_0` projection has exact one-dimensional kernel equal to
+  the membrane thickening line. The next checked recurrence layer does not kill
+  that line. Moreover there is a whole two-parameter family of 2D sections of
+  the corrected 3D family, each projecting isomorphically to `im(D_amp)`, so no
+  canonical normalized 2D section is selected by the current checked local data.
+  Therefore the best current theorem-facing local object is the quotient of the
+  corrected 3D family by the membrane line.
+- Type: `formula-level claim`
+- Source file(s):
+  `docs/theory/vyvod_uravneniy_updated17.md` section 1.10.14;
+  `docs/assumptions/assumptions.md` A24;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`.
+- Current status: `closed at the quotient / first higher-order kernel level`
+- What counts as verification:
+  symbolic computation of the canonical projection on the corrected 3D family,
+  symbolic computation of its one-dimensional kernel, symbolic proof that the
+  kernel generator is killed by the projection, symbolic construction of the
+  family of all 2D sections and proof that each section projects to `im(D_amp)`,
+  together with the already checked second-layer fact that the membrane line is
+  not killed at the next checked order.
+- Verification method:
+  CAS, structural inspection of the local recurrence, limited representative
+  live clean evaluation inherited from C3i.
+- Verification boundary:
+  this does not prove a gauge symmetry and does not prove that the quotient has a
+  unique distinguished representative. It identifies only the current canonical
+  quotient object.
+- Next action:
+  derive the intrinsic higher-order rule that either canonically selects a
+  representative of this quotient class or proves that the quotient itself is
+  the final local selected object.
+
+
+### V-S17. No intrinsic canonical higher-order representative is currently justified beyond the membrane quotient
+
+- ID: `V-S17`
+- Claim / Hypothesis:
+  Let the corrected checked-order local selected family be the 3D family
+  `im(D_rich,eta^corr)` in the visible richer jet, or equivalently the
+  coefficient-faithful augmented family `im(D_rich,eta^aug)`. Then on the
+  current checked local boundary no intrinsic local rule among the tested
+  candidates canonically selects one representative of each quotient class
+  modulo the membrane line. In particular, the next checked local compatibility
+  layer does not distinguish representatives, checked local residual
+  minimization also does not distinguish them, chart conditions such as
+  `U1 = 0` are chart-dependent section choices, and orthogonality / minimal-norm
+  rules depend on an extra metric choice. Therefore the strongest current
+  theorem-facing local object remains the quotient
+  `im(D_rich,eta^corr) / span(g_mem)`.
+- Type: `formula-level claim`
+- Source file(s):
+  `docs/theory/vyvod_uravneniy_updated17.md` section 1.10.15;
+  `docs/assumptions/assumptions.md` A25;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`.
+- Current status: `closed on the current checked local quotient boundary`
+- What counts as verification:
+  symbolic proof that the next checked local compatibility layer does not
+  distinguish representatives inside the membrane-thickened corrected family,
+  symbolic proof that the checked residual vanishes along the membrane line,
+  symbolic construction of quotient-preserving chart changes showing that
+  `U1 = 0` is only a section choice, symbolic derivation of the metric-dependent
+  orthogonality selector, and structural confirmation that the current global
+  KKT metric has not yet been localized intrinsically.
+- Verification method:
+  CAS, structural inspection of the local recurrence and global KKT setup.
+- Verification boundary:
+  this does not prove that no future intrinsic selector exists. It proves only
+  that none of the currently justified checked local rules canonically select a
+  representative beyond the membrane quotient.
+- Next action:
+  derive an intrinsic higher-order selector that canonically represents each
+  membrane-quotient class, or elevate the quotient itself to the final local
+  theorem-facing selected object.
+
+
+### V-S18. On the current checked local boundary the membrane quotient is the final theorem-facing local selected object
+
+- ID: `V-S18`
+- Claim / Hypothesis:
+  Let the corrected checked-order local selected family be the 3D family
+  `im(D_rich,eta^corr)` in the visible richer jet, or equivalently the
+  coefficient-faithful augmented family `im(D_rich,eta^aug)`. Then on the
+  current checked local boundary the quotient
+  `im(D_rich,eta^corr) / span(g_mem)` is the final local theorem-facing selected
+  object. More precisely: every currently justified local selected invariant
+  factors through the quotient map to the two quotient coordinates, no checked
+  local condition distinguishes representatives inside one quotient class, and
+  any canonical comparison to the already closed global selected trace must
+  therefore pass through this quotient object.
+- Type: `formula-level claim`
+- Source file(s):
+  `docs/theory/vyvod_uravneniy_updated17.md` section 1.10.16;
+  `docs/assumptions/assumptions.md` A26;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`.
+- Current status: `closed on the current checked local boundary`
+- What counts as verification:
+  symbolic proof that the canonical `J_0` trace on the corrected 3D family is
+  exactly `D_amp` composed with the quotient map `(a, b, s) -> (a, b)`,
+  symbolic proof that the checked local residual vanishes identically on the
+  corrected family, symbolic confirmation that the next checked local
+  compatibility layer contributes no representative-level invariant, together
+  with the already checked failure of the strongest plausible intrinsic
+  selectors.
+- Verification method:
+  CAS, structural inspection of the local recurrence and global KKT setup.
+- Verification boundary:
+  this is a boundary-scoped finality theorem. It does not prove that no future
+  unchecked higher-order intrinsic selector could ever appear. It proves only
+  that none is currently justified on the checked local boundary and that the
+  quotient is therefore the final local theorem-facing object there.
+- Next action:
+  either lift this boundary-scoped quotient theorem to a stronger higher-order
+  theorem, or derive a genuinely new intrinsic selector beyond the current
+  checked local boundary.
+

@@ -880,3 +880,202 @@ Affected files:
 - Closed a sharper negative boundary than before: these first `O(x^2)` / `O(x^3)` center corrections do not change the same low-order obstruction layer in `R_Ts`, `R_Ms`, and `R_v`, so the checked richer local model still forces the `P0` branch to vanish generically on the active clean path.
 - Updated the pilot note, derivation file, verification map, assumptions register, and project journal conservatively so this is tracked as a formula-level obstruction result for the first restored finite-center layer only, not as theorem-level closure of `A_full^th = A_ls`.
 - Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, broad scans, or hybrid `F_min` reuse policy were changed.
+
+## 2026-03-28 - Identify the selected-object boundary for the clean full `simple support / подвижный шарнир` local comparison task
+
+- Affected files:
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/selection_object_check.py`
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`
+- `docs/theory/vyvod_uravneniy_updated17.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/assumptions/assumptions.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Added a dedicated pilot-23 helper that makes the live clean meaning of `A_ls` explicit as the unique KKT-selected `H = A_int^T A_int + reg I`-minimal section of the fixed-amplitude fiber `C_center c = [a1, a2, 0, 0]`, and checks representative clean points on the active standalone path.
+- Recorded the new conservative theorem-facing clarification: direct comparison of `A_ls` with the full unrestricted local center-regular family is now likely too broad or mismatched, because the current selected family already carries a global weak/interior optimality layer.
+- Updated the theory derivation file, verification map, assumptions register, project journal, and pilot note so the next proof obligation is now sharper: identify the correct selected local/germ comparison object or prove a global-to-local theorem for the globally weak-selected family, rather than blindly extending the same unrestricted local expansion.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, broad scans, or hybrid `F_min` reuse policy were changed.
+
+## 2026-03-28 - Delimit the local selected object for the clean full `simple support / подвижный шарнир` C3e step
+
+- Affected files:
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/selection_object_check.py`
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`
+- `docs/theory/vyvod_uravneniy_updated17.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/assumptions/assumptions.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Extended the pilot-23 selection helper so the live clean family is now read through the full selected 4D center-data lift `P_sel`, its regularity-zero amplitude slice, and the explicit separation between the large fixed-center fiber and the unique global weak/KKT-selected representative.
+- Recorded the sharper C3e theorem-facing result conservatively: the best exact current local comparison object is the local trace of the globally selected family `A_ls`, while a canonical intrinsic local weak-selected object inside the raw local center-regular family is still open.
+- Updated the pilot note, derivation file, verification map, assumptions register, and project journal so the next proof obligation is now stated as a global-to-local trace theorem or an intrinsic selected-object theorem, not as blind completeness against the unrestricted local family.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, broad scans, or hybrid `F_min` reuse policy were changed.
+
+## 2026-03-28 - Characterize the selected global-to-local trace object for the clean full `simple support / подвижный шарнир` C3f step
+
+- Affected files:
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/selection_object_check.py`
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`
+- `docs/theory/vyvod_uravneniy_updated17.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/assumptions/assumptions.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Extended the pilot-23 selection helper so the current selected family is now also checked through its finite leading-center trace layer: exact active center columns, the invertible center block, reconstruction from selected trace, and coordinate-change invariance of the selected trace plane.
+- Recorded the sharper C3f theorem-facing result conservatively: the best current meaning of `J_0` is the finite leading-center jet `J_0 = C_center`, and on the current weighted-ansatz boundary the selected trace object is exactly the basis-independent 2D plane `J_0(A_ls) = im(D_amp)`.
+- Updated the pilot note, derivation file, verification map, assumptions register, and project journal so the next proof obligation is now framed as comparing the continuum/local selected object against this selected leading-center trace plane, or recovering the same plane from an intrinsic local selected theorem.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, broad scans, or hybrid `F_min` reuse policy were changed.
+
+
+## 2026-03-28 - Recover the selected leading-center trace plane on the continuum/local side for the clean full `simple support` C3g step
+
+- Affected files:
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`
+- `docs/theory/vyvod_uravneniy_updated17.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/assumptions/assumptions.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Extended the local symbolic helper so it now checks the current live clean `x0`-trace convention, confirms on representative clean backgrounds that `u_r(x0) = 0` implies `lambda_theta0(x0) = 1` at the selected trace layer, and derives the leading local selected trace in the same coordinates as `J_0 = C_center`.
+- Recorded the C3g theorem-facing result conservatively: at the leading-center-jet level the continuum/local selected trace plane equals `im(D_amp)` when written in the current `J_0` coordinates, while a full intrinsic higher-order local selector remains open.
+- Updated the pilot note, derivation file, verification map, assumptions register, and project journal so the next proof obligation is now a higher-order intrinsic selected-family theorem or an explicit trace-reconciliation theorem, not a return to the raw unrestricted local family.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, broad scans, or hybrid `F_min` reuse policy were changed.
+
+
+## 2026-03-28 - Reconcile richer local trace charts with the canonical selected trace for the clean full `simple support` C3h step
+
+- Affected files:
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`
+- `docs/theory/vyvod_uravneniy_updated17.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/assumptions/assumptions.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Extended the local symbolic helper so it now treats the richer local trace as a normalization-dependent truncated jet with explicit parameter `eta`, derives the projection `Pi_eta_to_J0`, and checks that the selected richer object is a lifted 2D plane whose canonical `J_0` projection is exactly `im(D_amp)`.
+- Recorded the C3h theorem-facing result conservatively: the invariant object for future higher-order work is not a chart-dependent zero-defect slice, but a lifted selected family in richer trace space projecting to the already closed selected plane `im(D_amp)`.
+- Updated the pilot note, derivation file, verification map, assumptions register, and project journal so the next proof obligation is now a higher-order preservation theorem for this lifted richer object rather than another comparison against raw unrestricted local families.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, broad scans, or hybrid `F_min` reuse policy were changed.
+
+
+## 2026-03-28 - Derive the first higher-order preservation statement for the clean full `simple support` C3i step
+
+- Affected files:
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`
+- `docs/theory/vyvod_uravneniy_updated17.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/assumptions/assumptions.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Extended the local symbolic helper so it now derives the first checked
+  post-leading recurrence over the lifted selected trace, proves exact
+  independence from the selected leading amplitudes `(U0, P0)`, solves the
+  post-leading flexural block, and identifies the remaining one-parameter
+  membrane nullmode.
+- Recorded the C3i theorem-facing result conservatively: the raw lifted 2D plane
+  `im(D_rich,eta)` is not exactly preserved at the first checked post-leading
+  order; the smallest corrected higher-order selected object is a one-parameter
+  membrane thickening whose canonical `J_0` projection still equals `im(D_amp)`.
+- Updated the pilot note, derivation file, verification map, assumptions
+  register, and project journal so the next proof obligation is now to select,
+  normalize, or quotient out this membrane thickening direction rather than to
+  force the richer post-leading family back into the old 2D chart.
+- Kept the scientific meaning unchanged: no equations, boundary-condition
+  meaning, solver behavior, broad scans, or hybrid `F_min` reuse policy were
+  changed.
+
+
+## 2026-03-28 - Identify the quotient treatment of the membrane thickening direction for the clean full `simple support` C3j step
+
+- Affected files:
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`
+- `docs/theory/vyvod_uravneniy_updated17.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/assumptions/assumptions.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Extended the local symbolic helper so it now computes the kernel of the
+  canonical `J_0` projection on the corrected higher-order selected family,
+  identifies the exact membrane generator in both the visible and coefficient-
+  faithful augmented jets, and constructs the whole family of 2D sections that
+  still project to `im(D_amp)`.
+- Recorded the C3j theorem-facing result conservatively: no canonical local 2D
+  normalization is currently justified, and the best current local selected
+  object is the quotient of the corrected 3D higher-order family by the membrane
+  thickening line.
+- Updated the pilot note, derivation file, verification map, assumptions
+  register, and project journal so the next proof obligation is now to derive an
+  intrinsic higher-order rule selecting a representative of that quotient class,
+  or to show that the quotient itself is the final local selected object.
+- Kept the scientific meaning unchanged: no equations, boundary-condition
+  meaning, solver behavior, broad scans, or hybrid `F_min` reuse policy were
+  changed.
+
+
+## 2026-03-28 - Strengthen the membrane-quotient theorem for the clean full `simple support` C3k step
+
+- Affected files:
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`
+- `docs/theory/vyvod_uravneniy_updated17.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/assumptions/assumptions.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Extended the symbolic local helper so it now tests candidate canonical
+  selectors for the membrane-thickened corrected local family: next checked
+  compatibility, checked local residual minimization, chart normalization, and
+  metric orthogonality / minimal norm.
+- Recorded the conservative C3k theorem-facing result: no intrinsic canonical
+  higher-order representative is currently justified on the checked local
+  boundary, and the strongest current local selected object remains the membrane
+  quotient class.
+- Updated the pilot note, derivation file, verification map, assumptions
+  register, and project journal so the next proof obligation is now either to
+  derive an intrinsic higher-order selector or to prove that the quotient itself
+  is the final local selected object.
+- Kept the scientific meaning unchanged: no equations, boundary-condition
+  meaning, solver behavior, broad scans, or hybrid `F_min` reuse policy were
+  changed.
+
+
+## 2026-03-28 - Close the local A/B/C fork as Outcome B for the clean full `simple support` C3l step
+
+- Affected files:
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`
+- `docs/theory/vyvod_uravneniy_updated17.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/assumptions/assumptions.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Extended the symbolic helper with a boundary-scoped fork-decision report that
+  checks exact factorization of the canonical `J_0` trace through the membrane
+  quotient, records that the checked local residual vanishes identically on the
+  corrected family, and confirms that the next checked local compatibility layer
+  adds no representative-level invariant.
+- Recorded the conservative C3l theorem-facing result: on the current checked
+  local boundary the quotient object is the final local theorem-facing selected
+  object, because no intrinsic selector is justified there and every currently
+  checked local selected invariant factors through the quotient.
+- Updated the pilot note, derivation file, verification map, assumptions
+  register, and project journal so the next proof obligation is now either to
+  lift this boundary-scoped quotient theorem to a stronger higher-order theorem,
+  or to derive genuinely new local information beyond the current checked
+  boundary.
+- Kept the scientific meaning unchanged: no equations, boundary-condition
+  meaning, solver behavior, broad scans, or hybrid `F_min` reuse policy were
+  changed.
+
