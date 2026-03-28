@@ -1,4 +1,4 @@
-﻿# Current Simple-Support Operational Status
+# Current Simple-Support Operational Status
 
 ## Scope
 This file is the canonical operational snapshot for the separate active 6-state
@@ -32,6 +32,27 @@ critical-search program now also exists:
 
 This new path reconnects the mixed-weak criticality layer to the honest full-
 state simple-support background without reusing the older `F_min` line.
+
+
+## Current Theorem-Facing Criterion Status
+The theorem-facing local branch for the clean full `simple support / подвижный шарнир`
+reduction is now carried by pilot 23 rather than by the older hybrid scans.
+Its current stopping point is Outcome B on the checked local boundary:
+
+- the selected leading trace plane is still `J_0(A_ls) = im(D_amp)`;
+- the first checked higher-order local selected object is a corrected 3D family;
+- the correct checked-boundary local theorem-facing object is the quotient
+  `im(D_rich,eta^corr) / span(g_mem)`;
+- no canonical higher-order 2D representative is currently justified on that
+  checked boundary.
+
+For criterion interpretation this means the clean reduced family should now be
+read as the global KKT-selected family `A_ls`, the stacked reduced operator
+`L_red` remains the theorem-facing target object, and the boundary-only objects
+`B_red` / `B_mix` remain exploratory diagnostics rather than proved full
+replacements for `L_red`.
+The stabilized repo-facing interpretation language is summarized in
+`docs/theory/current_simple_support_criterion_bridge_note.md`.
 
 
 ## First Clean Full Critical-Search Campaign
@@ -288,46 +309,36 @@ The shallow-comparison picture is now sharper but still conservative:
   ceiling band.
 
 ## Current Next Step
-The current next step is still conservative numerical stabilization of the
-separate 6-state simple-support background path, but the preferred high-load
-workflow is now explicitly split into two layers:
+The preferred next move is no longer deeper continuation of the same checked
+local theorem branch. That branch is frozen for now at Outcome B on its current
+checked boundary.
+
+Operationally, the clean full `simple support / подвижный шарнир` workflow still
+keeps the same high-load discipline:
 
 - use `u_z`-scaled continuation with auxiliary arc-like step adaptation as the
-  default high-load path;
+  default high-load path for the separate 6-state background family;
 - use `fast_u_z_scaled_arc_like_continuation.py` for resumable upward progress
-  from the latest checkpoint rather than replaying the whole path from scratch;
-- use `confirm_u_z_scaled_arc_like_continuation.py` only at milestone loads,
-  first-failure neighborhoods, or when branch-jump suspicion needs to be
-  checked more carefully;
-- keep the old `4.3434 / 4.3440 MPa` pair explicit as the canonical old-path
-  anchor/failure reference rather than merging it with the newer bounded
-  ceilings;
-- keep the audited pilot-21 `4.3800 MPa` ceiling explicit even when the fast
-  runner temporarily moves higher in operational continuation runs;
-- use the new `validated operational milestone` class for high-load same-branch
-  points that have dedicated milestone confirm discipline but still lack strict
-  audited-ceiling closure;
-- treat the current `strict_reproducible` thresholds themselves as an open
-  audit-policy question before promoting loads above `4.3800 MPa` to audited
-  status;
-- keep the historical bounded pilot-21 script unchanged with its old
-  `MAX_STEP_MPA = 0.0025` record, but use the fast runner's explicit
-  runtime-controlled step policy for operational climbing so `--max-step-mpa`
-  is no longer silently shadowed by the historical cap;
-- do not spend more time on simple edge-mesh concentration by itself;
-- use the new standalone clean critical-search program `tasks/run_full_simple_support_critical_search.py` when the goal is the consistent full simple-support mixed-weak search rather than the preserved hybrid testbenches;
-- keep the preserved hybrid scan wrappers separate and readable as legacy/exploratory testbenches rather than as the preferred clean simple-support solver;
-- the clean standalone critical-search path now already inherits the same class of robust high-load background continuation discipline that was demonstrated separately on the honest 6-state path, so the old standalone `4.32..4.5 MPa` loss should be treated as a closed implementation bottleneck rather than as an active barrier reading;
-- use the clean standalone search itself, not the preserved hybrid path, when the goal is the full simple-support critical-load region around the active clean competition set rather than around the older `12..14 MPa` memory only;
-- the next unresolved task is no longer basic background reach but criterion discrimination: how to rank `n=6`, `n=8`, `n=7`, and the control mode `n=4` by supported-valley quality rather than by the single smallest raw `sigma_bal`;
-- the lighter `A + C` pilot did not materially improve candidate discrimination; branch-aware descriptors were mainly negative and the augmented / bordered solvability reading remained boundary-led / unstable;
-- the first light `D` pilot was useful but not decisive: it used a local tangent-bundle restricted operator built from the clean blocks `[A_int(q); B_bal(q)]`, gave interior-dominated local signals, and no longer made `n=7` the strongest point-like dip, but it still left the `n=6` versus `n=8` competition only moderately resolved and often favored `n=8`;
-- the next preferred criterion direction was then checked as `E`, read conservatively as an energy-like reduced-coercivity surrogate on the same clean architecture rather than as a theorem-level second variation;
-- the first light `E` pilot now uses the same local tangent bundle together with an amplitude norm built from current reconstructed strain / curvature channels `e_s`, `e_theta`, `gamma_theta`, `S`, `phi_x`, `kappa_theta_new`, and `H`;
-- this first `E` reading gives interior-distributed local signals and stabilizes the local-window reading for `n=6` and `n=8`, but it still favors `n=8`, keeps `n=7` competitive, and therefore does not yet settle the clean competition materially better than the current operational reading;
-- if no clearly stronger non-invasive `E` refinement is ready, the next step should be a more theoretical criterion rework rather than continued cheap pilot iteration;
-- keep reporting candidate loads as exploratory, supported, unstable-rival, or
-  reserve readings rather than as final physical critical loads.
+  and `confirm_u_z_scaled_arc_like_continuation.py` only at milestone or audit
+  loads;
+- keep the clean standalone search `tasks/run_full_simple_support_critical_search.py`
+  as the preferred clean mixed-weak search, and keep the preserved hybrid scan
+  wrappers only as legacy/exploratory testbenches;
+- keep candidate loads reported conservatively as exploratory, supported,
+  unstable-rival, or reserve readings rather than as final physical critical
+  loads.
+
+The theorem-facing next move is now criterion-level synthesis / interpretation:
+
+- read `A_ls` as the global weak/KKT-selected family, not as the raw local
+  regular family;
+- keep `L_red` as the main reduced theorem-facing operator;
+- read `B_red` and `B_mix` as boundary-only / exploratory diagnostics on the
+  current reduced family, not as already proved full replacements for `L_red`;
+- use the local Outcome-B quotient result as a caution layer when interpreting
+  clean candidate loads and modes;
+- prefer a bridge from the checked local quotient theorem back to the global
+  reduced criterion story over deeper continuation of the same local branch.
 
 ## Canonical Runnable Entry Points
 Baseline, report, and clean critical-search entry points:

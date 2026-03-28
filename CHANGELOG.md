@@ -1,4 +1,4 @@
-﻿# CHANGELOG
+# CHANGELOG
 
 
 
@@ -1078,4 +1078,38 @@ Affected files:
 - Kept the scientific meaning unchanged: no equations, boundary-condition
   meaning, solver behavior, broad scans, or hybrid `F_min` reuse policy were
   changed.
+
+## 2026-03-28 - Sync criterion-facing docs after the clean full `simple support / подвижный шарнир` Outcome-B local stopping point
+
+Affected files:
+- `docs/theory/current_simple_support_status.md`
+- `docs/project_map.md`
+- `docs/theory/current_mixed_weak_theory_note.tex`
+- `CHANGELOG.md`
+
+- Audited the operational status page, project map, and supervisor-facing mixed-weak note against the post-C3k/C3l clean full `simple support / подвижный шарнир` theorem-facing state.
+- Updated the status page so it now records the local Outcome-B stopping point, treats the higher-order local selected object as a quotient on the checked boundary, and redirects the next active move from deeper local continuation to criterion-level synthesis / interpretation.
+- Updated the project map so it now marks pilot 23 as the active theorem-facing branch with a current stopping point at Outcome B and identifies the next active theory direction as criterion-level synthesis linking the local quotient result back to `A_ls`, `L_red`, `B_red`, and `B_mix`.
+- Updated the compact supervisor note conservatively so it now reflects the active clean path, the theorem-facing role of `L_red` versus the boundary-only `B_red` / `B_mix` objects, the quotient-based local conclusion on the checked boundary, and the resulting caution that raw `sigma_min(B_mix)` remains exploratory rather than a closed final physical criterion.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, broad scans, or hybrid `F_min` reuse policy were changed.
+
+## 2026-03-28 - Record the quotient-aware return from local Outcome B to criterion interpretation
+
+Affected files:
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Added a short project-level journal note freezing the checked local theorem branch at Outcome B for now as a strategy decision, not as a global impossibility claim.
+- Recorded the quotient-aware criterion reading explicitly: `A_ls` stays the global weak/KKT-selected family, `L_red` stays the main theorem-facing reduced object, `B_red` / `B_mix` stay boundary-only companions, and the current `n=6` / `n=8` / `n=7` / `n=4` clean competition language remains operational rather than final physical criticality.
+
+## 2026-03-28 - Add a repo-facing criterion bridge memo after Outcome B
+
+Affected files:
+- `docs/theory/current_simple_support_criterion_bridge_note.md`
+- `docs/theory/current_simple_support_status.md`
+- `docs/project_map.md`
+- `CHANGELOG.md`
+
+- Added a compact bridge memo under `docs/theory/` that stabilizes the post-Outcome-B interpretation language for `A_ls`, `L_red`, `B_red`, `B_mix`, and the current clean candidate labels.
+- Added minimal cross-references from the simple-support status page and project map so the memo can be cited directly without reopening the checked local theorem branch.
 

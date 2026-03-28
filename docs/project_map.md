@@ -1,4 +1,4 @@
-﻿# Project Map
+# Project Map
 
 This map describes the repository after the current conservative cleanup pass.
 It covers the files and directories present in the current checkout, while the
@@ -31,6 +31,16 @@ rejected directions.
   add-ons around the same clean architecture; after their non-decisive outcome,
   the next planned stage is a more theoretical criterion rework rather than
   another broad scan.
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/` is the
+  active theorem-facing branch for the clean full `simple support / подвижный шарнир`
+  reduction/local admissibility questions. Its current stopping point is Outcome
+  B on the checked local boundary: the local theorem-facing object there is the
+  quotient `im(D_rich,eta^corr) / span(g_mem)`, not a canonically normalized 2D
+  higher-order representative.
+- The next active theory direction is therefore criterion-level synthesis:
+  connect the current quotient-based local conclusion back to the global reduced
+  criterion objects `A_ls`, `L_red`, `B_red`, and `B_mix`, rather than keep
+  extending the same checked local branch.
 
 ## Boundary-Condition Task Separation
 
@@ -162,6 +172,17 @@ rejected directions.
 
 - `docs/theory/current_mixed_weak_theory_note.tex`
   Compact supervisor-facing note for the current mixed-weak theory.
+
+- `docs/theory/current_simple_support_criterion_bridge_note.md`
+  Compact repo-facing bridge memo fixing the current interpretation language for
+  `A_ls`, `L_red`, `B_red`, `B_mix`, and the clean candidate labels after the
+  local Outcome-B stopping point.
+- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/`
+  Active theorem-facing proof-pilot branch for the clean full `simple support / подвижный шарнир`
+  reduction, selected-family interpretation, and local admissibility boundary.
+  The current local stopping point there is Outcome B on the checked boundary,
+  and the next preferred move is criterion-level synthesis rather than deeper
+  continuation of the same local branch.
 
 - `docs/theory/current_simple_support_status.md`
   Canonical operational status page for the separate 6-state simple-support

@@ -56,40 +56,24 @@
 оболочки и не удостоверяет окончательную физическую критическую нагрузку для
 simple-support постановки.
 
-\paragraph{Область граничных условий.}
-Не следует смешивать три разных слоя граничных условий.
-Текущий код сканирования по-прежнему использует более старую осесимметричную фоновую
-линию $F_{\min}$, то есть линию, которая сейчас играет в репозитории роль
-moving-clamp / sliding-clamp стороны сравнения, с правыми краевыми условиями
-$T_{s0}(1)=0$, $\varphi_0(1)=0$.
-Обсуждаемый в этой записке mixed-weak тестовый стенд для критичности использует
-на правой границе логику $u_n(1)=0$, $\varphi(1)=0$ с естественными условиями
-$T_s(1)=0$, $S(1)=0$, $H(1)=0$.
-Отдельный полный осесимметричный simple-support-кандидат использует
-$T_s(1)=0$, $M_s(1)=0$, $u_z(1)=0$ и теперь имеет отдельную активную
-6-компонентную фоновую ветвь с состоянием $(T_s,T_{sn},M_s,u_r,u_z,\varphi)$.
-Операционный статус этой отдельной 6-компонентной ветви теперь ведется в
-\texttt{docs/theory/current_simple_support_status.md}. Канонические численные
-отметки здесь нужно разделять: старый rescue-local workflow по-прежнему дает
-воспроизводимую опорную точку $4.3434\,\mathrm{MPa}$ и первую устойчивую
-неудачу $4.3440\,\mathrm{MPa}$; bounded method-sweep pilot 20 поднимает
-отдельный unchanged-equation simple-support ceiling до $4.3520\,\mathrm{MPa}$
-за счет \texttt{u\_z}-scaled представления; bounded pilot-21 staged
-continuation с теми же уравнениями и тем же BC-набором доводит аудированный
-ceiling до $4.3800\,\mathrm{MPa}$. Поверх этого теперь выделен быстрый
-checkpointed continuation + pointwise confirm workflow, который уже довел
-operational continuation evidence до $10.0000\,\mathrm{MPa}$ и short confirm
-probes до $10.0200\,\mathrm{MPa}$. Для reporting language здесь теперь явно
-вводится промежуточный статус \texttt{validated operational milestone}:
-его теперь получают точки $4.4000\,\mathrm{MPa}$,
-$7.0000\,\mathrm{MPa}$ и $10.0000\,\mathrm{MPa}$, поскольку они сохраняют same accepted
-seed, не показывают branch-jump signal и проходят короткий confirm probe.
-Однако strict audited closure по-прежнему не достигнута,
-поэтому эти точки не заменяют canonical audited ceiling
-$4.3800\,\mathrm{MPa}$ и не превращаются в final physical critical-load claim.
-Общая трактовка барьера остается formulation/conditioning-dominated
-numerical difficulty, а active mixed-weak scans по-прежнему не переподключены
-к этому отдельному full-state simple-support path.
+\paragraph{Активный рабочий путь.}
+На текущем этапе для этой задачи активен clean путь.
+Рассматривается clean path для full \texttt{simple support / подвижный шарнир}
+постановки на честном 6-компонентном осесимметрическом фоне
+$(T_s,T_{sn},M_s,u_r,u_z,\varphi)$ с условиями
+$T_{sn}(x_0)=0$, $u_r(x_0)=0$, $\varphi(x_0)=0$, $T_s(1)=0$, $M_s(1)=0$,
+$u_z(1)=0$ и отдельным mixed-weak critical-search слоем с граничными строками
+$[u_n(1),\varphi(1),T_s(1),S(1),H(1)]$.
+Сохранённые hybrid mixed-weak scans на базе $F_{\min}$ оставлены только как
+comparison / diagnostic testbenches и не считаются текущим theorem-facing path
+для clean задачи \texttt{simple support / подвижный шарнир}.
+Операционный статус clean full-state path вынесен в
+\texttt{docs/theory/current_simple_support_status.md}. Текущий theorem-facing pilot 23
+доведён сейчас до boundary-scoped Outcome B: на checked local boundary
+правильный local selected object замыкается как quotient, а не как canonically normalized 2D
+higher-order representative. Это меняет критерийную интерпретацию, но не
+закрывает окончательную physical criticality для задачи
+\texttt{simple support / подвижный шарнир}.
 
 \section{Неизвестные и mixed-weak структура}
 \paragraph{Принятая рабочая структура.}
@@ -269,104 +253,117 @@ B_{\mathrm{mix}} = B_{\mathrm{full}} V_{\mathrm{reg}},
 сырых суррогатных направлений ядра.
 Текущий рабочий спектральный критерий имеет вид
 \[
-\sigma_{\min}(B_{\mathrm{mix}}(q)) = 0.
+Однако theorem-facing интерпретация для текущего clean path уже не может
+опираться на whole raw local regular family. После pilot 23 selected leading
+trace замкнут только на selected family, и конечномерный reduced object следует
+писать как
+\[
+L_{\mathrm{red},n}(q) = [A_{\mathrm{int},n}(q);B_{\mathrm{full},n}(q)]V_{\mathrm{adm},n}(q),
 \]
+а companion boundary-only objects --- как
+\[
+B_{\mathrm{red},n}(q)=B_{\mathrm{full},n}(q)V_{\mathrm{adm},n}(q),
+\qquad
+B_{\mathrm{mix},n}(q)=B_{\mathrm{red},n}(q)G_{\mathrm{amp},n}(q).
+\]
+Здесь $A_{\mathrm{ls}}=\operatorname{im}(V_{\mathrm{adm}})=\operatorname{im}(M_{\mathrm{amp}})$
+следует читать как current global weak/KKT-selected family. Локальный
+theorem-facing результат pilot 23 на checked local boundary замыкается не как
+canonical 2D higher-order representative, а как quotient object.
 
-\paragraph{Статус.}
-Pilot 03 уточняет текущее утверждение о двумерном центральном регулярном
-семействе в пределах редуцированной центральной границы верификации.
-Pilot 04 проверяет, что $B_{\mathrm{mix}}$ строится из двух регулярных в центре
-мод.
-Pilot 05 проверяет, что $\sigma_{\min}(B_{\mathrm{mix}})$ численно пригоден
-как текущий рабочий критерий в действующей процедуре сканирования.
-Ни один из этих пилотов не доказывает окончательную замкнутую краевую задачу
-оболочки или окончательную физическую критическую нагрузку для
-simple-support постановки.
+Поэтому raw working spectral diagnostic по-прежнему записывается как
+\[
+\sigma_{\min}(B_{\mathrm{mix}}(q)) = 0,
+\]
+но его нужно читать только как exploratory diagnostic, а не как установленную
+эквивалентность nontrivial-kernel question для $L_{\mathrm{red}}$.
 
-\section{Процедура решения}
-Компактное описание текущей процедуры таково:
+\paragraph{Вывод.}
+Pilots 03--05 и clean theorem-facing линия pilot 23 вместе требуют более
+осторожного criterion-level reading: current selected reduced family и
+диагностики $B_{\mathrm{mix}}$ / $\sigma_{\min}(B_{\mathrm{mix}})$ остаются live
+на clean path, но criterion-level equivalence между raw boundary-only reading и
+полным reduced operator не доказана.
+\section{Главные выводы}
+Итоговая рабочая картина для текущего этапа такова:
 \begin{enumerate}[leftmargin=2em]
-    \item Вычислить осесимметричный докритический фон.
-    \item Построить текущий mixed-weak линеаризованный оператор и
-    реконструированные вспомогательные каналы вокруг этого фона.
-    \item Наложить условия регулярности в центре и построить две активные
-    регулярные в центре моды.
-    \item Построить $B_{\mathrm{mix}}$ по этим двум регулярным в центре модам.
-    \item Просканировать параметр нагрузки и отслеживать
-    $\sigma_{\min}(B_{\mathrm{mix}})$.
-    \item Любую полученную кандидатную нагрузку трактовать как
-    исследовательскую, если также не разрешены оставшиеся вопросы
-    согласованности фона и полной краевой задачи.
+    \item Активным путём для задачи остаётся clean full-state path для
+    \texttt{simple support / подвижный шарнир}.
+    \item Текущая mixed-weak реализация использует честный осесимметрический фон
+    и самостоятельный critical-search слой без возврата к old hybrid $F_{\min}$ line.
+    \item Current selected reduced family на live clean path следует читать как
+    global weak/KKT-selected family $A_{\mathrm{ls}}$.
+    \item Theorem-facing reduced operator остаётся $L_{\mathrm{red}}$, а
+    boundary-only companion objects --- $B_{\mathrm{red}}$ и $B_{\mathrm{mix}}$.
+    \item $\sigma_{\min}(B_{\mathrm{mix}})$ и light criterion pilots надо
+    трактовать как exploratory diagnostics, а не как уже закрытую замену
+    nontrivial-kernel question для $L_{\mathrm{red}}$.
+    \item Current candidate load / mode reading остаётся exploratory, пока не
+    построен criterion bridge к final physical interpretation.
 \end{enumerate}
 
-\section{Локально проверенные компоненты и все еще открытые пункты}
-\subsection{Локально проверенные компоненты}
-В текущем проекте имеются следующие локальные результаты, подкрепленные
-пилотами.
+\section{Что уже проверено и что ещё открыто}
+\subsection{Что уже проверено}
+На текущем этапе уже проверены следующие блоки, достаточные для текущей
+criterion-facing синхронизации:
 \begin{itemize}[leftmargin=2em]
-    \item \textbf{Сопряженные граничные пары и текущая логика естественных
-    граничных условий} локально замкнуты в pilot 01.
-    \item \textbf{Независимость $(v,S)$ и $(\psi,H,\chi)$} вместе с текущим
-    разделением $S$, $H$ и $\chi$ на уровне формул локально замкнута в
-    pilot 02.
-    \item \textbf{Двумерное регулярное семейство в центре} частично
-    подтверждено и уточнено в pilot 03 в пределах редуцированной центральной
-    границы верификации.
-    \item \textbf{Правило $B_{\mathrm{mix}} = B_{\mathrm{full}}V_{\mathrm{reg}}$}
-    частично подтверждено и уточнено в pilot 04.
-    \item \textbf{$\sigma_{\min}(B_{\mathrm{mix}})=0$ как текущий рабочий
-    спектральный критерий} частично подтвержден и уточнен в pilot 05 для
-    текущей исследовательской процедуры сканирования.
-    \item \textbf{Блок преднапряжения/нагрузки $G_{\mathrm{ps}}$} уточнен до
-    замкнутого утверждения уровня репозитория в pilot 06 и 06b, но все еще
-    остается лишь уточненным, но частичным компонентом, а не замкнутой
-    теоремой уровня статьи.
+    \item \textbf{Независимость граничных каналов и базовые пары сопряжения}
+    проверены в pilot 01.
+    \item \textbf{Декомпозиция $(v,S)$ и $(\psi,H,\chi)$} ведёт к текущим
+    обозначениям $S$, $H$ и $\chi$ на active mixed-weak path через pilot 02.
+    \item \textbf{KKT-selected reading of the reduced family.}
+    Clean theorem-facing линия pilot 23 зафиксировала, что $A_{\mathrm{ls}}$
+    следует читать как global weak/KKT-selected family, а не как whole raw local
+    regular family.
+    \item \textbf{Selected leading trace plane.}
+    На текущем checked leading-center level selected trace exactly equals
+    $J_0(A_{\mathrm{ls}})=\operatorname{im}(D_{\mathrm{amp}})$.
+    \item \textbf{Higher-order local stopping point.}
+    На текущей checked local boundary higher-order local selected object
+    canonically closes only as quotient
+    $\operatorname{im}(D_{\mathrm{rich},\eta}^{\mathrm{corr}}) / \operatorname{span}(g_{\mathrm{mem}})$.
+    \item \textbf{Boundary-only criterion diagnostics.}
+    $B_{\mathrm{mix}}$ и $\sigma_{\min}(B_{\mathrm{mix}})$ остаются live,
+    computable и operationally useful как exploratory diagnostics на clean path,
+    но не как closed final physical criterion.
 \end{itemize}
 
-\subsection{Все еще открытые пункты}
-Основными открытыми пунктами остаются:
+\subsection{Что ещё открыто}
+Остаются следующие центральные открытые вопросы:
 \begin{itemize}[leftmargin=2em]
-    \item полное выведение всей слабой mixed-weak формы на уровне статьи,
-    включая окончательную полную формулу для $G_{\mathrm{ps}}$;
-    \item окончательное точное разделение между $G_{\mathrm{ps}}$ и другими
-    частями оператора, зависящими от фона;
-    \item окончательная замкнутая смешанная краевая задача за пределами
-    текущей суррогатной границы верификации;
-    \item осесимметричный simple-support фон как главное пока не разрешенное
-    узкое место для физического замыкания, причем текущее аналитическое
-    прочтение скорее указывает на жесткий правокраевой слой, чем на
-    доказанный fold или конец ветви;
-    \item окончательная валидация кандидатных критических нагрузок для
-    физической задачи.
+    \item полное theorem-facing замыкание mixed-weak системы на уровне всей задачи,
+    включая аккуратную историю для блока $G_{\mathrm{ps}}$;
+    \item окончательная формулировка критерия на уровне всей системы, а не только
+    на уровне boundary-only diagnostics;
+    \item criterion-level bridge между local quotient result и global reduced
+    criterion: как именно nontrivial-kernel question для
+    $L_{\mathrm{red}}$ должно читаться рядом с boundary-only objects
+    $B_{\mathrm{red}}$ и $B_{\mathrm{mix}}$;
+    \item физическая интерпретация current candidate loads / modes для полной задачи;
+    \item итоговый theorem-facing bridge между current quotient-local result и
+    final physical criticality для clean simple support / подвижный шарнир постановки.
 \end{itemize}
-В настоящий момент ведущий исследовательский mixed-weak кандидат по-прежнему
-находится около $n=13$ с $q\approx 3.79\ldots 3.80\,\mathrm{MPa}$, а близкий
-конкурент с $n=14$ находится около $4.28\,\mathrm{MPa}$, однако эти значения
-все еще должны рассматриваться как исследовательские, а не как окончательные.
+В текущей clean competition memory exploratory остаётся следующая картина: mode
+$n=6$ поддерживается как supported interior candidate около
+$17.6\,\mathrm{MPa}$, $n=8$ остаётся unstable rival около
+$17.8\,\mathrm{MPa}$, $n=7$ остаётся raw reserve dip, а $n=4$ --- control mode.
+Ни одно из этих чисел пока не является final physical critical-load claim.
 
 \section{Заключение}
-Текущая mixed-weak ветвь теперь обладает согласованной структурой уровня
-репозитория: активными блоками неизвестных и результант, проверенной логикой
-сопряженных граничных пар, структурно независимыми окружными каналами,
-замкнутым утверждением уровня репозитория для блока преднапряжения/нагрузки,
-двухмодовым построением регулярных в центре решений, граничной матрицей,
-построенной из этих мод, и рабочим спектральным критерием на основе
-$\sigma_{\min}(B_{\mathrm{mix}})$.
-При этом проект по-прежнему не заявляет ни окончательной замкнутой теоремы
-для оболочки, ни окончательной замкнутой смешанной краевой задачи, ни окончательной
-физической критической нагрузки для simple-support постановки.
-Назначение этой записки --- явно и в удобной для обсуждения форме удерживать
-это смешанное состояние.
+Текущая mixed-weak линия теперь должна читаться на двух уровнях
+одновременно. Clean full \texttt{simple support / подвижный шарнир} path даёт
+честный background, theorem-facing reduced operator $L_{\mathrm{red}}$,
+boundary-only companion objects $B_{\mathrm{red}}$ / $B_{\mathrm{mix}}$ и
+локальный pilot-23 result, который на checked local boundary закрывается как
+Outcome B: правильный theorem-facing selected object там является quotient, а не
+canonical 2D higher-order representative.
 
-\appendix
-
-\section{Минимальная таблица обозначений}
-\begin{tabular}{ll}
-\toprule
-Обозначение & Смысл \\
-\midrule
-$U$ & первичный кинематический блок $(u_s,u_n,v,\varphi,\psi)$ \\
-$P$ & смешанные результанты $(T_s,T_\theta,S,Q_s,M_s,M_\theta,H,\chi)$ \\
+Это накладывает criterion-level caution. Raw
+$\sigma_{\min}(B_{\mathrm{mix}})$ reading остаётся полезным exploratory
+diagnostic для clean candidate competition, но не может уже сейчас считаться
+полным criterion for physical criticality. Поэтому ближайший рабочий шаг должен
+состоять не в дальнейшем углублении той же checked local branch, а в synthesis /
+bridge between the local quotient result and the global reduced criterion story.
 $(v,S)$ & мембранный окружной канал \\
 $(\psi,H,\chi)$ & окружной канал кручения/сдвига \\
 $G_{\mathrm{ps}}$ & билинейный блок преднапряжения/нагрузки mixed-weak ветви \\

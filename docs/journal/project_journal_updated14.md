@@ -717,3 +717,33 @@ intrinsic higher-order selector beyond the current checked boundary, or a
 stronger theorem lifting this boundary-scoped quotient finality statement to a
 wider local theory.
 
+### 12.20. Quotient-aware return to criterion interpretation
+
+After C3l the local theorem-facing branch is frozen for now at Outcome B on the
+current checked boundary. This is a project-strategy stopping point, not a
+mathematical impossibility claim about all richer local theories.
+
+The clean criterion story should now be read more sharply:
+
+- `A_ls` remains best read as the global weak/KKT-selected family, not as the
+  raw unrestricted local center-regular family;
+- `L_red` remains the main theorem-facing reduced object for the clean path;
+- `B_red` and `B_mix` remain boundary descendants / coordinate presentations on
+  that selected reduced family, operationally useful but not silently upgraded
+  into theorem-level substitutes for the full stacked `L_red`;
+- the local quotient result adds a stronger caution layer behind the criterion
+  reading, but it does not by itself change the clean candidate ordering.
+
+So the current operational competition language stays conservative:
+
+- `n=6` remains the leading supported interior candidate near `17.6 MPa`;
+- `n=8` remains the main unstable rival near `17.8 MPa`;
+- `n=7` remains a sharp raw reserve dip rather than a supported candidate;
+- `n=4` remains a weak control mode.
+
+The immediate next active question is no longer deeper continuation of the same
+checked local branch. It is the criterion-level bridge: how the local
+Outcome-B quotient result should be read together with the global reduced
+criterion objects `A_ls`, `L_red`, `B_red`, and `B_mix` without overclaiming a
+final physical criticality theorem.
+
