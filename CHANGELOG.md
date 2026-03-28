@@ -1113,3 +1113,27 @@ Affected files:
 - Added a compact bridge memo under `docs/theory/` that stabilizes the post-Outcome-B interpretation language for `A_ls`, `L_red`, `B_red`, `B_mix`, and the current clean candidate labels.
 - Added minimal cross-references from the simple-support status page and project map so the memo can be cited directly without reopening the checked local theorem branch.
 
+## 2026-03-28 - Add the theorem roadmap above the frozen local Outcome-B boundary
+
+Affected files:
+- `docs/theory/current_simple_support_theorem_roadmap.md`
+- `docs/theory/current_simple_support_criterion_bridge_note.md`
+- `docs/project_map.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Added a compact theorem-program note under `docs/theory/` that starts from the bridge note plus Outcome B and organizes the next theorem-facing agenda as `T1`--`T5`, with `T3` explicitly identified as the global selected-kernel bridge theorem for `L_red`.
+- Added minimal cross-references from the bridge note, project map, and project journal so the roadmap can be cited without overloading the status page or reopening the same checked local branch.
+
+## 2026-03-28 - Open the T3 implementation stage as a selected-kernel bridge program
+
+Affected files:
+- `docs/theory/current_simple_support_theorem_roadmap.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Refined the theorem roadmap so `T3` now has an exact repository-level target: on the current selected class `A_sel^repo = A_ls = im(V_adm) = im(M_amp)`, selected-class criticality should be read through the nontrivial-kernel question for `L_red = [A_int; B_full] V_adm`, not through a boundary descendant alone.
+- Added an explicit `T3-L1`--`T3-L5` bridge-lemma decomposition, identified the main remaining gap as packaging those pieces into one selected-class bridge theorem, and recorded the Lean/CAS/manual split for the next proof implementation step.
+- Added a new verification-map entry for the T3-stage theorem target and a short journal note marking the start of the T3 proof-organization stage above the frozen local Outcome-B boundary.
+

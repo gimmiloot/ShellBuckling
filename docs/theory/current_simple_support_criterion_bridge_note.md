@@ -116,3 +116,5 @@ None of these labels implies a final physical critical-load claim.
 - The next bridge question is how the checked local quotient result should be
   read together with `A_ls`, `L_red`, `B_red`, and `B_mix` without overclaiming
   final physical criticality.
+- The current theorem program above that frozen boundary is recorded in
+  `docs/theory/current_simple_support_theorem_roadmap.md`.

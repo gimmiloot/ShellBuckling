@@ -1248,3 +1248,52 @@ Most valuable next proof pilots:
   theorem, or derive a genuinely new intrinsic selector beyond the current
   checked local boundary.
 
+### V-S19. `T3` target: selected-class criticality on the current clean repository boundary should be read through `ker(L_red)`, not through a boundary descendant alone
+
+- ID: `V-S19`
+- Claim / Hypothesis:
+  For fixed clean `(n, q)`, let
+  `L_full,n(q) = [A_int,n(q); B_full,n(q)]`,
+  let the current selected repository class be
+  `A_sel^repo,n(q) := A_ls,n(q) = im(V_adm,n(q)) = im(M_amp,n(q))`
+  on the weighted-ansatz boundary, and let
+  `L_red,n(q) = L_full,n(q) V_adm,n(q)`.
+  Then the correct theorem-facing bridge target is:
+  selected-class criticality on the current repository boundary should be read
+  through the exact nontrivial-kernel question
+  `exists 0 != c in A_sel^repo,n(q) : L_full,n(q) c = 0`
+  if and only if
+  `exists 0 != a in R^2 : L_red,n(q) a = 0`,
+  while `B_red` / `B_mix` remain descendants on the same selected family rather
+  than theorem-level replacements for the full stacked operator.
+- Type: `structural claim`
+- Source file(s):
+  `docs/theory/current_simple_support_theorem_roadmap.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md` sections 1.8-1.10;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/reduction_check.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/selection_object_check.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
+  `src/shell_buckling/mixed_weak/full_simple_support_critical_search.py`.
+- Current status: `organized as the current open theorem-program target`
+- What counts as verification:
+  a clean selected-class theorem that explicitly combines:
+  exact selected-family reading `A_sel^repo = A_ls`,
+  exact reduced-object identity `L_red = L_full V_adm`,
+  exact restricted-kernel bridge on that class,
+  local quotient compatibility as a constraint rather than a replacement
+  theorem, and the explicit caution that `B_red` / `B_mix` do not yet collapse
+  the problem to a boundary-only criterion.
+- Verification method:
+  manual derivation, CAS, code inspection, Lean abstraction for the
+  finite-dimensional bridge.
+- Verification boundary:
+  repository-level selected-class theorem only; not yet a final physical shell
+  theorem, not yet a proof that the current selected class is the full exact
+  continuum admissible clean tangent space, and not yet a proof that
+  boundary-only degeneration is equivalent to the full reduced-kernel problem.
+- Next action:
+  start a dedicated `T3` proof stage centered on the finite-dimensional
+  selected-kernel bridge, with the shell-specific selected-family and
+  descendant identities recorded as premises/supporting lemmas.
+

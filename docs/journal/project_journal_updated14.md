@@ -747,3 +747,32 @@ Outcome-B quotient result should be read together with the global reduced
 criterion objects `A_ls`, `L_red`, `B_red`, and `B_mix` without overclaiming a
 final physical criticality theorem.
 
+That next theorem program is now recorded explicitly in
+`docs/theory/current_simple_support_theorem_roadmap.md`: the roadmap starts
+above the frozen local Outcome-B boundary and treats the global
+selected-kernel bridge theorem for `L_red` as the central open target.
+
+### 12.21. T3 implementation stage: exact selected-kernel bridge target
+
+The next theorem-facing step is now being organized explicitly as `T3`, not as
+a reopening of the same checked local branch.
+
+The exact repo-level target is:
+for fixed clean `(n, q)`, with
+`A_sel^repo = A_ls = im(V_adm) = im(M_amp)` on the current weighted-ansatz
+boundary and `L_red = [A_int; B_full] V_adm`, selected-class criticality should
+be read through the nontrivial-kernel question
+`exists 0 != c in A_sel^repo : L_full c = 0`
+if and only if
+`exists 0 != a in R^2 : L_red a = 0`.
+
+This is still a repository-level selected-class theorem target, not a final
+physical criticality theorem. It keeps `B_red` and `B_mix` in their current
+descendant/diagnostic role and uses the local Outcome-B quotient result only as
+a compatibility constraint on the selected-family reading.
+
+The next concrete implementation step should therefore be a dedicated `T3`
+proof stage for the finite-dimensional selected-kernel bridge and its Lean
+abstraction layer, not a new local theorem pilot and not a new competition
+scan.
+
