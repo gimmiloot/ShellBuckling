@@ -68,9 +68,10 @@ Status:
   obstruction level;
 - the representative-law stage `T3d` is now closed enough at the exact
   criterion / obstruction level;
-- the next active stage is `T3j`, the construction / control theorem for the
-  global checked-local coefficient-extraction operator above the `T3i`
-  boundary.
+- the next active stage is `T3p`, the membrane-fiber singleton / patchwise
+  constancy theorem for the local membrane coordinate, equivalently the
+  vanishing theorem for the basepoint-relative membrane selector above the
+  `T3o` boundary.
 
 ### `T3a`. Finite-dimensional selected-kernel bridge on the current repository selected family
 
@@ -358,6 +359,129 @@ Status:
   partial construction exists on the strict checked local corrected-family
   domain, but the full global operator on `D_res,n(q)` is still not closed.
 
+### `T3k`. Construction / control theorem for the global checked-local shadow map
+
+Statement:
+- keep
+  `D_res,n(q) := A_adm^th,n(q) intersect ker(C_center,n(q))`
+  and
+  `Xi_sel,corr^(1,eta),n(q) := im(D_rich,eta^corr,n(q))`;
+- seek a theorem-facing map
+  `Sh_chk,n(q) : D_res,n(q) -> Xi_sel,corr^(1,eta),n(q)`
+  strong enough that the projected lift problem factors through
+  `q_coeff o chi_chk,vis,n(q) o Sh_chk,n(q)`;
+- the sharpest current obstruction is:
+  because
+  `q_coeff o chi_chk,vis,n(q) = L_amp o Pi_eta_to_J0`
+  on `Xi_sel,corr^(1,eta),n(q)` and
+  `D_res,n(q) subset ker(J_0,n(q))`,
+  any compatible raw `Sh_chk,n(q)` would satisfy
+  `q_coeff o chi_chk,vis,n(q) o Sh_chk,n(q) = 0`;
+- equivalently, any such raw shadow map must land in the membrane line
+  `span(g_mem,n(q))`, so it is equivalent only to a scalar membrane-selector
+  candidate, not yet to a nontrivial projected lift map;
+- therefore the naive `T3j` shadow-map target on raw `D_res,n(q)` is too
+  strong in the wrong direction: it collapses the projected quotient data
+  identically.
+
+Status:
+- Outcome C on the current repository/theory boundary:
+  an exact obstruction theorem is now available; the remaining nontrivial
+  global object must be basepoint-relative or must come with a theorem killing
+  the membrane selector on the same-trace residual class.
+
+### `T3l`. Basepoint-relative representative-difference theorem or membrane-selector vanishing theorem
+
+Statement:
+- keep the raw same-trace collapse from `T3k`:
+  any compatible raw shadow on
+  `D_res,n(q) = A_adm^th,n(q) intersect ker(C_center,n(q))`
+  already lands in the membrane line and cannot be the remaining nontrivial
+  bridge by itself;
+- define instead the equal-trace checked-local pair domain
+  `Pair_chk,n(q)` of pairs `(c, c_ref)` whose checked local shadows are defined
+  in a common corrected chart and satisfy `J_0(c) = J_0(c_ref)`;
+- on that pair domain, the checked-local coefficient difference lies in
+  `span(e_mem)` and is invariant under quotient-preserving chart changes;
+- therefore there is a theorem-facing basepoint-relative representative-
+  difference object
+  `Delta_rep,chk,n(q; c, c_ref) in span(e_mem)`,
+  equivalently a unique scalar membrane selector
+  `sigma_chk,n(q; c, c_ref)` with
+  `Delta_rep,chk = sigma_chk e_mem`;
+- the next nontrivial theorem is now to prove or refute vanishing of this
+  pairwise object on the exact admissible residual-generated pair domain.
+
+Status:
+- Outcome A on the current repository/theory boundary:
+  the correct pairwise checked-local object is now constructed; vanishing of the
+  induced selector remains open.
+
+### `T3m`. Vanishing / nonvanishing theorem for the basepoint-relative membrane selector
+
+Statement:
+- fix a repo-selected basepoint `c_sel in A_sel^repo,n(q)`;
+- define the exact residual-generated pair domain
+  `D_sigma,n(q; c_sel) := { z in A_adm^th,n(q) intersect ker(C_center,n(q)) :
+  (c_sel + z, c_sel) in Pair_chk,n(q) }`;
+- on that domain the basepoint-relative membrane selector
+  `sigma_chk,n(q; c_sel)(z) := sigma_chk,n(q; c_sel + z, c_sel)` is the exact
+  chart-invariant membrane-difference scalar;
+- the next nontrivial question is whether `sigma_chk,n(q; c_sel)(z)` vanishes
+  identically on `D_sigma,n(q; c_sel)`;
+- current theorem-facing data still force only the quotient coordinates and do
+  not yet kill the membrane cocycle.
+
+Status:
+- Outcome B on the current repository/theory boundary:
+  the selector structure is now sharpened to an exact cocycle / obstruction
+  theorem, but a vanishing theorem and an explicit admissible nonzero example
+  are both still open.
+
+### `T3n`. Uniqueness-in-membrane-quotient-class theorem
+
+Statement:
+- fix a repo-selected basepoint `c_sel in A_sel^repo,n(q)`;
+- work on the exact checked-local definability subdomain
+  `D_sigma,n(q; c_sel) := { z in A_adm^th,n(q) intersect ker(C_center,n(q)) :
+  (c_sel + z, c_sel) in Pair_chk,n(q) }`;
+- the uniqueness question is whether this domain meets each equal-trace
+  membrane quotient class only in the repo-selected representative, equivalently
+  whether `sigma_chk,n(q; c_sel)(z) = 0` on all of `D_sigma,n(q; c_sel)`;
+- on every common corrected-chart patch of that domain, the selector is exactly
+  a local membrane-coordinate coboundary `s_U(z) - s_U(0)`;
+- therefore vanishing is equivalent to patchwise constancy of the local
+  membrane coordinate on the exact admissible residual-generated checked-local
+  pair patches;
+- current theorem-facing data still force only quotient coordinates and do not
+  yet force that constancy.
+
+Status:
+- Outcome B on the current repository/theory boundary:
+  the selector-vanishing question is now reduced further to an exact
+  patchwise membrane-constancy / uniqueness-in-class obstruction theorem.
+
+### `T3o`. Patchwise constancy theorem for the local membrane coordinate
+
+Statement:
+- fix a repo-selected basepoint `c_sel in A_sel^repo,n(q)` and the exact
+  checked-local definability domain `D_sigma,n(q; c_sel)`;
+- cover it by exact admissible residual-generated checked-local patches
+  `D_sigma^U,n(q; c_sel)` on which a common corrected chart `U` is available and
+  `sigma_chk,n(q; c_sel)(z) = s_U(z) - s_U(0)`;
+- under quotient-preserving chart changes, on overlaps the local membrane
+  coordinates differ only by a trace-dependent constant, so the constancy
+  predicate is cover-invariant;
+- therefore global vanishing of `sigma_chk` is equivalent to patchwise
+  constancy of `s_U` on any exact admissible residual-generated patch cover;
+- current theorem-facing data still do not force constancy on even one such
+  patch.
+
+Status:
+- Outcome B on the current repository/theory boundary:
+  overlap compatibility is now closed as automatic, but patchwise constancy
+  itself is still not forced.
+
 ### `T4`. Local quotient compatibility theorem
 
 Statement:
@@ -394,9 +518,9 @@ These are not the final theorem, but they already form the support layer for a
 
 ## E. Main Open Gap
 
-The main open gap is now the `T3j` global-shadow / coefficient-extraction
-theorem above the local checked extractor package between the exact
-repo-selected family and the candidate class `A_sel^{th,cand}`.
+The main open gap is now the `T3p` membrane-fiber singleton / patchwise
+constancy theorem for the basepoint-relative checked-local membrane-difference
+selector on the exact admissible residual-generated pair domain.
 
 This is now the central theorem-facing bottleneck because:
 
@@ -418,8 +542,18 @@ This is now the central theorem-facing bottleneck because:
 - and the existence question is now reduced to one exact residual-lift class;
 - and that residual-lift class is now sharpened further to the exact
   local-to-global kernel/preimage problem for the checked local lift map;
-- and the injectivity question is now sharpened further to a partial local
-  extractor package plus a missing global checked-local shadow bridge;
+- and the raw same-trace shadow question has already been sharpened to an exact
+  obstruction theorem while the correct surviving nontrivial object has now
+  been identified on equal-trace checked-local pairs;
+- and that surviving object has now been sharpened further to an exact
+  basepoint-relative scalar membrane cocycle on the residual-generated pair
+  domain;
+- and that selector question is now reduced further to exact patchwise
+  constancy of the local membrane coordinate on the checked-local admissible
+  pair patches;
+- and overlap / chart-cover compatibility for that local membrane coordinate is
+  now reduced to an automatic constant-shift rule under quotient-preserving
+  chart changes;
 - but the exact bridge from candidate-class membership to triviality of that
   kernel is still not closed.
 
@@ -435,13 +569,15 @@ degeneration theorem or final physical criticality theorem is already available.
 - The candidate-definition step `T3b` is now in place.
 - The reduction step `T3c` is now in place too.
 - The selected-representative criterion step `T3d` is now in place too.
-- The next theorem-facing implementation should therefore stay inside `T3j`:
-  construct or control a global checked-local shadow map from
-  `A_adm^th,n(q) intersect ker(C_center,n(q))`
-  into `Xi_sel,corr^(1,eta),n(q)` well enough that the local checked extractor
-  can be composed into a theorem-facing global operator `chi_chk,n(q)` and the
-  projected map `q_coeff o chi_chk,n(q)` becomes a genuine linear map whose
-  kernel can be decided.
+- The next theorem-facing implementation should therefore stay inside `T3p`:
+  prove or refute that the exact checked-local patch image is a singleton in
+  the fixed membrane fiber on every exact admissible residual-generated patch,
+  equivalently prove or refute patchwise constancy of the local membrane
+  coordinate, equivalently prove or refute that
+  `sigma_chk,n(q; c_sel)(z) = 0` on all of `D_sigma,n(q; c_sel)`;
+- no separate overlap/gluing theorem is the main bottleneck anymore, because
+  patch transitions now change the membrane coordinate only by a z-independent
+  constant on each fixed equal-trace class.
 - It should not reopen the `T3a` package and should not reopen the same checked
   local branch.
 - Only after that broader bridge work should the project decide whether a
@@ -1492,6 +1628,627 @@ Verification route:
   exact theorem scope for `T3j`, the distinction between the local chart-level
   extractor and the still-missing global theorem-facing operator on `D_res`,
   and the relation to the broader long-term `T3`.
+
+## Q. Current `T3k` Implementation Split
+
+### `T3k-L1`. Checked-local shadow-data lemma
+
+Statement:
+- on `Xi_sel,corr^(1,eta),n(q)` one has
+  `q_coeff o chi_chk,vis,n(q) = L_amp o Pi_eta_to_J0`;
+- so the quotient coordinates `(a,b)` are exactly the selected-trace
+  coordinates on the corrected checked local family.
+
+Status:
+- closed enough.
+
+Verification route:
+- CAS, code inspection, manual derivation.
+
+### `T3k-L2`. Zero-quotient-on-same-trace lemma
+
+Statement:
+- because
+  `D_res,n(q) = A_adm^th,n(q) intersect ker(C_center,n(q))
+              subset ker(J_0,n(q))`,
+  any theorem-facing checked-local shadow compatible with the current quotient
+  reading must project to zero under `q_coeff o chi_chk,vis`.
+
+Status:
+- closed enough.
+
+Verification route:
+- manual derivation, code inspection, theory reuse from the local quotient
+  package.
+
+### `T3k-L3`. Membrane-line factorization lemma
+
+Statement:
+- any compatible global shadow map
+  `Sh_chk,n(q) : D_res,n(q) -> Xi_sel,corr^(1,eta),n(q)`
+  must satisfy
+  `Sh_chk,n(q)(z) in span(g_mem,n(q))`
+  for every `z in D_res,n(q)`;
+- equivalently it is only a scalar membrane-selector candidate
+  `sigma_chk,n(q)` through
+  `Sh_chk,n(q)(z) = sigma_chk,n(q)(z) g_mem,n(q)`.
+
+Status:
+- closed enough.
+
+Verification route:
+- CAS, code inspection, manual derivation.
+
+### `T3k-L4`. Exact obstruction theorem
+
+Statement:
+- any raw basepoint-independent factorization
+  `Phi_chk = q_coeff o chi_chk,vis o Sh_chk`
+  on `D_res,n(q)` would be identically zero;
+- therefore the naive raw-shadow target is not the correct remaining global
+  bridge on the current boundary;
+- the precise missing ingredient is a basepoint-relative checked-local
+  representative-difference object on ambient candidate-class pairs before
+  quotient collapse, or a theorem that the membrane selector vanishes.
+
+Status:
+- Outcome C: exact obstruction theorem obtained.
+
+Verification route:
+- manual derivation, code inspection, reuse of the closed quotient-finality
+  theorem from pilot 23.
+
+### `T3k-L5`. Consequence lemma for the next kernel step
+
+Statement:
+- the next nontrivial injectivity/kernel theorem cannot act on
+  `q_coeff o chi_chk,vis o Sh_chk`
+  over raw `D_res,n(q)` alone;
+- it must either use a basepoint-relative checked-local
+  representative-difference object on ambient candidate-class pairs, or prove
+  directly that the admissible same-trace membrane selector vanishes.
+
+Status:
+- closed enough as a theorem-program consequence.
+
+Verification route:
+- manual derivation, Lean target only after the correct global object is
+  abstracted.
+
+### Main bottleneck inside `T3k`
+
+- construct or control a theorem-facing basepoint-relative checked-local
+  representative-difference object on ambient candidate-class pairs before
+  quotient collapse, or prove directly that the admissible same-trace membrane
+  selector vanishes on
+  `A_adm^th,n(q) intersect ker(C_center,n(q))`.
+
+### Lean / CAS / manual split for `T3k`
+
+- Lean:
+  finite-dimensional map/composition/kernel templates once the correct global
+  object is abstracted beyond the raw `Sh_chk` target on `D_res,n(q)`.
+- CAS / code inspection:
+  `D_rich,eta^corr`, `chi_chk,vis`, `q_coeff`, `e_mem`, `g_mem`, `J_0`,
+  `ker(C_center)`, the quotient chart identities, and the zero-quotient
+  collapse on the same-trace domain.
+- Manual derivation:
+  exact theorem scope for `T3k`, the local-vs-global shadow obstruction
+  wording, why any compatible raw `Sh_chk` on `D_res,n(q)` must factor through
+  the membrane line, and the relation to the broader long-term `T3`.
+
+## R. Current `T3l` Implementation Split
+
+### `T3l-L1`. Raw same-trace zero-collapse lemma
+
+Statement:
+- on `D_res,n(q) subset ker(J_0,n(q))`, every compatible raw checked-local
+  shadow projects to zero under `q_coeff o chi_chk,vis,n(q)`.
+
+Status:
+- closed enough.
+
+Verification route:
+- manual derivation, CAS/theory reuse, code inspection.
+
+### `T3l-L2`. Membrane-line factorization lemma
+
+Statement:
+- for every equal-trace checked-local pair `(c, c_ref)` in `Pair_chk,n(q)`,
+  the checked-local coefficient difference lies in `span(e_mem)` and is
+  invariant under every quotient-preserving chart change.
+
+Status:
+- closed enough.
+
+Verification route:
+- CAS, code inspection, manual derivation.
+
+### `T3l-L3`. Basepoint-relative checked-local representative-difference construction lemma
+
+Statement:
+- the pairwise membrane-difference vector
+  `Delta_rep,chk,n(q; c, c_ref) in span(e_mem)`
+  is a well-defined theorem-facing object on `Pair_chk,n(q)`, independent of
+  the chosen quotient-preserving corrected chart.
+
+Status:
+- closed enough.
+
+Verification route:
+- CAS, code inspection, manual derivation.
+
+### `T3l-L4`. Membrane-selector control lemma
+
+Statement:
+- there is a unique scalar selector
+  `sigma_chk,n(q; c, c_ref)` such that
+  `Delta_rep,chk,n(q; c, c_ref) = sigma_chk,n(q; c, c_ref) e_mem`;
+- on the residual-generated pair domain this gives
+  `sigma_chk,n(q; c_sel)(z)`;
+- vanishing of `sigma_chk` is equivalent to vanishing of the pairwise checked-
+  local representative difference, but global vanishing on the exact admissible
+  residual-generated pair domain is still open.
+
+Status:
+- partial.
+
+Verification route:
+- manual derivation, code inspection, CAS for chart invariance.
+
+### `T3l-L5`. Exact consequence lemma for the next bridge step
+
+Statement:
+- the next nontrivial theorem can now be posed as vanishing/nonvanishing of the
+  pairwise selector `sigma_chk,n(q; c_sel)(z)`, equivalently as vanishing of
+  `Delta_rep,chk` on the exact admissible residual-generated pair domain.
+
+Status:
+- closed enough as a theorem-program consequence.
+
+Verification route:
+- manual derivation, Lean target after the pair domain and selector are
+  abstracted.
+
+### Main bottleneck inside `T3l`
+
+- prove or refute that the basepoint-relative membrane selector
+  `sigma_chk,n(q; c_sel)(z)` vanishes identically on the exact admissible
+  residual-generated checked-local pair domain.
+
+### Lean / CAS / manual split for `T3l`
+
+- Lean:
+  finite-dimensional pair-map / scalar-selector / kernel templates once the
+  pair domain and theorem-facing selector are abstracted.
+- CAS / code inspection:
+  `D_rich,eta^corr`, `chi_chk,vis`, `q_coeff`, `e_mem`, `g_mem`, `J_0`,
+  `ker(C_center)`, raw same-trace collapse, and the invariance of pairwise
+  membrane difference under quotient-preserving chart changes.
+- Manual derivation:
+  exact theorem scope for `T3l`, why the raw same-trace shadow target
+  collapses but the pairwise equal-trace difference survives, the comparison of
+  the pairwise and selector routes, and the relation to the broader long-term
+  `T3`.
+
+## S. Current `T3m` Implementation Split
+
+### `T3m-L1`. Exact domain-of-definition lemma for `sigma_chk`
+
+Statement:
+- for fixed clean `(n, q)` and fixed repo-selected basepoint `c_sel`, the exact
+  domain of the basepoint-relative membrane selector is
+  `D_sigma,n(q; c_sel) := { z in A_adm^th,n(q) intersect ker(C_center,n(q)) :
+  (c_sel + z, c_sel) in Pair_chk,n(q) }`.
+
+Status:
+- closed enough.
+
+Verification route:
+- manual derivation, code inspection, reuse of the `T3l` pair-domain
+  construction.
+
+### `T3m-L2`. Pairwise membrane-selector structure lemma
+
+Statement:
+- on the equal-trace checked-local pair domain, `sigma_chk` is chart-invariant
+  and satisfies
+  `sigma_chk(c, c) = 0`,
+  `sigma_chk(c, c_ref) = -sigma_chk(c_ref, c)`,
+  and
+  `sigma_chk(c_1, c_3) = sigma_chk(c_1, c_2) + sigma_chk(c_2, c_3)`.
+
+Status:
+- closed enough.
+
+Verification route:
+- CAS, code inspection, manual derivation.
+
+### `T3m-L3`. Vanishing / partial-vanishing implication lemma
+
+Statement:
+- vanishing of `sigma_chk,n(q; c_sel)(z)` is equivalent to vanishing of
+  `Delta_rep,chk,n(q; c_sel + z, c_sel)`;
+- the current admissibility and selected-trace constraints force equality of
+  the quotient coordinates `(a, b)` only and do not yet force vanishing of the
+  membrane selector.
+
+Status:
+- partial.
+
+Verification route:
+- manual derivation, code inspection, CAS for the chart-invariant pair-
+  difference identities.
+
+### `T3m-L4`. Exact obstruction / nonvanishing-template lemma
+
+Statement:
+- all currently justified checked-local selected invariants factor through the
+  membrane quotient, so they do not detect the scalar cocycle `sigma_chk`;
+- vanishing on the full exact domain would therefore require an additional
+  representative-selection theorem inside the equal-trace membrane quotient
+  class;
+- any admissible residual-generated pair with common corrected-chart
+  coordinates `(a, b, s_sel + delta)` and `(a, b, s_sel)` and `delta != 0`
+  yields the exact nonvanishing template `sigma_chk = delta != 0`.
+
+Status:
+- closed enough as an exact obstruction theorem;
+- explicit admissible nonzero example still open.
+
+Verification route:
+- manual derivation, code inspection, theorem reuse from pilot 23 quotient-
+  finality.
+
+### `T3m-L5`. Exact consequence lemma for the next bridge step
+
+Statement:
+- the next nontrivial theorem is exactly one of the following equivalent
+  statements:
+  `sigma_chk,n(q; c_sel)(z) = 0` for every `z in D_sigma,n(q; c_sel)`;
+  `Delta_rep,chk,n(q; c_sel + z, c_sel) = 0` for every
+  `z in D_sigma,n(q; c_sel)`;
+  or the exact residual-generated checked-local pair domain meets each
+  equal-trace membrane quotient class only in the repo-selected
+  representative.
+
+Status:
+- closed enough as a theorem-program consequence.
+
+Verification route:
+- manual derivation, Lean target after the selector domain and cocycle law are
+  abstracted.
+
+### Main bottleneck inside `T3m`
+
+- prove or refute that the exact admissible residual-generated checked-local
+  pair domain meets each equal-trace membrane quotient class only in the
+  repo-selected representative, equivalently that
+  `sigma_chk,n(q; c_sel)(z) = 0` on all of `D_sigma,n(q; c_sel)`.
+
+### Lean / CAS / manual split for `T3m`
+
+- Lean:
+  finite-dimensional pair-map / scalar-cocycle / vanishing templates once the
+  exact selector domain and cocycle laws are abstracted.
+- CAS / code inspection:
+  `D_rich,eta^corr`, `chi_chk,vis`, `q_coeff`, `e_mem`, `g_mem`, `J_0`,
+  `ker(C_center)`, the pairwise membrane-difference identities, and the
+  quotient-preserving chart-change formulas.
+- Manual derivation:
+  exact theorem scope for `T3m`, why `sigma_chk` is the correct surviving
+  representative-level object after raw same-trace collapse, why current
+  theorem-facing constraints do not yet force vanishing, and the relation to
+  the broader long-term `T3`.
+
+## T. Current `T3n` Implementation Split
+
+### `T3n-L1`. Exact domain-of-uniqueness lemma
+
+Statement:
+- for fixed clean `(n, q)` and fixed repo-selected basepoint `c_sel`,
+  uniqueness is tested on
+  `D_sigma,n(q; c_sel) := { z in A_adm^th,n(q) intersect ker(C_center,n(q)) :
+  (c_sel + z, c_sel) in Pair_chk,n(q) }`,
+  not on the whole residual space by default.
+
+Status:
+- closed enough.
+
+Verification route:
+- manual derivation, code inspection, reuse of the `T3l` / `T3m` pair-domain
+  package.
+
+### `T3n-L2`. Membrane-quotient uniqueness vs selector-vanishing lemma
+
+Statement:
+- on `D_sigma,n(q; c_sel)`, the following are equivalent:
+  `sigma_chk,n(q; c_sel)(z) = 0` for all `z`;
+  `Delta_rep,chk,n(q; c_sel + z, c_sel) = 0` for all `z`;
+  and the exact admissible residual-generated checked-local pair domain meets
+  each equal-trace membrane quotient class only in the repo-selected
+  representative.
+
+Status:
+- closed enough.
+
+Verification route:
+- manual derivation, code inspection.
+
+### `T3n-L3`. Local-coboundary / patchwise-constancy lemma
+
+Statement:
+- on every common corrected-chart patch `D_sigma^U,n(q; c_sel)`, there is a
+  local membrane coordinate `s_U` such that
+  `sigma_chk,n(q; c_sel)(z) = s_U(z) - s_U(0)`;
+- therefore selector vanishing on that patch is equivalent to constancy of
+  `s_U` on that patch.
+
+Status:
+- closed enough.
+
+Verification route:
+- CAS, code inspection, manual derivation.
+
+### `T3n-L4`. Exact obstruction / nonvanishing-template lemma
+
+Statement:
+- the current theorem-facing candidate/admissibility constraints determine only
+  the quotient coordinates `(a, b)` and therefore do not yet force constancy of
+  the local membrane coordinate `s_U`;
+- vanishing on the full exact domain would require an additional membrane-
+  constancy / unique-representative theorem on the admissible residual-
+  generated checked-local pair patches;
+- any patch with one point `z` satisfying `s_U(z) != s_U(0)` yields an exact
+  nonvanishing template.
+
+Status:
+- closed enough as an exact obstruction theorem;
+- explicit admissible nonzero example still open.
+
+Verification route:
+- manual derivation, code inspection, theorem reuse from pilot 23 quotient-
+  finality.
+
+### `T3n-L5`. Exact consequence lemma for the next bridge step
+
+Statement:
+- the next reverse-inclusion / zero-excess bridge step is exactly the theorem
+  that the local membrane coordinate is constant on every exact admissible
+  residual-generated checked-local pair patch, equivalently that
+  `sigma_chk,n(q; c_sel)(z) = 0` on all of `D_sigma,n(q; c_sel)`.
+
+Status:
+- closed enough as a theorem-program consequence.
+
+Verification route:
+- manual derivation, Lean target after the exact domain, local-coboundary law,
+  and constancy formulation are abstracted.
+
+### Main bottleneck inside `T3n`
+
+- prove or refute patchwise constancy of the local membrane coordinate on every
+  exact admissible residual-generated checked-local pair patch, equivalently
+  prove or refute that `sigma_chk,n(q; c_sel)(z) = 0` on all of
+  `D_sigma,n(q; c_sel)`.
+
+### Lean / CAS / manual split for `T3n`
+
+- Lean:
+  finite-dimensional pair-map / cocycle / local-coboundary / vanishing
+  templates once the exact domain and patchwise constancy law are abstracted.
+- CAS / code inspection:
+  `D_rich,eta^corr`, `chi_chk,vis`, `q_coeff`, `e_mem`, `g_mem`, `J_0`,
+  `ker(C_center)`, pairwise membrane difference, cocycle laws, and the local
+  membrane-coordinate difference formulas.
+- Manual derivation:
+  exact theorem scope for `T3n`, why uniqueness-in-class is equivalent to
+  selector vanishing, why selector vanishing is equivalent to patchwise
+  membrane constancy, why current theorem-facing constraints do not yet force
+  that constancy, and the relation to the broader long-term `T3`.
+
+## U. Current `T3o` Implementation Split
+
+### `T3o-L1`. Exact patch-domain lemma
+
+Statement:
+- the exact admissible residual-generated checked-local patches are
+  `D_sigma^U,n(q; c_sel) subseteq D_sigma,n(q; c_sel)`, where a common corrected
+  chart `U` represents both `c_sel + z` and `c_sel`.
+
+Status:
+- closed enough.
+
+Verification route:
+- manual derivation, code inspection, reuse of the `T3n` local-coboundary
+  package.
+
+### `T3o-L2`. Local-coboundary vs patchwise-constancy lemma
+
+Statement:
+- on every exact patch `D_sigma^U,n(q; c_sel)`, one has
+  `sigma_chk,n(q; c_sel)(z) = s_U(z) - s_U(0)`;
+- therefore selector vanishing on that patch is equivalent to constancy of
+  `s_U` on that patch.
+
+Status:
+- closed enough.
+
+Verification route:
+- manual derivation, CAS, code inspection.
+
+### `T3o-L3`. Overlap-compatibility lemma
+
+Statement:
+- if `U` and `V` are two quotient-preserving corrected charts on the same fixed
+  equal-trace class with coordinates related by `S_(ell1,ell2)^(-1)`, then on
+  overlaps
+  `s_V(z) = s_U(z) - ell1 a_sel - ell2 b_sel`,
+  where `(a_sel, b_sel)` are the fixed selected-trace coordinates of the class;
+- hence constancy of `s_U` on one overlap patch is equivalent to constancy of
+  `s_V` there, and no separate overlap/gluing obstruction remains.
+
+Status:
+- closed enough.
+
+Verification route:
+- CAS, code inspection, manual derivation.
+
+### `T3o-L4`. Exact obstruction / nonconstancy-template lemma
+
+Statement:
+- current theorem-facing candidate/admissibility constraints still determine
+  only `(a, b)` and do not yet force constancy of `s_U` on an exact patch;
+- any exact patch containing one point `z` with `s_U(z) != s_U(0)` yields the
+  nonvanishing template `sigma_chk,n(q; c_sel)(z) != 0`;
+- more generally, any two points `z_1, z_2` in one exact patch with
+  `s_U(z_1) != s_U(z_2)` yield a nonzero pairwise selector.
+
+Status:
+- closed enough as an exact obstruction theorem;
+- explicit admissible nonconstant patch still open.
+
+Verification route:
+- manual derivation, code inspection, theorem reuse from pilot 23 quotient-
+  finality.
+
+### `T3o-L5`. Exact consequence lemma for the next bridge step
+
+Statement:
+- global vanishing of `sigma_chk` on `D_sigma,n(q; c_sel)` is equivalent to
+  patchwise constancy of `s_U` on any exact admissible residual-generated
+  checked-local patch cover;
+- the only remaining bottleneck is therefore constancy on the patches
+  themselves, not compatibility across overlaps.
+
+Status:
+- closed enough as a theorem-program consequence.
+
+Verification route:
+- manual derivation, Lean target after the exact patch-domain and overlap-
+  compatibility laws are abstracted.
+
+### Main bottleneck inside `T3o`
+
+- prove or refute constancy of `s_U` on the full exact admissible residual-
+  generated checked-local patch cover; overlap compatibility is no longer the
+  blocker.
+
+### Lean / CAS / manual split for `T3o`
+
+- Lean:
+  finite-dimensional patch / coboundary / constancy templates once the exact
+  patch-domain and overlap-compatibility law are abstracted.
+- CAS / code inspection:
+  `D_rich,eta^corr`, `chi_chk,vis`, `q_coeff`, `e_mem`, `g_mem`, `J_0`,
+  `ker(C_center)`, local membrane-coordinate difference formulas, cocycle laws,
+  and quotient-preserving patch-overlap relations.
+- Manual derivation:
+  exact theorem scope for `T3o`, why overlap compatibility is automatic, why
+  current theorem-facing constraints still do not force patchwise constancy,
+  and the relation to the broader long-term `T3`.
+
+## V. Current `T3p` Implementation Split
+
+### `T3p-L1`. Exact patch-domain and patch-image lemma
+
+Statement:
+- for every exact patch `D_sigma^U,n(q; c_sel)`, the checked-local image
+  `Im_chk,U,n(q; c_sel)
+   := { chi_chk,U,n(q)(c_sel + z) : z in D_sigma^U,n(q; c_sel) }`
+  is well-defined and satisfies
+  `Im_chk,U,n(q; c_sel) subseteq { (a_sel, b_sel, s)^T : s in R }`.
+
+Status:
+- closed enough.
+
+Verification route:
+- manual derivation, code inspection, reuse of the `T3o` overlap/patch
+  package.
+
+### `T3p-L2`. Patchwise-constancy vs membrane-fiber singleton lemma
+
+Statement:
+- on every exact patch, the following are equivalent:
+  `sigma_chk = 0` on the patch;
+  `s_U` is constant on the patch;
+  `S_U,n(q; c_sel) := { s_U(z) : z in D_sigma^U,n(q; c_sel) }` is a singleton;
+  `Im_chk,U,n(q; c_sel)` is a singleton in the fixed membrane fiber.
+
+Status:
+- closed enough.
+
+Verification route:
+- manual derivation, CAS, code inspection.
+
+### `T3p-L3`. Cover-invariant singletonity lemma
+
+Statement:
+- under quotient-preserving corrected chart changes, the membrane coordinate
+  changes only by a z-independent constant shift;
+- therefore singletonity of the membrane-fiber image is cover-invariant, and no
+  separate overlap/gluing theorem remains.
+
+Status:
+- closed enough.
+
+Verification route:
+- CAS, code inspection, manual derivation.
+
+### `T3p-L4`. Exact obstruction / nonconstancy-template lemma
+
+Statement:
+- current theorem-facing candidate/admissibility constraints still determine
+  only the quotient base point `(a_sel, b_sel)`;
+- therefore they prove only fiber containment, not fiber singletonity;
+- any exact patch containing two different membrane-coordinate values yields an
+  exact nonvanishing template for `sigma_chk`.
+
+Status:
+- closed enough as an exact obstruction theorem;
+- explicit admissible nonsingleton patch still open.
+
+Verification route:
+- manual derivation, code inspection, theorem reuse from pilot 23 quotient-
+  finality and `T3o`.
+
+### `T3p-L5`. Exact consequence lemma for the next bridge step
+
+Statement:
+- global vanishing of `sigma_chk` on `D_sigma,n(q; c_sel)` is equivalent to
+  singletonity of the exact checked-local patch image in the fixed membrane
+  fiber on every patch of any exact admissible residual-generated cover;
+- the only remaining bottleneck is therefore the membrane-fiber singleton
+  theorem itself.
+
+Status:
+- closed enough as a theorem-program consequence.
+
+Verification route:
+- manual derivation, Lean target after the exact patch-image and singletonity
+  laws are abstracted.
+
+### Main bottleneck inside `T3p`
+
+- prove or refute that for every exact admissible residual-generated checked-
+  local patch, the membrane-fiber image is a singleton, equivalently prove or
+  refute patchwise constancy of `s_U`, equivalently prove or refute that
+  `sigma_chk,n(q; c_sel)(z) = 0` on all of `D_sigma,n(q; c_sel)`.
+
+### Lean / CAS / manual split for `T3p`
+
+- Lean:
+  finite-dimensional patch-image / singletonity / constancy templates once the
+  exact patch-domain and membrane-fiber image law are abstracted.
+- CAS / code inspection:
+  `D_rich,eta^corr`, `chi_chk,vis`, `q_coeff`, `e_mem`, `g_mem`, `J_0`,
+  `ker(C_center)`, local membrane-coordinate difference formulas, and the exact
+  patchwise chart formulas with fixed `(a_sel, b_sel)`.
+- Manual derivation:
+  exact theorem scope for `T3p`, why overlap compatibility is no longer
+  independent after `T3o`, why current theorem-facing constraints force only
+  fiber containment and not singletonity, and the relation to the broader long-
+  term `T3`.
 
 ### Lean / CAS split for `T3a`
 

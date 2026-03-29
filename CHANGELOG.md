@@ -1,5 +1,94 @@
 # CHANGELOG
 
+## 2026-03-29 - Reduce the T3p membrane-selector question to a membrane-fiber singleton obstruction on exact checked-local patches for clean simple support
+
+Affected files:
+- `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
+- `docs/theory/current_simple_support_theorem_roadmap.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Extended pilot 25 from the `T3o` patchwise-constancy stage into the `T3p` membrane-fiber singleton stage.
+- Recorded the exact checked-local patch image `Im_chk,U,n(q; c_sel)` and the equivalent membrane-fiber image `S_U,n(q; c_sel)` on every exact admissible residual-generated checked-local patch.
+- Recorded the sharpest current reduction: after `T3o`, vanishing of `sigma_chk`, constancy of `s_U`, singletonity of `S_U`, and singletonity of `Im_chk,U` in the fixed membrane fiber are all equivalent.
+- Recorded the exact remaining bottleneck: current theorem-facing constraints force only containment in the fixed membrane fiber above `(a_sel, b_sel)`, not singletonity of that image, so the remaining open question is now a precise membrane-fiber singleton theorem on the exact patches.
+- Synced the theorem roadmap, verification map, and project journal so the next bottleneck is now to prove or refute singletonity of the exact checked-local patch image on every exact admissible residual-generated patch.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / подвижный шарнир` path, or theorem-level status of `B_red` / `B_mix` were changed.
+
+## 2026-03-29 - Reduce the T3o membrane-selector question to an exact patchwise constancy obstruction after automatic overlap compatibility for clean simple support
+
+Affected files:
+- `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
+- `docs/theory/current_simple_support_theorem_roadmap.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Extended pilot 25 from the T3n local-coboundary stage into the T3o patchwise-constancy stage and recorded the exact admissible residual-generated checked-local patch family `D_sigma^U,n(q; c_sel)`.
+- Recorded the strongest current sharpening: under quotient-preserving chart changes the local membrane coordinates on one fixed equal-trace class differ only by a z-independent constant, so overlap compatibility is automatic.
+- Recorded the exact remaining bottleneck: global vanishing of `sigma_chk,n(q; c_sel)(z)` is now equivalent to constancy of the local membrane coordinate on any exact admissible residual-generated checked-local patch cover, and the only unresolved issue is patchwise constancy itself.
+- Synced the theorem roadmap, verification map, and project journal so the next bottleneck is now to prove or refute patchwise constancy of `s_U` on the full exact admissible residual-generated checked-local patch cover.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / подвижный шарнир` path, or theorem-level status of `B_red` / `B_mix` were changed.
+
+## 2026-03-29 - Reduce the T3n membrane-selector question to an exact patchwise membrane-constancy / uniqueness-in-class obstruction theorem for clean simple support
+
+Affected files:
+- `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
+- `docs/theory/current_simple_support_theorem_roadmap.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Extended pilot 25 from the T3m selector-cocycle stage into the T3n uniqueness stage and recorded the exact checked-local definability subdomain `D_sigma,n(q; c_sel)` as the domain on which uniqueness is actually tested.
+- Recorded the strongest current selector-level reduction: on every common corrected-chart patch the membrane selector is locally a coboundary `sigma_chk = s_U - s_U(0)`, so vanishing is exactly equivalent to patchwise constancy of the local membrane coordinate.
+- Recorded the sharpest honest obstruction now available: current theorem-facing constraints still determine only the quotient coordinates `(a, b)` and do not yet force constancy of `s_U`; an explicit admissible nonzero example is still not constructed, but any patch point with `s_U(z) != s_U(0)` is now the exact nonvanishing template.
+- Synced the theorem roadmap, verification map, and project journal so the next bottleneck is now to prove or refute patchwise membrane constancy on the exact admissible residual-generated checked-local pair patches, equivalently prove or refute `sigma_chk,n(q; c_sel)(z) = 0` on all of `D_sigma,n(q; c_sel)`.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / подвижный шарнир` path, or theorem-level status of `B_red` / `B_mix` were changed.
+
+## 2026-03-29 - Reduce the T3m membrane-selector question to an exact cocycle / obstruction theorem for clean simple support
+
+Affected files:
+- `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
+- `docs/theory/current_simple_support_theorem_roadmap.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Extended pilot 25 from the T3l pairwise membrane-difference stage into the T3m membrane-selector stage and recorded the exact residual-generated selector domain `D_sigma,n(q; c_sel)`.
+- Recorded the strongest current selector-level theorem: the basepoint-relative membrane selector `sigma_chk` is now packaged as the exact chart-invariant membrane cocycle on equal-trace checked-local pairs, with normalization, antisymmetry, and cocycle laws.
+- Recorded the sharpest honest obstruction now available: current checked-local selected invariants still factor only through the membrane quotient, so they do not yet force `sigma_chk,n(q; c_sel)(z) = 0`; an admissible nonvanishing pair is not yet constructed, but the exact nonvanishing template is now isolated.
+- Synced the theorem roadmap, verification map, and project journal so the next bottleneck is now to prove or refute that the exact admissible residual-generated checked-local pair domain meets each equal-trace membrane quotient class only in the repo-selected representative.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / подвижный шарнир` path, or theorem-level status of `B_red` / `B_mix` were changed.
+
+## 2026-03-29 - Reduce the T3l checked-local bridge question to a chart-invariant pairwise membrane-difference object for clean simple support
+
+Affected files:
+- `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
+- `docs/theory/current_simple_support_theorem_roadmap.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Extended pilot 25 from the T3k raw-shadow obstruction stage into the T3l pairwise bridge stage and recorded the theorem-facing equal-trace checked-local representative-difference object `Delta_rep,chk,n(q; c, c_ref) in span(e_mem)`.
+- Recorded the sharpest current theorem-facing reduction: raw same-trace shadows still collapse, but the pairwise membrane difference between equal-trace checked-local representatives is chart-invariant under quotient-preserving chart changes and is equivalently encoded by the scalar selector `sigma_chk,n(q; c, c_ref)`.
+- Synced the theorem roadmap, verification map, and project journal so the next bottleneck is now to prove or refute vanishing of `sigma_chk,n(q; c_sel)(z)` on the exact admissible residual-generated checked-local pair domain.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / подвижный шарнир` path, or theorem-level status of `B_red` / `B_mix` were changed.
+
+## 2026-03-29 - Reduce the T3k global-shadow question to an exact zero-quotient obstruction for raw same-trace shadows in clean simple support
+
+Affected files:
+- `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
+- `docs/theory/current_simple_support_theorem_roadmap.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Extended pilot 25 from the T3j local-extractor stage into the T3k global-shadow stage and recorded the exact obstruction theorem: on `D_res,n(q) subset ker(J_0,n(q))`, any compatible raw shadow map `Sh_chk,n(q)` into `Xi_sel,corr^(1,eta),n(q)` already collapses to the zero quotient class.
+- Recorded the sharpest current theorem-facing reduction: any such raw shadow map must factor through the membrane line `span(g_mem,n(q))`, equivalently through a scalar membrane-selector candidate `sigma_chk,n(q)`, so a raw factorization `Phi_chk = q_coeff o chi_chk,vis o Sh_chk` would be identically zero.
+- Synced the theorem roadmap, verification map, and project journal so the next bottleneck is now a theorem-facing basepoint-relative checked-local representative-difference object on ambient candidate-class pairs before quotient collapse, or a direct vanishing theorem for the same-trace membrane selector.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / подвижный шарнир` path, or theorem-level status of `B_red` / `B_mix` were changed.
+
 ## 2026-03-29 - Reduce the T3j checked-local coefficient-extraction question to an explicit local extractor plus one missing global shadow bridge for clean simple support
 
 Affected files:
