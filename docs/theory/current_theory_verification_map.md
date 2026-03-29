@@ -1248,7 +1248,7 @@ Most valuable next proof pilots:
   theorem, or derive a genuinely new intrinsic selector beyond the current
   checked local boundary.
 
-### V-S19. `T3` target: selected-class criticality on the current clean repository boundary should be read through `ker(L_red)`, not through a boundary descendant alone
+### V-S19. `T3a` target: finite-dimensional selected-class criticality on the current clean repository boundary should be read through `ker(L_red)`, not through a boundary descendant alone
 
 - ID: `V-S19`
 - Claim / Hypothesis:
@@ -1271,19 +1271,21 @@ Most valuable next proof pilots:
   `docs/theory/current_simple_support_theorem_roadmap.md`;
   `docs/theory/current_simple_support_criterion_bridge_note.md`;
   `docs/theory/vyvod_uravneniy_updated17.md` sections 1.8-1.10;
+  `proof_pilots/pilot_24_t3a_selected_kernel_bridge/pilot_24_t3a_selected_kernel_bridge.md`;
   `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/reduction_check.py`;
   `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/selection_object_check.py`;
   `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
   `src/shell_buckling/mixed_weak/full_simple_support_critical_search.py`.
-- Current status: `organized as the current open theorem-program target`
+- Current status: `packaged and closed enough on the finite-dimensional selected-family boundary`
 - What counts as verification:
-  a clean selected-class theorem that explicitly combines:
-  exact selected-family reading `A_sel^repo = A_ls`,
+  a clean `T3a` theorem package that explicitly combines:
+  exact selected-family reading `A_sel^repo = A_ls = im(V_adm) = im(M_amp)`,
   exact reduced-object identity `L_red = L_full V_adm`,
+  exact finite-dimensional bijection `R^2 <-> A_sel^repo`,
   exact restricted-kernel bridge on that class,
-  local quotient compatibility as a constraint rather than a replacement
-  theorem, and the explicit caution that `B_red` / `B_mix` do not yet collapse
-  the problem to a boundary-only criterion.
+  the Outcome-B local quotient result only as a compatibility/support layer,
+  and the explicit caution that `B_red` / `B_mix` do not yet collapse the
+  problem to a boundary-only criterion.
 - Verification method:
   manual derivation, CAS, code inspection, Lean abstraction for the
   finite-dimensional bridge.
@@ -1293,7 +1295,551 @@ Most valuable next proof pilots:
   continuum admissible clean tangent space, and not yet a proof that
   boundary-only degeneration is equivalent to the full reduced-kernel problem.
 - Next action:
-  start a dedicated `T3` proof stage centered on the finite-dimensional
-  selected-kernel bridge, with the shell-specific selected-family and
-  descendant identities recorded as premises/supporting lemmas.
+  keep `V-S19` as the closed enough repository-selected `T3a` bridge layer,
+  optionally formalize the abstract finite-dimensional bijection/kernel step in
+  Lean, and keep the broader long-term `T3` question open beyond the current
+  repository-selected family.
+
+### V-S20. `T3b` implementation: the strongest current theorem-facing class above `A_sel^repo` is the shadow-compatible candidate `A_sel^{th,cand}`
+
+- ID: `V-S20`
+- Claim / Hypothesis:
+  Let
+  `A_sel^repo,n(q) := A_ls,n(q) = im(V_adm,n(q)) = im(M_amp,n(q))`
+  be the current repository-selected family closed by `T3a`.
+  Define the strongest currently justified theorem-facing candidate above that
+  family by
+  `A_sel^{th,cand},n(q)
+   := { c : J_0(c) in im(D_amp,n(q))
+        and Q_chk(c) in im(D_rich,eta^corr,n(q)) / span(g_mem,n(q)) }`,
+  where `Q_chk(c)` denotes the checked local quotient shadow of the current
+  richer local germ of `c` whenever that checked local shadow is defined on the
+  current boundary.
+  Then the implemented `T3b` step is:
+  the stronger theorem-facing selected-class target is now constructed at the
+  candidate level through the simultaneous selected-trace and checked-quotient
+  conditions, with the conservative relation
+  `A_sel^repo,n(q) subseteq A_sel^{th,cand},n(q)`.
+  The remaining open theorem is the exact comparison/losslessness statement
+  deciding whether `A_sel^repo` already exhausts `A_sel^{th,cand}` strongly
+  enough to upgrade the selected-class kernel reading beyond `T3a`.
+- Type: `structural claim`
+- Source file(s):
+  `docs/theory/current_simple_support_theorem_roadmap.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md` sections `1.9`-`1.10.16`;
+  `docs/assumptions/assumptions.md` entries `A17`-`A20`, `A24`-`A26`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_24_t3a_selected_kernel_bridge/pilot_24_t3a_selected_kernel_bridge.md`;
+  `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`.
+- Current status: `candidate class defined; exact comparison/losslessness theorem with A_sel^repo still open`
+- What counts as verification:
+  a clean `T3b` package that explicitly records:
+  the exact current repository-selected family `A_sel^repo`,
+  the new shadow-compatible candidate class `A_sel^{th,cand}`,
+  the selected trace condition `J_0(c) in im(D_amp)`,
+  the checked local quotient condition
+  `Q_chk(c) in im(D_rich,eta^corr) / span(g_mem)`,
+  the conservative inclusion `A_sel^repo subseteq A_sel^{th,cand}`,
+  and the exact missing comparison/losslessness ingredient still needed to
+  upgrade the selected-class kernel reading beyond `T3a`.
+- Verification method:
+  manual derivation, CAS, code inspection, Lean abstraction only for the
+  conditional finite-dimensional comparison template once the class relation is
+  explicit.
+- Verification boundary:
+  this is not yet full `T3`, not a final physical shell theorem, not a proof
+  that `A_sel^repo = A_sel^{th,cand}`, not a proof that
+  `A_sel^{th,cand}` is already the final intrinsic stronger class, and not a
+  proof that boundary-only descendants replace the full reduced-kernel
+  question.
+- Next action:
+  keep `V-S19` as the closed enough repo-selected bridge layer, keep the new
+  `V-S20` candidate-class package as the next theorem-facing step above it, and
+  isolate the single main bottleneck as the exact comparison/losslessness
+  theorem between `A_sel^repo` and `A_sel^{th,cand}`.
+
+### V-S21. `T3c` implementation: the strongest current comparison theorem is exact inclusion `A_sel^repo subseteq A_sel^{th,cand}`, and the reverse inclusion is reduced to the selected-representative law
+
+- ID: `V-S21`
+- Claim / Hypothesis:
+  Let
+  `A_sel^repo,n(q) := A_ls,n(q) = im(V_adm,n(q)) = im(M_amp,n(q))`
+  be the exact repo-selected family, and let
+  `A_sel^{th,cand},n(q)`
+  be the shadow-compatible candidate class from `V-S20`.
+  Then the strongest currently justified comparison theorem on the current
+  repository/theory boundary is:
+  `A_sel^repo,n(q) subseteq A_sel^{th,cand},n(q)`,
+  while the reverse inclusion is reduced exactly to the selected-representative
+  theorem
+  `c = P_sel,n(q) J_0(c)` for every `c in A_sel^{th,cand},n(q)`.
+  The exact obstruction is that the candidate conditions control only the
+  already closed selected trace and checked quotient shadows, whereas the
+  current repo-selected family is the unique global weak/KKT-selected
+  `H_n,q`-minimal section of a much larger fixed-center fiber.
+- Type: `structural claim`
+- Source file(s):
+  `docs/theory/current_simple_support_theorem_roadmap.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md` sections `1.10.8`-`1.10.16`;
+  `docs/assumptions/assumptions.md` entries `A18`-`A20`, `A26`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/selection_object_check.py`;
+  `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`.
+- Current status: `Outcome B: exact inclusion closed enough; reverse inclusion reduced to one exact missing theorem`
+- What counts as verification:
+  a clean `T3c` package that explicitly records:
+  the exact inclusion `A_sel^repo subseteq A_sel^{th,cand}`,
+  the selected-trace bijection on `A_sel^repo` with inverse `P_sel`,
+  the quotient-factorization statement showing that current local selected
+  invariants carry no representative-level data beyond the two quotient
+  coordinates,
+  and the exact reduction of the remaining gap to the theorem
+  `c = P_sel J_0(c)` for `c in A_sel^{th,cand}`.
+- Verification method:
+  manual derivation, CAS/theory reuse for the local quotient factorization,
+  code inspection, representative live clean evaluation for the global
+  fiber/KKT-selected section side.
+- Verification boundary:
+  this is not yet full `T3`, not a final physical shell theorem, not a proof
+  that `A_sel^repo = A_sel^{th,cand}`, and not a proved non-equality theorem
+  either. It is the strongest current inclusion-plus-obstruction theorem on the
+  present repository/theory boundary.
+- Next action:
+  prove or refute the selected-representative theorem
+  `c = P_sel J_0(c)` for `c in A_sel^{th,cand}`, i.e. decide whether the
+  candidate class is already exhausted by the exact repo-selected family.
+
+### V-S22. `T3d` implementation: on the current repo-selected boundary the representative law is equivalent to fiberwise `H_n,q`-minimality / `H_n,q`-orthogonality, and current candidate-class membership does not yet imply that law
+
+- ID: `V-S22`
+- Claim / Hypothesis:
+  Let
+  `A_sel^repo,n(q) := A_ls,n(q) = im(V_adm,n(q)) = im(M_amp,n(q))`
+  be the exact repo-selected family, and let
+  `A_sel^{th,cand},n(q)`
+  be the shadow-compatible candidate class. For `c in A_sel^{th,cand},n(q)`,
+  define the exact repo-selected representative with the same selected trace by
+  `c_sel := P_sel,n(q) J_0(c)`.
+  Then on the current repo-selected boundary:
+  `c = c_sel` is equivalent to fiberwise
+  `H_n,q`-orthogonality
+  `z^T H_n,q c = 0` for every `z in ker(C_center,n(q))`,
+  equivalently to `c` being the unique `H_n,q`-minimal point in its
+  fixed-trace fiber.
+  The current candidate-class conditions force only the selected trace shadow
+  and checked local quotient compatibility, while the checked local quotient
+  theorem remains representative-lossy. Therefore the exact remaining
+  obstruction is the missing bridge from candidate-class membership to this
+  global weak/KKT-selected `H_n,q`-minimality law.
+- Type: `structural claim`
+- Source file(s):
+  `docs/theory/current_simple_support_theorem_roadmap.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md` sections `1.10.8`-`1.10.16`;
+  `docs/assumptions/assumptions.md` entries `A18`-`A20`, `A26`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/selection_object_check.py`;
+  `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`.
+- Current status: `Outcome B: exact representative-law criterion isolated; candidate-class membership does not yet imply it`
+- What counts as verification:
+  a clean `T3d` package that explicitly records:
+  the same-trace fiber relation between `c` and `P_sel J_0(c)`,
+  the equivalence between the representative law and fiberwise
+  `H_n,q`-orthogonality / minimality,
+  the representative-lossiness of the checked local quotient theorem,
+  and the exact counter-condition
+  `exists z in ker(C_center) : z^T H_n,q c != 0` as the failure mode for the
+  representative law.
+- Verification method:
+  manual derivation, code inspection, representative live clean evaluation for
+  the global fiber/KKT-selected section side, CAS/theory reuse for the local
+  quotient factorization side.
+- Verification boundary:
+  this is not yet full `T3`, not a final physical shell theorem, not a proof
+  that every candidate-class element is already `H_n,q`-minimal, and not a
+  constructed counterexample either. It is the strongest current
+  representative-law / obstruction theorem on the present repository boundary.
+- Next action:
+  prove or refute the bridge from candidate-class membership to fiberwise
+  `H_n,q`-orthogonality / minimality, equivalently prove or refute
+  `c = P_sel J_0(c)` for every `c in A_sel^{th,cand}`.
+
+### V-S23. `T3e` implementation: the remaining bridge is exactly vanishing of the nonnegative fiber-excess functional `Delta_H,n,q(c)`
+
+- ID: `V-S23`
+- Claim / Hypothesis:
+  Let
+  `A_sel^repo,n(q) := A_ls,n(q) = im(V_adm,n(q)) = im(M_amp,n(q))`
+  be the exact repo-selected family, and let
+  `A_sel^{th,cand},n(q)`
+  be the shadow-compatible candidate class. For `c in A_sel^{th,cand},n(q)`,
+  define
+  `c_sel := P_sel,n(q) J_0(c)`
+  and
+  `z := c - c_sel`.
+  Then on the current repo-selected boundary:
+  `z in ker(C_center,n(q))`,
+  `z^T H_n,q c_sel = 0`,
+  and therefore
+  `c^T H_n,q c = c_sel^T H_n,q c_sel + z^T H_n,q z`.
+  Equivalently, with
+  `Delta_H,n,q(c) := (c - P_sel,n(q) J_0(c))^T H_n,q (c - P_sel,n(q) J_0(c))`,
+  one has
+  `Delta_H,n,q(c) >= 0`,
+  with equality if and only if
+  `c = P_sel,n(q) J_0(c)`,
+  equivalently if and only if `c` is the unique `H_n,q`-minimal point in its
+  fixed-trace fiber.
+  The current candidate-class conditions still force only the selected trace
+  shadow and checked local quotient compatibility, while the checked local
+  quotient theorem remains representative-lossy. Therefore the exact remaining
+  obstruction is now the missing bridge from candidate-class membership to
+  `Delta_H,n,q(c) = 0`.
+- Type: `structural claim`
+- Source file(s):
+  `docs/theory/current_simple_support_theorem_roadmap.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md` sections `1.10.8`-`1.10.16`;
+  `docs/assumptions/assumptions.md` entries `A18`-`A20`, `A26`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/selection_object_check.py`;
+  `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`.
+- Current status: `Outcome B: exact fiber-excess criterion isolated; candidate-class membership does not yet imply its vanishing`
+- What counts as verification:
+  a clean `T3e` package that explicitly records:
+  the fixed-trace decomposition
+  `c = P_sel J_0(c) + z`,
+  the orthogonality relation
+  `z^T H_n,q P_sel J_0(c) = 0`,
+  the exact fiber-excess identity
+  `c^T H_n,q c = c_sel^T H_n,q c_sel + Delta_H,n,q(c)`,
+  the equivalence
+  `Delta_H,n,q(c) = 0 <-> c = P_sel J_0(c)`,
+  and the exact counter-condition
+  `Delta_H,n,q(c) > 0`
+  as the failure mode for the reverse inclusion.
+- Verification method:
+  manual derivation, code inspection, representative live clean evaluation for
+  the global fiber/KKT-selected section side, CAS/theory reuse for the local
+  quotient factorization side.
+- Verification boundary:
+  this is not yet full `T3`, not a final physical shell theorem, not a proof
+  that every candidate-class element has zero fiber excess, and not a
+  constructed counterexample either. It is the strongest current zero-excess /
+  obstruction theorem on the present repository boundary.
+- Next action:
+  prove or refute the bridge from candidate-class membership to
+  `Delta_H,n,q(c) = 0`, equivalently prove or refute vanishing of the
+  same-trace fiber excess for every `c in A_sel^{th,cand}`.
+
+### V-S24. `T3f` implementation: the current shadow conditions are representative-lossy, and any nonzero admissible same-trace, quotient-invisible fiber residual is an exact counterexample template
+
+- ID: `V-S24`
+- Claim / Hypothesis:
+  Keep
+  `A_sel^repo,n(q) := A_ls,n(q) = im(V_adm,n(q)) = im(M_amp,n(q))`
+  as the exact repo-selected family, and let
+  `A_sel^{th,cand},n(q)`
+  be the shadow-compatible candidate class. For
+  `c in A_sel^{th,cand},n(q)`,
+  let
+  `c_sel := P_sel,n(q) J_0(c)`
+  and
+  `z := c - c_sel`.
+  Then the exact fiber-excess identity from `V-S23` gives
+  `Delta_H,n,q(c) = z^T H_n,q z`.
+  On the checked local boundary, however, every currently justified local
+  selected invariant factors through the quotient coordinates and does not
+  distinguish representatives inside one quotient class. Therefore the current
+  candidate-class conditions force only the selected trace shadow together with
+  quotient-object compatibility, and do not yet impose any closed
+  representative-level condition implying `z = 0` or `Delta_H,n,q(c) = 0`.
+  More sharply: if there exist
+  `c_sel in A_sel^repo,n(q)`
+  and
+  `0 != z in A_adm^th,n(q) intersect ker(C_center,n(q))`
+  such that
+  `Q_chk(c_sel + z) in im(D_rich,eta^corr,n(q)) / span(g_mem,n(q))`,
+  then
+  `c := c_sel + z`
+  lies in `A_sel^{th,cand},n(q)` and satisfies
+  `Delta_H,n,q(c) = z^T H_n,q z > 0`.
+  So any such `z` is an exact counterexample template to reverse inclusion /
+  losslessness on the current repository boundary.
+- Type: `structural claim`
+- Source file(s):
+  `docs/theory/current_simple_support_theorem_roadmap.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md` sections `1.10.8`-`1.10.16`;
+  `docs/assumptions/assumptions.md` entries `A18`-`A20`, `A26`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/selection_object_check.py`;
+  `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`.
+- Current status: `Outcome B: exact shadow-only obstruction isolated; the conditional counterexample template is written, but existence or impossibility of such a residual is still open`
+- What counts as verification:
+  a clean `T3f` package that explicitly records:
+  the exact decomposition
+  `c = P_sel J_0(c) + z`,
+  the exact identity
+  `Delta_H,n,q(c) = z^T H_n,q z`,
+  the local quotient-factorization statement that currently justified local
+  selected invariants carry no representative-level data beyond the quotient
+  coordinates, and the exact template
+  `0 != z in A_adm^th intersect ker(C_center)`
+  with quotient-compatible shadow
+  `=> Delta_H,n,q(c_sel + z) > 0`.
+- Verification method:
+  manual derivation, code inspection, representative live clean evaluation for
+  the global selection side, CAS/theory reuse for the quotient-lossiness side.
+- Verification boundary:
+  this is not yet full `T3`, not a final physical shell theorem, not a proof
+  that a positive-excess example exists, and not a proof that it cannot exist.
+  It is the sharpest current obstruction theorem on the present repository
+  boundary.
+- Next action:
+  prove or refute that no nonzero admissible same-trace, quotient-invisible
+  fiber residual survives, equivalently prove or refute
+  `Delta_H,n,q(c) = 0` for every `c in A_sel^{th,cand}`.
+
+### V-S25. `T3g` implementation: the remaining zero-excess gap is exactly the residual-lift class `R_inv,n(q; c_sel)`
+
+- ID: `V-S25`
+- Claim / Hypothesis:
+  For fixed clean `(n, q)`, keep
+  `A_sel^repo,n(q) := A_ls,n(q) = im(V_adm,n(q)) = im(M_amp,n(q))`
+  and let
+  `c_sel in A_sel^repo,n(q)`.
+  Define the exact same-trace residual class
+  `R_same,n(q) := ker(C_center,n(q)) = ker(J_0,n(q))`
+  and the exact quotient-invisible admissible lift class
+  `R_inv,n(q; c_sel)
+   := { z in A_adm^th,n(q) intersect R_same,n(q)
+        : Q_chk(c_sel + z) = Q_chk(c_sel) }`
+  whenever the checked local quotient shadow is defined on the current checked
+  boundary. Then:
+  1. `z in R_same,n(q)` means exactly that `c_sel + z` has the same selected
+     leading trace as `c_sel`;
+  2. `z in R_inv,n(q; c_sel)` means exactly that `c_sel + z` is invisible to
+     the currently closed quotient-level selected invariants on that checked
+     boundary;
+  3. the remaining reverse-inclusion / zero-excess question is now exactly
+     whether `R_inv,n(q; c_sel) = {0}` for every repo-selected representative
+     `c_sel`;
+  4. equivalently, the unresolved object is whether the local membrane-kernel
+     line `span(g_mem,n(q))`, which is the exact quotient kernel on the checked
+     local boundary, has a nonzero admissible global lift inside
+     `ker(C_center,n(q))`;
+  5. if such a nonzero lift exists, then it yields a candidate-class element
+     with the same selected trace and positive excess
+     `Delta_H,n,q(c_sel + z) = z^T H_n,q z > 0`;
+     if no such lift exists, then `Delta_H,n,q(c) = 0` holds on the whole
+     candidate class.
+- Type: `structural claim`
+- Source file(s):
+  `docs/theory/current_simple_support_theorem_roadmap.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md` sections `1.10.8`-`1.10.16`;
+  `docs/assumptions/assumptions.md` entries `A18`-`A20`, `A26`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/selection_object_check.py`;
+  `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`.
+- Current status: `Outcome B: the existence/impossibility question is reduced exactly to triviality or nontriviality of the lift class R_inv,n(q; c_sel); no impossibility theorem and no explicit nonzero lift are yet closed`
+- What counts as verification:
+  a clean `T3g` package that explicitly records:
+  the exact classes
+  `R_same,n(q) = ker(C_center,n(q)) = ker(J_0,n(q))`
+  and
+  `R_inv,n(q; c_sel)`,
+  the fact that quotient-invisibility on the checked local boundary is carried
+  by the local membrane-kernel direction `span(g_mem,n(q))`,
+  the exact equivalence
+  `R_inv,n(q; c_sel) = {0} for all c_sel in A_sel^repo,n(q)
+   iff Delta_H,n,q(c) = 0 for all c in A_sel^{th,cand},n(q)`,
+  and the sharpened obstruction theorem that the whole remaining gap is the
+  admissible global lift problem for that quotient kernel.
+- Verification method:
+  manual derivation, code inspection, representative live clean evaluation for
+  the global KKT-selected section side, CAS/theory reuse for the local quotient
+  kernel and quotient-factorization side.
+- Verification boundary:
+  this is not yet full `T3`, not a final physical shell theorem, not an
+  impossibility theorem for nonzero residuals, and not an explicit constructed
+  residual either. It is the sharpest current theorem-facing reduction of the
+  zero-excess gap on the present repository boundary.
+- Next action:
+  prove or refute that the local membrane-kernel line `span(g_mem,n(q))` has
+  no nonzero admissible global lift inside `ker(C_center,n(q))`, equivalently
+  prove or refute `R_inv,n(q; c_sel) = {0}` for every
+  `c_sel in A_sel^repo,n(q)`.
+
+### V-S26. `T3h` implementation: the exact global membrane-lift class is the kernel of the checked local quotient map on admissible same-trace residuals
+
+- ID: `V-S26`
+- Claim / Hypothesis:
+  For fixed clean `(n, q)`, keep
+  `A_sel^repo,n(q) := A_ls,n(q) = im(V_adm,n(q)) = im(M_amp,n(q))`
+  and let
+  `c_sel in A_sel^repo,n(q)`.
+  Let
+  `R_same,n(q) := ker(C_center,n(q)) = ker(J_0,n(q))`.
+  On the current checked local boundary, let the corrected local coefficient
+  quotient map be
+  `q_coeff = [[1,0,0],[0,1,0]]`
+  with
+  `ker(q_coeff) = span(e_mem)`
+  and
+  `g_mem,n(q) = D_rich,eta^corr,n(q) e_mem`.
+  Whenever the checked local shadows of `c_sel + z` and `c_sel` are defined in
+  a common corrected chart, let
+  `delta_chk,n(q; c_sel)(z)`
+  denote the checked local coefficient difference in that chart. Define
+  `Lift_mem,n(q; c_sel)
+   := { z in A_adm^th,n(q) intersect R_same,n(q)
+        : delta_chk,n(q; c_sel)(z) in span(e_mem) }`.
+  Then:
+  1. `Lift_mem,n(q; c_sel) = R_inv,n(q; c_sel)`;
+  2. equivalently, on the current linear tangent boundary,
+     `Lift_mem,n(q; c_sel)
+      = ker(q_coeff o delta_chk,n(q; c_sel)
+            |_(A_adm^th,n(q) intersect ker(C_center,n(q))))`;
+  3. hence triviality/nontriviality of the remaining zero-excess gap is now the
+     exact kernel question for the checked local lift map, not merely a named
+     residual-class question in ambient prose.
+- Type: `structural claim`
+- Source file(s):
+  `docs/theory/current_simple_support_theorem_roadmap.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md` sections `1.10.14`-`1.10.16`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/selection_object_check.py`;
+  `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`.
+- Current status: `Outcome B: the lift problem is now reduced exactly to the kernel of q_coeff o delta_chk on the admissible same-trace global residual space; no impossibility theorem and no explicit nonzero lift are yet closed`
+- What counts as verification:
+  a clean `T3h` package that explicitly records:
+  the exact local quotient map
+  `q_coeff = [[1,0,0],[0,1,0]]`,
+  the exact local membrane-kernel line
+  `ker(q_coeff) = span(e_mem)` and its jet image `span(g_mem)`,
+  the exact checked local coefficient-difference map
+  `delta_chk,n(q; c_sel)`,
+  the exact global lift class
+  `Lift_mem,n(q; c_sel)`,
+  and the exact reformulation
+  `Lift_mem = R_inv = ker(q_coeff o delta_chk)`.
+- Verification method:
+  manual derivation, code inspection, representative helper evaluation for the
+  closed local quotient-kernel side and the closed global selected-fiber side.
+- Verification boundary:
+  this is not yet full `T3`, not a final physical shell theorem, not an
+  impossibility theorem for nonzero global lifts, and not an explicit
+  constructed lift either. It is the sharpest current local-to-global kernel
+  reduction of the remaining zero-excess gap on the present repository
+  boundary.
+- Next action:
+  construct or control `delta_chk,n(q; c_sel)` on
+  `A_adm^th,n(q) intersect ker(C_center,n(q))`
+  well enough to decide whether
+  `ker(q_coeff o delta_chk,n(q; c_sel)) = {0}` for every
+  `c_sel in A_sel^repo,n(q)`.
+
+### V-S27. `T3i` implementation: injectivity is reduced to one exact missing global checked-local extraction operator
+
+- ID: `V-S27`
+- Claim / Hypothesis:
+  For fixed clean `(n, q)`, let
+  `D_res,n(q) := A_adm^th,n(q) intersect ker(C_center,n(q))`
+  and, on the checked boundary,
+  `D_res,chk,n(q; c_sel)
+   := { z in D_res,n(q) : delta_chk,n(q; c_sel)(z) is defined }`.
+  Define
+  `Phi_chk,n(q; c_sel) := q_coeff o delta_chk,n(q; c_sel)`.
+  Then:
+  1. `ker(Phi_chk,n(q; c_sel)) = Lift_mem,n(q; c_sel) = R_inv,n(q; c_sel)`;
+  2. `q_coeff` is exactly linear and quotient-preserving-chart invariant on the
+     checked local boundary;
+  3. by definition `delta_chk,n(q; c_sel)` is affine in the base point;
+  4. if an explicit global checked local coefficient-extraction operator
+     `chi_chk,n(q)` existed on `D_res,n(q)`, then
+     `delta_chk,n(q; c_sel)(z) = chi_chk,n(q)(z)`,
+     so the kernel question would become a genuine linear injectivity/rank
+     theorem for `q_coeff o chi_chk,n(q)` on `D_res,n(q)`;
+  5. the current repository does not yet package such an operator, so the
+     injectivity question is not yet a closed global rank/nullspace theorem.
+- Type: `structural claim`
+- Source file(s):
+  `docs/theory/current_simple_support_theorem_roadmap.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md` sections `1.10.14`-`1.10.16`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
+  `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`.
+- Current status: `Outcome D: the exact missing ingredient is now isolated as a global checked local coefficient-extraction operator chi_chk,n(q) on the admissible same-trace residual domain`
+- What counts as verification:
+  a clean `T3i` package that explicitly records:
+  the exact domains `D_res` and `D_res,chk`,
+  the projected map `Phi_chk = q_coeff o delta_chk`,
+  the exact identity `ker(Phi_chk) = Lift_mem = R_inv`,
+  the chart-invariance of `q_coeff`,
+  and the exact conditional reduction from `delta_chk` to a fixed linear global
+  operator `chi_chk`.
+- Verification method:
+  code inspection, manual derivation, representative helper evaluation for the
+  local quotient-map invariance side, and repository search for `delta_chk` /
+  `chi_chk`.
+- Verification boundary:
+  this is not yet full `T3`, not a final physical shell theorem, not an
+  injectivity theorem for `Phi_chk`, and not an explicit nonzero kernel element
+  either. It is the sharpest current operator-level obstruction theorem on the
+  present repository boundary.
+- Next action:
+  construct or control an explicit global checked local coefficient-extraction
+  operator `chi_chk,n(q)` on
+  `D_res,n(q) = A_adm^th,n(q) intersect ker(C_center,n(q))`
+  strongly enough that the kernel of `q_coeff o chi_chk,n(q)` can be decided.
+
+### V-S28. `T3j` implementation: the local checked extractor is explicit, and the remaining gap is the global shadow bridge
+
+- ID: `V-S28`
+- Claim / Hypothesis:
+  For fixed clean `(n, q)`:
+  1. the visible checked local corrected family is
+     `Xi_sel,corr^(1,eta),n(q) = im(D_rich,eta^corr,n(q))`;
+  2. there is an explicit linear visible-chart extractor
+     `chi_chk,vis,n(q) := L_vis,n(q)|_(Xi_sel,corr^(1,eta),n(q))`
+     with `L_vis,n(q) D_rich,eta^corr,n(q) = I_3`;
+  3. under quotient-preserving chart changes the full 3-coordinate extractor is
+     chart-dependent, but
+     `q_coeff o chi_chk,(ell1,ell2),n(q)
+      = q_coeff o chi_chk,vis,n(q)`;
+  4. on `Xi_sel,corr^(1,eta),n(q)`,
+     `q_coeff o chi_chk,vis,n(q) = L_amp o Pi_eta_to_J0`;
+  5. therefore the projected checked local coefficient extractor is already
+     canonical on the checked local corrected family;
+  6. what is still missing is a global checked-local shadow map
+     `Sh_chk,n(q) : D_res,n(q) -> Xi_sel,corr^(1,eta),n(q)`,
+     or an equivalent exact control theorem, from which a theorem-facing global
+     operator `chi_chk,n(q)` on `D_res,n(q)` could be composed.
+- Type: `structural claim`
+- Source file(s):
+  `docs/theory/current_simple_support_theorem_roadmap.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md` sections `1.10.14`-`1.10.16`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
+  `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`.
+- Current status: `Outcome D: the strongest current result is a partial construction on the strict checked local corrected-family domain together with an exact obstruction to extending it to a theorem-facing global operator on D_res,n(q)`
+- What counts as verification:
+  a clean `T3j` package that explicitly records:
+  the local corrected-family extractor `chi_chk,vis`,
+  its chart-transformation law,
+  the projected invariance under `q_coeff`,
+  the exact factorization through `Pi_eta_to_J0`,
+  and the remaining missing global shadow map `Sh_chk`.
+- Verification method:
+  CAS, code inspection, manual derivation, and repository search for a global
+  checked-local shadow operator.
+- Verification boundary:
+  this is not yet full `T3`, not a final physical shell theorem, not a closed
+  global operator theorem on `D_res,n(q)`, and not yet the injectivity theorem
+  for `q_coeff o chi_chk,n(q)`. It is the sharpest current separation between
+  the already available local extractor and the still-missing global bridge.
+- Next action:
+  construct or control a global checked-local shadow map
+  `Sh_chk,n(q) : D_res,n(q) -> Xi_sel,corr^(1,eta),n(q)`
+  strongly enough that
+  `chi_chk,n(q) := chi_chk,vis,n(q) o Sh_chk,n(q)`
+  is well-defined and the kernel of `q_coeff o chi_chk,n(q)` can be decided.
 

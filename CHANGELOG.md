@@ -1,5 +1,155 @@
 # CHANGELOG
 
+## 2026-03-29 - Reduce the T3j checked-local coefficient-extraction question to an explicit local extractor plus one missing global shadow bridge for clean simple support
+
+Affected files:
+- `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
+- `docs/theory/current_simple_support_theorem_roadmap.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Extended pilot 25 from the T3i projected-map injectivity stage into the T3j checked-local coefficient-extraction stage and recorded the explicit visible-chart local extractor `chi_chk,vis,n(q)` on `Xi_sel,corr^(1,eta),n(q) = im(D_rich,eta^corr,n(q))`.
+- Recorded the sharpest current theorem-facing reduction: the full 3-coordinate local extractor is chart-dependent, but its projection `q_coeff o chi_chk,vis,n(q)` is chart-invariant and factors exactly through `Pi_eta_to_J0` on the checked local corrected family.
+- Synced the theorem roadmap, verification map, and project journal so the next bottleneck is now the global checked-local shadow bridge `Sh_chk,n(q) : D_res,n(q) -> Xi_sel,corr^(1,eta),n(q)`, not the absence of a local checked extractor itself.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / подвижный шарнир` path, or theorem-level status of `B_red` / `B_mix` were changed.
+
+## 2026-03-29 - Reduce the T3i injectivity question to one exact missing global checked-local extraction operator for clean simple support
+
+Affected files:
+- `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
+- `docs/theory/current_simple_support_theorem_roadmap.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Extended pilot 25 from the T3h membrane-lift kernel/preimage package into the T3i projected-map injectivity stage and isolated the exact projected lift map `Phi_chk,n(q; c_sel) = q_coeff o delta_chk,n(q; c_sel)` on the admissible same-trace residual domain.
+- Recorded the sharpest current theorem-facing reduction: `ker(Phi_chk) = Lift_mem = R_inv`, so injectivity would close the zero-excess gap, but the repo still does not package the explicit global checked local coefficient-extraction operator `chi_chk,n(q)` that would turn this into a closed linear rank/nullity theorem.
+- Synced the theorem roadmap, verification map, and project journal so the next bottleneck is now operator-level control/construction of `chi_chk,n(q)` on `A_adm^th,n(q) intersect ker(C_center,n(q))`.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / подвижный шарнир` path, or theorem-level status of `B_red` / `B_mix` were changed.
+
+## 2026-03-29 - Reduce the T3h membrane-lift gap to the exact kernel of the checked local lift map for clean simple support
+
+Affected files:
+- `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
+- `docs/theory/current_simple_support_theorem_roadmap.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Extended pilot 25 from the T3g residual-class lift stage into the T3h global membrane-lift stage and wrote the exact corrected local quotient map `q_coeff = [[1,0,0],[0,1,0]]`, its membrane kernel `ker(q_coeff) = span(e_mem)`, and the corresponding global lift class `Lift_mem,n(q; c_sel)`.
+- Recorded the sharpest current theorem-facing reduction: the remaining zero-excess / reverse-inclusion gap is now exactly the kernel of `q_coeff o delta_chk,n(q; c_sel)` on admissible same-trace global residuals, not merely a residual class named abstractly.
+- Synced the theorem roadmap, verification map, and project journal so the next bottleneck is now to control the checked local lift-difference map `delta_chk` well enough to decide whether that kernel is trivial.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / подвижный шарнир` path, or theorem-level status of `B_red` / `B_mix` were changed.
+
+## 2026-03-29 - Reduce the T3g zero-excess gap to the exact residual-lift class for clean simple support
+
+Affected files:
+- `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
+- `docs/theory/current_simple_support_theorem_roadmap.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Extended pilot 25 from the T3f shadow-only obstruction into the T3g residual-class lift stage and introduced the exact same-trace residual class `R_same,n(q) = ker(C_center,n(q)) = ker(J_0,n(q))` together with the exact quotient-invisible admissible lift class `R_inv,n(q; c_sel)`.
+- Recorded the sharpest current theorem-facing reduction: the remaining zero-excess / reverse-inclusion question is now exactly whether `R_inv,n(q; c_sel) = {0}` for every repo-selected representative, equivalently whether the local membrane-kernel line `span(g_mem,n(q))` has any nonzero admissible global lift inside `ker(C_center,n(q))`.
+- Synced the theorem roadmap, verification map, and project journal so the next bottleneck is no longer a generic shadow-only obstruction but the exact residual-lift triviality problem on the current repository/theory boundary.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / подвижный шарнир` path, or theorem-level status of `B_red` / `B_mix` were changed.
+
+## 2026-03-29 - Sharpen the T3f zero-excess gap to a shadow-only obstruction and conditional positive-excess template
+
+Affected files:
+- `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
+- `docs/theory/current_simple_support_theorem_roadmap.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Extended pilot 25 from the T3e zero-excess criterion into the T3f stage and recorded the sharpest current theorem-facing obstruction: the checked local quotient condition is representative-lossy and adds no closed representative-level control beyond the selected shadow coordinates.
+- Added the exact conditional counterexample template: if a nonzero admissible same-trace, quotient-invisible fiber residual exists, then it produces `Delta_H(c) > 0` immediately and breaks reverse inclusion on the current repository boundary.
+- Refined the theorem roadmap, verification map, and project journal so the next bottleneck is no longer just “prove `Delta_H = 0`”: it is now to prove or refute survival of a same-trace, quotient-invisible admissible fiber residual.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / подвижный шарнир` path, or theorem-level status of `B_red` / `B_mix` were changed.
+
+## 2026-03-29 - Isolate the T3e zero fiber-excess / selected-minimality obstruction above the T3d representative-law boundary
+
+Affected files:
+- `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
+- `docs/theory/current_simple_support_theorem_roadmap.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Extended pilot 25 from the T3d representative-law note into the T3e fiberwise `H = A_int^T A_int + reg I` minimality stage and recorded the sharpest current theorem: every candidate-class element admits the exact same-trace decomposition `c = P_sel J_0(c) + z`, and the remaining bridge is exactly vanishing of the nonnegative fiber-excess functional `Delta_H(c) = z^T H z`.
+- Refined the theorem roadmap, verification map, and project journal so the active bottleneck is no longer only the abstract representative law or vector orthogonality statement: the exact missing bridge is now zero fiber excess on the candidate class `A_sel^{th,cand}`.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean simple-support path, or theorem-level status of `B_red` / `B_mix` were changed.
+
+## 2026-03-29 - Isolate the T3d representative-law / selected-minimality obstruction above the T3c comparison boundary
+
+Affected files:
+- `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
+- `docs/theory/current_simple_support_theorem_roadmap.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Extended pilot 25 from the T3c comparison note into the T3d representative-law stage and recorded the sharpest current theorem: on the present repo-selected boundary the reverse inclusion target `c = P_sel J_0(c)` is equivalent to fiberwise `H = A_int^T A_int + reg I` minimality / orthogonality in the fixed-trace fiber.
+- Refined the theorem roadmap, verification map, and project journal so the active bottleneck is no longer just a generic reverse-inclusion problem: the exact missing bridge is now the implication from shadow-compatible candidate-class membership to the global weak/KKT-selected `H`-minimal representative law.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean simple-support path, or theorem-level status of `B_red` / `B_mix` were changed.
+
+## 2026-03-29 - Isolate the T3c comparison boundary between the exact repo-selected family and the stronger candidate class
+
+Affected files:
+- `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
+- `docs/theory/current_simple_support_theorem_roadmap.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Extended the pilot-25 theorem note from the T3b candidate-class step into the T3c comparison/losslessness stage, and recorded the strongest current theorem as exact inclusion `A_sel^repo subseteq A_sel^{th,cand}` together with the exact reduction of the reverse inclusion to the missing selected-representative theorem `c = P_sel J_0(c)` for shadow-compatible admissible perturbations.
+- Refined the theorem roadmap, verification map, and project journal so the active bottleneck is no longer “define a stronger class at all”: the stronger candidate class is already in place, and the current open theorem is now the exact comparison/losslessness step deciding whether the candidate class is already exhausted by the exact global weak/KKT-selected family.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean simple-support path, or theorem-level status of `B_red` / `B_mix` were changed.
+
+## 2026-03-29 - Define the T3b shadow-compatible selected-class candidate above the closed T3a repo-selected bridge
+
+Affected files:
+- `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
+- `docs/theory/current_simple_support_theorem_roadmap.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Extended the dedicated `T3b` proof-pilot note from a pure staging/obstruction memo into a concrete candidate-class package: trace-only and quotient-only readings are recorded as insufficient by themselves, while the strongest current theorem-facing candidate is now the shadow-compatible class `A_sel^{th,cand}` defined by the simultaneous selected-trace condition `J_0(c) in im(D_amp)` and checked local quotient compatibility `Q_chk(c) in im(D_rich,eta^corr) / span(g_mem)`.
+- Refined the theorem roadmap, verification map, and project journal so `T3b` is no longer recorded only as an open class-definition bottleneck: the stronger theorem-facing class is now constructed at the candidate level, the strongest current comparison is the conservative inclusion `A_sel^repo subseteq A_sel^{th,cand}`, and the single remaining bottleneck is the exact comparison/losslessness theorem deciding whether the repo-selected family already exhausts that candidate class.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean simple-support path, or theorem-level status of `B_red` / `B_mix` were changed.
+
+## 2026-03-29 - Open the T3b selected-class upgrade / obstruction stage above the closed T3a repo-selected bridge
+
+Affected files:
+- `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
+- `docs/theory/current_simple_support_theorem_roadmap.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Added a dedicated `T3b` proof-pilot note that separates the exact current repository-selected class `A_sel^repo = A_ls = im(V_adm) = im(M_amp)` from the stronger theorem-facing selected/admissible class needed for full `T3`, and packages the next stage as a selected-class upgrade / obstruction problem rather than as another kernel-transfer note on the same repo boundary.
+- Refined the theorem roadmap so `T3a` remains the closed enough finite-dimensional bridge on the current repo-selected class, while `T3b` is now recorded as the next theorem-facing stage: determine the exact relation between `A_sel^repo` and the stronger class seen so far only through the selected trace plane `im(D_amp)` and the checked local Outcome-B quotient object.
+- Added a new verification-map entry for `T3b` and updated the project journal so the main bottleneck is now stated explicitly as the exact theorem-level construction/definition of the stronger selected class beyond its currently closed trace/quotient shadows.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean simple-support path, or theorem-level status of `B_red` / `B_mix` were changed.
+
+## 2026-03-29 - Tighten and close enough the T3a finite-dimensional selected-kernel bridge package for clean simple support
+
+Affected files:
+- `proof_pilots/pilot_24_t3a_selected_kernel_bridge/pilot_24_t3a_selected_kernel_bridge.md`
+- `docs/theory/current_simple_support_theorem_roadmap.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Tightened the dedicated proof-pilot note so it now states the exact `T3a` theorem target on the current repository-selected family `A_sel^repo = A_ls = im(V_adm) = im(M_amp)`, packages the explicit lemma split `T3a-L1`--`T3a-L5`, separates exact algebra from representative live shell checks, and adds the Lean-facing abstraction target without reopening the frozen local Outcome-B branch.
+- Refined the theorem roadmap so `T3` remains the broader bridge program while `T3a` is now recorded as packaged and closed enough on the current repository-selected boundary, with the explicit caution that `B_red` / `B_mix` remain descendants only.
+- Updated the verification map and project journal so they now record that the finite-dimensional selected-kernel bridge is closed enough on the current repo-selected boundary and that the remaining open work belongs to the broader long-term `T3`, not to a missing shell-specific ingredient inside `T3a`.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, candidate-load interpretation, or active standalone clean simple-support path were changed.
+
 
 
 ## 2026-03-27 - Sync criterion-planning docs after the non-decisive clean simple support pilot sequence
