@@ -1,4 +1,4 @@
-﻿# Current Theory Verification Map
+# Current Theory Verification Map
 
 ## 1. Introduction
 
@@ -2145,3 +2145,252 @@ Most valuable next proof pilots:
   refute that `sigma_chk,n(q; c_sel)(z) = 0` on all of
   `D_sigma,n(q; c_sel)`.
 
+
+### V-S35. T3q implementation: current theorem-facing constraints remain quotient-final on the exact patches, so singletonity is equivalent to one missing representative law inside the fixed membrane fiber
+
+- ID: V-S35
+- Claim / Hypothesis:
+  For fixed clean (n, q) and fixed repo-selected basepoint c_sel:
+  1. on every exact admissible residual-generated checked-local patch
+     D_sigma^U,n(q; c_sel), singletonity of Im_chk,U,n(q; c_sel) in the
+     fixed membrane fiber is exactly equivalent to one patchwise
+     representative law Rep_U,n(q; c_sel);
+  2. Rep_U, vanishing of sigma_chk on that patch, constancy of s_U on
+     that patch, and singletonity of S_U are exact equivalent formulations;
+  3. all currently justified checked-local invariants on the present checked
+     boundary still factor through the quotient map (a, b, s) -> (a, b) or
+     are blind along the membrane line;
+  4. therefore current theorem-facing constraints still force only fiber
+     containment and do not force singletonity by themselves;
+  5. the exact missing ingredient is now one representative-sensitive law on
+     the exact admissible patch domain, not another quotient-final theorem.
+- Type: structural claim
+- Source file(s):
+  docs/theory/current_simple_support_theorem_roadmap.md;
+  proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md;
+  proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md.
+- Current status: Outcome B: singletonity is still open, but the remaining gap is now isolated as one missing representative law inside the fixed membrane fiber on each exact patch
+- What counts as verification:
+  a clean T3q package that explicitly records:
+  the patchwise representative law Rep_U,
+  the equivalence between Rep_U, selector vanishing, patchwise constancy,
+  and membrane-fiber singletonity,
+  the exact quotient-finality obstruction,
+  and the sharpened next bottleneck as a representative-sensitive theorem.
+- Verification method:
+  CAS, code inspection, manual derivation.
+- Verification boundary:
+  this is not yet full T3, not a singletonity theorem on the full exact
+  domain, not an explicit admissible non-singleton realization, and not a
+  final physical shell theorem.
+  It is the sharpest current reduction after T3p: the unresolved gap is no
+  longer just "prove singletonity", but "derive one representative-sensitive
+  law that is not already contained in the quotient-final checked-local
+  package".
+- Next action:
+  prove or refute the patchwise representative law Rep_U,n(q; c_sel) on
+  every exact admissible residual-generated checked-local patch, equivalently
+  prove or refute singletonity of the exact checked-local patch image in the
+  fixed membrane fiber, equivalently prove or refute that
+  sigma_chk,n(q; c_sel)(z) = 0 on all of D_sigma,n(q; c_sel).
+
+### V-S36. `T3r` implementation: the patchwise representative law reduces exactly to one pointwise basepoint-relative membrane-deviation law on each exact patch
+
+- ID: `V-S36`
+- Claim / Hypothesis:
+  For fixed clean `(n, q)` and fixed repo-selected basepoint `c_sel`:
+  1. on every exact admissible residual-generated checked-local patch
+     `D_sigma^U,n(q; c_sel)`, the pairwise representative law
+     `Rep_U,n(q; c_sel)` is exactly equivalent to the pointwise basepoint law
+     `chi_chk,U,n(q)(c_sel + z) = chi_chk,U,n(q)(c_sel)` for every `z` on that
+     patch;
+  2. equivalently the pointwise basepoint-relative representative difference
+     `Delta_rep,U^pt,n(q; c_sel)(z)
+      := chi_chk,U,n(q)(c_sel + z) - chi_chk,U,n(q)(c_sel)`
+     satisfies
+     `Delta_rep,U^pt = sigma_chk e_mem` and takes values in `span(e_mem)`;
+  3. current theorem-facing admissibility / candidate constraints still force
+     only the fixed quotient coordinates `(a_sel, b_sel)` and therefore only
+     `Delta_rep,U^pt(z) in span(e_mem)`, not its vanishing;
+  4. failure of `Rep_U` on an exact patch is therefore exactly equivalent to
+     existence of one patch point `z_*` with
+     `Delta_rep,U^pt,n(q; c_sel)(z_*) != 0`,
+     equivalently `sigma_chk,n(q; c_sel)(z_*) != 0`;
+  5. the exact remaining bottleneck is now one pointwise vanishing theorem on
+     the full exact admissible patch cover, not another quotient-final theorem.
+- Type: `structural claim`
+- Source file(s):
+  `docs/theory/current_simple_support_theorem_roadmap.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`.
+- Current status: `Outcome B: the patchwise representative law is still open, but it is now reduced exactly to pointwise vanishing of the basepoint-relative membrane deviation on each exact patch`
+- What counts as verification:
+  a clean `T3r` package that explicitly records:
+  the pointwise basepoint-relative representative difference `Delta_rep,U^pt`,
+  the equivalence between `Rep_U`, pointwise basepoint vanishing,
+  selector vanishing, and singletonity,
+  the exact obstruction that current theorem-facing constraints still force
+  only membrane-line containment of that difference,
+  and the sharpened one-point nonvanishing template.
+- Verification method:
+  CAS, code inspection, manual derivation.
+- Verification boundary:
+  this is not yet full `T3`, not a representative-law theorem on the full exact
+  domain, not an explicit admissible nonzero realization, and not a final
+  physical shell theorem.
+  It is the sharpest current reduction after `T3q`: the unresolved gap is now
+  not merely pairwise equality on a patch, but pointwise vanishing of the exact
+  basepoint-relative membrane deviation.
+- Next action:
+  prove or refute the pointwise basepoint-relative law
+  `chi_chk,U,n(q)(c_sel + z) = chi_chk,U,n(q)(c_sel)` on every exact
+  admissible residual-generated checked-local patch, equivalently prove or
+  refute that `sigma_chk,n(q; c_sel)(z) = 0` on all of
+  `D_sigma,n(q; c_sel)`.
+
+
+### V-S37. `T3s` implementation: the patchwise pointwise membrane-deviation law descends to a chart-invariant exact global pointwise defect map on `D_sigma`
+
+- ID: `V-S37`
+- Claim / Hypothesis:
+  For fixed clean `(n, q)` and fixed repo-selected basepoint `c_sel`:
+  1. the patchwise pointwise-difference objects
+     `Delta_rep,U^pt,n(q; c_sel)(z)` glue on overlaps and define one exact
+     chart-invariant map
+     `Delta_rep^pt,n(q; c_sel) : D_sigma,n(q; c_sel) -> span(e_mem)`;
+  2. for every `z in D_sigma,n(q; c_sel)` one has
+     `Delta_rep^pt,n(q; c_sel)(z) = sigma_chk,n(q; c_sel)(z) e_mem` and
+     `Delta_rep^pt,n(q; c_sel)(0) = 0`;
+  3. global pointwise vanishing of `Delta_rep^pt` on `D_sigma,n(q; c_sel)` is
+     exactly equivalent to global vanishing of `sigma_chk`, to `Rep_U` on every
+     exact patch, and to patchwise constancy / singletonity on every exact
+     admissible residual-generated checked-local patch;
+  4. current theorem-facing admissibility / candidate constraints still force
+     only codomain containment in `span(e_mem)` plus the basepoint
+     normalization at `0`, not vanishing at an arbitrary point;
+  5. the remaining obstruction is now the exact pointwise nonzero set
+     `N_sigma,n(q; c_sel)
+      := { z in D_sigma,n(q; c_sel) :
+           Delta_rep^pt,n(q; c_sel)(z) != 0 }`.
+- Type: `structural claim`
+- Source file(s):
+  `docs/theory/current_simple_support_theorem_roadmap.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`.
+- Current status: `Outcome B: the pointwise law is still open, but it is now packaged as a chart-invariant exact global defect map whose nonzero set is the remaining obstruction`
+- What counts as verification:
+  a clean `T3s` package that explicitly records:
+  the descent `Delta_rep,U^pt -> Delta_rep^pt`,
+  the identity `Delta_rep^pt = sigma_chk e_mem`,
+  the exact equivalence with `Rep_U` / singletonity / constancy,
+  the codomain-plus-normalization obstruction theorem,
+  and the exact nonzero-set formulation.
+- Verification method:
+  CAS, code inspection, manual derivation.
+- Verification boundary:
+  this is not yet full `T3`, not a global vanishing theorem on the full exact
+  domain, not an explicit admissible nonzero realization, and not a final
+  physical shell theorem.
+  It is the sharpest current reduction after `T3r`: the unresolved gap is now
+  not merely patchwise pointwise equality, but emptiness of one exact chart-
+  invariant global pointwise nonzero set on `D_sigma,n(q; c_sel)`.
+- Next action:
+  prove or refute that `N_sigma,n(q; c_sel) = emptyset`, equivalently prove or
+  refute that `Delta_rep^pt,n(q; c_sel)(z) = 0` for every
+  `z in D_sigma,n(q; c_sel)`.
+
+### V-S38. `T3t` implementation: emptiness of the exact global nonzero defect set is equivalent to collapse of one scalar defect image on `D_sigma`
+
+- ID: `V-S38`
+- Claim / Hypothesis:
+  For fixed clean `(n, q)` and fixed repo-selected basepoint `c_sel`:
+  1. on the exact admissible residual-generated domain `D_sigma,n(q; c_sel)`,
+     the chart-invariant global pointwise defect map `Delta_rep^pt,n(q; c_sel)`
+     determines the exact nonzero set
+     `N_sigma,n(q; c_sel)
+      := { z in D_sigma,n(q; c_sel) :
+           Delta_rep^pt,n(q; c_sel)(z) != 0 }`;
+  2. the same exact data determine the scalar defect image
+     `Sigma_sigma,n(q; c_sel)
+      := { sigma_chk,n(q; c_sel)(z) : z in D_sigma,n(q; c_sel) }`;
+  3. emptiness of `N_sigma,n(q; c_sel)` is exactly equivalent to collapse of
+     that image to `{0}`;
+  4. pairwise representative-sensitive differences factor through scalar defect
+     value differences;
+  5. current theorem-facing admissibility / candidate constraints still force
+     only `0 in Sigma_sigma,n(q; c_sel)`, not `Sigma_sigma,n(q; c_sel) = {0}`.
+- Type: `structural claim`
+- Source file(s):
+  `docs/theory/current_simple_support_theorem_roadmap.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`.
+- Current status: `Outcome B: emptiness of the defect set is still open, but it is now reduced further to the exact scalar defect-image collapse condition on the same full exact domain`
+- What counts as verification:
+  a clean `T3t` package that explicitly records:
+  the exact defect set `N_sigma`;
+  the exact scalar defect image `Sigma_sigma`;
+  the equivalence `N_sigma = emptyset` iff `Sigma_sigma = {0}`;
+  the pairwise factorization through scalar defect-value differences;
+  and the exact obstruction that current theorem-facing constraints still force
+  only `0 in Sigma_sigma`.
+- Verification method:
+  CAS, code inspection, manual derivation.
+- Verification boundary:
+  this is not yet full `T3`, not an emptiness theorem on the full exact domain,
+  not an explicit admissible nonzero realization, and not a final physical
+  shell theorem.
+  It is the sharpest current reduction after `T3s`: the unresolved gap is now
+  not merely global vanishing of a defect map, but collapse of its exact scalar
+  image to `{0}`, equivalently emptiness of the exact nonzero defect set.
+- Next action:
+  prove or refute that `Sigma_sigma,n(q; c_sel) = {0}`, equivalently prove or
+  refute that `N_sigma,n(q; c_sel) = emptyset` on the full exact domain
+  `D_sigma,n(q; c_sel)`.
+
+### V-S39. `T3u` implementation: scalar-image collapse is equivalent to vanishing of the exact pairwise scalar-difference image on the admissible exact pair domain
+
+- ID: `V-S39`
+- Claim / Hypothesis:
+  For fixed clean `(n, q)` and fixed repo-selected basepoint `c_sel`:
+  1. the exact scalar selector `sigma_chk,n(q; c_sel)` on
+     `D_sigma,n(q; c_sel)` determines the exact scalar image `Sigma_sigma`, the
+     exact defect set `N_sigma`, and the exact pairwise scalar-difference image
+     `Omega_sigma,n(q; c_sel)`;
+  2. scalar-image collapse is exactly equivalent to vanishing of that pairwise
+     scalar-difference image:
+     `Sigma_sigma,n(q; c_sel) = {0}` iff `Omega_sigma,n(q; c_sel) = {0}`;
+  3. all surviving exact pairwise representative-sensitive differences factor
+     through `Omega_sigma e_mem`;
+  4. the scalar cocycle package gives normalization at `0`, antisymmetry, and
+     additivity where the exact admissible pairs compose;
+  5. current theorem-facing admissibility / candidate constraints still force
+     only that scalar cocycle package, not `Omega_sigma = {0}`.
+- Type: `structural claim`
+- Source file(s):
+  `docs/theory/current_simple_support_theorem_roadmap.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`.
+- Current status: `Outcome B: scalar-image collapse is still open, but it is now reduced further to vanishing of the exact pairwise scalar-difference image on the same exact admissible pair domain`
+- What counts as verification:
+  a clean `T3u` package that explicitly records:
+  the scalar selector `sigma_chk` on `D_sigma`;
+  the exact scalar image `Sigma_sigma`;
+  the exact defect set `N_sigma`;
+  the exact pairwise scalar-difference image `Omega_sigma`;
+  the equivalence `Sigma_sigma = {0}` iff `Omega_sigma = {0}`;
+  and the exact obstruction that current theorem-facing constraints still force
+  only the scalar cocycle package.
+- Verification method:
+  CAS, code inspection, manual derivation.
+- Verification boundary:
+  this is not yet full `T3`, not a scalar-image collapse theorem on the full
+  exact domain, not an explicit admissible nonzero-scalar realization, and not
+  a final physical shell theorem.
+  It is the sharpest current reduction after `T3t`: the unresolved gap is now
+  not merely collapse of the scalar image, but vanishing of the exact pairwise
+  scalar-difference image that governs all surviving representative-sensitive
+  pairwise differences.
+- Next action:
+  prove or refute that `Omega_sigma,n(q; c_sel) = {0}`, equivalently prove or
+  refute that `Sigma_sigma,n(q; c_sel) = {0}` on the full exact admissible pair
+  domain.

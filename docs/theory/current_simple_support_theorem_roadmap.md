@@ -1,4 +1,4 @@
-# Current Theorem Roadmap For Clean Full `simple support / подвижный шарнир`
+# Current Theorem Roadmap For Clean Full `simple support / Р С—Р С•Р Т‘Р Р†Р С‘Р В¶Р Р…РЎвЂ№Р в„– РЎв‚¬Р В°РЎР‚Р Р…Р С‘РЎР‚`
 
 This note records the current theorem program above the frozen local
 Outcome-B boundary. It starts from the current criterion bridge note and does
@@ -6,9 +6,9 @@ not reopen the same checked local branch.
 
 ## A. Goal
 
-The long-term theorem target is not “find a minimum” and not “promote a raw
-boundary dip.” The target is to prove that criticality on the clean full
-`simple support / подвижный шарнир` path must be read through the correct
+The long-term theorem target is not РІР‚Сљfind a minimumРІР‚Сњ and not РІР‚Сљpromote a raw
+boundary dip.РІР‚Сњ The target is to prove that criticality on the clean full
+`simple support / Р С—Р С•Р Т‘Р Р†Р С‘Р В¶Р Р…РЎвЂ№Р в„– РЎв‚¬Р В°РЎР‚Р Р…Р С‘РЎР‚` path must be read through the correct
 selected reduced object, with `L_red` as the present theorem-facing anchor.
 
 Operational candidate rankings may still use descendants and diagnostics, but
@@ -68,10 +68,13 @@ Status:
   obstruction level;
 - the representative-law stage `T3d` is now closed enough at the exact
   criterion / obstruction level;
-- the next active stage is `T3p`, the membrane-fiber singleton / patchwise
-  constancy theorem for the local membrane coordinate, equivalently the
-  vanishing theorem for the basepoint-relative membrane selector above the
-  `T3o` boundary.
+- the next active stage is `T3u`, the scalar-image collapse theorem,
+  equivalently the vanishing theorem for the exact pairwise scalar-difference
+  image `Omega_sigma,n(q; c_sel)` on the admissible exact pair domain
+  underlying `Sigma_sigma,n(q; c_sel)`;
+  current quotient-final checked-local invariants still do not force that
+  pairwise scalar-difference image to vanish even after the `T3t` scalar-image
+  package.
 
 ### `T3a`. Finite-dimensional selected-kernel bridge on the current repository selected family
 
@@ -518,9 +521,10 @@ These are not the final theorem, but they already form the support layer for a
 
 ## E. Main Open Gap
 
-The main open gap is now the `T3p` membrane-fiber singleton / patchwise
-constancy theorem for the basepoint-relative checked-local membrane-difference
-selector on the exact admissible residual-generated pair domain.
+The main open gap is now the `T3u` scalar-image collapse theorem on the exact
+admissible residual-generated domain `D_sigma,n(q; c_sel)`, sharpened further
+to vanishing of the exact pairwise scalar-difference image
+`Omega_sigma,n(q; c_sel)` on the full admissible exact pair domain.
 
 This is now the central theorem-facing bottleneck because:
 
@@ -569,12 +573,15 @@ degeneration theorem or final physical criticality theorem is already available.
 - The candidate-definition step `T3b` is now in place.
 - The reduction step `T3c` is now in place too.
 - The selected-representative criterion step `T3d` is now in place too.
-- The next theorem-facing implementation should therefore stay inside `T3p`:
-  prove or refute that the exact checked-local patch image is a singleton in
-  the fixed membrane fiber on every exact admissible residual-generated patch,
-  equivalently prove or refute patchwise constancy of the local membrane
-  coordinate, equivalently prove or refute that
-  `sigma_chk,n(q; c_sel)(z) = 0` on all of `D_sigma,n(q; c_sel)`;
+- The next theorem-facing implementation should therefore stay inside `T3u`:
+  prove or refute that `Sigma_sigma,n(q; c_sel) = {0}` on the full exact
+  domain, equivalently prove or refute that
+  `Omega_sigma,n(q; c_sel) = {0}`
+  on the full exact admissible pair domain, equivalently prove or refute that
+  `N_sigma,n(q; c_sel) = emptyset`,
+  `Delta_rep^pt,n(q; c_sel)(z) = 0`, and
+  `sigma_chk,n(q; c_sel)(z) = 0`
+  for every `z in D_sigma,n(q; c_sel)`;
 - no separate overlap/gluing theorem is the main bottleneck anymore, because
   patch transitions now change the membrane coordinate only by a z-independent
   constant on each fixed equal-trace class.
@@ -631,7 +638,7 @@ Verification route:
 Statement:
 - `L_red a = 0` if and only if `L_full(V_adm a) = 0`;
 - equivalently, the bijection from `T3a-L3` identifies `ker(L_red)` exactly
-  with `A_sel^repo ∩ ker(L_full)`.
+  with `A_sel^repo РІв‚¬В© ker(L_full)`.
 
 Status:
 - already effectively closed at the finite-dimensional selected-family level.
@@ -2249,6 +2256,565 @@ Verification route:
   independent after `T3o`, why current theorem-facing constraints force only
   fiber containment and not singletonity, and the relation to the broader long-
   term `T3`.
+
+
+## W. Current T3q Implementation Split
+
+### T3q-L1. Exact patch-domain / representative-law lemma
+
+Statement:
+- keep the exact global domain D_sigma,n(q; c_sel) and the exact patch family
+  D_sigma^U,n(q; c_sel) from T3p;
+- on every exact patch define the representative law
+  Rep_U,n(q; c_sel) by
+  chi_chk,U,n(q)(c_sel + z_1) = chi_chk,U,n(q)(c_sel + z_2) for all
+  z_1, z_2 in D_sigma^U,n(q; c_sel);
+- because the quotient coordinates are fixed on the patch, Rep_U is exactly
+  equivalent to singletonity of Im_chk,U,n(q; c_sel) in the fixed membrane
+  fiber.
+
+Status:
+- closed enough.
+
+Verification route:
+- manual derivation, code inspection, reuse of the T3p patch-image package.
+
+### T3q-L2. Representative-law vs selector-vanishing lemma
+
+Statement:
+- on every exact patch, the following are equivalent:
+  Rep_U;
+  sigma_chk = 0 on the patch;
+  s_U is constant on the patch;
+  S_U is a singleton;
+  Im_chk,U is a singleton in the fixed membrane fiber.
+
+Status:
+- closed enough.
+
+Verification route:
+- manual derivation, CAS, code inspection.
+
+### T3q-L3. Quotient-finality obstruction lemma
+
+Statement:
+- the canonical J_0 trace, the checked local residual, and the next checked
+  local compatibility layer all factor through the quotient map (a, b, s) ->
+  (a, b) or are blind along the membrane line on the current checked
+  boundary;
+- the strongest currently checked selector candidates remain chart-dependent,
+  metric-dependent, or extrinsic;
+- therefore the currently closed quotient-final theorem-facing package does not
+  force Rep_U on an exact patch.
+
+Status:
+- closed enough as an exact obstruction theorem.
+
+Verification route:
+- theorem reuse from pilot 23 quotient-finality, code inspection, manual
+  derivation.
+
+### T3q-L4. Exact non-singleton / nonvanishing-template lemma
+
+Statement:
+- if one exact admissible patch contains two points with the same quotient
+  coordinates (a_sel, b_sel) and different membrane coordinates s_1 != s_2,
+  then all currently closed quotient-final invariants agree on that pair while
+  singletonity fails and the pairwise selector is nonzero.
+
+Status:
+- closed enough as an exact obstruction/template theorem;
+- explicit admissible realization still open.
+
+Verification route:
+- manual derivation, theorem reuse from T3l / T3m / T3p, code inspection.
+
+### T3q-L5. Exact consequence lemma for the next bridge step
+
+Statement:
+- if one proves Rep_U,n(q; c_sel) on every exact admissible residual-
+  generated patch of every exact cover, then sigma_chk vanishes on
+  D_sigma,n(q; c_sel) and the remaining membrane obstruction in the reverse-
+  inclusion / zero-excess bridge disappears on the current boundary;
+- conversely, any admissible non-singleton patch yields an exact nonvanishing
+  obstruction.
+
+Status:
+- closed enough as a theorem-program consequence.
+
+Verification route:
+- manual derivation, Lean target after the exact representative-law abstraction
+  is packaged.
+
+### Main bottleneck inside T3q
+
+- prove or refute the exact patchwise representative law on every exact
+  admissible residual-generated checked-local patch, equivalently prove or
+  refute singletonity of the exact checked-local patch image in the fixed
+  membrane fiber, equivalently prove or refute that
+  sigma_chk,n(q; c_sel)(z) = 0 on all of D_sigma,n(q; c_sel);
+- no further quotient-final theorem alone can close this gap.
+
+### Lean / CAS / manual split for T3q
+
+- Lean:
+  finite-dimensional patch-image / representative-law / singletonity templates
+  once the exact patch-domain and fixed-fiber formulation are abstracted.
+- CAS / code inspection:
+  D_rich,eta^corr, chi_chk,vis, q_coeff, e_mem, g_mem, J_0,
+  ker(C_center), exact patchwise chart formulas, and the factorization of the
+  currently justified checked-local invariants through the quotient map.
+- Manual derivation:
+  exact theorem scope for T3q, why current theorem-facing constraints remain
+  quotient-final on the exact patches, why singletonity and patchwise
+  constancy are equivalent rather than distinct after T3p, and the relation
+  to the broader long-term T3.
+
+## X. Current `T3r` Implementation Split
+
+### `T3r-L1`. Exact patch-domain / fixed-fiber / pointwise-difference lemma
+
+Statement:
+- keep the exact global domain `D_sigma,n(q; c_sel)` and the exact patch family
+  `D_sigma^U,n(q; c_sel)` from `T3q`;
+- on every exact patch define the pointwise basepoint-relative representative
+  difference
+  `Delta_rep,U^pt,n(q; c_sel)(z)
+   := chi_chk,U,n(q)(c_sel + z) - chi_chk,U,n(q)(c_sel)`;
+- because both representatives lie in the same fixed membrane fiber,
+  `Delta_rep,U^pt(z) = sigma_chk,n(q; c_sel)(z) e_mem` and therefore
+  `Delta_rep,U^pt(z) in span(e_mem)`.
+
+Status:
+- closed enough.
+
+Verification route:
+- manual derivation, CAS, code inspection.
+
+### `T3r-L2`. Pairwise representative law vs pointwise basepoint law lemma
+
+Statement:
+- on every exact patch, the following are equivalent:
+  `Rep_U`;
+  `chi_chk,U(c_sel + z) = chi_chk,U(c_sel)` for all `z` on the patch;
+  `Delta_rep,U^pt = 0` on the patch;
+  `sigma_chk = 0` on the patch;
+  `s_U` is constant on the patch;
+  `Im_chk,U` is a singleton in the fixed membrane fiber.
+
+Status:
+- closed enough.
+
+Verification route:
+- manual derivation, CAS, code inspection.
+
+### `T3r-L3`. Quotient-finality obstruction lemma
+
+Statement:
+- current theorem-facing admissibility and candidate constraints still force
+  only the fixed quotient coordinates `(a_sel, b_sel)`;
+- therefore they force only
+  `Delta_rep,U^pt(z) in span(e_mem)`,
+  not
+  `Delta_rep,U^pt(z) = 0`;
+- so the currently closed quotient-final package does not force `Rep_U`.
+
+Status:
+- closed enough as an exact obstruction theorem.
+
+Verification route:
+- theorem reuse from pilot 23 quotient-finality, code inspection, manual
+  derivation.
+
+### `T3r-L4`. Exact one-point non-singleton / nonvanishing-template lemma
+
+Statement:
+- failure of `Rep_U` on an exact patch is equivalent to existence of one point
+  `z_*` on that patch with
+  `Delta_rep,U^pt,n(q; c_sel)(z_*) = delta_* e_mem`,
+  `delta_* != 0`;
+- equivalently one exact patch point already realizes a distinct membrane
+  coordinate above the same fixed quotient point `(a_sel, b_sel)`.
+
+Status:
+- closed enough as an exact obstruction/template theorem;
+- explicit admissible realization still open.
+
+Verification route:
+- manual derivation, theorem reuse from `T3m` / `T3q`, code inspection.
+
+### `T3r-L5`. Exact consequence lemma for the next bridge step
+
+Statement:
+- if one proves the pointwise basepoint law on every exact admissible
+  residual-generated checked-local patch of every exact cover, then `Rep_U`
+  holds on every such patch, `sigma_chk` vanishes on `D_sigma,n(q; c_sel)`,
+  and the remaining membrane obstruction in the reverse-inclusion / zero-excess
+  bridge disappears on the current boundary.
+
+Status:
+- closed enough as a theorem-program consequence.
+
+Verification route:
+- manual derivation, Lean target after the pointwise basepoint-relative law is
+  abstracted.
+
+### Main bottleneck inside `T3r`
+
+- prove or refute the pointwise basepoint-relative law
+  `chi_chk,U,n(q)(c_sel + z) = chi_chk,U,n(q)(c_sel)` for every `z` on every
+  exact admissible residual-generated checked-local patch;
+- equivalently prove or refute that
+  `Delta_rep,U^pt,n(q; c_sel)(z) = 0`
+  on the full exact patch cover;
+- no further quotient-final theorem alone can close this gap.
+
+### Lean / CAS / manual split for `T3r`
+
+- Lean:
+  finite-dimensional patch-image / pointwise representative-law /
+  selector-vanishing templates once the exact patch-domain and pointwise
+  basepoint-relative difference law are abstracted.
+- CAS / code inspection:
+  `D_rich,eta^corr`, `chi_chk,vis`, `q_coeff`, `e_mem`, `g_mem`, `J_0`,
+  `ker(C_center)`, exact patchwise chart formulas, and the identity
+  `Delta_rep,U^pt = sigma_chk e_mem`.
+- Manual derivation:
+  exact theorem scope for `T3r`, why the pairwise representative law reduces
+  to a pointwise basepoint law, why current theorem-facing constraints still
+  do not force that pointwise vanishing, and the relation to the broader
+  long-term `T3`.
+
+## Y. Current `T3s` Implementation Split
+
+### `T3s-L1`. Exact pointwise domain / chart-invariant pointwise-difference lemma
+
+Statement:
+- the patchwise pointwise-difference maps
+  `Delta_rep,U^pt,n(q; c_sel)` glue on overlaps and define an exact chart-
+  invariant map
+  `Delta_rep^pt,n(q; c_sel) : D_sigma,n(q; c_sel) -> span(e_mem)`;
+- equivalently for every `z in D_sigma,n(q; c_sel)` and every patch `U`
+  containing `z`, one has
+  `Delta_rep^pt,n(q; c_sel)(z) = Delta_rep,U^pt,n(q; c_sel)(z)`;
+- this map satisfies
+  `Delta_rep^pt,n(q; c_sel)(z) = sigma_chk,n(q; c_sel)(z) e_mem`.
+
+Status:
+- closed enough.
+
+Verification route:
+- manual derivation, CAS, code inspection.
+
+### `T3s-L2`. Pointwise law vs selector-vanishing vs `Rep_U` lemma
+
+Statement:
+- on the exact domain `D_sigma,n(q; c_sel)`, the following are equivalent:
+  `Delta_rep^pt = 0` on `D_sigma`;
+  `sigma_chk = 0` on `D_sigma`;
+  `Rep_U` on every exact patch;
+  patchwise constancy of `s_U`;
+  patchwise singletonity of `Im_chk,U`.
+
+Status:
+- closed enough.
+
+Verification route:
+- manual derivation, CAS, code inspection.
+
+### `T3s-L3`. Pointwise codomain / normalization obstruction lemma
+
+Statement:
+- current theorem-facing admissibility and candidate constraints still force
+  only
+  `Delta_rep^pt(D_sigma,n(q; c_sel)) subseteq span(e_mem)`
+  and the normalization
+  `Delta_rep^pt,n(q; c_sel)(0) = 0`;
+- they do not force full pointwise vanishing on `D_sigma,n(q; c_sel)`.
+
+Status:
+- closed enough as an exact obstruction theorem.
+
+Verification route:
+- theorem reuse from pilot 23 quotient-finality, code inspection, manual
+  derivation.
+
+### `T3s-L4`. Exact pointwise nonzero-set / one-point template lemma
+
+Statement:
+- define
+  `N_sigma,n(q; c_sel)
+   := { z in D_sigma,n(q; c_sel) :
+        Delta_rep^pt,n(q; c_sel)(z) != 0 }`;
+- failure of the `T3s` pointwise law is exactly equivalent to
+  `N_sigma,n(q; c_sel) != emptyset`;
+- equivalently there exists one point `z_* in D_sigma,n(q; c_sel)` with
+  `Delta_rep^pt,n(q; c_sel)(z_*) = delta_* e_mem`, `delta_* != 0`.
+
+Status:
+- closed enough as an exact obstruction/template theorem;
+- explicit admissible realization still open.
+
+Verification route:
+- manual derivation, theorem reuse from `T3m` / `T3o` / `T3r`, code inspection.
+
+### `T3s-L5`. Exact consequence lemma for the next bridge step
+
+Statement:
+- if one proves `N_sigma,n(q; c_sel) = emptyset` for every exact domain, then
+  the pointwise law holds globally, `Rep_U` holds on every exact patch,
+  `sigma_chk` vanishes on `D_sigma,n(q; c_sel)`, and the remaining membrane
+  obstruction in the reverse-inclusion / zero-excess bridge disappears on the
+  current boundary.
+
+Status:
+- closed enough as a theorem-program consequence.
+
+Verification route:
+- manual derivation, Lean target after the chart-invariant pointwise-defect law
+  is abstracted.
+
+### Main bottleneck inside `T3s`
+
+- prove or refute that `N_sigma,n(q; c_sel) = emptyset` on the full exact
+  pair-definability domain `D_sigma,n(q; c_sel)`;
+- equivalently prove or refute that
+  `Delta_rep^pt,n(q; c_sel)(z) = 0`
+  for every `z in D_sigma,n(q; c_sel)`;
+- no further quotient-final theorem alone can close this gap.
+
+### Lean / CAS / manual split for `T3s`
+
+- Lean:
+  finite-dimensional exact-domain / chart-invariant pointwise-defect / nonzero-
+  set templates once the overlap law and codomain `span(e_mem)` are abstracted.
+- CAS / code inspection:
+  `D_rich,eta^corr`, `chi_chk,vis`, `q_coeff`, `e_mem`, `g_mem`, `J_0`,
+  `ker(C_center)`, the quotient-preserving chart-change matrices, the identity
+  `S_(ell1,ell2)^(-1) e_mem = e_mem`, and `Delta_rep^pt = sigma_chk e_mem`.
+- Manual derivation:
+  exact theorem scope for `T3s`, why the patchwise pointwise law descends to a
+  chart-invariant global pointwise defect map, why current theorem-facing
+  constraints still do not force its vanishing, and the relation to the broader
+  long-term `T3`.
+## Z. Current `T3t` Implementation Split
+
+### `T3t-L1`. Exact global defect-map / scalar defect-image / defect-set lemma
+
+Statement:
+- on the exact domain `D_sigma,n(q; c_sel)`, define
+  `N_sigma,n(q; c_sel)
+   := { z in D_sigma,n(q; c_sel) : Delta_rep^pt,n(q; c_sel)(z) != 0 }`
+  and
+  `Sigma_sigma,n(q; c_sel)
+   := { sigma_chk,n(q; c_sel)(z) : z in D_sigma,n(q; c_sel) }`;
+- then
+  `N_sigma,n(q; c_sel) = emptyset`
+  if and only if
+  `Sigma_sigma,n(q; c_sel) = {0}`.
+
+Status:
+- closed enough.
+
+Verification route:
+- manual derivation, CAS, code inspection.
+
+### `T3t-L2`. Pairwise defect-difference factorization lemma
+
+Statement:
+- whenever `(c_sel + z_1, c_sel + z_2) in Pair_chk,n(q)`, one has
+  `Delta_rep,chk,n(q; c_sel + z_1, c_sel + z_2)
+   = (sigma_chk,n(q; c_sel)(z_1) - sigma_chk,n(q; c_sel)(z_2)) e_mem`;
+- so all surviving pairwise representative-sensitive differences factor through
+  scalar defect-value differences.
+
+Status:
+- closed enough.
+
+Verification route:
+- manual derivation, theorem reuse from `T3m` / `T3s`, code inspection.
+
+### `T3t-L3`. Emptiness vs selector-vanishing vs image-collapse lemma
+
+Statement:
+- on `D_sigma,n(q; c_sel)`, the following are equivalent:
+  `N_sigma = emptyset`;
+  `Sigma_sigma = {0}`;
+  `Delta_rep^pt = 0` on `D_sigma`;
+  `sigma_chk = 0` on `D_sigma`;
+  `Rep_U` on every exact patch.
+
+Status:
+- closed enough.
+
+Verification route:
+- manual derivation, CAS, code inspection.
+
+### `T3t-L4`. Exact obstruction / nonempty-template lemma
+
+Statement:
+- failure of `T3t` is exactly equivalent to
+  `N_sigma,n(q; c_sel) != emptyset`, equivalently
+  `Sigma_sigma,n(q; c_sel) != {0}`;
+- equivalently there exists one point `z_* in D_sigma,n(q; c_sel)` with
+  `Delta_rep^pt,n(q; c_sel)(z_*) = delta_* e_mem`, `delta_* != 0`.
+
+Status:
+- closed enough as an exact obstruction/template theorem;
+- explicit admissible realization still open.
+
+Verification route:
+- manual derivation, theorem reuse from `T3s`, code inspection.
+
+### `T3t-L5`. Exact consequence lemma for the next bridge step
+
+Statement:
+- if one proves `Sigma_sigma,n(q; c_sel) = {0}` for every exact domain, then
+  `N_sigma,n(q; c_sel) = emptyset`, `sigma_chk` vanishes on `D_sigma`,
+  `Rep_U` holds on every exact patch, and the remaining membrane obstruction in
+  the reverse-inclusion / zero-excess bridge disappears on the current
+  boundary.
+
+Status:
+- closed enough as a theorem-program consequence.
+
+Verification route:
+- manual derivation, Lean target after the scalar defect-image abstraction is
+  packaged.
+
+### Main bottleneck inside `T3t`
+
+- prove or refute that `Sigma_sigma,n(q; c_sel) = {0}` on the full exact
+  domain `D_sigma,n(q; c_sel)`;
+- equivalently prove or refute that `N_sigma,n(q; c_sel) = emptyset`;
+- no further quotient-final theorem alone can close this gap.
+
+### Lean / CAS / manual split for `T3t`
+
+- Lean:
+  finite-dimensional exact-domain / chart-invariant pointwise-defect /
+  scalar-image / defect-set templates once `Delta_rep^pt`, `Sigma_sigma`, and
+  `N_sigma` are abstracted.
+- CAS / code inspection:
+  `D_rich,eta^corr`, `chi_chk,vis`, `q_coeff`, `e_mem`, `g_mem`, `J_0`,
+  `ker(C_center)`, the quotient-preserving chart-change matrices, the identity
+  `S_(ell1,ell2)^(-1) e_mem = e_mem`, `Delta_rep^pt = sigma_chk e_mem`, and
+  the pairwise factorization through scalar defect-value differences.
+- Manual derivation:
+  exact theorem scope for `T3t`, why emptiness of `N_sigma` is equivalent to
+  collapse of `Sigma_sigma` to `{0}`, why current theorem-facing constraints
+  still do not force that collapse, and the relation to the broader long-term
+  `T3`.
+
+## AA. Current `T3u` Implementation Split
+
+### `T3u-L1`. Exact scalar-image / defect-set / pairwise-difference lemma
+
+Statement:
+- on the exact domain `D_sigma,n(q; c_sel)`, the scalar selector
+  `sigma_chk,n(q; c_sel) : D_sigma,n(q; c_sel) -> R`
+  determines the exact scalar image `Sigma_sigma`, the exact defect set
+  `N_sigma`, and the exact pairwise scalar-difference image `Omega_sigma`;
+- moreover
+  `Sigma_sigma = {0}`
+  if and only if
+  `N_sigma = emptyset`
+  if and only if
+  `Omega_sigma = {0}`.
+
+Status:
+- closed enough.
+
+Verification route:
+- manual derivation, CAS, code inspection.
+
+### `T3u-L2`. Scalar-image collapse vs selector-vanishing lemma
+
+Statement:
+- on `D_sigma,n(q; c_sel)`, the following are equivalent:
+  `Sigma_sigma = {0}`;
+  `N_sigma = emptyset`;
+  `sigma_chk = 0` on `D_sigma`;
+  `Delta_rep^pt = 0` on `D_sigma`;
+  `Rep_U` on every exact patch.
+
+Status:
+- closed enough.
+
+Verification route:
+- manual derivation, CAS, code inspection.
+
+### `T3u-L3`. Exact scalar-difference / cocycle package lemma
+
+Statement:
+- the exact pairwise scalar-difference image `Omega_sigma` satisfies
+  `0 in Omega_sigma`,
+  `Omega_sigma = -Omega_sigma`,
+  and the additive cocycle law wherever the three exact admissible pairs are
+  defined.
+
+Status:
+- closed enough.
+
+Verification route:
+- theorem reuse from `T3m` / `T3t`, manual derivation, code inspection.
+
+### `T3u-L4`. Exact obstruction / nonzero-scalar-template lemma
+
+Statement:
+- failure of `T3u` is exactly equivalent to
+  `Sigma_sigma != {0}`, equivalently
+  `N_sigma != emptyset`, equivalently
+  `Omega_sigma != {0}`;
+- equivalently there exists one point `z_* in D_sigma,n(q; c_sel)` with
+  `sigma_chk,n(q; c_sel)(z_*) = delta_* != 0`.
+
+Status:
+- closed enough as an exact obstruction/template theorem;
+- explicit admissible realization still open.
+
+Verification route:
+- manual derivation, theorem reuse from `T3t`, code inspection.
+
+### `T3u-L5`. Exact consequence lemma for the next bridge step
+
+Statement:
+- if one proves `Omega_sigma,n(q; c_sel) = {0}` for every exact domain, then
+  `Sigma_sigma = {0}`, `N_sigma = emptyset`, `sigma_chk` vanishes on
+  `D_sigma`, `Rep_U` holds on every exact patch, and the remaining membrane
+  obstruction in the reverse-inclusion / zero-excess bridge disappears on the
+  current boundary.
+
+Status:
+- closed enough as a theorem-program consequence.
+
+Verification route:
+- manual derivation, Lean target after the scalar-map / scalar-difference
+  abstraction is packaged.
+
+### Main bottleneck inside `T3u`
+
+- prove or refute that `Omega_sigma,n(q; c_sel) = {0}` on the full exact
+  admissible pair domain;
+- equivalently prove or refute that `Sigma_sigma,n(q; c_sel) = {0}`;
+- no further quotient-final theorem alone can close this gap.
+
+### Lean / CAS / manual split for `T3u`
+
+- Lean:
+  finite-dimensional exact-domain / scalar map / scalar-image / defect-set /
+  pairwise scalar-difference templates once `sigma_chk`, `Sigma_sigma`,
+  `N_sigma`, and `Omega_sigma` are abstracted.
+- CAS / code inspection:
+  `D_rich,eta^corr`, `chi_chk,vis`, `q_coeff`, `e_mem`, `g_mem`, `J_0`,
+  `ker(C_center)`, chart-change identities, `Delta_rep^pt = sigma_chk e_mem`,
+  the pairwise factorization through scalar defect-value differences, and the
+  scalar-image formulas.
+- Manual derivation:
+  exact theorem scope for `T3u`, why scalar-image collapse is equivalent to
+  vanishing of `Omega_sigma`, why current theorem-facing constraints still do
+  not force that vanishing, and the relation to the broader long-term `T3`.
+
 
 ### Lean / CAS split for `T3a`
 

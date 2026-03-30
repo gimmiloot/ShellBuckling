@@ -1,5 +1,81 @@
 # CHANGELOG
 
+## 2026-03-30 - Reduce the T3t scalar-image question to a T3u exact pairwise scalar-difference obstruction on the clean full `simple support / подвижный шарнир` path
+
+Affected files:
+- `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
+- `docs/theory/current_simple_support_theorem_roadmap.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Extended pilot 25 from the `T3t` scalar defect-image stage into the `T3u` scalar-image-collapse stage.
+- Recorded the conservative `Outcome B` result: scalar-image collapse `Sigma_sigma,n(q; c_sel) = {0}` is not yet proved, but it is now reduced further to vanishing of the exact pairwise scalar-difference image `Omega_sigma,n(q; c_sel)` on the same exact admissible pair domain.
+- Synced the theorem roadmap, verification map, and project journal so the next bottleneck is now the `T3u` pairwise scalar-difference vanishing theorem rather than only the scalar-image-collapse wording.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, broad scans, or hybrid `F_min` reuse policy were changed.
+
+## 2026-03-30 - Reduce the T3s global pointwise-defect question to a T3t exact defect-set / scalar-image obstruction on the clean full `simple support / подвижный шарнир` path
+
+Affected files:
+- `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
+- `docs/theory/current_simple_support_theorem_roadmap.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Extended pilot 25 from the `T3s` chart-invariant global pointwise-defect stage into the `T3t` exact global defect-set emptiness stage.
+- Recorded the conservative `Outcome B` result: emptiness of `N_sigma,n(q; c_sel)` is not yet proved, but it is now reduced further to the exact scalar defect-image collapse condition `Sigma_sigma,n(q; c_sel) = {0}` on the same full exact domain.
+- Synced the theorem roadmap, verification map, and project journal so the next bottleneck is now the `T3t` defect-set emptiness / scalar-image-collapse theorem rather than only the global pointwise-vanishing wording.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, broad scans, or hybrid `F_min` reuse policy were changed.
+
+## 2026-03-30 - Reduce the T3r pointwise-law question to a T3s chart-invariant global defect-map obstruction on the exact checked-local domain for clean simple support / подвижный шарнир
+
+Affected files:
+- `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
+- `docs/theory/current_simple_support_theorem_roadmap.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Extended pilot 25 from the `T3r` patchwise pointwise-law stage into the `T3s` chart-invariant global pointwise-defect stage.
+- Recorded the exact descent of the patchwise basepoint-relative membrane difference `Delta_rep,U^pt` to the chart-invariant global map `Delta_rep^pt : D_sigma -> span(e_mem)` with `Delta_rep^pt = sigma_chk e_mem`.
+- Recorded the sharpest current obstruction theorem: current theorem-facing invariants still force only codomain containment in `span(e_mem)` plus basepoint normalization at `z = 0`, not vanishing on the full exact domain.
+- Recorded the exact remaining bottleneck as emptiness of the pointwise nonzero set `N_sigma,n(q; c_sel)` on `D_sigma,n(q; c_sel)`.
+- Synced the theorem roadmap, verification map, and project journal so the next bottleneck is now the `T3s` global pointwise-vanishing theorem rather than a patch-indexed pointwise law.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, or theorem-level status of `B_red` / `B_mix` were changed.
+
+
+## 2026-03-30 - Reduce the T3q representative-law question to a T3r pointwise basepoint-relative obstruction on exact checked-local patches for clean simple support
+
+Affected files:
+- `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
+- `docs/theory/current_simple_support_theorem_roadmap.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Extended pilot 25 from the `T3q` patchwise representative-law obstruction stage into the `T3r` pointwise basepoint-relative representative-law stage.
+- Recorded the exact pointwise basepoint-relative checked-local representative difference `Delta_rep,U^pt,n(q; c_sel)(z) = chi_chk,U(c_sel + z) - chi_chk,U(c_sel) = sigma_chk(z) e_mem` on every exact admissible residual-generated checked-local patch.
+- Recorded the strongest current sharpening: the pairwise patchwise representative law `Rep_U` is exactly equivalent to pointwise vanishing of that basepoint-relative membrane deviation, so failure of `Rep_U` is already equivalent to one exact nonzero patch point.
+- Recorded the sharpest current obstruction theorem: on the checked local boundary all currently justified theorem-facing invariants still force only membrane-line containment of that pointwise difference and do not by themselves force its vanishing.
+- Synced the theorem roadmap, verification map, and project journal so the next bottleneck is now the `T3r` pointwise basepoint-relative vanishing theorem on the full exact admissible patch cover.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / подвижный шарнир` path, or theorem-level status of `B_red` / `B_mix` were changed.
+
+## 2026-03-30 - Reduce the T3p singletonity question to a T3q representative-law obstruction on exact membrane-fiber patches for clean simple support
+
+Affected files:
+- proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md
+- docs/theory/current_simple_support_theorem_roadmap.md
+- docs/theory/current_theory_verification_map.md
+- docs/journal/project_journal_updated14.md
+- CHANGELOG.md
+
+- Extended pilot 25 from the T3p membrane-fiber singleton stage into the T3q representative-law obstruction stage.
+- Recorded the exact patchwise representative law Rep_U,n(q; c_sel) and the exact equivalence between Rep_U, vanishing of sigma_chk, constancy of s_U, and singletonity of the checked-local patch image in the fixed membrane fiber.
+- Recorded the sharpest current obstruction theorem: on the checked local boundary all currently justified theorem-facing invariants remain quotient-final, so they still force only fiber containment and do not by themselves force singletonity.
+- Recorded the exact next bottleneck: derive one representative-sensitive law on the exact admissible residual-generated patch cover, or explicitly realize an admissible non-singleton patch.
+- Synced the theorem roadmap, verification map, and project journal so the next bottleneck is now the T3q patchwise representative-law theorem rather than a generic singletonity question.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean simple support / подвижный шарнир path, or theorem-level status of B_red / B_mix were changed.
 ## 2026-03-29 - Reduce the T3p membrane-selector question to a membrane-fiber singleton obstruction on exact checked-local patches for clean simple support
 
 Affected files:
