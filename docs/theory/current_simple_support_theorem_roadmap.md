@@ -1,14 +1,29 @@
-# Current Theorem Roadmap For Clean Full `simple support / Р С—Р С•Р Т‘Р Р†Р С‘Р В¶Р Р…РЎвЂ№Р в„– РЎв‚¬Р В°РЎР‚Р Р…Р С‘РЎР‚`
+﻿# Current Theorem Roadmap For Clean Full `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ`
 
 This note records the current theorem program above the frozen local
 Outcome-B boundary. It starts from the current criterion bridge note and does
 not reopen the same checked local branch.
 
+Stable object definitions are centralized in
+`docs/theory/current_simple_support_object_glossary.md`.
+The frozen-line conclusion and archive view now live in
+`docs/theory/current_simple_support_final_audit_note.md`
+and
+`docs/theory/current_simple_support_closed_line_index.md`.
+
+## Active Use Of This File
+
+- use this file for the live forward-looking agenda only;
+- do not read it as the main frozen-line summary;
+- use the glossary for stable object definitions, the final audit note for the
+  frozen-line conclusion, and the closed-line index for the archive reading
+  order.
+
 ## A. Goal
 
-The long-term theorem target is not РІР‚Сљfind a minimumРІР‚Сњ and not РІР‚Сљpromote a raw
-boundary dip.РІР‚Сњ The target is to prove that criticality on the clean full
-`simple support / Р С—Р С•Р Т‘Р Р†Р С‘Р В¶Р Р…РЎвЂ№Р в„– РЎв‚¬Р В°РЎР‚Р Р…Р С‘РЎР‚` path must be read through the correct
+The long-term theorem target is not Р Р†Р вЂљРЎС™find a minimumР Р†Р вЂљРЎСљ and not Р Р†Р вЂљРЎС™promote a raw
+boundary dip.Р Р†Р вЂљРЎСљ The target is to prove that criticality on the clean full
+`simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` path must be read through the correct
 selected reduced object, with `L_red` as the present theorem-facing anchor.
 
 Operational candidate rankings may still use descendants and diagnostics, but
@@ -60,21 +75,12 @@ Statement:
   alone and without overclaiming final physical criticality.
 
 Status:
-- central theorem-facing bottleneck;
-- the first implementable stage `T3a` is now closed enough on the current
-  repository-selected boundary;
-- the candidate-class stage `T3b` is now in place above that boundary;
-- the reduction stage `T3c` is now closed enough at the inclusion-plus-
-  obstruction level;
-- the representative-law stage `T3d` is now closed enough at the exact
-  criterion / obstruction level;
-- the next active stage is `T3u`, the scalar-image collapse theorem,
-  equivalently the vanishing theorem for the exact pairwise scalar-difference
-  image `Omega_sigma,n(q; c_sel)` on the admissible exact pair domain
-  underlying `Sigma_sigma,n(q; c_sel)`;
-  current quotient-final checked-local invariants still do not force that
-  pairwise scalar-difference image to vanish even after the `T3t` scalar-image
-  package.
+- frozen as an archived theorem program on the current clean boundary;
+- keep sections `T3a` and below only as preserved source material for the old
+  line;
+- do not read the old `T3...` chain as the active agenda anymore;
+- for the frozen-line endpoint, use the final audit note and closed-line index
+  instead of continuing this chain from here.
 
 ### `T3a`. Finite-dimensional selected-kernel bridge on the current repository selected family
 
@@ -638,7 +644,7 @@ Verification route:
 Statement:
 - `L_red a = 0` if and only if `L_full(V_adm a) = 0`;
 - equivalently, the bijection from `T3a-L3` identifies `ker(L_red)` exactly
-  with `A_sel^repo РІв‚¬В© ker(L_full)`.
+  with `A_sel^repo Р Р†РІвЂљВ¬Р’В© ker(L_full)`.
 
 Status:
 - already effectively closed at the finite-dimensional selected-family level.
@@ -2953,162 +2959,32 @@ Verification route:
   scalar-difference collapse, and how `T3v` relates to the later reverse-
   inclusion / zero-excess bridge below full `T3`.
 
-## Admissible-lift branch after the saturated `T3` chain
+## Frozen-Line Archive Boundary
 
-- keep the already closed global selected full-center lift
-  `X_sel,n(q) := im(P_sel,n(q))` with `C_center,n(q) P_sel,n(q) = I_4`;
-- the restricted map `C_center|_(X_sel)` is therefore bijective, with inverse
-  `P_sel`;
-- for every clean `(n, q)` and every repo-selected basepoint `c_sel in A_ls`,
-  the selected-architecture lift class
-  `Lift_mem^sel,n(q; c_sel)
-   := { z in A_adm^th,n(q) intersect ker(C_center,n(q)) :
-        c_sel + z in X_sel,n(q),
-        (c_sel + z, c_sel) in Pair_chk,n(q) }`
-  satisfies the exact obstruction theorem
-  `Lift_mem^sel,n(q; c_sel) = {0}`;
-- equivalently,
-  `A_sel^{th,cand},n(q) intersect X_sel,n(q) = A_ls,n(q)`;
-- hence any nonzero admissible global lift of the local membrane mode, if it
-  exists at all, must lie outside the current KKT-selected global architecture
-  `X_sel`, and in particular outside `A_ls`;
-- the next admissible-lift bottleneck is therefore not inside `X_sel`, but the
-  existence or impossibility of candidate-class points in
-  `A_sel^{th,cand},n(q) \ X_sel,n(q)` whose same-trace residual remains
-  checked-local pair-definable and membrane-visible.
-## Extrinsic admissible-lift branch after the `X_sel` obstruction
+The older post-`T3v` clean theorem line is frozen and no longer belongs to the
+active forward-looking agenda of this roadmap.
 
-- the exact intersection law
-  `X_sel,n(q) intersect ker(C_center,n(q)) = {0}`
-  follows from `C_center,n(q) P_sel,n(q) = I_4`;
-- hence for every repo-selected basepoint `c_sel in A_ls subset X_sel` and every
-  nonzero residual direction `0 != z in A_adm^th,n(q) intersect ker(C_center,n(q))`,
-  one automatically has `c_sel + z notin X_sel,n(q)`;
-- so outside-`X_sel` is no longer an independent condition in the lift branch;
-- the extrinsic admissible-lift problem is now exactly to decide whether there
-  exists a nonzero direction in the residual fiber
-  `A_adm^th,n(q) intersect ker(C_center,n(q))`
-  that is both checked-local pair-definable with `c_sel` and membrane-visible;
-- the single remaining exact blocking condition is therefore a global-to-local
-  theorem on that residual fiber deciding pair-definability and the resulting
-  representative-sensitive membrane deviation.
-## Residual-fiber low-order jet obstruction on the active clean branch
+For that frozen branch, use:
 
-- for the residual fiber `R_res,n(q) := A_adm^th,n(q) intersect ker(C_center,n(q))`,
-  any nonzero candidate `z` that is checked-local pair-definable with `c_sel`
-  and membrane-visible must have augmented checked-local residual jet in the
-  one-dimensional line
-  `span(g_mem^aug,n(q))`, where
-  `g_mem^aug,n(q) = [0,0,0,0,alpha,0,0,0,beta,1]`;
-- equivalently, under the same pilot-23 nonresonance regime its first checked
-  nontrivial coefficients satisfy
-  `U1 = alpha T1`, `V1 = beta T1`, `N1 = P1 = Y1 = 0`, with `T1 != 0`, while
-  the checked next layer closes uniquely to zero;
-- thus the residual-fiber search space is cut from all of
-  `A_adm^th,n(q) intersect ker(C_center,n(q))` to those directions whose
-  extracted low-order local jet satisfies this explicit membrane-nullmode
-  equation family;
-- the exact remaining blocking condition is therefore a global checked-local
-  coefficient-extraction theorem on the residual fiber deciding membership in
-  `span(g_mem^aug,n(q))`.
-## Explicit weighted-ansatz realization of the residual-fiber membrane-nullmode jet
+- `docs/theory/current_simple_support_final_audit_note.md` for the final
+  frozen-line conclusion;
+- `docs/theory/current_simple_support_closed_line_index.md` for the archive
+  index and ordered reading list;
+- `docs/theory/current_simple_support_object_glossary.md` for stable object
+  definitions.
 
-- the current weighted trial ansatz does not kill the membrane-nullmode jet on
-  the residual fiber;
-- for any `s_mem != 0`, one has an explicit same-trace coefficient template with
-  only
-  `u_s,k=1,2`, `v,k=1,2`, and `T_s,k=1,2` nonzero,
-  chosen as
-  `u_s,k=1 = -L alpha s_mem`, `u_s,k=2 = -(L^2/x0) alpha s_mem`,
-  `v,k=1 = -L beta s_mem`, `v,k=2 = -(L^2/x0) beta s_mem`,
-  `T_s,k=1 = -L s_mem`, `T_s,k=2 = -(L^2/x0) s_mem`;
-- equivalently,
-  `u_s^z = alpha s_mem x^n (x - x^2/x0)`,
-  `v^z   = beta  s_mem x^n (x - x^2/x0)`,
-  `T_s^z =       s_mem x^(n-1) (x - x^2/x0)`,
-  with all other channels zero;
-- this template lies in `ker(C_center)` and has exact low-order jet
-  `s_mem g_mem^aug,n(q)`;
-- so the current weighted-ansatz repository boundary already realizes the local
-  membrane-nullmode jet globally on the residual fiber;
-- the remaining open issue is therefore no longer low-order realizability of the
-  jet itself, but its full theorem-facing upgrade to an exact admissible
-  representative-sensitive membrane lift in `A_adm^th,n(q)`.
-## Exact failure point after the explicit weighted-ansatz membrane template
+## Current Live Agenda After Freeze
 
-- after the explicit residual template is built, the clean branch is no longer
-  blocked by low-order realizability of `g_mem^aug` on `ker(C_center)`;
-- the template does not yet extend to a theorem-facing admissible lift on the
-  current exact repository boundary, because the upgrade already breaks at the
-  passage from the explicit weighted trial vector to `A_adm^th` / `Pair_chk`;
-- this is sharper than the earlier residual-fiber wording: the remaining open
-  issue is not whether the membrane-nullmode jet can occur, and not whether a
-  nonzero membrane coordinate would be visible if a checked-local shadow were
-  available;
-- the exact unresolved step is the theorem-facing admissibility / checked-local
-  shadow upgrade for that explicit template.
+The live theorem-facing agenda is now intentionally narrow.
 
-## Current object-closure boundary on the clean branch
+If theorem work returns on this topic, it should not continue the old
+representative-reformulation chain. It should instead do one of the following:
 
-- the older `T3...` style theorem chain should now be treated as saturated as
-  far as the current clean repository boundary allows;
-- the explicit weighted-ansatz membrane template keeps the membrane-channel
-  skepticism alive on the current repository boundary, so the criterion still
-  does not have theorem-facing authority to exclude that channel;
-- but the one-point upgrade question for
-  `c_temp := c_sel + z_temp,n(q;s_mem)` is not yet decidable from the currently
-  closed theorem-facing objects;
-- more precisely, the current boundary does not yet close
-  `c_temp in A_adm^th,n(q)` as a finished one-point admissibility question, and
-  it does not yet close `(c_temp, c_sel) in Pair_chk,n(q)` as a finished
-  one-point checked-local pair question;
-- therefore the new active line is not another representative reformulation but
-  the one-point closure branch:
-  `Z_adm(c_temp)` and `Z_chk(c_temp,c_sel)`;
-- more sharply, these are not symmetric generic upgrades:
-  `Z_adm(c_temp)` is the one-point continuum-realization theorem for the
-  explicit weighted-trial point `c_temp`, while `Z_chk(c_temp,c_sel)` reduces
-  to one-point checked-local shadow existence for `c_temp` on the fixed
-  equal-trace selected class of `c_sel`; by the already closed overlap law,
-  common-chart compatibility is not an additional independent bottleneck there;
-- on the admissibility side the missing theorem is now sharper than the whole
-  losslessness question `A_repo = A_full^th`: the only coefficient-to-theorem
-  identification currently closed is the selected-family bijection
-  `a -> V_adm,n(q) a` onto `A_repo = A_ls`, so deciding `c_temp in A_adm^th`
-  requires a one-point extension of that identification from `A_repo` to this
-  explicit off-selected weighted-trial point;
-- even more sharply, this is not an extension across a generic off-selected
-  weighted-trial point: because `C_center z_temp = 0`, the explicit candidate
-  already lies in the same fixed ansatz-level center-regular fiber as
-  `c_sel`, namely
-  `F_n,q(a_sel) = { c in X_trial,n(q) : C_center,n(q) c = [a_sel1, a_sel2, 0, 0] }`;
-  so the exact unresolved admissibility step is continuum realization of one
-  explicit off-selected point of that fixed fiber, not recovery of center
-  regularity or leading-trace compatibility from scratch;
-- and sharper still: because `c_temp = c_sel + z_temp` with
-  `0 != z_temp in ker(C_center,n(q))`, the exact fiber-excess identity on the
-  current weighted-ansatz boundary gives
-  `Delta_H,n,q(c_temp) = z_temp^T H_n,q z_temp > 0`;
-  so the remaining admissibility question is whether the theorem-facing clean
-  admissible class contains this explicit positive-fiber-excess point on the
-  affine line `c_sel + span(z_temp)`, or collapses on that line to the unique
-  selected `H_n,q`-minimal representative `c_sel`;
-- equivalently, because the selected basepoint already lies on the theorem-
-  facing selected side
-  `A_sel^repo,n(q) subseteq A_sel^{th,cand},n(q) subseteq A_adm^th,n(q)` and
-  `A_adm^th,n(q)` is the intended tangent space of the linearized clean mixed
-  problem, the whole line-level fork reduces exactly to one residual-direction
-  question:
-  `z_temp in A_adm^th,n(q) intersect ker(C_center,n(q)) ?`
-  Indeed,
-  `(c_sel + span(z_temp)) intersect A_adm^th,n(q) = {c_sel}`
-  if and only if
-  `span(z_temp) intersect A_adm^th,n(q) = {0}`,
-  while any nonzero theorem-facing admissible point on that line is equivalent
-  to `z_temp` itself being an admissible same-trace residual direction;
-- until one of those one-point closure theorems is built or refuted, the
-  current criterion remains theorem-facing incomplete on the explicit membrane
-  candidate.
+1. produce genuinely new continuum / equation-level admissibility input aimed
+   directly at the frozen residual-direction boundary
+   `z_temp,n(q;s_mem) in A_adm^th,n(q) intersect ker(C_center,n(q)) ?`;
+2. stop theorem continuation and return to criterion reformulation at the level
+   of the current criterion statement itself.
 
-For the final audit-style project reading of this stopping point, see
-`docs/theory/current_simple_support_final_audit_note.md`.
+This roadmap therefore no longer treats the old admissible-lift / one-point
+closure replay as an active theorem program.

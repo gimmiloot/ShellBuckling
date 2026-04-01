@@ -6,9 +6,13 @@ axisymmetric `simple support` background path.
 
 It is intentionally short and operational. It does not replace:
 
+- `docs/theory/current_simple_support_object_glossary.md` for stable object
+  definitions and notation;
 - `docs/theory/current_theory_verification_map.md` for claim-status tracking;
 - `docs/theory/current_simple_support_final_audit_note.md` for the final
   audit-style closure reading of the current clean theorem-facing line;
+- `docs/theory/current_simple_support_closed_line_index.md` for the frozen-line
+  archive/index view and ordered source-of-truth reading list;
 - `docs/theory/current_mixed_weak_theory_note.tex` for compact scientific
   discussion;
 - `docs/theory/vyvod_uravneniy_updated17.md` for derivation work;
@@ -37,61 +41,34 @@ state simple-support background without reusing the older `F_min` line.
 
 
 ## Current Theorem-Facing Criterion Status
-The theorem-facing local branch for the clean full `simple support / подвижный шарнир`
-reduction is now carried by pilot 23 rather than by the older hybrid scans.
-Its current stopping point is Outcome B on the checked local boundary:
+For operational reading on the current clean branch:
 
-- the selected leading trace plane is still `J_0(A_ls) = im(D_amp)`;
-- the first checked higher-order local selected object is a corrected 3D family;
-- the correct checked-boundary local theorem-facing object is the quotient
-  `im(D_rich,eta^corr) / span(g_mem)`;
-- no canonical higher-order 2D representative is currently justified on that
-  checked boundary.
+- use `A_ls` as the current selected reduced family;
+- use `L_red` as the main theorem-facing reduced object;
+- keep `B_red` / `B_mix` as exploratory descendants rather than proved
+  replacements for `L_red`;
+- use `docs/theory/current_simple_support_criterion_bridge_note.md` for the
+  current interpretation language;
+- use `docs/theory/current_simple_support_object_glossary.md` for stable object
+  definitions.
 
-For criterion interpretation this means the clean reduced family should now be
-read as the global KKT-selected family `A_ls`, the stacked reduced operator
-`L_red` remains the theorem-facing target object, and the boundary-only objects
-`B_red` / `B_mix` remain exploratory diagnostics rather than proved full
-replacements for `L_red`.
-The stabilized repo-facing interpretation language is summarized in
-`docs/theory/current_simple_support_criterion_bridge_note.md`.
+## Frozen Theorem-Line Note
+The older theorem-facing line is frozen and should not be continued in the same
+style from this operational status page.
 
-## Current One-Point Closure Boundary
-The older theorem-step chain above the frozen local Outcome-B boundary should
-now be read as saturated as far as the current clean repository boundary
-allows.
+Operationally, the only reading needed here is:
 
-The explicit weighted-ansatz membrane template is still important operationally:
-it keeps membrane-channel skepticism alive on the present repository boundary.
-But the current theorem-facing objects are still not closed enough to decide
-the one-point status of
+- the frozen line did not validate the current criterion;
+- it did not refute the current criterion either;
+- the current criterion still does not have theorem-facing authority to exclude
+  the explicit membrane candidate on the present clean boundary.
 
-```text
-c_temp := c_sel + z_temp,n(q;s_mem).
-```
+For the frozen-line conclusion, exact final unresolved endpoint, and reusable
+results, see:
 
-Specifically:
-
-- `A_adm^th,n(q)` is not yet closed enough to decide
-  `c_temp in A_adm^th,n(q)`;
-- `Pair_chk,n(q)` is structurally defined, but not yet closed enough to decide
-  `(c_temp, c_sel) in Pair_chk,n(q)` for this explicit point.
-
-So the active theorem-facing line is no longer another old-style `T3...`
-refinement. It is now the one-point closure branch:
-
-- `Z_adm(c_temp)`: build or refute a one-point admissibility closure theorem
-  for `c_temp`;
-- `Z_chk(c_temp,c_sel)`: build or refute a one-point common-corrected-chart /
-  checked-local shadow closure theorem for `(c_temp, c_sel)`.
-
-Until one of those closure theorems is available, the current clean criterion
-should not be read as theorem-secured enough to exclude that explicit membrane
-candidate.
-
-For the final audit-style project-state reading of this stopping point, see
-`docs/theory/current_simple_support_final_audit_note.md`.
-
+- `docs/theory/current_simple_support_final_audit_note.md`
+- `docs/theory/current_simple_support_closed_line_index.md`
+- `docs/theory/current_simple_support_object_glossary.md`
 
 ## First Clean Full Critical-Search Campaign
 The first full exploratory run of the standalone clean simple-support critical
@@ -351,7 +328,7 @@ The preferred next move is no longer deeper continuation of the same checked
 local theorem branch. That branch is frozen for now at Outcome B on its current
 checked boundary.
 
-Operationally, the clean full `simple support / подвижный шарнир` workflow still
+Operationally, the clean full `simple support / РїРѕРґРІРёР¶РЅС‹Р№ С€Р°СЂРЅРёСЂ` workflow still
 keeps the same high-load discipline:
 
 - use `u_z`-scaled continuation with auxiliary arc-like step adaptation as the
@@ -402,5 +379,3 @@ solver path:
 
 - `experiments/supporting/run_supporting_dimensionless_comparison.py`
 - `experiments/supporting/run_supporting_determinant_comparison.py`
-
-

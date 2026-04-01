@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 boundary_matrix_targeted_scan.py
 
@@ -28,10 +28,10 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import Any, Sequence
-import inspect
 
 import numpy as np
 
+from shell_buckling.mixed_weak import _core_reduction as red
 from shell_buckling.mixed_weak import solver_patched_core as mw
 
 try:
@@ -68,11 +68,18 @@ TARGETED_NPTS = 41
 TARGETED_MAX_ITERS = 2
 TARGETED_EDGE_PAD = 1
 
-ROW_SCALE = np.array([1.0, 1.0, 1.0, 2.0 * (1.0 + mw.nu), mw.C_twist], dtype=float)
+ROW_SCALE = red.make_row_scale(mw.nu, mw.C_twist)
+LOCAL_BMIX_ROW_SPECS = [
+    ('u_n', ('u_n',)),
+    ('phi', ('phi', 'varphi')),
+    ('T_s', ('T_s', 'Ts')),
+    ('S', ('S',)),
+    ('H', ('H',)),
+]
 
 
 def balanced_Bmix(B: np.ndarray) -> np.ndarray:
-    return ROW_SCALE[:, None] * np.asarray(B, dtype=float)
+    return red.balanced_Bmix(B, row_scale=ROW_SCALE)
 
 
 @dataclass
@@ -104,75 +111,26 @@ def assemble_interior_and_boundary(
     m_basis: int = 6,
     n_collocation: int = 120,
 ):
-    space = mw.TrialSpace(n=int(n), x0=float(x0), m_basis=int(m_basis))
-    x_col = np.linspace(float(x0), 1.0, int(n_collocation) + 2)[1:-1]
-    n_eq = 8 * x_col.size
-    n_unknowns = space.n_unknowns
-    A_int = np.zeros((n_eq, n_unknowns), dtype=float)
-    B_full = np.zeros((5, n_unknowns), dtype=float)
-    for col in range(n_unknowns):
-        resid, bvec = mw.assemble_operator_column(x_col, base, space, col)
-        A_int[:, col] = resid.reshape(-1, order='F')
-        B_full[:, col] = bvec
-    return space, x_col, A_int, B_full
+    return red.assemble_interior_and_boundary(
+        mw_module=mw,
+        n=n,
+        base=base,
+        x0=x0,
+        m_basis=m_basis,
+        n_collocation=n_collocation,
+    )
 
 
 def make_center_constraint_matrix(space: mw.TrialSpace, base: mw.BaseInterp) -> np.ndarray:
-    """
-    Build center-leading-amplitude functionals on coefficient space.
-
-    Rows correspond to approximate leading coefficients at x=x0 for:
-      0: u_s / x^n
-      1: phi / x^(n-1)
-      2: u_n / x^n + (lambda_c / n) * phi / x^(n-1)
-      3: psi / x^(n-1) - lambda_c * phi / x^(n-1)
-    """
-    x0 = np.array([space.x0], dtype=float)
-    b0 = base.at_many(x0)
-    lam_c = float(b0['lambda_s0'][0])
-    n = space.n
-    N = space.n_unknowns
-    C = np.zeros((4, N), dtype=float)
-    xpow_us = space.x0 ** n
-    xpow_phi = space.x0 ** (n - 1)
-
-    for col in range(N):
-        vals = space.basis_eval(x0, col)
-        us = float(vals['u_s'][0]) / xpow_us
-        un = float(vals['u_n'][0]) / xpow_us
-        phi = float(vals['phi'][0]) / xpow_phi
-        psi = float(vals['psi'][0]) / xpow_phi
-        C[0, col] = us
-        C[1, col] = phi
-        C[2, col] = un + (lam_c / n) * phi
-        C[3, col] = psi - lam_c * phi
-    return C
+    return red.make_center_constraint_matrix(space, base)
 
 
 def solve_constrained_mode(A: np.ndarray, C: np.ndarray, d: np.ndarray, reg: float = 1e-12) -> np.ndarray:
-    """Constrained least squares via KKT: min ||A c||^2 + reg ||c||^2 s.t. C c = d."""
-    N = A.shape[1]
-    m = C.shape[0]
-    ATA = A.T @ A + reg * np.eye(N)
-    KKT = np.block([
-        [ATA, C.T],
-        [C, np.zeros((m, m), dtype=float)],
-    ])
-    rhs = np.concatenate([np.zeros(N, dtype=float), d.astype(float)])
-    sol = np.linalg.solve(KKT, rhs)
-    c = sol[:N]
-    nrm = np.linalg.norm(c)
-    if nrm > 0:
-        c = c / nrm
-    return c
+    return red.solve_constrained_mode(A, C, d, reg=reg)
 
 
 def orthogonalize_against(c: np.ndarray, ref: np.ndarray) -> np.ndarray:
-    c = c - ref * np.dot(ref, c)
-    nrm = np.linalg.norm(c)
-    if nrm > 0:
-        c = c / nrm
-    return c
+    return red.orthogonalize_against(c, ref)
 
 
 def build_boundary_matrix_test_v2(
@@ -190,20 +148,9 @@ def build_boundary_matrix_test_v2(
     )
     C_center = make_center_constraint_matrix(space, base)
 
-    # Mode 1: membrane-led central mode: u_s-leading = 1, phi-leading = 0
-    d1 = np.array([1.0, 0.0, 0.0, 0.0], dtype=float)
-    c1 = solve_constrained_mode(A_int, C_center, d1)
-
-    # Mode 2: bending/twist-led central mode: u_s-leading = 0, phi-leading = 1
-    d2 = np.array([0.0, 1.0, 0.0, 0.0], dtype=float)
-    c2_raw = solve_constrained_mode(A_int, C_center, d2)
-    c2 = orthogonalize_against(c2_raw, c1)
-
-    V_reg = np.column_stack([c1, c2])
+    c1, c2, V_reg, residual_norms, center_values = red.build_two_mode_regular_family(A_int, C_center)
     B_mix = B_full @ V_reg
     sigma_Bmix = float(np.linalg.svd(B_mix, compute_uv=False)[-1])
-    residual_norms = np.array([np.linalg.norm(A_int @ c1), np.linalg.norm(A_int @ c2)], dtype=float)
-    center_values = C_center @ V_reg
 
     return BoundaryMatrixObjectsV2(
         n=int(n),
@@ -228,104 +175,34 @@ def build_boundary_matrix_test_v2(
 # Mode / channel reconstruction diagnostics
 # -----------------------------------------------------------------------------
 def sample_indices(x_grid: np.ndarray, checkpoints: Sequence[float] = CHECKPOINTS) -> list[int]:
-    n = len(x_grid)
-    out: list[int] = []
-    for a in checkpoints:
-        j = int(round(float(a) * (n - 1)))
-        j = max(0, min(n - 1, j))
-        out.append(j)
-    return sorted(set(out))
+    return red.sample_indices(x_grid, checkpoints)
 
 
 def _to_1d_float_array(val: Any, n_x: int) -> np.ndarray | None:
-    arr = np.asarray(val, dtype=float)
-    if arr.ndim == 0:
-        arr = np.full(n_x, float(arr), dtype=float)
-    else:
-        arr = np.reshape(arr, (-1,))
-        if arr.size == 1:
-            arr = np.full(n_x, float(arr[0]), dtype=float)
-        elif arr.size != n_x:
-            return None
-    return arr
+    return red._to_1d_float_array(val, n_x)
 
 
 def _normalize_channel_dict(vals: Any, n_x: int) -> dict[str, np.ndarray]:
-    if not isinstance(vals, dict):
-        return {}
-    out: dict[str, np.ndarray] = {}
-    for key, val in vals.items():
-        arr = _to_1d_float_array(val, n_x)
-        if arr is None:
-            continue
-        out[str(key)] = arr
-    return out
+    return red._normalize_channel_dict(vals, n_x)
 
 
 def _merge_channel_dict(dst: dict[str, np.ndarray], src: dict[str, np.ndarray]) -> dict[str, np.ndarray]:
-    for key, arr in src.items():
-        dst[key] = np.asarray(arr, dtype=float)
-    return dst
+    return red._merge_channel_dict(dst, src)
 
 
 def _call_with_supported_kwargs(fn, **kwargs):
-    try:
-        sig = inspect.signature(fn)
-    except (TypeError, ValueError):
-        return None
-    params = sig.parameters
-    accepts_varkw = any(p.kind == inspect.Parameter.VAR_KEYWORD for p in params.values())
-    call_kwargs = {}
-    for k, v in kwargs.items():
-        if accepts_varkw or k in params:
-            call_kwargs[k] = v
-    try:
-        return fn(**call_kwargs)
-    except TypeError:
-        return None
+    return red._call_with_supported_kwargs(fn, **kwargs)
 
 
 def _discover_extended_channel_dict(space, base, x: np.ndarray, col: int, core_vals: dict[str, np.ndarray]) -> dict[str, np.ndarray]:
-    n_x = x.size
-    candidates: list[tuple[str, Any]] = []
-
-    candidate_names = [
-        'basis_eval_full', 'basis_eval_extended', 'basis_eval_ex',
-        'eval_full', 'evaluate_all_channels', 'evaluate_all_channels_for_basis',
-        'evaluate_basis_channels', 'evaluate_basis_channels_full',
-        'probe_basis_channels', 'reconstruct_basis_channels',
-        'postprocess_basis_channels', 'postprocess_channels',
-        'compute_extra_channels', 'compute_resultant_channels',
-        'resultant_eval', 'resultant_basis_eval',
-    ]
-
-    for owner_name, owner in [('space', space), ('mw', mw), ('base', base)]:
-        if owner is None:
-            continue
-        for name in candidate_names:
-            fn = getattr(owner, name, None)
-            if callable(fn):
-                candidates.append((f'{owner_name}.{name}', fn))
-
-    merged: dict[str, np.ndarray] = {}
-    for _name, fn in candidates:
-        vals = _call_with_supported_kwargs(
-            fn,
-            x=x,
-            col=col,
-            basis_col=col,
-            j=col,
-            idx=col,
-            space=space,
-            base=base,
-            vals=core_vals,
-            basis_vals=core_vals,
-            core=core_vals,
-        )
-        extra = _normalize_channel_dict(vals, n_x)
-        if extra:
-            _merge_channel_dict(merged, extra)
-    return merged
+    return red._discover_extended_channel_dict(
+        mw_module=mw,
+        space=space,
+        base=base,
+        x=x,
+        col=col,
+        core_vals=core_vals,
+    )
 
 
 def _inject_exact_boundary_rows(
@@ -333,27 +210,7 @@ def _inject_exact_boundary_rows(
     x: np.ndarray,
     boundary_mode: np.ndarray | None,
 ) -> dict[str, np.ndarray]:
-    if boundary_mode is None:
-        return channels
-    idx = np.where(np.isclose(x, 1.0, atol=1.0e-12, rtol=0.0))[0]
-    if idx.size == 0:
-        return channels
-    j = int(idx[-1])
-    row_map = {
-        'u_n': float(boundary_mode[0]),
-        'phi': float(boundary_mode[1]),
-        'T_s': float(boundary_mode[2]),
-        'S': float(boundary_mode[3]),
-        'H': float(boundary_mode[4]),
-    }
-    n_x = x.size
-    for key, val in row_map.items():
-        arr = np.asarray(channels.get(key, np.full(n_x, np.nan, dtype=float)), dtype=float).copy()
-        if arr.size != n_x:
-            arr = np.full(n_x, np.nan, dtype=float)
-        arr[j] = val
-        channels[key] = arr
-    return channels
+    return red._inject_exact_boundary_rows(channels, x, boundary_mode)
 
 
 def evaluate_mode_channels(
@@ -363,87 +220,25 @@ def evaluate_mode_channels(
     x: np.ndarray,
     B_full: np.ndarray | None = None,
 ) -> dict[str, np.ndarray]:
-    """
-    Reconstruct mode channels with several fallbacks.
-
-    1) Always use TrialSpace.basis_eval(x, col) for the channels it exposes directly.
-    2) If the solver provides any extended helper (basis_eval_full / evaluate_all_channels / ...),
-       detect it at runtime and merge its output.
-    3) If S/H are still unavailable locally, inject their exact boundary values at x=1 from
-       the already assembled boundary rows B_full @ coeffs.
-    """
-    x = np.asarray(x, dtype=float)
-    n_x = x.size
-    keys_union: set[str] = set()
-    cache: list[dict[str, np.ndarray]] = []
-    coeffs = np.asarray(coeffs, dtype=float)
-
-    for col, alpha in enumerate(coeffs):
-        if abs(alpha) == 0.0:
-            cache.append({})
-            continue
-        core = _normalize_channel_dict(space.basis_eval(x, col), n_x)
-        extra = _discover_extended_channel_dict(space, base, x, col, core)
-        cur = dict(core)
-        _merge_channel_dict(cur, extra)
-        for key in cur.keys():
-            keys_union.add(str(key))
-        cache.append(cur)
-
-    out: dict[str, np.ndarray] = {key: np.zeros(n_x, dtype=float) for key in sorted(keys_union)}
-    for alpha, cur in zip(coeffs, cache):
-        if abs(alpha) == 0.0:
-            continue
-        for key, arr in cur.items():
-            out[key] += float(alpha) * arr
-
-    boundary_mode = None if B_full is None else (np.asarray(B_full, dtype=float) @ coeffs)
-    out = _inject_exact_boundary_rows(out, x, boundary_mode)
-    return out
+    return red.evaluate_mode_channels(
+        mw_module=mw,
+        space=space,
+        base=base,
+        coeffs=coeffs,
+        x=x,
+        B_full=B_full,
+    )
 
 
 def _channel_alias(channels: dict[str, np.ndarray], *names: str) -> np.ndarray | None:
-    for name in names:
-        if name in channels:
-            return channels[name]
-    return None
+    return red.channel_alias(channels, *names)
 
 
 def build_local_Bmix_from_channels(ch1: dict[str, np.ndarray], ch2: dict[str, np.ndarray], j: int):
-    row_specs = [
-        ('u_n', ('u_n',)),
-        ('phi', ('phi', 'varphi')),
-        ('T_s', ('T_s', 'Ts')),
-        ('S', ('S',)),
-        ('H', ('H',)),
-    ]
-    rows = []
-    missing: list[str] = []
-    available_labels: list[str] = []
-    nonfinite: list[str] = []
-    for label, aliases in row_specs:
-        a1 = _channel_alias(ch1, *aliases)
-        a2 = _channel_alias(ch2, *aliases)
-        if a1 is None or a2 is None:
-            missing.append(label)
-            continue
-        v1 = float(a1[j])
-        v2 = float(a2[j])
-        if not (np.isfinite(v1) and np.isfinite(v2)):
-            nonfinite.append(label)
-            continue
-        rows.append([v1, v2])
-        available_labels.append(label)
-    if not rows:
-        return None, missing, nonfinite, available_labels
-    return np.asarray(rows, dtype=float), missing, nonfinite, available_labels
+    return red.build_local_Bmix_from_channels(ch1, ch2, j, row_specs=LOCAL_BMIX_ROW_SPECS)
 
 def print_available_channels(space, base=None) -> None:
-    x_probe = np.array([space.x0, 0.25, 0.75, 1.0], dtype=float)
-    vals = _normalize_channel_dict(space.basis_eval(x_probe, 0), x_probe.size)
-    extra = _discover_extended_channel_dict(space, base, x_probe, 0, vals)
-    keys = sorted(set(vals.keys()) | set(extra.keys()))
-    print("available reconstructed channels =", keys)
+    print("available reconstructed channels =", red.available_channel_names(mw_module=mw, space=space, base=base))
 
 
 def print_center_diagnostics(obj: BoundaryMatrixObjectsV2) -> None:
@@ -473,18 +268,7 @@ def print_mode_track(tag: str, x_grid: np.ndarray, channels: dict[str, np.ndarra
 
 
 def _safe_sigma_min(A: np.ndarray) -> float | None:
-    A = np.asarray(A, dtype=float)
-    if A.ndim != 2 or A.size == 0:
-        return None
-    if not np.all(np.isfinite(A)):
-        return None
-    try:
-        s = np.linalg.svd(A, compute_uv=False)
-    except np.linalg.LinAlgError:
-        return None
-    if s.size == 0:
-        return None
-    return float(s[-1])
+    return red.safe_sigma_min(A)
 
 
 def print_local_Bmix_diagnostics(tag: str, x_grid: np.ndarray, ch1: dict[str, np.ndarray], ch2: dict[str, np.ndarray]) -> None:
@@ -550,7 +334,7 @@ def print_local_Bmix_diagnostics(tag: str, x_grid: np.ndarray, ch1: dict[str, np
         print(f"      available rows {labels} with norms =", np.array2string(rn, precision=3, suppress_small=False))
         if len(labels) == 5:
             rn_bal = np.linalg.norm(balanced_Bmix(B_any), axis=1)
-            print("      balanced row norms [u_n, phi, T_s, gamma_sОё, kappa_sОё] =",
+            print("      balanced row norms [u_n, phi, T_s, gamma_sРћС‘, kappa_sРћС‘] =",
                   np.array2string(rn_bal, precision=3, suppress_small=False))
         if missing:
             print(f"      missing rows = {missing}")
@@ -575,7 +359,7 @@ def print_boundary_matrix(obj: BoundaryMatrixObjectsV2) -> None:
     print("\nB_mix_balanced =")
     with np.printoptions(precision=6, suppress=True):
         print(B_bal)
-    print("balanced row labels: [u_n(1), phi(1), T_s(1), gamma_sОё(1), kappa_sОё(1)]")
+    print("balanced row labels: [u_n(1), phi(1), T_s(1), gamma_sРћС‘(1), kappa_sРћС‘(1)]")
     print("balanced row norms =", np.linalg.norm(B_bal, axis=1))
     print("balanced col norms =", np.linalg.norm(B_bal, axis=0))
     s_bal = np.linalg.svd(B_bal, compute_uv=False)

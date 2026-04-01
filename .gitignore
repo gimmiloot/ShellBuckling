@@ -1,4 +1,4 @@
-# Local Python environment
+﻿# Local Python environment
 .venv/
 
 # Python cache
@@ -9,6 +9,9 @@ __pycache__/
 
 # Generated outputs
 output/
+!output/
+output/*
+!output/README.md
 
 # Proof-pilot runtime cache
 proof_pilots/*/fast_run/checkpoints/

@@ -31,20 +31,16 @@ rejected directions.
   add-ons around the same clean architecture; after their non-decisive outcome,
   the next planned stage is a more theoretical criterion rework rather than
   another broad scan.
-- `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/` is the
-  active theorem-facing branch for the clean full `simple support / подвижный шарнир`
-  reduction/local admissibility questions. Its current stopping point is Outcome
-  B on the checked local boundary: the local theorem-facing object there is the
-  quotient `im(D_rich,eta^corr) / span(g_mem)`, not a canonically normalized 2D
-  higher-order representative.
-- The next active theory direction is therefore criterion-level synthesis:
-  connect the current quotient-based local conclusion back to the global reduced
-  criterion objects `A_ls`, `L_red`, `B_red`, and `B_mix`, rather than keep
-  extending the same checked local branch.
+- The clean theorem-facing closure/archive layer should now be read through the
+  dedicated theory docs rather than from this repository map:
+  `docs/theory/current_simple_support_status.md`,
+  `docs/theory/current_simple_support_final_audit_note.md`,
+  `docs/theory/current_simple_support_closed_line_index.md`,
+  `docs/theory/current_simple_support_object_glossary.md`, and
+  `docs/theory/current_theory_verification_map.md`.
 
 ## Boundary-Condition Task Separation
-
-- Moving clamp / sliding clamp (`РїРѕРґРІРёР¶РЅР°СЏ Р·Р°РґРµР»РєР°`) appears most cleanly in the
+- Moving clamp / sliding clamp (`Р С—Р С•Р Т‘Р Р†Р С‘Р В¶Р Р…Р В°РЎРЏ Р В·Р В°Р Т‘Р ВµР В»Р С”Р В°`) appears most cleanly in the
   supporting comparison modules:
   - `src/shell_buckling/supporting/dimensionless_background_comparison.py`
   - `src/shell_buckling/supporting/determinant_criterion_comparison.py`
@@ -173,26 +169,26 @@ rejected directions.
 - `docs/theory/current_mixed_weak_theory_note.tex`
   Compact supervisor-facing note for the current mixed-weak theory.
 
+- `docs/theory/current_simple_support_object_glossary.md`
+  Canonical glossary for stable object names repeatedly used across the clean
+  simple-support status, roadmap, verification, and archive docs.
+
 - `docs/theory/current_simple_support_criterion_bridge_note.md`
   Compact repo-facing bridge memo fixing the current interpretation language for
   `A_ls`, `L_red`, `B_red`, `B_mix`, and the clean candidate labels after the
   local Outcome-B stopping point.
 
 - `docs/theory/current_simple_support_theorem_roadmap.md`
-  Compact theorem-program note stating the next theorem-facing agenda above the
-  frozen local Outcome-B boundary, with `T3` as the global selected-kernel
-  bridge theorem for `L_red`.
+  Live forward-looking theorem agenda only; the frozen-line replay is no longer
+  the active reading of this file.
 - `docs/theory/current_simple_support_final_audit_note.md`
-  Short final audit-style note freezing the old clean theorem-step line as
-  saturated on the present repository boundary and recording the exact
-  one-point admissibility closure theorem still missing for the explicit
-  membrane candidate.
+  Main frozen-line conclusion note for the old clean theorem-facing branch.
+- `docs/theory/current_simple_support_closed_line_index.md`
+  Archive/index entry point for the frozen clean theorem line, including the
+  ordered reading list and reusable results.
 - `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/`
-  Active theorem-facing proof-pilot branch for the clean full `simple support / подвижный шарнир`
-  reduction, selected-family interpretation, and local admissibility boundary.
-  The current local stopping point there is Outcome B on the checked boundary,
-  and the next preferred move is criterion-level synthesis rather than deeper
-  continuation of the same local branch.
+  Proof-pilot source material for the clean theorem-facing reduction and local
+  admissibility boundary.
 
 - `docs/theory/current_simple_support_status.md`
   Canonical operational status page for the separate 6-state simple-support
@@ -240,4 +236,3 @@ rejected directions.
 
 - `.venv/`, `__pycache__/`
   Local environment and generated cache folders, not scientific source files.
-

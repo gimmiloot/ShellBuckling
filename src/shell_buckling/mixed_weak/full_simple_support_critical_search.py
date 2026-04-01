@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Standalone clean critical-load search for the full hinged / simple-support task.
 
@@ -14,6 +14,7 @@ from typing import Sequence
 
 import numpy as np
 
+from shell_buckling.mixed_weak import _core_reduction as red
 from shell_buckling.mixed_weak import axisymmetric_simple_support_background as simple_bg
 from shell_buckling.mixed_weak import simple_support_high_load_background_continuation as high_bg
 from shell_buckling.mixed_weak import solver_patched_core as mw
@@ -25,7 +26,7 @@ DEFAULT_SIMPLE_SUPPORT_CRITICAL_MODES = (2, 3, 4, 5, 6)
 DEFAULT_P_MIN_MPA = 0.0
 DEFAULT_P_MAX_MPA = 15.0
 DEFAULT_P_NPTS = 31
-ROW_SCALE = np.array([1.0, 1.0, 1.0, 2.0 * (1.0 + mw.nu), mw.C_twist], dtype=float)
+ROW_SCALE = red.make_row_scale(mw.nu, mw.C_twist)
 
 
 @dataclass
@@ -99,7 +100,7 @@ def default_load_grid(
 
 
 def balanced_Bmix(B: np.ndarray) -> np.ndarray:
-    return ROW_SCALE[:, None] * np.asarray(B, dtype=float)
+    return red.balanced_Bmix(B, row_scale=ROW_SCALE)
 
 
 def build_full_simple_support_base_interp(
@@ -158,65 +159,26 @@ def assemble_interior_and_boundary(
     m_basis: int = 6,
     n_collocation: int = 120,
 ) -> tuple[mw.TrialSpace, np.ndarray, np.ndarray, np.ndarray]:
-    space = mw.TrialSpace(n=int(n), x0=float(x0), m_basis=int(m_basis))
-    x_col = np.linspace(float(x0), 1.0, int(n_collocation) + 2, dtype=float)[1:-1]
-    n_eq = 8 * x_col.size
-    n_unknowns = space.n_unknowns
-    A_int = np.zeros((n_eq, n_unknowns), dtype=float)
-    B_full = np.zeros((5, n_unknowns), dtype=float)
-    for col in range(n_unknowns):
-        resid, bvec = mw.assemble_operator_column(x_col, base, space, col)
-        A_int[:, col] = resid.reshape(-1, order="F")
-        B_full[:, col] = bvec
-    return space, x_col, A_int, B_full
+    return red.assemble_interior_and_boundary(
+        mw_module=mw,
+        n=n,
+        base=base,
+        x0=x0,
+        m_basis=m_basis,
+        n_collocation=n_collocation,
+    )
+
 
 def make_center_constraint_matrix(space: mw.TrialSpace, base: mw.BaseInterp) -> np.ndarray:
-    x0 = np.array([space.x0], dtype=float)
-    b0 = base.at_many(x0)
-    lam_c = float(b0["lambda_s0"][0])
-    n = space.n
-    C = np.zeros((4, space.n_unknowns), dtype=float)
-    xpow_us = space.x0 ** n
-    xpow_phi = space.x0 ** (n - 1)
-
-    for col in range(space.n_unknowns):
-        vals = space.basis_eval(x0, col)
-        us = float(vals["u_s"][0]) / xpow_us
-        un = float(vals["u_n"][0]) / xpow_us
-        phi = float(vals["phi"][0]) / xpow_phi
-        psi = float(vals["psi"][0]) / xpow_phi
-        C[0, col] = us
-        C[1, col] = phi
-        C[2, col] = un + (lam_c / n) * phi
-        C[3, col] = psi - lam_c * phi
-    return C
+    return red.make_center_constraint_matrix(space, base)
 
 
 def solve_constrained_mode(A: np.ndarray, C: np.ndarray, d: np.ndarray, reg: float = 1.0e-12) -> np.ndarray:
-    n_unknowns = A.shape[1]
-    n_constraints = C.shape[0]
-    ATA = A.T @ A + reg * np.eye(n_unknowns)
-    KKT = np.block(
-        [
-            [ATA, C.T],
-            [C, np.zeros((n_constraints, n_constraints), dtype=float)],
-        ]
-    )
-    rhs = np.concatenate([np.zeros(n_unknowns, dtype=float), d.astype(float)])
-    sol = np.linalg.solve(KKT, rhs)
-    coeffs = sol[:n_unknowns]
-    norm = np.linalg.norm(coeffs)
-    if norm > 0.0:
-        coeffs = coeffs / norm
-    return coeffs
+    return red.solve_constrained_mode(A, C, d, reg=reg)
 
 
 def orthogonalize_against(c: np.ndarray, ref: np.ndarray) -> np.ndarray:
-    c = c - ref * np.dot(ref, c)
-    norm = np.linalg.norm(c)
-    if norm > 0.0:
-        c = c / norm
-    return c
+    return red.orthogonalize_against(c, ref)
 
 
 def build_boundary_matrix_objects(
@@ -244,13 +206,8 @@ def build_boundary_matrix_objects(
     )
     C_center = make_center_constraint_matrix(space, base)
 
-    c1 = solve_constrained_mode(A_int, C_center, np.array([1.0, 0.0, 0.0, 0.0], dtype=float))
-    c2_raw = solve_constrained_mode(A_int, C_center, np.array([0.0, 1.0, 0.0, 0.0], dtype=float))
-    c2 = orthogonalize_against(c2_raw, c1)
-
-    V_reg = np.column_stack([c1, c2])
+    c1, c2, V_reg, residual_norms, _center_values = red.build_two_mode_regular_family(A_int, C_center)
     B_mix = B_full @ V_reg
-    residual_norms = np.array([np.linalg.norm(A_int @ c1), np.linalg.norm(A_int @ c2)], dtype=float)
     sigma_raw = float(np.linalg.svd(B_mix, compute_uv=False)[-1])
     B_bal = balanced_Bmix(B_mix)
     sigma_bal = float(np.linalg.svd(B_bal, compute_uv=False)[-1])

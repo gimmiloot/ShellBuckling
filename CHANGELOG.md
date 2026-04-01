@@ -1,4 +1,71 @@
-# CHANGELOG
+﻿# CHANGELOG
+
+## 2026-04-01 - Phase 3 workflow/output layering cleanup
+
+Affected files:
+- .gitignore
+- proof_pilots/README.md
+- proof_pilots/pilot_18_revised_analytic_barrier_diagnosis/artifacts/README.md
+- proof_pilots/pilot_21_u_z_scaled_arc_like_continuation/artifacts/README.md
+- tasks/README.md
+- output/README.md
+- CHANGELOG.md
+
+- Added lightweight role/index files for `proof_pilots/`, `tasks/`, and `output/` to separate source material from generated artifacts without moving path-coupled historical files.
+- Added forward-looking `artifacts/` boundaries for the artifact-heavy pilot 18 and pilot 21 directories while keeping the existing root artifact paths intact for compatibility.
+- Unignored and tracked `output/README.md` so the output tree now has a repository-visible classification of curated exports versus runtime validation trees.
+- Cleaned generated `__pycache__` directories only in repository-controlled source/task/pilot locations; solver logic, equations, and boundary-condition meaning were unchanged.
+
+## 2026-04-01 - Phase 2 mixed-weak internal code extraction layer
+
+Affected files:
+- src/shell_buckling/mixed_weak/_core_reduction.py
+- src/shell_buckling/mixed_weak/_core_solver_common.py
+- src/shell_buckling/mixed_weak/solver_patched_core.py
+- src/shell_buckling/mixed_weak/solver_simple_support_core.py
+- src/shell_buckling/mixed_weak/boundary_matrix_scan.py
+- src/shell_buckling/mixed_weak/boundary_matrix_targeted_scan.py
+- src/shell_buckling/mixed_weak/full_simple_support_critical_search.py
+- CHANGELOG.md
+
+- Extracted shared boundary/reduction helpers into `_core_reduction.py` and rewired the boundary-matrix scan/search modules through thin local wrappers.
+- Moved the common mixed-weak solver implementation into `_core_solver_common.py` and converted `solver_patched_core.py` / `solver_simple_support_core.py` into wrapper-preserving public modules.
+- Preserved public entry-point paths and wrapper behavior while keeping the existing variant split in the second boundary row (`varphi(1)` vs `M_s(1)`).
+- Kept scientific meaning unchanged: no equations, boundary-condition meaning, numerical retuning, or intended solver behavior were changed.
+
+## 2026-04-01 - Docs-only Phase 1 role split for clean full simple support
+
+Affected files:
+- docs/theory/current_simple_support_object_glossary.md
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_simple_support_final_audit_note.md
+- docs/theory/current_simple_support_closed_line_index.md
+- docs/theory/current_simple_support_theorem_roadmap.md
+- docs/theory/current_theory_verification_map.md
+- docs/project_map.md
+- CHANGELOG.md
+
+- Added a canonical glossary for stable clean full simple-support object names and source-of-truth references.
+- Trimmed the operational status page back to active-path reading plus a frozen-line pointer, instead of replaying the frozen theorem history there.
+- Trimmed the theorem roadmap to active forward-looking use, with the frozen-line replay now pointed to the final audit note and closed-line index.
+- Kept the verification map as the authoritative claim registry while replacing part of the repeated frozen-line narrative with references to the glossary and archive docs.
+- Trimmed the project map back toward a repository-role map instead of a second theorem-history/status memo.
+- Kept scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, or theorem status were upgraded.
+
+## 2026-04-01 - Freeze and index the closed clean full simple support theorem line
+
+Affected files:
+- docs/theory/current_simple_support_final_audit_note.md
+- docs/theory/current_simple_support_closed_line_index.md
+- docs/theory/current_simple_support_status.md
+- docs/journal/project_journal_updated14.md
+- CHANGELOG.md
+
+- Synced the final freeze of the old clean full simple support / Р С—Р С•Р Т‘Р Р†Р С‘Р В¶Р Р…РЎвЂ№Р в„– РЎв‚¬Р В°РЎР‚Р Р…Р С‘РЎР‚ theorem-facing line.
+- Recorded that the old line is frozen, did not validate the current criterion, and did not refute it either.
+- Recorded the exact final sharpened admissibility-side boundary as the residual-direction question z_temp in A_adm^th,n(q) intersect ker(C_center,n(q)) ?.
+- Added a short closed-line archive/index note with reusable results and an ordered source-of-truth reading list for future criterion reformulation work.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full simple support / Р С—Р С•Р Т‘Р Р†Р С‘Р В¶Р Р…РЎвЂ№Р в„– РЎв‚¬Р В°РЎР‚Р Р…Р С‘РЎР‚ path, or hybrid F_min reuse policy were changed.
 
 ## 2026-04-01 - Reduce the explicit affine-line admissibility fork to the single residual direction z_temp
 
@@ -10,7 +77,7 @@ Affected files:
 - Recorded the final line-level sharpening for the explicit affine line c_sel + span(z_temp,n(q;s_mem)).
 - Used the already closed inclusion A_sel^repo subseteq A_sel^{th,cand} subseteq A_adm^th together with the tangent-space meaning of A_adm^th to reduce the line fork to one residual-direction question: whether z_temp itself belongs to A_adm^th,n(q) intersect ker(C_center,n(q)).
 - Recorded the exact equivalence: line-level collapse to c_sel is equivalent to span(z_temp) intersect A_adm^th = {0}, while any nonzero theorem-facing admissible point on that line is equivalent to admissibility of z_temp itself.
-- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full simple support / ��������� ������ path, or hybrid F_min reuse policy were changed.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full simple support / Р С—Р С•Р Т‘Р Р†Р С‘Р В¶Р Р…РЎвЂ№Р в„– РЎв‚¬Р В°РЎР‚Р Р…Р С‘РЎР‚ path, or hybrid F_min reuse policy were changed.
 ## 2026-04-01 - Sharpen the c_temp admissibility fork to an explicit positive-fiber-excess point on the fixed fiber
 
 Affected files:
@@ -21,7 +88,7 @@ Affected files:
 - Recorded that the explicit candidate c_temp = c_sel + z_temp,n(q;s_mem) is not only an off-selected point of the fixed same-trace center-regular fiber, but an explicit positive-fiber-excess point there.
 - Used the already closed weighted-ansatz fiber-excess identity to state Delta_H,n,q(c_temp) = z_temp^T H_n,q z_temp > 0 on the current repository boundary.
 - Sharpened the admissibility-side question accordingly: decide whether theorem-facing admissibility contains that explicit positive-fiber-excess point on the affine line c_sel + span(z_temp), or collapses on that line to the unique selected H_n,q-minimal representative.
-- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full simple support / ��������� ������ path, or hybrid F_min reuse policy were changed.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full simple support / Р С—Р С•Р Т‘Р Р†Р С‘Р В¶Р Р…РЎвЂ№Р в„– РЎв‚¬Р В°РЎР‚Р Р…Р С‘РЎР‚ path, or hybrid F_min reuse policy were changed.
 ## 2026-04-01 - Sharpen the admissibility-side one-point gap to the fixed same-trace center-regular fiber
 
 Affected files:
@@ -31,8 +98,8 @@ Affected files:
 
 - Recorded a sharper admissibility-side reading for the explicit point c_temp := c_sel + z_temp,n(q;s_mem).
 - Fixed that the remaining Z_adm(c_temp) gap is not extension across a generic off-selected weighted-trial point: c_temp already lies in the same fixed ansatz-level center-regular fiber as c_sel, so the unresolved step is continuum realization of one explicit off-selected point of that fiber.
-- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full simple support / ��������� ������ path, or hybrid F_min reuse policy were changed.
-## 2026-04-01 - Add the final audit note for the current clean full simple support / ��������� ������ theorem path
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full simple support / Р С—Р С•Р Т‘Р Р†Р С‘Р В¶Р Р…РЎвЂ№Р в„– РЎв‚¬Р В°РЎР‚Р Р…Р С‘РЎР‚ path, or hybrid F_min reuse policy were changed.
+## 2026-04-01 - Add the final audit note for the current clean full simple support / Р С—Р С•Р Т‘Р Р†Р С‘Р В¶Р Р…РЎвЂ№Р в„– РЎв‚¬Р В°РЎР‚Р Р…Р С‘РЎР‚ theorem path
 
 Affected files:
 - docs/theory/current_simple_support_final_audit_note.md
@@ -46,9 +113,9 @@ Affected files:
 - Recorded that the current criterion is still not theorem-secured enough to exclude the explicit membrane candidate.
 - Recorded the exact remaining admissibility-side target as the one-point extension theorem for c_temp := c_sel + z_temp,n(q;s_mem), extending the closed selected-family coefficient identification beyond A_repo = A_ls to this explicit off-selected weighted-trial point.
 - Synced cross-references from the current status, theorem roadmap, verification map, and project map to the final audit note.
-- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full simple support / ��������� ������ path, or hybrid F_min reuse policy were changed.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full simple support / Р С—Р С•Р Т‘Р Р†Р С‘Р В¶Р Р…РЎвЂ№Р в„– РЎв‚¬Р В°РЎР‚Р Р…Р С‘РЎР‚ path, or hybrid F_min reuse policy were changed.
 
-## 2026-04-01 - Sharpen the one-point closure branch for the explicit membrane candidate on the clean full `simple support / ��������� ������` path
+## 2026-04-01 - Sharpen the one-point closure branch for the explicit membrane candidate on the clean full `simple support / Р С—Р С•Р Т‘Р Р†Р С‘Р В¶Р Р…РЎвЂ№Р в„– РЎв‚¬Р В°РЎР‚Р Р…Р С‘РЎР‚` path
 
 Affected files:
 - `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
@@ -61,8 +128,8 @@ Affected files:
 - Recorded that `Z_adm(c_temp)` is the one-point continuum-realization theorem for the explicit weighted-trial point.
 - Recorded that `Z_chk(c_temp,c_sel)` is the one-point checked-local shadow existence theorem for `c_temp` on the fixed equal-trace selected class of `c_sel`, with overlap/common-chart compatibility no longer treated as an independent bottleneck after such a shadow exists.
 - Sharpened the admissibility side further: the exact missing theorem for `Z_adm(c_temp)` is not the whole global losslessness statement `A_repo = A_full^th`, but a one-point extension of the already closed selected-family coefficient map `a -> V_adm,n(q) a` from `A_repo = A_ls` to the explicit off-selected weighted-trial point `c_temp`.
-- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full `simple support / ��������� ������` path, or hybrid `F_min` reuse policy were changed.
-## 2026-04-01 - Freeze the old theorem-step line at the one-point object-closure boundary on the clean full `simple support / подвижный шарнир` path
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full `simple support / Р С—Р С•Р Т‘Р Р†Р С‘Р В¶Р Р…РЎвЂ№Р в„– РЎв‚¬Р В°РЎР‚Р Р…Р С‘РЎР‚` path, or hybrid `F_min` reuse policy were changed.
+## 2026-04-01 - Freeze the old theorem-step line at the one-point object-closure boundary on the clean full `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` path
 
 Affected files:
 - `docs/theory/current_simple_support_status.md`
@@ -71,12 +138,12 @@ Affected files:
 - `docs/journal/project_journal_updated14.md`
 - `CHANGELOG.md`
 
-- Synced the clean `simple support / подвижный шарнир` status after the one-point audit: the older `T3...` style line is now recorded as saturated as far as the current clean repository boundary allows.
+- Synced the clean `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` status after the one-point audit: the older `T3...` style line is now recorded as saturated as far as the current clean repository boundary allows.
 - Recorded explicitly that the current theorem-facing objects are still not closed enough to decide the one-point question for `c_temp := c_sel + z_temp,n(q;s_mem)`.
 - Opened the new active one-point closure branch `Z_adm(c_temp)` / `Z_chk(c_temp,c_sel)` without introducing another theorem-step sub-chain.
-- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full `simple support / подвижный шарнир` path, or hybrid `F_min` reuse policy were changed.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` path, or hybrid `F_min` reuse policy were changed.
 
-## 2026-04-01 - Isolate the exact promotion failure for the explicit weighted-ansatz membrane template on the clean full `simple support / подвижный шарнир` path
+## 2026-04-01 - Isolate the exact promotion failure for the explicit weighted-ansatz membrane template on the clean full `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` path
 
 Affected files:
 - `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
@@ -87,8 +154,8 @@ Affected files:
 
 - Recorded the exact next obstruction after the explicit weighted-ansatz membrane template is built: the extension fails at the theorem-facing admissibility / `Pair_chk` upgrade, not at low-order jet realizability.
 - Recorded the conditional sharpening that if the explicit template did admit a checked-local shadow in a common corrected chart, then the membrane deviation would already be nonzero on the current physical clean regime because the visible membrane direction is the `U1` direction and `U1 = alpha s_mem` with `alpha != 0`.
-- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full `simple support / подвижный шарнир` path, or hybrid `F_min` reuse policy were changed.
-## 2026-04-01 - Add an explicit weighted-ansatz residual template realizing the membrane-nullmode jet on the clean full `simple support / подвижный шарнир` residual fiber
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` path, or hybrid `F_min` reuse policy were changed.
+## 2026-04-01 - Add an explicit weighted-ansatz residual template realizing the membrane-nullmode jet on the clean full `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` residual fiber
 
 Affected files:
 - `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
@@ -100,9 +167,9 @@ Affected files:
 - Recorded an explicit current weighted-ansatz same-trace residual coefficient template with only `u_s,k=1,2`, `v,k=1,2`, and `T_s,k=1,2` nonzero.
 - Showed exactly that this template lies in `ker(C_center)` and has extracted low-order jet equal to `s_mem g_mem^aug,n(q)`.
 - Therefore the current clean weighted-ansatz / coefficient architecture does not itself obstruct global realization of the membrane-nullmode jet on the residual fiber.
-- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full `simple support / подвижный шарнир` search path, or hybrid `F_min` reuse policy were changed.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` search path, or hybrid `F_min` reuse policy were changed.
 
-## 2026-04-01 - Add the low-order membrane-nullmode obstruction on the residual fiber for the clean full `simple support / подвижный шарнир` path
+## 2026-04-01 - Add the low-order membrane-nullmode obstruction on the residual fiber for the clean full `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` path
 
 Affected files:
 - `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
@@ -114,8 +181,9 @@ Affected files:
 - Added a genuinely new residual-fiber restriction: any nonzero checked-local pair-definable membrane-visible residual must have augmented local jet in the one-dimensional membrane-nullmode line `span(g_mem^aug,n(q))`.
 - Recorded the explicit low-order coefficient equations `U1 = alpha T1`, `V1 = beta T1`, `N1 = P1 = Y1 = 0`, with `T1 != 0`, together with checked next-layer closure to zero.
 - Sharpened the remaining bottleneck accordingly: the true missing input is now a global checked-local coefficient-extraction theorem on `R_res,n(q) = A_adm^th,n(q) intersect ker(C_center,n(q))` deciding whether a given residual realizes that exact augmented membrane-nullmode jet.
-- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full `simple support / подвижный шарнир` search path, or hybrid `F_min` reuse policy were changed.
-## 2026-04-01 - Reduce the extrinsic admissible-lift branch to the residual-fiber pair-definability / membrane-visibility question on the clean full `simple support / подвижный шарнир` path
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` search path, or hybrid `F_min` reuse policy were changed.
+
+## 2026-04-01 - Reduce the extrinsic admissible-lift branch to the residual-fiber pair-definability / membrane-visibility question on the clean full `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` path
 
 Affected files:
 - `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
@@ -127,8 +195,8 @@ Affected files:
 - Recorded the exact intersection law `X_sel,n(q) intersect ker(C_center,n(q)) = {0}` following from `C_center,n(q) P_sel,n(q) = I_4`.
 - Used that law to show that for every repo-selected basepoint `c_sel in A_ls,n(q)` and every nonzero same-trace residual direction `z in A_adm^th,n(q) intersect ker(C_center,n(q))`, the point `c_sel + z` is automatically outside `X_sel,n(q)`.
 - Sharpened the extrinsic admissible-lift branch accordingly: outside-`X_sel` is no longer an independent condition, so the true remaining bottleneck is now a global-to-local theorem on the residual fiber deciding checked-local pair-definability and membrane visibility.
-- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full `simple support / подвижный шарнир` search path, or hybrid `F_min` reuse policy were changed.
-## 2026-04-01 - Add the first admissible-lift obstruction inside the global selected full-center lift on the clean full `simple support / подвижный шарнир` path
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` search path, or hybrid `F_min` reuse policy were changed.
+## 2026-04-01 - Add the first admissible-lift obstruction inside the global selected full-center lift on the clean full `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` path
 
 Affected files:
 - `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
@@ -141,10 +209,10 @@ Affected files:
 - Recorded the first exact obstruction on that branch: no nonzero same-trace admissible global lift can occur inside the current global selected full-center lift `X_sel = im(P_sel)`, because `C_center|_(X_sel)` is bijective with inverse `P_sel`.
 - Added the equivalent candidate-class consequence `A_sel^{th,cand} intersect X_sel = A_ls`, so any future admissible-lift construction must lie outside the current KKT-selected architecture.
 - Synced the theorem roadmap, verification map, and project journal so the next bottleneck is now the existence or impossibility of admissible candidate-class points outside `X_sel` that still realize the membrane direction.
-- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full `simple support / подвижный шарнир` search path, or hybrid `F_min` reuse policy were changed.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` search path, or hybrid `F_min` reuse policy were changed.
 
 
-## 2026-04-01 - Sharpen the T3u pairwise scalar-difference question into the T3v representative-sensitive rigidity obstruction on the clean full `simple support / подвижный шарнир` path
+## 2026-04-01 - Sharpen the T3u pairwise scalar-difference question into the T3v representative-sensitive rigidity obstruction on the clean full `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` path
 
 Affected files:
 - `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
@@ -157,9 +225,9 @@ Affected files:
 - Recorded the conservative `Outcome B` result: pairwise scalar-difference collapse `Omega_sigma,n(q; c_sel) = {0}` is not yet proved, but the exact missing ingredient is now isolated more sharply as one representative-sensitive rigidity law on the exact admissible pair domain `Pair_sigma,n(q; c_sel)`.
 - Recorded the sharper structural relation `Sigma_sigma,n(q; c_sel) subseteq Omega_sigma,n(q; c_sel) subseteq Sigma_sigma,n(q; c_sel) - Sigma_sigma,n(q; c_sel)` and the exact nonzero-pairwise template in one fixed quotient fiber.
 - Synced the theorem roadmap, verification map, and project journal so the next bottleneck is now the `T3v` representative-sensitive rigidity / pairwise scalar-difference-collapse theorem rather than only the `T3u` pairwise-image wording.
-- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full `simple support / подвижный шарнир` search path, or hybrid `F_min` reuse policy were changed.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` search path, or hybrid `F_min` reuse policy were changed.
 
-## 2026-03-30 - Reduce the T3t scalar-image question to a T3u exact pairwise scalar-difference obstruction on the clean full `simple support / подвижный шарнир` path
+## 2026-03-30 - Reduce the T3t scalar-image question to a T3u exact pairwise scalar-difference obstruction on the clean full `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` path
 
 Affected files:
 - `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
@@ -173,7 +241,7 @@ Affected files:
 - Synced the theorem roadmap, verification map, and project journal so the next bottleneck is now the `T3u` pairwise scalar-difference vanishing theorem rather than only the scalar-image-collapse wording.
 - Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, broad scans, or hybrid `F_min` reuse policy were changed.
 
-## 2026-03-30 - Reduce the T3s global pointwise-defect question to a T3t exact defect-set / scalar-image obstruction on the clean full `simple support / подвижный шарнир` path
+## 2026-03-30 - Reduce the T3s global pointwise-defect question to a T3t exact defect-set / scalar-image obstruction on the clean full `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` path
 
 Affected files:
 - `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
@@ -187,7 +255,7 @@ Affected files:
 - Synced the theorem roadmap, verification map, and project journal so the next bottleneck is now the `T3t` defect-set emptiness / scalar-image-collapse theorem rather than only the global pointwise-vanishing wording.
 - Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, broad scans, or hybrid `F_min` reuse policy were changed.
 
-## 2026-03-30 - Reduce the T3r pointwise-law question to a T3s chart-invariant global defect-map obstruction on the exact checked-local domain for clean simple support / подвижный шарнир
+## 2026-03-30 - Reduce the T3r pointwise-law question to a T3s chart-invariant global defect-map obstruction on the exact checked-local domain for clean simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ
 
 Affected files:
 - `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
@@ -218,7 +286,7 @@ Affected files:
 - Recorded the strongest current sharpening: the pairwise patchwise representative law `Rep_U` is exactly equivalent to pointwise vanishing of that basepoint-relative membrane deviation, so failure of `Rep_U` is already equivalent to one exact nonzero patch point.
 - Recorded the sharpest current obstruction theorem: on the checked local boundary all currently justified theorem-facing invariants still force only membrane-line containment of that pointwise difference and do not by themselves force its vanishing.
 - Synced the theorem roadmap, verification map, and project journal so the next bottleneck is now the `T3r` pointwise basepoint-relative vanishing theorem on the full exact admissible patch cover.
-- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / подвижный шарнир` path, or theorem-level status of `B_red` / `B_mix` were changed.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` path, or theorem-level status of `B_red` / `B_mix` were changed.
 
 ## 2026-03-30 - Reduce the T3p singletonity question to a T3q representative-law obstruction on exact membrane-fiber patches for clean simple support
 
@@ -234,7 +302,7 @@ Affected files:
 - Recorded the sharpest current obstruction theorem: on the checked local boundary all currently justified theorem-facing invariants remain quotient-final, so they still force only fiber containment and do not by themselves force singletonity.
 - Recorded the exact next bottleneck: derive one representative-sensitive law on the exact admissible residual-generated patch cover, or explicitly realize an admissible non-singleton patch.
 - Synced the theorem roadmap, verification map, and project journal so the next bottleneck is now the T3q patchwise representative-law theorem rather than a generic singletonity question.
-- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean simple support / подвижный шарнир path, or theorem-level status of B_red / B_mix were changed.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ path, or theorem-level status of B_red / B_mix were changed.
 ## 2026-03-29 - Reduce the T3p membrane-selector question to a membrane-fiber singleton obstruction on exact checked-local patches for clean simple support
 
 Affected files:
@@ -249,7 +317,7 @@ Affected files:
 - Recorded the sharpest current reduction: after `T3o`, vanishing of `sigma_chk`, constancy of `s_U`, singletonity of `S_U`, and singletonity of `Im_chk,U` in the fixed membrane fiber are all equivalent.
 - Recorded the exact remaining bottleneck: current theorem-facing constraints force only containment in the fixed membrane fiber above `(a_sel, b_sel)`, not singletonity of that image, so the remaining open question is now a precise membrane-fiber singleton theorem on the exact patches.
 - Synced the theorem roadmap, verification map, and project journal so the next bottleneck is now to prove or refute singletonity of the exact checked-local patch image on every exact admissible residual-generated patch.
-- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / подвижный шарнир` path, or theorem-level status of `B_red` / `B_mix` were changed.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` path, or theorem-level status of `B_red` / `B_mix` were changed.
 
 ## 2026-03-29 - Reduce the T3o membrane-selector question to an exact patchwise constancy obstruction after automatic overlap compatibility for clean simple support
 
@@ -264,7 +332,7 @@ Affected files:
 - Recorded the strongest current sharpening: under quotient-preserving chart changes the local membrane coordinates on one fixed equal-trace class differ only by a z-independent constant, so overlap compatibility is automatic.
 - Recorded the exact remaining bottleneck: global vanishing of `sigma_chk,n(q; c_sel)(z)` is now equivalent to constancy of the local membrane coordinate on any exact admissible residual-generated checked-local patch cover, and the only unresolved issue is patchwise constancy itself.
 - Synced the theorem roadmap, verification map, and project journal so the next bottleneck is now to prove or refute patchwise constancy of `s_U` on the full exact admissible residual-generated checked-local patch cover.
-- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / подвижный шарнир` path, or theorem-level status of `B_red` / `B_mix` were changed.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` path, or theorem-level status of `B_red` / `B_mix` were changed.
 
 ## 2026-03-29 - Reduce the T3n membrane-selector question to an exact patchwise membrane-constancy / uniqueness-in-class obstruction theorem for clean simple support
 
@@ -279,7 +347,7 @@ Affected files:
 - Recorded the strongest current selector-level reduction: on every common corrected-chart patch the membrane selector is locally a coboundary `sigma_chk = s_U - s_U(0)`, so vanishing is exactly equivalent to patchwise constancy of the local membrane coordinate.
 - Recorded the sharpest honest obstruction now available: current theorem-facing constraints still determine only the quotient coordinates `(a, b)` and do not yet force constancy of `s_U`; an explicit admissible nonzero example is still not constructed, but any patch point with `s_U(z) != s_U(0)` is now the exact nonvanishing template.
 - Synced the theorem roadmap, verification map, and project journal so the next bottleneck is now to prove or refute patchwise membrane constancy on the exact admissible residual-generated checked-local pair patches, equivalently prove or refute `sigma_chk,n(q; c_sel)(z) = 0` on all of `D_sigma,n(q; c_sel)`.
-- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / подвижный шарнир` path, or theorem-level status of `B_red` / `B_mix` were changed.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` path, or theorem-level status of `B_red` / `B_mix` were changed.
 
 ## 2026-03-29 - Reduce the T3m membrane-selector question to an exact cocycle / obstruction theorem for clean simple support
 
@@ -294,7 +362,7 @@ Affected files:
 - Recorded the strongest current selector-level theorem: the basepoint-relative membrane selector `sigma_chk` is now packaged as the exact chart-invariant membrane cocycle on equal-trace checked-local pairs, with normalization, antisymmetry, and cocycle laws.
 - Recorded the sharpest honest obstruction now available: current checked-local selected invariants still factor only through the membrane quotient, so they do not yet force `sigma_chk,n(q; c_sel)(z) = 0`; an admissible nonvanishing pair is not yet constructed, but the exact nonvanishing template is now isolated.
 - Synced the theorem roadmap, verification map, and project journal so the next bottleneck is now to prove or refute that the exact admissible residual-generated checked-local pair domain meets each equal-trace membrane quotient class only in the repo-selected representative.
-- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / подвижный шарнир` path, or theorem-level status of `B_red` / `B_mix` were changed.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` path, or theorem-level status of `B_red` / `B_mix` were changed.
 
 ## 2026-03-29 - Reduce the T3l checked-local bridge question to a chart-invariant pairwise membrane-difference object for clean simple support
 
@@ -308,7 +376,7 @@ Affected files:
 - Extended pilot 25 from the T3k raw-shadow obstruction stage into the T3l pairwise bridge stage and recorded the theorem-facing equal-trace checked-local representative-difference object `Delta_rep,chk,n(q; c, c_ref) in span(e_mem)`.
 - Recorded the sharpest current theorem-facing reduction: raw same-trace shadows still collapse, but the pairwise membrane difference between equal-trace checked-local representatives is chart-invariant under quotient-preserving chart changes and is equivalently encoded by the scalar selector `sigma_chk,n(q; c, c_ref)`.
 - Synced the theorem roadmap, verification map, and project journal so the next bottleneck is now to prove or refute vanishing of `sigma_chk,n(q; c_sel)(z)` on the exact admissible residual-generated checked-local pair domain.
-- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / подвижный шарнир` path, or theorem-level status of `B_red` / `B_mix` were changed.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` path, or theorem-level status of `B_red` / `B_mix` were changed.
 
 ## 2026-03-29 - Reduce the T3k global-shadow question to an exact zero-quotient obstruction for raw same-trace shadows in clean simple support
 
@@ -322,7 +390,7 @@ Affected files:
 - Extended pilot 25 from the T3j local-extractor stage into the T3k global-shadow stage and recorded the exact obstruction theorem: on `D_res,n(q) subset ker(J_0,n(q))`, any compatible raw shadow map `Sh_chk,n(q)` into `Xi_sel,corr^(1,eta),n(q)` already collapses to the zero quotient class.
 - Recorded the sharpest current theorem-facing reduction: any such raw shadow map must factor through the membrane line `span(g_mem,n(q))`, equivalently through a scalar membrane-selector candidate `sigma_chk,n(q)`, so a raw factorization `Phi_chk = q_coeff o chi_chk,vis o Sh_chk` would be identically zero.
 - Synced the theorem roadmap, verification map, and project journal so the next bottleneck is now a theorem-facing basepoint-relative checked-local representative-difference object on ambient candidate-class pairs before quotient collapse, or a direct vanishing theorem for the same-trace membrane selector.
-- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / подвижный шарнир` path, or theorem-level status of `B_red` / `B_mix` were changed.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` path, or theorem-level status of `B_red` / `B_mix` were changed.
 
 ## 2026-03-29 - Reduce the T3j checked-local coefficient-extraction question to an explicit local extractor plus one missing global shadow bridge for clean simple support
 
@@ -336,7 +404,7 @@ Affected files:
 - Extended pilot 25 from the T3i projected-map injectivity stage into the T3j checked-local coefficient-extraction stage and recorded the explicit visible-chart local extractor `chi_chk,vis,n(q)` on `Xi_sel,corr^(1,eta),n(q) = im(D_rich,eta^corr,n(q))`.
 - Recorded the sharpest current theorem-facing reduction: the full 3-coordinate local extractor is chart-dependent, but its projection `q_coeff o chi_chk,vis,n(q)` is chart-invariant and factors exactly through `Pi_eta_to_J0` on the checked local corrected family.
 - Synced the theorem roadmap, verification map, and project journal so the next bottleneck is now the global checked-local shadow bridge `Sh_chk,n(q) : D_res,n(q) -> Xi_sel,corr^(1,eta),n(q)`, not the absence of a local checked extractor itself.
-- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / подвижный шарнир` path, or theorem-level status of `B_red` / `B_mix` were changed.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` path, or theorem-level status of `B_red` / `B_mix` were changed.
 
 ## 2026-03-29 - Reduce the T3i injectivity question to one exact missing global checked-local extraction operator for clean simple support
 
@@ -350,7 +418,7 @@ Affected files:
 - Extended pilot 25 from the T3h membrane-lift kernel/preimage package into the T3i projected-map injectivity stage and isolated the exact projected lift map `Phi_chk,n(q; c_sel) = q_coeff o delta_chk,n(q; c_sel)` on the admissible same-trace residual domain.
 - Recorded the sharpest current theorem-facing reduction: `ker(Phi_chk) = Lift_mem = R_inv`, so injectivity would close the zero-excess gap, but the repo still does not package the explicit global checked local coefficient-extraction operator `chi_chk,n(q)` that would turn this into a closed linear rank/nullity theorem.
 - Synced the theorem roadmap, verification map, and project journal so the next bottleneck is now operator-level control/construction of `chi_chk,n(q)` on `A_adm^th,n(q) intersect ker(C_center,n(q))`.
-- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / подвижный шарнир` path, or theorem-level status of `B_red` / `B_mix` were changed.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` path, or theorem-level status of `B_red` / `B_mix` were changed.
 
 ## 2026-03-29 - Reduce the T3h membrane-lift gap to the exact kernel of the checked local lift map for clean simple support
 
@@ -364,7 +432,7 @@ Affected files:
 - Extended pilot 25 from the T3g residual-class lift stage into the T3h global membrane-lift stage and wrote the exact corrected local quotient map `q_coeff = [[1,0,0],[0,1,0]]`, its membrane kernel `ker(q_coeff) = span(e_mem)`, and the corresponding global lift class `Lift_mem,n(q; c_sel)`.
 - Recorded the sharpest current theorem-facing reduction: the remaining zero-excess / reverse-inclusion gap is now exactly the kernel of `q_coeff o delta_chk,n(q; c_sel)` on admissible same-trace global residuals, not merely a residual class named abstractly.
 - Synced the theorem roadmap, verification map, and project journal so the next bottleneck is now to control the checked local lift-difference map `delta_chk` well enough to decide whether that kernel is trivial.
-- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / подвижный шарнир` path, or theorem-level status of `B_red` / `B_mix` were changed.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` path, or theorem-level status of `B_red` / `B_mix` were changed.
 
 ## 2026-03-29 - Reduce the T3g zero-excess gap to the exact residual-lift class for clean simple support
 
@@ -378,7 +446,7 @@ Affected files:
 - Extended pilot 25 from the T3f shadow-only obstruction into the T3g residual-class lift stage and introduced the exact same-trace residual class `R_same,n(q) = ker(C_center,n(q)) = ker(J_0,n(q))` together with the exact quotient-invisible admissible lift class `R_inv,n(q; c_sel)`.
 - Recorded the sharpest current theorem-facing reduction: the remaining zero-excess / reverse-inclusion question is now exactly whether `R_inv,n(q; c_sel) = {0}` for every repo-selected representative, equivalently whether the local membrane-kernel line `span(g_mem,n(q))` has any nonzero admissible global lift inside `ker(C_center,n(q))`.
 - Synced the theorem roadmap, verification map, and project journal so the next bottleneck is no longer a generic shadow-only obstruction but the exact residual-lift triviality problem on the current repository/theory boundary.
-- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / подвижный шарнир` path, or theorem-level status of `B_red` / `B_mix` were changed.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` path, or theorem-level status of `B_red` / `B_mix` were changed.
 
 ## 2026-03-29 - Sharpen the T3f zero-excess gap to a shadow-only obstruction and conditional positive-excess template
 
@@ -391,8 +459,8 @@ Affected files:
 
 - Extended pilot 25 from the T3e zero-excess criterion into the T3f stage and recorded the sharpest current theorem-facing obstruction: the checked local quotient condition is representative-lossy and adds no closed representative-level control beyond the selected shadow coordinates.
 - Added the exact conditional counterexample template: if a nonzero admissible same-trace, quotient-invisible fiber residual exists, then it produces `Delta_H(c) > 0` immediately and breaks reverse inclusion on the current repository boundary.
-- Refined the theorem roadmap, verification map, and project journal so the next bottleneck is no longer just “prove `Delta_H = 0`”: it is now to prove or refute survival of a same-trace, quotient-invisible admissible fiber residual.
-- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / подвижный шарнир` path, or theorem-level status of `B_red` / `B_mix` were changed.
+- Refined the theorem roadmap, verification map, and project journal so the next bottleneck is no longer just Р Р†Р вЂљРЎС™prove `Delta_H = 0`Р Р†Р вЂљРЎСљ: it is now to prove or refute survival of a same-trace, quotient-invisible admissible fiber residual.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` path, or theorem-level status of `B_red` / `B_mix` were changed.
 
 ## 2026-03-29 - Isolate the T3e zero fiber-excess / selected-minimality obstruction above the T3d representative-law boundary
 
@@ -430,7 +498,7 @@ Affected files:
 - `CHANGELOG.md`
 
 - Extended the pilot-25 theorem note from the T3b candidate-class step into the T3c comparison/losslessness stage, and recorded the strongest current theorem as exact inclusion `A_sel^repo subseteq A_sel^{th,cand}` together with the exact reduction of the reverse inclusion to the missing selected-representative theorem `c = P_sel J_0(c)` for shadow-compatible admissible perturbations.
-- Refined the theorem roadmap, verification map, and project journal so the active bottleneck is no longer “define a stronger class at all”: the stronger candidate class is already in place, and the current open theorem is now the exact comparison/losslessness step deciding whether the candidate class is already exhausted by the exact global weak/KKT-selected family.
+- Refined the theorem roadmap, verification map, and project journal so the active bottleneck is no longer Р Р†Р вЂљРЎС™define a stronger class at allР Р†Р вЂљРЎСљ: the stronger candidate class is already in place, and the current open theorem is now the exact comparison/losslessness step deciding whether the candidate class is already exhausted by the exact global weak/KKT-selected family.
 - Kept the scientific meaning unchanged: no equations, boundary-condition meaning, clean solver behavior, active standalone clean simple-support path, or theorem-level status of `B_red` / `B_mix` were changed.
 
 ## 2026-03-29 - Define the T3b shadow-compatible selected-class candidate above the closed T3a repo-selected bridge
@@ -1011,7 +1079,7 @@ Affected files:
 - `CHANGELOG.md`
 
 - Added a compact audit note that separates the moving-clamp/sliding-clamp line, the current hybrid mixed-weak scan/testbench path, and the full simple-support background task.
-- Added a boundary-condition summary table for `РїРѕРґРІРёР¶РЅР°СЏ Р·Р°РґРµР»РєР°` versus `РїРѕРґРІРёР¶РЅС‹Р№ С€Р°СЂРЅРёСЂ / simple support`.
+- Added a boundary-condition summary table for `Р В Р’В Р РЋРІР‚вЂќР В Р’В Р РЋРІР‚СћР В Р’В Р СћРІР‚ВР В Р’В Р В РІР‚В Р В Р’В Р РЋРІР‚ВР В Р’В Р вЂ™Р’В¶Р В Р’В Р В РІР‚В¦Р В Р’В Р вЂ™Р’В°Р В Р Р‹Р В Р РЏ Р В Р’В Р вЂ™Р’В·Р В Р’В Р вЂ™Р’В°Р В Р’В Р СћРІР‚ВР В Р’В Р вЂ™Р’ВµР В Р’В Р вЂ™Р’В»Р В Р’В Р РЋРІР‚СњР В Р’В Р вЂ™Р’В°` versus `Р В Р’В Р РЋРІР‚вЂќР В Р’В Р РЋРІР‚СћР В Р’В Р СћРІР‚ВР В Р’В Р В РІР‚В Р В Р’В Р РЋРІР‚ВР В Р’В Р вЂ™Р’В¶Р В Р’В Р В РІР‚В¦Р В Р Р‹Р Р†Р вЂљРІвЂћвЂ“Р В Р’В Р Р†РІР‚С›РІР‚вЂњ Р В Р Р‹Р Р†РІР‚С™Р’В¬Р В Р’В Р вЂ™Р’В°Р В Р Р‹Р В РІР‚С™Р В Р’В Р В РІР‚В¦Р В Р’В Р РЋРІР‚ВР В Р Р‹Р В РІР‚С™ / simple support`.
 - Clarified in the README and project map that the current active mixed-weak scans still reuse the older `F_min` background and should not be read as a clean final simple-support solver path.
 - Added a short boundary-condition-scope clarification to the supervisor-facing mixed-weak theory note.
 
@@ -1270,7 +1338,7 @@ Affected files:
 - `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/reduction_check.py`
 - `CHANGELOG.md`
 
-- Froze the clean theorem-facing C1 target on the active `simple support / подвижный шарнир` path: the full stacked linearized mixed object is now recorded explicitly as the preferred theorem-level target, while raw `B_mix` is kept only as the current boundary-only baseline.
+- Froze the clean theorem-facing C1 target on the active `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` path: the full stacked linearized mixed object is now recorded explicitly as the preferred theorem-level target, while raw `B_mix` is kept only as the current boundary-only baseline.
 - Added proof pilot 23 with a live/CAS check of the current reduction layer: it splits `C_center` into amplitude and true regularity rows, rebases the current `V_reg` span to canonical reduced coordinates, and derives the preferred reduced tangent candidate `L_red = [A_int; B_full] V_adm`.
 - Updated the verification map, assumptions register, theory derivation file, and project journal so the next proof obligations are now explicit: C3 kernel-equivalence for the clean reduced object and C4 the decision whether a genuine quadratic-form / second-variation object exists.
 - Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, broad scans, or hybrid `F_min` reuse policy were changed.
@@ -1286,7 +1354,7 @@ Affected files:
 - `docs/journal/project_journal_updated14.md`
 - `CHANGELOG.md`
 
-- Extended pilot 23 from C1/C2 into C3 by making the exact restricted statement explicit: on the current chosen reduced family `A_repo = im(V_adm)`, the coordinate map `a -> V_adm a` identifies `ker(L_red)` with `A_repo ∩ ker(L_full)`.
+- Extended pilot 23 from C1/C2 into C3 by making the exact restricted statement explicit: on the current chosen reduced family `A_repo = im(V_adm)`, the coordinate map `a -> V_adm a` identifies `ker(L_red)` with `A_repo Р Р†РІвЂљВ¬Р’В© ker(L_full)`.
 - Added the matching basis-change and boundary-descendant logic: right multiplication by an invertible reduced-coordinate matrix leaves the reduced-kernel question unchanged, and `B_mix = B_red G_amp` is now recorded explicitly as a coordinate change on the same family rather than as a new theorem-level object.
 - Updated the verification map, assumptions register, theory derivation file, and project journal to separate what is now closed at the finite-dimensional reduced-family level from what remains open: losslessness of the restriction to `im(V_adm)`, any collapse `ker(L_red) <-> ker(B_red) / ker(B_mix)`, and the later C4 quadratic-form decision.
 - Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, broad scans, or hybrid `F_min` reuse policy were changed.
@@ -1323,7 +1391,7 @@ Affected files:
 - Isolated the exact new gap explicitly in the theory docs: the frozen principal truncation does not yet close the full higher-order local formal family, so the next theorem-facing step is a regular-singular center recurrence/completeness derivation rather than a criterion rewrite.
 - Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, broad scans, or hybrid `F_min` reuse policy were changed.
 
-## 2026-03-27 - Derive the finite-order frozen-principal recurrence pattern for clean `simple support / подвижный шарнир`
+## 2026-03-27 - Derive the finite-order frozen-principal recurrence pattern for clean `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ`
 
 - Affected files:
 - `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`
@@ -1339,7 +1407,7 @@ Affected files:
 - Clarified the next proof-oriented step: restore the first omitted finite center coefficients / forcing terms of the clean mixed equations and derive the richer regular-singular local recurrence there.
 - Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, broad scans, or hybrid `F_min` reuse policy were changed.
 
-## 2026-03-27 - Check the richer first-finite center layer for clean `simple support / подвижный шарнир`
+## 2026-03-27 - Check the richer first-finite center layer for clean `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ`
 
 - Affected files:
 - `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`
@@ -1355,7 +1423,7 @@ Affected files:
 - Updated the pilot note, derivation file, verification map, assumptions register, and project journal conservatively so this is tracked as a formula-level obstruction result for the first restored finite-center layer only, not as theorem-level closure of `A_full^th = A_ls`.
 - Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, broad scans, or hybrid `F_min` reuse policy were changed.
 
-## 2026-03-28 - Identify the selected-object boundary for the clean full `simple support / подвижный шарнир` local comparison task
+## 2026-03-28 - Identify the selected-object boundary for the clean full `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` local comparison task
 
 - Affected files:
 - `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/selection_object_check.py`
@@ -1371,7 +1439,7 @@ Affected files:
 - Updated the theory derivation file, verification map, assumptions register, project journal, and pilot note so the next proof obligation is now sharper: identify the correct selected local/germ comparison object or prove a global-to-local theorem for the globally weak-selected family, rather than blindly extending the same unrestricted local expansion.
 - Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, broad scans, or hybrid `F_min` reuse policy were changed.
 
-## 2026-03-28 - Delimit the local selected object for the clean full `simple support / подвижный шарнир` C3e step
+## 2026-03-28 - Delimit the local selected object for the clean full `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` C3e step
 
 - Affected files:
 - `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/selection_object_check.py`
@@ -1387,7 +1455,7 @@ Affected files:
 - Updated the pilot note, derivation file, verification map, assumptions register, and project journal so the next proof obligation is now stated as a global-to-local trace theorem or an intrinsic selected-object theorem, not as blind completeness against the unrestricted local family.
 - Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, broad scans, or hybrid `F_min` reuse policy were changed.
 
-## 2026-03-28 - Characterize the selected global-to-local trace object for the clean full `simple support / подвижный шарнир` C3f step
+## 2026-03-28 - Characterize the selected global-to-local trace object for the clean full `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` C3f step
 
 - Affected files:
 - `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/selection_object_check.py`
@@ -1553,7 +1621,7 @@ Affected files:
   meaning, solver behavior, broad scans, or hybrid `F_min` reuse policy were
   changed.
 
-## 2026-03-28 - Sync criterion-facing docs after the clean full `simple support / подвижный шарнир` Outcome-B local stopping point
+## 2026-03-28 - Sync criterion-facing docs after the clean full `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` Outcome-B local stopping point
 
 Affected files:
 - `docs/theory/current_simple_support_status.md`
@@ -1561,7 +1629,7 @@ Affected files:
 - `docs/theory/current_mixed_weak_theory_note.tex`
 - `CHANGELOG.md`
 
-- Audited the operational status page, project map, and supervisor-facing mixed-weak note against the post-C3k/C3l clean full `simple support / подвижный шарнир` theorem-facing state.
+- Audited the operational status page, project map, and supervisor-facing mixed-weak note against the post-C3k/C3l clean full `simple support / Р В РЎвЂ”Р В РЎвЂўР В РўвЂР В Р вЂ Р В РЎвЂР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р РЋР вЂљР В Р вЂ¦Р В РЎвЂР РЋР вЂљ` theorem-facing state.
 - Updated the status page so it now records the local Outcome-B stopping point, treats the higher-order local selected object as a quotient on the checked boundary, and redirects the next active move from deeper local continuation to criterion-level synthesis / interpretation.
 - Updated the project map so it now marks pilot 23 as the active theorem-facing branch with a current stopping point at Outcome B and identifies the next active theory direction as criterion-level synthesis linking the local quotient result back to `A_ls`, `L_red`, `B_red`, and `B_mix`.
 - Updated the compact supervisor note conservatively so it now reflects the active clean path, the theorem-facing role of `L_red` versus the boundary-only `B_red` / `B_mix` objects, the quotient-based local conclusion on the checked boundary, and the resulting caution that raw `sigma_min(B_mix)` remains exploratory rather than a closed final physical criterion.

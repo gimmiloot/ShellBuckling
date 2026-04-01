@@ -18,6 +18,10 @@ Its purpose is narrower:
 The goal is repository-level verification discipline, not a replacement for the
 main theory document.
 
+Stable object definitions repeatedly used in the clean full
+`simple support / подвижный шарнир` branch are centralized in
+`docs/theory/current_simple_support_object_glossary.md`.
+
 ## 2. Verification Boundary
 
 This map starts from the point where the project has already accepted the
@@ -2648,50 +2652,17 @@ Most valuable next proof pilots:
   continuum admissible problem. It is a proof that the current exact repository
   boundary does not yet extend it past the admissibility / `Pair_chk` upgrade.
 - Next action:
-  the active line is now the one-point closure branch for the explicit
-  candidate
-  `c_temp := c_sel + z_temp,n(q;s_mem)`:
-  build or refute `Z_adm(c_temp)` and
-  `Z_chk(c_temp,c_sel)`, rather than continue the old `T3...` chain with
-  another reformulation-only step.
-  More sharply:
-  `Z_adm(c_temp)` is the one-point continuum realization theorem for this
-  explicit weighted-trial point, while `Z_chk(c_temp,c_sel)` is the one-point
-  checked-local shadow existence theorem for `c_temp` on the fixed equal-trace
-  selected class of `c_sel`; the already closed overlap law means that
-  common-chart compatibility is no longer an additional independent obstruction
-  after such a shadow exists.
-  On the admissibility side, the exact missing theorem is sharper than the full
-  losslessness statement `A_repo = A_full^th`: the only coefficient-to-theorem
-  identification currently closed is the selected-family map
-  `a -> V_adm,n(q) a` onto `A_repo = A_ls`, and `Z_adm(c_temp)` asks whether
-  that identification extends to this one explicit off-selected weighted-trial
-  point.
-  Even more sharply: because `C_center z_temp = 0`, the explicit candidate
-  already lies in the same fixed ansatz-level center-regular fiber as `c_sel`,
-  namely
-  `F_n,q(a_sel) = { c in X_trial,n(q) : C_center,n(q) c = [a_sel1, a_sel2, 0, 0] }`.
-  So the unresolved admissibility step is continuum realization of one explicit
-  off-selected point of that fixed fiber, not reconstruction of center
-  regularity or leading-trace matching from scratch.
-  Sharper still: because `c_temp = c_sel + z_temp` with
-  `0 != z_temp in ker(C_center,n(q))`, the exact fiber-excess identity on the
-  current weighted-ansatz boundary gives
-  `Delta_H,n,q(c_temp) = z_temp^T H_n,q z_temp > 0`.
-  So the live admissibility-side fork is whether theorem-facing admissibility
-  contains this explicit positive-fiber-excess point on the affine line
-  `c_sel + span(z_temp)`, or collapses on that line to the unique selected
-  `H_n,q`-minimal representative `c_sel`.
-  Equivalently, because the selected basepoint already lies on the theorem-
-  facing selected side
-  `A_sel^repo,n(q) subseteq A_sel^{th,cand},n(q) subseteq A_adm^th,n(q)` and
-  `A_adm^th,n(q)` is the intended tangent space of the linearized clean mixed
-  problem, the whole line-level fork reduces to one residual-direction question:
-  `z_temp in A_adm^th,n(q) intersect ker(C_center,n(q)) ?`
-  On that reading, admissibility collapses on the explicit line to `c_sel`
-  exactly when
-  `span(z_temp) intersect A_adm^th,n(q) = {0}`,
-  while any nonzero admissible point on the line is equivalent to `z_temp`
-  itself being an admissible same-trace residual direction.
-  For the final audit-style project-state reading of this closure boundary, see
-  `docs/theory/current_simple_support_final_audit_note.md`.
+  keep this entry as the authoritative claim-registry endpoint of the frozen
+  line, but do not replay the full frozen narrative here.
+  Use:
+  `docs/theory/current_simple_support_object_glossary.md`
+  for stable object definitions,
+  `docs/theory/current_simple_support_final_audit_note.md`
+  for the frozen-line conclusion, and
+  `docs/theory/current_simple_support_closed_line_index.md`
+  for the archive/index reading.
+  Any future theorem return on this topic should bring genuinely new continuum
+  / equation-level admissibility input aimed directly at the frozen
+  residual-direction boundary
+  `z_temp in A_adm^th,n(q) intersect ker(C_center,n(q)) ?`,
+  rather than continue the old chain by reformulation.

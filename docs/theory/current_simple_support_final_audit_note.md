@@ -1,14 +1,17 @@
-# Final Audit Note For Clean Full `simple support / подвижный шарнир`
+п»ї# Final Audit Note For Clean Full `simple support / РїРѕРґРІРёР¶РЅС‹Р№ С€Р°СЂРЅРёСЂ`
 
 This note is a final audit-style project-state memo for the current clean full
-`simple support / подвижный шарнир` theorem path. It is not a new theorem step,
+`simple support / РїРѕРґРІРёР¶РЅС‹Р№ С€Р°СЂРЅРёСЂ` theorem path. It is not a new theorem step,
 not a new obstruction package, and not a claim of final physical criticality.
 
-## A. Old Line Closed
+Stable object definitions used below are centralized in
+`docs/theory/current_simple_support_object_glossary.md`.
+
+## A. Old Line Frozen
 
 The older theorem-step chain above the frozen local Outcome-B boundary should
-now be treated as saturated as far as the current clean repository boundary
-allows.
+now be treated as saturated and frozen as far as the current clean repository
+boundary allows.
 
 Further continuation in the same old style would likely be reformulation only.
 
@@ -19,9 +22,11 @@ Further continuation in the same old style would likely be reformulation only.
 - this explicit candidate is strong enough to keep membrane-channel skepticism
   alive;
 - therefore the current criterion still does not have theorem-facing authority
-  to exclude that explicit membrane channel.
+  to exclude that explicit membrane channel;
+- the old line produced reusable negative knowledge, even though it neither
+  validated nor refuted the current criterion.
 
-## C. Exact Missing Theorem
+## C. Exact Final Boundary
 
 For the explicit point
 
@@ -29,38 +34,64 @@ For the explicit point
 c_temp := c_sel + z_temp,n(q;s_mem),
 ```
 
-the admissibility gap is no longer best read as a generic global losslessness
-question.
-
-The exact missing theorem is:
+the final sharpened admissibility-side boundary of the old line is the residual-
+direction question
 
 ```text
-one-point extension theorem for c_temp
-extending the closed selected-family coefficient identification
-beyond A_repo = A_ls to this explicit off-selected weighted-trial point.
+z_temp,n(q;s_mem) in A_adm^th,n(q) в€© ker(C_center,n(q)) ?
 ```
 
-Equivalently: the current clean boundary still does not close
+Equivalently, on the explicit line
 
 ```text
-c_temp in A_adm^th,n(q)
+c_sel + span(z_temp),
 ```
 
-as a theorem-facing yes/no statement.
+the remaining fork is whether theorem-facing admissibility collapses to
+`{c_sel}` alone, or realizes a nonzero point on that line.
+
+This is the last honest sharpening reached by the old line on the current clean
+boundary.
 
 ## D. Project Consequence
 
-Until that one-point extension theorem is built or refuted, the current
-criterion cannot be treated as fully theorem-secured for choosing the critical
-load / wave number on the clean full `simple support / подвижный шарнир` path.
+The old line did **not** validate the current criterion, and it did **not**
+refute the current criterion either.
+
+What it did produce is reusable negative knowledge: the current criterion still
+lacks theorem-facing authority to exclude the explicit membrane candidate.
+
+So the current clean criterion still cannot be treated as fully theorem-secured
+for choosing the critical load / wave number on the clean full
+`simple support / РїРѕРґРІРёР¶РЅС‹Р№ С€Р°СЂРЅРёСЂ` path.
 
 This is not a proof that the explicit membrane candidate is admissible, and not
-a proof that the current criterion fails. It is a closure-boundary statement.
+a proof that the current criterion fails. It is a frozen closure-boundary
+statement.
 
-## E. Next Branch
+## E. Future Return
 
-Only two legitimate next branches remain:
+Any future return to theorem work on this topic must do one of two things:
 
-1. build or refute the one-point extension theorem for `c_temp`;
-2. if that is not viable, return to the criterion itself and reconsider its
-   theorem-facing formulation.
+1. attack the residual-direction question for `z_temp` with genuinely new
+   continuum / equation-level admissibility input;
+2. return to the criterion itself and reconsider its theorem-facing
+   formulation.
+
+## F. Reusable Results
+
+The following outputs of the frozen line should be reused if the critical-load
+criterion is reformulated:
+
+- the explicit weighted-ansatz membrane candidate cannot currently be excluded
+  by theorem-facing authority alone;
+- the current selected-family objects `A_ls`, `J_0(A_ls) = im(D_amp)`, and the
+  fixed-fiber / fiber-excess identities remain valid repository-level
+  scaffolding;
+- the final old-line admissibility fork is exactly the residual-direction
+  question for `z_temp`;
+- any future theorem work on this topic now requires genuinely new continuum /
+  equation-level admissibility input.
+
+For the frozen-line archive view and ordered reading list, see
+`docs/theory/current_simple_support_closed_line_index.md`.

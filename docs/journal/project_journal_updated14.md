@@ -1928,3 +1928,28 @@ losslessness theorem `A_repo = A_full^th`. The repository already knows the
 selected-family coefficient identification `a -> V_adm,n(q) a` on
 `A_repo = A_ls`; what is still missing is its one-point extension to the
 explicit off-selected weighted-trial point `c_temp`.
+
+### 12.50. Final freeze of the old clean theorem line
+
+After the last residual-direction sharpening, the old clean theorem-facing line
+should now be treated as frozen rather than merely active-but-unresolved.
+
+The honest project reading is:
+
+- the old line did **not** validate the current criterion;
+- the old line did **not** refute the current criterion either;
+- it did produce reusable negative knowledge: the current theorem-facing
+  criterion still lacks authority to exclude the explicit membrane candidate;
+- the final sharpened admissibility-side boundary is the residual-direction
+  question
+  z_temp,n(q;s_mem) in A_adm^th,n(q) intersect ker(C_center,n(q)) ?,
+  equivalently whether theorem-facing admissibility collapses on the explicit
+  line c_sel + span(z_temp) to c_sel alone.
+
+So any future return to theorem work on this topic now needs genuinely new
+continuum / equation-level admissibility input. Without that, continuation of
+the old line would likely be reformulation only, and the project should instead
+return to the criterion itself and its theorem-facing formulation.
+
+The freeze/archive summary and ordered source-of-truth reading list are now
+recorded in docs/theory/current_simple_support_closed_line_index.md.
