@@ -3047,3 +3047,68 @@ Verification route:
   available;
 - the exact unresolved step is the theorem-facing admissibility / checked-local
   shadow upgrade for that explicit template.
+
+## Current object-closure boundary on the clean branch
+
+- the older `T3...` style theorem chain should now be treated as saturated as
+  far as the current clean repository boundary allows;
+- the explicit weighted-ansatz membrane template keeps the membrane-channel
+  skepticism alive on the current repository boundary, so the criterion still
+  does not have theorem-facing authority to exclude that channel;
+- but the one-point upgrade question for
+  `c_temp := c_sel + z_temp,n(q;s_mem)` is not yet decidable from the currently
+  closed theorem-facing objects;
+- more precisely, the current boundary does not yet close
+  `c_temp in A_adm^th,n(q)` as a finished one-point admissibility question, and
+  it does not yet close `(c_temp, c_sel) in Pair_chk,n(q)` as a finished
+  one-point checked-local pair question;
+- therefore the new active line is not another representative reformulation but
+  the one-point closure branch:
+  `Z_adm(c_temp)` and `Z_chk(c_temp,c_sel)`;
+- more sharply, these are not symmetric generic upgrades:
+  `Z_adm(c_temp)` is the one-point continuum-realization theorem for the
+  explicit weighted-trial point `c_temp`, while `Z_chk(c_temp,c_sel)` reduces
+  to one-point checked-local shadow existence for `c_temp` on the fixed
+  equal-trace selected class of `c_sel`; by the already closed overlap law,
+  common-chart compatibility is not an additional independent bottleneck there;
+- on the admissibility side the missing theorem is now sharper than the whole
+  losslessness question `A_repo = A_full^th`: the only coefficient-to-theorem
+  identification currently closed is the selected-family bijection
+  `a -> V_adm,n(q) a` onto `A_repo = A_ls`, so deciding `c_temp in A_adm^th`
+  requires a one-point extension of that identification from `A_repo` to this
+  explicit off-selected weighted-trial point;
+- even more sharply, this is not an extension across a generic off-selected
+  weighted-trial point: because `C_center z_temp = 0`, the explicit candidate
+  already lies in the same fixed ansatz-level center-regular fiber as
+  `c_sel`, namely
+  `F_n,q(a_sel) = { c in X_trial,n(q) : C_center,n(q) c = [a_sel1, a_sel2, 0, 0] }`;
+  so the exact unresolved admissibility step is continuum realization of one
+  explicit off-selected point of that fixed fiber, not recovery of center
+  regularity or leading-trace compatibility from scratch;
+- and sharper still: because `c_temp = c_sel + z_temp` with
+  `0 != z_temp in ker(C_center,n(q))`, the exact fiber-excess identity on the
+  current weighted-ansatz boundary gives
+  `Delta_H,n,q(c_temp) = z_temp^T H_n,q z_temp > 0`;
+  so the remaining admissibility question is whether the theorem-facing clean
+  admissible class contains this explicit positive-fiber-excess point on the
+  affine line `c_sel + span(z_temp)`, or collapses on that line to the unique
+  selected `H_n,q`-minimal representative `c_sel`;
+- equivalently, because the selected basepoint already lies on the theorem-
+  facing selected side
+  `A_sel^repo,n(q) subseteq A_sel^{th,cand},n(q) subseteq A_adm^th,n(q)` and
+  `A_adm^th,n(q)` is the intended tangent space of the linearized clean mixed
+  problem, the whole line-level fork reduces exactly to one residual-direction
+  question:
+  `z_temp in A_adm^th,n(q) intersect ker(C_center,n(q)) ?`
+  Indeed,
+  `(c_sel + span(z_temp)) intersect A_adm^th,n(q) = {c_sel}`
+  if and only if
+  `span(z_temp) intersect A_adm^th,n(q) = {0}`,
+  while any nonzero theorem-facing admissible point on that line is equivalent
+  to `z_temp` itself being an admissible same-trace residual direction;
+- until one of those one-point closure theorems is built or refuted, the
+  current criterion remains theorem-facing incomplete on the explicit membrane
+  candidate.
+
+For the final audit-style project reading of this stopping point, see
+`docs/theory/current_simple_support_final_audit_note.md`.

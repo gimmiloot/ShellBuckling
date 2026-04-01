@@ -1,5 +1,81 @@
 # CHANGELOG
 
+## 2026-04-01 - Reduce the explicit affine-line admissibility fork to the single residual direction z_temp
+
+Affected files:
+- docs/theory/current_simple_support_theorem_roadmap.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Recorded the final line-level sharpening for the explicit affine line c_sel + span(z_temp,n(q;s_mem)).
+- Used the already closed inclusion A_sel^repo subseteq A_sel^{th,cand} subseteq A_adm^th together with the tangent-space meaning of A_adm^th to reduce the line fork to one residual-direction question: whether z_temp itself belongs to A_adm^th,n(q) intersect ker(C_center,n(q)).
+- Recorded the exact equivalence: line-level collapse to c_sel is equivalent to span(z_temp) intersect A_adm^th = {0}, while any nonzero theorem-facing admissible point on that line is equivalent to admissibility of z_temp itself.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full simple support / подвижный шарнир path, or hybrid F_min reuse policy were changed.
+## 2026-04-01 - Sharpen the c_temp admissibility fork to an explicit positive-fiber-excess point on the fixed fiber
+
+Affected files:
+- docs/theory/current_simple_support_theorem_roadmap.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Recorded that the explicit candidate c_temp = c_sel + z_temp,n(q;s_mem) is not only an off-selected point of the fixed same-trace center-regular fiber, but an explicit positive-fiber-excess point there.
+- Used the already closed weighted-ansatz fiber-excess identity to state Delta_H,n,q(c_temp) = z_temp^T H_n,q z_temp > 0 on the current repository boundary.
+- Sharpened the admissibility-side question accordingly: decide whether theorem-facing admissibility contains that explicit positive-fiber-excess point on the affine line c_sel + span(z_temp), or collapses on that line to the unique selected H_n,q-minimal representative.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full simple support / подвижный шарнир path, or hybrid F_min reuse policy were changed.
+## 2026-04-01 - Sharpen the admissibility-side one-point gap to the fixed same-trace center-regular fiber
+
+Affected files:
+- docs/theory/current_simple_support_theorem_roadmap.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Recorded a sharper admissibility-side reading for the explicit point c_temp := c_sel + z_temp,n(q;s_mem).
+- Fixed that the remaining Z_adm(c_temp) gap is not extension across a generic off-selected weighted-trial point: c_temp already lies in the same fixed ansatz-level center-regular fiber as c_sel, so the unresolved step is continuum realization of one explicit off-selected point of that fiber.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full simple support / подвижный шарнир path, or hybrid F_min reuse policy were changed.
+## 2026-04-01 - Add the final audit note for the current clean full simple support / подвижный шарнир theorem path
+
+Affected files:
+- docs/theory/current_simple_support_final_audit_note.md
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_simple_support_theorem_roadmap.md
+- docs/theory/current_theory_verification_map.md
+- docs/project_map.md
+- CHANGELOG.md
+
+- Added a short final audit-style note freezing the old clean theorem-step line as saturated on the present repository boundary.
+- Recorded that the current criterion is still not theorem-secured enough to exclude the explicit membrane candidate.
+- Recorded the exact remaining admissibility-side target as the one-point extension theorem for c_temp := c_sel + z_temp,n(q;s_mem), extending the closed selected-family coefficient identification beyond A_repo = A_ls to this explicit off-selected weighted-trial point.
+- Synced cross-references from the current status, theorem roadmap, verification map, and project map to the final audit note.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full simple support / подвижный шарнир path, or hybrid F_min reuse policy were changed.
+
+## 2026-04-01 - Sharpen the one-point closure branch for the explicit membrane candidate on the clean full `simple support / подвижный шарнир` path
+
+Affected files:
+- `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
+- `docs/theory/current_simple_support_theorem_roadmap.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Split the earlier generic one-point upgrade language into two sharper closure theorems for the explicit point `c_temp := c_sel + z_temp,n(q;s_mem)`.
+- Recorded that `Z_adm(c_temp)` is the one-point continuum-realization theorem for the explicit weighted-trial point.
+- Recorded that `Z_chk(c_temp,c_sel)` is the one-point checked-local shadow existence theorem for `c_temp` on the fixed equal-trace selected class of `c_sel`, with overlap/common-chart compatibility no longer treated as an independent bottleneck after such a shadow exists.
+- Sharpened the admissibility side further: the exact missing theorem for `Z_adm(c_temp)` is not the whole global losslessness statement `A_repo = A_full^th`, but a one-point extension of the already closed selected-family coefficient map `a -> V_adm,n(q) a` from `A_repo = A_ls` to the explicit off-selected weighted-trial point `c_temp`.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full `simple support / подвижный шарнир` path, or hybrid `F_min` reuse policy were changed.
+## 2026-04-01 - Freeze the old theorem-step line at the one-point object-closure boundary on the clean full `simple support / РїРѕРґРІРёР¶РЅС‹Р№ С€Р°СЂРЅРёСЂ` path
+
+Affected files:
+- `docs/theory/current_simple_support_status.md`
+- `docs/theory/current_simple_support_theorem_roadmap.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Synced the clean `simple support / РїРѕРґРІРёР¶РЅС‹Р№ С€Р°СЂРЅРёСЂ` status after the one-point audit: the older `T3...` style line is now recorded as saturated as far as the current clean repository boundary allows.
+- Recorded explicitly that the current theorem-facing objects are still not closed enough to decide the one-point question for `c_temp := c_sel + z_temp,n(q;s_mem)`.
+- Opened the new active one-point closure branch `Z_adm(c_temp)` / `Z_chk(c_temp,c_sel)` without introducing another theorem-step sub-chain.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full `simple support / РїРѕРґРІРёР¶РЅС‹Р№ С€Р°СЂРЅРёСЂ` path, or hybrid `F_min` reuse policy were changed.
+
 ## 2026-04-01 - Isolate the exact promotion failure for the explicit weighted-ansatz membrane template on the clean full `simple support / РїРѕРґРІРёР¶РЅС‹Р№ С€Р°СЂРЅРёСЂ` path
 
 Affected files:
@@ -1534,4 +1610,3 @@ Affected files:
 - Refined the theorem roadmap so `T3` now has an exact repository-level target: on the current selected class `A_sel^repo = A_ls = im(V_adm) = im(M_amp)`, selected-class criticality should be read through the nontrivial-kernel question for `L_red = [A_int; B_full] V_adm`, not through a boundary descendant alone.
 - Added an explicit `T3-L1`--`T3-L5` bridge-lemma decomposition, identified the main remaining gap as packaging those pieces into one selected-class bridge theorem, and recorded the Lean/CAS/manual split for the next proof implementation step.
 - Added a new verification-map entry for the T3-stage theorem target and a short journal note marking the start of the T3 proof-organization stage above the frozen local Outcome-B boundary.
-

@@ -8064,3 +8064,33 @@ older result only said that the membrane-nullmode jet is globally realizable in
 the remaining obstruction is no longer low-order jet realizability and no longer
 membrane visibility; it is exactly the upgrade from the explicit weighted trial
 object to the theorem-facing admissible/pair-definable object.
+
+For the explicit one-point candidate
+
+```text
+c_temp := c_sel + z_temp,n(q;s_mem),
+```
+
+this upgrade gap now splits into two sharper closure theorems.
+
+1. `Z_adm(c_temp)`:
+   prove or refute that this explicit weighted-trial object is actually realized
+   by a theorem-facing admissible clean perturbation, i.e. that the current
+   repository boundary promotes this one point from the weighted coefficient
+   universe into `A_adm^th,n(q)`.
+2. `Z_chk(c_temp,c_sel)`:
+   once the one-point admissibility side is available, the remaining pair
+   question is no longer a generic all-pairs/gluing theorem. Because the trace
+   class is already fixed and `c_sel` already comes with the selected corrected-
+   chart side, the exact missing ingredient is a one-point checked-local shadow
+   existence theorem for `c_temp` on that fixed equal-trace class. By the
+   already closed overlap law, common-chart compatibility is not a separate
+   bottleneck after such a shadow is available.
+
+On the current boundary the only closed coefficient-to-theorem identification
+is the selected-family map `a -> V_adm,n(q) a` onto
+`A_repo,n(q) = A_ls,n(q)`. So `Z_adm(c_temp)` is sharper than the full
+losslessness question `A_repo = A_full^th`, but it still requires exactly a
+one-point extension theorem that promotes this explicit off-selected weighted-
+trial point `c_temp` from the current coefficient universe into the theorem-
+facing admissible class.

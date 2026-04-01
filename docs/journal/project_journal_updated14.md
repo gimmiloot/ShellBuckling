@@ -1873,3 +1873,58 @@ corrected chart the membrane direction is the `U1` direction, and the template
 already has `U1 = alpha s_mem != 0` on the physical clean regime. So the exact
 remaining obstacle is not jet realizability and not final membrane visibility;
 it is the admissibility / checked-local-shadow upgrade itself.
+
+### 12.48. Strategy shift: the old theorem-step line is saturated at an object-closure boundary
+
+After the last one-point audit, the clean full `simple support / подвижный шарнир`
+criterion line should no longer be described as waiting for just one more
+old-style theorem step.
+
+The honest reading is stronger and more conservative:
+
+- the explicit weighted-ansatz membrane template is real enough on the current
+  repository boundary to keep membrane-channel skepticism alive;
+- but the current theorem-facing objects are still not closed enough to decide
+  the one-point status of
+  `c_temp := c_sel + z_temp,n(q;s_mem)`;
+- in particular, `A_adm^th,n(q)` is not yet closed enough to decide
+  `c_temp in A_adm^th,n(q)`, and `Pair_chk,n(q)` is structurally defined but
+  not yet closed enough to decide `(c_temp, c_sel) in Pair_chk,n(q)` for this
+  explicit point.
+
+So this is a strategy shift, not a proof of the current criterion. The old
+`T3...` style chain is now saturated as far as the current clean boundary
+allows, and the new active theorem-facing line is the one-point closure branch:
+
+- `Z_adm(c_temp)`;
+- `Z_chk(c_temp,c_sel)`.
+
+Until one of those closure theorems is built or refuted, theorem authority for
+the current criterion remains incomplete on the explicit membrane candidate.
+
+### 12.49. The one-point closure branch itself now splits into an admissibility theorem and a shadow theorem
+
+The next active line is now sharper than the earlier generic phrase
+�admissibility / `Pair_chk` upgrade�.
+
+For the explicit point
+`c_temp := c_sel + z_temp,n(q;s_mem)`:
+
+- `Z_adm(c_temp)` is the one-point continuum-realization theorem asking whether
+  this explicit weighted-trial point is genuinely promoted into
+  `A_adm^th,n(q)`;
+- `Z_chk(c_temp,c_sel)` is then no longer a generic all-pairs theorem: because
+  the trace class is already fixed and `c_sel` already comes with the selected
+  corrected-chart side, the exact missing ingredient is one checked-local
+  shadow existence theorem for `c_temp` on that fixed equal-trace class.
+
+So the criterion question is now focused more tightly than before: not another
+selector reformulation, but one-point continuum admissibility for `c_temp` and,
+conditional on that, one-point checked-local shadow realization for the same
+explicit point.
+
+On the admissibility side this is sharper than asking for the whole global
+losslessness theorem `A_repo = A_full^th`. The repository already knows the
+selected-family coefficient identification `a -> V_adm,n(q) a` on
+`A_repo = A_ls`; what is still missing is its one-point extension to the
+explicit off-selected weighted-trial point `c_temp`.

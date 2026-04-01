@@ -182,6 +182,11 @@ rejected directions.
   Compact theorem-program note stating the next theorem-facing agenda above the
   frozen local Outcome-B boundary, with `T3` as the global selected-kernel
   bridge theorem for `L_red`.
+- `docs/theory/current_simple_support_final_audit_note.md`
+  Short final audit-style note freezing the old clean theorem-step line as
+  saturated on the present repository boundary and recording the exact
+  one-point admissibility closure theorem still missing for the explicit
+  membrane candidate.
 - `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/`
   Active theorem-facing proof-pilot branch for the clean full `simple support / подвижный шарнир`
   reduction, selected-family interpretation, and local admissibility boundary.

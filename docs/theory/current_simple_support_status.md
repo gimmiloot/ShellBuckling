@@ -7,6 +7,8 @@ axisymmetric `simple support` background path.
 It is intentionally short and operational. It does not replace:
 
 - `docs/theory/current_theory_verification_map.md` for claim-status tracking;
+- `docs/theory/current_simple_support_final_audit_note.md` for the final
+  audit-style closure reading of the current clean theorem-facing line;
 - `docs/theory/current_mixed_weak_theory_note.tex` for compact scientific
   discussion;
 - `docs/theory/vyvod_uravneniy_updated17.md` for derivation work;
@@ -53,6 +55,42 @@ read as the global KKT-selected family `A_ls`, the stacked reduced operator
 replacements for `L_red`.
 The stabilized repo-facing interpretation language is summarized in
 `docs/theory/current_simple_support_criterion_bridge_note.md`.
+
+## Current One-Point Closure Boundary
+The older theorem-step chain above the frozen local Outcome-B boundary should
+now be read as saturated as far as the current clean repository boundary
+allows.
+
+The explicit weighted-ansatz membrane template is still important operationally:
+it keeps membrane-channel skepticism alive on the present repository boundary.
+But the current theorem-facing objects are still not closed enough to decide
+the one-point status of
+
+```text
+c_temp := c_sel + z_temp,n(q;s_mem).
+```
+
+Specifically:
+
+- `A_adm^th,n(q)` is not yet closed enough to decide
+  `c_temp in A_adm^th,n(q)`;
+- `Pair_chk,n(q)` is structurally defined, but not yet closed enough to decide
+  `(c_temp, c_sel) in Pair_chk,n(q)` for this explicit point.
+
+So the active theorem-facing line is no longer another old-style `T3...`
+refinement. It is now the one-point closure branch:
+
+- `Z_adm(c_temp)`: build or refute a one-point admissibility closure theorem
+  for `c_temp`;
+- `Z_chk(c_temp,c_sel)`: build or refute a one-point common-corrected-chart /
+  checked-local shadow closure theorem for `(c_temp, c_sel)`.
+
+Until one of those closure theorems is available, the current clean criterion
+should not be read as theorem-secured enough to exclude that explicit membrane
+candidate.
+
+For the final audit-style project-state reading of this stopping point, see
+`docs/theory/current_simple_support_final_audit_note.md`.
 
 
 ## First Clean Full Critical-Search Campaign
