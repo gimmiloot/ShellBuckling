@@ -1,5 +1,88 @@
 # CHANGELOG
 
+## 2026-04-01 - Isolate the exact promotion failure for the explicit weighted-ansatz membrane template on the clean full `simple support / подвижный шарнир` path
+
+Affected files:
+- `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
+- `docs/theory/current_simple_support_theorem_roadmap.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Recorded the exact next obstruction after the explicit weighted-ansatz membrane template is built: the extension fails at the theorem-facing admissibility / `Pair_chk` upgrade, not at low-order jet realizability.
+- Recorded the conditional sharpening that if the explicit template did admit a checked-local shadow in a common corrected chart, then the membrane deviation would already be nonzero on the current physical clean regime because the visible membrane direction is the `U1` direction and `U1 = alpha s_mem` with `alpha != 0`.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full `simple support / подвижный шарнир` path, or hybrid `F_min` reuse policy were changed.
+## 2026-04-01 - Add an explicit weighted-ansatz residual template realizing the membrane-nullmode jet on the clean full `simple support / подвижный шарнир` residual fiber
+
+Affected files:
+- `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
+- `docs/theory/current_simple_support_theorem_roadmap.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Recorded an explicit current weighted-ansatz same-trace residual coefficient template with only `u_s,k=1,2`, `v,k=1,2`, and `T_s,k=1,2` nonzero.
+- Showed exactly that this template lies in `ker(C_center)` and has extracted low-order jet equal to `s_mem g_mem^aug,n(q)`.
+- Therefore the current clean weighted-ansatz / coefficient architecture does not itself obstruct global realization of the membrane-nullmode jet on the residual fiber.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full `simple support / подвижный шарнир` search path, or hybrid `F_min` reuse policy were changed.
+
+## 2026-04-01 - Add the low-order membrane-nullmode obstruction on the residual fiber for the clean full `simple support / подвижный шарнир` path
+
+Affected files:
+- `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
+- `docs/theory/current_simple_support_theorem_roadmap.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Added a genuinely new residual-fiber restriction: any nonzero checked-local pair-definable membrane-visible residual must have augmented local jet in the one-dimensional membrane-nullmode line `span(g_mem^aug,n(q))`.
+- Recorded the explicit low-order coefficient equations `U1 = alpha T1`, `V1 = beta T1`, `N1 = P1 = Y1 = 0`, with `T1 != 0`, together with checked next-layer closure to zero.
+- Sharpened the remaining bottleneck accordingly: the true missing input is now a global checked-local coefficient-extraction theorem on `R_res,n(q) = A_adm^th,n(q) intersect ker(C_center,n(q))` deciding whether a given residual realizes that exact augmented membrane-nullmode jet.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full `simple support / подвижный шарнир` search path, or hybrid `F_min` reuse policy were changed.
+## 2026-04-01 - Reduce the extrinsic admissible-lift branch to the residual-fiber pair-definability / membrane-visibility question on the clean full `simple support / подвижный шарнир` path
+
+Affected files:
+- `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
+- `docs/theory/current_simple_support_theorem_roadmap.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Recorded the exact intersection law `X_sel,n(q) intersect ker(C_center,n(q)) = {0}` following from `C_center,n(q) P_sel,n(q) = I_4`.
+- Used that law to show that for every repo-selected basepoint `c_sel in A_ls,n(q)` and every nonzero same-trace residual direction `z in A_adm^th,n(q) intersect ker(C_center,n(q))`, the point `c_sel + z` is automatically outside `X_sel,n(q)`.
+- Sharpened the extrinsic admissible-lift branch accordingly: outside-`X_sel` is no longer an independent condition, so the true remaining bottleneck is now a global-to-local theorem on the residual fiber deciding checked-local pair-definability and membrane visibility.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full `simple support / подвижный шарнир` search path, or hybrid `F_min` reuse policy were changed.
+## 2026-04-01 - Add the first admissible-lift obstruction inside the global selected full-center lift on the clean full `simple support / подвижный шарнир` path
+
+Affected files:
+- `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
+- `docs/theory/current_simple_support_theorem_roadmap.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Extended the post-`T3v` branch into the admissible-lift question without introducing another reformulation-only theorem step.
+- Recorded the first exact obstruction on that branch: no nonzero same-trace admissible global lift can occur inside the current global selected full-center lift `X_sel = im(P_sel)`, because `C_center|_(X_sel)` is bijective with inverse `P_sel`.
+- Added the equivalent candidate-class consequence `A_sel^{th,cand} intersect X_sel = A_ls`, so any future admissible-lift construction must lie outside the current KKT-selected architecture.
+- Synced the theorem roadmap, verification map, and project journal so the next bottleneck is now the existence or impossibility of admissible candidate-class points outside `X_sel` that still realize the membrane direction.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full `simple support / подвижный шарнир` search path, or hybrid `F_min` reuse policy were changed.
+
+
+## 2026-04-01 - Sharpen the T3u pairwise scalar-difference question into the T3v representative-sensitive rigidity obstruction on the clean full `simple support / подвижный шарнир` path
+
+Affected files:
+- `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
+- `docs/theory/current_simple_support_theorem_roadmap.md`
+- `docs/theory/current_theory_verification_map.md`
+- `docs/journal/project_journal_updated14.md`
+- `CHANGELOG.md`
+
+- Extended pilot 25 from the `T3u` pairwise scalar-difference-image stage into the `T3v` representative-sensitive rigidity stage.
+- Recorded the conservative `Outcome B` result: pairwise scalar-difference collapse `Omega_sigma,n(q; c_sel) = {0}` is not yet proved, but the exact missing ingredient is now isolated more sharply as one representative-sensitive rigidity law on the exact admissible pair domain `Pair_sigma,n(q; c_sel)`.
+- Recorded the sharper structural relation `Sigma_sigma,n(q; c_sel) subseteq Omega_sigma,n(q; c_sel) subseteq Sigma_sigma,n(q; c_sel) - Sigma_sigma,n(q; c_sel)` and the exact nonzero-pairwise template in one fixed quotient fiber.
+- Synced the theorem roadmap, verification map, and project journal so the next bottleneck is now the `T3v` representative-sensitive rigidity / pairwise scalar-difference-collapse theorem rather than only the `T3u` pairwise-image wording.
+- Kept the scientific meaning unchanged: no equations, boundary-condition meaning, solver behavior, clean standalone full `simple support / подвижный шарнир` search path, or hybrid `F_min` reuse policy were changed.
+
 ## 2026-03-30 - Reduce the T3t scalar-image question to a T3u exact pairwise scalar-difference obstruction on the clean full `simple support / подвижный шарнир` path
 
 Affected files:

@@ -2832,3 +2832,218 @@ Verification route:
 - Manual derivation:
   theorem scope, exact selected-class wording, and the caution that this is not
   yet a final physical criticality theorem.
+## AB. Current `T3v` Implementation Split
+
+### `T3v-L1`. Exact admissible pair-domain / pairwise-image lemma
+
+Statement:
+- define the exact admissible pair domain
+  `Pair_sigma,n(q; c_sel)
+   := { (z_1, z_2) in D_sigma,n(q; c_sel)^2 :
+        (c_sel + z_1, c_sel + z_2) in Pair_chk,n(q) }`;
+- define the exact pairwise scalar-difference image
+  `Omega_sigma,n(q; c_sel)
+   := { sigma_chk(z_1) - sigma_chk(z_2) :
+        (z_1, z_2) in Pair_sigma,n(q; c_sel) }`;
+- then `Omega_sigma` is chart-invariant and satisfies
+  `Sigma_sigma subseteq Omega_sigma subseteq Sigma_sigma - Sigma_sigma`.
+
+Status:
+- closed enough.
+
+Verification route:
+- manual derivation, CAS, code inspection.
+
+### `T3v-L2`. Pairwise-collapse vs scalar-image-collapse lemma
+
+Statement:
+- on `D_sigma,n(q; c_sel)`, the following are equivalent:
+  `Omega_sigma = {0}`;
+  `Sigma_sigma = {0}`;
+  `N_sigma = emptyset`;
+  `sigma_chk = 0` on `D_sigma`;
+  `Delta_rep^pt = 0` on `D_sigma`;
+  `Rep_U` on every exact patch.
+
+Status:
+- closed enough.
+
+Verification route:
+- manual derivation, theorem reuse from `T3t` / `T3u`, code inspection.
+
+### `T3v-L3`. Pairwise-factorization / basepoint-star reduction lemma
+
+Statement:
+- whenever `(z_1, z_2) in Pair_sigma,n(q; c_sel)`, one has
+  `Delta_rep,chk,n(q; c_sel + z_1, c_sel + z_2)
+   = (sigma_chk(z_1) - sigma_chk(z_2)) e_mem`;
+- because `(z, 0) in Pair_sigma,n(q; c_sel)` for every `z in D_sigma`, no
+  separate pair-completeness theorem is required to reduce collapse of
+  `Omega_sigma` to vanishing of the basepoint-relative values of `sigma_chk`.
+
+Status:
+- closed enough.
+
+Verification route:
+- manual derivation, theorem reuse from `T3l` / `T3m` / `T3u`, code inspection.
+
+### `T3v-L4`. Exact quotient-final obstruction / nonzero-pairwise-template lemma
+
+Statement:
+- on the current checked boundary, the current theorem-facing candidate /
+  admissibility package is quotient-final: it fixes `(a_sel, b_sel)` and the
+  scalar cocycle package, but not equality of membrane coordinates inside the
+  fixed quotient fiber;
+- therefore current theorem-facing constraints do not force
+  `Omega_sigma,n(q; c_sel) = {0}`;
+- failure is exactly compatible with the template
+  `(z_1, z_2) in Pair_sigma`,
+  `chi_chk,chart(c_sel + z_i) = (a_sel, b_sel, s_i)^T`,
+  `s_1 - s_2 != 0`.
+
+Status:
+- Outcome B: exact obstruction theorem obtained; explicit admissible nonzero
+  pair still open.
+
+Verification route:
+- manual derivation, theorem reuse from pilot 23 quotient-finality and `T3u`,
+  code inspection.
+
+### `T3v-L5`. Exact consequence lemma for the next bridge step
+
+Statement:
+- if one proves `Omega_sigma,n(q; c_sel) = {0}` for every fixed clean `(n, q)`
+  and repo-selected basepoint `c_sel`, then `Sigma_sigma = {0}`,
+  `N_sigma = emptyset`, `sigma_chk` vanishes on `D_sigma`, `Delta_rep^pt = 0`
+  on the full exact domain, `Rep_U` holds on every exact patch, and the
+  remaining membrane obstruction in the reverse-inclusion / zero-excess bridge
+  disappears on the current boundary.
+
+Status:
+- closed enough as a conditional theorem package.
+
+Verification route:
+- manual derivation, Lean target after the exact pair-domain / scalar-
+  difference-image abstraction is packaged.
+
+### Main bottleneck inside `T3v`
+
+- prove or refute one representative-sensitive rigidity law on the exact
+  admissible pair domain:
+  there do not exist exact admissible pair data `(z_1, z_2) in Pair_sigma`
+  with the same quotient coordinates `(a_sel, b_sel)` and different membrane
+  coordinates `s_1 != s_2`;
+- equivalently prove or refute that `Omega_sigma,n(q; c_sel) = {0}`.
+
+### Lean / CAS / manual split for `T3v`
+
+- Lean:
+  finite-dimensional exact-domain / exact pair-domain / scalar-image /
+  pairwise scalar-difference / defect-set templates after abstracting
+  `sigma_chk`, `Sigma_sigma`, `Omega_sigma`, and `N_sigma`.
+- CAS / code inspection:
+  `D_rich,eta^corr`, `chi_chk,vis`, `q_coeff`, `e_mem`, `g_mem`, `J_0`,
+  `ker(C_center)`, quotient-preserving chart-change identities, the fixed-fiber
+  coordinate law `chi_chk,chart(c_sel + z_i) = (a_sel, b_sel, s_i)^T`, and the
+  identities `Delta_rep^pt = sigma_chk e_mem` and
+  `Delta_rep,chk = (sigma_chk(z_1) - sigma_chk(z_2)) e_mem`.
+- Manual derivation:
+  exact theorem scope for `T3v`, why `Pair_sigma` is the correct exact pair
+  domain, why current theorem-facing constraints still do not force pairwise
+  scalar-difference collapse, and how `T3v` relates to the later reverse-
+  inclusion / zero-excess bridge below full `T3`.
+
+## Admissible-lift branch after the saturated `T3` chain
+
+- keep the already closed global selected full-center lift
+  `X_sel,n(q) := im(P_sel,n(q))` with `C_center,n(q) P_sel,n(q) = I_4`;
+- the restricted map `C_center|_(X_sel)` is therefore bijective, with inverse
+  `P_sel`;
+- for every clean `(n, q)` and every repo-selected basepoint `c_sel in A_ls`,
+  the selected-architecture lift class
+  `Lift_mem^sel,n(q; c_sel)
+   := { z in A_adm^th,n(q) intersect ker(C_center,n(q)) :
+        c_sel + z in X_sel,n(q),
+        (c_sel + z, c_sel) in Pair_chk,n(q) }`
+  satisfies the exact obstruction theorem
+  `Lift_mem^sel,n(q; c_sel) = {0}`;
+- equivalently,
+  `A_sel^{th,cand},n(q) intersect X_sel,n(q) = A_ls,n(q)`;
+- hence any nonzero admissible global lift of the local membrane mode, if it
+  exists at all, must lie outside the current KKT-selected global architecture
+  `X_sel`, and in particular outside `A_ls`;
+- the next admissible-lift bottleneck is therefore not inside `X_sel`, but the
+  existence or impossibility of candidate-class points in
+  `A_sel^{th,cand},n(q) \ X_sel,n(q)` whose same-trace residual remains
+  checked-local pair-definable and membrane-visible.
+## Extrinsic admissible-lift branch after the `X_sel` obstruction
+
+- the exact intersection law
+  `X_sel,n(q) intersect ker(C_center,n(q)) = {0}`
+  follows from `C_center,n(q) P_sel,n(q) = I_4`;
+- hence for every repo-selected basepoint `c_sel in A_ls subset X_sel` and every
+  nonzero residual direction `0 != z in A_adm^th,n(q) intersect ker(C_center,n(q))`,
+  one automatically has `c_sel + z notin X_sel,n(q)`;
+- so outside-`X_sel` is no longer an independent condition in the lift branch;
+- the extrinsic admissible-lift problem is now exactly to decide whether there
+  exists a nonzero direction in the residual fiber
+  `A_adm^th,n(q) intersect ker(C_center,n(q))`
+  that is both checked-local pair-definable with `c_sel` and membrane-visible;
+- the single remaining exact blocking condition is therefore a global-to-local
+  theorem on that residual fiber deciding pair-definability and the resulting
+  representative-sensitive membrane deviation.
+## Residual-fiber low-order jet obstruction on the active clean branch
+
+- for the residual fiber `R_res,n(q) := A_adm^th,n(q) intersect ker(C_center,n(q))`,
+  any nonzero candidate `z` that is checked-local pair-definable with `c_sel`
+  and membrane-visible must have augmented checked-local residual jet in the
+  one-dimensional line
+  `span(g_mem^aug,n(q))`, where
+  `g_mem^aug,n(q) = [0,0,0,0,alpha,0,0,0,beta,1]`;
+- equivalently, under the same pilot-23 nonresonance regime its first checked
+  nontrivial coefficients satisfy
+  `U1 = alpha T1`, `V1 = beta T1`, `N1 = P1 = Y1 = 0`, with `T1 != 0`, while
+  the checked next layer closes uniquely to zero;
+- thus the residual-fiber search space is cut from all of
+  `A_adm^th,n(q) intersect ker(C_center,n(q))` to those directions whose
+  extracted low-order local jet satisfies this explicit membrane-nullmode
+  equation family;
+- the exact remaining blocking condition is therefore a global checked-local
+  coefficient-extraction theorem on the residual fiber deciding membership in
+  `span(g_mem^aug,n(q))`.
+## Explicit weighted-ansatz realization of the residual-fiber membrane-nullmode jet
+
+- the current weighted trial ansatz does not kill the membrane-nullmode jet on
+  the residual fiber;
+- for any `s_mem != 0`, one has an explicit same-trace coefficient template with
+  only
+  `u_s,k=1,2`, `v,k=1,2`, and `T_s,k=1,2` nonzero,
+  chosen as
+  `u_s,k=1 = -L alpha s_mem`, `u_s,k=2 = -(L^2/x0) alpha s_mem`,
+  `v,k=1 = -L beta s_mem`, `v,k=2 = -(L^2/x0) beta s_mem`,
+  `T_s,k=1 = -L s_mem`, `T_s,k=2 = -(L^2/x0) s_mem`;
+- equivalently,
+  `u_s^z = alpha s_mem x^n (x - x^2/x0)`,
+  `v^z   = beta  s_mem x^n (x - x^2/x0)`,
+  `T_s^z =       s_mem x^(n-1) (x - x^2/x0)`,
+  with all other channels zero;
+- this template lies in `ker(C_center)` and has exact low-order jet
+  `s_mem g_mem^aug,n(q)`;
+- so the current weighted-ansatz repository boundary already realizes the local
+  membrane-nullmode jet globally on the residual fiber;
+- the remaining open issue is therefore no longer low-order realizability of the
+  jet itself, but its full theorem-facing upgrade to an exact admissible
+  representative-sensitive membrane lift in `A_adm^th,n(q)`.
+## Exact failure point after the explicit weighted-ansatz membrane template
+
+- after the explicit residual template is built, the clean branch is no longer
+  blocked by low-order realizability of `g_mem^aug` on `ker(C_center)`;
+- the template does not yet extend to a theorem-facing admissible lift on the
+  current exact repository boundary, because the upgrade already breaks at the
+  passage from the explicit weighted trial vector to `A_adm^th` / `Pair_chk`;
+- this is sharper than the earlier residual-fiber wording: the remaining open
+  issue is not whether the membrane-nullmode jet can occur, and not whether a
+  nonzero membrane coordinate would be visible if a checked-local shadow were
+  available;
+- the exact unresolved step is the theorem-facing admissibility / checked-local
+  shadow upgrade for that explicit template.

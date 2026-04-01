@@ -2394,3 +2394,256 @@ Most valuable next proof pilots:
   prove or refute that `Omega_sigma,n(q; c_sel) = {0}`, equivalently prove or
   refute that `Sigma_sigma,n(q; c_sel) = {0}` on the full exact admissible pair
   domain.
+### V-S40. `T3v` implementation: pairwise scalar-difference collapse is still open, but the exact missing ingredient is now one representative-sensitive rigidity law on the admissible pair domain
+
+- ID: `V-S40`
+- Claim / Hypothesis:
+  For fixed clean `(n, q)` and fixed repo-selected basepoint `c_sel`:
+  1. define the exact admissible pair domain
+     `Pair_sigma,n(q; c_sel)
+      := { (z_1, z_2) in D_sigma,n(q; c_sel)^2 :
+           (c_sel + z_1, c_sel + z_2) in Pair_chk,n(q) }`;
+  2. define the exact pairwise scalar-difference image
+     `Omega_sigma,n(q; c_sel)
+      := { sigma_chk,n(q; c_sel)(z_1) - sigma_chk,n(q; c_sel)(z_2) :
+           (z_1, z_2) in Pair_sigma,n(q; c_sel) }`;
+  3. then `Omega_sigma` is chart-invariant and satisfies the exact inclusions
+     `Sigma_sigma,n(q; c_sel) subseteq Omega_sigma,n(q; c_sel)
+      subseteq Sigma_sigma,n(q; c_sel) - Sigma_sigma,n(q; c_sel)`;
+  4. pairwise scalar-difference collapse is therefore exactly equivalent to
+     scalar-image collapse, defect-set emptiness, selector vanishing, global
+     pointwise-defect vanishing, and `Rep_U` on every exact patch;
+  5. current theorem-facing admissibility / candidate constraints remain
+     quotient-final on the checked boundary: they fix the quotient coordinates
+     `(a_sel, b_sel)` and the scalar cocycle package, but do not force equality
+     of membrane coordinates inside the fixed quotient fiber;
+  6. so the exact remaining missing ingredient is one representative-sensitive
+     rigidity law forbidding an exact admissible pair
+     `(z_1, z_2) in Pair_sigma,n(q; c_sel)` with
+     `chi_chk,chart(c_sel + z_i) = (a_sel, b_sel, s_i)^T` and `s_1 != s_2`.
+- Type: `structural claim`
+- Source file(s):
+  `docs/theory/current_simple_support_theorem_roadmap.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`.
+- Current status: `Outcome B: pairwise scalar-difference collapse is still open, but the exact missing ingredient is now isolated as one representative-sensitive rigidity law on the full exact admissible pair domain`
+- What counts as verification:
+  a clean `T3v` package that explicitly records:
+  the exact pair domain `Pair_sigma`;
+  the exact pairwise scalar-difference image `Omega_sigma`;
+  the sharp relation `Sigma_sigma subseteq Omega_sigma subseteq Sigma_sigma - Sigma_sigma`;
+  the equivalence between collapse of `Omega_sigma` and collapse of `Sigma_sigma`;
+  and the exact obstruction that current theorem-facing constraints still do not
+  force equality of membrane representatives inside the fixed quotient fiber.
+- Verification method:
+  manual derivation, CAS, code inspection.
+- Verification boundary:
+  this is not yet full `T3`, not a pairwise-collapse theorem on the full exact
+  domain, not an explicit admissible nonzero-pair realization, and not a final
+  physical shell theorem.
+  It is the sharpest current reduction after `T3u`: the unresolved gap is now
+  not merely vanishing of one exact pairwise scalar-difference image, but one
+  specific representative-sensitive rigidity law invisible to the current
+  quotient-final constraints.
+- Next action:
+  prove or refute that there do not exist exact admissible pair data
+  `(z_1, z_2) in Pair_sigma,n(q; c_sel)` with the same quotient coordinates
+  `(a_sel, b_sel)` and different membrane coordinates `s_1 != s_2`,
+  equivalently prove or refute that `Omega_sigma,n(q; c_sel) = {0}` on the full
+  exact admissible pair domain.
+
+### V-S41. Admissible-lift branch: no nonzero same-trace admissible lift can live inside the global selected full-center lift `X_sel`
+
+- ID: `V-S41`
+- Claim / Hypothesis:
+  For fixed clean `(n, q)`, let
+  `X_sel,n(q) := im(P_sel,n(q))` with `C_center,n(q) P_sel,n(q) = I_4`.
+  Then:
+  1. the restricted map `C_center|_(X_sel,n(q)) : X_sel,n(q) -> R^4` is
+     bijective, with inverse `P_sel,n(q)`;
+  2. for every repo-selected basepoint `c_sel in A_sel^repo,n(q) = A_ls,n(q)`,
+     the selected-architecture lift class
+     `Lift_mem^sel,n(q; c_sel)
+      := { z in A_adm^th,n(q) intersect ker(C_center,n(q)) :
+           c_sel + z in X_sel,n(q),
+           (c_sel + z, c_sel) in Pair_chk,n(q) }`
+     satisfies
+     `Lift_mem^sel,n(q; c_sel) = {0}`;
+  3. equivalently,
+     `A_sel^{th,cand},n(q) intersect X_sel,n(q) = A_ls,n(q)`.
+  So any nonzero admissible global lift of the local membrane mode, if it
+  exists at all, must lie outside the current KKT-selected full-center lift.
+- Type: `structural claim`
+- Source file(s):
+  `docs/theory/current_simple_support_theorem_roadmap.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md` section 1.10.9;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/selection_object_check.py`;
+  `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`.
+- Current status: `closed enough on the selected-architecture obstruction layer`
+- What counts as verification:
+  explicit use of the exact identity `C_center P_sel = I_4`, the definition
+  `X_sel = im(P_sel)`, the same-trace condition `z in ker(C_center)`, and the
+  candidate-class trace condition `J_0(c) in im(D_amp)`.
+- Verification method:
+  manual derivation, code inspection, theorem reuse from the selected-lift
+  package.
+- Verification boundary:
+  this does not yet prove that the full admissible lift class is empty inside
+  all of `A_adm^th,n(q)`. It proves only that no nonzero same-trace admissible
+  lift can occur inside the current global selected full-center lift `X_sel`.
+- Next action:
+  decide whether there exist candidate-class points in
+  `A_sel^{th,cand},n(q) \ X_sel,n(q)` whose same-trace residual is still
+  checked-local pair-definable and membrane-visible.
+### V-S42. Extrinsic admissible-lift branch: after the `X_sel` obstruction, extrinsicness is automatic for every nonzero same-trace residual, so the true missing input is a residual-fiber pair-definability / membrane-visibility theorem
+
+- ID: `V-S42`
+- Claim / Hypothesis:
+  For fixed clean `(n, q)`, one has the exact intersection law
+  `X_sel,n(q) intersect ker(C_center,n(q)) = {0}`.
+  Hence for every repo-selected basepoint `c_sel in A_ls,n(q) subset X_sel,n(q)`
+  and every nonzero residual direction
+  `0 != z in A_adm^th,n(q) intersect ker(C_center,n(q))`,
+  one automatically has `c_sel + z notin X_sel,n(q)`.
+  Therefore the extrinsic admissible-lift question is no longer an `X_sel`
+  question at all: it is exactly whether the residual fiber
+  `A_adm^th,n(q) intersect ker(C_center,n(q))` contains a nonzero direction that
+  is checked-local pair-definable with `c_sel` and carries nonzero
+  representative-sensitive membrane deviation.
+- Type: `structural claim`
+- Source file(s):
+  `docs/theory/current_simple_support_theorem_roadmap.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/selection_object_check.py`;
+  `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`.
+- Current status: `closed enough as a residual-fiber reduction / blocking-condition statement`
+- What counts as verification:
+  explicit use of `C_center P_sel = I_4`, the identity `X_sel = im(P_sel)`, the
+  same-trace condition `z in ker(C_center)`, and the already closed inclusion
+  `A_ls subset X_sel`.
+- Verification method:
+  manual derivation, code inspection, theorem reuse from the selected-lift package.
+- Verification boundary:
+  this does not yet construct an extrinsic admissible lift and does not yet
+  prove that none exists in all of `A_adm^th,n(q) intersect ker(C_center,n(q))`.
+  It removes only one remaining false degree of freedom: outside-`X_sel` is now
+  automatic for every nonzero same-trace residual, so the true missing input is
+  a global-to-local theorem deciding pair-definability and membrane visibility
+  on the residual fiber itself.
+- Next action:
+  derive an exact coefficient-level or operator-level criterion on
+  `A_adm^th,n(q) intersect ker(C_center,n(q))` that decides which nonzero
+  residual directions are checked-local pair-definable with `c_sel` and whether
+  they produce nonzero membrane deviation.
+### V-S43. Residual-fiber branch: any checked-local membrane-visible candidate residual must satisfy the exact augmented membrane-nullmode equations
+
+- ID: `V-S43`
+- Claim / Hypothesis:
+  Under the same checked local nonresonance regime already used in pilot 23,
+  let
+  `R_res,n(q) := A_adm^th,n(q) intersect ker(C_center,n(q))`.
+  If
+  `0 != z in R_res,n(q)`
+  satisfies `(c_sel + z, c_sel) in Pair_chk,n(q)` and carries nonzero
+  representative-sensitive membrane deviation, then in any common coefficient-
+  faithful augmented corrected checked-local chart its residual jet lies in
+  `span(g_mem^aug,n(q))`, where
+  `g_mem^aug,n(q) = [0,0,0,0,alpha,0,0,0,beta,1]`.
+  Equivalently the first checked nontrivial augmented coefficients obey
+  `U1 = alpha T1`, `V1 = beta T1`, `N1 = P1 = Y1 = 0`, with `T1 != 0`, and the
+  checked next layer closes uniquely to zero.
+- Type: `formula-level claim`
+- Source file(s):
+  `docs/theory/vyvod_uravneniy_updated17.md` sections 1.10.13-1.10.14;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`.
+- Current status: `closed enough as a necessary low-order obstruction on the residual fiber`
+- What counts as verification:
+  explicit reuse of the local first post-leading membrane-nullmode formulas,
+  the coefficient-faithful augmented membrane vector `g_mem^aug`, the checked
+  next-layer closure, and the same-trace / pair-definability interpretation on
+  the residual fiber.
+- Verification method:
+  manual derivation, CAS/theory reuse from pilot 23, code inspection.
+- Verification boundary:
+  this does not yet construct a nonzero residual-fiber lift and does not yet
+  prove that none exists globally. It proves only that any such candidate must
+  satisfy one explicit low-order membrane-nullmode equation family, so the true
+  remaining missing input is a global coefficient-extraction theorem on
+  `R_res,n(q)` deciding whether that local jet is realized.
+- Next action:
+  derive an exact residual-fiber coefficient extractor or equivalent operator-
+  level criterion deciding when `z in R_res,n(q)` has augmented checked-local
+  jet in `span(g_mem^aug,n(q))`.
+### V-S44. Residual-fiber branch: the current weighted trial ansatz explicitly realizes the membrane-nullmode jet on `ker(C_center)`
+
+- ID: `V-S44`
+- Claim / Hypothesis:
+  On the current clean weighted-ansatz repository boundary, let `L := 1 - x0`
+  and fix `s_mem != 0`. Define a trial coefficient vector with only
+  `u_s,k=1,2`, `v,k=1,2`, and `T_s,k=1,2` nonzero,
+  equal respectively to
+  `(-L alpha s_mem, -(L^2/x0) alpha s_mem)`,
+  `(-L beta s_mem,  -(L^2/x0) beta s_mem)`,
+  `(-L s_mem,       -(L^2/x0) s_mem)`.
+  Then this vector lies in `ker(C_center,n(q))` and its extracted low-order
+  center jet is exactly `s_mem g_mem^aug,n(q)`.
+- Type: `formula-level claim`
+- Source file(s):
+  `src/shell_buckling/mixed_weak/solver_patched_core.py`;
+  `src/shell_buckling/mixed_weak/full_simple_support_critical_search.py`;
+  `docs/theory/vyvod_uravneniy_updated17.md` sections 1.10.13-1.10.14;
+  `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`.
+- Current status: `closed enough on the current weighted-ansatz repository boundary`
+- What counts as verification:
+  explicit use of the basis form `x^p t^k`, the exact center map `C_center`, and
+  direct coefficient expansion showing the leading local jet equals
+  `s_mem g_mem^aug,n(q)`.
+- Verification method:
+  manual derivation, code inspection.
+- Verification boundary:
+  this is a current weighted-ansatz / repository-boundary realization result. It
+  does not yet prove the full continuum theorem that an exact admissible nonzero
+  membrane-visible lift exists in all of `A_adm^th,n(q)`.
+- Next action:
+  decide whether the theorem-facing admissible / pair-definable class upgrades
+  this explicit weighted-ansatz template into a true exact admissible lift, or
+  whether an additional admissibility theorem blocks that upgrade.
+### V-S45. Explicit weighted-ansatz membrane template: the remaining extension failure is exactly the admissibility / `Pair_chk` upgrade
+
+- ID: `V-S45`
+- Claim / Hypothesis:
+  Keep the explicit weighted-ansatz residual template `z_temp,n(q; s_mem)` with
+  `s_mem != 0`. On the current exact repository boundary, the extension attempt
+  to a genuine admissible checked-local lift fails exactly at the theorem-facing
+  admissibility / shadow upgrade: the repository does not yet promote this
+  explicit weighted trial vector to an independently closed element of
+  `A_adm^th,n(q)`, and does not yet package a checked-local shadow theorem strong
+  enough to conclude `(c_sel + z_temp, c_sel) in Pair_chk,n(q)`.
+  Conditional on such a shadow upgrade, the final membrane deviation would be
+  nonzero rather than zero, because the visible membrane generator is the `U1`
+  direction and the template has `U1 = alpha s_mem` with `alpha != 0` on the
+  physical clean regime already checked in pilot 23.
+- Type: `structural/formal claim`
+- Source file(s):
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`.
+- Current status: `closed enough on the present repository boundary`
+- What counts as verification:
+  explicit use of the already closed template existence on `X_trial intersect ker(C_center)`,
+  the pilot-23 statement that `A_full^th` is not yet an independently closed
+  continuum object on the repository boundary, the current absence of a global
+  checked-local shadow theorem on raw residuals, and the nonvanishing of the
+  visible membrane coefficient `U1 = alpha s_mem` in the physical regime.
+- Verification method:
+  manual derivation, code inspection, pilot/theory cross-read.
+- Verification boundary:
+  this is not a proof that the explicit template is impossible in the full
+  continuum admissible problem. It is a proof that the current exact repository
+  boundary does not yet extend it past the admissibility / `Pair_chk` upgrade.
+- Next action:
+  prove either that the explicit template belongs to `A_adm^th` and yields a
+  checked-local pair, or derive one exact theorem showing why that upgrade is
+  impossible.
