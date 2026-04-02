@@ -42,6 +42,31 @@ Outside scope for this map:
 - claiming final physical validation of the current candidate loads;
 - treating project strategy as theorem-level mathematics.
 
+## 2a. Verification-Method Policy
+
+Use proof tooling by role:
+
+- manual derivation:
+  continuum/local analytical statements, near-center asymptotics, theorem
+  framing, and analytical meaning;
+- CAS:
+  symbolic algebra, elimination, recurrence manipulations, principal-part
+  reductions, boundary-pair algebra, and exact formula checks;
+- Lean:
+  abstract logical closure once the statement is sharp enough, including
+  witness structure, uniqueness structure, implication chains, and proof
+  skeleton checks;
+- numerical testbench:
+  diagnostics, robustness checks, and counterexample hunting only; not theorem
+  closure.
+
+Practical order:
+
+- sharpen the statement manually first;
+- then check symbolic transitions with CAS;
+- then use Lean if the statement is stable enough for proof-skeleton closure;
+- use numerics only as diagnostic support.
+
 ## 3. Accepted Working Base
 
 The items below are treated as the **accepted working basis for the current
@@ -2827,3 +2852,666 @@ Most valuable next proof pilots:
   define the correct theorem-facing constrained class and the canonical
   weak/interior optimality statement, then prove existence, uniqueness, and
   canonicity of the selected weak family.
+
+### V-S50. Weak/KKT theorem target readiness has been assessed: almost ready, but prerequisite clarification is still needed
+
+- ID: `V-S50`
+- Claim / Hypothesis:
+  The weak/KKT selector route on the present clean full simple-support branch
+  is now specified well enough to identify the correct next theorem program,
+  but not yet well enough to start a clean proof attempt immediately. The
+  remaining prerequisite clarifications are:
+  1. close the theorem-facing constrained class on which the selected weak map
+     should act;
+  2. identify the canonical weak/interior optimality statement that should
+     define the selected representative.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `src/shell_buckling/mixed_weak/_core_reduction.py`;
+  `src/shell_buckling/mixed_weak/full_simple_support_critical_search.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`.
+- Current status: `almost ready / prerequisite clarification needed`
+- What counts as verification:
+  an explicit readiness checklist that identifies the candidate theorem target,
+  the exact unresolved underdeterminations, the authority proof obligations, and
+  the prerequisite clarifications needed before proof work starts.
+- Verification method:
+  code inspection, numerical audit reuse, manual theory/status synthesis.
+- Verification boundary:
+  this is not a proof that the weak/KKT route succeeds, and it is not yet a
+  readiness claim for a finished proof start. It records only that the next
+  step should still be one short clarification layer below a proof attempt.
+- Next action:
+  clarify the theorem-facing constrained class and the canonical weak/interior
+  principle first; then reassess proof readiness.
+
+### V-S51. The theorem-facing constrained class `A_con^th,n(q)` has been narrowed but not fixed
+
+- ID: `V-S51`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, the intended theorem-facing
+  constrained codomain for a future weak/KKT selected-representative map is no
+  longer completely schematic, but it is not yet fixed sharply either. The
+  current repo evidence narrows `A_con^th,n(q)` to two plausible candidates:
+  1. the selected-trace constrained slice of the intended full theorem-facing
+     admissible class;
+  2. a theorem-facing selected overclass closer to `A_ls`, with
+     `A_sel^{th,cand}` the nearest current structural placeholder.
+  The raw code-level spaces `X_trial,n`, `W_reg,n(q)`, the exact numerical
+  selected family `A_repo,n(q) = A_ls,n(q)`, and the selected trace plane alone
+  should not be read as the intended theorem-facing codomain.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_simple_support_object_glossary.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`.
+- Current status: `narrowed to two plausible candidates / not fixed`
+- What counts as verification:
+  a source-of-truth clarification that distinguishes the intended
+  theorem-facing codomain from the code-level coefficient classes, the exact
+  numerical selected family, and the trace plane alone, while identifying the
+  precise remaining ambiguity.
+- Verification method:
+  code inspection, theory/status synthesis, existing pilot/object-glossary
+  comparison.
+- Verification boundary:
+  this does not prove that either narrowed candidate is the correct codomain.
+  It only records that the codomain question is now better constrained than a
+  fully schematic placeholder, while still not closed enough for proof work to
+  start without one more clarification layer.
+- Next action:
+  decide whether the theorem-facing codomain should be fixed through the full
+  admissible-class route or through a genuinely closed selected-overclass /
+  local-to-global route; then return to the weak/KKT readiness question.
+
+### V-S52. For the weak/KKT route, the preferred codomain target is now the selected-trace constrained slice of the full admissible class
+
+- ID: `V-S52`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, the preferred theorem-facing
+  codomain target for the future weak/KKT selected-representative map is now
+  the selected-trace constrained slice of the intended full admissible class,
+  not the selected-overclass / local-to-global route. The selected-overclass
+  route remains live, but it is currently better read as a neighboring theorem
+  program than as the primary codomain of `S_weak,n,q`.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_simple_support_object_glossary.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`.
+- Current status: `preferred codomain route chosen / not closed`
+- What counts as verification:
+  a source-of-truth comparison showing why the selected-trace constrained slice
+  is the closer theorem-facing analogue of the live weak/KKT geometry and why
+  the selected-overclass route should currently be treated as a secondary
+  neighboring program.
+- Verification method:
+  code inspection, pilot interpretation reuse, manual theory/status synthesis.
+- Verification boundary:
+  this does not prove that the preferred route is already closed as a theorem.
+  It records only the current route choice for the next clarification step on
+  the weak/KKT program.
+- Next action:
+  sharpen the ambient full admissible/constrained class enough to define the
+  selected-trace slice cleanly, then formulate the canonical weak/interior
+  optimality statement on that preferred codomain.
+
+### V-S53. The ambient full admissible/constrained class `A_full^th,n(q)` is now narrowed substantially, but still not closed sharply enough
+
+- ID: `V-S53`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, the intended ambient class
+  `A_full^th,n(q)` for the preferred weak/KKT codomain route should now be read
+  as the full clean admissible / center-regular tangent class of the continuous
+  mixed problem, not as the weighted-trial coefficient universe, not as the
+  ansatz-level center-regular coefficient slice, not as the exact repo-selected
+  family, and not as the selected trace plane alone. This narrows the ambient
+  object substantially, but it does not yet close it sharply enough, because
+  the repo still lacks a finished continuum/local packaging of that full class
+  together with higher-order formal continuation/completeness and theorem-facing
+  trace regularity strong enough for the selected-trace slice to be a finished
+  codomain.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_simple_support_object_glossary.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `src/shell_buckling/mixed_weak/_core_reduction.py`;
+  `src/shell_buckling/mixed_weak/full_simple_support_critical_search.py`.
+- Current status: `ambient class narrowed substantially / still not sharp enough`
+- What counts as verification:
+  a source-of-truth clarification that separates the intended ambient continuum
+  class from the explicit weighted-trial/coefficient surrogates and from the
+  exact selected family, while naming the exact missing continuum/local
+  packaging step.
+- Verification method:
+  code inspection, pilot interpretation reuse, manual theory/status synthesis.
+- Verification boundary:
+  this does not prove that `A_full^th,n(q)` is already closed. It records only
+  the strongest current ambient-class reading and the remaining obstacle that
+  still blocks the preferred weak/KKT codomain from becoming a finished
+  theorem-facing object.
+- Next action:
+  package the full admissible / center-regular continuum class and its
+  theorem-facing trace regularity sharply enough that the selected-trace slice
+  inside `A_full^th,n(q)` becomes a clean codomain source.
+
+### V-S54. The preferred weak/KKT codomain is now packaged as an ambient-class-plus-trace pair, but one explicit continuum/local trace-regularity gap remains
+
+- ID: `V-S54`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, the preferred weak/KKT
+  codomain can now be read more sharply as the pair
+  `(A_full^th,n(q), J_0)`, where `A_full^th,n(q)` is the full clean admissible /
+  center-regular tangent class and `J_0` is the finite leading-center jet used
+  to define the slice
+  `{c in A_full^th,n(q) : J_0(c) in im(D_amp,n(q))}`.
+  The exact map `J_0 = C_center` and the identity
+  `J_0(A_ls) = im(D_amp)` are already closed on the weighted-ansatz /
+  selected-family boundary, but not yet on all of `A_full^th,n(q)`. So the
+  remaining bottleneck is one explicit continuum/local trace-regularity gap,
+  tied to the missing higher-order local continuation/completeness packaging.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_simple_support_object_glossary.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `src/shell_buckling/mixed_weak/_core_reduction.py`;
+  `src/shell_buckling/mixed_weak/full_simple_support_critical_search.py`.
+- Current status: `class-plus-trace package sharp / one trace-local gap remains`
+- What counts as verification:
+  a source-of-truth clarification that packages the preferred codomain as the
+  ambient class together with the finite trace needed to define the selected
+  slice, and that names the exact remaining continuum/local upgrade.
+- Verification method:
+  code inspection, pilot interpretation reuse, manual theory/status synthesis.
+- Verification boundary:
+  this does not prove that the preferred codomain is already proof-ready. It
+  records only that the remaining obstacle has been reduced to one explicit
+  continuum/local trace-regularity gap.
+- Next action:
+  close the theorem-facing extension of the finite leading-center trace `J_0`
+  to the full ambient class `A_full^th,n(q)`, together with the local
+  continuation/completeness needed for that extension to support the selected-
+  trace slice cleanly.
+
+### V-S55. The `J_0` theorem-facing extension gap is now narrowed to one precise local/trace theorem task
+
+- ID: `V-S55`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, the remaining `J_0` blocker
+  for the preferred weak/KKT codomain is no longer best read as a broad open
+  selector ambiguity. It is now narrowed to one precise theorem-facing task:
+  extend the current exact finite leading-center jet
+  `J_0 = C_center` from the weighted-ansatz / selected-family boundary to the
+  full ambient class `A_full^th,n(q)`, with enough local
+  continuation/completeness and trace regularity that the slice
+  `{c in A_full^th,n(q) : J_0(c) in im(D_amp,n(q))}` is cleanly meaningful.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_simple_support_object_glossary.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `src/shell_buckling/mixed_weak/_core_reduction.py`;
+  `src/shell_buckling/mixed_weak/full_simple_support_critical_search.py`.
+- Current status: `narrowed to one precise local/trace theorem task`
+- What counts as verification:
+  a source-of-truth clarification that separates the exact ansatz-level closure
+  from the intended ambient-class extension and formulates the remaining gap as
+  one explicit theorem-facing trace/local extension task.
+- Verification method:
+  code inspection, pilot interpretation reuse, manual theory/status synthesis.
+- Verification boundary:
+  this does not prove that the `J_0` extension is already closed. It records
+  only that the remaining blocker has now been sharpened to one explicit local
+  trace-extension task.
+- Next action:
+  formulate and eventually prove the theorem-facing extension of the finite
+  leading-center jet `J_0` to `A_full^th,n(q)` together with the local
+  continuation/completeness needed for that extension.
+
+### V-S56. The remaining `J_0` local/trace theorem task is now formulated sharply enough for a direct theorem attempt
+
+- ID: `V-S56`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, the remaining `J_0`
+  blocker for the preferred weak/KKT codomain can now be formulated as one
+  sharp theorem-facing task: for fixed `(n,q)`, define a finite leading-center
+  jet
+  `J_0^th,n,q : A_full^th,n(q) -> R^4`
+  on the ambient admissible / center-regular class, with the same four
+  coordinates already used by the exact ansatz-level trace, prove that it is
+  well-defined under the current local continuation/completeness hypotheses,
+  and prove that it agrees with `C_center` on the weighted-trial overlap so
+  that the slice
+  `{c in A_full^th,n(q) : J_0^th,n,q(c) in im(D_amp,n(q))}`
+  is meaningful.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_simple_support_object_glossary.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `src/shell_buckling/mixed_weak/_core_reduction.py`;
+  `src/shell_buckling/mixed_weak/full_simple_support_critical_search.py`.
+- Current status: `sharp enough for direct theorem attempt`
+- What counts as verification:
+  a source-of-truth statement of the exact theorem target, its hypotheses, and
+  its intended codomain-level conclusion, with the statement ambiguity reduced
+  below the level of “what theorem are we trying to prove?”
+- Verification method:
+  code inspection, pilot interpretation reuse, manual theory/status synthesis.
+- Verification boundary:
+  this does not prove the theorem itself. It records only that the remaining
+  `J_0` task now appears sharp enough to be attacked directly as a theorem.
+- Next action:
+  either begin the direct theorem attempt for this `J_0` local/trace task, or
+  run one final proof-readiness recheck focused only on the explicit
+  hypotheses.
+
+### V-S57. A direct proof attempt for the remaining `J_0` local/trace theorem reduces it to one explicit ambient finite-jet extraction lemma
+
+- ID: `V-S57`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, a direct proof attempt for
+  the theorem-facing map
+  `J_0^th,n,q : A_full^th,n(q) -> R^4`
+  does not yet prove the full theorem, but it does identify the first blocking
+  lemma sharply: every ambient object `c in A_full^th,n(q)` should admit a
+  unique current-normalized leading-center quadruple `(U0, N0, P0, Y0)` whose
+  induced four coordinates
+  `[U0, P0, N0 + (lambda_c / n) P0, Y0 - lambda_c P0]`
+  are well-defined, depend only on `c`, satisfy the current clean mixed local
+  compatibility requirements, and agree with `C_center c` on the weighted-trial
+  overlap. Until that ambient finite-jet extraction lemma is closed, the map
+  `J_0^th,n,q` is not yet available on all of `A_full^th,n(q)`.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_simple_support_object_glossary.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`.
+- Current status: `direct proof attempt made / reduced to first explicit local-trace lemma`
+- What counts as verification:
+  a theorem-facing proof of ambient finite-jet existence, uniqueness, current-
+  normalization compatibility, and weighted-overlap agreement for the current
+  `J_0` coordinates on `A_full^th,n(q)`.
+- Verification method:
+  manual proof attempt, reuse of already closed ansatz-level trace theorem,
+  reuse of leading local symbolic trace identities, theory/status synthesis.
+- Verification boundary:
+  this does not prove the `J_0` theorem itself, and it does not reopen the
+  selector problem. It records only that the direct theorem attempt stops first
+  at one explicit local/trace lemma.
+- Next action:
+  prove the ambient finite-jet extraction lemma for the current `J_0`
+  coordinates, or if needed sharpen only the hypothesis-level statement of
+  `A_full^th,n(q)` enough for that lemma to be well-posed.
+
+### V-S58. A direct theorem attempt for the ambient finite-jet extraction lemma reduces it further to ambient leading-coefficient extraction in the current normalization
+
+- ID: `V-S58`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, a direct theorem attempt for
+  the ambient finite-jet extraction lemma does not yet prove the whole lemma,
+  but it does show that the first unresolved step is even narrower: one still
+  needs a theorem-facing statement that every `c in A_full^th,n(q)` admits the
+  four current-normalized leading coefficients `(U0, N0, P0, Y0)` for the
+  channels `(u_s, u_n, varphi, psi)` in the current near-center scaling class.
+  Once those coefficients exist, the current repo already has the needed
+  overlap agreement with `C_center`, the leading mixed-equation compatibility
+  relations, and uniqueness inside that normalization.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`.
+- Current status: `direct lemma attempt made / reduced to ambient leading-coefficient extraction sublemma`
+- What counts as verification:
+  a theorem-facing proof that ambient admissible / center-regular objects in
+  `A_full^th,n(q)` admit the four current-normalized leading coefficients in
+  the current trace convention before the leading mixed-equation relations are
+  imposed.
+- Verification method:
+  manual theorem attempt, reuse of the exact weighted-ansatz trace theorem,
+  reuse of the already closed leading local symbolic block, theory/status
+  synthesis.
+- Verification boundary:
+  this does not prove the ambient finite-jet lemma. It records only that its
+  first unresolved step is now reduced to ambient leading-coefficient
+  extraction rather than the full bundle of jet properties.
+- Next action:
+  prove the ambient leading-coefficient extraction / normalization sublemma for
+  the current `J_0` coordinates, or sharpen `A_full^th,n(q)` only to the extent
+  needed to make that sublemma formally well-posed.
+
+### V-S59. A direct theorem attempt for the ambient leading-coefficient extraction sublemma reduces it further to ambient one-term asymptotic existence in the current scaling class
+
+- ID: `V-S59`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, a direct theorem attempt for
+  the ambient leading-coefficient extraction / normalization sublemma does not
+  yet prove that sublemma, but it does show that the first unresolved step is
+  smaller still: one needs a theorem-facing statement that every
+  `c in A_full^th,n(q)` admits one-term current-normalized asymptotics for the
+  four channels `(u_s, u_n, varphi, psi)` in the present near-center scaling
+  orders. Once those one-term asymptotics exist, extraction of
+  `(U0, N0, P0, Y0)` is immediate, uniqueness in the chosen normalization is
+  formal, and the overlap with `C_center` remains exact on the weighted-trial
+  boundary.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`.
+- Current status: `direct sublemma attempt made / reduced to ambient one-term asymptotic existence`
+- What counts as verification:
+  a theorem-facing proof that ambient admissible / center-regular objects in
+  `A_full^th,n(q)` admit one-term asymptotics
+  `u_s = U0 x^n + o(x^n)`,
+  `u_n = N0 x^n + o(x^n)`,
+  `varphi = P0 x^(n-1) + o(x^(n-1))`,
+  `psi = Y0 x^(n-1) + o(x^(n-1))`
+  in the current center-trace normalization.
+- Verification method:
+  manual theorem attempt, reuse of the principal-part scaling analysis, reuse
+  of the exact weighted-ansatz trace theorem, theory/status synthesis.
+- Verification boundary:
+  this does not prove the leading-coefficient extraction sublemma. It records
+  only that the first unresolved step is now ambient one-term asymptotic
+  existence rather than extraction/normalization itself.
+- Next action:
+  prove the ambient one-term asymptotic existence sub-sublemma for the four
+  current `J_0` channels, or sharpen `A_full^th,n(q)` only enough to make that
+  asymptotic statement formally well-posed.
+
+### V-S60. A direct theorem attempt for the ambient one-term asymptotic existence sub-sublemma reduces it further to normalized-limit existence in the current scaling convention
+
+- ID: `V-S60`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, a direct theorem attempt for
+  the ambient one-term asymptotic existence sub-sublemma does not yet prove
+  that sub-sublemma, but it shows that the first unresolved step is narrower
+  still: one needs a theorem-facing statement that every
+  `c in A_full^th,n(q)` has finite normalized channel limits
+  `u_s/x^n`, `u_n/x^n`, `varphi/x^(n-1)`, and `psi/x^(n-1)` in the current
+  center-trace normalization. The current repo already supports the scaling
+  orders themselves, so the first unresolved point is no longer the exponents
+  but the existence of the corresponding normalized limits.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`.
+- Current status: `direct sub-sublemma attempt made / reduced to normalized-limit existence`
+- What counts as verification:
+  a theorem-facing proof that ambient admissible / center-regular objects in
+  `A_full^th,n(q)` have finite normalized limits for the four current `J_0`
+  channels in the present scaling convention.
+- Verification method:
+  manual theorem attempt, reuse of the principal-part scaling analysis, reuse
+  of the exact weighted-ansatz trace convention, theory/status synthesis.
+- Verification boundary:
+  this does not prove the one-term asymptotic existence sub-sublemma. It
+  records only that the first unresolved step is now normalized-limit
+  existence rather than the one-term asymptotic statement as a whole.
+- Next action:
+  prove the ambient normalized-limit existence sub-sub-sublemma for the four
+  current `J_0` channels, or sharpen `A_full^th,n(q)` only enough to make that
+  limit statement formally well-posed.
+
+### V-S61. A direct theorem attempt for the ambient normalized-limit existence sub-sub-sublemma reduces it further to convergence of the already-bounded normalized channels
+
+- ID: `V-S61`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, a direct theorem attempt for
+  the ambient normalized-limit existence sub-sub-sublemma does not yet prove
+  that sub-sub-sublemma, but it shows that the first unresolved step is
+  narrower still: the current repo already supports boundedness of
+  `u_s/x^n`, `u_n/x^n`, `varphi/x^(n-1)`, and `psi/x^(n-1)` through the checked
+  scaling orders, so the remaining open point is convergence of those
+  already-bounded renormalized channels as `x -> 0`, equivalently continuous
+  extension of them to the center in the present trace normalization.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`.
+- Current status:
+  `direct sub-sub-sublemma attempt made / reduced to normalized-quotient convergence`
+- What counts as verification:
+  a theorem-facing proof that for every ambient admissible / center-regular
+  object in `A_full^th,n(q)`, the bounded renormalized channels
+  `u_s/x^n`, `u_n/x^n`, `varphi/x^(n-1)`, and `psi/x^(n-1)` converge as
+  `x -> 0` in the current center-trace normalization.
+- Verification method:
+  manual theorem attempt, reuse of the principal-part scaling analysis, reuse
+  of the exact weighted-ansatz trace convention, theory/status synthesis.
+- Verification boundary:
+  this does not prove the normalized-limit existence sub-sub-sublemma. It
+  records only that boundedness is already supported and that the first open
+  point is now convergence / continuous extension of the normalized channels.
+- Next action:
+  prove the ambient normalized-quotient convergence sub-sub-sub-sublemma for
+  the four current `J_0` channels, or sharpen `A_full^th,n(q)` only enough to
+  make that convergence statement formally well-posed.
+
+### V-S62. A direct theorem attempt for the ambient normalized-quotient convergence sub-sub-sub-sublemma reduces it further to a renormalized regular-singular limit lemma
+
+- ID: `V-S62`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, a direct theorem attempt for
+  the ambient normalized-quotient convergence sub-sub-sub-sublemma does not yet
+  prove that sub-sub-sub-sublemma, but it shows that the regular-singular route
+  gets furthest: the current repo already supports the scaling orders and hence
+  boundedness of the renormalized channels, while derivative/integrability and
+  compactness routes are not yet closed. The first unresolved step is now an
+  ambient renormalized local-system / continuation statement ensuring that the
+  renormalized vector
+  `[x^(-n) u_s, x^(-n) u_n, x^(1-n) varphi, x^(1-n) psi]`
+  satisfies a near-center regular-singular law strong enough that boundedness
+  forces convergence as `x -> 0`.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`.
+- Current status:
+  `direct sub-sub-sub-sublemma attempt made / reduced to renormalized regular-singular limit`
+- What counts as verification:
+  a theorem-facing proof that for every ambient admissible / center-regular
+  object in `A_full^th,n(q)`, the renormalized channel vector satisfies a
+  near-center regular-singular local system / continuation statement from which
+  convergence of the bounded renormalized channels follows.
+- Verification method:
+  manual theorem attempt, reuse of the principal-part scaling analysis, reuse
+  of the checked local recurrence structure, theory/status synthesis.
+- Verification boundary:
+  this does not prove the normalized-quotient convergence sub-sub-sub-sublemma.
+  It records only that the regular-singular route is the strongest current
+  route and that the first open point is now the ambient renormalized limit
+  theorem behind that route.
+- Next action:
+  prove the ambient renormalized regular-singular limit
+  sub-sub-sub-sub-sublemma for the four current `J_0` channels, or sharpen
+  `A_full^th,n(q)` only enough to make that local-system statement formally
+  well-posed.
+
+### V-S63. A direct theorem attempt for the ambient renormalized regular-singular limit lemma reduces it further to ambient local-system derivation in the richer jet variables
+
+- ID: `V-S63`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, a direct theorem attempt for
+  the ambient renormalized regular-singular limit
+  sub-sub-sub-sub-sublemma does not yet prove that lemma, but it shows that the
+  first unresolved step is narrower still: the checked richer-jet recurrence
+  picture
+  `Xi_rich^(1,eta)`, `Xi_rich^(1+,eta)`, together with the exact projection
+  `Pi_eta_to_J0`, already identifies the formal renormalized variables and the
+  candidate regular-singular structure, but the repo still lacks a theorem-
+  facing derivation that every ambient
+  `c in A_full^th,n(q)` admits a punctured-neighborhood renormalized local
+  state satisfying a closed near-center regular-singular system whose leading
+  structure matches that checked model.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`.
+- Current status:
+  `direct sub-sub-sub-sub-sublemma attempt made / reduced to ambient renormalized local-system derivation`
+- What counts as verification:
+  a theorem-facing proof that every ambient admissible / center-regular object
+  in `A_full^th,n(q)` lifts to a punctured-neighborhood renormalized local
+  state in the current richer jet variables, satisfying a closed
+  regular-singular system compatible with the checked principal-part /
+  recurrence model.
+- Verification method:
+  manual theorem attempt, reuse of the principal-part scaling analysis, reuse
+  of the checked richer-jet recurrence structure, theory/status synthesis.
+- Verification boundary:
+  this does not prove the ambient renormalized regular-singular limit lemma. It
+  records only that the first open point is now derivation of the ambient local
+  system itself, prior to bounded-solution convergence inside that system.
+- Next action:
+  prove the ambient renormalized local-system / jet-lift
+  sub-sub-sub-sub-sub-sublemma for the current richer jet variables, or sharpen
+  `A_full^th,n(q)` only enough to make that punctured-neighborhood statement
+  formally well-posed.
+
+### V-S64. A direct theorem attempt for the ambient renormalized local-system / jet-lift lemma reduces it further to punctured-neighborhood richer-jet lift existence
+
+- ID: `V-S64`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, a direct theorem attempt for
+  the ambient punctured-neighborhood renormalized local-system / jet-lift
+  sub-sub-sub-sub-sub-sublemma does not yet prove that lemma, but it shows that
+  the first unresolved step is narrower still: the checked richer-jet charts
+  `Xi_rich^(1,eta)` and `Xi_rich^(1+,eta)` together with the exact projection
+  `Pi_eta_to_J0` already identify the formal post-leading variables and their
+  canonical return to current `J_0` coordinates, but the repo still lacks a
+  theorem-facing statement that every ambient `c in A_full^th,n(q)` admits a
+  punctured-neighborhood local lift realizing those richer-jet variables.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`.
+- Current status:
+  `direct sub-sub-sub-sub-sub-sublemma attempt made / reduced to punctured-neighborhood richer-jet lift existence`
+- What counts as verification:
+  a theorem-facing proof that every ambient admissible / center-regular object
+  in `A_full^th,n(q)` admits a punctured-neighborhood local lift realizing the
+  first post-leading richer-jet variables compatible with the renormalized
+  vector `W_c(x)` and the exact projection `Pi_eta_to_J0`.
+- Verification method:
+  manual theorem attempt, reuse of the principal-part scaling analysis, reuse
+  of the checked richer-jet chart / recurrence structure, theory/status
+  synthesis.
+- Verification boundary:
+  this does not prove the ambient renormalized local-system / jet-lift lemma.
+  It records only that the first open point is now existence of the punctured-
+  neighborhood richer-jet lift itself, prior to closure of the ambient local
+  system built on that lift.
+- Next action:
+  prove the punctured-neighborhood richer-jet lift-existence lemma for the
+  current richer jet variables, or sharpen `A_full^th,n(q)` only enough to make
+  that local lift statement formally well-posed.
+
+### V-S65. Targeted CAS+Lean back-verification confirms the current ansatz-boundary identities and exposes one explicit hidden premise in the proof skeleton
+
+- ID: `V-S65`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, a targeted back-verification
+  pass using live code inspection, CAS checks, and a small Lean proof-skeleton
+  experiment reconfirms the current exact ansatz-boundary identities
+  `J_0 = C_center`,
+  `J_0(A_ls) = im(D_amp)`,
+  the projection identities for `Pi_eta_to_J0`,
+  and the checked first post-leading recurrence identities, while also showing
+  that the abstract implication
+  `richer-jet lift + regular-singular convergence => J_0^th well-defined`
+  still needs one explicit extra premise:
+  compatibility of the ambient lift with the current exact `J_0 = C_center`
+  coordinates on the weighted-trial overlap.
+- Type: `structural/formal claim`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
+  `src/shell_buckling/mixed_weak/_core_reduction.py`;
+  `src/shell_buckling/mixed_weak/full_simple_support_critical_search.py`.
+- Current status:
+  `targeted CAS+Lean back-verification completed / one hidden premise exposed`
+- What counts as verification:
+  1. live-code confirmation that `C_center` uses exactly the four `k = 0`
+     ansatz columns and implements the current `J_0` coordinates;
+  2. CAS confirmation of the exact current trace coordinates, the
+     `Pi_eta_to_J0` identities, and the checked first post-leading recurrence
+     identities used in the present proof line;
+  3. Lean-style logical confirmation that steps
+     `normalized limits => one-term asymptotics`,
+     `one-term asymptotics => formal coefficient extraction`,
+     and
+     `J_0^th well-defined => selected-trace slice meaningful`
+     compose cleanly, while the richer-jet step requires the explicit overlap-
+     compatibility premise.
+- Verification method:
+  manual derivation framing, CAS, Lean proof-skeleton check, live-code audit.
+- Verification boundary:
+  this does not prove the ambient richer-jet lift-existence lemma, the ambient
+  regular-singular limit theorem, or the weak/KKT selector theorem.
+  It only reconfirms the currently exact formula-level identities and sharpens
+  the abstract proof skeleton by making the compatibility premise explicit.
+- Next action:
+  keep the current formula-level identities at their present status, and state
+  the richer-jet implication in future theorem work as
+  `richer-jet lift + regular-singular convergence + overlap compatibility
+  => J_0^th well-defined`.

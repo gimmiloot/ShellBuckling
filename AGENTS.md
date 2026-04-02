@@ -443,5 +443,30 @@ When a hypothesis is discussed, checked, or referenced:
 Use the current verification map in:
 - `docs/theory/current_theory_verification_map.md`
 
+### Proof-tool policy
+
+Use theorem-proof tooling by scientific role.
+
+- Manual derivation:
+  continuum/local analytical statements, near-center asymptotics, theorem
+  framing, analytical interpretation, and statement sharpening.
+- CAS:
+  symbolic algebra, channel elimination, recurrence manipulations, principal-
+  part reductions, boundary-pair algebra, and exact formula/identity checks.
+- Lean:
+  abstract logical closure after the statement is sharp enough: witness
+  structure, uniqueness structure, implication chains, proof skeleton
+  validation, and checking that no hidden assumptions are used.
+- Numerical testbench:
+  diagnostics, robustness checks, representative sanity checks, and
+  counterexample hunting only; not theorem closure.
+
+Practical rule:
+
+- first sharpen the statement manually;
+- then check symbolic transitions with CAS;
+- then use Lean for the proof skeleton if the statement is stable enough;
+- use numerics only as diagnostic support, never as theorem closure.
+
 If a hypothesis is only a research strategy, label it as strategy, not as proved mathematics.
 If a hypothesis is only supported within the current mixed-weak version or only at surrogate/testbench level, say so explicitly.

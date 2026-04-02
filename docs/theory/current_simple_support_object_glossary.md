@@ -43,17 +43,59 @@ For each object below, keep the following split in mind:
   `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
   `docs/theory/current_theory_verification_map.md`.
 
+## `A_full^th`
+
+- Short definition:
+  intended ambient theorem-facing full admissible / center-regular clean
+  tangent class for the current mixed problem. In the current weak/KKT codomain
+  discussion this is the ambient continuum class from which the selected-trace
+  slice defining `A_con^th` should be taken.
+- Current status:
+  narrowed substantially but still not closed sharply enough. It should not be
+  read as the same thing as the finite-dimensional ansatz spaces, the exact
+  repo-selected family, or the selected trace plane alone. It is the ambient
+  class on which the theorem-facing finite trace `J_0` still needs a full
+  continuum/local upgrade.
+- Source-of-truth file(s):
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
+  `docs/theory/current_theory_verification_map.md`.
+
 ## `A_adm^th`
 
 - Short definition:
   intended theorem-facing admissible clean tangent space for the linearized
-  clean mixed problem.
+  clean mixed problem. In the present criterion-facing codomain discussion this
+  is the same intended ambient role that is being denoted by `A_full^th`, with
+  `A_adm^th` retained when the emphasis is specifically on admissibility /
+  residual-direction questions.
 - Current status:
   still not closed enough on the current clean repository boundary to decide
-  the frozen residual-direction question for `z_temp`.
+  the frozen residual-direction question for `z_temp`, and still not packaged
+  sharply enough to close the preferred weak/KKT codomain source.
 - Source-of-truth file(s):
   `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
   `docs/theory/current_simple_support_final_audit_note.md`;
+  `docs/theory/current_theory_verification_map.md`.
+
+## `A_con^th`
+
+- Short definition:
+  intended theorem-facing constrained codomain for the future weak/KKT
+  selected-representative map
+  `S_weak,n,q : R^2 -> A_con^th,n(q)`.
+  The current preferred reading is the selected-trace constrained slice of the
+  intended full admissible clean tangent class, rather than a codomain already
+  built from a selected-overclass object.
+- Current status:
+  narrowed and route-preferred, but still not closed sharply enough to start a
+  proof attempt. The selected-overclass / local-to-global route remains a live
+  neighboring theorem program rather than the preferred current codomain.
+- Source-of-truth file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
   `docs/theory/current_theory_verification_map.md`.
 
 ## `A_sel^{th,cand}`
@@ -73,13 +115,22 @@ For each object below, keep the following split in mind:
 
 - Short definition:
   selected leading trace map on the clean branch. On the current repository
-  boundary, `J_0 = C_center`.
+  boundary, `J_0 = C_center`. In the current weak/KKT codomain discussion its
+  intended theorem-facing role is the finite leading-center jet on
+  `A_full^th`.
 - Current status:
   closed enough on the selected-family boundary, including
-  `J_0(A_ls) = im(D_amp)`.
+  `J_0(A_ls) = im(D_amp)`, but not yet upgraded to a finished theorem-facing
+  trace-regularity statement on all of `A_full^th`. The remaining gap is now
+  best read as one precise local/trace extension task rather than a broad
+  selector-level ambiguity, and that task is now sharp enough to state as a
+  direct theorem target. A direct proof attempt does not yet close it, but it
+  reduces the gap further to one explicit ambient finite-jet extraction lemma
+  for the current `J_0` coordinates on `A_full^th`.
 - Source-of-truth file(s):
   `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
   `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
   `docs/theory/current_theory_verification_map.md`.
 
 ## `C_center`

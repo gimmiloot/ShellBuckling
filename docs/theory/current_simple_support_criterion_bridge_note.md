@@ -193,6 +193,250 @@ Current read of the existing pieces:
   no theorem-facing weak/KKT selector principle has yet been proved that turns
   the present surrogate into a justified privileged selected family.
 
+## Weak/KKT Readiness Verdict
+
+- candidate theorem target:
+  a selected-representative map from amplitude data / selected trace data to a
+  privileged 2D family inside a theorem-facing clean constrained class;
+- what is already sharp enough:
+  the code-level constrained recipe, the selected trace/amplitude data, and the
+  reduced-object hierarchy;
+- what is still underdetermined one layer lower:
+  the exact theorem-facing constrained class and the canonical weak/interior
+  optimality statement;
+- readiness verdict:
+  `B. almost ready, but one or two lower-level clarifications should be done first`;
+- those prerequisites are exactly:
+  close the theorem-facing constrained class, then specify the canonical
+  weak/interior selector principle on it.
+
+## Clarifying `A_con^th`
+
+- what it is not:
+  the intended theorem-facing codomain is not the raw coefficient space
+  `X_trial`, not the code-level center-regular slice `W_reg`, and not the exact
+  current numerical family `A_repo = A_ls`;
+- primary natural candidate:
+  the selected-trace constrained slice of the intended full theorem-facing
+  admissible class, meaning the clean global admissible objects whose selected
+  leading trace lies in `im(D_amp)` or, fiberwise, equals `D_amp a`;
+- secondary plausible candidate:
+  a theorem-facing selected overclass closer to `A_ls`, with the current
+  structural placeholder `A_sel^{th,cand}` the nearest named candidate on the
+  repo boundary;
+- why the local-to-global route is not yet enough to fix it:
+  the selected trace plane is closed, but there is still no closed intrinsic
+  local selected object with a canonical global lift;
+- codomain verdict:
+  `B. A_con^th` is narrowed to a short list of 2 plausible candidates rather
+  than fixed sharply;
+- exact remaining block:
+  the ambient full admissible class is not yet independently packaged sharply
+  enough, and the selected-overclass route is not yet closed intrinsically
+  enough to settle the codomain uniquely.
+
+## Preferred Codomain Route For The Weak/KKT Target
+
+- preferred route:
+  the selected-trace constrained slice of the intended full theorem-facing
+  admissible class;
+- why it wins the current comparison:
+  it is the closest theorem-facing analogue of the live constrained-fiber plus
+  weak-selection geometry, and it keeps the selected 2D family as the image of
+  the theorem rather than part of the codomain definition;
+- why the selected-overclass route stays secondary:
+  it remains a live neighboring theorem program, but it still depends on a
+  stronger unresolved local selected-object / canonical-lift story;
+- exact next bottleneck after this preference:
+  sharpen the ambient full admissible class enough to define the selected-trace
+  constrained slice cleanly, then formulate the canonical weak/interior
+  selector principle on that codomain.
+
+## Ambient `A_full^th` Read
+
+- preferred current meaning:
+  the full clean admissible / center-regular tangent class of the continuous
+  mixed problem, treated as the ambient theorem-facing class above `A_ls` and
+  above the selected trace plane;
+- what it is not:
+  not `X_trial`, not `W_reg`, not `A_repo = A_ls`, and not `im(D_amp)` alone;
+- why it is still not closed sharply:
+  the repo still lacks a finished continuum/local packaging of that full class
+  with higher-order formal continuation/completeness and theorem-facing trace
+  regularity strong enough to define the selected-trace slice cleanly;
+- ambient-class verdict:
+  `B. A_full^th` is narrowed substantially but still not sharp enough.
+
+## Class-Plus-Trace Packaging Read
+
+- paired theorem-facing package:
+  `A_full^th` is the ambient continuum/local clean admissible class and `J_0`
+  is the finite leading-center jet that should live on that class;
+- what is already exact:
+  on the weighted-ansatz / selected-family boundary, `J_0 = C_center`,
+  `J_0(A_ls) = im(D_amp)`, and `J_0|_{A_ls}` is exact;
+- what still blocks proof-readiness:
+  the branch still needs one continuum/local trace-regularity upgrade carrying
+  that same finite trace cleanly to all of `A_full^th`;
+- readiness verdict:
+  `B. much sharper, but one explicit continuum/local trace-regularity gap still remains.`
+
+## `J_0` Extension Gap
+
+- exact current closure:
+  on the weighted-ansatz / selected-family boundary,
+  `J_0 = C_center`, `J_0(A_ls) = im(D_amp)`, and `J_0|_{A_ls}` is exact;
+- intended ambient meaning:
+  on `A_full^th`, `J_0` should be the same finite leading-center jet, keeping
+  the two amplitudes and two regularity-defect rows in one 4D trace object;
+- exact remaining theorem task:
+  prove the theorem-facing extension of that finite trace from the current
+  ansatz boundary to all of `A_full^th`, together with the local
+  continuation/completeness needed for the slice `J_0(c) in im(D_amp)` to make
+  sense;
+- verdict:
+  `B. the J_0 gap is narrowed to one precise local/trace theorem task.`
+
+## Sharp `J_0` Theorem Task
+
+- target:
+  define a theorem-facing finite leading-center jet
+  `J_0^th : A_full^th -> R^4` with the same four coordinates already used by
+  the exact `C_center` trace;
+- hypotheses:
+  ambient admissible / center-regular objects in `A_full^th` must admit the
+  current near-center scaling orders and enough local
+  continuation/completeness that those four leading-center quantities exist
+  uniquely;
+- conclusion:
+  `J_0^th` is well-defined on all of `A_full^th`, agrees with `C_center` on the
+  weighted-trial overlap, and makes the slice `J_0(c) in im(D_amp)` meaningful;
+- sharpness verdict:
+  `A. the remaining J_0 task is now sharp enough for a direct theorem attempt.`
+
+## Direct Proof-Attempt Outcome For `J_0`
+
+- theorem-attempt result:
+  not fully proved at the current repo level;
+- exact first blocking lemma:
+  every `c in A_full^th` should admit a unique current-normalized leading-center
+  quadruple `(U0, N0, P0, Y0)` compatible with the continuous mixed equations
+  and agreeing with `C_center` on the weighted-trial overlap;
+- why that is the first block:
+  without this ambient finite-jet extraction result, `J_0^th` is not yet
+  defined on all of `A_full^th`, so the selected-trace slice on the preferred
+  codomain is not yet theorem-facingly available;
+- verdict:
+  `B. the direct proof attempt reduces the theorem to one smaller explicit
+  local/trace lemma task.`
+
+## Direct Theorem-Attempt Outcome For The Ambient Finite-Jet Lemma
+
+- theorem-attempt result:
+  not fully proved at the current repo level;
+- what already closes once the coefficients exist:
+  overlap agreement with `C_center`, leading mixed-equation compatibility, and
+  uniqueness inside the current normalization;
+- exact first unresolved sublemma:
+  every `c in A_full^th` should admit the four current-normalized leading
+  coefficients `(U0, N0, P0, Y0)` for `(u_s, u_n, varphi, psi)` in the current
+  near-center scaling class;
+- verdict:
+  `B. the ambient finite-jet lemma is reduced to one smaller explicit
+  coefficient-extraction sublemma.`
+
+## Direct Theorem-Attempt Outcome For The Ambient Leading-Coefficient Sublemma
+
+- theorem-attempt result:
+  not fully proved at the current repo level;
+- what already closes once the one-term asymptotics exist:
+  uniqueness in the chosen normalization, overlap agreement with `C_center`,
+  and later use of the leading mixed-equation block;
+- exact first unresolved sub-sublemma:
+  every `c in A_full^th` should admit one-term current-normalized asymptotics
+  for `(u_s, u_n, varphi, psi)` in the present scaling orders;
+- verdict:
+  `B. the leading-coefficient sublemma is reduced to one smaller explicit
+  asymptotic-existence sub-sublemma.`
+
+## Direct Theorem-Attempt Outcome For The Ambient One-Term Asymptotic Sub-Sublemma
+
+- theorem-attempt result:
+  not fully proved at the current repo level;
+- what already closes once normalized limits exist:
+  one-term asymptotics themselves, coefficient extraction, uniqueness in the
+  chosen normalization, and overlap agreement with `C_center`;
+- exact first unresolved sub-sub-sublemma:
+  every `c in A_full^th` should admit finite normalized channel limits
+  `u_s/x^n`, `u_n/x^n`, `varphi/x^(n-1)`, `psi/x^(n-1)` in the present trace
+  convention;
+- verdict:
+  `B. the asymptotic-existence sub-sublemma is reduced to one smaller explicit
+  normalized-limit sub-sub-sublemma.`
+
+## Direct Theorem-Attempt Outcome For The Ambient Normalized-Limit Sub-Sub-Sublemma
+
+- theorem-attempt result:
+  not fully proved at the current repo level;
+- what is already closed:
+  the current scaling analysis already gives bounded normalized channels
+  `u_s/x^n`, `u_n/x^n`, `varphi/x^(n-1)`, `psi/x^(n-1)`;
+- what remains the first unresolved point:
+  every `c in A_full^th` should satisfy convergence of those already-bounded
+  renormalized channels as `x -> 0`, equivalently continuous extension to the
+  center in the present trace convention;
+- verdict:
+  `B. the normalized-limit sub-sub-sublemma is reduced to one smaller explicit
+  normalized-quotient convergence sub-sub-sub-sublemma.`
+
+## Direct Theorem-Attempt Outcome For The Ambient Normalized-Quotient Convergence Sub-Sub-Sub-Sublemma
+
+- theorem-attempt result:
+  not fully proved at the current repo level;
+- route comparison:
+  derivative/integrability and compactness/continuity do not close on the
+  present repo material, while the regular-singular route gets furthest;
+- exact first unresolved point:
+  every `c in A_full^th` should satisfy a theorem-facing renormalized local
+  regular-singular continuation statement for
+  `[x^(-n) u_s, x^(-n) u_n, x^(1-n) varphi, x^(1-n) psi]` strong enough that
+  boundedness forces convergence as `x -> 0`;
+- verdict:
+  `B. the normalized-quotient convergence sub-sub-sub-sublemma is reduced to
+  one smaller explicit renormalized regular-singular limit sub-sub-sub-sub-sublemma.`
+
+## Direct Theorem-Attempt Outcome For The Ambient Renormalized Regular-Singular Limit Sub-Sub-Sub-Sub-Sublemma
+
+- theorem-attempt result:
+  not fully proved at the current repo level;
+- exact regular-singular route used:
+  the current richer-jet / recurrence route
+  `Xi_rich^(1,eta) -> Xi_rich^(1+,eta) -> Pi_eta_to_J0`;
+- exact first unresolved point:
+  every `c in A_full^th` should admit an ambient punctured-neighborhood
+  renormalized local-system / jet-lift statement extending
+  `[x^(-n) u_s, x^(-n) u_n, x^(1-n) varphi, x^(1-n) psi]`
+  to a closed regular-singular local state whose leading structure matches the
+  checked recurrence model;
+- verdict:
+  `B. the renormalized regular-singular limit sub-sub-sub-sub-sublemma is
+  reduced to one smaller explicit ambient renormalized local-system / jet-lift
+  sub-sub-sub-sub-sub-sublemma.`
+
+## Direct Theorem-Attempt Outcome For The Ambient Punctured-Neighborhood Renormalized Local-System / Jet-Lift Lemma
+
+- theorem-attempt result:
+  not fully proved at the current repo level;
+- exact first unresolved point:
+  every `c in A_full^th` should admit a punctured-neighborhood richer-jet lift
+  realizing the first post-leading variables of `Xi_rich^(1,eta)` and, when
+  needed, `Xi_rich^(1+,eta)`, compatibly with
+  `[x^(-n) u_s, x^(-n) u_n, x^(1-n) varphi, x^(1-n) psi]`
+  and the canonical projection `Pi_eta_to_J0`;
+- verdict:
+  `B. the ambient local-system / jet-lift lemma is reduced to one smaller
+  explicit punctured-neighborhood richer-jet lift-existence lemma.`
+
 ## How To Read Candidate Labels
 
 - `supported candidate`

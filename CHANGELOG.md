@@ -1,5 +1,228 @@
 # CHANGELOG
 
+## 2026-04-02 - Targeted CAS+Lean back-verification pass for the current clean simple-support proof line
+
+Affected files:
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Re-checked the load-bearing current theorem-line identities around `J_0 = C_center`, `J_0(A_ls) = im(D_amp)`, `Pi_eta_to_J0`, and the first post-leading recurrence using live code inspection plus targeted CAS.
+- Added the back-verification outcome that the exact ansatz-boundary identities remain sound, while the abstract richer-jet implication needs one explicit overlap-compatibility premise before it yields `J_0^th` well-definedness.
+- Kept this pass narrow and theorem-facing: no equation changes, no BC changes, no solver changes, and no theorem-status inflation beyond making that hidden proof-skeleton premise explicit.
+
+## 2026-04-02 - Docs-only theorem-proof tooling policy sync
+
+Affected files:
+- AGENTS.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Added an explicit repo-wide proof-tool policy splitting theorem-facing work across manual derivation, CAS, Lean, and numerical testbench by role.
+- Added a compact verification-method policy section near the top of the current theory verification map with the same method split and practical work order.
+- Kept this pass docs-only and source-of-truth oriented, with no theorem-status inflation and no code or equation changes.
+
+## 2026-04-02 - Direct theorem-attempt pass for the ambient punctured-neighborhood renormalized local-system / jet-lift lemma
+
+Affected files:
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_simple_support_criterion_rebuild_note.md
+- docs/theory/current_simple_support_criterion_bridge_note.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Ran a direct theorem-facing attempt for the ambient punctured-neighborhood renormalized local-system / jet-lift lemma on the preferred weak/KKT codomain route.
+- Recorded the honest outcome that the lemma is not yet proved, but reduces further to one smaller explicit punctured-neighborhood richer-jet lift-existence lemma.
+- Marked that the checked richer-jet charts already identify the formal post-leading variables and the exact projection back to `J_0`, while the first missing theorem step is still existence of the ambient punctured-neighborhood richer-jet lift itself.
+
+## 2026-04-02 - Direct theorem-attempt pass for the ambient renormalized regular-singular limit sub-sub-sub-sub-sublemma
+
+Affected files:
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_simple_support_criterion_rebuild_note.md
+- docs/theory/current_simple_support_criterion_bridge_note.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Ran a direct theorem-facing attempt for the ambient renormalized regular-singular limit sub-sub-sub-sub-sublemma on the preferred weak/KKT codomain route.
+- Recorded the honest outcome that the lemma is not yet proved, but reduces further to one smaller explicit ambient renormalized local-system / jet-lift sub-sub-sub-sub-sub-sublemma.
+- Marked that the checked richer-jet recurrence route identifies the right formal variables and projection back to `J_0`, while the first missing theorem step is still the ambient punctured-neighborhood local-system derivation itself.
+
+## 2026-04-02 - Direct theorem-attempt pass for the ambient normalized-quotient convergence sub-sub-sub-sublemma
+
+Affected files:
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_simple_support_criterion_rebuild_note.md
+- docs/theory/current_simple_support_criterion_bridge_note.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Ran a direct theorem-facing attempt for the ambient normalized-quotient convergence sub-sub-sub-sublemma on the preferred weak/KKT codomain route.
+- Recorded the honest outcome that the sub-sub-sub-sublemma is not yet proved, but reduces further to one smaller explicit renormalized regular-singular limit sub-sub-sub-sub-sublemma.
+- Marked that the regular-singular route gets furthest with current repo support, while derivative/integrability and compactness/continuity routes are not yet closed.
+
+## 2026-04-02 - Direct theorem-attempt pass for the ambient normalized-limit existence sub-sub-sublemma
+
+Affected files:
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_simple_support_criterion_rebuild_note.md
+- docs/theory/current_simple_support_criterion_bridge_note.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Ran a direct theorem-facing attempt for the ambient normalized-limit existence sub-sub-sublemma on the preferred weak/KKT codomain route.
+- Recorded the honest outcome that the sub-sub-sublemma is not yet proved, but reduces further to one smaller explicit normalized-quotient convergence sub-sub-sub-sublemma in the current trace convention.
+- Marked that the scaling analysis already supplies boundedness of the normalized channels, so the remaining local/trace blocker is convergence rather than order control.
+
+## 2026-04-02 - Direct theorem-attempt pass for the ambient one-term asymptotic existence sub-sublemma
+
+Affected files:
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_simple_support_criterion_rebuild_note.md
+- docs/theory/current_simple_support_criterion_bridge_note.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Ran a direct theorem-facing attempt for the ambient one-term asymptotic existence sub-sublemma on the preferred weak/KKT codomain route.
+- Recorded the honest outcome that the sub-sublemma is not yet proved, but reduces further to one smaller explicit normalized-limit existence sub-sub-sublemma in the current scaling convention.
+- Added a verification-map entry marking that narrower first obstruction while keeping the theorem itself unproved.
+
+## 2026-04-02 - Direct theorem-attempt pass for the ambient leading-coefficient extraction / normalization sublemma
+
+Affected files:
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_simple_support_criterion_rebuild_note.md
+- docs/theory/current_simple_support_criterion_bridge_note.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Ran a direct theorem-facing attempt for the ambient leading-coefficient extraction / normalization sublemma on the preferred weak/KKT codomain route.
+- Recorded the honest outcome that the sublemma is not yet proved, but reduces further to one smaller explicit ambient one-term asymptotic existence sub-sublemma in the current scaling class.
+- Added a verification-map entry marking that narrower first obstruction while keeping the theorem itself unproved.
+
+## 2026-04-02 - Direct theorem-attempt pass for the ambient finite-jet extraction lemma
+
+Affected files:
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_simple_support_criterion_rebuild_note.md
+- docs/theory/current_simple_support_criterion_bridge_note.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Ran a theorem-facing attempt for the ambient finite-jet extraction lemma on the preferred weak/KKT codomain route.
+- Recorded the honest outcome that the lemma is not yet proved, but reduces further to one smaller explicit ambient leading-coefficient extraction / normalization sublemma.
+- Added a verification-map entry marking that narrower first obstruction without reopening the selector or codomain-choice layers.
+
+## 2026-04-02 - Direct proof-attempt pass for the remaining `J_0` local/trace theorem task
+
+Affected files:
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_simple_support_criterion_rebuild_note.md
+- docs/theory/current_simple_support_criterion_bridge_note.md
+- docs/theory/current_simple_support_object_glossary.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Ran a theorem-facing proof-attempt pass for the remaining `J_0` local/trace task without starting the full weak/KKT selector theorem.
+- Recorded the honest outcome that the theorem is not yet proved, but the proof attempt reduces it to one explicit ambient finite-jet extraction lemma for the current `J_0` coordinates on `A_full^th`.
+- Added a verification-map entry marking that direct proof-attempt outcome while keeping the theorem itself unproved.
+
+## 2026-04-02 - Sharp formulation pass for the remaining `J_0` local/trace theorem task
+
+Affected files:
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_simple_support_criterion_rebuild_note.md
+- docs/theory/current_simple_support_criterion_bridge_note.md
+- docs/theory/current_simple_support_object_glossary.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Formulated the remaining `J_0` blocker as one sharp theorem-facing local/trace task with explicit domain, trace coordinates, hypotheses, and codomain-level conclusion.
+- Recorded that this sharpness verdict concerns the `J_0` local/trace subproblem only, not the full weak/KKT selector theorem.
+- Added a verification-map entry marking the `J_0` task as sharp enough for a direct theorem attempt, while keeping the theorem itself explicitly unproved.
+
+## 2026-04-02 - `J_0` theorem-facing extension / trace-regularity formulation pass for clean simple-support weak/KKT route
+
+Affected files:
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_simple_support_criterion_rebuild_note.md
+- docs/theory/current_simple_support_criterion_bridge_note.md
+- docs/theory/current_simple_support_object_glossary.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Separated the current exact `J_0 = C_center` closure on the weighted-ansatz / selected-family boundary from the intended theorem-facing extension of the same finite trace to the ambient class `A_full^th,n(q)`.
+- Formulated the remaining `J_0` blocker as one precise local/trace theorem task: extend the finite leading-center jet to all of `A_full^th,n(q)` with enough local continuation/completeness and trace regularity for the selected-trace slice to be meaningful.
+- Recorded the new verdict `B`: the `J_0` gap is narrowed to one precise local/trace theorem task.
+
+## 2026-04-02 - Continuum/local class-plus-trace packaging pass for clean simple-support weak/KKT route
+
+Affected files:
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_simple_support_criterion_rebuild_note.md
+- docs/theory/current_simple_support_criterion_bridge_note.md
+- docs/theory/current_simple_support_object_glossary.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Packaged the preferred weak/KKT codomain more sharply as the pair `(A_full^th,n(q), J_0)` rather than only as an ambient-class placeholder.
+- Clarified that `J_0 = C_center` and `J_0(A_ls) = im(D_amp)` are exact only on the weighted-ansatz / selected-family boundary, while the remaining blocker is the theorem-facing extension of that finite trace to the full ambient class.
+- Recorded the new readiness verdict `B`: the preferred codomain is much sharper, but one explicit continuum/local trace-regularity gap still remains.
+
+## 2026-04-02 - Ambient full admissible/constrained class clarification pass for clean simple-support weak/KKT route
+
+Affected files:
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_simple_support_criterion_rebuild_note.md
+- docs/theory/current_simple_support_criterion_bridge_note.md
+- docs/theory/current_simple_support_object_glossary.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Clarified the intended ambient theorem-facing role of `A_full^th,n(q)` for the preferred weak/KKT codomain route and separated it from the weighted-trial/coefficient surrogates, the exact repo-selected family, and the selected trace plane alone.
+- Recorded the ambient-class verdict that `A_full^th,n(q)` is narrowed substantially but still not packaged sharply enough, with the remaining block now identified as a continuum/local class-plus-trace packaging step rather than a selector-tuning issue.
+- Added a glossary entry for `A_full^th` and aligned its criterion-facing ambient role with the existing admissibility-first `A_adm^th` language.
+
+## 2026-04-02 - Codomain-route preference pass for clean simple-support weak/KKT target
+
+Affected files:
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_simple_support_criterion_rebuild_note.md
+- docs/theory/current_simple_support_criterion_bridge_note.md
+- docs/theory/current_simple_support_object_glossary.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Compared the two remaining theorem-facing codomain routes for `A_con^th,n(q)` and recorded a route-preference verdict for the future weak/KKT selector program.
+- Marked the selected-trace constrained slice of the full admissible class as the preferred current codomain target, while keeping the selected-overclass / local-to-global route live as a neighboring theorem program.
+- Added a glossary entry for `A_con^th` and a verification-map entry recording the codomain-route preference without claiming that the codomain is already closed.
+
+## 2026-04-02 - Theorem-facing constrained-class clarification pass for clean simple-support branch
+
+Affected files:
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_simple_support_criterion_rebuild_note.md
+- docs/theory/current_simple_support_criterion_bridge_note.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Clarified the intended theorem-facing constrained codomain `A_con^th,n(q)` for the future weak/KKT selected-representative map and separated it from the code-level coefficient spaces, the exact numerical selected family, and the trace plane alone.
+- Recorded the narrowed codomain verdict: `A_con^th,n(q)` is no longer read as fully schematic, but is not yet fixed sharply either; the current evidence narrows it to two plausible candidates.
+- Added a verification-map entry marking the constrained-class question as narrowed but still open, with the next block now the choice between the full admissible-class route and the selected-overclass / local-to-global route.
+
+## 2026-04-02 - Weak/KKT theorem-readiness checklist pass for clean simple-support branch
+
+Affected files:
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_simple_support_criterion_rebuild_note.md
+- docs/theory/current_simple_support_criterion_bridge_note.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Added a source-of-truth theorem-readiness checklist for the weak/KKT selector route, separating the candidate theorem target, the current code-level constrained recipe, the missing theorem-facing constrained class, and the missing canonical weak/interior optimality statement.
+- Recorded the readiness verdict `B`: the weak/KKT route is almost ready as the next theorem program, but one short clarification layer is still needed before a real proof attempt starts.
+- Added a verification-map entry marking the weak/KKT route as almost ready while still requiring constrained-class and weak-principle clarification first.
+
 ## 2026-04-02 - Weak/KKT selector-principle formulation pass for clean simple-support branch
 
 Affected files:
