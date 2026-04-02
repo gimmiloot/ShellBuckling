@@ -1,5 +1,65 @@
-﻿# CHANGELOG
+# CHANGELOG
 
+## 2026-04-02 - Selected-family sensitivity audit for the clean simple-support near-pair
+
+Affected files:
+- tasks/run_simple_support_selected_family_sensitivity.py
+- CHANGELOG.md
+
+- Added a narrow selected-family sensitivity task that keeps the clean full simple-support path fixed and varies only the nearby `V_reg` construction recipe before canonical rebasing.
+- Recorded how small KKT regularization changes and nearby representative-choice variants propagate into `V_adm`, `rho_R2`, and common-window pair diagnostics for the near-degenerate `n=7` / `n=8` pair.
+
+## 2026-04-02 - Narrow clean-path audit for the full simple-support branch
+
+Affected files:
+- tasks/run_simple_support_clean_path_audit.py
+- CHANGELOG.md
+
+- Added a narrow clean-path audit task that checks representative `n=7` / `n=8` boundary-row consistency, center-constraint identities, and reduced-family rebasing identities on the standalone clean simple-support path.
+- Kept the audit diagnostic-only: no equation, boundary-condition, solver, or criterion-logic changes were made.
+
+## 2026-04-02 - Pair-resolution metric pass for the near-degenerate n7/n8 clean simple-support pair
+
+Affected files:
+- tasks/run_simple_support_criterion_pilot_r2_pair_resolution.py
+- CHANGELOG.md
+
+- Added a narrow pair-resolution task that reuses the focused clean simple-support `n=7` / `n=8` dense common window and compares broader valley-width, signed-area, sign-persistence, and local-shape stacked diagnostics across the same small `m_basis` / `n_collocation` variations.
+- Recorded the richer pair diagnostics as exploratory comparative outputs only, without changing equations, boundary-condition meaning, or solver behavior and without promoting a new main criterion.
+
+## 2026-04-02 - Pairwise R2 gap study for the near-degenerate n7/n8 clean simple-support pair
+
+Affected files:
+- tasks/run_simple_support_criterion_pilot_r2_pair_gap.py
+- CHANGELOG.md
+
+- Added a narrow pair-gap task that compares the focused stacked `rho_R2` reading for the near-degenerate `n=7` / `n=8` pair on a common dense local load grid across the same small `m_basis` / `n_collocation` variations used in the first robustness pass.
+- Recorded separate-minimum gaps, common-grid gap curves, and local `cond(G_amp)` / `rho_R2_raw` diagnostics without changing equations, boundary-condition meaning, or solver behavior.
+
+## 2026-04-02 - Focused R2 robustness pass on clean simple-support branch
+
+Affected files:
+- tasks/run_simple_support_criterion_pilot_r2.py
+- tasks/run_simple_support_criterion_pilot_r2_robustness.py
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_simple_support_criterion_rebuild_note.md
+- docs/theory/current_simple_support_criterion_bridge_note.md
+- CHANGELOG.md
+
+- Extended the broad `criterion_pilot_r2` JSON/CSV output with `cond(G_amp)` and refreshed the stored broad-scan artifacts.
+- Added `tasks/run_simple_support_criterion_pilot_r2_robustness.py` for dense local `n = 6, 7, 8` windows with small `m_basis` / `n_collocation` variations and pointwise `rho_R2_raw` / `cond(G_amp)` diagnostics.
+- Recorded the negative decision update: the first practical stacked `rho_R2` reading keeps `n=8` ahead of `n=7` in most checked settings but not all, so `rho_R2` remains a comparative stacked diagnostic rather than the new main working criterion.
+
+## 2026-04-02 - First practical R2 diagnostic layer for clean simple-support search
+
+Affected files:
+- src/shell_buckling/mixed_weak/full_simple_support_critical_search.py
+- tasks/run_simple_support_criterion_pilot_r2.py
+- CHANGELOG.md
+
+- Extended the clean full simple-support boundary-object assembly with selected-family diagnostic objects `C_amp`, `G_amp`, `V_adm`, `B_red`, `sigma_Bred_bal`, `rho_R2`, and `rho_R2_raw`.
+- Added a narrow `criterion_pilot_r2` task that compares `sigma_bal(B_mix)`, `sigma_Bred_bal`, and `rho_R2` on the current competition set `n = 4, 6, 7, 8` over a broad `10.5 .. 18.5 MPa` load window, and writes JSON/CSV summaries.
+- Kept scientific meaning unchanged: equations, boundary-condition meaning, and the existing operational `sigma_bal(B_mix)` selection logic in the old clean runner were not changed.
 ## 2026-04-02 - Docs-only source-of-truth sync for clean simple-support criterion rebuild
 
 Affected files:

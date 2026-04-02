@@ -108,6 +108,14 @@ Current clean competition language:
 - `n=7`: sharp raw reserve dip
 - `n=4`: weak control mode
 
+Current first-practical `R2` language:
+- the stacked selected-family diagnostic `rho_R2` currently places `n=8`
+  first, `n=7` second, and `n=6` third on most checked focused settings;
+- one small combined discretization variation (`m_basis = 7`,
+  `n_collocation = 140`) flips `n=7` above `n=8` by a small margin;
+- so `rho_R2` should presently be read as a comparative stacked diagnostic,
+  not as the promoted main working criterion.
+
 None of these labels implies a final physical critical-load claim.
 
 ## Project Strategy After Outcome B

@@ -295,6 +295,19 @@ Suitability:
 - comparison against the shallow-method result: yes, with the explicit reading
   "selected-class comparison, not final physical equivalence."
 
+Current first practical `rho_R2` status:
+
+- the first focused stacked `rho_R2` robustness pass on dense `n=6,7,8`
+  windows keeps `n=8` ahead of `n=7` in five of six checked discretization
+  settings and keeps `n=6` below both in all six;
+- the combined finer setting `m_basis = 7`, `n_collocation = 140` flips the
+  top two, with `n=7` beating `n=8` by only a small margin;
+- this flip does not line up with worsening winner `cond(G_amp)`, so the
+  instability is not well explained as a simple conditioning-spike winner;
+- therefore `rho_R2` is a useful comparative stacked diagnostic on the current
+  selected family, but it is not yet robust enough to be promoted to the new
+  main working criterion.
+
 ### Candidate R3. Ambiguity-Aware Broadened Criterion
 
 Exact statement:

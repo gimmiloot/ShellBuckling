@@ -38,12 +38,19 @@ class BoundaryMatrixObjects:
     A_int: np.ndarray
     B_full: np.ndarray
     C_center: np.ndarray
+    C_amp: np.ndarray
+    G_amp: np.ndarray
     V_reg: np.ndarray
+    V_adm: np.ndarray
+    B_red: np.ndarray
     B_mix: np.ndarray
     residual_norms: np.ndarray
     sigma_raw: float
     sigma_bal: float
     sigma_bal_noH: float
+    sigma_Bred_bal: float
+    rho_R2: float
+    rho_R2_raw: float
 
 
 @dataclass(frozen=True)
@@ -101,6 +108,10 @@ def default_load_grid(
 
 def balanced_Bmix(B: np.ndarray) -> np.ndarray:
     return red.balanced_Bmix(B, row_scale=ROW_SCALE)
+
+
+def smallest_singular_value(A: np.ndarray) -> float:
+    return float(np.linalg.svd(np.asarray(A, dtype=float), compute_uv=False)[-1])
 
 
 def build_full_simple_support_base_interp(
@@ -207,11 +218,23 @@ def build_boundary_matrix_objects(
     C_center = make_center_constraint_matrix(space, base)
 
     c1, c2, V_reg, residual_norms, _center_values = red.build_two_mode_regular_family(A_int, C_center)
-    B_mix = B_full @ V_reg
-    sigma_raw = float(np.linalg.svd(B_mix, compute_uv=False)[-1])
+    C_amp = C_center[:2, :]
+    G_amp = C_amp @ V_reg
+    V_adm = V_reg @ np.linalg.inv(G_amp)
+    B_red = B_full @ V_adm
+    B_mix = B_red @ G_amp
+    sigma_raw = smallest_singular_value(B_mix)
     B_bal = balanced_Bmix(B_mix)
-    sigma_bal = float(np.linalg.svd(B_bal, compute_uv=False)[-1])
-    sigma_bal_noH = float(np.linalg.svd(B_bal[:4, :], compute_uv=False)[-1])
+    sigma_bal = smallest_singular_value(B_bal)
+    sigma_bal_noH = smallest_singular_value(B_bal[:4, :])
+    B_red_bal = balanced_Bmix(B_red)
+    sigma_Bred_bal = smallest_singular_value(B_red_bal)
+
+    W_B = np.diag(ROW_SCALE**2)
+    G_R2 = V_adm.T @ (A_int.T @ A_int + B_full.T @ W_B @ B_full) @ V_adm
+    G_R2 = 0.5 * (G_R2 + G_R2.T)
+    rho_R2_raw = float(np.linalg.eigvalsh(G_R2)[0])
+    rho_R2 = float(np.sqrt(max(rho_R2_raw, 0.0)))
 
     return BoundaryMatrixObjects(
         n=int(n),
@@ -221,12 +244,19 @@ def build_boundary_matrix_objects(
         A_int=A_int,
         B_full=B_full,
         C_center=C_center,
+        C_amp=C_amp,
+        G_amp=G_amp,
         V_reg=V_reg,
+        V_adm=V_adm,
+        B_red=B_red,
         B_mix=B_mix,
         residual_norms=residual_norms,
         sigma_raw=sigma_raw,
         sigma_bal=sigma_bal,
         sigma_bal_noH=sigma_bal_noH,
+        sigma_Bred_bal=sigma_Bred_bal,
+        rho_R2=rho_R2,
+        rho_R2_raw=rho_R2_raw,
     )
 
 

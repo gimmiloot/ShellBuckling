@@ -186,6 +186,19 @@ memory.
 
 
 
+A first focused robustness pass for the first practical stacked `R2` reading
+`rho_R2` has now also been checked on dense local windows for `n=6`, `n=7`,
+and `n=8` under small `m_basis` / `n_collocation` variations. In that pass,
+`rho_R2` keeps `n=8` ahead of `n=7` in five of the six checked settings and
+keeps `n=6` below both in all six, but the combined finer setting
+`m_basis = 7`, `n_collocation = 140` flips the top two with only a small
+`n=7`-vs-`n=8` gap. The flip does not align with worsening winner
+`cond(G_amp)`: the lowest- and highest-winner-conditioning settings still keep
+`n=8` first. So `rho_R2` is informative and keeps `n=7` as a competitive
+second in R2 language, but it is not yet robust enough to replace the current
+conservative operational memory or to promote `rho_R2` to the new main working
+criterion.
+
 ## Current Reproducible Loads
 Several load markers should now be kept separate:
 
