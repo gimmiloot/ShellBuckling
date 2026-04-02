@@ -1,5 +1,42 @@
 # CHANGELOG
 
+## 2026-04-02 - Direct proof-attempt pass for the cleaned richer-jet lift-existence lemma on the clean simple-support J_0 branch
+
+Affected files:
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_simple_support_criterion_rebuild_note.md
+- docs/theory/current_simple_support_criterion_bridge_note.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Ran a direct theorem-facing attempt for the cleaned punctured-neighborhood richer-jet lift-existence lemma with overlap compatibility built in from the start.
+- Recorded the honest outcome that the cleaned lemma is not yet proved, but reduces further to one smaller explicit punctured-neighborhood first post-leading chart-realization lemma.
+- Marked that extension of `W_c`, compatibility with `Pi_eta_to_J0`, and overlap return to `J_0 = C_center` are already formal once the current richer chart is realized for an ambient object.
+
+## 2026-04-02 - Narrow theorem-line cleanup and next proof-attempt setup for the clean simple-support J_0 branch
+
+Affected files:
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_simple_support_criterion_rebuild_note.md
+- docs/theory/current_simple_support_criterion_bridge_note.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Cleaned the active theorem-facing proof line so the richer-jet implication now reads explicitly as `richer-jet lift + regular-singular convergence + overlap compatibility => J_0^th well-defined`.
+- Made overlap compatibility explicit as agreement with the exact ansatz-boundary trace `J_0 = C_center` and compatibility with the canonical `Pi_eta_to_J0` projection on the weighted-trial overlap.
+- Restated the next active local theorem target so the punctured-neighborhood richer-jet lift-existence lemma already includes that overlap-compatibility clause in its setup.
+
+## 2026-04-02 - Docs-only theorem-proof tooling policy refinement for clean simple-support branch
+
+Affected files:
+- AGENTS.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Tightened the existing proof-tool policy wording so it now explicitly states that CAS is the default tool for long symbolic transitions, Lean is not the default tool for discovering analytical statements, and numerical evidence does not close theorem-facing claims by itself.
+- Added the two negative rules that vague statements should not be pushed into Lean and that CAS/numerics should not substitute for theorem-facing analytical meaning.
+- Refined the verification-map policy block so it now also says explicitly that CAS success or numerical testing does not by itself strengthen a claim, and that Lean validates proof skeletons rather than replacing theorem framing.
+
 ## 2026-04-02 - Targeted CAS+Lean back-verification pass for the current clean simple-support proof line
 
 Affected files:

@@ -617,7 +617,10 @@ Still open and now the true bottleneck:
   for every `c in A_full^th,n(q)`, there exists a punctured near-center local
   lift realizing the first post-leading richer-jet variables corresponding to
   `Xi_rich^(1,eta)` (and, when the membrane direction is kept explicit,
-  `Xi_rich^(1+,eta)`), compatible with the renormalized vector `W_c(x)`;
+  `Xi_rich^(1+,eta)`), compatible with the renormalized vector `W_c(x)`,
+  with the canonical projection `Pi_eta_to_J0`, and with the exact
+  ansatz-boundary trace `J_0 = C_center` on the weighted-trial overlap whenever
+  both descriptions are defined;
 - why this is the first true blocker:
   before such a lift exists for arbitrary ambient objects, the current richer
   jet remains only a formal checked jet chart rather than a theorem-facing
@@ -673,6 +676,64 @@ Still open and now the true bottleneck:
   by itself as sufficient for
   `J_0^th` well-definedness;
   the compatibility / projection clause should be stated explicitly.
+
+### Next active local theorem target after proof-line cleanup
+
+- corrected next target:
+  prove the ambient punctured-neighborhood richer-jet lift-existence lemma in
+  the cleaned theorem-line form:
+  for every `c in A_full^th,n(q)`, there exists a punctured near-center richer-
+  jet lift realizing the first post-leading variables of
+  `Xi_rich^(1,eta)` and, when needed, `Xi_rich^(1+,eta)`, extending the
+  renormalized vector
+  `W_c(x) = [x^(-n) u_s, x^(-n) u_n, x^(1-n) varphi, x^(1-n) psi]`,
+  and returning compatibly to the current exact `J_0 = C_center` trace via the
+  canonical projection `Pi_eta_to_J0` on the weighted-trial overlap;
+- why this is the right next theorem target:
+  this packages overlap compatibility into the theorem setup itself, so the
+  later implication
+  `richer-jet lift + regular-singular convergence + overlap compatibility
+  => J_0^th well-defined`
+  no longer hides an extra premise in the middle of the proof line;
+- current reading:
+  no theorem-facing `J_0` closure should be claimed from a richer-jet lift /
+  convergence statement that omits this overlap-compatibility clause.
+
+### Direct proof-attempt outcome for the cleaned ambient punctured-neighborhood richer-jet lift-existence lemma
+
+- lemma attempted:
+  for fixed `(n,q)`, every `c in A_full^th,n(q)` should admit a punctured near-
+  center richer-jet lift realizing the first post-leading variables of
+  `Xi_rich^(1,eta)` and, when needed, `Xi_rich^(1+,eta)`, extending
+  `W_c(x) = [x^(-n) u_s, x^(-n) u_n, x^(1-n) varphi, x^(1-n) psi]`,
+  compatible with `Pi_eta_to_J0`, and overlap-compatible with the exact
+  ansatz-boundary trace `J_0 = C_center`;
+- what already closes once such a richer chart is realized:
+  extension of `W_c` is then built into the chart data,
+  compatibility with `Pi_eta_to_J0` is exact by the current richer-chart
+  projection formula,
+  overlap return to `J_0 = C_center` is then a formal compatibility clause on
+  the weighted-trial overlap,
+  and the later regular-singular step can be posed on that lifted state;
+- exact first unresolved smaller lemma:
+  prove an ambient punctured-neighborhood first post-leading chart-realization
+  lemma:
+  every `c in A_full^th,n(q)` admits punctured near-center first post-leading
+  chart data realizing `Xi_rich^(1,eta)` and, when needed, `Xi_rich^(1+,eta)`,
+  extending `W_c`, so that the canonical projection `Pi_eta_to_J0` and the
+  overlap return to `J_0 = C_center` are meaningful;
+- why this is smaller than the cleaned target lemma:
+  the cleaned target bundled chart realization together with projection and
+  overlap consequences, while the present proof attempt shows that those latter
+  parts are already formal once the current richer chart itself is realized for
+  an arbitrary ambient object;
+- verdict:
+  `B. the lemma is not fully proved, but it is reduced to one smaller explicit
+  local chart-realization lemma`;
+- nature of the residual gap:
+  still purely local/trace in nature, now at the level of punctured-
+  neighborhood first post-leading chart realization for ambient objects, not at
+  the level of the projection or overlap clauses themselves.
 
 ## Frozen Theorem-Line Note
 The older theorem-facing line is frozen and should not be continued in the same

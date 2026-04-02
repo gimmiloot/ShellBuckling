@@ -67,6 +67,13 @@ Practical order:
 - then use Lean if the statement is stable enough for proof-skeleton closure;
 - use numerics only as diagnostic support.
 
+Method boundary:
+
+- a claim should not be treated as stronger merely because it was tested
+  numerically or manipulated successfully in CAS;
+- Lean should be used to validate proof skeletons and hidden assumptions, not
+  to replace theorem framing.
+
 ## 3. Accepted Working Base
 
 The items below are treated as the **accepted working basis for the current
@@ -3433,7 +3440,9 @@ Most valuable next proof pilots:
   `Pi_eta_to_J0` already identify the formal post-leading variables and their
   canonical return to current `J_0` coordinates, but the repo still lacks a
   theorem-facing statement that every ambient `c in A_full^th,n(q)` admits a
-  punctured-neighborhood local lift realizing those richer-jet variables.
+  punctured-neighborhood local lift realizing those richer-jet variables in a
+  way that is also overlap-compatible with the exact ansatz-boundary trace
+  `J_0 = C_center`.
 - Type: `strategy-level hypothesis`
 - Source file(s):
   `docs/theory/current_simple_support_status.md`;
@@ -3448,7 +3457,9 @@ Most valuable next proof pilots:
   a theorem-facing proof that every ambient admissible / center-regular object
   in `A_full^th,n(q)` admits a punctured-neighborhood local lift realizing the
   first post-leading richer-jet variables compatible with the renormalized
-  vector `W_c(x)` and the exact projection `Pi_eta_to_J0`.
+  vector `W_c(x)`, the exact projection `Pi_eta_to_J0`, and the exact
+  ansatz-boundary trace `J_0 = C_center` on the weighted-trial overlap whenever
+  both descriptions are defined.
 - Verification method:
   manual theorem attempt, reuse of the principal-part scaling analysis, reuse
   of the checked richer-jet chart / recurrence structure, theory/status
@@ -3460,8 +3471,9 @@ Most valuable next proof pilots:
   system built on that lift.
 - Next action:
   prove the punctured-neighborhood richer-jet lift-existence lemma for the
-  current richer jet variables, or sharpen `A_full^th,n(q)` only enough to make
-  that local lift statement formally well-posed.
+  current richer jet variables together with the needed overlap-compatibility
+  clause, or sharpen `A_full^th,n(q)` only enough to make that local lift
+  statement formally well-posed.
 
 ### V-S65. Targeted CAS+Lean back-verification confirms the current ansatz-boundary identities and exposes one explicit hidden premise in the proof skeleton
 
@@ -3514,4 +3526,51 @@ Most valuable next proof pilots:
   keep the current formula-level identities at their present status, and state
   the richer-jet implication in future theorem work as
   `richer-jet lift + regular-singular convergence + overlap compatibility
-  => J_0^th well-defined`.
+  => J_0^th well-defined`,
+  where overlap compatibility means agreement with the exact ansatz-boundary
+  trace `J_0 = C_center` and compatibility with the canonical
+  `Pi_eta_to_J0` projection on the weighted-trial overlap.
+
+### V-S66. A direct proof attempt for the cleaned punctured-neighborhood richer-jet lift-existence lemma reduces it further to punctured-neighborhood first post-leading chart realization
+
+- ID: `V-S66`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, a direct proof attempt for
+  the cleaned ambient punctured-neighborhood richer-jet lift-existence lemma
+  does not yet prove that lemma, but it shows that the first unresolved step is
+  narrower still: once the current richer chart is realized for an ambient
+  object, extension of `W_c`, compatibility with `Pi_eta_to_J0`, and the
+  cleaned overlap-compatibility clause with `J_0 = C_center` are already formal.
+  The first open point is therefore realization of the first post-leading chart
+  itself on a punctured neighborhood for arbitrary ambient objects in
+  `A_full^th,n(q)`.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`.
+- Current status:
+  `direct cleaned-lemma attempt made / reduced to punctured-neighborhood first post-leading chart realization`
+- What counts as verification:
+  a theorem-facing proof that every ambient admissible / center-regular object
+  in `A_full^th,n(q)` admits punctured-neighborhood first post-leading chart
+  data realizing `Xi_rich^(1,eta)` and, when needed, `Xi_rich^(1+,eta)`,
+  extending `W_c`, so that the exact projection `Pi_eta_to_J0` and the
+  overlap return to `J_0 = C_center` are meaningful.
+- Verification method:
+  manual theorem attempt, reuse of the checked richer-jet chart identities,
+  reuse of the exact overlap-trace closure already recorded for `J_0 = C_center`,
+  theory/status synthesis.
+- Verification boundary:
+  this does not prove the cleaned richer-jet lift-existence lemma. It records
+  only that projection compatibility and overlap compatibility are no longer the
+  first open steps once the chart exists, and that the first unresolved point
+  is realization of the first post-leading richer chart itself.
+- Next action:
+  prove the punctured-neighborhood first post-leading chart-realization lemma
+  for arbitrary ambient objects, or sharpen `A_full^th,n(q)` only enough to
+  make that chart-realization statement formally well-posed.

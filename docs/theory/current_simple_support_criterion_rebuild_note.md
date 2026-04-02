@@ -1699,7 +1699,11 @@ Proof-attempt breakdown:
 - closed at the formal checked level;
 - `Xi_rich^(1,eta)`, `Xi_rich^(1+,eta)`, and `Pi_eta_to_J0` already identify
   the intended post-leading variables and their canonical return to the present
-  `J_0 = C_center` coordinates.
+  `J_0 = C_center` coordinates on the weighted-trial overlap;
+- this exact overlap return must now be kept explicit in the theorem setup:
+  no future theorem-line statement should read
+  `richer-jet lift + regular-singular convergence`
+  as sufficient by itself for `J_0^th` well-definedness.
 
 2. Agreement of the leading structure with the checked recurrence model:
 
@@ -1723,9 +1727,10 @@ Proof-attempt breakdown:
 5. Feedback to the already isolated convergence step:
 
 - formal once more;
-- if the punctured-neighborhood richer-jet lift and its closed local system
-  existed, then one could return to the previously isolated bounded-solution
-  convergence step inside that ambient system.
+- if the punctured-neighborhood richer-jet lift, its overlap compatibility with
+  `J_0 = C_center` / `Pi_eta_to_J0`, and its closed local system existed, then
+  one could return to the previously isolated bounded-solution convergence step
+  inside that ambient system.
 
 Exact first unresolved smaller lemma:
 
@@ -1733,7 +1738,9 @@ Exact first unresolved smaller lemma:
   for every `c in A_full^th,n(q)`, there exists a punctured near-center local
   lift realizing the first post-leading richer-jet variables corresponding to
   `Xi_rich^(1,eta)` and, when needed, `Xi_rich^(1+,eta)`, compatibly with the
-  renormalized vector `W_c(x)` and the canonical projection `Pi_eta_to_J0`.
+  renormalized vector `W_c(x)`, the canonical projection `Pi_eta_to_J0`, and
+  the exact ansatz-boundary trace `J_0 = C_center` on the weighted-trial
+  overlap whenever both descriptions are defined.
 
 Why this is the first true blocker:
 
@@ -1757,6 +1764,92 @@ Conservative conclusion:
   is still open at the current repo level;
 - the exact first unresolved point is now punctured-neighborhood richer-jet
   lift existence for arbitrary ambient objects;
+- this remains a narrow local/trace obstruction and does not reopen selector
+  authority, codomain choice, or clean-path consistency.
+- the cleaned theorem-line reading from this point onward is:
+  `richer-jet lift + regular-singular convergence + overlap compatibility
+  => J_0^th well-defined`,
+  with overlap compatibility built into the next active local theorem target
+  rather than added later by hand.
+
+### A2o. Direct proof attempt for the cleaned punctured-neighborhood richer-jet lift-existence lemma
+
+Lemma attempted in theorem-style form:
+
+- claim to prove:
+  every ambient object `c in A_full^th,n(q)` admits a punctured near-center
+  richer-jet lift realizing the first post-leading variables of
+  `Xi_rich^(1,eta)` and, when needed, `Xi_rich^(1+,eta)`, extending `W_c`,
+  compatible with `Pi_eta_to_J0`, and overlap-compatible with the exact
+  ansatz-boundary trace `J_0 = C_center`.
+
+Proof-attempt breakdown:
+
+1. Extension of `W_c` once the current richer chart exists:
+
+- formal;
+- the first four slots of the richer chart are exactly the current normalized
+  leading data together with the explicit defect coordinates, so once the chart
+  is realized the extension of `W_c` is built in.
+
+2. Compatibility with `Pi_eta_to_J0`:
+
+- formal;
+- the projection formula is exact on `Xi_rich^(1,eta)` and `Xi_rich^(1+,eta)`,
+  so once the richer chart exists the canonical return to current `J_0`
+  coordinates is immediate.
+
+3. Overlap compatibility with `J_0 = C_center`:
+
+- not the first blocker;
+- once the richer chart exists and the canonical projection is available, the
+  remaining overlap clause is exactly that the projected trace agrees with the
+  already closed ansatz-boundary trace on the weighted-trial overlap;
+- the targeted CAS+Lean back-verification already isolated this as an explicit
+  premise, not as a new symbolic identity.
+
+4. Existence of the punctured-neighborhood richer chart itself:
+
+- blocked first;
+- the repo still does not prove that every `c in A_full^th,n(q)` admits the
+  first post-leading chart realization needed to speak theorem-facingly about
+  `Xi_rich^(1,eta)` or `Xi_rich^(1+,eta)` on a punctured neighborhood.
+
+5. Feedback to the later regular-singular step:
+
+- formal once more;
+- after such a chart is realized, the later regular-singular continuation /
+  convergence step can be posed on that lifted state with the overlap clause
+  already built in.
+
+Exact first unresolved smaller lemma:
+
+- Ambient punctured-neighborhood first post-leading chart-realization lemma:
+  for every `c in A_full^th,n(q)`, there exists punctured near-center first
+  post-leading chart data realizing `Xi_rich^(1,eta)` and, when needed,
+  `Xi_rich^(1+,eta)`, extending the renormalized vector `W_c(x)`, so that
+  `Pi_eta_to_J0` and the overlap return to `J_0 = C_center` are meaningful.
+
+Why this is the first true blocker:
+
+- the current repo already closes the exact richer-chart projection identities;
+- it already isolates overlap compatibility as an explicit clause rather than a
+  hidden symbolic issue;
+- so the proof no longer stops at the projection or overlap steps themselves;
+- it stops first at realizing the current richer chart for arbitrary ambient
+  objects on a punctured neighborhood.
+
+Proof-attempt verdict:
+
+- `B. the lemma is not fully proved, but it is reduced to one smaller explicit
+  local chart-realization lemma.`
+
+Conservative conclusion:
+
+- the cleaned punctured-neighborhood richer-jet lift-existence lemma is still
+  open at the current repo level;
+- the exact first unresolved point is now punctured-neighborhood first post-
+  leading chart realization for arbitrary ambient objects;
 - this remains a narrow local/trace obstruction and does not reopen selector
   authority, codomain choice, or clean-path consistency.
 

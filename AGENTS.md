@@ -453,13 +453,16 @@ Use theorem-proof tooling by scientific role.
 - CAS:
   symbolic algebra, channel elimination, recurrence manipulations, principal-
   part reductions, boundary-pair algebra, and exact formula/identity checks.
+  CAS is the default tool for checking long symbolic transitions.
 - Lean:
   abstract logical closure after the statement is sharp enough: witness
   structure, uniqueness structure, implication chains, proof skeleton
-  validation, and checking that no hidden assumptions are used.
+  validation, and checking that no hidden assumptions are used. Lean is not the
+  default tool for discovering the correct analytical statement.
 - Numerical testbench:
   diagnostics, robustness checks, representative sanity checks, and
-  counterexample hunting only; not theorem closure.
+  counterexample hunting only. Numerical evidence does not close theorem-facing
+  claims by itself.
 
 Practical rule:
 
@@ -467,6 +470,12 @@ Practical rule:
 - then check symbolic transitions with CAS;
 - then use Lean for the proof skeleton if the statement is stable enough;
 - use numerics only as diagnostic support, never as theorem closure.
+
+Negative rules:
+
+- do not try to formalize vague statements in Lean;
+- do not use CAS or numerics as substitutes for theorem-facing analytical
+  meaning.
 
 If a hypothesis is only a research strategy, label it as strategy, not as proved mathematics.
 If a hypothesis is only supported within the current mixed-weak version or only at surrogate/testbench level, say so explicitly.

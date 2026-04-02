@@ -432,10 +432,43 @@ Current read of the existing pieces:
   realizing the first post-leading variables of `Xi_rich^(1,eta)` and, when
   needed, `Xi_rich^(1+,eta)`, compatibly with
   `[x^(-n) u_s, x^(-n) u_n, x^(1-n) varphi, x^(1-n) psi]`
-  and the canonical projection `Pi_eta_to_J0`;
+  and the canonical projection `Pi_eta_to_J0`, and returning on the
+  weighted-trial overlap to the exact current ansatz-boundary trace
+  `J_0 = C_center`;
 - verdict:
   `B. the ambient local-system / jet-lift lemma is reduced to one smaller
   explicit punctured-neighborhood richer-jet lift-existence lemma.`
+
+## Cleaned Next Local Target
+
+- cleaned proof-line implication:
+  `richer-jet lift + regular-singular convergence + overlap compatibility
+  => J_0^th well-defined`;
+- what overlap compatibility means here:
+  agreement with the exact ansatz-boundary trace `J_0 = C_center` and
+  compatibility with the canonical return map `Pi_eta_to_J0` on the weighted-
+  trial overlap;
+- next active theorem target:
+  prove the punctured-neighborhood richer-jet lift-existence lemma already in
+  that cleaned form, so overlap compatibility is part of the setup rather than
+  an afterthought added after the lift and convergence steps.
+
+## Direct Theorem-Attempt Outcome For The Cleaned Richer-Jet Lift-Existence Lemma
+
+- theorem-attempt result:
+  not fully proved at the current repo level;
+- what becomes formal once the current richer chart exists:
+  extension of `W_c`,
+  canonical return through `Pi_eta_to_J0`,
+  and the overlap-compatibility clause with `J_0 = C_center`;
+- exact first unresolved point:
+  every `c in A_full^th` should admit punctured-neighborhood first post-leading
+  chart data realizing `Xi_rich^(1,eta)` and, when needed, `Xi_rich^(1+,eta)`,
+  so that those already-formal projection and overlap clauses can even be
+  stated theorem-facingly;
+- verdict:
+  `B. the cleaned richer-jet lift-existence lemma is reduced to one smaller
+  explicit punctured-neighborhood first post-leading chart-realization lemma.`
 
 ## How To Read Candidate Labels
 
