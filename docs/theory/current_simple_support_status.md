@@ -11,8 +11,11 @@ It is intentionally short and operational. It does not replace:
 - `docs/theory/current_theory_verification_map.md` for claim-status tracking;
 - `docs/theory/current_simple_support_final_audit_note.md` for the final
   audit-style closure reading of the current clean theorem-facing line;
+- `docs/theory/current_simple_support_criterion_rebuild_note.md` for the
+  current criterion-facing rebuild target, working-order reading, and
+  `R1 / R2 / R3` source-of-truth interpretation;
 - `docs/theory/current_simple_support_closed_line_index.md` for the frozen-line
-  archive/index view and ordered source-of-truth reading list;
+  archive/index view and archive reading order;
 - `docs/theory/current_mixed_weak_theory_note.tex` for compact scientific
   discussion;
 - `docs/theory/vyvod_uravneniy_updated17.md` for derivation work;
@@ -47,6 +50,9 @@ For operational reading on the current clean branch:
 - use `L_red` as the main theorem-facing reduced object;
 - keep `B_red` / `B_mix` as exploratory descendants rather than proved
   replacements for `L_red`;
+- use `docs/theory/current_simple_support_criterion_rebuild_note.md` as the
+  current source-of-truth note for the rebuild target and for the
+  `R1 / R2 / R3` reading;
 - use `docs/theory/current_simple_support_criterion_bridge_note.md` for the
   current interpretation language;
 - use `docs/theory/current_simple_support_object_glossary.md` for stable object
@@ -69,6 +75,19 @@ results, see:
 - `docs/theory/current_simple_support_final_audit_note.md`
 - `docs/theory/current_simple_support_closed_line_index.md`
 - `docs/theory/current_simple_support_object_glossary.md`
+
+Read `docs/theory/current_simple_support_closed_line_index.md` as archive /
+frozen-line navigation, not as the primary working-order entry point for the
+current criterion-facing branch.
+
+For the current live criterion-facing working order, start from:
+
+1. `docs/theory/current_simple_support_status.md`
+2. `docs/theory/current_simple_support_object_glossary.md`
+3. `docs/theory/current_simple_support_final_audit_note.md`
+4. `docs/theory/current_simple_support_criterion_rebuild_note.md`
+5. `docs/theory/current_simple_support_criterion_bridge_note.md`
+6. `docs/theory/current_theory_verification_map.md`
 
 ## First Clean Full Critical-Search Campaign
 The first full exploratory run of the standalone clean simple-support critical

@@ -1,5 +1,34 @@
 ﻿# CHANGELOG
 
+## 2026-04-02 - Docs-only source-of-truth sync for clean simple-support criterion rebuild
+
+Affected files:
+- AGENTS.md
+- docs/theory/AGENTS.md
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_simple_support_criterion_bridge_note.md
+- docs/theory/current_simple_support_criterion_rebuild_note.md
+- docs/theory/current_simple_support_closed_line_index.md
+- docs/project_map.md
+- CHANGELOG.md
+
+- Added an explicit clean simple-support criterion-rebuild override in the root
+  and theory `AGENTS` files, so this branch now has a documented working-order
+  note distinct from the repo-wide mixed-weak order.
+- Added a focused criterion-facing rebuild note recording the failed strong
+  reading, the authority hierarchy `L_red > B_red > B_mix`, rebuilt criterion
+  candidates `R1/R2/R3`, and the recommended target `R2`.
+- Reframed `current_simple_support_closed_line_index.md` as archive/frozen-line
+  navigation rather than the primary current working-order note, and synced the
+  project map accordingly.
+- Synced `current_simple_support_status.md` and
+  `current_simple_support_criterion_bridge_note.md` so the rebuild note is
+  referenced explicitly as the current criterion-facing source-of-truth file,
+  while `current_simple_support_closed_line_index.md` is read as archive-only
+  navigation.
+- Scientific meaning unchanged: this was a docs-only sync with no solver
+  behavior, equation, or boundary-condition meaning changes.
+
 ## 2026-04-01 - Phase 3 workflow/output layering cleanup
 
 Affected files:

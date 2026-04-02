@@ -6,6 +6,13 @@ This file is a short freeze/archive index for the old clean full
 It does not reopen that line, does not introduce a new theorem step, and does
 not claim that the current critical-load criterion is proved or refuted.
 
+It is archive/frozen-line navigation only. It is not the primary current
+working-order note for the clean full `simple support / подвижный шарнир`
+criterion-rebuild branch.
+
+For the current criterion-facing working order on that branch, use
+`docs/theory/current_simple_support_criterion_rebuild_note.md`.
+
 Stable object definitions used across the frozen-line documents are centralized
 in `docs/theory/current_simple_support_object_glossary.md`.
 
@@ -88,19 +95,21 @@ the frozen line should be reused:
 - any future theorem return on this topic now requires genuinely new continuum
   / equation-level admissibility input.
 
-## 7. Ordered Reading List
+## 7. Archive Reading Order
 
-Read in this order:
+For the live clean criterion-facing working order, start from
+`docs/theory/current_simple_support_criterion_rebuild_note.md`, not from this
+archive index.
+
+When you specifically need the frozen-line archive, read in this order:
 
 1. `docs/theory/current_simple_support_final_audit_note.md`
 2. `docs/theory/current_simple_support_object_glossary.md`
-3. `docs/theory/current_simple_support_status.md`
-4. `docs/theory/current_simple_support_theorem_roadmap.md`
-5. `docs/theory/current_theory_verification_map.md`
-6. `docs/theory/current_simple_support_criterion_bridge_note.md`
-7. `docs/journal/project_journal_updated14.md`
-8. `docs/assumptions/assumptions.md`
-9. `docs/theory/vyvod_uravneniy_updated17.md`
-10. `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`
-11. `proof_pilots/pilot_24_t3a_selected_kernel_bridge/pilot_24_t3a_selected_kernel_bridge.md`
-12. `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
+3. `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`
+4. `proof_pilots/pilot_24_t3a_selected_kernel_bridge/pilot_24_t3a_selected_kernel_bridge.md`
+5. `proof_pilots/pilot_25_t3b_selected_class_upgrade/pilot_25_t3b_selected_class_upgrade.md`
+6. `docs/theory/current_simple_support_theorem_roadmap.md`
+7. `docs/theory/current_theory_verification_map.md`
+8. `docs/journal/project_journal_updated14.md`
+9. `docs/assumptions/assumptions.md`
+10. `docs/theory/vyvod_uravneniy_updated17.md`

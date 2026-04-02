@@ -50,6 +50,29 @@ Important:
 
 ---
 
+## Clean Simple-Support Criterion-Rebuild Override
+For the clean full `simple support / подвижный шарнир` criterion-rebuild
+branch, use a branch-specific source-of-truth order even though the repo-wide
+active path remains the mixed-weak branch.
+
+For that branch:
+- treat `docs/theory/current_simple_support_criterion_rebuild_note.md` as the
+  current working-order note for criterion-facing interpretation;
+- treat `docs/theory/current_simple_support_closed_line_index.md` as
+  archive/frozen-line navigation only, not as the primary working-order note;
+- keep the criterion hierarchy explicit:
+  theorem-facing `L_red` first, then boundary descendants `B_red`, then the
+  live basis-level diagnostic `B_mix`;
+- do not reopen the old frozen theorem line and do not silently promote
+  boundary-only diagnostics into a final proved critical-load criterion.
+
+This override changes documentation working order for that branch only. It does
+not change equations, boundary-condition meaning, solver behavior, or the
+repo-wide classification of the mixed-weak branch as the active implementation
+path.
+
+---
+
 ## Repository priorities
 When in doubt, prioritize sources in this order:
 

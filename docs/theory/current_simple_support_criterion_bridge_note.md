@@ -4,6 +4,12 @@ This note stabilizes the repo-facing criterion language after the current local
 Outcome-B stopping point. It is a status/interpretation memo, not a new theorem
 about final physical criticality.
 
+For the current rebuild/source-of-truth reading of the criterion story, pair
+this note with
+`docs/theory/current_simple_support_criterion_rebuild_note.md`, which now
+records the explicit `R1 / R2 / R3` rebuild options and the current preferred
+target.
+
 ## What Is Already Closed
 
 - `A_ls` is best read as the global weak/KKT-selected family used by the current
@@ -111,6 +117,8 @@ None of these labels implies a final physical critical-load claim.
 - This is a project-strategy stopping point, not a mathematical impossibility
   claim.
 - The next active path is criterion-level synthesis / interpretation.
+- The current source-of-truth rebuild reading is recorded separately in
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`.
 - Do not reopen the same checked local branch unless a genuinely new
   theorem-facing idea appears.
 - The next bridge question is how the checked local quotient result should be

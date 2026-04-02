@@ -49,6 +49,32 @@ This file is NOT:
 
 ---
 
+## Clean Simple-Support Working Order vs Archive Order
+For the clean full `simple support / подвижный шарнир` criterion-rebuild
+branch, separate the live working order from the frozen-line archive order.
+
+Working order for that branch:
+- `current_simple_support_criterion_rebuild_note.md` is the current
+  criterion-facing source-of-truth note;
+- `current_simple_support_status.md`,
+  `current_simple_support_object_glossary.md`, and
+  `current_simple_support_criterion_bridge_note.md` remain live supporting
+  references around that note;
+- use the rebuild note to keep the authority order
+  `L_red > B_red > B_mix` explicit.
+
+Archive order for that branch:
+- `current_simple_support_closed_line_index.md` is archive/frozen-line
+  navigation only;
+- use it to navigate the frozen theorem line and its reusable negative
+  knowledge, not as the current working-order note.
+
+This directory-level override changes document reading order for that branch
+only. It does not reopen the frozen line or change any equations, BC meaning,
+or solver behavior.
+
+---
+
 ## Policy for current_mixed_weak_theory_note.tex
 This file should be readable by a person who has not followed the entire repository history.
 

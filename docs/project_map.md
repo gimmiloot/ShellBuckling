@@ -31,6 +31,14 @@ rejected directions.
   add-ons around the same clean architecture; after their non-decisive outcome,
   the next planned stage is a more theoretical criterion rework rather than
   another broad scan.
+- For the clean full simple-support criterion-rebuild branch, the branch-
+  specific working-order note is
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`: the
+  repo-wide mixed-weak active-path order still applies globally, but the clean
+  criterion-facing doc order now starts from this rebuild note instead.
+- That rebuild note records the recommended working target as the selected-
+  class reduced-kernel reading on `L_red`, while `B_mix` and the light pilots
+  stay in locator/diagnostic roles and membrane ambiguity stays explicit.
 - The clean theorem-facing closure/archive layer should now be read through the
   dedicated theory docs rather than from this repository map:
   `docs/theory/current_simple_support_status.md`,
@@ -178,14 +186,21 @@ rejected directions.
   `A_ls`, `L_red`, `B_red`, `B_mix`, and the clean candidate labels after the
   local Outcome-B stopping point.
 
+- `docs/theory/current_simple_support_criterion_rebuild_note.md`
+  Focused criterion-facing audit/rebuild note separating the live `B_mix`
+  ranking layer from the theorem-facing `L_red` target and recording the
+  current recommended rebuilt criterion path. This is the working-order entry
+  point for the clean full simple-support criterion-rebuild branch.
+
 - `docs/theory/current_simple_support_theorem_roadmap.md`
   Live forward-looking theorem agenda only; the frozen-line replay is no longer
   the active reading of this file.
 - `docs/theory/current_simple_support_final_audit_note.md`
   Main frozen-line conclusion note for the old clean theorem-facing branch.
 - `docs/theory/current_simple_support_closed_line_index.md`
-  Archive/index entry point for the frozen clean theorem line, including the
-  ordered reading list and reusable results.
+  Archive/index entry point for the frozen clean theorem line. It is now
+  archive/frozen-line navigation rather than the primary working-order note for
+  current criterion rebuild work.
 - `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/`
   Proof-pilot source material for the clean theorem-facing reduction and local
   admissibility boundary.
