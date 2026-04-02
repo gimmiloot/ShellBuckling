@@ -2666,3 +2666,164 @@ Most valuable next proof pilots:
   residual-direction boundary
   `z_temp in A_adm^th,n(q) intersect ker(C_center,n(q)) ?`,
   rather than continue the old chain by reformulation.
+
+### V-S46. Selection-rule authority for the current reduced family remains open
+
+- ID: `V-S46`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, the current repo-selected
+  reduced family `A_ls = im(V_adm) = im(M_amp)` should be treated as
+  selection-rule-dependent rather than criterion-authoritative. Representation-
+  only changes of one fixed family are mostly washed out by canonical rebasing,
+  but nearby changes of the actual selector (for example Tikhonov `reg` or SVD
+  truncation) can move the chosen span and the resulting `n=7` / `n=8` stacked
+  reading materially while preserving the clean identities
+  `C_amp V_adm ~= I` and `C_reg V_adm ~= 0`. So the current bottleneck is the
+  unresolved authority of the selected-family rule itself, not only metric
+  choice on one fixed selected family.
+- Type: `interpretation claim`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `tasks/run_simple_support_selected_family_sensitivity.py`;
+  `tasks/run_simple_support_selection_rule_audit.py`;
+  `output/clean_full_simple_support/selected_family_sensitivity_summary.json`;
+  `output/clean_full_simple_support/selection_rule_audit_summary.json`.
+- Current status: `open bottleneck / negative authority conclusion recorded`
+- What counts as verification:
+  explicit evidence that representation variants leave the rebased selected-
+  family reading nearly unchanged, while nearby selector variants produce
+  materially different projectors and `n=7` / `n=8` readouts on the delicate
+  settings without breaking the clean center/rebasing identities.
+- Verification method:
+  numerical audit, code inspection, manual theory/status synthesis.
+- Verification boundary:
+  this is not a proof that no canonical selector exists. It records only that
+  the current Tikhonov rule is too recipe-sensitive for criterion authority and
+  that the present truncated-SVD alternative is still cutoff-dependent enough
+  that it should not yet be promoted.
+- Next action:
+  derive a theorem-facing canonical selector, or prove that criterion authority
+  can be formulated without privileging one nearby selected-family recipe.
+
+### V-S47. Criterion-authoritative selector requirements are explicit, but no checked selector currently satisfies them
+
+- ID: `V-S47`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, a selector should be treated
+  as criterion-authoritative only if it satisfies four kinds of requirements:
+  structural/invariance requirements, numerical robustness requirements,
+  theorem-facing authority requirements, and compatibility with the current
+  `L_red -> B_red -> B_mix` object hierarchy. Convenience-only properties such
+  as small rebasing residuals, moderate `cond(G_amp)`, or one calm local window
+  are not sufficient by themselves. On the current checked repository boundary,
+  the Tikhonov selector fails the small-`reg` robustness / theorem-authority
+  requirements, the truncated-SVD alternative fails cutoff-independence /
+  theorem-authority requirements, and canonical rebasing is only a
+  post-selection normalization step.
+- Type: `interpretation claim`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `output/clean_full_simple_support/selected_family_sensitivity_summary.json`;
+  `output/clean_full_simple_support/selection_rule_audit_summary.json`.
+- Current status: `requirements explicit / no closed selector yet`
+- What counts as verification:
+  an explicit source-of-truth requirement list together with numerical evidence
+  that representation-only changes are mostly washed out, while nearby selector
+  changes can still move the selected span and the delicate `n=7` / `n=8`
+  readout materially.
+- Verification method:
+  numerical audit, code inspection, manual theory/status synthesis.
+- Verification boundary:
+  this does not prove that no canonical selector exists. It records only the
+  present requirement list and the negative conclusion that no currently checked
+  selector satisfies it well enough for criterion authority.
+- Next action:
+  either derive a theorem-facing selector meeting these requirements, or show
+  that criterion authority can be formulated without promoting one selector to a
+  privileged theorem-facing role.
+
+### V-S48. Candidate theorem-facing selector principles are now explicit, but no selector principle is yet closed
+
+- ID: `V-S48`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, the plausible theorem-facing
+  selector-principle candidates now on the table are:
+  a genuine weak/KKT-selected global family principle, a local-to-global
+  selected-family principle, a trace-plane-first principle, a genuinely
+  variational/minimal-energy selector principle, and the conservative fallback
+  position `no justified selector yet`. Of these, the weak/KKT and
+  local-to-global routes are the most structurally compatible with the present
+  repo evidence, the trace-plane-first route is at best a partial ingredient,
+  the variational/minimal-energy route is currently unsupported, and no
+  selector principle is yet closed strongly enough to license a privileged
+  selected family.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `output/clean_full_simple_support/selected_family_sensitivity_summary.json`;
+  `output/clean_full_simple_support/selection_rule_audit_summary.json`.
+- Current status: `candidate principles enumerated / none closed`
+- What counts as verification:
+  an explicit source-of-truth comparison showing, for each candidate principle,
+  what privileged object it would single out, what current repo evidence
+  supports it, what evidence does not yet support it, and what next theorem or
+  status step would still be required.
+- Verification method:
+  numerical audit reuse, code inspection, manual theory/status synthesis.
+- Verification boundary:
+  this does not prove that any of these selector principles is correct. It only
+  records the current theorem/status menu and the present evidence-based
+  classification of those options.
+- Next action:
+  decide whether the next theorem-facing program should target the weak/KKT
+  route, the local-to-global route, a new genuine variational route, or remain
+  temporarily on the conservative `no justified selector yet` position.
+
+### V-S49. Genuine weak/KKT selector principle is now formulated as a theorem-facing target, while the current Tikhonov rule remains only a surrogate
+
+- ID: `V-S49`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, the current live
+  Tikhonov/KKT-like selector should be read only as a numerical surrogate for a
+  possible theorem-facing weak/interior selector route. The live surrogate
+  solves
+  `min ||A_int c||^2 + reg ||c||^2` subject to `C_center c = d_j`,
+  separately for the two amplitude directions, then normalizes and
+  orthogonalizes before rebasing. A genuine weak/KKT selector principle would
+  need instead a canonically justified selected-representative map from
+  amplitude data to one privileged 2D span, independent of arbitrary `reg`,
+  cutoff, and normalization choices.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `src/shell_buckling/mixed_weak/_core_reduction.py`;
+  `src/shell_buckling/mixed_weak/full_simple_support_critical_search.py`;
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `output/clean_full_simple_support/selected_family_sensitivity_summary.json`;
+  `output/clean_full_simple_support/selection_rule_audit_summary.json`.
+- Current status: `weak/KKT target formulated / not closed`
+- What counts as verification:
+  an explicit source-of-truth separation between the current recipe-level
+  constrained Tikhonov solve and the stronger theorem-facing weak/KKT selector
+  principle it would need to approximate.
+- Verification method:
+  code inspection, numerical audit reuse, manual theory/status synthesis.
+- Verification boundary:
+  this does not prove that the weak/KKT route succeeds. It records only that
+  this route is the most natural next theorem-facing selector program and that
+  the present Tikhonov rule is not itself the theorem.
+- Next action:
+  define the correct theorem-facing constrained class and the canonical
+  weak/interior optimality statement, then prove existence, uniqueness, and
+  canonicity of the selected weak family.

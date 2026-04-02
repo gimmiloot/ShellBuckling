@@ -1,5 +1,66 @@
 # CHANGELOG
 
+## 2026-04-02 - Weak/KKT selector-principle formulation pass for clean simple-support branch
+
+Affected files:
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_simple_support_criterion_rebuild_note.md
+- docs/theory/current_simple_support_criterion_bridge_note.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Made the current live Tikhonov/KKT-like selector mathematically explicit as a constrained regularized least-squares surrogate with later normalization, orthogonalization, and canonical rebasing.
+- Formulated the genuine theorem-facing weak/KKT selector route as the most natural next selector-principle target on the clean simple-support branch, while keeping it clearly unproved.
+- Added a verification-map entry recording that the current Tikhonov rule remains only a numerical surrogate for a possible theorem-facing weak/interior selector principle.
+
+## 2026-04-02 - Theorem-facing selector-principles formulation pass for clean simple-support branch
+
+Affected files:
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_simple_support_criterion_rebuild_note.md
+- docs/theory/current_simple_support_criterion_bridge_note.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Added a compact source-of-truth comparison of plausible theorem-facing selector principles on the clean simple-support branch: weak/KKT-selected global family, local-to-global selected-family, trace-plane-first, variational/minimal-energy, and the conservative `no justified selector yet` fallback.
+- Recorded the current evidence-based read that the weak/KKT and local-to-global routes are the most structurally compatible next theorem targets, the trace-plane-first route is only a partial ingredient, the variational/minimal-energy route is currently unsupported, and no selector principle is yet closed.
+- Added a verification-map entry marking the selector-principle menu itself as an explicit theorem/status bottleneck above the unresolved selected-family authority question.
+
+## 2026-04-02 - Criterion-authoritative selector requirements pass for clean simple-support branch
+
+Affected files:
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_simple_support_criterion_rebuild_note.md
+- docs/theory/current_simple_support_criterion_bridge_note.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Added an explicit selector-authority requirement checklist separating structural/invariance, numerical robustness, theorem-facing authority, and convenience-only properties on the clean simple-support branch.
+- Recorded the current requirement-level assessment: the Tikhonov selector fails small-`reg` robustness and theorem-authority requirements, the truncated-SVD alternative fails cutoff-independence and theorem-authority requirements, and canonical rebasing remains a post-selection normalization rather than an authoritative selector.
+- Added a verification-map entry marking the selector-requirement list itself as source-of-truth project status while no checked selector yet satisfies it well enough for criterion authority.
+
+## 2026-04-02 - Selection-authority status clarification for clean simple-support branch
+
+Affected files:
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_simple_support_criterion_rebuild_note.md
+- docs/theory/current_simple_support_criterion_bridge_note.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Clarified the clean simple-support layer order from clean path and selected-family construction through canonical rebasing, boundary descendants, stacked diagnostics, and criterion authority.
+- Recorded the negative status update that the current Tikhonov-selected family is not criterion-authoritative, while the nearby truncated-SVD alternative is still cutoff-dependent enough that it should not yet be promoted.
+- Added a verification-map entry marking selection-rule authority as the current theorem/status bottleneck above the unresolved near-degenerate `n=7` / `n=8` selected-family reading.
+
+## 2026-04-02 - Selection-rule audit for the clean simple-support near-pair
+
+Affected files:
+- tasks/run_simple_support_selection_rule_audit.py
+- CHANGELOG.md
+
+- Added a narrow selection-rule audit task that factors out representation-only basis changes and compares nearby reduced-family selectors through their direct amplitude maps on the clean full simple-support path.
+- Recorded diagnostic outputs for a small Tikhonov reg ladder and nearby SVD-style constrained solves across the same near-pair discretization settings, without changing equations, boundary-condition meaning, solver behavior, or the main clean search path.
+
 ## 2026-04-02 - Selected-family sensitivity audit for the clean simple-support near-pair
 
 Affected files:

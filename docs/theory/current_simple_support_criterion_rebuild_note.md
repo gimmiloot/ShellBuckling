@@ -119,11 +119,323 @@ so the exact selected family is
 A_ls = im(V_adm) = im(M_amp).
 ```
 
+### A2b. What is recipe-dependent and what rebasing does not fix
+
+The current clean selection story splits into four layers:
+
+- amplitude constraints:
+  `C_center c = [a_1, a_2, 0, 0]` is fixed by the clean architecture;
+- interior weak/KKT selection:
+  choosing one 2D span inside that constrained fiber by minimizing
+  `||A_int c||^2 + reg ||c||^2`;
+- regularization artifact:
+  the specific `reg` value, and any nearby pseudoinverse / truncation rule, are
+  selector choices rather than theorem-facing consequences of the clean path
+  alone;
+- post-selection rebasing:
+  `V_adm = V_reg G_amp^(-1)` is canonical only after a span has already been
+  chosen.
+
+So the current recipe-dependent layer is the selector that chooses `im(V_reg)`
+inside the constrained fiber, not the later rebasing. The selected-family
+sensitivity audit shows that harmless representative changes are mostly washed
+out by canonical rebasing, but nearby `reg` changes are not. The later
+selection-rule audit sharpens the same conclusion: the current Tikhonov rule is
+too recipe-sensitive for criterion authority, while the apparently stable
+truncated-SVD alternative is still cutoff-dependent enough that it should not
+yet be promoted.
+
+### A2c. Requirements for a criterion-authoritative selector
+
+A selector should be called criterion-authoritative on the present clean branch
+only if requirements of four different kinds are met.
+
+Structural/invariance requirements:
+
+- it must preserve the fixed clean amplitude/regularity constraints
+  `C_center c = [a_1, a_2, 0, 0]`;
+- it must remain compatible with the object hierarchy
+  `A_ls -> L_red -> B_red -> B_mix`, so descendants are not silently promoted
+  above the reduced operator;
+- it must be invariant under harmless representative-choice, normalization, and
+  orthogonalization changes that do not alter the underlying selected span;
+- canonical rebasing must not be the only reason the output looks stable: the
+  chosen span itself must be stable, not only its coordinates after rebasing.
+
+Numerical robustness requirements:
+
+- the selected span should not drift materially under small admissible
+  Tikhonov-style `reg` changes;
+- the selected span should not depend qualitatively on arbitrary SVD cutoff
+  tuning;
+- nearby admissible selector choices should not change the qualitative
+  near-pair `n=7` / `n=8` reading on the checked dense windows/settings.
+
+Theorem-facing authority requirements:
+
+- the selector should come from a theorem-facing weak/KKT principle, or from a
+  local-to-global selected-family theorem, rather than only from a numerical
+  recipe;
+- it should explain why one 2D span is privileged inside the clean constrained
+  fiber;
+- it should remain compatible with `L_red` as the main criterion-facing object,
+  not replace that hierarchy by a boundary-only or tuning-based rule.
+
+Convenience-only properties that are not enough by themselves:
+
+- small identity residuals `C_amp V_adm - I` and `C_reg V_adm`;
+- moderate `cond(G_amp)`;
+- a numerically calm or visually appealing local window;
+- a winner ordering that happens to look plausible.
+
+### A2d. Current selector assessment against those requirements
+
+Current Tikhonov/KKT selector:
+
+- passes / partially supports:
+  the clean amplitude constraints, the current object hierarchy, the clean
+  rebasing identities, and near-invariance under harmless representation
+  changes after rebasing;
+- fails:
+  stability under small admissible `reg` changes, theorem-facing derivation of
+  a privileged selector, and qualitative near-pair robustness strong enough for
+  criterion authority.
+
+Current truncated-SVD alternative:
+
+- passes / partially supports:
+  the same clean identities and, on some checked settings, a numerically calmer
+  selected-family reading than the Tikhonov ladder;
+- fails:
+  cutoff independence, theorem-facing derivation of a privileged selector, and
+  enough cross-rule agreement to justify promotion as the new baseline.
+
+Canonical rebasing:
+
+- passes / partially supports:
+  exact coordinate normalization on a chosen span and numerical washing-out of
+  harmless representative changes;
+- does not supply criterion authority by itself:
+  it is a post-selection step, so it cannot by itself turn a nearby
+  recipe-dependent selected span into a canonical selector.
+
+### A2e. Candidate theorem-facing selector principles now on the table
+
+The current repo evidence leaves several candidate selector-principle programs
+on the table. None is yet closed enough to promote.
+
+Read against the requirement list in A2c, the weak/KKT and local-to-global
+routes are the only candidates that presently look capable in principle of
+satisfying both the structural/hierarchy conditions and the theorem-facing
+authority condition. The trace-plane-first route presently looks insufficient by
+itself, the variational/minimal-energy route remains more speculative because no
+canonical functional is yet available, and `no justified selector yet` is the
+current conservative fallback rather than a selector principle that could be
+promoted.
+
+1. Weak/KKT-selected global family principle
+
+- privileged object:
+  a theorem-facing globally selected 2D family inside the clean constrained
+  fiber, justified by a genuine weak/interior optimality rule;
+- why it is relevant:
+  it is the closest conceptual upgrade of the current live architecture, which
+  already chooses a family through an interior weak residual;
+- evidence that supports it:
+  the current clean hierarchy already separates amplitude constraints, interior
+  selection, and post-selection rebasing; harmless representation changes are
+  mostly washed out; `L_red` is already the main object on a fixed selected
+  family;
+- evidence that does not yet support it:
+  the current Tikhonov rule is still `reg`-sensitive, so the numerical recipe
+  is not yet a theorem-facing selector;
+- next bottleneck:
+  formulate and justify a weak/KKT principle that privileges one span
+  independently of the present tuning recipe, and check that it satisfies the
+  selector-authority requirements;
+- current read:
+  promising and structurally compatible, but requires new theorem work.
+
+2. Local-to-global selected-family principle
+
+- privileged object:
+  a global selected family canonically lifted from the correct local selected
+  object or selected shadow/quotient object;
+- why it is relevant:
+  the clean branch already has strong local checked data and an explicit
+  bridge question between local selected information and the global reduced
+  operator story;
+- evidence that supports it:
+  the selected trace plane is closed, the local quotient boundary is explicit,
+  and the project already tracks the bridge from local data back to `A_ls` and
+  `L_red`;
+- evidence that does not yet support it:
+  no intrinsic higher-order local selector beyond the checked quotient is
+  closed, and no canonical lift theorem is available;
+- next bottleneck:
+  close a genuinely selected local object and prove that it lifts uniquely to a
+  privileged global family;
+- current read:
+  promising but currently unsupported beyond structural compatibility.
+
+3. Trace-plane-first principle
+
+- privileged object:
+  a selector fixed first at the selected trace/amplitude plane and then lifted
+  canonically to a global family;
+- why it is relevant:
+  the leading trace plane is one of the cleanest currently closed pieces of the
+  branch;
+- evidence that supports it:
+  `J_0 = C_center` and `J_0(A_ls) = im(D_amp)` are already closed on the
+  current repo-selected family;
+- evidence that does not yet support it:
+  the trace plane alone does not yet determine a unique privileged global span;
+  many global families can share the same leading trace data;
+- next bottleneck:
+  derive a theorem that turns selected trace data into a unique canonical
+  global lift rather than only a family overclass;
+- current read:
+  useful ingredient, but mismatched as a standalone selector principle.
+
+4. Variational/minimal-energy selector principle
+
+- privileged object:
+  a family singled out by a canonically justified energy, coercivity, or
+  reduced functional;
+- why it might be relevant:
+  it could provide the kind of theorem-facing authority and invariance that the
+  recipe-based Tikhonov norm currently lacks;
+- evidence that supports it:
+  the present solver already uses a minimization-style rule, so a truly
+  canonical variational principle would conceptually fit the architecture;
+- evidence that does not yet support it:
+  no canonically justified energy/coercivity functional has yet been derived
+  for the selector role on this clean boundary;
+- next bottleneck:
+  derive and justify an actual canonical functional and show that its minimizer
+  determines a privileged 2D family;
+- current read:
+  currently unsupported and more speculative than the weak/KKT or
+  local-to-global routes.
+
+5. No justified selector yet
+
+- privileged object:
+  none at present; this is the conservative status-only fallback position;
+- why it is relevant:
+  it matches the current audit evidence and prevents the repo from overclaiming
+  criterion authority before a selector principle is genuinely derived;
+- evidence that supports it:
+  the present selector-authority requirements are explicit, while the checked
+  Tikhonov and truncated-SVD rules both fail them in different ways;
+- evidence that does not yet support promotion beyond fallback:
+  it does not itself produce a privileged reduced family;
+- next bottleneck:
+  choose and develop one theorem-facing selector principle, or remain on this
+  conservative language;
+- current read:
+  this is the correct current source-of-truth position.
+
+### A2f. Weak/KKT route: current numerical surrogate versus genuine theorem-facing target
+
+The current weak/KKT-like selector in the live code can now be written
+explicitly.
+
+For the two center-amplitude right-hand sides
+
+```text
+d_1 = [1,0,0,0],    d_2 = [0,1,0,0],
+```
+
+the repository solves, separately for `j = 1, 2`,
+
+```text
+min_c  ||A_int c||^2 + reg ||c||^2
+subject to
+      C_center c = d_j.
+```
+
+Equivalently, it solves the KKT block system
+
+```text
+[A_int^T A_int + reg I   C_center^T] [c_j ]   [0  ]
+[C_center                0         ] [mu_j] = [d_j].
+```
+
+After that, the current recipe still performs two extra numerical choices:
+
+- normalize each constrained solution `c_j / ||c_j||`;
+- orthogonalize the second constrained solution against the first.
+
+Only then does it form
+
+```text
+V_reg = [c_1, c_2],
+V_adm = V_reg (C_amp V_reg)^(-1).
+```
+
+So the current live selector splits into four pieces:
+
+- hard constraints:
+  `C_center c = d_j`;
+- weak/interior flavor:
+  preference for small `||A_int c||`;
+- recipe-level artifact:
+  the Euclidean coefficient penalty `reg ||c||^2`, the chosen `reg`, and the
+  later normalization / orthogonalization order;
+- post-selection rebasing:
+  `V_adm = V_reg (C_amp V_reg)^(-1)`.
+
+What the current recipe captures correctly:
+
+- the selected family should live inside the clean constrained fiber;
+- the selector should privilege representatives that are weakly favorable in
+  the interior, not merely convenient boundary traces;
+- the selected family should remain compatible with `L_red` as the main reduced
+  criterion-facing object.
+
+What it does not yet justify:
+
+- why the Euclidean `reg ||c||^2` term is canonically the right weak selector;
+- why the chosen `reg` value does not matter in the delicate settings;
+- why solving separately for `d_1`, `d_2` and then normalizing /
+  orthogonalizing is the theorem-facing way to select the span;
+- why the resulting span should be privileged beyond one numerical recipe.
+
+A genuine theorem-facing weak/KKT selector principle would need to say
+something stronger:
+
+- for each admissible leading amplitude datum `a in R^2`, there exists a
+  canonically selected weak/interior representative
+  `c_weak(a)` in the clean constrained class;
+- the selected map `a -> c_weak(a)` defines one privileged 2D family
+  `A_weak = {c_weak(a)}` inside the clean constrained fiber;
+- that family is invariant under harmless representation changes and does not
+  depend on arbitrary `reg`, cutoff, or normalization choices;
+- the family is justified by a theorem-facing weak/interior optimality
+  statement rather than by a tuning-dependent numerical surrogate.
+
+So the weak/KKT route does not ask merely for a nicer recipe. It asks for a new
+theorem-facing selected-representative principle.
+
+Exact next bottleneck on that route:
+
+- identify the correct theorem-facing global constrained class on which the
+  weak selector should act;
+- identify the canonical weak/interior optimality statement or functional;
+- prove existence/uniqueness/canonicity of the selected representative
+  `c_weak(a)` for each amplitude datum;
+- prove that the resulting 2D span is stable enough to satisfy the
+  selector-authority requirements;
+- only then reinterpret the present Tikhonov selector, if possible, as a
+  numerical surrogate/approximation of that theorem-facing weak/KKT family.
+
 ### A3. What is closed enough theorem-facing
 
 The following criterion-facing blocks are currently closed enough to use:
 
-- `A_ls` as the current selected reduced family;
+- `A_ls` as the current repo-selected reduced family;
 - `J_0 = C_center` and `J_0(A_ls) = im(D_amp)`;
 - `L_red,n(q) = [A_int,n(q); B_full,n(q)] V_adm,n(q)` as the main
   theorem-facing reduced object;
@@ -143,6 +455,10 @@ The following parts are not currently licensed theorem-facing conclusions:
   nontrivial-kernel question for `L_red`;
 - reading the current repo-selected family `A_ls` as already lossless for the
   full admissible clean tangent space;
+- reading the current Tikhonov/KKT selector as already canonical or
+  criterion-authoritative;
+- reading the current truncated-SVD alternative as an already justified promoted
+  baseline;
 - reading the selected trace plus checked-local quotient data as already enough
   to force the selected representative;
 - excluding the explicit membrane competitor from the criterion story.
@@ -286,7 +602,9 @@ Assumptions:
 
 Current theorem-facing authority:
 
-- strongest current criterion-facing formulation available in the repository.
+- strongest current reduced-object formulation on the presently chosen family;
+- not yet criterion-authoritative for final clean criticality, because the
+  selection rule choosing that family is itself unresolved.
 
 Suitability:
 
@@ -304,9 +622,17 @@ Current first practical `rho_R2` status:
   top two, with `n=7` beating `n=8` by only a small margin;
 - this flip does not line up with worsening winner `cond(G_amp)`, so the
   instability is not well explained as a simple conditioning-spike winner;
+- later selected-family sensitivity checks show that harmless representation
+  changes are mostly washed out by canonical rebasing, but nearby selector
+  changes are not;
+- the later selection-rule audit then shows that the current Tikhonov-selected
+  family is too recipe-sensitive for criterion authority, while the seemingly
+  stable truncated-SVD alternative is still cutoff-dependent enough that it
+  should not yet be promoted;
 - therefore `rho_R2` is a useful comparative stacked diagnostic on the current
-  selected family, but it is not yet robust enough to be promoted to the new
-  main working criterion.
+  selected family, but the present bottleneck is now the unresolved authority of
+  the selection rule itself, not only pointwise `n=7` / `n=8` ranking on one
+  fixed family.
 
 ### Candidate R3. Ambiguity-Aware Broadened Criterion
 
@@ -342,31 +668,38 @@ Suitability:
 
 ## Part D. Recommended Next Criterion Path
 
-The best next working target is **Candidate R2**:
-the selected-class reduced-kernel criterion on `L_red`, with an explicit
-membrane-ambiguity caveat.
+The best next working target remains **Candidate R2**, but only as the current
+theorem-facing diagnostic baseline on a fixed selected family, not as a
+criterion-authoritative final selector.
 
-Why this is the best balance:
+Why this is still the right reduced-object target:
 
 - it is anchored on the strongest currently licensed theorem-facing object,
   `L_red`;
 - it stops overreading `B_mix` while still keeping `B_mix` useful as a locator;
-- it gives one workable criterion-facing target for computation and comparison;
 - it keeps mathematical honesty by refusing to treat the membrane candidate as
   already excluded.
 
+Why it still cannot be promoted further yet:
+
+- the current Tikhonov-selected family is too recipe-sensitive for criterion
+  authority;
+- the apparently more stable truncated-SVD alternative is still cutoff-
+  dependent enough that it is not yet a justified promoted baseline;
+- so the present bottleneck is no longer only `n=7` versus `n=8` ranking, but
+  the unresolved authority of the selected-family rule itself.
+
 Exact next checks needed after this rebuild:
 
-1. build direct clean competition curves for a reduced metric on
-   `L_red = [A_int; B_full] V_adm` on the current competition set
-   `n = 4, 6, 7, 8`;
-2. compare, mode by mode, the minima of that `L_red`-based curve against the
-   current `sigma_bal(B_mix)` minima and record any load drift or reordering;
-3. compare the best selected-class `(q,n)` from the `L_red` reading against the
-   current shallow-method result, explicitly as a selected-class comparison;
-4. keep a separate ambiguity flag whenever the membrane channel has not been
-   excluded, so the selected-class winner is not silently upgraded to a final
-   physical `q_cr / n_cr`.
+1. keep `L_red`-based and `rho_R2`-based readings only as diagnostics on an
+   explicitly chosen family;
+2. isolate what would actually make a selection rule criterion-authoritative on
+   the present clean boundary;
+3. decide whether that authority would have to come from a theorem-facing
+   weak/KKT rule, a local-to-global selected-family theorem, or some other
+   construction;
+4. return to winner-search language only after the selection-authority layer is
+   no longer open.
 
 ## Why This Pass Is Genuinely New
 
