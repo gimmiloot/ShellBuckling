@@ -3574,3 +3574,360 @@ Most valuable next proof pilots:
   prove the punctured-neighborhood first post-leading chart-realization lemma
   for arbitrary ambient objects, or sharpen `A_full^th,n(q)` only enough to
   make that chart-realization statement formally well-posed.
+
+### V-S67. The Step-1 blocker for the chart-realization line is best read as a separate punctured-local-representative existence lemma
+
+- ID: `V-S67`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, the Step-1 blocker isolated
+  by the current chart-realization proof line should presently be read as a
+  separate local regularity / continuation lemma for ambient objects
+  `c in A_full^th,n(q)`: each such object should admit a punctured near-center
+  local representative with enough structure to define
+  `(u_s, u_n, varphi, psi)` and support the first post-leading richer chart.
+  This should not be folded silently into the definition of `A_full^th,n(q)`,
+  because that ambient class is still recorded as not independently closed
+  sharply enough, and it should not be promoted to a standing extra assumption,
+  because that would hide the exact local theorem gap now isolated by the
+  chart-realization line.
+- Type: `structural/formal claim`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_simple_support_object_glossary.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/current_simple_support_chart_realization_proof_draft.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`.
+- Current status:
+  `theorem-facing role clarified / separate local representative lemma preferred`
+- What counts as verification:
+  a source-of-truth clarification that keeps `A_full^th,n(q)` as the intended
+  ambient admissible / center-regular class while treating punctured near-
+  center local-representative existence as its own local theorem task for
+  members of that class, rather than as a hidden definition change or a
+  standing extra assumption.
+- Verification method:
+  theory/status synthesis, pilot interpretation reuse, manual theorem-structure
+  audit.
+- Verification boundary:
+  this does not prove punctured-local-representative existence. It records only
+  the current theorem-facing role of that blocker in the clean chart-
+  realization line.
+- Next action:
+  formulate and prove the explicit punctured-local-representative existence
+  lemma for `c in A_full^th,n(q)`, or sharpen `A_full^th,n(q)` only enough to
+  make that lemma formally well-posed.
+
+### V-S68. A direct theorem attempt for the isolated Step-1 lemma reduces it further to ambient punctured-local-representative existence
+
+- ID: `V-S68`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, a direct theorem attempt for
+  the isolated Step-1 lemma does not yet prove that every
+  `c in A_full^th,n(q)` admits a punctured near-center local representative
+  with enough structure to define `W_c` and make the first richer-chart
+  language meaningful. But it does show that the current scaling-class read and
+  the checked richer-chart identities are no longer the first blockers once a
+  punctured local representative exists. The first unresolved step is therefore
+  smaller still: existence of the punctured-local representative itself for the
+  ambient object.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/current_simple_support_chart_realization_proof_draft.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`.
+- Current status:
+  `direct Step-1 attempt made / reduced to ambient punctured-local-representative existence`
+- What counts as verification:
+  a theorem-facing proof that every ambient admissible / center-regular object
+  `c in A_full^th,n(q)` admits some `delta > 0` and a punctured-neighborhood
+  local representative on `(0,delta)` carrying the current mixed channels
+  `(u_s, u_n, varphi, psi)`. Once that representative exists, the current
+  scaling-class read already makes `W_c` meaningful and the checked truncated
+  richer-chart objects `Xi_rich^(1,eta)`, `Xi_rich^(1+,eta)`, together with
+  `Pi_eta_to_J0`, are already available as the theorem-facing Step-1 chart
+  language.
+- Verification method:
+  manual theorem attempt, reuse of the current scaling-order read of
+  `A_full^th,n(q)`, reuse of the checked richer-jet chart identities,
+  theory/status synthesis.
+- Verification boundary:
+  this does not prove punctured-local-representative existence. It records only
+  that the scaling-class clause and the richer-chart-language clause are not
+  the first unresolved pieces once a punctured local representative exists.
+- Next action:
+  prove the ambient punctured-local-representative existence lemma for
+  `c in A_full^th,n(q)`, or sharpen `A_full^th,n(q)` only enough to make that
+  existence statement formally well-posed.
+
+### V-S69. The ambient-to-local step should presently be phrased as a representation / witness relation, not as a germ-identity or canonical realization map
+
+- ID: `V-S69`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, the theorem-facing relation
+  between an ambient object `c in A_full^th,n(q)` and a punctured near-center
+  clean mixed germ should presently be read as a weaker representation /
+  witness relation. This is stronger than leaving the link informal, but weaker
+  than identifying `A_full^th,n(q)` with an equivalence class of local germs
+  and weaker than demanding a canonical realization map. The current next local
+  theorem target should therefore assert existence of a witness local germ for
+  each ambient object, not uniqueness or canonicity of a realization map.
+- Type: `structural/formal claim`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/current_simple_support_object_glossary.md`;
+  `docs/theory/current_simple_support_chart_realization_proof_draft.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`.
+- Current status:
+  `representation relation clarified / witness-style next lemma preferred`
+- What counts as verification:
+  a source-of-truth clarification that keeps `A_full^th,n(q)` as the ambient
+  admissible / center-regular class, rejects silent redefinition of that class
+  as a local-germ quotient, avoids introducing a stronger canonical realization
+  map than is currently justified, and states the next local theorem target in
+  existential witness form.
+- Verification method:
+  theory/status synthesis, pilot interpretation reuse, manual theorem-structure
+  audit.
+- Verification boundary:
+  this does not prove ambient-to-local realization. It records only the current
+  theorem-facing form that the realization statement should take.
+- Next action:
+  formulate and prove the existential ambient-to-local witness lemma: for every
+  `c in A_full^th,n(q)`, there exists a punctured near-center clean mixed germ
+  representing `c`.
+
+### V-S70. The ambient-to-local witness relation should presently be packaged as a hybrid predicate `Rep_loc^{n,q}(c,G)`
+
+- ID: `V-S70`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, the theorem-facing meaning
+  of “`G` represents `c`” should presently be packaged as a hybrid witness
+  predicate `Rep_loc^{n,q}(c,G)` between `c in A_full^th,n(q)` and punctured
+  near-center clean mixed germs `G`. The predicate should require:
+  1. `G` is a genuine punctured near-center clean mixed germ on some
+     `(0,\delta)` in the current mixed variables, satisfying the current local
+     clean mixed equations and near-center scaling orders there;
+  2. `G` is admitted as the theorem-facing local witness for the ambient object
+     `c` for the local near-center statements currently under consideration on
+     this branch;
+  3. on the exact weighted-ansatz / selected-family boundary, the witness
+     relation is normalized by agreement with the exact finite leading-center
+     trace `J_0 = C_center`.
+  This is stronger than a trace-only predicate, but weaker than identifying
+  `A_full^th,n(q)` with local-germ equivalence classes and weaker than
+  demanding a canonical realization map.
+- Type: `structural/formal claim`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/current_simple_support_object_glossary.md`;
+  `docs/theory/current_simple_support_chart_realization_proof_draft.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`.
+- Current status:
+  `representation predicate sharpened / hybrid witness schema preferred`
+- What counts as verification:
+  a source-of-truth clarification that fixes the meaning of “`G` represents
+  `c`” sharply enough that the existential witness lemma
+  “for every `c in A_full^th,n(q)`, there exist `\delta > 0` and a punctured
+  near-center clean mixed germ `G` on `(0,\delta)` such that
+  `Rep_loc^{n,q}(c,G)`”
+  is mathematically well-posed, while still avoiding germ-quotient semantics
+  and avoiding a canonical realization map.
+- Verification method:
+  theory/status synthesis, pilot interpretation reuse, manual theorem-structure
+  audit.
+- Verification boundary:
+  this does not prove that a witness germ exists for every
+  `c in A_full^th,n(q)`. It records only the preferred predicate schema for the
+  ambient-to-local witness relation.
+- Next action:
+  attempt the existential witness lemma in the sharpened form:
+  for every `c in A_full^th,n(q)`, there exist `\delta > 0` and a punctured
+  near-center clean mixed germ `G` on `(0,\delta)` such that
+  `Rep_loc^{n,q}(c,G)`.
+
+### V-S71. A direct theorem attempt for the existential ambient-to-local witness lemma is now blocked at witness-germ existence itself
+
+- ID: `V-S71`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, once the theorem-facing
+  representation predicate has been sharpened to `Rep_loc^{n,q}(c,G)`, the
+  existential witness lemma
+  “for every `c in A_full^th,n(q)`, there exist `\delta > 0` and a punctured
+  near-center clean mixed germ `G` on `(0,\delta)` such that
+  `Rep_loc^{n,q}(c,G)`”
+  becomes mathematically well-posed. But a direct theorem attempt still does
+  not prove it, because the repo does not yet provide a theorem-facing
+  ambient-to-local extraction that produces such a punctured near-center clean
+  mixed germ witness for arbitrary `c in A_full^th,n(q)`. So the first
+  unresolved step is now witness-germ existence itself.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/current_simple_support_object_glossary.md`;
+  `docs/theory/current_simple_support_chart_realization_proof_draft.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`.
+- Current status:
+  `direct witness-lemma attempt made / blocked at witness-germ existence`
+- What counts as verification:
+  a theorem-facing proof that for every `c in A_full^th,n(q)`, there exist
+  `\delta > 0` and a punctured near-center clean mixed germ `G` on
+  `(0,\delta)` such that `Rep_loc^{n,q}(c,G)`.
+- Verification method:
+  manual theorem attempt, reuse of the sharpened representation-predicate
+  schema, pilot interpretation reuse, minimal theory/status audit.
+- Verification boundary:
+  this does not prove existence of the witness germ. It records only that the
+  first unresolved step, after fixing the predicate, is production of the
+  punctured near-center clean mixed germ witness itself.
+- Next action:
+  prove the witness-germ existence lemma for arbitrary `c in A_full^th,n(q)`,
+  or isolate the exact ambient-to-local extraction principle needed to produce
+  that witness.
+
+### V-S72. The source principle behind witness-germ existence should presently be a punctured-neighborhood local clean mixed continuation theorem
+
+- ID: `V-S72`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, the correct next source
+  theorem behind witness-germ existence is a separate ambient punctured-
+  neighborhood local clean mixed continuation theorem for objects
+  `c in A_full^th,n(q)`. It should assert existence of an actual punctured
+  near-center clean mixed state in the current mixed variables, satisfying the
+  current local clean mixed equations and near-center scaling orders, and
+  serving as a theorem-facing local continuation of `c`. The existential
+  witness-germ lemma should then follow by passing to the germ of that local
+  state and applying the already sharpened predicate `Rep_loc^{n,q}(c,G)`.
+  This source theorem is narrower than a full article-level local solution-
+  family derivation, better supported than a weak-to-local realization theorem
+  on the current repo material, and not already closed implicitly in the
+  current pilots.
+- Type: `structural/formal claim`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/current_simple_support_object_glossary.md`;
+  `docs/theory/current_simple_support_chart_realization_proof_draft.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`.
+- Current status:
+  `source theorem clarified / punctured local clean mixed continuation preferred`
+- What counts as verification:
+  a theorem-facing proof that for every `c in A_full^th,n(q)`, there exist
+  `\delta > 0` and a genuine punctured near-center clean mixed state on
+  `(0,\delta)` in the current mixed variables, satisfying the current local
+  clean mixed equations and near-center scaling orders there, and serving as a
+  local continuation of `c`.
+- Verification method:
+  theory/status synthesis, pilot interpretation reuse, manual theorem-structure
+  audit.
+- Verification boundary:
+  this does not yet prove the local clean mixed continuation theorem. It fixes
+  only which source principle should be pursued next behind witness-germ
+  existence.
+- Next action:
+  attempt the ambient punctured-neighborhood local clean mixed continuation
+  theorem, then derive the existential witness-germ lemma as its corollary via
+  `Rep_loc^{n,q}(c,G)`.
+
+### V-S73. A direct theorem attempt for the ambient punctured-neighborhood local clean mixed continuation theorem is now blocked at local continuation existence itself
+
+- ID: `V-S73`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, a direct theorem attempt for
+  the ambient punctured-neighborhood local clean mixed continuation theorem
+  does not yet prove that every `c in A_full^th,n(q)` admits such a local
+  continuation. But it does show that once a punctured near-center local
+  continuation of `c` in the current mixed variables exists, the genuine clean
+  mixed-state status, satisfaction of the current local clean mixed equations,
+  and the current near-center scaling-order clauses are no longer the first
+  blockers on the present repo reading. The first unresolved smaller step is
+  therefore local continuation existence itself for arbitrary ambient
+  `c in A_full^th,n(q)`.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/current_simple_support_object_glossary.md`;
+  `docs/theory/current_simple_support_chart_realization_proof_draft.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`.
+- Current status:
+  `direct source-theorem attempt made / blocked at local continuation existence`
+- What counts as verification:
+  a theorem-facing proof that for every `c in A_full^th,n(q)`, there exist
+  `\delta > 0` and a punctured near-center local continuation of `c` in the
+  current mixed variables on `(0,\delta)`.
+- Verification method:
+  manual theorem attempt, reuse of the current ambient-equation and scaling
+  assumptions, pilot interpretation reuse, minimal theory/status audit.
+- Verification boundary:
+  this does not prove local continuation existence. It records only that the
+  other clauses of the source theorem are not the first unresolved pieces once
+  such a continuation exists.
+- Next action:
+  prove the ambient punctured-neighborhood local continuation existence lemma
+  for arbitrary `c in A_full^th,n(q)`, then recover the full source theorem and
+  the witness-germ corollary.
+
+### V-S74. The source mechanism behind local continuation existence should presently be a direct continuation theorem from the ambient compatibility package
+
+- ID: `V-S74`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, the best-supported mechanism
+  behind ambient punctured-neighborhood local continuation existence is a
+  separate direct continuation theorem from the current ambient clean
+  admissible / center-regular compatibility package for
+  `c in A_full^th,n(q)`. This is better supported than reading `A_full^th,n(q)`
+  as already locally realized on punctured intervals, better supported than a
+  weak-to-local extraction theorem on the present repo boundary, and better
+  supported than introducing a new extra ambient hypothesis before the theorem
+  can start.
+- Type: `structural/formal claim`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/current_simple_support_object_glossary.md`;
+  `docs/theory/current_simple_support_chart_realization_proof_draft.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`.
+- Current status:
+  `source mechanism clarified / direct continuation theorem preferred`
+- What counts as verification:
+  a source-of-truth clarification that the next theorem should directly prove
+  punctured local continuation from the current ambient compatibility package
+  on `A_full^th,n(q)`, rather than relying on away-from-center identification,
+  weak-to-local extraction, or an added ambient premise.
+- Verification method:
+  theory/status synthesis, pilot interpretation reuse, manual theorem-structure
+  audit.
+- Verification boundary:
+  this does not prove local continuation existence. It fixes only which
+  theorem-facing mechanism should be pursued next behind that existence claim.
+- Next action:
+  attempt the direct ambient compatibility-to-punctured-local-continuation
+  theorem for `A_full^th,n(q)`.

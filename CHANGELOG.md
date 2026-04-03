@@ -1,5 +1,126 @@
 # CHANGELOG
 
+## 2026-04-03 - Docs-only source-mechanism pass for local continuation existence on the clean simple-support J_0 branch
+
+Affected files:
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_simple_support_criterion_rebuild_note.md
+- docs/theory/current_simple_support_criterion_bridge_note.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Clarified that the best-supported source mechanism behind punctured local continuation existence is a separate direct continuation theorem from the current ambient clean admissible / center-regular compatibility package.
+- Recorded that this is better supported than reading `A_full^th,n(q)` as already locally realized on punctured intervals, better supported than a weak-to-local extraction theorem on the present repo boundary, and better supported than introducing a new extra ambient premise.
+- Marked the next theorem-facing target as a direct ambient compatibility-to-punctured-local-continuation theorem for `A_full^th,n(q)`.
+- Kept this pass docs-only: no equation changes, no BC changes, no solver changes, no numerics, and no theorem inflation.
+
+## 2026-04-03 - Docs-only theorem-attempt pass for the ambient punctured-neighborhood local clean mixed continuation theorem on the clean simple-support J_0 branch
+
+Affected files:
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_simple_support_criterion_rebuild_note.md
+- docs/theory/current_simple_support_criterion_bridge_note.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Recorded that a direct theorem attempt for the ambient punctured-neighborhood local clean mixed continuation theorem still does not prove it.
+- Marked that once a punctured near-center local continuation exists, the clean mixed-state, local-equation, and scaling-order clauses are no longer the first blockers on the present repo reading.
+- Reduced the source theorem to one smaller explicit ambient punctured-neighborhood local continuation existence lemma.
+- Kept this pass docs-only: no equation changes, no BC changes, no solver changes, no numerics, and no theorem inflation.
+
+## 2026-04-03 - Docs-only source-lemma pass for witness-germ existence on the clean simple-support J_0 branch
+
+Affected files:
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_simple_support_criterion_rebuild_note.md
+- docs/theory/current_simple_support_criterion_bridge_note.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Clarified that the correct source principle behind witness-germ existence is a separate ambient punctured-neighborhood local clean mixed continuation theorem for `A_full^th,n(q)` objects.
+- Recorded that this source theorem is narrower than a full local solution-family derivation, better supported than a weak-to-local realization theorem on current repo material, and not already closed implicitly in the existing pilots.
+- Marked the existential witness-germ lemma as a corollary of that source theorem via passage to the punctured local germ and the sharpened predicate `Rep_loc^{n,q}(c,G)`.
+- Kept this pass docs-only: no equation changes, no BC changes, no solver changes, no numerics, and no theorem inflation.
+
+## 2026-04-03 - Docs-only theorem-attempt pass for the existential ambient-to-local witness lemma on the clean simple-support J_0 branch
+
+Affected files:
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_simple_support_criterion_rebuild_note.md
+- docs/theory/current_simple_support_criterion_bridge_note.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Recorded that the existential witness lemma is now mathematically well-posed in the `Rep_loc^{n,q}(c,G)` language.
+- Marked that a direct theorem attempt still does not prove the lemma, and that the first unresolved step is now witness-germ existence itself for arbitrary ambient `c in A_full^th,n(q)`.
+- Kept this pass docs-only: no equation changes, no BC changes, no solver changes, no numerics, and no theorem inflation.
+
+## 2026-04-03 - Docs-only definition pass for the ambient-to-local representation predicate on the clean simple-support J_0 branch
+
+Affected files:
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_simple_support_criterion_rebuild_note.md
+- docs/theory/current_simple_support_criterion_bridge_note.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Sharpened the theorem-facing meaning of “`G` represents `c`” into a preferred hybrid witness predicate `Rep_loc^{n,q}(c,G)`.
+- Recorded that the predicate combines genuine punctured local mixed-germ status with boundary normalization at the exact finite trace `J_0 = C_center`, while still avoiding germ-quotient semantics and a canonical realization map.
+- Restated the next local theorem target in that sharpened predicate language.
+- Kept this pass docs-only: no equation changes, no BC changes, no solver changes, no numerics, and no theorem inflation.
+
+## 2026-04-03 - Docs-only clarification of the ambient-to-local representation relation on the clean simple-support J_0 branch
+
+Affected files:
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_simple_support_criterion_rebuild_note.md
+- docs/theory/current_simple_support_criterion_bridge_note.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Clarified that the theorem-facing relation between `c in A_full^th` and a punctured near-center clean mixed germ should presently be stated as a weaker representation / witness relation.
+- Kept `A_full^th` as an ambient class, explicitly rejected silently identifying it with local-germ equivalence classes, and avoided introducing a stronger canonical realization map than the current repo supports.
+- Marked the next local theorem target as an existential witness-style ambient-to-local lemma.
+- Kept this pass docs-only: no equation changes, no BC changes, no solver changes, no numerics, and no theorem inflation.
+
+## 2026-04-03 - Docs-only theorem-attempt refinement of the Step-1 local-representative line on the clean simple-support J_0 branch
+
+Affected files:
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_simple_support_criterion_rebuild_note.md
+- docs/theory/current_simple_support_criterion_bridge_note.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Recorded the direct theorem-attempt outcome for the isolated Step-1 punctured-local-representative lemma.
+- Marked that once a punctured local representative exists, the current scaling-class read already makes `W_c` meaningful and the checked richer-chart identities already make the Step-1 chart language available.
+- Reduced the isolated Step-1 target further to one smaller explicit ambient punctured-local-representative existence lemma.
+- Kept this pass docs-only: no equation changes, no BC changes, no solver changes, and no theorem-status inflation.
+
+## 2026-04-03 - Docs-only clarification of the Step-1 local-representative blocker on the clean simple-support J_0 branch
+
+Affected files:
+- docs/theory/current_simple_support_status.md
+- docs/theory/current_simple_support_criterion_rebuild_note.md
+- docs/theory/current_simple_support_criterion_bridge_note.md
+- docs/theory/current_theory_verification_map.md
+- CHANGELOG.md
+
+- Clarified that the Step-1 punctured near-center local representative should presently be read as a separate local regularity / continuation lemma for members of `A_full^th`, not silently folded into the meaning of `A_full^th` and not promoted to a standing extra assumption.
+- Synced the current status note, theorem-facing rebuild/bridge notes, and verification map to that reading.
+- Kept this pass docs-only: no equation changes, no BC changes, no solver changes, and no theorem-status inflation.
+
+## 2026-04-03 - Docs-only working theorem-draft addition for the current J_0 / local-trace proof line
+
+Affected files:
+- docs/theory/current_simple_support_chart_realization_proof_draft.md
+- docs/theory/current_simple_support_status.md
+- CHANGELOG.md
+
+- Added a compact working theorem-facing draft note for the current ambient punctured-neighborhood first post-leading chart-realization proof line on the clean simple-support branch.
+- Added one minimal cross-reference from the operational status note to the new proof-draft location.
+- Kept this pass docs-only: no equation changes, no BC changes, no solver changes, and no theorem-status inflation.
+
 ## 2026-04-02 - Direct proof-attempt pass for the cleaned richer-jet lift-existence lemma on the clean simple-support J_0 branch
 
 Affected files:

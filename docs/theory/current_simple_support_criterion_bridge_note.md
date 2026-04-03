@@ -466,6 +466,58 @@ Current read of the existing pieces:
   chart data realizing `Xi_rich^(1,eta)` and, when needed, `Xi_rich^(1+,eta)`,
   so that those already-formal projection and overlap clauses can even be
   stated theorem-facingly;
+- theorem-facing role of the Step-1 blocker:
+  keep punctured-neighborhood local-representative existence as a separate
+  local regularity / continuation lemma for members of `A_full^th`, rather
+  than redefining `A_full^th` to include it by fiat or promoting it to a
+  standing extra assumption;
+- direct theorem-attempt outcome for that isolated Step-1 target:
+  not fully proved at the current repo level, but reduced further to one
+  smaller explicit ambient punctured-local-representative existence lemma,
+  because the scaling-class read of the four channels and the checked richer-
+  chart language are no longer the first blockers once such a representative
+  exists;
+- theorem-facing representation read for the ambient-to-local blocker:
+  keep `A_full^th` as an ambient class, but state the local realization step as
+  an existential representation / witness relation between `c in A_full^th`
+  and a punctured near-center clean mixed germ, rather than as an identity of
+  `A_full^th` with germ classes or as a canonical realization map;
+- exact predicate style now preferred for that relation:
+  use a hybrid witness predicate `Rep_loc^{n,q}(c,G)`, requiring that `G` be a
+  genuine punctured near-center clean mixed germ in the current mixed
+  variables, that it serve as the theorem-facing local witness for `c`, and
+  that on the exact weighted-ansatz / selected-family boundary this witness
+  relation normalize to agreement with the exact finite trace
+  `J_0 = C_center`;
+- next local theorem target in that language:
+  for every `c in A_full^th,n(q)`, there exist `\delta > 0` and a punctured
+  near-center clean mixed germ `G` on `(0,\delta)` such that
+  `Rep_loc^{n,q}(c,G)`;
+- direct theorem-attempt outcome in that language:
+  still open at the current repo level;
+  once the hybrid predicate `Rep_loc^{n,q}(c,G)` is fixed, the first
+  unresolved step is existence of a punctured near-center clean mixed germ
+  witness itself for arbitrary ambient `c in A_full^th,n(q)`;
+- source-principle verdict behind that blocker:
+  the next theorem should be a separate ambient punctured-neighborhood local
+  clean mixed continuation theorem for members of `A_full^th`, from which the
+  witness-germ existence statement follows by taking the punctured local germ;
+  a full local solution-family theorem is stronger than currently needed, and a
+  weak-to-local realization theorem is not the best-supported route on the
+  present repo boundary;
+- direct theorem-attempt outcome for that source theorem:
+  still open at the current repo level;
+  once such a punctured near-center local continuation exists, the current
+  clean mixed-state, local-equation, and scaling-order clauses are no longer
+  the first blockers, so the first unresolved smaller lemma is local
+  continuation existence itself for arbitrary ambient `c in A_full^th,n(q)`;
+- source-mechanism verdict behind that smaller lemma:
+  the next proof should be a direct continuation theorem from the ambient clean
+  admissible / center-regular compatibility package itself;
+  the repo does not support reading `A_full^th` as already locally realized on
+  punctured intervals, does not support a weak-to-local extraction theorem as
+  the preferred route here, and does not currently identify a further missing
+  ambient premise that must be added before the theorem can start;
 - verdict:
   `B. the cleaned richer-jet lift-existence lemma is reduced to one smaller
   explicit punctured-neighborhood first post-leading chart-realization lemma.`

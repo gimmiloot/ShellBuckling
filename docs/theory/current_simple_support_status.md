@@ -734,6 +734,88 @@ Still open and now the true bottleneck:
   still purely local/trace in nature, now at the level of punctured-
   neighborhood first post-leading chart realization for ambient objects, not at
   the level of the projection or overlap clauses themselves.
+- current Step-1 reading:
+  punctured-neighborhood local-representative existence should presently be
+  treated as a separate local regularity / continuation lemma for
+  `c in A_full^th,n(q)`;
+  it should not be folded silently into the meaning of `A_full^th,n(q)`, and
+  it is not yet promoted to a standing extra assumption.
+- direct theorem-attempt outcome for that Step-1 lemma:
+  not fully proved at the current repo level;
+  once such a punctured local representative exists, the current scaling-class
+  read already makes `W_c` meaningful and the checked
+  `Xi_rich^(1,eta)`, `Xi_rich^(1+,eta)`, `Pi_eta_to_J0` identities already make
+  the first richer-chart language theorem-facingly meaningful;
+  so the Step-1 lemma is reduced to one smaller explicit ambient punctured-
+  local-representative existence lemma.
+- ambient-to-local representation read:
+  the theorem-facing relation between an ambient object `c in A_full^th,n(q)`
+  and a punctured near-center clean mixed germ should presently be read as a
+  representation / witness relation;
+  not by folding `A_full^th,n(q)` into an equivalence class of local germs, and
+  not by postulating a canonical realization map before existence is proved.
+- exact representation-predicate schema:
+  for fixed `(n,q)`, the ambient/local link should presently be written as a
+  hybrid witness predicate `Rep_loc^{n,q}(c,G)`, where:
+  1. `G` is a genuine punctured near-center clean mixed germ on some
+     `(0,\delta)` in the current mixed variables, satisfying the current local
+     clean mixed equations and near-center scaling orders there;
+  2. `G` is admitted as the theorem-facing local witness for the ambient object
+     `c` for the near-center local statements currently under consideration on
+     this branch;
+  3. on the exact weighted-ansatz / selected-family boundary, that witness
+     relation is normalized by agreement with the exact finite leading-center
+     trace `J_0 = C_center`;
+  this is stronger than a trace-only predicate, but weaker than a germ-quotient
+  identification or a canonical realization map.
+- next exact witness-style lemma:
+  for every `c in A_full^th,n(q)`, there exist `\delta > 0` and a punctured
+  near-center clean mixed germ `G` on `(0,\delta)` such that
+  `Rep_loc^{n,q}(c,G)`.
+- direct theorem-attempt outcome for that witness-style lemma:
+  not fully proved at the current repo level;
+  the predicate `Rep_loc^{n,q}(c,G)` is now sharp enough that the statement is
+  mathematically well-posed, but the repo still does not provide a theorem-
+  facing ambient-to-local extraction producing such a punctured near-center
+  clean mixed germ witness for arbitrary `c in A_full^th,n(q)`;
+  so the first unresolved step is now witness-germ existence itself.
+- source-principle verdict for witness-germ existence:
+  the correct next theorem target is a separate ambient punctured-neighborhood
+  local clean mixed continuation theorem for objects in `A_full^th,n(q)`;
+  this is narrower than a full local solution-family theorem, better supported
+  than a weak-to-local realization theorem on the present repo material, and
+  not already implicit as a closed theorem in the current pilots.
+- next source theorem:
+  for every `c in A_full^th,n(q)`, there exist `\delta > 0` and a genuine
+  punctured near-center clean mixed state on `(0,\delta)` in the current mixed
+  variables, satisfying the current local clean mixed equations and near-center
+  scaling orders there, and serving as a theorem-facing local continuation of
+  `c`;
+  the existential witness-germ lemma should then follow by passing to the
+  punctured local germ and applying `Rep_loc^{n,q}(c,G)`.
+- direct theorem-attempt outcome for that source theorem:
+  not fully proved at the current repo level;
+  once a punctured near-center local continuation of `c` in the current mixed
+  variables exists, the clean mixed-state, local-equation, and scaling-order
+  clauses are no longer the first blockers on the present repo reading;
+  so the first unresolved smaller lemma is ambient punctured-neighborhood local
+  continuation existence itself.
+- source-mechanism verdict for that smaller lemma:
+  the best-supported mechanism is a separate direct continuation theorem from
+  the current ambient clean admissible / center-regular compatibility package;
+  not away-from-center local realization already built into `A_full^th,n(q)`,
+  not a weak-to-local extraction theorem, and not a new missing ambient
+  hypothesis.
+- next mechanism theorem:
+  prove directly that the current theorem-facing ambient clean compatibility
+  package for `c in A_full^th,n(q)` is punctured-locally continuation-closed in
+  the current mixed variables:
+  for every such `c`, there exist `\delta > 0` and a punctured near-center
+  local continuation on `(0,\delta)`.
+- working draft:
+  `docs/theory/current_simple_support_chart_realization_proof_draft.md`
+  stores the compact theorem-facing version of this local chart-realization
+  line.
 
 ## Frozen Theorem-Line Note
 The older theorem-facing line is frozen and should not be continued in the same
