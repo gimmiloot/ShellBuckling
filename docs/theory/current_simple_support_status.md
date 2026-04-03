@@ -812,10 +812,534 @@ Still open and now the true bottleneck:
   the current mixed variables:
   for every such `c`, there exist `\delta > 0` and a punctured near-center
   local continuation on `(0,\delta)`.
-- working draft:
-  `docs/theory/current_simple_support_chart_realization_proof_draft.md`
-  stores the compact theorem-facing version of this local chart-realization
-  line.
+
+### Assumption LC (Working Physical Assumption)
+
+- statement:
+  for fixed `(n,q)`, every `c in A_full^th,n(q)` admits `\delta > 0` and a
+  punctured near-center clean mixed continuation on `(0,\delta)` in the
+  current mixed variables, satisfying the current local clean mixed equations
+  and the intended near-center scaling orders there;
+- interpretation:
+  this is a working physical realizability assumption away from the center on
+  the clean full simple-support `J_0` branch;
+- theorem status:
+  not proved theorem-facingly on the current branch;
+  it must not be merged into closed theorem status and does not discharge the
+  strict ambient-to-local closure barrier by itself;
+- strict/conditional split:
+  the strict theorem line remains open at the local-continuation closure
+  barrier recorded above;
+  the later witness-germ, chart-realization, richer-jet, and theorem-facing
+  `J_0` local steps may proceed only conditionally under Assumption LC unless
+  that closure theorem is proved independently.
+
+### Conditional Witness-Germ Lemma Under Assumption LC
+
+- conditional lemma:
+  fix `(n,q)` and assume Assumption LC;
+  then for every `c in A_full^th,n(q)`, there exist `\delta > 0` and a
+  punctured near-center clean mixed germ `G` on `(0,\delta)` such that
+  `Rep_loc^{n,q}(c,G)`;
+- proof-status under LC:
+  closed conditionally on the present source-of-truth reading;
+- reason:
+  Assumption LC supplies a punctured near-center clean mixed continuation of
+  `c` in the current mixed variables with the current local equations and
+  scaling orders;
+  passing to its punctured local germ gives `G`;
+  the current hybrid witness-predicate schema then reads that germ as the
+  theorem-facing local witness for `c`, including the existing boundary
+  normalization clause for `Rep_loc^{n,q}(c,G)`;
+- strict-line boundary:
+  this does not discharge Assumption LC and does not close the strict ambient-
+  to-local continuation theorem.
+
+### Conditional Chart-Realization Lemma Under Assumption LC
+
+- conditional lemma:
+  fix `(n,q)` and assume Assumption LC;
+  then for every `c in A_full^th,n(q)`, there exist `\delta > 0` and
+  punctured near-center first post-leading chart data realizing
+  `Xi_rich^(1,eta)` and, when needed, `Xi_rich^(1+,eta)`, extending the
+  punctured local witness germ, compatible with `Pi_eta_to_J0`, and overlap-
+  compatible with `J_0 = C_center` whenever both descriptions are defined;
+- proof-status under LC:
+  not fully proved conditionally on the current branch reading, but reduced;
+- what closes under LC:
+  Assumption LC supplies punctured local continuation and hence, by the
+  conditional witness-germ lemma above, a punctured local witness germ;
+  once the first post-leading richer chart exists on that witness germ,
+  compatibility with `Pi_eta_to_J0` and overlap return to `J_0 = C_center` are
+  already formal on the current branch reading;
+- exact first conditional blocker:
+  realization of the first post-leading richer variables
+  `Xi_rich^(1,eta)` and, when needed, `Xi_rich^(1+,eta)` as actual punctured
+  local chart data on the witness germ, not merely as formal recurrence
+  coefficients;
+- direct theorem-attempt outcome under LC:
+  not fully proved conditionally on the current branch reading, but reduced
+  further:
+  the first exact conditional blocker is now recurrence-to-local realization on
+  the witness germ itself, namely promotion of the checked first post-leading
+  recurrence variables to actual punctured local chart data on that germ;
+- reduced first post-leading extraction attempt under LC:
+  if one restricts from the full chart to the reduced first post-leading slots
+  `U1, N1, P1, Y1` underlying `Xi_rich^(1,eta)`, the first exact reduced
+  blocker is one extra near-center asymptotic order for the renormalized
+  witness-germ channels sufficient to define those four coefficients as actual
+  punctured local quantities;
+  once such reduced coefficient extraction is available in the weak form
+  `f(x) = f0 + x f1 + o(x)` or an equivalent first post-leading asymptotic
+  statement, agreement with the checked recurrence-side variables is no longer
+  the first blocker on the current branch reading;
+- reduced first-order remainder-control attempt under LC:
+  not fully proved conditionally on the current branch reading, but reduced
+  further:
+  once the reduced renormalized witness-germ remainder system is fixed, the
+  first exact reduced blocker is control of the auxiliary renormalized source
+  remainders `Q_s` and `Q_\varphi` at first post-leading order;
+  after that, first-order remainder control for
+  `(R_s, R_n, R_\varphi)` is triangular and `R_\psi` follows algebraically, so
+  coefficient extraction / recurrence-side identification is no longer the
+  first blocker;
+- structural closure verdict for the reduced first post-leading line under LC:
+  the reduced four-channel asymptotic problem is not structurally closed as
+  written;
+  `Q_s` is not controlled by the reduced witness-germ channels alone because it
+  depends on the membrane auxiliary block through `T_s` and `v`, while
+  `Q_\varphi` is not controlled by the reduced channels alone because it
+  depends on the bending/shear auxiliary block through `M_s` and its companion
+  local propagation;
+  so the reduced line must be lifted back to the smallest fuller local mixed
+  block carrying
+  `(u_s, u_n, v, \varphi, \psi, T_s, Q_s, M_s)` in renormalized form if one
+  wants theorem-facing first post-leading closure rather than a reduced
+  surrogate;
+- structural closure diagnostic for the proposed fuller block under LC:
+  `H^{ren}` is eliminable without adding a new local unknown:
+  using `Y + nN = 0` and `xN' + nN + \lambda_c P = 0`, it becomes an algebraic
+  function of the existing block variables `(N,P,Y)`;
+  `\chi^{ren}` is also eliminable without adding a new local unknown, because
+  after substituting the algebraic formula for `H^{ren}` and the first-order
+  relations for `xY'` and `xP'`, it becomes an algebraic function of
+  `(N,P,Y,M)`;
+  however the proposed 8-channel block
+  `(U,N,V,P,Y,T,Q,M)` is still not a genuinely closed **first-order** local
+  renormalized system, because the membrane side still depends on the derived
+  quantity `S^{ren}` and otherwise hides second-order dependence through `v`;
+  the true minimal first-order repair is therefore to add one extra
+  `S^{ren}`-level variable (or an equivalent replacement), giving the minimal
+  enlarged block
+  `(U,N,V,P,Y,T,Q,M,S^{ren})`;
+- direct theorem-attempt outcome for first post-leading asymptotic closure on
+  the minimal 9-channel block under LC:
+  not fully proved conditionally on the current branch reading, but reduced to
+  one exact analytic blocker;
+  once the minimal 9-channel block
+  `(U,N,V,P,Y,T,Q,M,S^{ren})` is written as a first-order renormalized local
+  system with the preserved compatibility constraint `Y + nN = 0`, the leading
+  layer and the formal first post-leading coefficient system are no longer the
+  first blockers on the current branch reading;
+  the checked recurrence-side model already supports the existence of the
+  corresponding formal first post-leading linear system, including the usual
+  membrane nullmode;
+  the first exact analytic blocker is now regular-singular remainder control on
+  the actual punctured local witness germ, namely proving that the renormalized
+  9-channel witness-germ system matches its checked principal local model with
+  sufficiently strong `O(x)` remainder control to conclude
+  `f(x) = f_0 + x f_1 + o(x)` for each channel;
+  so first post-leading linear solvability / resonance is not the first
+  blocker at the present repo level;
+- remainder-derivation diagnostic for the 9-channel witness-germ system:
+  on the current branch reading, the explicit renormalized remainder
+  `R(x) = x Z'(x) - A_0 Z(x)` does not yet satisfy a theorem-facing
+  `R(x) = O(x)` bound for the actual punctured local witness germ;
+  the `U`, `N`, and derived `Y` rows reduce to `O(x)` under the current
+  background expansions and LC scaling orders;
+  the `V`, `P`, and `Q` rows are at best only plausibly `O(x)` at the current
+  repo level because their exact witness-germ coefficient corrections / local
+  elimination formulas are not yet packaged sharply enough theorem-facingly;
+  the `T`, `M`, and `S^{ren}` rows are the first exact obstruction:
+  the richer-local C3c audit shows surviving low-order curvature-coupled terms
+  (notably the `-(s_0 c_0 / r_0^2) M_\theta` contribution in the `T_s` row and
+  the `\kappa_{\theta 0}\chi` contribution in the `S` row) that are not
+  reduced to `O(x)` by current repo material;
+  so the first analytic blocker is now a mismatch between the actual local
+  witness-germ equations and the currently chosen principal operator `A_0` in
+  those rows, rather than generic first post-leading linear solvability;
+- principal-operator correction diagnostic for the problematic rows:
+  the current repo material now supports a sharper split;
+  in the `T` row, the surviving low-order term
+  `-(s_0 c_0 / r_0^2) M_\theta` is genuinely principal, because with
+  `s_0 = K x + O(x^3)`, `c_0 = 1 + O(x^2)`, and
+  `r_0 = \lambda_{\theta 0} x = \lambda_c x + O(x^3)` it contributes at
+  constant renormalized order and is not removed by any currently available
+  cancellation;
+  in the `S^{ren}` row, the surviving low-order term
+  `\kappa_{\theta 0}\chi` is likewise genuinely principal, because
+  `\kappa_{\theta 0} = K / \lambda_c + O(x^2)` and the current principal
+  `\chi` block stays at the same renormalized order;
+  by contrast, the `M` row low-order structure
+  `M_s' + a_0 M_s - a_0 M_\theta + (n/x) H`
+  is already the principal part currently encoded by the `M` row of the
+  9-channel block, while `-Q_s` remains one order lower after renormalization;
+  so the sharper verdict is that the current principal operator `A_0` is not
+  correct specifically in the `T` and `S^{ren}` rows, whereas the `M` row does
+  not presently force an additional principal correction;
+- corrected-principal remainder split diagnostic:
+  after replacing `A_0` by the corrected principal operator `A_0^{corr}` that
+  modifies the `T` and `S^{ren}` rows, no row is presently known to leave a
+  non-`O(x)` remainder on the current branch reading;
+  `U`, `N`, `V`, and derived `Y` are now supported as `O(x)` from the recorded
+  background expansions and compatibility structure;
+  the `P`, `T`, `Q`, `M`, and `S^{ren}` rows are only **plausibly** `O(x)` at
+  the current repo level, because their corrected remainders still depend on
+  theorem-facing control of the actual-to-principal elimination errors for
+  `M_\theta^{ren}`, `H^{ren}`, and `\chi^{ren}` on the punctured witness germ;
+  so after principal correction, the first blocker is no longer another
+  principal-row defect, but insufficient theorem-facing justification that
+  those elimination errors are themselves `O(x)`;
+- elimination-error derivation diagnostic:
+  the current branch reading now supports a sharper split of those three
+  elimination errors;
+  `\Delta H^{ren}` reduces explicitly to
+  `[\;n(\lambda_{s0}-\lambda_c) P - n x \kappa_{s0} U\;] / C_{tw}` once the
+  actual `Y` row is read through the actual `N` row together with preserved
+  compatibility `Y + nN = 0`, so `\Delta H^{ren}` is supported as `O(x)` under
+  the recorded background expansions and LC scaling orders;
+  `\Delta \chi^{ren}` then reduces on the current branch reading to
+  `n \Delta M_\theta^{ren} + O(x)` after substituting the explicit
+  `\Delta H^{ren}` formula together with the actual `P`, `Y`, and `U` rows, so
+  `\Delta \chi^{ren}` is no longer an independent first blocker once
+  `\Delta M_\theta^{ren}` is controlled;
+  the exact first blocker after this derivation is therefore the theorem-facing
+  `O(x)` control of `\Delta M_\theta^{ren}` itself;
+  at the present repo level that term is only plausibly `O(x)`, because the
+  exact actual coefficient package in the corrected circumferential /
+  twist-shear block is still not article-level fixed sharply enough to turn the
+  current branch reading into a closed theorem-facing `O(x)` statement;
+- single-target `\Delta M_\theta^{ren}` diagnostic:
+  on the current branch reading the corrected-principal model uses
+  `M_\theta^{ren,0} = \nu M + (P + nY)/\Lambda`;
+  the source formulas of the active circumferential / twist-shear block already
+  give the more explicit renormalized expression
+  `M_\theta^{ren,act}
+   = \nu M
+   + [c_0 / (\Lambda \lambda_{\theta 0})] P
+   + [n / (\Lambda \lambda_{\theta 0})] Y
+   - [s_0 c_0 / (\Lambda \lambda_{\theta 0}^2)] U
+   - [s_0^2 / (\Lambda \lambda_{\theta 0}^2)] N`,
+  where `r = c_0 u_s + s_0 u_n`,
+  `\kappa_\theta^{new} = (c_0/r_0)\varphi - (s_0/r_0^2) r + (n/r_0)\psi`,
+  and `\lambda_{\theta 0} = r_0 / x`;
+  the omitted `U`-term is already harmless on the current branch reading,
+  because its coefficient is `O(x)` from `s_0 = Kx + O(x^3)`;
+  so the remaining coefficient package may be read as
+  `a_P(x) = c_0 / (\Lambda \lambda_{\theta 0})`,
+  `a_Y(x) = n / (\Lambda \lambda_{\theta 0})`,
+  `a_N(x) = - s_0^2 / (\Lambda \lambda_{\theta 0}^2)`;
+  therefore
+  `\Delta M_\theta^{ren}
+   = (a_P(x) - 1/\Lambda) P + (a_Y(x) - n/\Lambda) Y + a_N(x) N`;
+  here `a_N(x)` is already supported as `O(x^2)` on the current branch reading
+  from `s_0 = Kx + O(x^3)`, so the unresolved part is narrower than the whole
+  triple `(a_P, a_Y, a_N)`;
+  the first exact missing ingredient is now theorem-facing near-center fixation
+  of the `\lambda_{\theta 0}` normalization inside the actual
+  circumferential / twist-shear coefficients for the `P`- and `Y`-terms,
+  sharp enough to justify
+  `c_0/\lambda_{\theta 0} - 1 = O(x)` and
+  `1/\lambda_{\theta 0} - 1 = O(x)` in the same local normalization as the
+  corrected-principal model;
+- normalization-consistency diagnostic for the `P`- and `Y`-coefficients in
+  `M_\theta^{ren}`:
+  the current repo material does not yet theorem-facingly identify whether the
+  relevant principal comparison for the punctured witness-germ `P`- and
+  `Y`-coefficients uses the intrinsic `x \to 0` center normalization or only
+  the selected `x_0`-trace normalization;
+  the frozen principal-center line still records
+  `c_0 \to 1` and `\lambda_{\theta 0} \to 1`,
+  the richer intrinsic center expansion records
+  `c_0 = 1 + O(x^2)` and `\lambda_{\theta 0} = \lambda_c + O(x^2)`,
+  and the current clean boundary trace convention records only
+  `\lambda_{\theta 0}(x_0) = 1` exactly at the selected `x_0`-trace layer;
+  therefore current repo material does not yet decide theorem-facingly whether
+  the principal/model package for `M_\theta^{ren}` should stay
+  `\nu M + (P + nY)/\Lambda`
+  or instead use the intrinsically centered coefficients
+  `\nu M + (P + nY)/(\Lambda \lambda_c)`;
+  so the exact remaining blocker is now narrower than generic
+  `\lambda_{\theta 0}` control:
+  it is a normalization-consistency lemma reconciling the punctured
+  `x \to 0` center normalization with the selected `x_0`-trace normalization
+  before the `P`- and `Y`-coefficient errors in `\Delta M_\theta^{ren}` can be
+  declared against a uniquely fixed principal model;
+- compact normalization map for the current `M_\theta^{ren}` comparison:
+  `A. intrinsic center normalization`:
+  this is the punctured `x \to 0` local geometry line on the witness germ,
+  recorded through
+  `c_0 = 1 + O(x^2)` and `\lambda_{\theta 0} = \lambda_c + O(x^2)`;
+  it is the natural candidate for a theorem-facing punctured-center principal
+  comparison if the local line is read intrinsically;
+  `B. frozen principal-center normalization`:
+  this is the formal/principal simplification used in the checked recurrence
+  algebra and helper-level principal model, recorded as
+  `c_0 \to 1` and `\lambda_{\theta 0} \to 1`;
+  `C. selected x_0-trace normalization`:
+  this is the criterion/selected-family/trace-side convention, recorded as
+  `\lambda_{\theta 0}(x_0) = 1` at the selected trace layer;
+  it belongs to the trace comparison layer and is not automatically identical
+  to the intrinsic punctured-center normalization for the local theorem line;
+  the exact unresolved theorem-facing choice is now:
+  for the principal/model comparison in `M_\theta^{ren}`, is the local
+  principal package governed by the intrinsic punctured-center normalization,
+  which suggests coefficients
+  `1/(\Lambda \lambda_c), n/(\Lambda \lambda_c)`,
+  or by an explicitly gauge-fixed local normalization with `\lambda_c = 1`,
+  or by some theorem-facing bridge from the selected `x_0`-trace layer that
+  still has to be stated;
+  the selected `x_0`-trace normalization must therefore not be silently
+  substituted for the local `x \to 0` normalization in the principal operator
+  unless an explicit bridge lemma is stated;
+- master-normalization decision for the local theorem line:
+  on the current branch reading, the master theorem-facing normalization for
+  the punctured local `x \to 0` line should be the intrinsic center
+  normalization, not the frozen helper normalization and not the selected
+  `x_0`-trace normalization;
+  this choice matches the actual witness-germ / principal-operator comparison
+  best, because the local theorem line is phrased on the punctured witness germ
+  itself and the active reconstructed circumferential / twist-shear formulas
+  are naturally expressed in the intrinsic center variables with
+  `\lambda_{\theta 0} = \lambda_c + O(x^2)`;
+  the repo does not currently contain a separate theorem-facing gauge-fixing
+  strong enough to set `\lambda_c = 1` on that local line;
+  and the selected `x_0`-trace normalization belongs to the criterion/trace
+  layer only, with no theorem-facing bridge lemma yet stated that would let it
+  govern the local principal `P`- and `Y`-coefficients;
+  therefore the candidate local principal/model package is now
+  `M_\theta^{ren,0,loc} = \nu M + (P + nY)/(\Lambda \lambda_c)`,
+  while a separate theorem-to-criterion bridge to the selected `x_0`-trace
+  layer is still required and must be stated explicitly rather than silently
+  absorbed into the local principal operator;
+- intrinsic-local `\Delta M_\theta^{ren}` comparison after the master-
+  normalization decision:
+  with
+  `M_\theta^{ren,act}
+   = \nu M
+   + [c_0 / (\Lambda \lambda_{\theta 0})] P
+   + [n / (\Lambda \lambda_{\theta 0})] Y
+   - [s_0 c_0 / (\Lambda \lambda_{\theta 0}^2)] U
+   - [s_0^2 / (\Lambda \lambda_{\theta 0}^2)] N`
+  and
+  `M_\theta^{ren,0,loc} = \nu M + (P + nY)/(\Lambda \lambda_c)`,
+  one gets
+  `\Delta M_\theta^{ren}
+   = [\,(c_0/\lambda_{\theta 0}) - (1/\lambda_c)\,] P / \Lambda
+   + n[\,(1/\lambda_{\theta 0}) - (1/\lambda_c)\,] Y / \Lambda
+   - [s_0 c_0 / (\Lambda \lambda_{\theta 0}^2)] U
+   - [s_0^2 / (\Lambda \lambda_{\theta 0}^2)] N`;
+  on the current branch reading the intrinsic-center coefficient errors are now
+  supported as
+  `c_0/\lambda_{\theta 0} - 1/\lambda_c = O(x^2)`,
+  `1/\lambda_{\theta 0} - 1/\lambda_c = O(x^2)`,
+  the `U`-coefficient is `O(x)`, and the `N`-coefficient is `O(x^2)`;
+  since the renormalized channels are bounded in the LC scaling class, this
+  supports
+  `\Delta M_\theta^{ren} = O(x)` on the intrinsic local line;
+  therefore the earlier elimination-error blocker on the corrected 9-channel
+  system is no longer first:
+  together with the already recorded `\Delta H^{ren} = O(x)` and
+  `\Delta \chi^{ren} = n \Delta M_\theta^{ren} + O(x)`, the corrected
+  elimination errors are now all supported as `O(x)` on the current branch
+  reading;
+  this still does not prove first post-leading asymptotic closure itself, so
+  the next remaining blocker shifts to the regular-singular first-correction
+  argument on the corrected 9-channel system rather than to the
+  `M_\theta^{ren}` coefficient package;
+- direct theorem-attempt outcome for the corrected intrinsic-local 9-channel
+  first-correction step under LC:
+  not fully proved conditionally on the current branch reading, but reduced to
+  one exact analytic blocker;
+  once the corrected intrinsic-local system is written in the form
+  `x Z'(x) = A_{0,loc}^{corr} Z(x) + R_{loc}(x)` with preserved compatibility
+  `Y + nN = 0`, the remainder control problem is no longer the first blocker on
+  the current branch reading:
+  the intrinsic-local comparison gives `\Delta M_\theta^{ren} = O(x)`, the
+  corrected elimination errors are all `O(x)`, and the system is genuinely of
+  regular-singular first-order type;
+  the leading layer and the formal first post-leading coefficient system are
+  likewise no longer the first blockers on the current branch reading;
+  the first exact analytic blocker is now the theorem-facing regular-singular
+  first-correction argument itself;
+  more sharply, the proof no longer fails first at leading-state extraction,
+  the formal first post-leading coefficient system, or the corrected
+  intrinsic-local `O(x)` remainder split;
+  it fails first at the missing no-log spectral lemma for the bounded
+  compatibility-preserving sector of the corrected intrinsic-local operator
+  `A_{0,loc}^{corr}`, namely the theorem-facing statement that every bounded
+  witness-germ solution satisfying `Y + nN = 0` admits
+  `Z(x) = Z_0 + x Z_1 + o(x)` with no logarithmic or other additional bounded
+  first-correction terms;
+  a narrower spectral audit now sharpens that blocker further on the current
+  branch reading:
+  after imposing the preserved compatibility relation `Y + nN = 0`, the
+  bounded sector is governed at leading order by the kernel of
+  `A_{0,loc}^{corr}`, while the first post-leading checked recurrence leaves
+  exactly one genuine membrane `x`-mode parameter `T1`, with
+  `U1 = \alpha T1` and `V1 = \beta T1`, and kills the flexural coefficients
+  under the same nonresonance condition as before;
+  the resonance denominator `(n-2)(n+1)` stays nonzero on the current physical
+  branch `n > 2`, and once that membrane mode is admitted the next checked
+  layer closes uniquely to zero;
+  so the current checked spectral picture does not support a bounded
+  log-producing Jordan direction in the compatibility-preserving sector;
+  the next remaining blocker is therefore no longer spectral, but the
+  theorem-facing variation-of-constants / bounded-solution step that upgrades
+  this spectral picture together with the corrected `O(x)` remainder split to
+  the affine expansion `Z(x) = Z_0 + x Z_1 + o(x)`;
+  an additional narrow proof pass now sharpens the first failure point inside
+  that bounded-solution step:
+  fix `(n,q)` and assume Assumption LC, let
+  `Z = (U,N,V,P,Y,T,Q,M,S^{ren})` be a bounded corrected intrinsic-local
+  witness-germ solution on `(0,\delta)` with preserved compatibility
+  `Y + nN = 0`, and assume the corrected local system has already been written
+  as
+  `x Z'(x) = A_{0,loc}^{corr} Z(x) + x b(x)` with `b` bounded;
+  the operator used in the attempted variation-of-constants step is the
+  restriction of the frozen corrected intrinsic-local 9-channel principal
+  matrix to the compatibility-preserving sector, i.e. the principal operator
+  with intrinsic-local `M_\theta^{ren,0,loc}` package and the corrected `T`
+  and `S^{ren}` rows already absorbed into `A_{0,loc}^{corr}`;
+  if one already had a theorem-facing bounded-sector splitting
+  `E_{bd} = \ker A_{0,loc}^{corr} \oplus \ker(A_{0,loc}^{corr} - I) \oplus E_{>1}`
+  on that compatibility-preserving sector, with no Jordan defect at `0` or
+  `1` and `\Re \sigma(A_{0,loc}^{corr}|_{E_{>1}}) > 1`, then the usual
+  regular-singular variation-of-constants argument would indeed give
+  `Z(x) = Z_0 + x Z_1 + o(x)`;
+  but the repo still does not contain that theorem-facing compatibility-
+  preserving projector/dichotomy lemma;
+  equivalently, the first exact blocker is now the missing proof that
+  boundedness alone forces existence of a leading bounded state
+  `Z_0 \in \ker A_{0,loc}^{corr}` with `Z - Z_0 = O(x)` and keeps
+  `W(x) = (Z(x) - Z_0)/x` bounded, thereby excluding hidden bounded non-affine
+  corrections on the same sector;
+  a narrower matrix/projector audit now sharpens that missing lemma one step
+  further:
+  the exact compatibility-preserving ambient space is
+  `E_{comp} = {Z : Y + nN = 0}`,
+  equivalently the 8-dimensional coordinate slice
+  `(U,N,V,P,T,Q,M,S^{ren})` with `Y = -nN`;
+  the principal `N` and `Y` rows give
+  `x(Y+nN)' = -n(Y+nN)`, so `E_{comp}` is invariant for the corrected
+  intrinsic-local principal flow and hence for
+  `A_{comp} := A_{0,loc}^{corr}|_{E_{comp}}`;
+  on the current branch reading, the already closed selected leading trace
+  plane gives the current candidate `0`-eigenspace block `E_0`,
+  while the checked first post-leading membrane mode gives the current
+  candidate `1`-eigenspace block `E_1`, and the checked second layer gives no
+  visible Jordan continuation of that membrane mode;
+  but the repo still does not contain a theorem-facing derivation of the
+  restricted matrix `A_{comp}` strong enough to prove that the bounded sector
+  is exactly
+  `E_{bd} = E_0 \oplus E_1 \oplus E_{>1}`
+  with no extra bounded spectrum `0 < \Re \lambda < 1` and no Jordan block at
+  `0` or `1`;
+  a still narrower explicit-matrix packaging pass now closes that coefficient
+  packaging step on the current branch reading;
+  from the live corrected `T_s` source
+  `-(s_0 c_0 / r_0^2) M_\theta`, together with the intrinsic-local center
+  expansions
+  `s_0 = Kx + O(x^3)`,
+  `c_0 = 1 + O(x^2)`,
+  `r_0 = \lambda_c x + O(x^3)`,
+  one gets
+  `s_0 c_0 / r_0^2 = K / (\lambda_c^2 x) + O(x)`;
+  after moving that residual-side source to the evolution equation, this
+  contributes the constant corrected principal term
+  `+(K/\lambda_c^2) M_\theta^{ren,0,loc}` in the `T` row, so
+  `c_T^{loc} = K/\lambda_c^2`;
+  on `E_{comp}` with `Y = -nN`, the intrinsic-local packages are therefore
+  fixed theorem-facingly as
+  `T_{\theta,comp}^{ren} = \nu T + U + nV`,
+  `M_{\theta,comp}^{ren,0,loc}
+   = \nu M + (P - n^2 N)/(\Lambda \lambda_c)`,
+  `H_{comp}^{ren,0,loc}
+   = n[\,2N + (\lambda_c - 1)P\,]/C_{tw}`,
+  and
+  `\chi_{comp}^{ren,0,loc}
+   = n M_{\theta,comp}^{ren,0,loc}
+   + n[(\lambda_c + 1)P
+   - (\lambda_c - 1)\Lambda(M - \nu M_{\theta,comp}^{ren,0,loc})]/C_{tw}`;
+  hence the full restricted 8x8 constant matrix
+  `A_{comp} := A_{0,loc}^{corr}|_{E_{comp}}` is now explicitly writable in the
+  coordinates `(U,N,V,P,T,Q,M,S^{ren})`;
+  the exact next blocker is therefore no longer matrix packaging of the
+  corrected `T` row, but the genuine restricted spectral audit for `A_{comp}`:
+  identify `\ker A_{comp}`, identify `\ker(A_{comp}-I)`, exclude Jordan blocks
+  at `0` and `1`, and exclude any spectrum with `0 < \Re \lambda < 1`;
+  a narrower matrix-spectrum pass now sharpens this once more:
+  after permuting the coordinates to `(N,P,M,Q,U,V,T,S^{ren})`, the explicit
+  restricted matrix `A_{comp}` is block lower triangular, with diagonal blocks
+  the flexural `3 \times 3` block
+  \[
+  G_{flex}
+  =
+  \begin{pmatrix}
+  -n & -\lambda_c & 0 \\
+  \nu n^2/\lambda_c & -(n-1)-\nu/\lambda_c & \Lambda(1-\nu^2) \\
+  -n^2\!\left[\frac{1}{\Lambda \lambda_c} + \frac{2}{C_{tw}}\right] &
+  \frac{1}{\Lambda \lambda_c} - \frac{n^2(\lambda_c-1)}{C_{tw}} &
+  \nu - n + 1
+  \end{pmatrix},
+  \]
+  the scalar `Q` eigenvalue `-(n-1)`, and the membrane block
+  \[
+  B_{mem}
+  =
+  \begin{pmatrix}
+  -(n+\nu) & -n\nu & 1-\nu^2 & 0 \\
+  n & -(n-1) & 0 & 2(1+\nu) \\
+  1 & n & \nu-n & -n \\
+  n & n^2 & n\nu & -(n+1)
+  \end{pmatrix}.
+  \]
+  A direct determinant calculation gives
+  `\det(B_{mem} - \lambda I)
+   = (\lambda-1)(\lambda+1)(\lambda+2n-1)(\lambda+2n+1)`;
+  therefore the membrane spectrum is exactly
+  `{1,-1,1-2n,-(2n+1)}`, the membrane `\lambda=1` mode is simple and
+  semisimple, and no membrane or `Q` eigenvalue lies in `0 < \Re \lambda < 1`
+  on the physical branch `n>2`;
+  moreover the `\lambda=1` membrane eigenvector matches the checked recurrence
+  mode `(U1,V1,T1) = T1(\alpha,\beta,1)` with the same
+  `\alpha = (-n\nu-n-2\nu+2)/(-n^2+n+2)` and
+  `\beta = (n\nu+n+4)/(-n^2+n+2)`, together with
+  `S_1 = -nT_1/(n-2)`;
+  so every remaining bounded-sector uncertainty is now concentrated entirely in
+  the flexural block `G_{flex}`;
+  in particular, if the current selected leading trace plane really is a
+  `\lambda=0` block of the explicit local operator, that block must now come
+  from `G_{flex}` alone;
+  the exact first remaining spectral blocker is therefore no longer the whole
+  `8 \times 8` matrix, but the theorem-facing audit of `G_{flex}` itself:
+  compute `\ker G_{flex}`, prove `1 \notin \sigma(G_{flex})`, and exclude any
+  flexural spectrum with `0 < \Re \lambda < 1`;
+  so the current line is no longer blocked first by structural descent,
+  normalization choice, or elimination-error control, but by the final
+  theorem-facing passage from the corrected `O(x)` remainder split to the
+  affine first correction;
+- strict-line boundary:
+  this conditional reduction does not discharge Assumption LC and does not
+  close the strict ambient-to-local continuation theorem.
+- archived intermediate draft chain:
+  the earlier chart-realization / reduced-block / fuller-block / richer-
+  variable problem-map drafts are now archived under
+  `docs/theory/archive/problem_maps/`;
+  the active theorem-facing local line is now recorded through this status note,
+  `docs/theory/current_simple_support_criterion_bridge_note.md`,
+  `docs/theory/current_theory_verification_map.md`, and
+  `docs/theory/current_simple_support_minimal_9channel_block_draft.md`.
 
 ## Frozen Theorem-Line Note
 The older theorem-facing line is frozen and should not be continued in the same

@@ -3931,3 +3931,1421 @@ Most valuable next proof pilots:
 - Next action:
   attempt the direct ambient compatibility-to-punctured-local-continuation
   theorem for `A_full^th,n(q)`.
+
+### V-S75. Assumption LC is an explicit unproved working assumption separating the strict closure line from the conditional local/chart line
+
+- ID: `V-S75`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, introduce the following
+  working physical assumption:
+  for fixed `(n,q)`, every `c in A_full^th,n(q)` admits `\delta > 0` and a
+  punctured near-center clean mixed continuation on `(0,\delta)` in the
+  current mixed variables, satisfying the current local clean mixed equations
+  and the intended near-center scaling orders there.
+  This is not a proved theorem-facing result on the branch. It is introduced
+  only to stop further repeated reformulation of the same ambient-to-local
+  closure barrier. Under Assumption LC, later witness-germ, chart-realization,
+  richer-jet, and theorem-facing local-`J_0` steps may proceed conditionally.
+  Without it, the strict theorem line remains open at the local-continuation
+  closure barrier recorded in `V-S73`.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/assumptions/assumptions.md`;
+  `docs/theory/current_simple_support_chart_realization_proof_draft.md`.
+- Current status:
+  `explicit working assumption introduced / not proved`
+- What counts as verification:
+  a theorem-facing proof of the ambient punctured-neighborhood local
+  continuation existence lemma for arbitrary `c in A_full^th,n(q)`, so that
+  Assumption LC can be discharged rather than used as a standing conditional
+  premise.
+- Verification method:
+  manual theorem attempt; later, if the statement stabilizes, CAS/Lean support
+  may be used on subordinate symbolic/logical pieces.
+- Verification boundary:
+  this does not prove Assumption LC. It records only the strict/conditional
+  split: the strict theorem line remains blocked at the closure barrier, while
+  the later local/chart line may proceed conditionally under LC.
+- Next action:
+  either prove the strict ambient punctured-neighborhood local continuation
+  existence lemma, or continue the local witness/chart program explicitly under
+  Assumption LC.
+
+### V-S76. Conditional on Assumption LC, the ambient-to-local witness-germ lemma is closed on the current branch reading
+
+- ID: `V-S76`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, conditional on Assumption
+  LC, the ambient-to-local witness-germ lemma is closed:
+  for fixed `(n,q)` and every `c in A_full^th,n(q)`, there exist `\delta > 0`
+  and a punctured near-center clean mixed germ `G` on `(0,\delta)` such that
+  `Rep_loc^{n,q}(c,G)`.
+- Type: `structural/formal claim`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/assumptions/assumptions.md`;
+  `docs/theory/current_simple_support_chart_realization_proof_draft.md`;
+  `docs/theory/current_simple_support_object_glossary.md`.
+- Current status:
+  `closed conditionally under LC / strict line still open`
+- What counts as verification:
+  a theorem-facing derivation that Assumption LC supplies a punctured near-
+  center clean mixed continuation, that passing to its punctured local germ is
+  legitimate, and that the current `Rep_loc^{n,q}(c,G)` schema then reads that
+  germ as the theorem-facing local witness for `c`.
+- Verification method:
+  manual theorem attempt under the explicit working assumption LC.
+- Verification boundary:
+  this does not prove Assumption LC and does not close the strict ambient-to-
+  local continuation theorem. It closes only the conditional witness-germ
+  lemma under LC.
+- Next action:
+  continue the local chart / richer-jet line conditionally under LC, or return
+  to the strict closure theorem if the assumption is to be discharged.
+
+### V-S77. Conditional on Assumption LC, the chart-realization lemma is reduced to realization of the first post-leading richer variables on the witness germ
+
+- ID: `V-S77`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, conditional on Assumption
+  LC, the chart-realization line no longer blocks at punctured local
+  representative existence. Under LC, punctured local continuation and the
+  witness-germ lemma are available. Once the first post-leading richer chart is
+  realized on that witness germ, compatibility with `Pi_eta_to_J0` and overlap
+  return to `J_0 = C_center` are already formal on the current branch reading.
+  The first remaining conditional blocker is therefore realization of
+  `Xi_rich^(1,eta)` and, when needed, `Xi_rich^(1+,eta)` as actual punctured
+  local chart data on the witness germ, not merely as formal recurrence
+  coefficients.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/assumptions/assumptions.md`;
+  `docs/theory/current_simple_support_chart_realization_proof_draft.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`.
+- Current status:
+  `reduced conditionally under LC / first blocker is richer-variable realization`
+- What counts as verification:
+  a theorem-facing conditional proof that for fixed `(n,q)` and every
+  `c in A_full^th,n(q)`, Assumption LC implies existence of punctured near-
+  center first post-leading chart data realizing `Xi_rich^(1,eta)` and, when
+  needed, `Xi_rich^(1+,eta)`, extending the punctured local witness germ.
+- Verification method:
+  manual theorem attempt under Assumption LC, reuse of the current exact
+  `Pi_eta_to_J0` and overlap-compatibility identities.
+- Verification boundary:
+  this does not prove Assumption LC and does not close the strict
+  ambient-to-local continuation theorem. It records only the first remaining
+  blocker on the conditional local chart line.
+- Next action:
+  attempt the conditional first post-leading richer-variable realization lemma
+  on the punctured local witness germ under Assumption LC.
+
+### V-S78. Conditional on Assumption LC, the first exact blocker in the chart-realization line is recurrence-to-local realization on the witness germ
+
+- ID: `V-S78`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, conditional on Assumption
+  LC, the chart-realization line is reduced one step further. The remaining
+  blocker is not punctured local existence and not the formal projection /
+  overlap clauses. It is recurrence-to-local realization on the punctured local
+  witness germ itself: promotion of the checked first post-leading richer
+  variables underlying `Xi_rich^(1,eta)` and, when needed, `Xi_rich^(1+,eta)`
+  from formal checked recurrence data to actual punctured local chart data on
+  that germ.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/assumptions/assumptions.md`;
+  `docs/theory/current_simple_support_chart_realization_proof_draft.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`.
+- Current status:
+  `reduced conditionally under LC / blocker sharpened to recurrence-to-local realization`
+- What counts as verification:
+  a theorem-facing conditional proof that the checked first post-leading
+  recurrence variables can be realized as actual punctured local chart data on
+  the punctured local witness germ supplied by Assumption LC.
+- Verification method:
+  manual theorem attempt under Assumption LC, reuse of the checked recurrence
+  model, minimal pilot/theory audit.
+- Verification boundary:
+  this does not prove Assumption LC and does not close the strict
+  ambient-to-local continuation theorem. It records only the sharpened first
+  blocker on the conditional chart-realization line.
+- Next action:
+  attempt the conditional recurrence-to-local realization lemma on the
+  punctured local witness germ under Assumption LC.
+
+### V-S79. Conditional on Assumption LC, the reduced first post-leading extraction lemma is blocked first at one extra asymptotic order for the renormalized witness-germ channels
+
+- ID: `V-S79`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, if one restricts the
+  conditional chart-realization line to the reduced first post-leading slots
+  `U1, N1, P1, Y1` underlying `Xi_rich^(1,eta)`, the first exact reduced
+  blocker is no longer the whole recurrence-to-local bridge at once. It is one
+  extra near-center asymptotic order for the renormalized witness-germ
+  channels, sufficient to define those four coefficients as actual punctured
+  local quantities. Once such extraction is available in the weak asymptotic
+  form `f(x) = f0 + x f1 + o(x)` or an equivalent first post-leading statement,
+  agreement with the checked recurrence-side variables is no longer the first
+  blocker on the current branch reading.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_richer_variable_realization_draft.md`;
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/assumptions/assumptions.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`.
+- Current status:
+  `reduced conditionally under LC / first reduced blocker is extra asymptotic order`
+- What counts as verification:
+  a theorem-facing conditional proof that the punctured local witness germ
+  supplied by Assumption LC admits one extra near-center asymptotic order for
+  the renormalized channels, enough to define `U1, N1, P1, Y1` as actual
+  punctured local first post-leading coefficients and then compare them with
+  the checked recurrence-side variables.
+- Verification method:
+  manual theorem attempt under Assumption LC, reuse of the checked first
+  post-leading recurrence model, minimal pilot/theory audit.
+- Verification boundary:
+  this does not prove Assumption LC and does not close the strict
+  ambient-to-local continuation theorem. It records only the sharpened reduced
+  blocker on the conditional chart-realization line.
+- Next action:
+  attempt the conditional extra-asymptotic-order lemma for the renormalized
+  punctured witness-germ channels under Assumption LC.
+
+### V-S80. Conditional on Assumption LC, the reduced first-order remainder-control lemma is blocked first at source-remainder control for `Q_s` and `Q_\varphi`
+
+- ID: `V-S80`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, once the reduced
+  renormalized witness-germ remainder system is fixed, a direct theorem attempt
+  for the reduced first-order remainder-control lemma does not yet prove the
+  desired asymptotics
+  `S = U0 + xU1 + o(x)`, `N = N0 + xN1 + o(x)`,
+  `P = P0 + xP1 + o(x)`, `Y = Y0 + xY1 + o(x)`.
+  But it does reduce the first exact reduced blocker further:
+  the missing step is first post-leading control of the auxiliary renormalized
+  source remainders `Q_s` and `Q_\varphi`.
+  Once that source-remainder control is available, the reduced remainder system
+  is triangular in `(R_s, R_n, R_\varphi)` and `R_\psi` follows algebraically,
+  so coefficient extraction / recurrence-side identification is no longer the
+  first blocker on the current branch reading.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_reduced_renormalized_system_draft.md`;
+  `docs/theory/current_simple_support_richer_variable_realization_draft.md`;
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/assumptions/assumptions.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`.
+- Current status:
+  `reduced conditionally under LC / first reduced blocker is source-remainder control`
+- What counts as verification:
+  a theorem-facing conditional proof that the auxiliary renormalized source
+  remainders `Q_s` and `Q_\varphi` admit first post-leading control strong
+  enough to drive the reduced remainder system to
+  `R_s = xU1 + o(x)`, `R_n = xN1 + o(x)`, `R_\varphi = xP1 + o(x)`,
+  `R_\psi = xY1 + o(x)`.
+- Verification method:
+  manual theorem attempt under Assumption LC, reuse of the reduced
+  renormalized local system draft and the checked first post-leading recurrence
+  model.
+- Verification boundary:
+  this does not prove Assumption LC and does not close the strict
+  ambient-to-local continuation theorem. It records only the sharpened reduced
+  blocker on the conditional chart-realization line.
+- Next action:
+  attempt the conditional source-remainder control lemma for `Q_s` and
+  `Q_\varphi` under Assumption LC.
+
+### V-S81. Conditional on Assumption LC, the reduced first post-leading asymptotic problem is not structurally closed and must be lifted to the smallest fuller local mixed block
+
+- ID: `V-S81`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, a structural diagnostic of
+  the reduced renormalized witness-germ system shows that the reduced
+  four-channel first post-leading asymptotic problem is not closed as written.
+  The auxiliary source remainder `Q_s` is not controlled by the reduced
+  witness-germ channels alone because it depends on the membrane auxiliary
+  block through `T_s` and `v`. The auxiliary source remainder `Q_\varphi` is
+  not controlled by the reduced witness-germ channels alone because it depends
+  on the bending/shear auxiliary block through `M_s` and its companion local
+  propagation. Therefore the reduced first post-leading problem must be lifted
+  to the smallest fuller local mixed block carrying
+  `(u_s, u_n, v, \varphi, \psi, T_s, Q_s, M_s)` in renormalized form if one
+  wants theorem-facing first post-leading closure.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_reduced_renormalized_system_draft.md`;
+  `docs/theory/current_simple_support_richer_variable_realization_draft.md`;
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/assumptions/assumptions.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`.
+- Current status:
+  `structural verdict: reduced line not closed / lift to fuller mixed block required`
+- What counts as verification:
+  a theorem-facing conditional derivation that either closes the reduced source
+  remainders from reduced data alone, or proves the lifted first post-leading
+  asymptotic closure theorem on the smallest fuller renormalized local mixed
+  block.
+- Verification method:
+  manual structural diagnostic under Assumption LC, reuse of the constitutive
+  dependencies and the checked local recurrence model.
+- Verification boundary:
+  this does not prove Assumption LC and does not close the strict
+  ambient-to-local continuation theorem. It records only the structural verdict
+  that the reduced line is not closed as written.
+- Next action:
+  formulate and attempt the conditional first post-leading asymptotic closure
+  theorem on the smallest fuller renormalized local mixed block carrying
+  `(u_s, u_n, v, \varphi, \psi, T_s, Q_s, M_s)`.
+
+### V-S82. Conditional on Assumption LC, the proposed 8-channel fuller renormalized block is not yet a closed first-order system, but one extra `S^{ren}`-level variable is enough
+
+- ID: `V-S82`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, a structural closure check
+  of the proposed fuller renormalized local mixed block shows:
+  `H^{ren}` is eliminable without adding a new local unknown, and
+  `\chi^{ren}` is likewise eliminable after substituting the first-order
+  relations already present in the flexural block. So no extra `H`-level or
+  `\chi`-level state variable is needed. However, the proposed 8-channel block
+  `(U,N,V,P,Y,T,Q,M)` is still not a genuinely closed first-order local
+  renormalized system, because the membrane side still depends on an explicit
+  `S^{ren}`-level quantity and otherwise hides second-order dependence through
+  `v`. Therefore the true minimal first-order repair is to add one extra
+  `S^{ren}`-level variable, yielding the minimal enlarged block
+  `(U,N,V,P,Y,T,Q,M,S^{ren})`.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_fuller_renormalized_block_draft.md`;
+  `docs/theory/current_simple_support_reduced_renormalized_system_draft.md`;
+  `docs/theory/current_simple_support_richer_variable_realization_draft.md`;
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/assumptions/assumptions.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`.
+- Current status:
+  `structural verdict: 8-channel block not first-order closed / one extra S-level variable suffices`
+- What counts as verification:
+  a theorem-facing conditional derivation of a genuinely first-order local
+  renormalized system on the minimal enlarged block
+  `(U,N,V,P,Y,T,Q,M,S^{ren})`, together with proof that `H^{ren}` and
+  `\chi^{ren}` are eliminable from it without enlarging the state further.
+- Verification method:
+  manual structural diagnostic under Assumption LC, reuse of the checked local
+  recurrence model and the fuller-block draft.
+- Verification boundary:
+  this does not prove Assumption LC and does not close the strict
+  ambient-to-local continuation theorem. It records only the sharpened
+  structural verdict for the conditional fuller local line.
+- Next action:
+  formulate the minimal 9-channel first-order renormalized local mixed block
+  carrying `(U,N,V,P,Y,T,Q,M,S^{ren})`, then attempt conditional first
+  post-leading asymptotic closure on that block.
+
+### V-S83. Conditional on Assumption LC, the direct 9-channel first post-leading asymptotic theorem is reduced to regular-singular remainder control on the actual witness germ
+
+- ID: `V-S83`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, a direct theorem attempt for
+  first post-leading asymptotic closure on the minimal 9-channel first-order
+  renormalized local mixed block
+  `(U,N,V,P,Y,T,Q,M,S^{ren})` does not yet prove the desired expansions
+  `f(x) = f_0 + x f_1 + o(x)` for each channel. But once the 9-channel block
+  is written in first-order renormalized form with preserved compatibility
+  `Y + nN = 0`, the leading layer and the formal first post-leading linear
+  coefficient system are no longer the first blockers on the current branch
+  reading; the checked recurrence-side local model already supports that formal
+  coefficient system. The first exact analytic blocker is instead regular-
+  singular remainder control on the actual punctured local witness germ:
+  proving that the renormalized 9-channel witness-germ system matches the
+  checked principal local model with sufficiently strong `O(x)` remainder
+  control to conclude `f(x) = f_0 + x f_1 + o(x)` for each channel.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_minimal_9channel_block_draft.md`;
+  `docs/theory/current_simple_support_fuller_renormalized_block_draft.md`;
+  `docs/theory/current_simple_support_reduced_renormalized_system_draft.md`;
+  `docs/theory/current_simple_support_richer_variable_realization_draft.md`;
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/assumptions/assumptions.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`.
+- Current status:
+  `reduced conditionally under LC / first analytic blocker is regular-singular remainder control`
+- What counts as verification:
+  a theorem-facing conditional proof that the actual punctured local witness
+  germ admits a renormalized 9-channel remainder system of regular-singular
+  type with strong enough `O(x)` coefficient/source control to imply
+  `f(x) = f_0 + x f_1 + o(x)` for each of the 9 channels.
+- Verification method:
+  manual theorem attempt under Assumption LC, reuse of the checked recurrence-
+  side local model and the minimal 9-channel block draft.
+- Verification boundary:
+  this does not prove Assumption LC and does not close the strict
+  ambient-to-local continuation theorem. It records only the sharpened
+  analytic blocker on the conditional local chart line.
+- Next action:
+  attempt the conditional regular-singular remainder-control lemma on the
+  minimal 9-channel renormalized local mixed block under Assumption LC.
+
+### V-S84. Conditional on Assumption LC, the explicit 9-channel remainder derivation shows that `R(x)=O(x)` is not yet justified because the `T`, `M`, and `S^{ren}` rows still mismatch the chosen principal operator
+
+- ID: `V-S84`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, write the minimal
+  renormalized witness-germ system in the form
+  `x Z'(x) = A_0 Z(x) + R(x)` for
+  `Z = (U,N,V,P,Y,T,Q,M,S^{ren})`.
+  Then the current repo material does not yet justify a theorem-facing
+  `R(x) = O(x)` bound on the actual punctured local witness germ.
+  Under the current background expansions and LC scaling orders, the `U`, `N`,
+  and derived `Y` rows reduce to `O(x)`. The `V`, `P`, and `Q` rows are only
+  plausibly `O(x)` because their exact witness-germ coefficient corrections and
+  elimination formulas are not yet packaged sharply enough theorem-facingly.
+  The first exact obstruction lies in the `T`, `M`, and `S^{ren}` rows:
+  the richer-local C3c audit still exhibits low-order curvature-coupled terms
+  such as the `-(s_0 c_0 / r_0^2) M_\theta` contribution in the `T_s` row and
+  the `\kappa_{\theta 0}\chi` contribution in the `S` row, and current repo
+  material does not reduce those to `O(x)` relative to the chosen principal
+  operator `A_0`. So the first analytic blocker is a mismatch between the
+  actual witness-germ equations and the currently chosen principal model in
+  those rows, rather than resonance of the formal first post-leading system.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_minimal_9channel_block_draft.md`;
+  `docs/theory/current_simple_support_fuller_renormalized_block_draft.md`;
+  `docs/theory/current_simple_support_reduced_renormalized_system_draft.md`;
+  `docs/theory/current_simple_support_richer_variable_realization_draft.md`;
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/assumptions/assumptions.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`.
+- Current status:
+  `reduced conditionally under LC / first explicit remainder obstruction is T-M-S mismatch with A_0`
+- What counts as verification:
+  a theorem-facing conditional derivation that either:
+  1. proves the `T`, `M`, and `S^{ren}` witness-germ remainder terms are in
+     fact `O(x)` relative to the current `A_0`, or
+  2. identifies and justifies a corrected principal operator that absorbs those
+     low-order curvature-coupled terms and restores an `O(x)` remainder bound.
+- Verification method:
+  manual remainder derivation under Assumption LC, reuse of the richer-local
+  C3c audit and the minimal 9-channel block draft.
+- Verification boundary:
+  this does not prove Assumption LC and does not close the strict
+  ambient-to-local continuation theorem. It records only the sharpened
+  remainder-level blocker on the conditional local chart line.
+- Next action:
+  isolate the actual `T`, `M`, and `S^{ren}` witness-germ rows more sharply and
+  decide whether their low-order curvature-coupled terms should be proved
+  negligible or instead absorbed into a corrected principal operator.
+
+### V-S85. Conditional on Assumption LC, the principal operator must be corrected in the `T` and `S^{ren}` rows, while the `M` row is already principal on the current branch reading
+
+- ID: `V-S85`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, a sharper principal-operator
+  diagnostic of the 9-channel witness-germ system shows:
+  the `T` row contains a genuinely principal curvature-coupled term
+  `-(s_0 c_0 / r_0^2) M_\theta`, and the `S^{ren}` row contains a genuinely
+  principal curvature-coupled term `\kappa_{\theta 0}\chi`. These terms are
+  not removed by any currently available cancellation and therefore should be
+  absorbed into a corrected principal operator `A_0^{corr}`.
+  By contrast, the `M` row low-order structure
+  `M_s' + a_0 M_s - a_0 M_\theta + (n/x) H` is already the principal part
+  currently encoded in the 9-channel `M` row, while the `-Q_s` contribution is
+  one order lower after renormalization. So the current evidence does not force
+  an additional principal correction in the `M` row.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_minimal_9channel_block_draft.md`;
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`.
+- Current status:
+  `structural verdict: current A_0 is wrong in T/S rows / M row already principal`
+- What counts as verification:
+  a theorem-facing conditional formulation of a corrected principal operator
+  `A_0^{corr}` that modifies the `T` and `S^{ren}` rows by the non-negligible
+  curvature-coupled terms, followed by a renewed remainder split against
+  `A_0^{corr}`.
+- Verification method:
+  manual principal-operator diagnostic under Assumption LC, reuse of the richer
+  local C3c audit and the 9-channel block draft.
+- Verification boundary:
+  this does not prove Assumption LC and does not close the strict
+  ambient-to-local continuation theorem. It records only the sharpened verdict
+  about where the principal operator must be corrected on the conditional local
+  line.
+- Next action:
+  formulate the corrected principal operator `A_0^{corr}` for the 9-channel
+  block by modifying the `T` and `S^{ren}` rows, then redo the renormalized
+  remainder split against `A_0^{corr}`.
+
+### V-S86. Conditional on Assumption LC, after correcting the `T` and `S^{ren}` rows the first blocker is no longer principal-operator choice, but theorem-facing `O(x)` control of the elimination errors for `M_\theta^{ren}`, `H^{ren}`, and `\chi^{ren}`
+
+- ID: `V-S86`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, once the corrected principal
+  operator `A_0^{corr}` is used for the minimal 9-channel block, no row is
+  currently known to leave a non-`O(x)` remainder. The `U`, `N`, `V`, and
+  derived `Y` rows are supported as `O(x)` on the current branch reading.
+  The `P`, `T`, `Q`, `M`, and `S^{ren}` rows are only plausibly `O(x)` because
+  their corrected remainders still depend on theorem-facing control of the
+  actual-to-principal elimination errors for `M_\theta^{ren}`, `H^{ren}`, and
+  `\chi^{ren}` on the punctured witness germ. Therefore the first blocker
+  after principal correction is no longer another defect of the principal
+  operator itself, but insufficient theorem-facing justification that those
+  elimination errors are `O(x)`.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_minimal_9channel_block_draft.md`;
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `reduced conditionally under LC / first blocker after correction is elimination-error O(x) control`
+- What counts as verification:
+  a theorem-facing conditional derivation that the actual-to-principal
+  corrections in `M_\theta^{ren}`, `H^{ren}`, and `\chi^{ren}` are `O(x)` on
+  the punctured local witness germ, strong enough to make all corrected
+  remainder rows `O(x)`.
+- Verification method:
+  manual corrected-remainder derivation under Assumption LC, reuse of the
+  corrected 9-channel principal operator and the richer-local C3c audit.
+- Verification boundary:
+  this does not prove Assumption LC and does not close the strict
+  ambient-to-local continuation theorem. It records only the sharpened blocker
+  after the principal-operator correction on the conditional local line.
+- Next action:
+  isolate and prove the `O(x)` control of the actual-to-principal elimination
+  errors for `M_\theta^{ren}`, `H^{ren}`, and `\chi^{ren}` on the punctured
+  witness germ.
+
+### V-S87. Conditional on Assumption LC, the elimination-error derivation reduces the first blocker further to theorem-facing `O(x)` control of `\Delta M_\theta^{ren}` itself
+
+- ID: `V-S87`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, after the corrected
+  principal operator `A_0^{corr}` is fixed, a direct elimination-error
+  derivation sharpens the blocker further.
+  The actual-to-principal twist-moment error `\Delta H^{ren}` reduces
+  explicitly on the current branch reading to
+  `[\;n(\lambda_{s0}-\lambda_c) P - n x \kappa_{s0} U\;] / C_{tw}` once the
+  actual `Y` row is read through the actual `N` row together with preserved
+  compatibility `Y + nN = 0`; under the recorded background expansions and LC
+  scaling orders this is supported as `O(x)`.
+  The actual-to-principal shear error `\Delta \chi^{ren}` then reduces on the
+  current branch reading to `n \Delta M_\theta^{ren} + O(x)` after
+  substituting that explicit `\Delta H^{ren}` formula together with the actual
+  `P`, `Y`, and `U` rows.
+  Therefore the first blocker after the corrected-principal split is no longer
+  the whole triple
+  `(\Delta M_\theta^{ren}, \Delta H^{ren}, \Delta \chi^{ren})`, but the
+  theorem-facing `O(x)` control of `\Delta M_\theta^{ren}` itself.
+  At the current repo level that control remains only plausible, because the
+  exact actual coefficient package in the corrected circumferential /
+  twist-shear block is still not article-level fixed sharply enough for a
+  closed theorem-facing `O(x)` statement.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_minimal_9channel_block_draft.md`;
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `reduced conditionally under LC / first blocker after elimination-error derivation is Delta M_theta O(x) control`
+- What counts as verification:
+  a theorem-facing conditional derivation that the actual-to-principal
+  circumferential-bending error `\Delta M_\theta^{ren}` is `O(x)` on the
+  punctured witness germ; once that is available, the present branch reading
+  already makes `\Delta H^{ren}` supported as `O(x)` and makes
+  `\Delta \chi^{ren}` downstream of `\Delta M_\theta^{ren}` up to `O(x)`.
+- Verification method:
+  manual elimination-error derivation under Assumption LC, reuse of the
+  corrected 9-channel principal operator, the current 9-channel draft, and the
+  richer-local C3c audit.
+- Verification boundary:
+  this does not prove Assumption LC and does not close the strict
+  ambient-to-local continuation theorem. It records only the sharpened blocker
+  after splitting the three elimination errors more explicitly on the
+  conditional local line.
+- Next action:
+  isolate and prove theorem-facing `O(x)` control of `\Delta M_\theta^{ren}`
+  on the punctured witness germ.
+
+### V-S88. Conditional on Assumption LC, the exact missing ingredient behind `\Delta M_\theta^{ren} = O(x)` is article-level fixation and near-center expansion of the actual circumferential / twist-shear coefficient package
+
+- ID: `V-S88`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, after the elimination-error
+  split is reduced to the single target `\Delta M_\theta^{ren}`, the current
+  branch reading already identifies the exact coefficient form needed for a
+  theorem-facing `O(x)` statement.
+  The corrected-principal model uses
+  `M_\theta^{ren,0} = \nu M + (P + nY)/\Lambda`.
+  The active circumferential / twist-shear formulas already reconstruct the
+  actual renormalized package more explicitly as
+  `M_\theta^{ren,act}
+   = \nu M
+   + [c_0 / (\Lambda \lambda_{\theta 0})] P
+   + [n / (\Lambda \lambda_{\theta 0})] Y
+   - [s_0 c_0 / (\Lambda \lambda_{\theta 0}^2)] U
+   - [s_0^2 / (\Lambda \lambda_{\theta 0}^2)] N`,
+  with the `U`-term already harmless on the current branch reading because its
+  coefficient is `O(x)`.
+  Therefore
+  `\Delta M_\theta^{ren}
+   = (a_P(x) - 1/\Lambda) P + (a_Y(x) - n/\Lambda) Y + a_N(x) N`.
+  Here
+  `a_P(x) = c_0 / (\Lambda \lambda_{\theta 0})`,
+  `a_Y(x) = n / (\Lambda \lambda_{\theta 0})`,
+  `a_N(x) = - s_0^2 / (\Lambda \lambda_{\theta 0}^2)`.
+  Since `s_0 = Kx + O(x^3)`, the `N`-coefficient is already supported as
+  `O(x^2)` on the current branch reading.
+  So the exact missing ingredient is now narrower than fixation of the whole
+  coefficient package: it is theorem-facing near-center fixation of the
+  `\lambda_{\theta 0}` normalization inside the actual `P`- and `Y`-
+  coefficients, sharp enough to justify
+  `c_0/\lambda_{\theta 0} - 1 = O(x)` and `1/\lambda_{\theta 0} - 1 = O(x)` in
+  the same local normalization as the corrected-principal model.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_minimal_9channel_block_draft.md`;
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `reduced conditionally under LC / exact missing ingredient is lambda_theta0-normalization control in the P-Y coefficients`
+- What counts as verification:
+  a theorem-facing conditional derivation that fixes the actual
+  `\lambda_{\theta 0}` normalization in the corrected circumferential /
+  twist-shear block sharply enough to prove
+  `c_0/\lambda_{\theta 0} - 1 = O(x)` and `1/\lambda_{\theta 0} - 1 = O(x)` on
+  the punctured witness germ; once that is available, the current branch
+  reading already makes the `U`-term harmless and makes
+  `a_N(x) = - s_0^2 / (\Lambda \lambda_{\theta 0}^2)` supported as `O(x^2)`.
+- Verification method:
+  manual coefficient-package derivation under Assumption LC, reuse of the
+  corrected circumferential bending block, the current twist-shear channel
+  notation, and the corrected-principal 9-channel line.
+- Verification boundary:
+  this does not prove Assumption LC and does not close the strict
+  ambient-to-local continuation theorem. It records only the sharpened
+  identification of what is still missing behind the conditional
+  `\Delta M_\theta^{ren}` target.
+- Next action:
+  fix theorem-facingly the near-center `\lambda_{\theta 0}` normalization in
+  the actual circumferential / twist-shear block, then re-check the `P`- and
+  `Y`-coefficient errors in `\Delta M_\theta^{ren}`.
+
+### V-S89. Conditional on Assumption LC, the principal `P`/`Y` normalization in `M_\theta^{ren}` is still ambiguous between the intrinsic `x \to 0` center line and the selected `x_0`-trace line
+
+- ID: `V-S89`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, a normalization-consistency
+  check of the `P`- and `Y`-coefficients in `M_\theta^{ren}` shows that
+  current repo material does not yet theorem-facingly identify a unique
+  principal comparison package. The frozen principal-center line uses
+  `c_0 \to 1` and `\lambda_{\theta 0} \to 1`; the richer intrinsic center
+  expansion uses `c_0 = 1 + O(x^2)` and
+  `\lambda_{\theta 0} = \lambda_c + O(x^2)`; and the theorem-facing clean
+  trace convention fixes only `\lambda_{\theta 0}(x_0) = 1` at the selected
+  `x_0`-trace layer. Therefore current repo material does not yet decide
+  theorem-facingly whether the principal/model `P`- and `Y`-coefficients in
+  `M_\theta^{ren}` should remain `1/\Lambda, n/\Lambda` or instead carry the
+  intrinsic-center factors `1/(\Lambda \lambda_c), n/(\Lambda \lambda_c)`.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `undecided conditionally under LC / normalization mismatch between intrinsic center and x0-trace lines not yet reconciled`
+- What counts as verification:
+  a theorem-facing conditional normalization-consistency derivation that
+  identifies which normalization governs the punctured witness-germ principal
+  `P`/`Y` comparison in `M_\theta^{ren}`:
+  either the intrinsic `x \to 0` center package with
+  `\lambda_{\theta 0} = \lambda_c + O(x^2)`, or the separately selected
+  `x_0`-trace package with `\lambda_{\theta 0}(x_0) = 1`;
+  only after that is fixed can the `P`- and `Y`-coefficient errors in
+  `\Delta M_\theta^{ren}` be stated against a uniquely chosen principal model.
+- Verification method:
+  manual source-formula comparison and normalization tracking across the active
+  circumferential / twist-shear reconstruction, the richer intrinsic center
+  expansion, and the selected theorem-facing `x_0`-trace convention.
+- Verification boundary:
+  this does not prove Assumption LC and does not close the strict
+  ambient-to-local continuation theorem. It only records the sharpened fact
+  that the remaining `P`/`Y` issue is not yet a pure `O(x)` coefficient
+  estimate because the principal normalization itself is still ambiguous at the
+  current theorem-facing repo level.
+- Next action:
+  formulate a theorem-facing normalization-consistency lemma reconciling the
+  punctured `x \to 0` intrinsic center normalization with the selected
+  `x_0`-trace normalization, then re-check whether the principal/model
+  `P`/`Y` coefficients in `M_\theta^{ren}` should be
+  `1/\Lambda, n/\Lambda` or `1/(\Lambda \lambda_c), n/(\Lambda \lambda_c)`.
+
+### V-S90. Conditional on Assumption LC, the current blocker can be organized as a three-line normalization map, and the exact unresolved theorem-facing choice is which line governs the principal `P`/`Y` coefficients in `M_\theta^{ren,0}`
+
+- ID: `V-S90`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, the remaining
+  normalization-consistency blocker is best organized by a three-line map:
+  `A. intrinsic center normalization`:
+  the punctured `x \to 0` local geometry line with
+  `c_0 = 1 + O(x^2)` and `\lambda_{\theta 0} = \lambda_c + O(x^2)`;
+  `B. frozen principal-center normalization`:
+  the helper/principal simplification line with
+  `c_0 \to 1` and `\lambda_{\theta 0} \to 1`;
+  `C. selected x_0`-trace normalization:
+  the criterion/selected-family/trace-side convention with
+  `\lambda_{\theta 0}(x_0) = 1`.
+  The theorem-facing unresolved choice is then:
+  for the principal/model comparison in `M_\theta^{ren}`, should the `P`- and
+  `Y`-coefficients be governed by the intrinsic punctured-center line, which
+  suggests `1/(\Lambda \lambda_c), n/(\Lambda \lambda_c)`, by an explicitly
+  gauge-fixed local normalization with `\lambda_c = 1`, or by a theorem-facing
+  bridge from the selected `x_0`-trace line?
+  The selected `x_0`-trace normalization belongs to the criterion/trace layer
+  and must not be silently substituted for the local punctured-center
+  normalization in the principal operator unless such a bridge lemma is stated.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `docs/theory/current_simple_support_minimal_9channel_block_draft.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `undecided conditionally under LC / current blocker organized as normalization-map choice, not yet as a closed coefficient estimate`
+- What counts as verification:
+  a theorem-facing conditional statement that fixes which one of the three
+  normalization lines governs the principal `P`/`Y` coefficients in
+  `M_\theta^{ren,0}`, and if the selected `x_0`-trace line is used, states the
+  explicit bridge from that trace layer to the local punctured-center theorem
+  line.
+- Verification method:
+  manual normalization tracking across the intrinsic center expansion, the
+  helper-level principal model, the active circumferential / twist-shear
+  reconstruction, and the selected `x_0`-trace convention.
+- Verification boundary:
+  this does not prove Assumption LC and does not close the strict
+  ambient-to-local continuation theorem. It records only the sharpened fact
+  that the remaining issue is now an unresolved normalization-map choice.
+- Next action:
+  decide theorem-facingly which normalization line governs the principal `P`-
+  and `Y`-coefficients in `M_\theta^{ren,0}`, then only after that reopen the
+  corresponding coefficient-error estimate in `\Delta M_\theta^{ren}`.
+
+### V-S91. Conditional on Assumption LC, the intrinsic punctured-center normalization should be used as the master normalization for the local `x \to 0` theorem line, while the selected `x_0`-trace normalization remains a separate criterion-side layer that still needs an explicit bridge
+
+- ID: `V-S91`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, the master theorem-facing
+  normalization for the punctured local `x \to 0` line should be the intrinsic
+  punctured-center normalization, not the frozen helper normalization and not
+  the selected `x_0`-trace normalization.
+  The reason is structural:
+  the local theorem line is posed on the punctured witness germ itself;
+  the active renormalized circumferential / twist-shear reconstruction is
+  naturally expressed in the intrinsic center variables with
+  `\lambda_{\theta 0} = \lambda_c + O(x^2)`;
+  the repo does not currently contain a separate theorem-facing gauge-fixing
+  strong enough to justify setting `\lambda_c = 1` on that local line; and the
+  selected `x_0`-trace normalization belongs to the criterion/trace layer,
+  where current repo material only fixes `\lambda_{\theta 0}(x_0) = 1` and
+  explicitly warns that this does not yet determine a full intrinsic
+  `x \to 0` selector.
+  Therefore the candidate local principal/model package is
+  `M_\theta^{ren,0,loc} = \nu M + (P + nY)/(\Lambda \lambda_c)`,
+  while a separate theorem-to-criterion bridge to the selected `x_0`-trace
+  layer must still be stated explicitly later.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `docs/theory/current_simple_support_minimal_9channel_block_draft.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `chosen conditionally under LC / intrinsic center normalization is the master local line, separate x0-trace bridge still required`
+- What counts as verification:
+  1. a theorem-facing conditional rewrite of the local principal/model
+     comparison using
+     `M_\theta^{ren,0,loc} = \nu M + (P + nY)/(\Lambda \lambda_c)`,
+     followed by the corresponding re-check of `\Delta M_\theta^{ren}` on the
+     punctured witness germ;
+  2. a separate theorem-to-criterion bridge statement relating that intrinsic
+     local normalization to the selected `x_0`-trace normalization when the
+     local line is projected back to the criterion/trace layer.
+- Verification method:
+  manual normalization decision based on the current witness-germ framing, the
+  active circumferential / twist-shear reconstruction, and the explicit trace-
+  layer warning already recorded on the branch.
+- Verification boundary:
+  this does not prove Assumption LC and does not close the strict
+  ambient-to-local continuation theorem. It only fixes the current master
+  normalization for the conditional local theorem line and keeps the criterion-
+  side bridge as a separate unresolved task.
+- Next action:
+  rewrite the local `\Delta M_\theta^{ren}` comparison against
+  `M_\theta^{ren,0,loc} = \nu M + (P + nY)/(\Lambda \lambda_c)`, and state
+  separately the needed theorem-to-criterion bridge to the selected
+  `x_0`-trace layer.
+
+### V-S92. Conditional on Assumption LC, after switching to the intrinsic local principal package one has `\Delta M_\theta^{ren} = O(x)` on the current branch reading, so the elimination-error blocker is no longer first on the corrected 9-channel system
+
+- ID: `V-S92`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, work on the punctured local
+  witness germ in the intrinsic center normalization and compare
+  `M_\theta^{ren,act}` against
+  `M_\theta^{ren,0,loc} = \nu M + (P + nY)/(\Lambda \lambda_c)`.
+  Then
+  `\Delta M_\theta^{ren}
+   = [\,(c_0/\lambda_{\theta 0}) - (1/\lambda_c)\,] P / \Lambda
+   + n[\,(1/\lambda_{\theta 0}) - (1/\lambda_c)\,] Y / \Lambda
+   - [s_0 c_0 / (\Lambda \lambda_{\theta 0}^2)] U
+   - [s_0^2 / (\Lambda \lambda_{\theta 0}^2)] N`.
+  Using the current intrinsic-center expansions
+  `c_0 = 1 + O(x^2)`,
+  `\lambda_{\theta 0} = \lambda_c + O(x^2)`,
+  `s_0 = Kx + O(x^3)`,
+  one gets on the current branch reading
+  `c_0/\lambda_{\theta 0} - 1/\lambda_c = O(x^2)`,
+  `1/\lambda_{\theta 0} - 1/\lambda_c = O(x^2)`,
+  the `U`-coefficient as `O(x)`, and the `N`-coefficient as `O(x^2)`.
+  Since the renormalized channels are bounded in the LC scaling class, this
+  supports `\Delta M_\theta^{ren} = O(x)` on the intrinsic local line.
+  Therefore, together with the already recorded
+  `\Delta H^{ren} = O(x)` and
+  `\Delta \chi^{ren} = n \Delta M_\theta^{ren} + O(x)`, the corrected
+  elimination errors are no longer the first blocker on the corrected
+  9-channel system; the next blocker becomes the regular-singular first-
+  correction argument itself.
+- Type: `formula-level claim`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `docs/theory/current_simple_support_minimal_9channel_block_draft.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `supported conditionally under LC / intrinsic-local Delta M_theta is O(x), elimination-error blocker removed`
+- What counts as verification:
+  a theorem-facing conditional rewrite of the corrected 9-channel remainder
+  system using the intrinsic local principal package
+  `M_\theta^{ren,0,loc} = \nu M + (P + nY)/(\Lambda \lambda_c)`, followed by a
+  regular-singular first-correction argument proving
+  `Z(x) = Z_0 + x Z_1 + o(x)` for the corrected 9-channel state.
+- Verification method:
+  manual intrinsic-local coefficient derivation under Assumption LC, using the
+  active circumferential / twist-shear reconstruction and the recorded
+  intrinsic center expansions.
+- Verification boundary:
+  this does not prove Assumption LC, does not close the strict
+  ambient-to-local continuation theorem, and does not itself prove first
+  post-leading asymptotic closure. It only records that the earlier
+  `\Delta M_\theta^{ren}` elimination-error blocker is no longer first once the
+  intrinsic local normalization is used.
+- Next action:
+  rewrite the corrected 9-channel remainder split entirely against
+  `M_\theta^{ren,0,loc} = \nu M + (P + nY)/(\Lambda \lambda_c)` and attempt the
+  regular-singular first-correction step itself.
+
+### V-S93. Conditional on Assumption LC, a direct theorem attempt for the corrected intrinsic-local 9-channel first-correction step is reduced to the no-log spectral lemma for the bounded compatibility-preserving sector of `A_{0,loc}^{corr}`
+
+- ID: `V-S93`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, rewrite the corrected
+  intrinsic-local 9-channel witness-germ system in the form
+  `x Z'(x) = A_{0,loc}^{corr} Z(x) + R_{loc}(x)` with preserved compatibility
+  `Y + nN = 0`.
+  After the intrinsic-local principal choice, the corrected remainder split is
+  no longer blocked first by source packaging, normalization choice, or the
+  `M_\theta^{ren}` elimination-error target:
+  the current branch reading now supports `\Delta M_\theta^{ren} = O(x)`,
+  together with the already recorded `\Delta H^{ren} = O(x)` and
+  `\Delta \chi^{ren} = n \Delta M_\theta^{ren} + O(x)`.
+  But a direct theorem attempt for first post-leading closure on this corrected
+  intrinsic-local system still does not yet prove
+  `Z(x) = Z_0 + x Z_1 + o(x)`.
+  The first exact analytic blocker is now the theorem-facing regular-singular
+  first-correction argument itself.
+  More sharply, the proof no longer fails first at leading-state extraction,
+  the formal first post-leading coefficient system, or the corrected
+  intrinsic-local `O(x)` remainder split.
+  It fails first at the missing no-log spectral lemma for the bounded
+  compatibility-preserving sector of the corrected intrinsic-local operator
+  `A_{0,loc}^{corr}`, namely the statement that every bounded witness-germ
+  solution satisfying the preserved compatibility relation admits the affine
+  first correction with no logarithmic or other additional bounded
+  first-correction terms.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/current_simple_support_minimal_9channel_block_draft.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `reduced conditionally under LC / exact first blocker is the no-log spectral lemma for the bounded compatibility-preserving sector`
+- What counts as verification:
+  a theorem-facing conditional proof that every bounded solution of the
+  corrected intrinsic-local regular-singular system
+  `x Z'(x) = A_{0,loc}^{corr} Z(x) + O(x)` in the compatibility-preserving
+  sector `Y + nN = 0` admits
+  `Z(x) = Z_0 + x Z_1 + o(x)`,
+  with no logarithmic or other additional bounded first-correction terms.
+- Verification method:
+  manual regular-singular analysis of the corrected intrinsic-local operator,
+  reuse of the corrected remainder split and the existing formal first post-
+  leading coefficient structure.
+- Verification boundary:
+  this does not prove Assumption LC and does not close the strict
+  ambient-to-local continuation theorem. It records only that the old
+  structural / normalization / elimination-error block chain has been cleared
+  on the current conditional local line, and that the next blocker is now the
+  final regular-singular first-correction step itself.
+- Next action:
+  formulate and prove the no-log spectral lemma for the bounded
+  compatibility-preserving sector of `A_{0,loc}^{corr}`, then use it to close
+  the first post-leading affine expansion
+  `Z(x) = Z_0 + x Z_1 + o(x)`.
+
+### V-S94. Conditional on Assumption LC, the checked bounded compatibility-preserving sector of `A_{0,loc}^{corr}` does not currently exhibit a log-producing Jordan degeneracy; the next blocker is the bounded-solution / variation-of-constants step
+
+- ID: `V-S94`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, consider the corrected
+  intrinsic-local regular-singular system
+  `x Z'(x) = A_{0,loc}^{corr} Z(x) + O(x)` in the bounded
+  compatibility-preserving sector `Y + nN = 0`.
+  The checked spectral picture currently supported by the repo is:
+  1. bounded leading states lie in the compatibility-preserving kernel of the
+     corrected intrinsic-local principal operator;
+  2. at the first post-leading checked layer, the recurrence leaves exactly
+     one genuine membrane `x`-mode parameter `T1`, with
+     `U1 = \alpha T1`, `V1 = \beta T1`, while the flexural coefficients are
+     uniquely zero under the same nonresonance condition as before;
+  3. the resonance denominator `(n-2)(n+1)` is nonzero on the current
+     physical branch `n > 2`;
+  4. once that genuine membrane mode is admitted, the next checked layer
+     closes uniquely to zero.
+  Therefore the current checked spectral data do not exhibit a bounded
+  log-producing Jordan direction in the compatibility-preserving sector.
+  The remaining open point is not another spectral repair, but the theorem-
+  facing argument that converts this checked spectral picture together with the
+  corrected `O(x)` remainder split into the affine expansion
+  `Z(x) = Z_0 + x Z_1 + o(x)`.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/current_simple_support_minimal_9channel_block_draft.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `supported conditionally under LC / no checked bounded-sector log-producing Jordan degeneracy, next blocker is bounded-solution step`
+- What counts as verification:
+  1. a theorem-facing derivation that the bounded compatibility-preserving
+     sector of `A_{0,loc}^{corr}` has no logarithmic first-correction mode;
+  2. a theorem-facing bounded-solution / variation-of-constants lemma turning
+     `x Z'(x) = A_{0,loc}^{corr} Z(x) + O(x)` into
+     `Z(x) = Z_0 + x Z_1 + o(x)` on that sector.
+- Verification method:
+  manual spectral audit of the checked first and second post-leading
+  recurrences, together with manual regular-singular analysis of the corrected
+  intrinsic-local operator.
+- Verification boundary:
+  this does not prove Assumption LC and does not close the strict
+  ambient-to-local continuation theorem. It records only that, on the current
+  branch reading, the checked spectral obstruction is no longer first.
+- Next action:
+  prove the bounded-solution / variation-of-constants lemma for the corrected
+  intrinsic-local regular-singular system on the compatibility-preserving
+  bounded sector.
+
+### V-S95. Conditional on Assumption LC, the first exact blocker inside the bounded-solution step is the compatibility-preserving projector / variation-of-constants lemma that extracts `Z_0` and keeps `W = (Z-Z_0)/x` bounded
+
+- ID: `V-S95`
+- Claim / Hypothesis:
+  Fix `(n,q)` and assume Assumption LC.
+  Let
+  `Z = (U,N,V,P,Y,T,Q,M,S^{ren})`
+  be a bounded corrected intrinsic-local witness-germ solution on `(0,\delta)`
+  satisfying the preserved compatibility relation `Y + nN = 0`, and suppose
+  the corrected intrinsic-local system has already been rewritten as
+  `x Z'(x) = A_{0,loc}^{corr} Z(x) + x b(x)` with `b` bounded.
+  The operator used in the attempted regular-singular proof is the frozen
+  corrected intrinsic-local 9-channel principal matrix, restricted to the
+  compatibility-preserving sector.
+  On the current branch reading, the checked recurrence-side spectral picture
+  already supports the following heuristic decomposition of the bounded sector:
+  bounded leading states should lie in
+  `\ker A_{0,loc}^{corr}`,
+  the only checked bounded first-correction mode is the genuine membrane
+  `x`-mode in
+  `\ker(A_{0,loc}^{corr} - I)`,
+  and no checked bounded log-producing Jordan direction is currently visible.
+  If that decomposition were available theorem-facingly together with a
+  spectral gap
+  `\Re \sigma(A_{0,loc}^{corr}|_{E_{>1}}) > 1`
+  on the remaining bounded sector, then the standard variation-of-constants
+  argument would yield
+  `Z(x) = Z_0 + x Z_1 + o(x)`.
+  But the proof still fails one step earlier:
+  the repo does not yet contain the needed compatibility-preserving projector /
+  dichotomy lemma proving from boundedness alone that
+  `Z - Z_0 = O(x)` for some
+  `Z_0 \in \ker A_{0,loc}^{corr}`
+  and that the transformed unknown
+  `W(x) = (Z(x) - Z_0)/x`
+  stays bounded.
+  Equivalently, the exact first blocker inside the bounded-solution step is
+  the missing theorem-facing exclusion of hidden bounded non-affine
+  first-correction behavior on that sector.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/current_simple_support_minimal_9channel_block_draft.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `reduced conditionally under LC / exact first blocker inside bounded-solution step is the compatibility-preserving projector-dichotomy lemma`
+- What counts as verification:
+  a theorem-facing proof on the bounded compatibility-preserving sector of the
+  corrected intrinsic-local operator that every bounded solution of
+  `x Z'(x) = A_{0,loc}^{corr} Z(x) + x b(x)` admits
+  `Z_0 \in \ker A_{0,loc}^{corr}` with `Z - Z_0 = O(x)`,
+  that `W = (Z-Z_0)/x` remains bounded and has leading state in
+  `\ker(A_{0,loc}^{corr} - I)`,
+  and therefore that
+  `Z(x) = Z_0 + x Z_1 + o(x)`
+  with no hidden bounded non-affine first correction.
+- Verification method:
+  manual regular-singular / variation-of-constants proof attempt using the
+  corrected intrinsic-local remainder split together with the checked membrane
+  `x`-mode and no-log spectral evidence.
+- Verification boundary:
+  this does not prove Assumption LC and does not close the strict
+  ambient-to-local continuation theorem. It records only the sharper location
+  of the first missing lemma inside the already isolated bounded-solution
+  step.
+- Next action:
+  formulate and prove the compatibility-preserving projector /
+  variation-of-constants lemma for `A_{0,loc}^{corr}` on the bounded sector,
+  strong enough to extract `Z_0`, control `W = (Z-Z_0)/x`, and exclude hidden
+  bounded non-affine corrections.
+
+### V-S96. Conditional on Assumption LC, a matrix/projector audit reduces the projector lemma further to a missing direct-sum / spectral-gap theorem for `A_{comp} := A_{0,loc}^{corr}|_{E_{comp}}`
+
+- ID: `V-S96`
+- Claim / Hypothesis:
+  Fix `(n,q)` and assume Assumption LC.
+  Let
+  `E_{comp} = {Z = (U,N,V,P,Y,T,Q,M,S^{ren}) : Y + nN = 0}`.
+  Since the principal `N` and `Y` rows satisfy
+  `x(Y+nN)' = -n(Y+nN)`,
+  this compatibility subspace is invariant for the corrected intrinsic-local
+  principal flow and therefore for the restricted operator
+  `A_{comp} := A_{0,loc}^{corr}|_{E_{comp}}`.
+  In the reduced coordinates
+  `(U,N,V,P,T,Q,M,S^{ren})`
+  with `Y = -nN`, the matrix/projector target is to identify the bounded
+  generalized-eigenspace of `A_{comp}`.
+  The current checked repo evidence supports the following candidate low
+  spectral picture on that restricted space:
+  1. the already closed selected leading trace plane gives the candidate
+     `0`-eigenspace block `E_0`;
+  2. the checked first post-leading membrane mode gives the candidate
+     `1`-eigenspace block `E_1`;
+  3. the checked second layer does not exhibit a Jordan continuation of that
+     membrane `1`-mode.
+  But this is still not a theorem-facing direct-sum theorem for the actual
+  restricted matrix.
+  The repo does not yet prove that the bounded sector of `A_{comp}` is exactly
+  `E_{bd} = E_0 \oplus E_1 \oplus E_{>1}`,
+  with no extra bounded spectrum `0 < \Re \lambda < 1`,
+  no Jordan block at `0` or `1`, and
+  `\Re \sigma(A_{comp}|_{E_{>1}}) > 1`.
+  Therefore the exact first matrix-level blocker is now sharper than a later
+  variation-of-constants estimate:
+  before constructing the needed projectors, one still needs the restricted
+  direct-sum / spectral-gap theorem for `A_{comp}` itself.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/current_simple_support_minimal_9channel_block_draft.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `reduced conditionally under LC / exact first matrix-level blocker is the restricted direct-sum and spectral-gap theorem for A_comp`
+- What counts as verification:
+  a theorem-facing derivation of the restricted matrix
+  `A_{comp} := A_{0,loc}^{corr}|_{E_{comp}}` proving all of:
+  1. `E_0 = \ker A_{comp}` is exactly the compatibility-preserving leading
+     block already seen in the selected leading trace;
+  2. `E_1 = \ker(A_{comp} - I)` is exactly the genuine membrane `x`-mode and is
+     semisimple;
+  3. there is no additional bounded spectrum with
+     `0 < \Re \lambda < 1`;
+  4. the remaining restricted spectrum satisfies
+     `\Re \sigma(A_{comp}|_{E_{>1}}) > 1`.
+  Only after that can one define the projectors needed to prove
+  `Z_0 \in \ker A_{comp}`, `Z - Z_0 = O(x)`, boundedness of
+  `W = (Z-Z_0)/x`, and the affine first correction.
+- Verification method:
+  manual matrix/projector audit using the exact compatibility relation, the
+  selected leading-trace recovery, the checked first post-leading membrane
+  mode, and the checked second-layer closure.
+- Verification boundary:
+  this does not prove Assumption LC and does not close the strict
+  ambient-to-local continuation theorem. It records only the sharper
+  matrix-level location of the first missing theorem inside the already
+  isolated bounded-solution step.
+- Next action:
+  formulate the explicit restricted operator
+  `A_{comp} := A_{0,loc}^{corr}|_{E_{comp}}`,
+  identify its low spectral blocks theorem-facingly, prove the direct-sum /
+  spectral-gap statement, and only then return to the final projector /
+  variation-of-constants estimate.
+
+### V-S97. Conditional on Assumption LC, an explicit-matrix packaging pass fixes the corrected `T` row and writes the full restricted 8x8 matrix `A_{comp}` theorem-facingly
+
+- ID: `V-S97`
+- Claim / Hypothesis:
+  Fix `(n,q)` and assume Assumption LC.
+  On the compatibility-preserving slice
+  `E_{comp} = {Y + nN = 0}`,
+  use the reduced coordinates
+  `(U,N,V,P,T,Q,M,S^{ren})`
+  with `Y = -nN`.
+  Then the intrinsic-local principal package already determines explicitly:
+  `T_{\theta,comp}^{ren} = \nu T + U + nV`,
+  `M_{\theta,comp}^{ren,0,loc}
+   = \nu M + (P - n^2 N)/(\Lambda \lambda_c)`,
+  `H_{comp}^{ren,0,loc}
+   = n[\,2N + (\lambda_c - 1)P\,]/C_{tw}`,
+  and
+  `\chi_{comp}^{ren,0,loc}
+   = n M_{\theta,comp}^{ren,0,loc}
+   + n[(\lambda_c + 1)P
+   - (\lambda_c - 1)\Lambda(M - \nu M_{\theta,comp}^{ren,0,loc})]/C_{tw}`.
+  Therefore the restricted `U`, `N`, `V`, `P`, `Q`, `M` rows and the
+  `\kappa_{\theta 0}\chi` contribution in the `S^{ren}` row are already
+  writable explicitly on `E_{comp}`.
+  The corrected `T` row is now fixed as well:
+  in the live corrected `T_s` source,
+  `-(s_0 c_0 / r_0^2) M_\theta`,
+  the intrinsic-local center expansions
+  `s_0 = Kx + O(x^3)`,
+  `c_0 = 1 + O(x^2)`,
+  `r_0 = \lambda_c x + O(x^3)`
+  give
+  `s_0 c_0 / r_0^2 = K / (\lambda_c^2 x) + O(x)`,
+  so after moving that source from the residual side to the evolution equation
+  and renormalizing, the constant corrected principal term is
+  `+(K/\lambda_c^2) M_\theta^{ren,0,loc}`;
+  hence
+  `c_T^{loc} = K/\lambda_c^2`,
+  and the corrected `T` row on `E_{comp}` becomes
+  `xT'
+   = U
+   - [K n^2 / (\Lambda \lambda_c^3)] N
+   + nV
+   + [K / (\Lambda \lambda_c^3)] P
+   + (\nu - n)T
+   + [K \nu / \lambda_c^2] M
+   - n S^{ren}`.
+  Therefore the full restricted constant 8x8 matrix
+  `A_{comp} := A_{0,loc}^{corr}|_{E_{comp}}`
+  is theorem-facingly fixed in the coordinates
+  `(U,N,V,P,T,Q,M,S^{ren})` as
+  `A_{comp} =`
+  \[
+  \begin{pmatrix}
+  -(n+\nu) & 0 & -n\nu & 0 & 1-\nu^2 & 0 & 0 & 0 \\
+  0 & -n & 0 & -\lambda_c & 0 & 0 & 0 & 0 \\
+  n & 0 & -(n-1) & 0 & 0 & 0 & 0 & 2(1+\nu) \\
+  0 & \nu n^2/\lambda_c & 0 & -(n-1)-\nu/\lambda_c & 0 & 0 & \Lambda(1-\nu^2) & 0 \\
+  1 & -K n^2/(\Lambda \lambda_c^3) & n & K/(\Lambda \lambda_c^3) & \nu-n & 0 & K\nu/\lambda_c^2 & -n \\
+  0 &
+    n^4\!\left[\frac{1}{\Lambda \lambda_c} + \frac{\nu(\lambda_c-1)}{\lambda_c C_{tw}}\right] &
+    0 &
+    -n^2\!\left[\frac{1}{\Lambda \lambda_c} + \frac{\lambda_c+1}{C_{tw}} + \frac{\nu(\lambda_c-1)}{\lambda_c C_{tw}}\right] &
+    0 & -(n-1) &
+    -n^2\!\left[\nu - \frac{(\lambda_c-1)\Lambda(1-\nu^2)}{C_{tw}}\right] &
+    0 \\
+  0 &
+    -n^2\!\left[\frac{1}{\Lambda \lambda_c} + \frac{2}{C_{tw}}\right] &
+    0 &
+    \frac{1}{\Lambda \lambda_c} - \frac{n^2(\lambda_c-1)}{C_{tw}} &
+    0 & 0 &
+    \nu - n + 1 &
+    0 \\
+  n &
+    K n^3\!\left[\frac{1}{\Lambda \lambda_c^2} + \frac{\nu(\lambda_c-1)}{\lambda_c^2 C_{tw}}\right] &
+    n^2 &
+    -K n\!\left[\frac{1}{\Lambda \lambda_c^2} + \frac{\lambda_c+1}{\lambda_c C_{tw}} + \frac{\nu(\lambda_c-1)}{\lambda_c^2 C_{tw}}\right] &
+    n\nu & 0 &
+    -\frac{K n}{\lambda_c}\!\left[\nu - \frac{(\lambda_c-1)\Lambda(1-\nu^2)}{C_{tw}}\right] &
+    -(n+1)
+  \end{pmatrix}.
+  \]
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/current_simple_support_minimal_9channel_block_draft.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `supported conditionally under LC / full explicit 8x8 restricted matrix packaged`
+- What counts as verification:
+  the theorem-facing derivation above:
+  explicit intrinsic-local renormalization of the corrected `T`-row source,
+  extraction of `c_T^{loc} = K/\lambda_c^2`,
+  and explicit writing of the full reduced constant 8x8 matrix
+  `A_{comp}` in the coordinates `(U,N,V,P,T,Q,M,S^{ren})`.
+- Verification method:
+  manual restricted-matrix derivation using the minimal 9-channel block, the
+  intrinsic-local principal package, the corrected-principal `T`/`S^{ren}`
+  diagnostic, and the live surrogate source formulas.
+- Verification boundary:
+  this does not prove Assumption LC and does not close the strict
+  ambient-to-local continuation theorem. It records only that the full matrix
+  `A_{comp}` is now fixed theorem-facingly enough that the next remaining
+  local question is the genuine restricted spectral audit.
+- Next action:
+  perform the restricted spectral-gap / direct-sum audit for `A_{comp}`:
+  identify `\ker A_{comp}` and `\ker(A_{comp}-I)`, prove semisimplicity at `0`
+  and `1`, and exclude spectrum with `0 < \Re \lambda < 1`.
+
+### V-S98. Conditional on Assumption LC, after explicit packaging of `A_{comp}` the exact next blocker is the genuine restricted spectral audit of that 8x8 matrix
+
+- ID: `V-S98`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, once the corrected `T` row
+  is frozen and the full constant 8x8 restricted matrix
+  `A_{comp} := A_{0,loc}^{corr}|_{E_{comp}}`
+  is written explicitly, the matrix-packaging blocker is removed.
+  The exact next theorem-facing target is now the restricted spectral audit of
+  that explicit matrix:
+  1. identify `\ker A_{comp}` theorem-facingly;
+  2. identify `\ker(A_{comp}-I)` theorem-facingly;
+  3. exclude Jordan blocks at `0` and `1`;
+  4. exclude any spectrum with `0 < \Re \lambda < 1`.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/current_simple_support_minimal_9channel_block_draft.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `reduced conditionally under LC / next blocker is the explicit restricted spectral-gap and semisimplicity audit`
+- What counts as verification:
+  a theorem-facing spectral audit of the explicit 8x8 matrix `A_{comp}` proving
+  the direct-sum decomposition of its bounded sector into
+  `\ker A_{comp} \oplus \ker(A_{comp}-I) \oplus E_{>1}`,
+  with no Jordan blocks at `0` or `1` and no spectrum with
+  `0 < \Re \lambda < 1`.
+- Verification method:
+  manual matrix-spectrum analysis of the explicit restricted matrix,
+  using the checked membrane `x`-mode and checked second-layer closure as
+  support but not as a substitute for the actual theorem-facing matrix proof.
+- Verification boundary:
+  this does not prove Assumption LC and does not close the strict
+  ambient-to-local continuation theorem. It records only the exact next local
+  theorem-facing target after the explicit matrix packaging step.
+- Next action:
+  perform the restricted spectrum / semisimplicity audit on the explicit matrix
+  `A_{comp}` itself.
+
+### V-S99. Conditional on Assumption LC, the explicit `8 \times 8` spectral audit reduces the bounded-sector question to the `3 \times 3` flexural block `G_{flex}`, while the membrane block and the `Q` scalar are already fully audited
+
+- ID: `V-S99`
+- Claim / Hypothesis:
+  Fix `(n,q)` and assume Assumption LC.
+  Take the explicit restricted matrix
+  `A_{comp} := A_{0,loc}^{corr}|_{E_{comp}}`
+  already written in the coordinates `(U,N,V,P,T,Q,M,S^{ren})`.
+  After permuting the coordinates to
+  `(N,P,M,Q,U,V,T,S^{ren})`,
+  that matrix is block lower triangular with diagonal blocks
+  \[
+  G_{flex}
+  =
+  \begin{pmatrix}
+  -n & -\lambda_c & 0 \\
+  \nu n^2/\lambda_c & -(n-1)-\nu/\lambda_c & \Lambda(1-\nu^2) \\
+  -n^2\!\left[\frac{1}{\Lambda \lambda_c} + \frac{2}{C_{tw}}\right] &
+  \frac{1}{\Lambda \lambda_c} - \frac{n^2(\lambda_c-1)}{C_{tw}} &
+  \nu - n + 1
+  \end{pmatrix},
+  \]
+  the scalar `Q` eigenvalue `-(n-1)`, and
+  \[
+  B_{mem}
+  =
+  \begin{pmatrix}
+  -(n+\nu) & -n\nu & 1-\nu^2 & 0 \\
+  n & -(n-1) & 0 & 2(1+\nu) \\
+  1 & n & \nu-n & -n \\
+  n & n^2 & n\nu & -(n+1)
+  \end{pmatrix}.
+  \]
+  A direct determinant computation for the membrane block gives
+  \[
+  \det(B_{mem} - \lambda I)
+  =
+  (\lambda-1)(\lambda+1)(\lambda+2n-1)(\lambda+2n+1).
+  \]
+  Therefore the membrane spectrum is exactly
+  `{1,-1,1-2n,-(2n+1)}`, the membrane `\lambda=1` mode is simple and
+  semisimple, and the membrane block has no spectrum with
+  `0 < \Re \lambda < 1`.
+  Together with the scalar `Q` eigenvalue `-(n-1)`, this proves that every
+  remaining bounded-sector uncertainty for the full `8 \times 8` matrix is
+  concentrated entirely in `G_{flex}`.
+  In particular:
+  1. the checked membrane `x`-mode is now theorem-facingly matched by the
+     explicit membrane eigenvalue `\lambda=1`;
+  2. the current checked absence of a membrane-side Jordan continuation is
+     consistent with the explicit distinct membrane eigenvalues;
+  3. if the expected leading `\lambda=0` block exists for the explicit local
+     operator, it must come from `G_{flex}` alone.
+  So the full direct-sum / spectral-gap theorem is still open, but no longer
+  at the level of the whole `8 \times 8` matrix:
+  the exact remaining spectral task is now the theorem-facing audit of the
+  flexural block `G_{flex}` itself.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/current_simple_support_minimal_9channel_block_draft.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `reduced conditionally under LC / membrane block and Q scalar fully audited, exact remaining spectral blocker is the 3x3 flexural block G_flex`
+- What counts as verification:
+  a theorem-facing flexural spectral audit proving all remaining points for
+  `G_{flex}`:
+  1. compute `\ker G_{flex}` and match it to the expected leading
+     `\lambda=0` block, if nontrivial;
+  2. prove `1 \notin \sigma(G_{flex})`;
+  3. exclude any spectrum with `0 < \Re \lambda < 1`;
+  4. if `0 \in \sigma(G_{flex})`, prove semisimplicity at `\lambda=0`.
+  Since the membrane block and the scalar `Q` eigenvalue are already explicit,
+  those four flexural items are now exactly equivalent to the remaining bounded-
+  sector theorem for the full `A_{comp}`.
+- Verification method:
+  manual block-triangular spectral reduction of the explicit `8 \times 8`
+  matrix, direct determinant computation for the membrane block, and
+  comparison with the checked first and second post-leading recurrence picture.
+- Verification boundary:
+  this does not prove Assumption LC and does not close the strict
+  ambient-to-local continuation theorem. It records only that the `8 \times 8`
+  spectral audit now reduces the open low-spectrum question to the explicit
+  flexural block `G_{flex}`.
+- Next action:
+  audit the flexural block `G_{flex}` theorem-facingly:
+  compute `\ker G_{flex}`, prove `1 \notin \sigma(G_{flex})`, and exclude
+  `0 < \Re \lambda < 1`.

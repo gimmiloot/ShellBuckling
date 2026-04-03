@@ -16,6 +16,25 @@
 
 ---
 
+## LC. Локальная реализуемость / punctured continuation для clean full simple-support `J_0` ветки
+
+**Формулировка.** Для фиксированных `(n,q)` каждый
+`c in A_full^th,n(q)` допускает `\delta > 0` и punctured near-center clean
+mixed continuation на `(0,\delta)` в текущих mixed variables, удовлетворяющее
+текущим local clean mixed equations и intended near-center scaling orders.
+
+**Проверялось ли:** нет, theorem-facingly на этой ветке пока не доказано.
+
+**Как используется:** как явное рабочее физическое предположение away from the
+center, чтобы не переформулировать бесконечно один и тот же ambient-to-local
+closure barrier. Все последующие theorem-facing local steps, которые используют
+punctured local continuation, должны читаться **условно под Assumption LC**,
+если независимое closure-доказательство не получено.
+
+**Текущий статус:** **не подтверждено**.
+
+---
+
 ## A1. Простая замена background внутри старой reduced/full архитектуры может исправить критерий
 
 **Формулировка.** Было предположение, что достаточно заменить докритический фон, не меняя принципиально сам старый linearized class.
