@@ -1953,3 +1953,12 @@ return to the criterion itself and its theorem-facing formulation.
 
 The freeze/archive summary and ordered source-of-truth reading list are now
 recorded in docs/theory/current_simple_support_closed_line_index.md.
+### 12.51. LC-line background strategy anchor
+
+On the LC-conditional line, the preferred next theorem-facing route is one-sided control on
+S = -(1-c_0) + (1-\nu^2)T_{s0}c_0
+through the scalar Riccati comparison for u = \lambda_{\theta 0}^{-1}.
+If that route still does not close, the minimal fallback assumption should be the weighted harmonic-mean admissibility condition
+\int \eta/(x\lambda_{\theta 0}) \le \int \eta/x.
+Do not introduce stronger pointwise / geometric assumptions (\varphi_0 sign, c_0 sign, e_{\theta 0} sign, pointwise \lambda_{\theta 0}\ge 1, broad branch-law assumptions) unless they become genuinely necessary for the Riccati comparison.
+Physically, \lambda_{\theta 0}=r_0/x is the circumferential stretch, so this fallback is a weak cumulative shell-admissibility condition, not a strong pointwise geometric restriction.

@@ -58,6 +58,64 @@ For operational reading on the current clean branch:
 - use `docs/theory/current_simple_support_object_glossary.md` for stable object
   definitions.
 
+## Physical-Semantic Screening Rule For Theorem-Facing Claims
+Before promoting any new theorem-facing target, blocker, lemma, or
+spectral/geometric claim on the clean full `J_0` branch, future passes must
+apply the following screen. This applies on both the still-open strict line and
+the line conditional on Assumption LC: it filters what may be promoted on each
+line, but it does not blur the distinction between them.
+
+- `A. Physical meaning of the variables:`
+  classify each relevant quantity as one of:
+  geometric; force/stress/moment; kinematic; normalization/gauge/trace-layer;
+  or purely algebraic/helper coefficient.
+- `B. Type and strength of the proposed claim:`
+  identify whether the claim is a local identity, global sign claim, global
+  monotonicity claim, interval/range bound, normalization statement, spectral
+  statement, or a claim only on an explicitly restricted geometry class.
+- `C. Physical plausibility / geometry-class check:`
+  strong global sign or monotonicity claims for geometric angles, forces,
+  moments, or related background quantities must not be adopted by default
+  unless the geometry class is stated explicitly, or one has already checked
+  that no weaker sufficient claim is available.
+- `D. Minimal sufficiency check:`
+  ask what the current proof step actually needs, and target the weakest claim
+  that closes that need. In particular:
+  if only `c_0 > 0` is needed, do not default to a theorem that
+  `\varphi_0` keeps one sign;
+  if only an integral-kernel estimate is needed, do not force sign theorems
+  for every summand;
+  if a quantity is background-level, do not first attack it through local
+  spectral algebra.
+
+Operational rule for future Codex theorem/status passes:
+
+- if a proposed claim fails this screen, the pass must say so explicitly;
+- it must state whether the claim is too strong, too geometry-dependent, or
+  not actually needed;
+- it must then replace that claim by a weaker or better-targeted theorem-facing
+  target instead of silently continuing with the failed claim as the next
+  blocker.
+
+Short audit of the currently active clean branch:
+
+- the exact center/background identities already accepted on the current line
+  do pass this screen:
+  `\lambda_c - 1 = (1-\nu)T_{s0}(0)`,
+  `K = \Lambda(1-\nu)M_{s0}(0)`,
+  `Q_1 = K T_{s0}(0) - [\lambda_c/(\lambda_c+1)]\bar q`,
+  and the reduction to two free center coefficients;
+  these are local background identities aligned with the physical meaning of
+  the variables, not over-strong global geometry claims.
+- the earlier target "global sign / no-turning theorem for `\varphi_0`" should
+  not be treated as a default target on the general clean shell-of-revolution
+  branch without an explicit geometry restriction; it is too strong relative to
+  the immediate need and too geometry-dependent.
+- the corrected reading is therefore:
+  if `c_0 > 0` is the needed output, either state an explicit restricted
+  no-overturning geometry class, or seek a weaker coupled / range-preservation
+  estimate that does not require global sign control of `\varphi_0`.
+
 ## Current Selection-Authority Status
 The current clean hierarchy should now be read in the order
 
@@ -1325,10 +1383,771 @@ Still open and now the true bottleneck:
   `8 \times 8` matrix, but the theorem-facing audit of `G_{flex}` itself:
   compute `\ker G_{flex}`, prove `1 \notin \sigma(G_{flex})`, and exclude any
   flexural spectrum with `0 < \Re \lambda < 1`;
-  so the current line is no longer blocked first by structural descent,
-  normalization choice, or elimination-error control, but by the final
-  theorem-facing passage from the corrected `O(x)` remainder split to the
-  affine first correction;
+  a still narrower flexural audit now sharpens this one step further:
+  after the similarity scaling
+  `\widetilde G_{flex} = \operatorname{diag}(1,1,\Lambda)\, G_{flex}\,
+   \operatorname{diag}(1,1,\Lambda)^{-1}`,
+  one may work with
+  \[
+  \widetilde G_{flex}
+  =
+  \begin{pmatrix}
+  -n & -\lambda_c & 0 \\
+  \nu n^2/\lambda_c & -(n-1)-\nu/\lambda_c & 1-\nu^2 \\
+  -n^2\!\left[\frac{1}{\lambda_c} + 2(1-\nu)\right] &
+  \frac{1}{\lambda_c} - n^2(1-\nu)(\lambda_c-1) &
+  \nu - n + 1
+  \end{pmatrix},
+  \]
+  which is similar to `G_{flex}` and therefore has the same spectrum;
+  writing
+  `c_\nu := (1-\nu)^2(1+\nu)`,
+  the characteristic polynomial of the flexural block can then be packaged as
+  \[
+  \chi_{flex}(\lambda)
+  :=
+  \det(\widetilde G_{flex} - \lambda I)
+  =
+  -(n+\lambda)\Bigl(
+    (n-1+\lambda)^2
+    - \frac{\nu(\lambda_c-1)}{\lambda_c}(n-1+\lambda)
+    - \frac{1}{\lambda_c}
+    + n^2 c_\nu (\lambda_c-1)
+  \Bigr)
+  +
+  n^2\Bigl(
+    1 - \nu(n-1+\lambda) + 2\lambda_c c_\nu
+  \Bigr).
+  \]
+  In particular,
+  \[
+  \lambda_c \det G_{flex}
+  =
+  n^2(2-n)c_\nu \lambda_c^2
+  +
+  n\Bigl(
+    n^2 c_\nu - n^2 + 3n - 1 - \nu (n-1)^2
+  \Bigr)\lambda_c
+  +
+  n\bigl(1-\nu(n-1)\bigr),
+  \]
+  and
+  \[
+  \lambda_c \det(G_{flex}-I)
+  =
+  -n^2(n-1)c_\nu \lambda_c^2
+  +
+  \Bigl(
+    n^2(n+1)c_\nu - n\bigl(n^2(1+\nu)-\nu(n+1)\bigr)
+  \Bigr)\lambda_c
+  -
+  (n+1)(n\nu-1).
+  \]
+  On the current clean branch, the parameter regime that is actually recorded
+  theorem-facingly is still only the coarse positivity package
+  `\lambda_c > 0`, `\nu > 0`, and active nonshallow clean modes `n \ge 4`,
+  together with `C_{tw} = 12(1+\nu)\mu^2 > 0` and
+  `\Lambda = 12(1-\nu^2)\mu^2 = (1-\nu)C_{tw}` inside the extracted local
+  block;
+  no sharper theorem-facing branch inequality is yet recorded linking
+  `\lambda_c` to `(n,\nu)` strongly enough to decide the sign of
+  `\det G_{flex}`, the sign of `\det(G_{flex}-I)`, or the Hurwitz determinants
+  of `\chi_{flex}`;
+  So the flexural audit is no longer blocked by missing determinant or
+  characteristic-polynomial packaging:
+  `\lambda=0` and `\lambda=1` now reduce to two explicit quadratic conditions
+  in `\lambda_c`, while the exclusion of `0 < \Re \lambda < 1` reduces to a
+  sign/factorization / Hurwitz analysis of the same explicit cubic
+  `\chi_{flex}`;
+  however the repo still does not contain the theorem-facing argument that
+  decides those explicit conditions on the current clean branch, and the older
+  frozen-principal flexural determinants from the checked recurrence line do
+  not directly close this corrected `G_{flex}` cubic;
+  equivalently, the exact first remaining spectral blocker is now the missing
+  parameter-aware theorem-facing sign/factorization analysis of `\chi_{flex}`,
+  together with the missing clean-branch inequality package for `\lambda_c`,
+  strong enough to show whether the branch really carries a flexural
+  `\lambda=0` eigenvalue, to prove `1 \notin \sigma(G_{flex})`, and to exclude
+  `0 < \Re \lambda < 1`;
+  a narrower `\lambda_c` fact-gathering pass shows that the current branch
+  already fixes theorem-facingly only the following usable `\lambda_c` data:
+  `\lambda_c = \lambda_{s0}(0) = \lambda_{\theta 0}(0)` in the intrinsic
+  center expansion, `\lambda_{\theta 0} = \lambda_c + O(x^2)`,
+  `r_0 = \lambda_c x + O(x^3)`, the local positivity package
+  `\lambda_c > 0`, and the separated trace-layer fact
+  `\lambda_{\theta 0}(x_0) = 1` at the selected `x_0` boundary convention;
+  by contrast, the frequently cited statement that the live clean selected
+  points have `\lambda_c = \lambda_{s0}(x_0)` slightly above `1` is still only
+  representative live-check / pilot evidence, not a theorem-facing branch
+  inequality;
+  so the present repo record is not yet strong enough to sign
+  `\det G_{flex}`, `\det(G_{flex}-I)`, or the Hurwitz determinants of
+  `\chi_{flex}`;
+  the exact missing package is still an intrinsic clean-branch inequality for
+  `\lambda_c` relative to `(n,\nu)`, not merely another positivity statement;
+  and on the current branch reading that missing package should remain an open
+  theorem target rather than be promoted to a new standing assumption parallel
+  to Assumption LC;
+  an origin-of-`\lambda_c` pass sharpens this one step further:
+  in the live clean background, `\lambda_{\theta 0}` is not introduced as a
+  spectral parameter but as the circumferential background stretch
+  `\lambda_{\theta 0} = r_0/x`, while
+  `\lambda_{s0} = 1 + e_{s0}` with
+  `e_{\theta 0} = (r_0-x)/x`,
+  `e_{s0} = (1-\nu^2)T_{s0} - \nu e_{\theta 0}`, and
+  `r_0' = (1+e_{s0}) c_0`;
+  the intrinsic-center expansion then records
+  `\lambda_{s0}(0) = \lambda_{\theta 0}(0) = \lambda_c`,
+  `\lambda_{s0} = \lambda_c + O(x^2)`,
+  `\lambda_{\theta 0} = \lambda_c + O(x^2)`,
+  `r_0 = \lambda_c x + O(x^3)`,
+  so `\lambda_c` is the common center stretch carried by the clean
+  axisymmetric background branch itself rather than a removable local gauge;
+  the checked honest background recurrence fixes the later center coefficients
+  `Ts2, U3, K3, Ms2, Q3` but does not presently fix `\lambda_c` itself;
+  moreover the center constitutive chain now gives one exact theorem-facing
+  identity for that common stretch:
+  since
+  `e_{\theta 0}(0) = \lambda_{\theta 0}(0) - 1 = \lambda_c - 1`,
+  `e_{s0}(0) = (1-\nu^2)T_{s0}(0) - \nu e_{\theta 0}(0)`,
+  and
+  `\lambda_{s0}(0) = 1 + e_{s0}(0) = \lambda_c`,
+  one gets
+  `(1+\nu)(\lambda_c - 1) = (1-\nu^2)T_{s0}(0)`,
+  hence exactly
+  `\lambda_c - 1 = (1-\nu) T_{s0}(0)`;
+  equivalently, the clean-background branch law needed for the flexural
+  Hurwitz step can now be read as a sign/interval theorem for the center
+  meridional background quantity `T_{s0}(0)`;
+  however the repo still does not record theorem-facing sign, interval, or
+  monotonicity control for `T_{s0}(0)` itself, only the boundary condition
+  `T_{s0}(1)=0` and the separate pilot/live-check reading that active clean
+  selected points appear to have `\lambda_c` slightly above `1`;
+  more explicitly, the current clean axisymmetric background package gives
+  `dT_{s0}
+   = -T_{s0}/r_0 + (c_0/r_0)T_{\theta 0} - \varphi_0' Q_0`,
+  with
+  `T_{\theta 0} = \nu T_{s0} + e_{\theta 0}`,
+  `e_{\theta 0} = (r_0-x)/x`,
+  `e_{s0} = (1-\nu^2)T_{s0} - \nu e_{\theta 0}`,
+  `r_0' = (1+e_{s0})c_0`,
+  together with the clean BC package
+  `T_{s0}(1)=0`, `\varphi_0(1)=0`, `Q_0(x_0)=0`, `r_0(x_0)=x_0`,
+  `\varphi_0(x_0)=0`;
+  center regularity cancels the singular `1/r_0` term and yields the exact
+  center relation `T_{\theta 0}(0)=T_{s0}(0)`, hence the identity above, but
+  the repo still has no theorem-facing comparison principle, sign-preserving
+  lemma, monotonicity theorem, or center-evaluation formula that propagates the
+  boundary datum `T_{s0}(1)=0` to a sign/interval statement for `T_{s0}(0)`;
+  a narrower center pass through the `Q_0` equation now adds one exact
+  theorem-facing coefficient formula:
+  using the currently recorded intrinsic-center expansions
+  `Q_0(x) = Q_1 x + O(x^3)`,
+  `s_0 = Kx + O(x^3)`,
+  `r_0 = \lambda_c x + O(x^3)`,
+  `T_{\theta 0}(x) = T_{s0}(0) + O(x^2)`,
+  and, importantly, the current theorem-facing background expansion
+  `\varphi_0'(x) = \kappa_{s0}(x) = K + O(x^2)` rather than `O(x)`,
+  the clean background equation
+  `Q_0'
+   = -Q_0/r_0 + (s_0/r_0)T_{\theta 0} + \varphi_0' T_{s0} - \bar q`
+  yields at leading order
+  `Q_1 = -Q_1/\lambda_c + (K/\lambda_c)T_{s0}(0) + K T_{s0}(0) - \bar q`,
+  hence exactly
+  `Q_1 = K T_{s0}(0) - [\lambda_c/(\lambda_c+1)]\bar q`;
+  after substituting
+  `\lambda_c - 1 = (1-\nu)T_{s0}(0)`,
+  this becomes
+  `Q_1 = K(\lambda_c-1)/(1-\nu) - [\lambda_c/(\lambda_c+1)]\bar q`;
+  this should not be silently conflated with the older checked statement
+  `Q_1 = 0` from the fully frozen principal recurrence line:
+  that older identity belongs to a different frozen-principal layer and does
+  not by itself determine the current live clean background coefficient in the
+  theorem-facing ODE package used here;
+  on the active source constants `a,E,h > 0`, so `\bar q = q a/(Eh)` has the
+  same sign as the branch load `q`, and positive load contributes a strictly
+  negative term to `Q_1`;
+  nevertheless this still does not produce a theorem-facing sign law for
+  `Q_1`, because the repo has no theorem-facing sign control for the center
+  curvature `K` or for `T_{s0}(0)`, and it also does not yet determine whether
+  the positive load term dominates the `K T_{s0}(0)` contribution;
+  likewise it gives no local monotonicity theorem for `T_{s0}` itself:
+  the current center expansion already implies `T_{s0}'(0)=0`, so any genuine
+  local sign/monotonicity statement would have to come from the next
+  second-order center coefficient, which is not yet packaged theorem-facingly;
+  a still narrower clean-background center-coefficient pass now shows that the
+  leading background package already closes further:
+  the recorded honest first-omitted-coefficient package fixes `Ms2`, so at the
+  level needed here one may read
+  `M_{s0}(x) = M_{s0}(0) + O(x^2)`;
+  then the clean background moment equation
+  `M_{s0}'
+   = -M_{s0}/r_0 + (c_0/r_0)M_{\theta 0} + Q_0`
+  cannot carry an admissible `x^{-1}` term, so exact center regularity forces
+  `M_{\theta 0}(0) = M_{s0}(0)`;
+  inserting that center identity into
+  `\varphi_0' = \Lambda(M_{s0} - \nu M_{\theta 0})`
+  and using
+  `\varphi_0'(x) = K + O(x^2)`
+  gives the exact coefficient relation
+  `K = \Lambda(1-\nu) M_{s0}(0)`;
+  consequently the current leading center system is
+  `\lambda_c = 1 + (1-\nu)T_{s0}(0)`,
+  `K = \Lambda(1-\nu) M_{s0}(0)`,
+  and
+  `Q_1 = K T_{s0}(0) - [\lambda_c/(\lambda_c+1)]\bar q`,
+  so the four quantities
+  `(T_{s0}(0), K, Q_1, M_{s0}(0))`
+  reduce at leading order to two free center coefficients, for example
+  `(T_{s0}(0), M_{s0}(0))`;
+  because the clean branch already records `\lambda_c > 0`, this gives the
+  coarse one-sided bound
+  `T_{s0}(0) > -1/(1-\nu)`;
+  and because `\Lambda = 12(1-\nu^2)\mu^2 > 0` on the current parameter
+  package, it also gives the exact sign linkage
+  `\operatorname{sign} K = \operatorname{sign} M_{s0}(0)`;
+  however this still does not sign `T_{s0}(0)`, does not exclude
+  `T_{s0}(0)=0`, and does not sign `Q_1`;
+  indeed `T_{s0}(0)=0` remains compatible with the current center system and
+  would simply give `\lambda_c = 1` and `Q_1 = -\bar q/2`;
+  therefore the exact first missing ingredient is now sharper than both a
+  generic Hurwitz-sign problem and the earlier "companion control for `K`"
+  wording:
+  `K` is already algebraically slaved to `M_{s0}(0)`, so what is still missing
+  is a stronger theorem-facing branch law for `T_{s0}(0)`, equivalently for
+  `\lambda_c`, beyond the coarse lower bound above; if one also wants a sign
+  law for `Q_1`, one further needs sign/control of the product
+  `M_{s0}(0)T_{s0}(0)`;
+  more sharply, the current clean background package does not yet even yield a
+  scalar one-sided derivative inequality for `T_{s0}` itself:
+  rewriting the live equation gives
+  `T_{s0}'
+   = [(\nu c_0 - 1)/r_0] T_{s0} + (c_0/r_0)e_{\theta 0} - \varphi_0' Q_0`,
+  and the present theorem-facing branch record supplies no sign control for the
+  coefficient `(\nu c_0 - 1)/r_0`, none for `e_{\theta 0}`, and none for the
+  coupled term `\varphi_0' Q_0`;
+  correspondingly, integrating from the edge with `T_{s0}(1)=0` gives only a
+  sign-indefinite integral identity rather than a comparison formula;
+  likewise the current theorem-facing ODE/BC package gives no contradiction for
+  `T_{s0}(0)=0`, and no contradiction for the whole negative range permitted by
+  the coarse bound `-1/(1-\nu) < T_{s0}(0) < 0`;
+  so the exact first missing ingredient is now most honestly read as a
+  theorem-facing coupled comparison / integral / monotonicity theorem for the
+  clean background system, strong enough to propagate the split BC package to
+  the center value `T_{s0}(0)`;
+  a still narrower coupled pass now shows that the current system does already
+  admit exact weighted identities, but they are still not sign-closing:
+  the raw weighted equations are
+  `(r_0 T_{s0})' = c_0 T_{\theta 0} - \varphi_0' r_0 Q_0`,
+  `(r_0 Q_0)' = s_0 T_{\theta 0} + \varphi_0' r_0 T_{s0} - \bar q r_0`,
+  `(r_0 M_{s0})' = c_0 M_{\theta 0} + r_0 Q_0`;
+  more usefully, with the rotated combinations
+  `A := c_0 T_{s0} + s_0 Q_0`,
+  `B := -s_0 T_{s0} + c_0 Q_0`,
+  the coupled `T_{s0}` / `Q_0` subsystem becomes exactly
+  `A' + A/r_0 = T_{\theta 0}/r_0 - s_0 \bar q`,
+  `B' + B/r_0 = -c_0 \bar q`;
+  and because the current BC package gives
+  `\varphi_0(x_0)=\varphi_0(1)=0`, `Q_0(x_0)=0`, `T_{s0}(1)=0`,
+  one has
+  `A(x_0)=T_{s0}(0)`, `A(1)=0`, `B(x_0)=0`, `B(1)=Q_0(1)`;
+  hence with the positive integrating factor
+  `\mu(x) := \exp(\int_{x_0}^x ds/r_0(s))`
+  the system yields the exact integral identities
+  `Q_0(1)
+   = -\mu(1)^(-1)\bar q \int_{x_0}^1 \mu(\xi) c_0(\xi)\, d\xi`
+  and
+  `T_{s0}(0)
+   = -\int_{x_0}^1 \mu(\xi)
+      [T_{\theta 0}(\xi)/r_0(\xi) - s_0(\xi)\bar q]\, d\xi`;
+  these are theorem-facingly sharper than the scalar `T_{s0}` equation alone,
+  but they still do not control the sign of `T_{s0}(0)`:
+  the first identity still needs a sign law for `c_0 = \cos\varphi_0`,
+  and the second still needs sign/control of the whole kernel
+  `T_{\theta 0}/r_0 - s_0 \bar q`;
+  still, the current branch does already fix a small amount of kernel sign data:
+  from the active BC package
+  `\varphi_0(x_0)=\varphi_0(1)=0`
+  one gets the exact endpoint values
+  `c_0(x_0)=c_0(1)=1` and `s_0(x_0)=s_0(1)=0`;
+  and from the recorded intrinsic-center expansions
+  `c_0 = 1 + O(x^2)`,
+  `s_0 = Kx + O(x^3)`,
+  `T_{\theta 0}(x)=T_{s0}(0)+O(x^2)`,
+  the theorem-facing local line already gives `c_0 > 0` on a sufficiently
+  small near-center interval;
+  by continuity and `c_0(1)=1`, it also gives `c_0 > 0` on a sufficiently
+  small interval near the right edge;
+  and the same clean background equation
+  `\varphi_0' = \Lambda(M_{s0} - \nu M_{\theta 0})`
+  gives the exact integral representation
+  `\varphi_0(x)
+   = \Lambda \int_{x_0}^x [M_{s0}(\xi)-\nu M_{\theta 0}(\xi)]\, d\xi`,
+  so `\varphi_0(1)=0` also forces the exact cancellation identity
+  `\int_{x_0}^1 [M_{s0}(\xi)-\nu M_{\theta 0}(\xi)]\, d\xi = 0`;
+  because the current branch package makes `\varphi_0` at least `C^1` on
+  `[x_0,1]`, Rolle's theorem therefore yields at least one interior point
+  `x_* \in (x_0,1)` with `\varphi_0'(x_*)=0`, equivalently
+  `M_{s0}(x_*) = \nu M_{\theta 0}(x_*)`;
+  but this is still only local/endpoint control:
+  the repo does not yet contain a theorem-facing range-preservation theorem for
+  `\varphi_0`, so it does not exclude interior sign changes of `\varphi_0` and
+  hence does not prove global positivity of `c_0`;
+  likewise it does not sign `s_0`, because the sign of `K` is not fixed and no
+  branch theorem excludes sign changes of `\varphi_0`;
+  and it does not give one-sided control of
+  `e_{\theta 0} = (r_0-x)/x`, so there is still no theorem-facing one-sided
+  estimate for `T_{\theta 0} = \nu T_{s0} + e_{\theta 0}`;
+  so even the strongest currently visible coupled integral identity remains
+  sign-indefinite on the present branch record;
+  the exact first coupled-background obstruction is therefore now narrower:
+  because the equal-endpoint BC package already forces an interior stationary
+  point, a literal global one-sign theorem for `\varphi_0'` cannot be the
+  right next target unless one also proves `\varphi_0 \equiv 0`;
+  the first missing kernel-sign ingredient is therefore better read as a
+  theorem-facing global range-preservation / turning-angle bound for
+  `\varphi_0` strong enough to keep `|\varphi_0| < \pi/2` and hence promote
+  the currently local `c_0 > 0` facts to the whole branch interval; even after
+  that, one would still need one-sided control of `e_{\theta 0}` and hence of
+  `T_{\theta 0}` to sign the `A`-kernel;
+  a still narrower theorem-facing reduction now sharpens this further and
+  replaces that stronger two-layer route as the default next target:
+  rewriting the exact `A` equation as
+  `A' + [(1-\nu c_0)/r_0]A = e_{\theta 0}/r_0 - \bar q s_0 - \nu s_0 B/r_0`,
+  introducing
+  `\eta(x) := \exp(\int_{x_0}^x (1-\nu c_0(s))/r_0(s)\, ds) > 0`,
+  and using the exact `B` formula
+  `B(x) = -\mu(x)^{-1}\bar q \int_{x_0}^x \mu(\xi)c_0(\xi)\, d\xi`,
+  one gets the exact reduced identity
+  `T_{s0}(0) = -\int_{x_0}^1 \eta(\xi) F_T(\xi)\, d\xi`,
+  where
+  `F_T(\xi)
+   := e_{\theta 0}(\xi)/r_0(\xi)
+      - \bar q s_0(\xi) H(\xi)`,
+  with
+  `H(\xi)
+   := 1 - \nu J(\xi)/(r_0(\xi)\mu(\xi))`
+  and
+  `J(\xi) := \int_{x_0}^{\xi} \mu(\tau)c_0(\tau)\, d\tau`;
+  because `\eta > 0`, the truly minimal sufficient kernel package is now a
+  sign/interval estimate on the single combined kernel `F_T`:
+  `F_T \ge 0` a.e. gives `T_{s0}(0) \le 0`,
+  `F_T \le 0` a.e. gives `T_{s0}(0) \ge 0`,
+  and any bounds `a \le F_T \le b` give
+  `-b\int_{x_0}^1 \eta \le T_{s0}(0) \le -a\int_{x_0}^1 \eta`;
+  under the physical-semantic screening rule, stronger separate sign theorems
+  for `c_0`, `s_0`, or `e_{\theta 0}` are therefore no longer the default next
+  target unless a restricted geometry class is stated explicitly or no weaker
+  sufficient estimate is available;
+  one structured but still screening-compatible sufficient package for the
+  upper bound `T_{s0}(0) \le 0` is:
+  first prove `H \ge 0`,
+  then prove the weighted domination
+  `\int_{x_0}^1 \eta(\xi)e_{\theta 0}(\xi)/r_0(\xi)\, d\xi
+   \ge
+   \bar q \int_{x_0}^1 \eta(\xi)(H(\xi)s_0(\xi))^+\, d\xi`,
+  or the stronger pointwise estimate
+  `e_{\theta 0}/r_0 \ge \bar q (Hs_0)^+`;
+  what is currently available theorem-facingly is still only
+  `\mu,\eta > 0`, the exact trigonometric bounds `|c_0| \le 1`,
+  `|s_0| \le 1`, and the previously recorded local/endpoint positivity facts
+  for `c_0`;
+  a still narrower auxiliary-kernel pass now shows that `H` itself does close
+  theorem-facingly as an exact weighted first-order quantity:
+  with
+  `J(x) := \int_{x_0}^x \mu(t)c_0(t)\, dt`
+  and
+  `H(x) := 1 - \nu J(x)/(r_0(x)\mu(x))`,
+  one has the exact identities
+  `H(x_0)=1`,
+  `(r_0\mu(H-1))' = -\nu \mu c_0`,
+  equivalently
+  `(r_0\mu H)' = \mu(r_0' + 1 - \nu c_0)`,
+  and therefore
+  `H'
+   = (r_0' + 1 - \nu c_0)/r_0 - ((r_0'+1)/r_0)H`;
+  because `r_0(x_0)=x_0`, `\mu(x_0)=1`, and `c_0(x_0)=1`,
+  this gives the exact initial slope
+  `H'(x_0) = -\nu/x_0 < 0`;
+  in particular, `H` is theorem-facingly positive on some sufficiently small
+  right-neighborhood of `x_0`;
+  the same exact formulas also show two clean one-sided statements that would
+  be sufficient in principle:
+  if `c_0 \ge 0` on the whole interval then `H \le 1`,
+  and if `r_0' + 1 - \nu c_0 \ge 0` on the whole interval then `H > 0`;
+  however neither of those global hypotheses is currently theorem-facingly
+  available on the present branch record;
+  so the repo still lacks global sign/range control of `H`, any one-sided
+  control of `e_{\theta 0}/r_0`, and any weighted domination estimate for the
+  positive part of the `Hs_0` contribution;
+  control of `H` alone does not yet sign
+  `F_T = e_{\theta 0}/r_0 - \bar q s_0 H`,
+  because neither `s_0` nor `e_{\theta 0}/r_0` is signed theorem-facingly;
+  rewriting the same combined kernel as
+  `F_T(x) = 1/x - 1/r_0(x) - \bar q s_0(x)H(x)`
+  now makes the minimal balance completely explicit:
+  because `x > 0` on `[x_0,1]` and the current reduction uses `r_0 > 0`,
+  the pure geometry defect term has the exact sign identity
+  `\operatorname{sign}(1/x - 1/r_0) = \operatorname{sign}(r_0 - x)`;
+  equivalently
+  `1/x - 1/r_0 = (r_0-x)/(x r_0) = e_{\theta 0}/r_0`;
+  so the strongest easy pointwise sufficient packages are:
+  `r_0 \ge x` and `s_0 H \le 0` imply `F_T \ge 0`,
+  while `r_0 \le x` and `s_0 H \ge 0` imply `F_T \le 0`;
+  but under the physical-semantic screen those are stronger than necessary and
+  should not be the default next target.
+  The weaker direct pointwise dominance packages are:
+  `r_0 - x \ge \bar q\, x r_0 (s_0 H)^+` a.e. implies `F_T \ge 0` a.e.,
+  and
+  `x - r_0 \ge \bar q\, x r_0 (-s_0 H)^+` a.e. implies `F_T \le 0` a.e.;
+  because `\eta > 0`, the corresponding weaker weighted sufficient packages
+  are
+  `\int_{x_0}^1 \eta(x)\,(r_0(x)-x)/(x r_0(x))\, dx
+   \ge
+   \bar q \int_{x_0}^1 \eta(x)(s_0(x)H(x))^+\, dx`
+  for `T_{s0}(0) \le 0`,
+  and
+  `\int_{x_0}^1 \eta(x)\,(x-r_0(x))/(x r_0(x))\, dx
+   \ge
+   \bar q \int_{x_0}^1 \eta(x)(-s_0(x)H(x))^+\, dx`
+  for `T_{s0}(0) \ge 0`;
+  these are weaker and more honest default targets than global sign theorems
+  for `\varphi_0`, `s_0`, or `e_{\theta 0}`.
+  What is currently available theorem-facingly on this rewritten form is still
+  only the endpoint information
+  `r_0(x_0)=x_0`, `s_0(x_0)=0`, `H(x_0)=1`, hence `F_T(x_0)=0`,
+  together with the earlier local positivity of `H` near `x_0`;
+  the repo still has no global sign or interval law for `r_0-x`,
+  no sign or size control of `s_0 H`,
+  and no weighted dominance estimate between those two terms;
+  a narrower weighted audit now also shows that the present clean ODE/BC
+  package does not yet supply a theorem-facing route to that `\eta`-weighted
+  dominance estimate itself:
+  differentiating `\eta`, rewriting the geometry defect as
+  `e_{\theta 0}/r_0 = (r_0-x)/(x r_0)`, rewriting the same term through
+  `r_0' = (1+e_{s0})c_0`, and rewriting the coupling factor through the exact
+  `H,J,\mu` identities all stay exact but do not produce a sign-coercive
+  cancellation or comparison law after integration;
+  under the physical-semantic screen, stronger fallback targets such as global
+  sign theorems for `\varphi_0`, `s_0`, or `e_{\theta 0}`, or the stronger
+  pointwise dominance packages, therefore fail as the default next move
+  because they are stronger than the active weighted need;
+  the exact first missing ingredient is now best read as a new
+  theorem-facing `\eta`-weighted comparison / cancellation identity or bound,
+  most naturally either a weighted lower bound for
+  `\int_{x_0}^1 \eta(r_0-x)/(x r_0)` or a weighted upper bound for
+  `\int_{x_0}^1 \eta(s_0 H)^+`,
+  strong enough to close the weighted dominance inequality directly;
+  a further first-order multiplier audit now suggests that the present clean
+  background package is effectively exhausted at that reduction level:
+  other linear combinations of `(T_{s0},Q_0)` that cancel the `\varphi_0'`
+  skew-coupling are equivalent to the current rotated pair `(A,B)` up to a
+  constant invertible post-combination, because the cancellation transport is
+  already solved by the `\varphi_0`-rotation;
+  adjoint-style scalar multipliers on the resulting first-order equations then
+  reduce to the same integrating factors `\mu` and `\eta`, again up to
+  harmless constants;
+  weighted raw channels such as `(r_0T_{s0})'`, `(r_0Q_0)'`, `(r_0M_{s0})'`
+  are already the pre-rotated identities behind the current route;
+  and combinations involving `M_{s0}`, `\varphi_0`, `c_0`, `s_0`, or
+  `e_{\theta 0}` do not currently add coercivity but only repackage the same
+  unresolved geometric kernels.
+  Under the physical-semantic screen, further arbitrary first-order
+  recombinations should therefore not be promoted as default next targets;
+  the exact first missing ingredient is no longer another first-order
+  multiplier, but a genuinely non-first-order background input capable of
+  proving one of the weighted bounds above;
+  among the plausible non-first-order classes, the current branch record now
+  points to one minimal honest default:
+  a global background integral theorem not reducible to first-order
+  multipliers, proving the weighted geometry-versus-coupling dominance behind
+  the active `F_T` route itself.
+  More concretely, the default next target should be a theorem-facing proof of
+  `\int_{x_0}^1 \eta(r_0-x)/(x r_0)
+   \ge
+   \bar q \int_{x_0}^1 \eta(s_0 H)^+`,
+  or of an equally weak one-sided variant sufficient for the sign of
+  `T_{s0}(0)`.
+  A higher-order background expansion theorem remains plausible in principle
+  but is too local by itself to control the already global weighted integral;
+  a branch-level interval law for `T_{s0}(0)` or `\lambda_c` would also be
+  sufficient, but it is broader than the active kernel need and therefore not
+  the minimal default next move;
+  and a restricted no-overturning / geometry-class theorem would alter the
+  intended branch statement and so fails the physical-semantic screen as a
+  default target unless later shown unavoidable;
+  a Green/adjoint-style global representation route has also now been checked:
+  at the reduced scalar level it is not genuinely new, because the present
+  `\eta`-weighted identity already is the adjoint/integrating-factor
+  representation of the reduced first-order transport equation for the active
+  kernel;
+  at the full background-BVP level the natural object would instead be the
+  adjoint of a canonical linearized first-order boundary-value problem for
+  `Y := (T_{s0},Q_0,M_{s0},r_0,\varphi_0)` with output
+  `\ell(Y)=T_{s0}(x_0)`,
+  but the repo does not yet fix such a theorem-facing linearized background BVP
+  on the active branch, and that route would naturally represent variations of
+  `\ell`, not the nonlinear quantity `\ell(Y)` itself;
+  so the adjoint/Green route is presently only a plausible heavier reserve
+  mechanism, not the minimal honest next input;
+  a still narrower direct-integral split now sharpens the same background step:
+  write
+  `I_{geom} := \int_{x_0}^1 \eta(x)(r_0(x)-x)/(x r_0(x))\, dx`
+  and
+  `I_{coup} := \int_{x_0}^1 \eta(x)(s_0(x)H(x))^+\, dx`.
+  For `I_{geom}`, the exact rewrites
+  `(r_0-x)/(x r_0) = e_{\theta 0}/r_0 = 1/x - 1/r_0`
+  and the background relation
+  `r_0' = (1+e_{s0})c_0`,
+  `e_{s0} = (1-\nu^2)T_{s0} - \nu e_{\theta 0}`
+  remain exact but still do not yield a theorem-facing lower bound after
+  integration: they reintroduce the unresolved quantities `T_{s0}` and `c_0`
+  instead of producing coercivity.
+  For `I_{coup}`, the exact `H,J,\mu,\eta` structure does give the identity
+  `((\eta J)/\mu)' = \eta c_0 H`,
+  so the current package naturally controls the weighted quantity
+  `\int \eta c_0 H`,
+  not the active positive part `\int \eta(s_0 H)^+`;
+  together with `|s_0| \le 1` this gives only soft estimates through `|H|`,
+  not a theorem-facing upper bound for `I_{coup}`.
+  Under the physical-semantic screen, stronger global sign theorems for
+  `\varphi_0`, `s_0`, or `e_{\theta 0}` are still not the default next move;
+  a further geometry-side pass now sharpens the negative read for `I_{geom}`:
+  using `r_0 = x(1+e_{\theta 0})` together with
+  `r_0' = (1+e_{s0})c_0` and
+  `e_{s0} = (1-\nu^2)T_{s0} - \nu e_{\theta 0}`,
+  one gets the exact linear geometry equation
+  `x e_{\theta 0}' + (1+\nu c_0)e_{\theta 0}
+   = c_0 - 1 + (1-\nu^2)T_{s0}c_0`;
+  because `r_0(x_0)=x_0`, one has `e_{\theta 0}(x_0)=0`, so with the positive
+  integrating factor
+  `\rho(x) := x \exp(\int_{x_0}^x \nu c_0(s)/s\, ds) > 0`
+  this yields the exact Volterra representation
+  `e_{\theta 0}(x)
+   = \rho(x)^{-1}\int_{x_0}^x \rho(\xi)
+     [c_0(\xi)-1+(1-\nu^2)T_{s0}(\xi)c_0(\xi)]/\xi\, d\xi`;
+  hence, after Fubini,
+  `I_{geom}
+   = \int_{x_0}^1 K_{geom}(\xi)
+     [c_0(\xi)-1+(1-\nu^2)T_{s0}(\xi)c_0(\xi)]/\xi\, d\xi`,
+  where
+  `K_{geom}(\xi)
+   := \rho(\xi)\int_{\xi}^1 \eta(x)/(r_0(x)\rho(x))\, dx \ge 0`,
+  with `K_{geom}(\xi)>0` for `\xi<1` and `K_{geom}(1)=0`;
+  so a genuine theorem-facing geometry-side route does exist:
+  a lower bound for `I_{geom}` reduces to a one-sided estimate on the source
+  combination `c_0-1+(1-\nu^2)T_{s0}c_0` under the positive kernel
+  `K_{geom}/x`.
+  This is sharper than the earlier raw rewrites, but it is still not closed:
+  the exact negative term `c_0-1 = -(1-c_0) \le 0` is controlled, while the
+  needed lower bound on `(1-\nu^2)T_{s0}c_0` is not yet theorem-facingly
+  available;
+  a source-term audit now sharpens one level further:
+  the exact active source is
+  `S := c_0 - 1 + (1-\nu^2)T_{s0}c_0 = -(1-c_0) + (1-\nu^2)T_{s0}c_0`,
+  which is currently the best theorem-facing form for a lower bound because it
+  isolates the already explicit negative piece `1-c_0`;
+  using
+  `(1-\nu^2)T_{s0} = e_{s0} + \nu e_{\theta 0}`
+  and
+  `r_0' = (1+e_{s0})c_0`,
+  one also has the exact kinematic rewrite
+  `S = r_0' - 1 + \nu c_0 e_{\theta 0}
+     = r_0' - 1 + \nu c_0(r_0-x)/x`,
+  but this is currently less suitable as the active lower-bound form:
+  it replaces the explicit negative term `c_0-1` by two pieces of unresolved
+  sign, `r_0'-1` and `\nu c_0 e_{\theta 0}`, and therefore mainly repackages
+  the same difficulty;
+  similarly, the half-angle rewrite
+  `c_0-1 = -2\sin^2(\varphi_0/2)`
+  is exact but only refines the already known negative part and does not by
+  itself improve the missing lower bound on the positive contribution.
+  So the raw split
+  `S = -(1-c_0) + (1-\nu^2)T_{s0}c_0`
+  should now be treated as the active source form, and the exact next source-
+  level target is a theorem-facing lower bound on `(1-\nu^2)T_{s0}c_0`
+  strong enough, under the positive kernel `K_{geom}/x`, to dominate the loss
+  term `1-c_0`;
+  a compensating-term audit now sharpens this one step further:
+  with
+  `J_{comp} := \int_{x_0}^1 [K_{geom}(x)/x](1-\nu^2)T_{s0}(x)c_0(x)\, dx`
+  and
+  `J_{loss} := \int_{x_0}^1 [K_{geom}(x)/x](1-c_0(x))\, dx`,
+  the active geometry identity becomes exactly
+  `I_{geom} = J_{comp} - J_{loss}`,
+  so the desired comparison `J_{comp} \ge J_{loss}` is equivalent to
+  `I_{geom} \ge 0`.
+  The exact compensating-term rewrites currently available are
+  `(1-\nu^2)T_{s0}c_0`
+  itself,
+  `c_0 e_{s0} + \nu c_0 e_{\theta 0}`,
+  and
+  `r_0' - c_0 + \nu c_0 e_{\theta 0}`;
+  but none of them yet yields a theorem-facing one-sided estimate after
+  weighting by `K_{geom}/x`.
+  In particular, multiplying the `T_{s0}` equation by `c_0` or re-expressing
+  `T_{s0}` through the rotated variables `(A,B)` only repackages the same
+  unresolved sign structure and does not currently improve the lower-bound
+  problem.
+  So the correct active object is indeed the weighted compensating term, but
+  the exact next target is now the weakest direct comparison:
+  prove `J_{comp} \ge J_{loss}`, or any equally weak one-sided integral
+  estimate implying it;
+  a cumulative-functional audit now sharpens this comparison one step further:
+  for
+  `D(y) := \int_{x_0}^y [K_{geom}(x)/x]
+    ((1-\nu^2)T_{s0}(x)c_0(x) - (1-c_0(x)))\, dx`,
+  one has the exact endpoint data `D(x_0)=0`, `D(1)=I_{geom}`, and
+  the exact differential law
+  `D'(y) = [K_{geom}(y)/y]S(y)`;
+  using the geometry equation
+  `y e_{\theta 0}' + (1+\nu c_0)e_{\theta 0} = S`
+  together with
+  `K_{geom}' = K_{geom}(1+\nu c_0)/y - \eta/r_0`,
+  this becomes the exact cumulative identity
+  `D'(y) = (K_{geom}(y)e_{\theta 0}(y))' + \eta(y)e_{\theta 0}(y)/r_0(y)`,
+  hence
+  `D(y)
+   = K_{geom}(y)e_{\theta 0}(y)
+   + \int_{x_0}^y \eta(x)e_{\theta 0}(x)/r_0(x)\, dx`.
+  So a genuine cumulative law for `D` does exist, but it is not yet
+  sign-closing: monotonicity or positivity of `D` would still require a
+  theorem-facing one-sided estimate on `e_{\theta 0}` or on `S`.
+  Read physically, `e_{\theta 0}` is the circumferential strain /
+  circumferential-stretch defect, with
+  `\lambda_{\theta 0} := r_0/x = 1 + e_{\theta 0}`.
+  Because `r_0(x_0)=x_0`, one has the exact endpoint data
+  `e_{\theta 0}(x_0)=0` and `\lambda_{\theta 0}(x_0)=1`;
+  because `x>0` on `[x_0,1]` and the current reduction is written on the clean
+  branch with `r_0>0`, the current theorem-facing package also gives the weak
+  admissibility floor `\lambda_{\theta 0}>0`, equivalently
+  `e_{\theta 0}>-1`.
+  The same cumulative identity may therefore be rewritten exactly as
+  `D(y)
+   = K_{geom}(y)(\lambda_{\theta 0}(y)-1)
+   + \int_{x_0}^y [\eta(x)/x]\,(1-\lambda_{\theta 0}(x)^{-1})\, dx`.
+  In particular, because `K_{geom}(1)=0`, the active endpoint quantity reduces
+  exactly to
+  `D(1)=I_{geom}
+   = \int_{x_0}^1 [\eta(x)/x]\,(1-\lambda_{\theta 0}(x)^{-1})\, dx`.
+  This is physically meaningful, but the presently available admissibility
+  floor is still too weak to sign `D`: positivity of `\lambda_{\theta 0}`
+  alone only gives `e_{\theta 0}>-1`, while the kernel
+  `1-\lambda_{\theta 0}^{-1}` remains unbounded below as
+  `\lambda_{\theta 0}\downarrow 0`.
+  Since `1-\lambda_{\theta 0}^{-1}` is strictly increasing on `(0,\infty)`,
+  any pointwise lower bound `\lambda_{\theta 0}(x)\ge \lambda_* > 0` gives the
+  exact consequence
+  `D(1) \ge W_\eta(1-\lambda_*^{-1})`,
+  where
+  `W_\eta := \int_{x_0}^1 \eta(x)/x\, dx > 0`.
+  Therefore, among pure pointwise lower bounds, the weakest sufficient bound is
+  exactly `\lambda_{\theta 0}\ge 1`;
+  any weaker uniform floor `\lambda_{\theta 0}\ge \lambda_*` with
+  `0<\lambda_*<1`, equivalently `\lambda_{\theta 0}\ge 1-\delta` with
+  `\delta>0`, is not sufficient by itself.
+  A weaker cumulative sufficient package is instead the weighted harmonic-mean
+  condition
+  `\int_{x_0}^1 [\eta(x)/(x\lambda_{\theta 0}(x))]\, dx
+   \le \int_{x_0}^1 \eta(x)/x\, dx`,
+  equivalently
+  `H_{\eta/x}(\lambda_{\theta 0}) \ge 1`;
+  this is strictly weaker than pointwise `\lambda_{\theta 0}\ge 1` and is the
+  best current admissibility-type target visible in the exact endpoint formula.
+  Moreover, if one sets `u := \lambda_{\theta 0}^{-1}`, then the exact
+  geometry equation
+  `x e_{\theta 0}' + (1+\nu c_0)e_{\theta 0} = S`,
+  with `e_{\theta 0} = \lambda_{\theta 0}-1`, gives the exact inverse-stretch
+  Riccati equation
+  `x u' = (1+\nu c_0)u - (1+\nu c_0 + S)u^2`,
+  where `u(x_0)=1`.
+  The harmonic-mean target is therefore exactly the weighted upper bound
+  `\int_{x_0}^1 [\eta(x)/x]u(x)\, dx \le \int_{x_0}^1 \eta(x)/x\, dx`.
+  The natural comparator is `u \equiv 1`, but its defect is
+  `x(1)' - [(1+\nu c_0) - (1+\nu c_0 + S)] = S`, equivalently the right-hand
+  side of the `u`-equation at `u=1` is `-S`.
+  Setting `w := 1-u` gives the exact comparison equation
+  `x w' = S - (1+\nu c_0+2S)w + (1+\nu c_0+S)w^2`,
+  with `w(x_0)=0`.
+  Hence, among pure state-independent pointwise controls on `S` alone,
+  `S \ge 0` is the weakest sufficient condition making `u \equiv 1` a useful
+  global barrier:
+  at every contact point with `w=0`, one has `x w' = S`, so a first crossing
+  from `w\ge 0` to `w<0` is excluded if `S\ge 0`.
+  This yields the pointwise comparison `u \le 1`, hence `D(1)\ge 0`.
+  Read physically, the source
+  `S = -(1-c_0) + (1-\nu^2)T_{s0}c_0`
+  splits into an exact geometric turning/projection loss
+  `c_0-1 = -2\sin^2(\varphi_0/2) \le 0`
+  and a meridional constitutive compensation
+  `(1-\nu^2)T_{s0}c_0`.
+  So `S\ge 0` means precisely that this compensating membrane contribution
+  dominates the geometric loss pointwise.
+  Any weaker state-independent pointwise floor on `S` that allows `S<0`
+  somewhere is not enough by itself to preserve the barrier at a contact
+  point.
+  In particular, a uniform floor `S\ge -\varepsilon` with `\varepsilon>0`
+  does not suffice by itself.
+  Weaker sufficient packages do exist in principle, but none is presently both
+  theorem-facing and cleaner than the active target:
+  positivity of `S` only on a decisive subregion would suffice if a theorem-
+  facing first-contact localization were available;
+  a trajectory-dependent bound such as `S\ge -A(x)w` would also suffice, since
+  it still forces `S\ge 0` at every contact point with `w=0`, but this is not
+  currently a physically independent branch law;
+  and the weighted condition
+  `\int_{x_0}^1 [K_{geom}(x)/x]S(x)\, dx \ge 0`
+  is weaker but already exactly equivalent to `D(1)\ge 0`.
+  A weaker endpoint-only sufficient package is the positive-kernel condition
+  `\int_{x_0}^1 [K_{geom}(x)/x]S(x)\, dx \ge 0`,
+  which is exactly equivalent to `D(1)\ge 0`; this is weaker than pointwise
+  `S\ge 0`, but it is not a genuine simplification of the target.
+  So the exact current obstruction is not lack of another rewrite: it is the
+  absence of a theorem-facing one-sided control on `S` strong enough to feed
+  either the barrier route `S\ge 0` or the weaker weighted endpoint condition
+  above.
+  At the current theorem-facing level, `S\ge 0` therefore remains the only
+  clearly formulated physically meaningful sufficient control on `S` itself;
+  no weaker non-equivalent one-sided control is yet sharp on the current clean
+  branch record.
+  Under the physical-semantic screen, promoting a global sign theorem for
+  `e_{\theta 0}` as the default next move would still be stronger than needed;
+  the honest cumulative next target is instead a weak admissibility theorem or
+  cumulative lower bound for `\lambda_{\theta 0}` strong enough to imply the
+  weighted harmonic-mean inequality above and hence `D(1) \ge 0`;
+  if that route still cannot be derived theorem-facingly from the clean
+  background ODE/BC package, then this weighted harmonic-mean inequality
+  itself is the minimal fallback assumption; it should not be replaced by
+  stronger pointwise or angle-sign assumptions by default.
+  The route split should now be read explicitly:
+  on the `LC-only` line, the geometry-side endpoint remains open unless one
+  proves one-sided control on `S` through the Riccati comparison for
+  `u = \lambda_{\theta 0}^{-1}`;
+  on the fallback line conditional on `LC + LC-HM` (with `LC-HM` as registered
+  in `docs/assumptions/assumptions.md`), the geometry-side endpoint
+  `D(1)\ge 0` is closed by assumption.
+  This `LC + LC-HM` closure is fallback-only: it is weaker than pointwise
+  `\lambda_{\theta 0}\ge 1` and weaker than global sign assumptions on
+  `\varphi_0`, `c_0`, or `e_{\theta 0}`, but it does not replace the
+  preferred LC-only theorem route through `S`.
+  Under `LC + LC-HM`, the geometry-side endpoint should therefore no longer be
+  treated as the active blocker: the next actual blocker on that fallback
+  line is the coupling side, namely the missing theorem-facing upper bound for
+  `I_{coup} := \int_{x_0}^1 \eta(s_0 H)^+`, equivalently the lack of direct
+  control of the coupling contribution in the active `F_T` identity.
+  so the direct integral split is sharp, but no direct bound is yet available,
+  and the more natural next subtarget is now the geometry side `I_{geom}`
+  rather than the coupling side `I_{coup}`;
+  so the honest next background target is now weaker and sharper:
+  prove a direct theorem-facing sign/interval estimate on `F_T`, or one layer
+  higher a proof of `H > 0` or `H \ge 0` together with the weighted domination
+  above; if one insists on first closing `H`, the clean sufficient source-level
+  target is now the sign condition `r_0' + 1 - \nu c_0 \ge 0`, not a stronger
+  global angle-sign theorem;
+  so, for the clean-background route back to the flexural quadratic/Hurwitz
+  step, the branch is no longer blocked first by local packaging or by an
+  independent unknown `K`, but by the missing intrinsic sign/interval control
+  of `T_{s0}(0)` / `\lambda_c`.
 - strict-line boundary:
   this conditional reduction does not discharge Assumption LC and does not
   close the strict ambient-to-local continuation theorem.

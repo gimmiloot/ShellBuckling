@@ -35,6 +35,34 @@ punctured local continuation, должны читаться **условно п�
 
 ---
 
+## LC-HM. Взвешенное harmonic-mean admissibility fallback для clean full simple-support `J_0` ветки
+
+**Формулировка.** Условно под Assumption LC, если theorem-facing one-sided
+control on
+`S = -(1-c_0) + (1-\nu^2)T_{s0}c_0`
+через scalar Riccati comparison for
+`u = \lambda_{\theta 0}^{-1}`, `\lambda_{\theta 0} = r_0/x`,
+не получен из текущего clean background ODE/BC package, то на
+LC-conditional line принимается минимальное fallback assumption
+`\int_{x_0}^1 \eta(x)/(x\lambda_{\theta 0}(x))\, dx
+ \le \int_{x_0}^1 \eta(x)/x\, dx`,
+эквивалентно
+`D(1) = \int_{x_0}^1 [\eta(x)/x](1-\lambda_{\theta 0}(x)^{-1})\, dx \ge 0`.
+
+**Проверялось ли:** нет, theorem-facingly из текущего clean background
+package пока не выведено.
+
+**Как используется:** как минимальное weak weighted circumferential-stretch
+admissibility condition на активной clean LC-conditional line; оно строго
+слабее pointwise `\lambda_{\theta 0}\ge 1` и слабее глобальных sign
+assumptions на `\varphi_0`, `c_0`, `e_{\theta 0}`. Более сильные
+pointwise/geometric assumptions не должны вводиться по умолчанию, пока не
+станет ясно, что они действительно необходимы для Riccati comparison.
+
+**Текущий статус:** **не подтверждено**.
+
+---
+
 ## A1. Простая замена background внутри старой reduced/full архитектуры может исправить критерий
 
 **Формулировка.** Было предположение, что достаточно заменить докритический фон, не меняя принципиально сам старый linearized class.

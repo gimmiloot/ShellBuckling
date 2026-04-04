@@ -5349,3 +5349,1840 @@ Most valuable next proof pilots:
   audit the flexural block `G_{flex}` theorem-facingly:
   compute `\ker G_{flex}`, prove `1 \notin \sigma(G_{flex})`, and exclude
   `0 < \Re \lambda < 1`.
+
+### V-S100. Conditional on Assumption LC, the flexural block `G_{flex}` now has explicit determinant and characteristic-polynomial packaging; the exact remaining blocker is the sign/factorization analysis of that cubic
+
+- ID: `V-S100`
+- Claim / Hypothesis:
+  Fix `(n,q)` and assume Assumption LC.
+  Take the flexural block
+  \[
+  G_{flex}
+  =
+  \begin{pmatrix}
+  -n & -\lambda_c & 0 \\
+  \nu n^2/\lambda_c & -(n-1)-\nu/\lambda_c & \Lambda(1-\nu^2) \\
+  -n^2\!\left[\frac{1}{\Lambda \lambda_c} + \frac{2}{C_{tw}}\right] &
+  \frac{1}{\Lambda \lambda_c} - \frac{n^2(\lambda_c-1)}{C_{tw}} &
+  \nu - n + 1
+  \end{pmatrix}
+  \]
+  already extracted from the explicit restricted matrix `A_{comp}`.
+  Since `\Lambda = (1-\nu) C_{tw}`, the similarity scaling
+  `\widetilde G_{flex}
+   = \operatorname{diag}(1,1,\Lambda)\, G_{flex}\,
+     \operatorname{diag}(1,1,\Lambda)^{-1}`
+  removes `\Lambda` from the third column and yields
+  \[
+  \widetilde G_{flex}
+  =
+  \begin{pmatrix}
+  -n & -\lambda_c & 0 \\
+  \nu n^2/\lambda_c & -(n-1)-\nu/\lambda_c & 1-\nu^2 \\
+  -n^2\!\left[\frac{1}{\lambda_c} + 2(1-\nu)\right] &
+  \frac{1}{\lambda_c} - n^2(1-\nu)(\lambda_c-1) &
+  \nu - n + 1
+  \end{pmatrix},
+  \]
+  which has the same spectrum as `G_{flex}`.
+  Writing `c_\nu := (1-\nu)^2(1+\nu)`, one gets the explicit cubic
+  \[
+  \chi_{flex}(\lambda)
+  :=
+  \det(\widetilde G_{flex} - \lambda I)
+  =
+  -(n+\lambda)\Bigl(
+    (n-1+\lambda)^2
+    - \frac{\nu(\lambda_c-1)}{\lambda_c}(n-1+\lambda)
+    - \frac{1}{\lambda_c}
+    + n^2 c_\nu (\lambda_c-1)
+  \Bigr)
+  +
+  n^2\Bigl(
+    1 - \nu(n-1+\lambda) + 2\lambda_c c_\nu
+  \Bigr).
+  \]
+  Therefore
+  \[
+  \lambda_c \det G_{flex}
+  =
+  n^2(2-n)c_\nu \lambda_c^2
+  +
+  n\Bigl(
+    n^2 c_\nu - n^2 + 3n - 1 - \nu (n-1)^2
+  \Bigr)\lambda_c
+  +
+  n\bigl(1-\nu(n-1)\bigr),
+  \]
+  and
+  \[
+  \lambda_c \det(G_{flex}-I)
+  =
+  -n^2(n-1)c_\nu \lambda_c^2
+  +
+  \Bigl(
+    n^2(n+1)c_\nu - n\bigl(n^2(1+\nu)-\nu(n+1)\bigr)
+  \Bigr)\lambda_c
+  -
+  (n+1)(n\nu-1).
+  \]
+  The theorem-facing parameter regime currently recorded on this clean branch
+  is only the coarse positivity package
+  `\lambda_c > 0`, `\nu > 0`, active nonshallow clean modes `n \ge 4`,
+  `C_{tw} = 12(1+\nu)\mu^2 > 0`, and
+  `\Lambda = 12(1-\nu^2)\mu^2 = (1-\nu)C_{tw}`;
+  the repo does not yet record a sharper branch inequality linking
+  `\lambda_c` to `(n,\nu)` strongly enough to decide those two quadratic tests
+  or the Hurwitz determinants of `\chi_{flex}`.
+  So the flexural spectral audit is no longer blocked by missing determinant or
+  characteristic-polynomial packaging:
+  `\lambda=0` and `\lambda=1` reduce to explicit quadratic conditions in
+  `\lambda_c`, and the exclusion of `0 < \Re \lambda < 1` reduces to a
+  sign/factorization / Hurwitz analysis of the same explicit cubic.
+  But the repo still does not contain that last parameter-aware sign analysis,
+  and the older frozen-principal flexural determinants from the checked
+  recurrence line do not directly close the corrected-cubic argument for this
+  `G_{flex}`.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/current_simple_support_minimal_9channel_block_draft.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `reduced conditionally under LC / determinant and cubic packaging closed, exact remaining blocker is parameter-aware sign analysis of chi_flex`
+- What counts as verification:
+  a theorem-facing analysis of the explicit cubic `\chi_{flex}` proving all
+  remaining flexural spectral points:
+  1. whether the current clean branch really satisfies `\det G_{flex} = 0`;
+  2. `\det(G_{flex}-I) \neq 0`;
+  3. no root of `\chi_{flex}` lies in `0 < \Re \lambda < 1`;
+  4. if `0` is a root, then it is simple / semisimple;
+  5. and this analysis must use only the parameter inequalities actually fixed
+     theorem-facingly on the clean branch.
+- Verification method:
+  manual determinant and characteristic-polynomial derivation from the explicit
+  flexural matrix, together with comparison against the older frozen-principal
+  recurrence determinants to identify exactly what they do and do not prove for
+  the corrected intrinsic-local cubic.
+- Verification boundary:
+  this does not prove Assumption LC and does not close the strict
+  ambient-to-local continuation theorem. It records only that the flexural
+  audit is now reduced from "package the matrix" to "analyze the explicit cubic
+  `\chi_{flex}`".
+- Next action:
+  perform the sign/factorization / Hurwitz audit of the explicit cubic
+  `\chi_{flex}` and decide the `\lambda=0`, `\lambda=1`, and
+  `0 < \Re \lambda < 1` questions directly from that polynomial.
+
+### V-S101. Conditional on Assumption LC, the currently recorded `\lambda_c` facts are not yet strong enough for the flexural Hurwitz step; the missing ingredient should remain an open theorem target, not a new standing assumption
+
+- ID: `V-S101`
+- Claim / Hypothesis:
+  Fix `(n,q)` and assume Assumption LC.
+  On the present clean branch, the theorem-facing `\lambda_c` package already
+  recorded in the repo consists of:
+  the intrinsic-center identities
+  `\lambda_c = \lambda_{s0}(0) = \lambda_{\theta 0}(0)`,
+  `\lambda_{\theta 0} = \lambda_c + O(x^2)`,
+  `r_0 = \lambda_c x + O(x^3)`,
+  the coarse positivity `\lambda_c > 0`, and the separate selected trace-layer
+  convention `\lambda_{\theta 0}(x_0) = 1`.
+  These data are enough to package the corrected local operator and the
+  flexural cubic `\chi_{flex}`, but they are not enough to decide the signs of
+  `\det G_{flex}`, `\det(G_{flex}-I)`, or the Hurwitz determinants of
+  `\chi_{flex}`.
+  The stronger branch reading that representative active clean selected points
+  have `\lambda_c = \lambda_{s0}(x_0)` slightly above `1` remains only
+  live-check / pilot evidence.
+  Therefore the exact missing ingredient is a theorem-facing intrinsic
+  clean-branch inequality package for `\lambda_c` relative to `(n,\nu)`;
+  on the current branch reading this should remain an open theorem target
+  rather than be promoted to a new standing assumption parallel to
+  Assumption LC.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `docs/theory/current_simple_support_minimal_9channel_block_draft.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `reduced conditionally under LC / theorem-facing lambda_c package too weak for Hurwitz, exact missing ingredient is an intrinsic clean-branch inequality package for lambda_c`
+- What counts as verification:
+  a theorem-facing derivation, from the clean background/local equations rather
+  than representative live checks alone, of branch inequalities for
+  `\lambda_c` strong enough to decide:
+  1. whether `\det G_{flex}` vanishes on the current branch;
+  2. whether `\det(G_{flex}-I)` stays nonzero;
+  3. the Hurwitz sign conditions for `\chi_{flex}`.
+- Verification method:
+  manual theorem-facing audit of all currently recorded `\lambda_c` facts,
+  together with explicit separation of intrinsic-center statements,
+  selected-trace statements, and pilot/live-check statements.
+- Verification boundary:
+  this does not prove Assumption LC, does not close the strict continuation
+  line, and does not justify adding a new narrow `\lambda_c` assumption.
+  It records only that the currently available `\lambda_c` facts are
+  insufficient for the flexural sign/Hurwitz step.
+- Next action:
+  derive or identify an intrinsic clean-branch inequality package for
+  `\lambda_c` relative to `(n,\nu)` from the clean background/local equations;
+  if that still fails, then reassess whether a separate narrow working
+  assumption is scientifically justified.
+
+### V-S102. Conditional on Assumption LC, the origin chain of `\lambda_c` is now identified: it is the common center stretch of the clean axisymmetric background branch, and the exact next missing ingredient is a clean-background branch law for that quantity
+
+- ID: `V-S102`
+- Claim / Hypothesis:
+  Fix `(n,q)` and assume Assumption LC.
+  On the current clean branch, `\lambda_c` is not introduced first through the
+  local flexural matrix; it comes from the clean axisymmetric background
+  itself.
+  In the live background package one has
+  `e_{\theta 0} = (r_0-x)/x`,
+  `e_{s0} = (1-\nu^2)T_{s0} - \nu e_{\theta 0}`,
+  `\lambda_{s0} = 1 + e_{s0}`,
+  `\lambda_{\theta 0} = r_0/x`,
+  and `r_0' = (1+e_{s0}) c_0`.
+  The intrinsic-center expansion used on the local theorem line then records
+  `\lambda_{s0}(0) = \lambda_{\theta 0}(0) = \lambda_c`,
+  `\lambda_{s0} = \lambda_c + O(x^2)`,
+  `\lambda_{\theta 0} = \lambda_c + O(x^2)`,
+  `r_0 = \lambda_c x + O(x^3)`.
+  Thus `\lambda_c` is the common center stretch carried by the clean
+  axisymmetric background branch itself, not a removable local normalization
+  parameter.
+  The checked honest background recurrence fixes the later center coefficients
+  `Ts2, U3, K3, Ms2, Q3`, but the repo does not yet contain a theorem-facing
+  branch law or inequality fixing `\lambda_c` itself strongly enough for the
+  flexural quadratic tests or Hurwitz minors.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/formal_local_family_check.py`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `reduced conditionally under LC / origin chain of lambda_c identified, exact missing ingredient is a clean-background branch law for the common center stretch`
+- What counts as verification:
+  a theorem-facing derivation from the clean axisymmetric background equations,
+  rather than from local spectral packaging or representative live checks
+  alone, of inequalities or interval control for the common center stretch
+  `\lambda_c` strong enough to decide:
+  1. whether `\det G_{flex}` vanishes on the branch;
+  2. whether `\det(G_{flex}-I)` stays nonzero;
+  3. the Hurwitz sign conditions for `\chi_{flex}`.
+- Verification method:
+  manual audit of the live clean background definitions, the intrinsic-center
+  expansion, and the current checked recurrence bookkeeping to separate what is
+  determined by the local recurrence from what still belongs to the clean
+  background branch itself.
+- Verification boundary:
+  this does not prove Assumption LC, does not close the strict continuation
+  line, and does not yet derive any nontrivial interval or monotonicity law for
+  `\lambda_c`.
+- Next action:
+  attack the clean background directly and derive a theorem-facing branch law,
+  interval control, or monotonicity statement for the common center stretch
+  `\lambda_c`; further local flexural algebra is no longer the first missing
+  step.
+
+### V-S103. Conditional on Assumption LC, the clean background leading center system closes algebraically to two free coefficients; the first remaining Hurwitz blocker is still sharper branch control of `T_{s0}(0)` / `\lambda_c`
+
+- ID: `V-S103`
+- Claim / Hypothesis:
+  Fix `(n,q)` and assume Assumption LC.
+  On the current clean branch, the live background definitions give
+  `e_{\theta 0} = (r_0-x)/x`,
+  `e_{s0} = (1-\nu^2)T_{s0} - \nu e_{\theta 0}`,
+  `\lambda_{s0} = 1 + e_{s0}`,
+  `\lambda_{\theta 0} = r_0/x`,
+  and the intrinsic-center expansion records
+  `\lambda_{s0}(0) = \lambda_{\theta 0}(0) = \lambda_c`.
+  Therefore
+  `e_{\theta 0}(0) = \lambda_c - 1`,
+  `e_{s0}(0) = (1-\nu^2)T_{s0}(0) - \nu(\lambda_c - 1)`,
+  and
+  `\lambda_c = 1 + e_{s0}(0)`.
+  Substituting and solving gives
+  `(1+\nu)(\lambda_c - 1) = (1-\nu^2)T_{s0}(0)`,
+  hence exactly
+  `\lambda_c - 1 = (1-\nu)T_{s0}(0)`.
+  So the missing clean-background branch law for `\lambda_c` is now
+  equivalently a theorem-facing sign/interval theorem for the center
+  meridional background quantity `T_{s0}(0)`.
+  But the repo still does not record theorem-facing sign, interval, or
+  monotonicity control for `T_{s0}(0)` itself.
+  More explicitly, the currently recorded clean background package is
+  `T_{s0}'
+   = -T_{s0}/r_0 + (c_0/r_0)T_{\theta 0} - \varphi_0' Q_0`,
+  with
+  `T_{\theta 0} = \nu T_{s0} + e_{\theta 0}`,
+  `e_{\theta 0} = (r_0-x)/x`,
+  `e_{s0} = (1-\nu^2)T_{s0} - \nu e_{\theta 0}`,
+  `r_0' = (1+e_{s0})c_0`,
+  and clean BCs
+  `T_{s0}(1)=0`, `\varphi_0(1)=0`, `Q_0(x_0)=0`, `r_0(x_0)=x_0`,
+  `\varphi_0(x_0)=0`.
+  Center regularity cancels the singular `1/r_0` term and yields
+  `T_{\theta 0}(0)=T_{s0}(0)`, but the repo still contains no theorem-facing
+  comparison principle, sign-preserving lemma, monotonicity theorem, or center
+  evaluation formula propagating this ODE/BC package to a sign or interval law
+  for `T_{s0}(0)`.
+  A direct center expansion of the same ODE package now gives one additional
+  exact coefficient identity:
+  with
+  `Q_0(x)=Q_1 x + O(x^3)`,
+  `s_0 = Kx + O(x^3)`,
+  `r_0 = \lambda_c x + O(x^3)`,
+  `T_{\theta 0}(x)=T_{s0}(0)+O(x^2)`,
+  and the current theorem-facing background expansion
+  `\varphi_0'(x)=K+O(x^2)`,
+  the `Q_0` equation yields
+  `Q_1 = K T_{s0}(0) - [\lambda_c/(\lambda_c+1)]\bar q`,
+  equivalently
+  `Q_1 = K(\lambda_c-1)/(1-\nu) - [\lambda_c/(\lambda_c+1)]\bar q`.
+  This must be kept distinct from the older checked frozen-principal
+  recurrence statement `Q_1 = 0`: that earlier identity belongs to a different
+  fully frozen principal layer and does not by itself determine the present
+  live-background center coefficient in the theorem-facing ODE package.
+  So positive branch load contributes a negative term to `Q_1`, but the repo
+  still does not contain theorem-facing sign control for `K` or `T_{s0}(0)`,
+  and the current center expansion only implies `T_{s0}'(0)=0` rather than a
+  local monotonicity law.
+  A still narrower clean-background center pass uses the same recorded
+  first-omitted-coefficient package, which fixes `Ms2`, so at the order needed
+  here one may read
+  `M_{s0}(x)=M_{s0}(0)+O(x^2)`.
+  Then the clean moment equation
+  `M_{s0}'
+   = -M_{s0}/r_0 + (c_0/r_0)M_{\theta 0} + Q_0`
+  cannot carry an admissible `x^{-1}` term, hence exact center regularity
+  forces
+  `M_{\theta 0}(0)=M_{s0}(0)`.
+  Feeding that into
+  `\varphi_0' = \Lambda(M_{s0} - \nu M_{\theta 0})`
+  and using `\varphi_0'(x)=K+O(x^2)` gives
+  `K = \Lambda(1-\nu) M_{s0}(0)`.
+  Therefore the whole leading center package is already
+  `\lambda_c = 1 + (1-\nu)T_{s0}(0)`,
+  `K = \Lambda(1-\nu)M_{s0}(0)`,
+  `Q_1 = K T_{s0}(0) - [\lambda_c/(\lambda_c+1)]\bar q`;
+  equivalently, the four quantities
+  `(T_{s0}(0), K, Q_1, M_{s0}(0))`
+  reduce at leading order to two free coefficients, for example
+  `(T_{s0}(0), M_{s0}(0))`.
+  Since the branch already records `\lambda_c > 0`, this gives the coarse
+  one-sided bound
+  `T_{s0}(0) > -1/(1-\nu)`;
+  since `\Lambda = 12(1-\nu^2)\mu^2 > 0`, it also gives the exact sign linkage
+  `\operatorname{sign} K = \operatorname{sign} M_{s0}(0)`.
+  But this is still not enough to sign `T_{s0}(0)`, exclude
+  `T_{s0}(0)=0`, or sign `Q_1`;
+  indeed `T_{s0}(0)=0` remains compatible with the current leading center
+  system and would give `\lambda_c = 1`, `Q_1 = -\bar q/2`.
+  So the first remaining Hurwitz-relevant blocker is no longer an independent
+  center-curvature variable `K`, but sharper branch control of `T_{s0}(0)`,
+  equivalently of `\lambda_c`, beyond the coarse lower bound above; if one also
+  wants a sign law for `Q_1`, one further needs sign/control of the product
+  `M_{s0}(0)T_{s0}(0)`.
+  More sharply, the current clean `T_{s0}` equation does not yet produce a
+  scalar one-sided derivative inequality:
+  \[
+  T_{s0}'
+  =
+  \frac{\nu c_0 - 1}{r_0} T_{s0}
+  +
+  \frac{c_0}{r_0} e_{\theta 0}
+  -
+  \varphi_0' Q_0,
+  \]
+  and the current theorem-facing branch record gives no sign control for the
+  coefficient `(\nu c_0 - 1)/r_0`, none for `e_{\theta 0}`, and none for the
+  product `\varphi_0' Q_0`.
+  So integrating from the edge condition `T_{s0}(1)=0` yields only a
+  sign-indefinite integral identity, not a comparison formula.
+  In particular, the present theorem-facing ODE/BC package gives no
+  contradiction for `T_{s0}(0)=0`, and no contradiction for the whole negative
+  range allowed by the coarse lower bound
+  `-1/(1-\nu) < T_{s0}(0) < 0`.
+  The exact first missing ingredient is therefore most honestly a theorem-
+  facing coupled comparison / integral / monotonicity theorem for the clean
+  background system that propagates the split BC package to the center value
+  `T_{s0}(0)`.
+  A still narrower coupled pass now shows that exact weighted identities do
+  exist:
+  \[
+  (r_0 T_{s0})' = c_0 T_{\theta 0} - \varphi_0' r_0 Q_0,\qquad
+  (r_0 Q_0)' = s_0 T_{\theta 0} + \varphi_0' r_0 T_{s0} - \bar q r_0,\qquad
+  (r_0 M_{s0})' = c_0 M_{\theta 0} + r_0 Q_0.
+  \]
+  More sharply, with
+  `A := c_0 T_{s0} + s_0 Q_0`,
+  `B := -s_0 T_{s0} + c_0 Q_0`,
+  the first two equations rotate exactly to
+  \[
+  A' + A/r_0 = T_{\theta 0}/r_0 - s_0 \bar q,\qquad
+  B' + B/r_0 = -c_0 \bar q.
+  \]
+  Because the current BC package gives
+  `\varphi_0(x_0)=\varphi_0(1)=0`, `Q_0(x_0)=0`, `T_{s0}(1)=0`,
+  one has
+  `A(x_0)=T_{s0}(0)`, `A(1)=0`, `B(x_0)=0`, `B(1)=Q_0(1)`.
+  So with the positive integrating factor
+  `\mu(x):=\exp(\int_{x_0}^x ds/r_0(s))`
+  the coupled system yields the exact integral identities
+  \[
+  Q_0(1)
+  =
+  -\mu(1)^{-1}\bar q \int_{x_0}^1 \mu(\xi)c_0(\xi)\,d\xi,
+  \]
+  \[
+  T_{s0}(0)
+  =
+  -\int_{x_0}^1 \mu(\xi)
+   \Bigl[\frac{T_{\theta 0}(\xi)}{r_0(\xi)} - s_0(\xi)\bar q\Bigr]\,d\xi.
+  \]
+  These identities are theorem-facingly sharper than the scalar `T_{s0}`
+  equation alone, but they still do not sign `T_{s0}(0)`:
+  the `B` identity still needs a sign law for `c_0=\cos\varphi_0`, and the
+  `A` identity still needs sign/control of the whole kernel
+  `T_{\theta 0}/r_0 - s_0 \bar q`.
+  The current theorem-facing kernel-sign package is only local / endpoint-level:
+  from `\varphi_0(x_0)=\varphi_0(1)=0` one gets
+  `c_0(x_0)=c_0(1)=1`, `s_0(x_0)=s_0(1)=0`;
+  from the recorded center expansions
+  `c_0 = 1 + O(x^2)`,
+  `s_0 = Kx + O(x^3)`,
+  `T_{\theta 0}(x)=T_{s0}(0)+O(x^2)`
+  one gets local near-center positivity of `c_0`, but no theorem-facing sign
+  of `s_0` because `K` is not signed.
+  By continuity and `c_0(1)=1`, one also gets positivity of `c_0` on some
+  sufficiently small right-edge interval.
+  Moreover the same clean background equation gives the exact integral
+  representation
+  `\varphi_0(x)
+   = \Lambda \int_{x_0}^x [M_{s0}(\xi)-\nu M_{\theta 0}(\xi)]\, d\xi`,
+  so `\varphi_0(1)=0` also forces the exact cancellation identity
+  `\int_{x_0}^1 [M_{s0}(\xi)-\nu M_{\theta 0}(\xi)]\, d\xi = 0`.
+  Since the clean branch is at least `C^1` on `[x_0,1]`, Rolle's theorem
+  therefore yields at least one interior point `x_*` with
+  `\varphi_0'(x_*)=0`, equivalently `M_{s0}(x_*) = \nu M_{\theta 0}(x_*)`.
+  So a literal global one-sign theorem for `\varphi_0'` cannot be the right
+  next target unless one also proves `\varphi_0 \equiv 0` on `[x_0,1]`, which
+  the current repo does not.
+  But the repo still has no theorem-facing range-preservation theorem for
+  `\varphi_0`,
+  so it does not exclude interior sign changes of `\varphi_0` and therefore
+  does not prove global positivity of `c_0`.
+  Likewise it still has no one-sided control of
+  `e_{\theta 0} = (r_0-x)/x`, hence no one-sided estimate for
+  `T_{\theta 0} = \nu T_{s0} + e_{\theta 0}`.
+  So the exact first coupled-background obstruction is now naturally split:
+  1. first, a theorem-facing global range-preservation / turning-angle bound
+     for `\varphi_0` strong enough to keep `|\varphi_0| < \pi/2` and promote
+     local `c_0 > 0` to the whole interval;
+  2. second, a theorem-facing one-sided estimate for `e_{\theta 0}` or
+     directly for `T_{\theta 0}` strong enough to sign the `A`-kernel.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `reduced conditionally under LC / leading center package closes to two free coefficients and gives a coarse lower bound for T_s0(0); exact rotated coupled integral identities are available; local/endpoint kernel facts for c0 are available; the phi0 equation gives an exact integral representation and forces at least one interior stationary point, so a literal one-sign theorem for phi0' is not the right next target; but no global range-preservation theorem for phi0 and no one-sided control of T_theta0 are yet available; the first remaining Hurwitz blocker is still sharper branch control of T_s0(0)/lambda_c`
+- What counts as verification:
+  a theorem-facing clean-background argument proving any one of the following,
+  strong enough to feed the flexural quadratic/Hurwitz step:
+  1. sign of `T_{s0}(0)`;
+  2. sharper interval control on `T_{s0}(0)` or `\lambda_c` beyond the coarse
+     lower bound `T_{s0}(0) > -1/(1-\nu)`;
+  3. sign/control of the product `M_{s0}(0)T_{s0}(0)`, equivalently of the
+     center contribution `K T_{s0}(0)`;
+  4. monotonicity or branch-law information determining `T_{s0}(0)` on the
+     active clean branch;
+  5. or a coupled comparison / integral theorem for the clean background ODE/BC
+     package strong enough to propagate the split boundary data to the center;
+  6. concretely, sign / interval control of `c_0`, `s_0`, and `T_{\theta 0}`
+     strong enough to sign the exact rotated kernels above;
+  7. more sharply, a global range-preservation / turning-angle bound for
+     `\varphi_0` strong enough to show `|\varphi_0| < \pi/2`, together with a
+     one-sided estimate for `e_{\theta 0}` / `T_{\theta 0}`.
+- Verification method:
+  manual derivation from the recorded clean background constitutive chain and
+  intrinsic-center identities, together with an audit of whether the repo
+  already contains sign/interval information for the center meridional
+  background quantity.
+- Verification boundary:
+  this does not prove Assumption LC, does not close the strict continuation
+  line, and does not yet reopen the flexural Hurwitz step by itself; it only
+  closes the leading center algebra to two free coefficients and adds the
+  coarse consequences `T_{s0}(0) > -1/(1-\nu)` and
+  `\operatorname{sign} K = \operatorname{sign} M_{s0}(0)`;
+  the branch still lacks the sharper intrinsic control of `T_{s0}(0)` /
+  `\lambda_c` needed for the flexural quadratic/Hurwitz step, and the current
+  ODE/BC package still does not furnish a sign-definite coupled comparison
+  mechanism for `T_{s0}` beyond local/endpoint positivity of `c_0`; in
+  particular, it does not yet give a global range-preservation theorem for
+  `\varphi_0`, only the exact integral representation and the existence of an
+  interior stationary point.
+- Next action:
+  attack the clean axisymmetric background directly and prove a coupled
+  comparison / integral / monotonicity theorem for the clean ODE/BC package,
+  strong enough to control `T_{s0}(0)` or `\lambda_c` beyond the current coarse
+  lower bound; under the physical-semantic screen and the sharper reduced
+  identity recorded below, the default next subtarget is no longer the
+  separate split
+  "first prove a global range-preservation theorem for `\varphi_0`, then prove
+  a one-sided estimate for `e_{\theta 0}` / `T_{\theta 0}`";
+  that remains only a stronger sufficient route in principle.
+  The honest default next target is now the weaker direct estimate on the
+  combined reduced kernel `F_T`, or one layer higher a proof of `H \ge 0`
+  together with the weighted domination estimate on `(Hs_0)^+`.
+  If the goal is to sign `Q_1` as well, add control of the product
+  `M_{s0}(0)T_{s0}(0)`.
+  The flexural Hurwitz step should not be reopened before that stronger
+  background control is available.
+
+### V-S104. On the clean full simple-support branch, future theorem-facing blocker promotion must pass a physical-semantic screening rule before acceptance as the next strict or LC-conditional target
+
+- ID: `V-S104`
+- Claim / Hypothesis:
+  Fix `(n,q)`.
+  Before accepting any new theorem-facing target, blocker, lemma, or
+  spectral/geometric claim on the clean full `J_0` branch, one must first apply
+  a physical-semantic screening rule on both the strict line and the line
+  conditional on Assumption LC.
+  That screen should:
+  1. classify each relevant variable as geometric, force/stress/moment,
+     kinematic, normalization/gauge/trace-layer, or purely algebraic/helper;
+  2. classify the proposed claim as local identity, global sign claim, global
+     monotonicity claim, interval/range bound, normalization statement,
+     spectral statement, or a claim only on an explicitly restricted geometry
+     class;
+  3. reject default promotion of claims that are too strong for the variable
+     semantics, too geometry-dependent for the stated branch class, or stronger
+     than the current proof step actually needs;
+  4. prefer the weakest claim that is sufficient for the current theorem-facing
+     step.
+  Operationally, if a proposed claim fails this screen, the pass must say so
+  explicitly, state whether it is too strong, too geometry-dependent, or not
+  actually needed, and replace it by a weaker or better-targeted claim rather
+  than silently continuing with the failed claim as the next blocker.
+  Current audit on the active clean branch:
+  the exact center/background identities
+  `\lambda_c - 1 = (1-\nu)T_{s0}(0)`,
+  `K = \Lambda(1-\nu)M_{s0}(0)`,
+  `Q_1 = K T_{s0}(0) - [\lambda_c/(\lambda_c+1)]\bar q`,
+  and the reduction to two free center coefficients do pass this screen;
+  the earlier target "global sign / no-turning theorem for `\varphi_0`" does
+  not pass as a default theorem-facing target on the general shell-of-
+  revolution branch without an explicit no-overturning geometry class, because
+  it is stronger than the immediate need `c_0 > 0` and more geometry-dependent
+  than the present background step requires.
+- Type: `interpretation claim`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `adopted as methodological gate / future clean-branch blocker promotion must pass the physical-semantic screen on both the strict and LC-conditional lines`
+- What counts as verification:
+  1. future theorem/status passes explicitly record the physical class of the
+     key variables, the strength class of the proposed claim, and the
+     sufficiency decision before promoting a new blocker/target;
+  2. if a proposed claim fails the screen, the pass says so explicitly and
+     replaces it rather than silently continuing with it;
+  3. the currently accepted clean-branch center/background identities remain
+     coherent under the same audit.
+- Verification method:
+  manual repo-facing audit of the active theory docs and of the theorem-facing
+  blocker language used on the clean branch.
+- Verification boundary:
+  this does not prove Assumption LC, does not close the strict continuation
+  line, does not change equations, BCs, solver behavior, or assumptions, and
+  does not by itself prove any new mathematical theorem; it only governs how
+  future theorem-facing targets/blockers are screened before promotion.
+- Next action:
+  apply this screen in future theorem-facing clean-branch passes.
+  On the current background route, do not re-promote a global sign /
+  no-turning theorem for `\varphi_0` by default;
+  either state an explicit restricted no-overturning geometry class, or seek a
+  weaker coupled / range-preservation estimate that is sufficient for the
+  rotated kernel step.
+
+### V-S105. Conditional on Assumption LC, the exact eta-weighted reduced identity for `T_{s0}(0)` isolates a minimal sufficient combined kernel package; stronger separate sign targets are no longer the default next move under the physical-semantic screen
+
+- ID: `V-S105`
+- Claim / Hypothesis:
+  Fix `(n,q)` and assume Assumption LC.
+  On the current clean branch, start from the exact rotated identities
+  `A' + A/r_0 = T_{\theta 0}/r_0 - s_0 \bar q`,
+  `B' + B/r_0 = -c_0 \bar q`,
+  and the exact `B` formula
+  `B(x) = -\mu(x)^{-1}\bar q \int_{x_0}^x \mu(\xi)c_0(\xi)\, d\xi`,
+  where
+  `\mu(x) := \exp(\int_{x_0}^x ds/r_0(s)) > 0`.
+  Rewriting the `A` equation as
+  `A' + [(1-\nu c_0)/r_0]A = e_{\theta 0}/r_0 - \bar q s_0 - \nu s_0 B/r_0`
+  and introducing
+  `\eta(x) := \exp(\int_{x_0}^x (1-\nu c_0(s))/r_0(s)\, ds) > 0`,
+  one gets the exact reduced identity
+  `T_{s0}(0) = -\int_{x_0}^1 \eta(\xi) F_T(\xi)\, d\xi`,
+  where
+  `F_T(\xi)
+   := e_{\theta 0}(\xi)/r_0(\xi)
+      - \bar q s_0(\xi) H(\xi)`,
+  `H(\xi)
+   := 1 - \nu J(\xi)/(r_0(\xi)\mu(\xi))`,
+  and
+  `J(\xi) := \int_{x_0}^{\xi} \mu(\tau)c_0(\tau)\, d\tau`.
+  Because `\eta > 0`, the truly minimal sufficient package is now direct
+  sign/interval control of the single combined kernel `F_T`:
+  `F_T \ge 0` a.e. gives `T_{s0}(0) \le 0`,
+  `F_T \le 0` a.e. gives `T_{s0}(0) \ge 0`,
+  and bounds `a \le F_T \le b` give
+  `-b\int_{x_0}^1 \eta \le T_{s0}(0) \le -a\int_{x_0}^1 \eta`.
+  Under the physical-semantic screen this is sharper than the earlier default
+  route that separately targeted a global angle-range theorem for `\varphi_0`
+  and then a sign theorem for `e_{\theta 0}` / `T_{\theta 0}`:
+  those remain stronger sufficient routes in principle, but they are not the
+  minimal default target anymore.
+  One structured but still screening-compatible sufficient package for the
+  upper bound `T_{s0}(0) \le 0` is:
+  `H \ge 0`
+  together with the weighted domination
+  `\int_{x_0}^1 \eta(\xi)e_{\theta 0}(\xi)/r_0(\xi)\, d\xi
+   \ge
+   \bar q \int_{x_0}^1 \eta(\xi)(H(\xi)s_0(\xi))^+\, d\xi`.
+  This avoids requiring global sign theorems for all of `c_0`, `s_0`, and
+  `e_{\theta 0}`.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `reduced conditionally under LC / exact eta-weighted T_s0(0) identity isolates the combined kernel F_T as the minimal sufficient target; currently available are only mu,eta positivity, exact trig bounds, and local/endpoint c0 positivity; sign/range control of H, one-sided control of e_theta0/r0, and the weighted domination estimate remain open`
+- What counts as verification:
+  a theorem-facing proof of at least one of the following:
+  1. `F_T \ge 0` a.e. or `F_T \le 0` a.e.;
+  2. interval bounds `a \le F_T \le b` strong enough to bound `T_{s0}(0)`;
+  3. the structured sufficient package
+     `H \ge 0` together with
+     `\int \eta e_{\theta 0}/r_0
+      \ge
+      \bar q \int \eta (Hs_0)^+`;
+  4. any equally narrow direct weighted estimate on the combined kernel
+     `F_T` that yields a one-sided sign/interval law for `T_{s0}(0)`.
+- Verification method:
+  manual theorem-facing reduction of the exact rotated integral identities,
+  followed by the physical-semantic screen to isolate the weakest sufficient
+  kernel package rather than stronger separate sign claims.
+- Verification boundary:
+  this does not prove Assumption LC, does not close the strict continuation
+  line, does not change equations, BCs, solver behavior, or assumptions, and
+  does not yet reopen the flexural Hurwitz step by itself; it only sharpens
+  the LC-conditional background blocker from a broad coupled-sign problem to a
+  minimal combined-kernel estimate.
+- Next action:
+  do not default to separate global sign/range theorems for `\varphi_0`,
+  `s_0`, and `e_{\theta 0}`.
+  Instead, attack the weakest sufficient object:
+  a direct sign/interval estimate on `F_T`, or one layer higher
+  `H \ge 0` plus the weighted domination estimate above.
+
+### V-S106. Conditional on Assumption LC, the auxiliary kernel factor `H` closes to an exact weighted first-order identity; it gives local positivity near `x_0` and a clean sufficient source condition for global positivity, but by itself still does not control `F_T`
+
+- ID: `V-S106`
+- Claim / Hypothesis:
+  Fix `(n,q)` and assume Assumption LC.
+  Define
+  `J(x) := \int_{x_0}^x \mu(t)c_0(t)\, dt`
+  and
+  `H(x) := 1 - \nu J(x)/(r_0(x)\mu(x))`,
+  where
+  `\mu(x) := \exp(\int_{x_0}^x ds/r_0(s)) > 0`.
+  Then the exact theorem-facing identities are:
+  `H(x_0)=1`,
+  `J'(x)=\mu(x)c_0(x)`,
+  `\mu'(x)=\mu(x)/r_0(x)`,
+  `(r_0\mu(H-1))' = -\nu \mu c_0`,
+  equivalently
+  `(r_0\mu H)' = \mu(r_0' + 1 - \nu c_0)`,
+  and therefore
+  `H'
+   = (r_0' + 1 - \nu c_0)/r_0 - ((r_0'+1)/r_0)H`.
+  Because `r_0(x_0)=x_0`, `\mu(x_0)=1`, `c_0(x_0)=1`, and `H(x_0)=1`,
+  the exact initial slope is
+  `H'(x_0) = -\nu/x_0 < 0`.
+  Hence `H` is theorem-facingly positive on some sufficiently small right-
+  neighborhood of `x_0`.
+  The same identities show two clean sufficient routes in principle:
+  if `c_0 \ge 0` on the whole interval then `H \le 1`,
+  and if `r_0' + 1 - \nu c_0 \ge 0` on the whole interval then `H > 0`.
+  But none of those global sign conditions is yet theorem-facingly available on
+  the present branch record.
+  Therefore `H` does now have an exact theorem-facing equation and a local
+  positivity consequence, but `H`-control alone still does not sign
+  `F_T = e_{\theta 0}/r_0 - \bar q s_0 H`, because neither `s_0` nor
+  `e_{\theta 0}/r_0` is currently signed.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `supported conditionally under LC / exact H-equation closes; H(x0)=1 and H'(x0)=-nu/x0 give local positivity near x0; global sign/range control of H is still open; H-control alone does not yet sign F_T`
+- What counts as verification:
+  a theorem-facing proof of at least one of the following:
+  1. a global sign/range law for `H`, such as `H > 0` or `0 \le H \le 1`;
+  2. the clean sufficient source-level condition
+     `r_0' + 1 - \nu c_0 \ge 0`;
+  3. a direct combined estimate showing how the available `H` control feeds
+     the sign of `F_T`.
+- Verification method:
+  manual differentiation and exact weighted reformulation of the reduced kernel
+  factor, followed by a conservative sign audit under the physical-semantic
+  screening rule.
+- Verification boundary:
+  this does not prove Assumption LC, does not close the strict continuation
+  line, does not change equations, BCs, solver behavior, or assumptions, and
+  does not yet reopen the flexural Hurwitz step by itself; it only sharpens the
+  auxiliary-kernel side of the LC-conditional background reduction.
+- Next action:
+  do not promote stronger separate global sign theorems for `\varphi_0` or
+  `s_0` by default.
+  If one insists on an `H`-first route, attack the weakest clean sufficient
+  source-level condition `r_0' + 1 - \nu c_0 \ge 0`;
+  otherwise keep the honest default target at the combined-kernel level,
+  namely a direct one-sided estimate on `F_T` or on the weighted positive part
+  of `H s_0`.
+
+### V-S107. Conditional on Assumption LC, the rewritten combined kernel `F_T = 1/x - 1/r_0 - \bar q s_0 H` isolates the honest minimal sufficient packages as geometry-versus-coupling dominance estimates, while separate global sign targets remain stronger than necessary
+
+- ID: `V-S107`
+- Claim / Hypothesis:
+  Fix `(n,q)` and assume Assumption LC.
+  On the current clean branch, rewrite the active reduced kernel as
+  `F_T(x) = 1/x - 1/r_0(x) - \bar q s_0(x)H(x)`.
+  Since `x>0` on `[x_0,1]` and the current reduction uses `r_0>0`, one has
+  the exact identity
+  `1/x - 1/r_0 = (r_0-x)/(x r_0) = e_{\theta 0}/r_0`,
+  hence
+  `\operatorname{sign}(1/x - 1/r_0) = \operatorname{sign}(r_0-x)`.
+  Therefore the direct geometry/coupling balance is now explicit.
+  Strong but easy pointwise sufficient packages are:
+  `r_0 \ge x` together with `s_0 H \le 0` implies `F_T \ge 0`,
+  and
+  `r_0 \le x` together with `s_0 H \ge 0` implies `F_T \le 0`.
+  Under the physical-semantic screen those are stronger than the default next
+  need.
+  The weaker direct pointwise sufficient packages are:
+  `r_0 - x \ge \bar q\,x r_0 (s_0 H)^+` a.e. implies `F_T \ge 0` a.e.,
+  and
+  `x - r_0 \ge \bar q\,x r_0 (-s_0 H)^+` a.e. implies `F_T \le 0` a.e.
+  Because `\eta>0`, the corresponding weighted sufficient packages are:
+  `\int_{x_0}^1 \eta(x)(r_0(x)-x)/(x r_0(x))\, dx
+   \ge
+   \bar q \int_{x_0}^1 \eta(x)(s_0(x)H(x))^+\, dx`
+  for `T_{s0}(0) \le 0`,
+  and
+  `\int_{x_0}^1 \eta(x)(x-r_0(x))/(x r_0(x))\, dx
+   \ge
+   \bar q \int_{x_0}^1 \eta(x)(-s_0(x)H(x))^+\, dx`
+  for `T_{s0}(0) \ge 0`.
+  These are the honest minimal sufficient packages extracted from the rewritten
+  `F_T` form.
+  What is currently available theorem-facingly is still only the endpoint
+  information
+  `r_0(x_0)=x_0`, `s_0(x_0)=0`, `H(x_0)=1`, hence `F_T(x_0)=0`,
+  together with the earlier local positivity of `H` near `x_0`;
+  the repo does not yet give a global sign or interval law for `r_0-x`,
+  a sign/size law for `s_0 H`, or a direct weighted dominance estimate between
+  those two terms.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `reduced conditionally under LC / rewritten F_T isolates the honest minimal sufficient packages as geometry-defect versus coupling dominance; only endpoint vanishing and local H positivity are currently available; global sign/size control of r0-x, s0H, and their weighted dominance remain open`
+- What counts as verification:
+  a theorem-facing proof of at least one of the following:
+  1. `r_0 - x \ge \bar q\,x r_0 (s_0 H)^+` a.e.;
+  2. `x - r_0 \ge \bar q\,x r_0 (-s_0 H)^+` a.e.;
+  3. the corresponding `\eta`-weighted integral dominance for the sign of
+     `T_{s0}(0)`;
+  4. any equally narrow pointwise or weighted dominance estimate that signs or
+     bounds `F_T` directly.
+- Verification method:
+  manual algebraic rewrite of the exact reduced kernel and a conservative
+  theorem-facing audit under the physical-semantic screening rule.
+- Verification boundary:
+  this does not prove Assumption LC, does not close the strict continuation
+  line, does not change equations, BCs, solver behavior, or assumptions, and
+  does not yet reopen the flexural Hurwitz step; it only sharpens the active
+  LC-conditional blocker from a generic combined-kernel estimate to the
+  explicit geometry-versus-coupling dominance problem.
+- Next action:
+  do not promote stronger default targets such as global sign theorems for
+  `\varphi_0`, `s_0`, or `e_{\theta 0}`.
+  Attack the weakest sufficient object instead:
+  a direct pointwise or `\eta`-weighted dominance estimate between
+  `(r_0-x)/(x r_0)` and the positive part of `s_0 H`.
+
+### V-S108. Conditional on Assumption LC, the weighted dominance target for the rewritten kernel is sharply isolated, but the present clean ODE/BC package still provides no theorem-facing route to it
+
+- ID: `V-S108`
+- Claim / Hypothesis:
+  Fix `(n,q)` and assume Assumption LC.
+  On the current clean branch, keep the exact weighted target
+  `\int_{x_0}^1 \eta(x)(r_0(x)-x)/(x r_0(x))\, dx
+   \ge
+   \bar q \int_{x_0}^1 \eta(x)(s_0(x)H(x))^+\, dx`
+  as the default next sufficient route for `T_{s0}(0) \le 0`.
+  A narrower theorem-facing audit shows that the present clean ODE/BC package
+  does not yet yield a natural comparison path to that target:
+  1. differentiating the active weight
+     `\eta' = \eta(1-\nu c_0)/r_0`
+     does not by itself convert the geometry term into a coercive derivative;
+  2. rewriting the geometry defect as
+     `(r_0-x)/(x r_0) = e_{\theta 0}/r_0`
+     or via
+     `r_0' = (1+e_{s0})c_0`,
+     `e_{s0} = (1-\nu^2)T_{s0} - \nu e_{\theta 0}`,
+     stays exact but does not produce a sign-closing weighted identity;
+  3. rewriting the coupling factor through
+     `H = 1 - \nu J/(r_0\mu)`,
+     `J' = \mu c_0`,
+     `(r_0\mu(H-1))' = -\nu \mu c_0`
+     likewise stays exact but does not yield a weighted upper bound for
+     `\int \eta(s_0 H)^+`;
+  4. no exact cancellation identity linking those two weighted terms is
+     currently theorem-facingly available in the branch record.
+  Under the physical-semantic screen, stronger fallback targets such as global
+  sign theorems for `\varphi_0`, `s_0`, or `e_{\theta 0}`, or the stronger
+  pointwise dominance packages, are therefore rejected as default next moves
+  because they are stronger than the active weighted need.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `reduced conditionally under LC / the eta-weighted dominance target is sharply isolated and remains useful, but the current clean ODE/BC package yields no theorem-facing weighted route to it beyond the exact identity for T_s0(0); the first missing ingredient is a new eta-weighted comparison/cancellation estimate`
+- What counts as verification:
+  a theorem-facing proof of at least one of the following:
+  1. a weighted lower bound for
+     `\int_{x_0}^1 \eta(x)(r_0(x)-x)/(x r_0(x))\, dx`;
+  2. a weighted upper bound for
+     `\int_{x_0}^1 \eta(x)(s_0(x)H(x))^+\, dx`;
+  3. a direct weighted cancellation/comparison identity linking those two
+     integrals strongly enough to sign or bound `T_{s0}(0)`;
+  4. any equally narrow theorem-facing weighted estimate on the rewritten
+     kernel `F_T` that yields a one-sided sign/interval law for `T_{s0}(0)`.
+- Verification method:
+  manual weighted audit of the exact reduced kernel, exact differentiation of
+  the available weight and auxiliary factors, and conservative blocker
+  selection under the physical-semantic screening rule.
+- Verification boundary:
+  this does not prove Assumption LC, does not close the strict continuation
+  line, does not change equations, BCs, solver behavior, or assumptions, and
+  does not yet reopen the flexural Hurwitz step; it only sharpens the active
+  LC-conditional blocker from a weighted sufficient package to the more
+  specific missing weighted comparison/cancellation ingredient behind it.
+- Next action:
+  do not default back to stronger pointwise or global-sign targets.
+  Attack the weakest missing object instead:
+  a new theorem-facing `\eta`-weighted comparison / cancellation estimate,
+  most naturally a weighted lower bound for the geometry-defect integral or a
+  weighted upper bound for the coupling integral `\int \eta(s_0 H)^+`.
+
+### V-S109. Conditional on Assumption LC, the natural first-order multiplier / auxiliary-combination routes beyond `A,B,\mu,\eta,H` appear exhausted: the remaining step requires a genuinely non-first-order background input
+
+- ID: `V-S109`
+- Claim / Hypothesis:
+  Fix `(n,q)` and assume Assumption LC.
+  On the current clean branch, audit the natural first-order multiplier and
+  auxiliary-combination routes suggested by the exact background package beyond
+  the already tested `A,B,\mu,\eta,H` framework.
+  The conservative theorem-facing classification is:
+  1. other linear combinations of `(T_{s0},Q_0)` designed to remove the
+     `\varphi_0'` skew-coupling are not genuinely new:
+     the cancellation transport is already solved by the `\varphi_0`-rotation,
+     so any such route is equivalent to `(A,B)` up to a constant invertible
+     post-combination;
+  2. adjoint-style scalar multipliers applied after that reduction are also
+     not genuinely new:
+     they reproduce the same scalar integrating-factor structure, hence only
+     `\mu` and `\eta` up to nonzero constants;
+  3. weighted raw channel identities such as
+     `(r_0T_{s0})'`, `(r_0Q_0)'`, `(r_0M_{s0})'`
+     are already the pre-rotated source identities behind the current route;
+  4. combinations involving `M_{s0}`, `\varphi_0`, `c_0`, `s_0`, or
+     `e_{\theta 0}` do not presently add a new comparison structure:
+     they reintroduce the same unresolved kernels
+     `(r_0-x)/(x r_0)`, `s_0H`, `c_0`, or `\varphi_0'`
+     without new sign/coercivity input or stronger boundary leverage.
+  Under the physical-semantic screen, stronger or more arbitrary first-order
+  recombinations are therefore not the honest default next target.
+  At this reduction level, the current clean background package is effectively
+  exhausted.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `reduced conditionally under LC / no genuinely new natural first-order multiplier route beyond A,B,mu,eta,H is currently visible; candidate routes are equivalent or no stronger; the first missing ingredient is now a genuinely non-first-order background input`
+- What counts as verification:
+  a theorem-facing proof of at least one of the following:
+  1. a genuinely new natural first-order combination that is not equivalent to
+     the present rotated/integrating-factor route and yields a strictly
+     stronger comparison/cancellation identity for `T_{s0}(0)`;
+  2. a genuinely non-first-order background theorem, branch law, or geometric
+     restriction strong enough to prove one of the weighted bounds isolated in
+     `V-S108`;
+  3. an exact adjoint/fundamental-matrix argument showing that the current
+     first-order reduction is canonical up to equivalence.
+- Verification method:
+  manual audit of the exact first-order subsystem, conservative classification
+  of natural multiplier candidates under the physical-semantic screening rule,
+  and comparison against the already closed `A,B,\mu,\eta,H` framework.
+- Verification boundary:
+  this does not prove Assumption LC, does not close the strict continuation
+  line, does not change equations, BCs, solver behavior, or assumptions, and
+  does not yet reopen the flexural Hurwitz step; it only sharpens the blocker
+  diagnosis from "missing weighted dominance route" to
+  "first-order multiplier search appears exhausted, so the next input must be
+  genuinely non-first-order".
+- Next action:
+  do not keep promoting additional first-order recombinations by default.
+  Either produce a genuinely non-equivalent first-order canonical argument, or
+  move to a non-first-order background input: most naturally a higher-order or
+  branch-level theorem proving one of the weighted bounds isolated in `V-S108`.
+
+### V-S110. Conditional on Assumption LC, the minimal genuinely non-first-order next input is a global background integral theorem for the active weighted dominance, not a higher-order local jet theorem, a broader branch-law theorem, or a new geometry-class restriction
+
+- ID: `V-S110`
+- Claim / Hypothesis:
+  Fix `(n,q)` and assume Assumption LC.
+  After `V-S109`, the plausible genuinely non-first-order classes are:
+  1. a higher-order background expansion theorem;
+  2. a branch-level comparison / monotonicity / interval law for
+     `T_{s0}(0)` or `\lambda_c`;
+  3. a global background integral theorem not reducible to first-order
+     multipliers;
+  4. an explicit restricted geometry-class theorem.
+  The conservative theorem-facing choice is now:
+  class (3) is the minimal honest default next input.
+  It is preferred because it targets exactly the already isolated weighted need
+  behind the active reduced kernel
+  `F_T = (r_0-x)/(x r_0) - \bar q s_0 H`
+  without inflating the theorem statement.
+  More concretely, the default next target should be a theorem-facing proof of
+  `\int_{x_0}^1 \eta(x)(r_0(x)-x)/(x r_0(x))\, dx
+   \ge
+   \bar q \int_{x_0}^1 \eta(x)(s_0(x)H(x))^+\, dx`,
+  or of an equally weak one-sided variant sufficient to sign or bound
+  `T_{s0}(0)`.
+  The other classes are not the default next target:
+  1. a higher-order background expansion theorem is plausible in principle but
+     too local by itself to control the already global weighted integral unless
+     it is supplemented by an additional localization/globalization theorem;
+  2. a branch-level interval law for `T_{s0}(0)` or `\lambda_c` would indeed be
+     sufficient, but it is broader than the current kernel-level need and so is
+     stronger than necessary at this stage;
+  3. an explicit restricted geometry subclass would change the intended
+     theorem statement / geometry class and therefore fails the
+     physical-semantic screen as a default move unless later shown unavoidable.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `reduced conditionally under LC / the minimal genuinely non-first-order next input is now clear: a global background integral theorem proving the active weighted dominance or an equally weak one-sided variant; higher-order local jets, broader branch laws, and restricted geometry subclasses are all reserve alternatives, not the default next move`
+- What counts as verification:
+  a theorem-facing proof of at least one of the following:
+  1. the direct weighted dominance
+     `\int_{x_0}^1 \eta(r_0-x)/(x r_0)
+      \ge
+      \bar q \int_{x_0}^1 \eta(s_0 H)^+`;
+  2. an equally weak global integral comparison/cancellation law sufficient to
+     sign or bound `T_{s0}(0)`;
+  3. an exact theorem-facing reduction showing that such a global background
+     integral theorem is equivalent to the desired sign/interval control of
+     `T_{s0}(0)` on the current branch.
+- Verification method:
+  manual strategy audit of the active reduced kernel, conservative comparison of
+  plausible non-first-order input classes under the physical-semantic
+  screening rule, and theorem-facing selection of the weakest sufficient class.
+- Verification boundary:
+  this does not prove Assumption LC, does not close the strict continuation
+  line, does not change equations, BCs, solver behavior, or assumptions, and
+  does not yet reopen the flexural Hurwitz step; it only chooses the minimal
+  non-first-order direction in which the LC-conditional proof line should now
+  continue.
+- Next action:
+  pursue the global background integral theorem route first.
+  Do not default instead to higher-order local jet theorems, broader branch-law
+  theorems for `T_{s0}(0)` / `\lambda_c`, or restricted geometry subclasses
+  unless the chosen integral route later proves genuinely insufficient.
+
+### V-S111. Conditional on Assumption LC, an adjoint / Green-type route is presently reserve only: the reduced scalar adjoint is already exhausted by the `eta` identity, while a genuinely new full-BVP adjoint would require a canonical linearized background BVP not yet fixed theorem-facingly
+
+- ID: `V-S111`
+- Claim / Hypothesis:
+  Fix `(n,q)` and assume Assumption LC.
+  On the current clean branch, consider possible adjoint / Green-type routes
+  for the target functional
+  `\ell(Y) := T_{s0}(x_0)`,
+  where
+  `Y := (T_{s0},Q_0,M_{s0},r_0,\varphi_0)`
+  solves the nonlinear background BVP
+  `Y' = F(x,Y;q)`,
+  with active BCs
+  `T_{s0}(1)=0`,
+  `\varphi_0(1)=0`,
+  `Q_0(x_0)=0`,
+  `r_0(x_0)=x_0`,
+  `\varphi_0(x_0)=0`.
+  The theorem-facing audit is:
+  1. at the reduced scalar level, the adjoint/integrating-factor route is not
+     genuinely new, because the already recorded
+     `T_{s0}(0) = -\int_{x_0}^1 \eta F_T`
+     is precisely the existing adjoint/Green-style representation of the
+     reduced first-order transport equation;
+  2. a genuinely new adjoint / Green representation would have to be organized
+     around a canonical linearized background BVP
+     `\delta Y' = D_YF(x,Y_*(x);q)\,\delta Y + \cdots`
+     on the active branch;
+  3. the repo does not yet fix such a theorem-facing linearized background BVP
+     for the clean axisymmetric background step, and that route would
+     naturally represent variations of `\ell`, not the nonlinear quantity
+     `\ell(Y_*)` itself.
+  Therefore an adjoint / Green route is plausible in principle but not the
+  minimal honest next input on the current record.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `reduced conditionally under LC / adjoint-Green route audited; reduced-scalar adjoint is equivalent to the current eta identity, while a genuinely new full-BVP adjoint would require a canonical theorem-facing linearized background BVP not yet fixed; so this route is reserve, not default`
+- What counts as verification:
+  a theorem-facing proof of at least one of the following:
+  1. a canonical clean-background linearized BVP whose adjoint represents the
+     target functional or its required one-sided estimate in a form not
+     equivalent to the present `\eta` identity;
+  2. an exact theorem-facing argument that the full-BVP adjoint route collapses
+     canonically to the current reduced identity, proving no extra strength is
+     available there;
+  3. a Green-type kernel formula with genuinely new sign/coercivity structure
+     beyond the already isolated weighted dominance problem.
+- Verification method:
+  manual audit of the nonlinear background operator, its BC package, the target
+  endpoint functional, and the relation between reduced scalar adjoint
+  identities and possible full-BVP adjoint representations.
+- Verification boundary:
+  this does not prove Assumption LC, does not close the strict continuation
+  line, does not change equations, BCs, solver behavior, or assumptions, and
+  does not yet reopen the flexural Hurwitz step; it only classifies the
+  adjoint/Green option as a reserve non-first-order mechanism rather than the
+  minimal next theorem-facing target.
+- Next action:
+  keep the default next move at the global background integral-theorem level.
+  Do not escalate first to a full adjoint/Green setup unless a canonical
+  linearized background BVP is fixed and the reduced integral route is shown to
+  be genuinely insufficient.
+
+### V-S112. Conditional on Assumption LC, the direct weighted-integral split into `I_geom` and `I_coup` is sharp: on the preferred `LC-only` line the geometry term remains the more natural next subtarget, while on the fallback line `LC + LC-HM` the geometry endpoint is closed and the coupling term becomes the next blocker
+
+- ID: `V-S112`
+- Claim / Hypothesis:
+  Fix `(n,q)` and assume Assumption LC.
+  Keep the active weighted dominance target in the split form
+  `I_{geom} \ge \bar q I_{coup}`,
+  where
+  `I_{geom} := \int_{x_0}^1 \eta(x)(r_0(x)-x)/(x r_0(x))\, dx`
+  and
+  `I_{coup} := \int_{x_0}^1 \eta(x)(s_0(x)H(x))^+\, dx`.
+  The direct theorem-facing audit is:
+  1. for `I_{geom}`, the exact rewrites
+     `(r_0-x)/(x r_0) = e_{\theta 0}/r_0 = 1/x - 1/r_0`
+     and the background equations
+     `r_0' = (1+e_{s0})c_0`,
+     `e_{s0} = (1-\nu^2)T_{s0} - \nu e_{\theta 0}`
+     remain exact but do not yet yield a theorem-facing lower bound after
+     integration, because they reintroduce the unresolved quantities
+     `T_{s0}` and `c_0`;
+  2. for `I_{coup}`, the exact `H,J,\mu,\eta` structure yields
+     `((\eta J)/\mu)' = \eta c_0 H`,
+     so the current package naturally controls the weighted quantity
+     `\int \eta c_0 H`, not the active positive part
+     `\int \eta(s_0 H)^+`;
+  3. together with the available bound `|s_0| \le 1`, this gives only soft
+     estimates through `|H|`, not a theorem-facing upper bound for `I_{coup}`.
+  Therefore the direct integral split is sharp but still open.
+  The route split should now be read explicitly:
+  on the preferred `LC-only` line, the geometry side remains the more natural
+  next subtarget;
+  on the fallback line conditional on `LC + LC-HM`, the geometry-side endpoint
+  `I_{geom}=D(1)` is closed by assumption, so the next actual blocker is the
+  missing theorem-facing upper bound for `I_{coup}`.
+  Under the physical-semantic screen, stronger global sign theorems for
+  `\varphi_0`, `s_0`, or `e_{\theta 0}`, and broader branch-law theorems, are
+  still stronger than necessary here.
+  The more natural default next subtarget is now the geometry side:
+  derive a theorem-facing lower bound for `I_{geom}`.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `LC-only: the direct integral split is explicit and sharp; no theorem-facing lower bound for I_geom or upper bound for I_coup is yet closed at this level, and because the coupling side currently controls eta c0 H rather than eta(s0 H)^+, the geometry side remains the more natural next default subtarget / LC+HM: the geometry endpoint I_geom=D(1) is closed by fallback assumption, so the next blocker is the still-open coupling-side upper bound for I_coup`
+- What counts as verification:
+  a theorem-facing proof of at least one of the following:
+  1. a lower bound for
+     `I_{geom} = \int_{x_0}^1 \eta(r_0-x)/(x r_0)`;
+  2. an upper bound for
+     `I_{coup} = \int_{x_0}^1 \eta(s_0 H)^+`;
+  3. an equally weak one-sided integral inequality sufficient to sign or bound
+     `T_{s0}(x_0)`;
+  4. an exact theorem-facing argument showing that a lower bound for
+     `I_{geom}` is the truly minimal next subtarget among those options.
+- Verification method:
+  manual direct-integral audit of the active dominance inequality, exact
+  rewrites of the geometry and coupling integrands, and conservative blocker
+  selection under the physical-semantic screening rule.
+- Verification boundary:
+  this does not prove Assumption LC, does not close the strict continuation
+  line, does not change equations, BCs, solver behavior, or assumptions, and
+  does not yet reopen the flexural Hurwitz step; it only sharpens the active
+  integral-theorem target by splitting it into the geometry and coupling
+  subtargets and selecting the more natural next one.
+- Next action:
+  keep the route split explicit:
+  on the preferred `LC-only` line, pursue a theorem-facing lower bound for
+  `I_{geom}` first;
+  on the fallback line conditional on `LC + LC-HM`, treat `I_{geom}=D(1)` as
+  already closed by assumption and move next to the coupling side, namely an
+  upper bound for `I_{coup}` or an equally weak control converting the exact
+  information on `\eta c_0 H` into control of `\eta(s_0 H)^+`.
+
+### V-S113. Conditional on Assumption LC, the geometry integral `I_geom` does admit a direct positive-kernel representation; the lower-bound problem reduces to the source term `c_0-1+(1-\nu^2)T_{s0}c_0`
+
+- ID: `V-S113`
+- Claim / Hypothesis:
+  Fix `(n,q)` and assume Assumption LC.
+  On the current clean branch, define
+  `e_{\theta 0} := (r_0-x)/x`,
+  so
+  `I_{geom} = \int_{x_0}^1 \eta(x)e_{\theta 0}(x)/r_0(x)\, dx`.
+  Then the exact background kinematics give
+  `r_0 = x(1+e_{\theta 0})`,
+  `r_0' = (1+e_{s0})c_0`,
+  `e_{s0} = (1-\nu^2)T_{s0} - \nu e_{\theta 0}`,
+  hence the exact linear geometry equation
+  `x e_{\theta 0}' + (1+\nu c_0)e_{\theta 0}
+   = c_0 - 1 + (1-\nu^2)T_{s0}c_0`.
+  Because the active BC package includes `r_0(x_0)=x_0`, one has
+  `e_{\theta 0}(x_0)=0`.
+  Therefore, with the positive integrating factor
+  `\rho(x) := x \exp(\int_{x_0}^x \nu c_0(s)/s\, ds) > 0`,
+  one gets the exact Volterra representation
+  `e_{\theta 0}(x)
+   = \rho(x)^{-1}\int_{x_0}^x \rho(\xi)
+     [c_0(\xi)-1+(1-\nu^2)T_{s0}(\xi)c_0(\xi)]/\xi\, d\xi`.
+  Substituting this into `I_{geom}` and applying Fubini gives
+  `I_{geom}
+   = \int_{x_0}^1 K_{geom}(\xi)
+     [c_0(\xi)-1+(1-\nu^2)T_{s0}(\xi)c_0(\xi)]/\xi\, d\xi`,
+  where
+  `K_{geom}(\xi)
+   := \rho(\xi)\int_{\xi}^1 \eta(x)/(r_0(x)\rho(x))\, dx \ge 0`,
+  with `K_{geom}(\xi)>0` for `\xi<1` and `K_{geom}(1)=0`.
+  So a genuine geometry-side lower-bound route exists:
+  a lower bound for `I_{geom}` is reduced to a one-sided estimate on the
+  source term `c_0-1+(1-\nu^2)T_{s0}c_0` under a positive kernel.
+  This is sharper than the earlier raw rewrites
+  `e_{\theta 0}/r_0 = 1/x - 1/r_0`.
+  It is still not closed, because the exact negative term
+  `c_0-1 = -(1-c_0) \le 0` is explicit, while the compensating lower bound on
+  `(1-\nu^2)T_{s0}c_0` is not yet theorem-facingly available.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `reduced conditionally under LC / a direct geometry-side positive-kernel route for I_geom is now visible; the remaining obstacle is the lack of a theorem-facing lower bound on the source term c0-1+(1-nu^2)T_s0 c0`
+- What counts as verification:
+  a theorem-facing proof of at least one of the following:
+  1. a lower bound on the source term
+     `c_0-1+(1-\nu^2)T_{s0}c_0`
+     strong enough to give a lower bound for `I_{geom}`;
+  2. an equivalent one-sided lower bound for `I_{geom}` obtained from the same
+     positive-kernel representation;
+  3. a reduction showing that the minimal remaining geometry-side blocker is
+     exactly the source-term estimate above.
+- Verification method:
+  manual geometry-side reduction of the exact background kinematics to a linear
+  equation for `e_{\theta 0}`, followed by an integrating-factor / Fubini
+  representation with positive kernel and a conservative source-term audit.
+- Verification boundary:
+  this does not prove Assumption LC, does not close the strict continuation
+  line, does not change equations, BCs, solver behavior, or assumptions, and
+  does not yet reopen the flexural Hurwitz step; it only sharpens the geometry
+  subtarget from a raw lower-bound search on `I_{geom}` to the explicit
+  source-term lower-bound problem above.
+- Next action:
+  pursue a theorem-facing lower bound for the source term
+  `c_0-1+(1-\nu^2)T_{s0}c_0` under the positive kernel `K_{geom}/x`.
+  Do not default instead to stronger global sign theorems for `\varphi_0` or
+  `e_{\theta 0}`, or to broader branch-law theorems, unless this sharper
+  geometry-side route later proves insufficient.
+
+### V-S114. Conditional on Assumption LC, the raw split `S = -(1-c_0) + (1-\nu^2)T_{s0}c_0` is the best active source form for the geometry-side lower-bound problem; the rewrite `S = r_0' - 1 + \nu c_0 e_{\theta 0}` is exact but currently only cosmetic
+
+- ID: `V-S114`
+- Claim / Hypothesis:
+  Fix `(n,q)` and assume Assumption LC.
+  Keep the geometry-side source term
+  `S := c_0 - 1 + (1-\nu^2)T_{s0}c_0`.
+  The exact theorem-facing rewrites currently available are:
+  1. the raw split
+     `S = -(1-c_0) + (1-\nu^2)T_{s0}c_0`;
+  2. using
+     `(1-\nu^2)T_{s0} = e_{s0} + \nu e_{\theta 0}`
+     and
+     `r_0' = (1+e_{s0})c_0`,
+     the exact kinematic form
+     `S = r_0' - 1 + \nu c_0 e_{\theta 0}
+        = r_0' - 1 + \nu c_0(r_0-x)/x`;
+  3. the half-angle refinement of the negative part
+     `c_0 - 1 = -2\sin^2(\varphi_0/2)`.
+  The conservative theorem-facing comparison is:
+  the raw split is the best active lower-bound form.
+  It is preferred because it isolates the already explicit loss term
+  `1-c_0 \ge 0`, so the remaining burden is concentrated on the compensating
+  positive candidate `(1-\nu^2)T_{s0}c_0`.
+  By contrast, the rewrite
+  `S = r_0' - 1 + \nu c_0 e_{\theta 0}`
+  is exact but currently less suitable as the active form:
+  it replaces the explicit negative piece `c_0-1` by two terms of unresolved
+  sign and therefore mainly repackages the same lower-bound difficulty.
+  The half-angle formula is exact but only sharpens the already known negative
+  part and does not by itself improve the missing lower bound on the
+  compensating term.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `reduced conditionally under LC / the source-term lower-bound problem is now best read in the raw split S = -(1-c0) + (1-nu^2)T_s0 c0; the kinematic rewrite through r0'-1 + nu c0 e_theta0 is exact but does not currently improve the comparison structure`
+- What counts as verification:
+  a theorem-facing proof of at least one of the following:
+  1. a lower bound on `(1-\nu^2)T_{s0}c_0` strong enough, under `K_{geom}/x`,
+     to dominate `1-c_0`;
+  2. an equivalent one-sided lower bound for the raw source form `S`;
+  3. an exact theorem-facing argument that the kinematic form
+     `r_0' - 1 + \nu c_0 e_{\theta 0}` does not produce a stronger lower-bound
+     route than the raw split.
+- Verification method:
+  manual audit of the exact source-term algebra and conservative comparison of
+  the available source-level rewrites under the physical-semantic screening
+  rule.
+- Verification boundary:
+  this does not prove Assumption LC, does not close the strict continuation
+  line, does not change equations, BCs, solver behavior, or assumptions, and
+  does not yet reopen the flexural Hurwitz step; it only chooses the best
+  current source-level form in which the geometry-side lower-bound problem
+  should now be attacked.
+- Next action:
+  keep the raw split
+  `S = -(1-c_0) + (1-\nu^2)T_{s0}c_0`
+  as the active source form and pursue a lower bound on the compensating term
+  `(1-\nu^2)T_{s0}c_0` under the positive kernel.
+  Do not default instead to stronger global sign theorems or to the kinematic
+  rewrite unless the raw split later proves genuinely insufficient.
+
+### V-S115. Conditional on Assumption LC, the weighted compensating term is the exact active comparison object: `I_geom = J_comp - J_loss`, but no theorem-facing lower bound for `J_comp` is yet available
+
+- ID: `V-S115`
+- Claim / Hypothesis:
+  Fix `(n,q)` and assume Assumption LC.
+  On the current clean branch, define
+  `J_{comp}
+   := \int_{x_0}^1 [K_{geom}(x)/x](1-\nu^2)T_{s0}(x)c_0(x)\, dx`
+  and
+  `J_{loss}
+   := \int_{x_0}^1 [K_{geom}(x)/x](1-c_0(x))\, dx`.
+  Since
+  `S = -(1-c_0) + (1-\nu^2)T_{s0}c_0`,
+  the positive-kernel representation of `I_{geom}` becomes exactly
+  `I_{geom} = J_{comp} - J_{loss}`.
+  Therefore the desired comparison
+  `J_{comp} \ge J_{loss}`
+  is equivalent to `I_{geom} \ge 0`.
+  The exact compensating-term rewrites currently available are:
+  1. the raw product `(1-\nu^2)T_{s0}c_0`;
+  2. `c_0 e_{s0} + \nu c_0 e_{\theta 0}`;
+  3. `r_0' - c_0 + \nu c_0 e_{\theta 0}`.
+  The conservative theorem-facing audit is:
+  these are exact but none yet yields a one-sided lower bound for `J_{comp}`
+  after weighting by `K_{geom}/x`.
+  Multiplying the `T_{s0}` equation by `c_0`, or re-expressing `T_{s0}` via
+  the rotated variables `(A,B)`, does not presently improve the comparison
+  structure; it mainly repackages the same unresolved sign difficulty.
+  Under the physical-semantic screen, broader global sign theorems for
+  `\varphi_0`, `c_0`, or `e_{\theta 0}`, and broader branch-law theorems, are
+  stronger than necessary here.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `reduced conditionally under LC / the weighted compensating term is now the exact active comparison object, but no theorem-facing lower bound for J_comp is yet available; the desired comparison J_comp >= J_loss remains open`
+- What counts as verification:
+  a theorem-facing proof of at least one of the following:
+  1. a lower bound for `J_{comp}` strong enough to imply `J_{comp} \ge J_{loss}`;
+  2. a direct weighted comparison `J_{comp} \ge J_{loss}`;
+  3. an equally weak one-sided integral estimate sufficient to conclude
+     `I_{geom} \ge 0`.
+- Verification method:
+  manual audit of the weighted compensating term under the positive kernel,
+  comparison of the exact available rewrites, and conservative lower-bound
+  diagnosis under the physical-semantic screening rule.
+- Verification boundary:
+  this does not prove Assumption LC, does not close the strict continuation
+  line, does not change equations, BCs, solver behavior, or assumptions, and
+  does not yet reopen the flexural Hurwitz step; it only sharpens the geometry
+  blocker from a source-form question to the exact weighted comparison object
+  `J_{comp} \ge J_{loss}`.
+- Next action:
+  keep the default next target at the direct weighted comparison
+  `J_{comp} \ge J_{loss}`.
+  Do not default instead to stronger global sign theorems or broader branch-law
+  theorems unless this exact weighted comparison route later proves
+  insufficient.
+
+### V-S116. Conditional on Assumption LC, the cumulative comparison functional `D(y)` has an exact evolution identity, but no theorem-facing comparison law is yet available
+
+- ID: `V-S116`
+- Claim / Hypothesis:
+  Fix `(n,q)` and assume Assumption LC.
+  Define
+  `D(y)
+   := \int_{x_0}^y [K_{geom}(x)/x]
+      ((1-\nu^2)T_{s0}(x)c_0(x) - (1-c_0(x)))\, dx`.
+  Then the exact theorem-facing facts already available are:
+  1. `D(x_0)=0` and `D(1)=I_{geom}`;
+  2. the exact differential law
+     `D'(y) = [K_{geom}(y)/y]S(y)`;
+  3. using
+     `y e_{\theta 0}' + (1+\nu c_0)e_{\theta 0} = S`
+     and
+     `K_{geom}' = K_{geom}(1+\nu c_0)/y - \eta/r_0`,
+     the equivalent exact cumulative identity
+     `D'(y) = (K_{geom}e_{\theta 0})'(y) + \eta(y)e_{\theta 0}(y)/r_0(y)`,
+     hence
+     `D(y)
+      = K_{geom}(y)e_{\theta 0}(y)
+      + \int_{x_0}^y \eta(x)e_{\theta 0}(x)/r_0(x)\, dx`.
+  So `D` is a genuine cumulative object, not a cosmetic renaming.
+  However, no theorem-facing comparison law is yet available:
+  the current package still does not sign the right-hand side above, and any
+  monotonicity or positivity theorem for `D` would require a one-sided
+  estimate on `e_{\theta 0}` or on the source term `S`.
+  Under the physical-semantic screen, a global sign theorem for
+  `e_{\theta 0}` is stronger than the default next need.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `reduced conditionally under LC / D(y) has an exact cumulative identity, but no theorem-facing monotonicity or comparison law is yet available; the remaining blocker is a weaker one-sided estimate on the right-hand side rather than a new reformulation of D`
+- What counts as verification:
+  a theorem-facing proof of at least one of the following:
+  1. a one-sided differential inequality for `D(y)`;
+  2. a one-sided estimate on
+     `K_{geom}(y)e_{\theta 0}(y)
+      + \int_{x_0}^y \eta e_{\theta 0}/r_0`
+     strong enough to conclude `D(1)\ge 0`;
+  3. an equally weak cumulative comparison law implying `J_{comp}\ge J_{loss}`.
+- Verification method:
+  manual cumulative-functional audit of the exact weighted comparison object,
+  exact differentiation of `D` and `K_{geom}`, and conservative comparison-law
+  diagnosis under the physical-semantic screening rule.
+- Verification boundary:
+  this does not prove Assumption LC, does not close the strict continuation
+  line, does not change equations, BCs, solver behavior, or assumptions, and
+  does not yet reopen the flexural Hurwitz step; it only sharpens the weighted
+  comparison step from a static integral inequality to an exact cumulative law
+  whose missing ingredient is now explicit.
+- Next action:
+  keep the default next move at the weakest cumulative target:
+  a one-sided estimate on the exact right-hand side
+  `K_{geom}(y)e_{\theta 0}(y) + \int_{x_0}^y \eta e_{\theta 0}/r_0`
+  strong enough to imply `D(1)\ge 0`.
+  Do not default instead to broader global sign theorems or branch-law
+  theorems unless this cumulative route later proves genuinely insufficient.
+
+### V-S117. Conditional on Assumption LC, the physically meaningful cumulative object behind `D(y)` is the circumferential stretch defect `e_{\theta 0} = \lambda_{\theta 0}-1`; the current package gives only the weak admissibility floor `\lambda_{\theta 0}>0`, which is too weak by itself to sign `D`
+
+- ID: `V-S117`
+- Claim / Hypothesis:
+  Fix `(n,q)` and assume Assumption LC.
+  On the active clean branch,
+  `e_{\theta 0} := (r_0-x)/x`
+  is the circumferential strain / circumferential-stretch defect, with
+  `\lambda_{\theta 0} := r_0/x = 1 + e_{\theta 0}`.
+  The current theorem-facing facts already available are:
+  1. `e_{\theta 0}(x_0)=0` and `\lambda_{\theta 0}(x_0)=1`, because
+     `r_0(x_0)=x_0`;
+  2. because `x>0` on `[x_0,1]` and the current reduction is written on the
+     clean branch with `r_0>0`, the weak admissibility floor
+     `\lambda_{\theta 0}>0`, equivalently `e_{\theta 0}>-1`, is available on
+     the current branch package;
+  3. the cumulative identity for `D` may therefore be rewritten exactly as
+     `D(y)
+      = K_{geom}(y)(\lambda_{\theta 0}(y)-1)
+      + \int_{x_0}^y [\eta(x)/x](1-\lambda_{\theta 0}(x)^{-1})\, dx`.
+  This is a genuine physical reformulation of the same cumulative comparison
+  problem. However, the presently available admissibility floor is still too
+  weak to sign `D` or to prove `D(1)\ge 0`: positivity of
+  `\lambda_{\theta 0}` alone only gives `e_{\theta 0}>-1`, while the kernel
+  `1-\lambda_{\theta 0}^{-1}` remains unbounded below as
+  `\lambda_{\theta 0}\downarrow 0`.
+  Under the physical-semantic screen, a global sign theorem for
+  `e_{\theta 0}` or for `\lambda_{\theta 0}-1` is stronger than the default
+  need. The honest next physical target is instead a weaker admissibility or
+  cumulative lower bound for `\lambda_{\theta 0}` strong enough to lower-bound
+  the right-hand side above.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `reduced conditionally under LC / the physically meaningful cumulative object is now clearly lambda_theta0 = 1 + e_theta0, but the current theorem-facing control stops at the weak admissibility floor lambda_theta0 > 0; this is too weak by itself to sign D(1)`
+- What counts as verification:
+  a theorem-facing proof of at least one of the following:
+  1. a quantitative lower bound for `\lambda_{\theta 0}` on the clean branch
+     strong enough to imply a lower bound for
+     `\int_{x_0}^1 [\eta(x)/x](1-\lambda_{\theta 0}(x)^{-1})\, dx`;
+  2. a direct cumulative lower bound for
+     `K_{geom}(y)(\lambda_{\theta 0}(y)-1)
+      + \int_{x_0}^y [\eta(x)/x](1-\lambda_{\theta 0}(x)^{-1})\, dx`;
+  3. an equally weak admissibility theorem for the circumferential stretch
+     sufficient to conclude `D(1)\ge 0`.
+- Verification method:
+  manual physical-semantic audit of the exact cumulative identity for `D`,
+  exact rewrite through the circumferential stretch
+  `\lambda_{\theta 0}=r_0/x`, and conservative admissibility-based blocker
+  selection.
+- Verification boundary:
+  this does not prove Assumption LC, does not close the strict continuation
+  line, does not change equations, BCs, solver behavior, or assumptions, and
+  does not yet reopen the flexural Hurwitz step; it only sharpens the
+  cumulative geometry blocker from a generic one-sided estimate on
+  `e_{\theta 0}` to the weaker physical target of admissibility-level control
+  on `\lambda_{\theta 0}`.
+- Next action:
+  keep the default next move at the weakest physical cumulative target:
+  prove a weak admissibility theorem or cumulative lower bound for the
+  circumferential stretch `\lambda_{\theta 0}` strong enough to lower-bound
+  `K_{geom}(y)(\lambda_{\theta 0}(y)-1)
+   + \int_{x_0}^y [\eta(x)/x](1-\lambda_{\theta 0}(x)^{-1})\, dx`.
+  Do not default instead to stronger global sign theorems for
+  `\varphi_0`, `c_0`, or `e_{\theta 0}`, or to broader branch-law theorems,
+  unless this weaker admissibility route later proves genuinely insufficient.
+
+### V-S118. Conditional on Assumption LC, the endpoint quantity `D(1)` reduces exactly to a weighted harmonic-mean test for the circumferential stretch; among pure pointwise lower bounds, `\lambda_{\theta 0}\ge 1` is the weakest sufficient one
+
+- ID: `V-S118`
+- Claim / Hypothesis:
+  Fix `(n,q)` and assume Assumption LC.
+  Because
+  `K_{geom}(1)
+   = \rho(1)\int_1^1 \eta(x)/(r_0(x)\rho(x))\, dx = 0`,
+  the exact cumulative identity from `V-S116` simplifies at the active
+  endpoint to
+  `D(1)=I_{geom}
+   = \int_{x_0}^1 [\eta(x)/x](1-\lambda_{\theta 0}(x)^{-1})\, dx`.
+  Hence:
+  1. since `1-\lambda^{-1}` is strictly increasing on `(0,\infty)`,
+     every pointwise lower bound
+     `\lambda_{\theta 0}(x)\ge \lambda_* > 0`
+     yields the exact consequence
+     `D(1)\ge W_\eta(1-\lambda_*^{-1})`,
+     where `W_\eta := \int_{x_0}^1 \eta(x)/x\, dx > 0`;
+  2. among pure pointwise lower bounds, the weakest sufficient one is exactly
+     `\lambda_{\theta 0}\ge 1`;
+  3. any weaker uniform floor
+     `\lambda_{\theta 0}\ge \lambda_*` with `0<\lambda_*<1`,
+     equivalently `\lambda_{\theta 0}\ge 1-\delta` with `\delta>0`,
+     is not sufficient by itself;
+  4. a weaker cumulative sufficient package is the weighted harmonic-mean
+     condition
+     `\int_{x_0}^1 [\eta(x)/(x\lambda_{\theta 0}(x))]\, dx
+      \le \int_{x_0}^1 \eta(x)/x\, dx`,
+     equivalently
+     `H_{\eta/x}(\lambda_{\theta 0}) \ge 1`.
+  This is strictly weaker than pointwise `\lambda_{\theta 0}\ge 1` and is the
+  best currently visible admissibility-type sufficient package for `D(1)\ge 0`.
+  The current theorem-facing package, however, still supplies only the weak
+  floor `\lambda_{\theta 0}>0`; no theorem-facing route to the weighted
+  harmonic-mean bound is yet available from the present clean ODE/BC record.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `reduced conditionally under LC / the exact endpoint test for D(1) is now a weighted harmonic-mean condition on lambda_theta0; this is weaker than pointwise lambda_theta0 >= 1, but the current theorem-facing package does not yet support it`
+- What counts as verification:
+  a theorem-facing proof of at least one of the following:
+  1. the weighted harmonic-mean inequality
+     `\int_{x_0}^1 [\eta/(x\lambda_{\theta 0})]
+      \le \int_{x_0}^1 \eta/x`;
+  2. an equally weak cumulative admissibility theorem implying the same;
+  3. a pointwise lower bound `\lambda_{\theta 0}\ge 1` on the active clean
+     branch, if the weaker harmonic-mean route later proves inaccessible.
+- Verification method:
+  manual endpoint specialization of the exact cumulative identity for `D`,
+  monotonicity audit of the kernel `1-\lambda^{-1}`, and conservative
+  sufficient-condition selection under the physical-semantic screening rule.
+- Verification boundary:
+  this does not prove Assumption LC, does not close the strict continuation
+  line, does not change equations, BCs, solver behavior, or assumptions, and
+  does not yet reopen the flexural Hurwitz step; it only sharpens the active
+  physical admissibility target for the geometry-side step from a generic lower
+  bound on `\lambda_{\theta 0}` to the precise weighted harmonic-mean
+  condition above.
+- Next action:
+  keep the default next move at the weakest sufficient endpoint target:
+  prove the weighted harmonic-mean bound
+  `\int_{x_0}^1 [\eta/(x\lambda_{\theta 0})]
+   \le \int_{x_0}^1 \eta/x`.
+  Do not default instead to the stronger pointwise condition
+  `\lambda_{\theta 0}\ge 1`, or to broader global sign / branch-law theorems,
+  unless this weaker cumulative admissibility route later proves genuinely
+  insufficient.
+
+### V-S119. Conditional on Assumption LC, the weighted harmonic-mean inequality is the exact active endpoint target; the first theorem-facing obstruction is the missing comparison law for the inverse stretch `u=\lambda_{\theta 0}^{-1}` against the comparator `1`
+
+- ID: `V-S119`
+- Claim / Hypothesis:
+  Fix `(n,q)` and assume Assumption LC.
+  Define `u := \lambda_{\theta 0}^{-1}` on the active clean branch.
+  Then the exact geometry equation
+  `x e_{\theta 0}' + (1+\nu c_0)e_{\theta 0} = S`,
+  with `e_{\theta 0} = \lambda_{\theta 0}-1`,
+  is equivalent to the exact inverse-stretch Riccati equation
+  `x u' = (1+\nu c_0)u - (1+\nu c_0 + S)u^2`,
+  with `u(x_0)=1`.
+  The active endpoint target from `V-S118` is therefore exactly
+  `\int_{x_0}^1 [\eta(x)/x]u(x)\, dx \le \int_{x_0}^1 \eta(x)/x\, dx`.
+  The natural comparator is `u \equiv 1`, but the comparator defect is exactly
+  `-S`: evaluating the right-hand side of the `u`-equation at `u=1` gives
+  `-S`.
+  Therefore the first theorem-facing obstruction to deriving the weighted
+  harmonic-mean inequality from the present clean ODE/BC package is now sharp:
+  the repo does not yet provide a one-sided comparison law for `u` against `1`,
+  because the sign of the source term `S` remains unresolved on the current
+  branch package.
+  The theorem/status split should now be read explicitly:
+  on the preferred `LC-only` line, this weighted harmonic-mean inequality
+  remains the active endpoint target to be derived through one-sided control on
+  `S`;
+  on the fallback line conditional on `LC + LC-HM` (with `LC-HM` registered in
+  `docs/assumptions/assumptions.md`), the same endpoint condition is assumed
+  and the geometry-side endpoint `D(1)\ge 0` is therefore closed by fallback.
+  Under the physical-semantic screen, stronger fallback routes such as pointwise
+  `\lambda_{\theta 0}\ge 1`, global sign theorems for
+  `\varphi_0`, `c_0`, or `e_{\theta 0}`, or broader branch-law theorems are
+  still stronger than the active need.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `LC-only: the weighted harmonic-mean inequality is still the exact active endpoint target, but the current theorem-facing package lacks the one-sided comparison law for u=lambda_theta0^{-1} against the comparator 1 because the sign of S is unresolved / LC+HM: the geometry-side endpoint D(1)>=0 is closed by fallback assumption, and this fallback closure does not replace the preferred LC-only theorem route`
+- What counts as verification:
+  a theorem-facing proof of at least one of the following:
+  1. a one-sided comparison theorem placing `u` below `1` in the weighted
+     sense needed for
+     `\int [\eta/x]u \le \int \eta/x`;
+  2. a direct weighted upper bound on `u=\lambda_{\theta 0}^{-1}` implying the
+     harmonic-mean inequality;
+  3. a theorem-facing proof that no such comparison can be derived from the
+     current package alone, in which case the harmonic-mean inequality itself
+     should be adopted as the minimal fallback assumption rather than replaced
+     by stronger pointwise or angle-sign assumptions.
+- Verification method:
+  manual reduction of the exact geometry equation to the inverse-stretch
+  Riccati form, exact identification of the comparator defect at `u=1`, and
+  conservative blocker selection under the physical-semantic screening rule.
+- Verification boundary:
+  this does not prove Assumption LC, does not close the strict continuation
+  line, does not change equations, BCs, solver behavior, or assumptions, and
+  does not yet reopen the flexural Hurwitz step; it only sharpens the active
+  endpoint admissibility target by isolating the exact comparison-theoretic
+  obstruction in the inverse-stretch equation.
+- Next action:
+  keep the default next move on the `LC-only` line at the weakest exact
+  endpoint target:
+  derive a theorem-facing weighted upper bound on
+  `u=\lambda_{\theta 0}^{-1}` sufficient for
+  `\int [\eta/x]u \le \int \eta/x`;
+  if that still cannot be obtained from the clean ODE/BC package, then the
+  fallback line conditional on `LC + LC-HM` may treat the weighted
+  harmonic-mean inequality as assumed, thereby closing the geometry-side
+  endpoint `D(1)\ge 0` by fallback rather than by theorem.
+  Do not default instead to stronger pointwise, angle-sign, or branch-law
+  assumptions unless this weaker route later proves genuinely insufficient.
+
+### V-S120. Conditional on Assumption LC, the scalar Riccati comparison problem sharpens the sufficient-control hierarchy on `S`: `S\ge 0` is the weakest pure pointwise barrier condition for `u\le 1`, while the weaker endpoint-only condition `\int (K_{geom}/x)S \ge 0` is already equivalent to the target `D(1)\ge 0`
+
+- ID: `V-S120`
+- Claim / Hypothesis:
+  Fix `(n,q)` and assume Assumption LC.
+  Keep the exact inverse-stretch Riccati equation
+  `x u' = (1+\nu c_0)u - (1+\nu c_0 + S)u^2`,
+  with `u(x_0)=1`,
+  and define the comparison variable `w := 1-u`.
+  Then the exact comparison equation is
+  `x w' = S - (1+\nu c_0+2S)w + (1+\nu c_0+S)w^2`,
+  with `w(x_0)=0`.
+  Hence:
+  1. among pure state-independent pointwise conditions on `S` alone,
+     `S\ge 0` is the weakest sufficient one for using `u\equiv 1` as a global
+     barrier, because at every contact point with `w=0` one has `x w' = S`;
+     thus `S\ge 0` would force `w\ge 0`, equivalently `u\le 1`, hence
+     `D(1)\ge 0`;
+  2. any weaker state-independent pointwise floor on `S` allowing `S<0`
+     somewhere is not by itself sufficient to preserve the barrier at a
+     contact point;
+  3. a weaker endpoint-only sufficient package is
+     `\int_{x_0}^1 [K_{geom}(x)/x]S(x)\, dx \ge 0`,
+     but this is already exactly equivalent to `D(1)\ge 0`, so it does not
+     produce a genuinely simpler target.
+  Therefore the current theorem-facing obstruction is now sharper:
+  the repo does not yet provide one-sided control on `S` strong enough to feed
+  either the pure pointwise barrier route or a genuinely weaker comparison
+  theorem for `u`.
+  Under the physical-semantic screen, stronger fallback routes such as global
+  sign theorems for `\varphi_0`, `c_0`, `e_{\theta 0}`, pointwise
+  `\lambda_{\theta 0}\ge 1`, or broader branch-law theorems remain stronger
+  than the active need.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `reduced conditionally under LC / the Riccati comparison frame now shows that S>=0 is the weakest pure pointwise barrier condition for u<=1, but the current package does not yet support S>=0 or a genuinely weaker comparison theorem; the weighted endpoint condition ∫(K_geom/x)S>=0 is weaker but equivalent to the target`
+- What counts as verification:
+  a theorem-facing proof of at least one of the following:
+  1. `S\ge 0` on the active clean branch;
+  2. a genuinely weaker comparison theorem for `u` using one-sided control on
+     `S` that is sufficient for `D(1)\ge 0`;
+  3. a theorem-facing proof that no such weaker comparison can be derived from
+     the current package, in which case the weighted harmonic-mean inequality
+     should remain the minimal fallback assumption.
+- Verification method:
+  manual scalar-comparison reduction of the exact inverse-stretch Riccati
+  equation, exact derivation of the `w=1-u` comparison equation, and
+  conservative sufficient-condition audit under the physical-semantic
+  screening rule.
+- Verification boundary:
+  this does not prove Assumption LC, does not close the strict continuation
+  line, does not change equations, BCs, solver behavior, or assumptions, and
+  does not yet reopen the flexural Hurwitz step; it only sharpens the scalar
+  comparison problem by separating the weakest pure pointwise sufficient
+  control on `S` from the weaker but target-equivalent endpoint condition.
+- Next action:
+  keep the default next move at the weakest exact endpoint target:
+  if a theorem-facing route to one-sided control on `S` still does not emerge,
+  keep the weighted harmonic-mean inequality itself as the minimal fallback
+  assumption rather than replacing it by the stronger pointwise condition
+  `S\ge 0`.
+  Do not default instead to stronger global sign, pointwise-stretch, or
+  branch-law assumptions unless this weaker route later proves genuinely
+  insufficient.
+
+### V-S121. Conditional on Assumption LC, the physical audit of `S` leaves `S\ge 0` as the only clearly formulated physically meaningful sufficient control on `S` itself; weaker sufficient controls are either trajectory-dependent, require contact localization, or are already target-equivalent
+
+- ID: `V-S121`
+- Claim / Hypothesis:
+  Fix `(n,q)` and assume Assumption LC.
+  The exact source term
+  `S = c_0 - 1 + (1-\nu^2)T_{s0}c_0`
+  is best read in the split form
+  `S = -(1-c_0) + (1-\nu^2)T_{s0}c_0`.
+  Here
+  `c_0-1 = -2\sin^2(\varphi_0/2)\le 0`
+  is the exact geometric turning/projection loss, while
+  `(1-\nu^2)T_{s0}c_0`
+  is the meridional constitutive compensation.
+  In the scalar comparison equation for `w:=1-u`,
+  `x w' = S - (1+\nu c_0+2S)w + (1+\nu c_0+S)w^2`,
+  this yields the following sufficient-control hierarchy:
+  1. `S\ge 0` is the weakest pure state-independent pointwise sufficient
+     condition on `S` itself;
+  2. any weaker state-independent pointwise floor on `S` allowing `S<0`
+     somewhere, including `S\ge -\varepsilon`, is not by itself sufficient;
+  3. weaker sufficient packages do exist in principle, but they are not yet
+     sharp theorem-facing targets:
+     positivity of `S` on a decisive subregion would require a first-contact
+     localization theorem;
+     a trajectory-dependent bound such as `S\ge -A(x)w` depends on the unknown
+     comparison trajectory;
+     and the endpoint condition
+     `\int_{x_0}^1 [K_{geom}(x)/x]S(x)\, dx \ge 0`
+     is already exactly equivalent to `D(1)\ge 0`.
+  Therefore, at the current theorem-facing level, `S\ge 0` remains the only
+  clearly formulated physically meaningful sufficient control on `S` itself.
+  No weaker non-equivalent one-sided control is yet sharp on the current clean
+  branch record.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `reduced conditionally under LC / the physical audit of S does not yet reveal a weaker non-equivalent theorem-facing sufficient control; S>=0 remains the only clearly formulated physically meaningful sufficient control on S itself`
+- What counts as verification:
+  a theorem-facing proof of at least one of the following:
+  1. `S\ge 0` on the active clean branch;
+  2. a first-contact localization theorem together with `S\ge 0` on the
+     decisive subregion;
+  3. a genuinely weaker comparison theorem using trajectory-dependent
+     one-sided control on `S`;
+  4. a theorem-facing proof that none of those weaker non-equivalent routes can
+     be derived from the current clean package, in which case the weighted
+     harmonic-mean inequality should remain the minimal fallback assumption.
+- Verification method:
+  manual physical-semantic audit of the split source term `S`, exact analysis
+  of the scalar comparison equation for `w=1-u`, and conservative comparison of
+  weaker sufficient packages under the physical-semantic screening rule.
+- Verification boundary:
+  this does not prove Assumption LC, does not close the strict continuation
+  line, does not change equations, BCs, solver behavior, or assumptions, and
+  does not yet reopen the flexural Hurwitz step; it only sharpens the source-
+  term strategy by separating the physically meaningful sufficient control
+  `S\ge 0` from weaker but currently ungrounded or target-equivalent variants.
+- Next action:
+  absent a theorem-facing contact-localization or trajectory-dependent
+  comparison theorem, do not silently replace the weighted harmonic-mean target
+  by ad hoc weaker-looking source conditions.
+  Keep the weighted harmonic-mean inequality as the minimal fallback
+  assumption, not a stronger pointwise or angle-sign statement.
