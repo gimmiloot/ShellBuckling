@@ -2135,19 +2135,174 @@ Still open and now the true bottleneck:
   line is the coupling side, namely the missing theorem-facing upper bound for
   `I_{coup} := \int_{x_0}^1 \eta(s_0 H)^+`, equivalently the lack of direct
   control of the coupling contribution in the active `F_T` identity.
-  so the direct integral split is sharp, but no direct bound is yet available,
-  and the more natural next subtarget is now the geometry side `I_{geom}`
-  rather than the coupling side `I_{coup}`;
-  so the honest next background target is now weaker and sharper:
-  prove a direct theorem-facing sign/interval estimate on `F_T`, or one layer
-  higher a proof of `H > 0` or `H \ge 0` together with the weighted domination
-  above; if one insists on first closing `H`, the clean sufficient source-level
-  target is now the sign condition `r_0' + 1 - \nu c_0 \ge 0`, not a stronger
-  global angle-sign theorem;
-  so, for the clean-background route back to the flexural quadratic/Hurwitz
-  step, the branch is no longer blocked first by local packaging or by an
-  independent unknown `K`, but by the missing intrinsic sign/interval control
-  of `T_{s0}(0)` / `\lambda_c`.
+  A narrower coupling-side audit now sharpens the negative read on the desired
+  bridge from the exact control of `\int \eta c_0 H` to `I_{coup}`:
+  with only `|s_0| \le 1`, one gets at most
+  `I_{coup} \le \int \eta H_+ \le \int \eta |H|`, so any such bridge would need
+  a theorem-facing weighted upper bound for `H_+` or `|H|`, and the present
+  exact package does not supply one;
+  writing `H = H_+ - H_-` leaves
+  `\int \eta c_0 H = \int \eta c_0 H_+ - \int \eta c_0 H_-`,
+  which is still only a signed `c_0`-weighted difference and does not control
+  the positive part `\int \eta(s_0 H)^+` without extra sign information on
+  `c_0` or `H`;
+  pointwise comparison through
+  `s_0 H = (s_0/c_0)(c_0 H)` would require theorem-facing one-sided control of
+  `s_0/c_0 = \tan\varphi_0` or a positive lower bound for `c_0` on the
+  positive-coupling set, i.e. stronger global angle/range input than the
+  active weighted need;
+  and product-rule variants of
+  `((\eta J)/\mu)' = \eta c_0 H` with prefactors involving `s_0` or
+  `s_0/c_0` only generate remainder terms containing `J/\mu` and background
+  derivatives rather than a sign-coercive positive-part identity.
+  So on the present clean background package there is still no theorem-facing
+  bridge from `\int \eta c_0 H` to `I_{coup}`.
+  A narrower direct-endpoint audit now shows that the combined fallback object
+  itself does not create a new favorable cancellation.
+  Writing
+  `D(1) = \int_{x_0}^1 \eta e_{\theta 0}/r_0`,
+  `I_{coup} = \int_{x_0}^1 \eta(s_0 H)^+`,
+  and
+  `\Delta_{coup} := D(1) - \bar q I_{coup} = \int_{x_0}^1 \eta G_{coup}`,
+  with
+  `G_{coup} := e_{\theta 0}/r_0 - \bar q (s_0 H)^+`,
+  comparison with the exact older kernel
+  `F_T = e_{\theta 0}/r_0 - \bar q s_0 H`
+  gives, by
+  `(s_0 H)^+ = s_0 H + (-s_0 H)^+`,
+  the exact reformulation
+  `G_{coup} = F_T - \bar q (-s_0 H)^+`,
+  hence
+  `\Delta_{coup}
+   = -T_{s0}(0) - \bar q \int_{x_0}^1 \eta(-s_0 H)^+`.
+  So `G_{coup} \le F_T` pointwise, with equality only on the set
+  `{s_0 H \ge 0}`:
+  the direct endpoint object is exact, but it is harder than the already known
+  `F_T` identity because it removes the favorable negative-coupling part
+  rather than adding a new cancellation.
+  Therefore the current package still gives no theorem-facing lower bound for
+  `G_{coup}` and no weaker weighted integral law for `\Delta_{coup}`.
+  More sharply, closing `\Delta_{coup} \ge 0` now reduces to the exact
+  endpoint target
+  `-T_{s0}(0) \ge \bar q \int_{x_0}^1 \eta(-s_0 H)^+`,
+  and the present clean background package supplies neither the sign/control of
+  `T_{s0}(0)` nor the required upper bound on this negative-coupling defect.
+  Auditing the natural direct routes does not improve this:
+  the coarse branch bound `T_{s0}(0) > -1/(1-\nu)` only yields the wrong-sided
+  estimate `-T_{s0}(0) < 1/(1-\nu)`;
+  reusing `T_{s0}(0) = -\int \eta F_T` merely repackages the target as a
+  weighted lower bound on the same combined integrand
+  `G_{coup} = F_T - \bar q(-s_0 H)^+`;
+  the exact `H` transport law gives local information near `x_0` but no global
+  theorem-facing upper bound for `\int \eta(-s_0 H)^+`;
+  and `((\eta J)/\mu)' = \eta c_0 H` still acts on the wrong trigonometric
+  sector.
+  Under the physical-semantic screen, stronger fallback targets such as global
+  sign theorems for `s_0`, `H`, or `\varphi_0`, or broader branch-law
+  theorems, should not be promoted by default here.
+  The weakest honest next theorem target on the fallback line is now the direct
+  endpoint inequality
+  `-T_{s0}(0) \ge \bar q \int_{x_0}^1 \eta(-s_0 H)^+`,
+  equivalently `\Delta_{coup} = D(1) - \bar q I_{coup} \ge 0`;
+  if even that does not emerge from the present package, a new coupling-side
+  fallback assumption would have to be stated explicitly rather than inferred
+  from the current identities.
+  A dedicated localized positive-coupling pass keeps
+  `\Omega_+ := \{x \in [x_0,1] : s_0(x)H(x) > 0\}`
+  as the active fallback-line object and writes, with
+  `\Omega_- := [x_0,1]\setminus\Omega_+`,
+  `D_+ := \int_{\Omega_+}\eta e_{\theta 0}/r_0`,
+  `D_- := \int_{\Omega_-}\eta e_{\theta 0}/r_0`,
+  `I_{coup} = \int_{\Omega_+}\eta s_0H`,
+  and the exact sector split
+  `\Delta_{coup} = D_+ + D_- - \bar q I_{coup}
+                  = \int_{\Omega_+}\eta F_T
+                  + \int_{\Omega_-}\eta e_{\theta 0}/r_0`.
+  Thus `\Omega_+` is indeed the physically meaningful destabilizing sector, and
+  on `\Omega_+` one has the exact identity `G_{coup}=F_T`. But the present
+  package still supplies neither a localized lower bound for `D_+` (or for
+  `\int_{\Omega_+}\eta F_T`), nor a sign/lower bound for the complement
+  reserve `D_-`, nor an intrinsic control of the weighted size or interface
+  traces of `\Omega_+`. In particular, localizing
+  `((\eta J)/\mu)' = \eta c_0 H` to the connected components of `\Omega_+`
+  introduces unknown boundary traces and still acts on `c_0 H`, not on
+  `s_0 H`.
+  So `\Omega_+` is the right physical object on `LC + LC-HM`, but no theorem-
+  facing localized comparison route is yet available from the current clean
+  package.
+  A separate literature-guided edge-compression pass then asks whether the
+  outer-edge compression set
+  `E_- := \{x \in [x_0,1] : T_{\theta 0}(x) < 0\}`
+  can sharpen the fallback-line blocker, with edge-localized reading when this
+  set meets a right-edge interval. Here
+  `T_{\theta 0} = \nu T_{s0} + e_{\theta 0}`,
+  so negative `T_{\theta 0}` does not theorem-facingly sign `e_{\theta 0}` or
+  `e_{\theta 0}/r_0` without separate control of `T_{s0}`; it therefore does
+  not directly lower-bound the geometry reserve `D(1) = \int \eta e_{\theta 0}/r_0`.
+  The exact rotated identity
+  `A' + A/r_0 = T_{\theta 0}/r_0 - s_0\bar q`
+  shows how edge compression enters the clean background system, but localizing
+  that identity to `E_-` introduces unknown interface traces and still couples
+  only to `s_0`, not to `H` or `(-s_0H)^+`.
+  The current theorem-facing package also gives no one-sided sign or interval
+  control for `T_{\theta 0}` on a right-edge interval, and no theorem-facing
+  confinement of the dangerous coupling mass `(s_0H)^+` or `(-s_0H)^+` to `E_-`.
+  So edge compression is at present a literature-supported physical indicator,
+  not a theorem-facing localized comparison route; it sharpens the physical
+  reading of the branch but does not replace the active direct endpoint target.
+  A further right-edge boundary-layer audit then asks whether one can zoom near
+  the outer edge by a local variable of the form
+  `X := (1-x)/\delta`, `\delta \to 0`,
+  or an equivalent shell coordinate, so that the active defect becomes an edge-
+  layer comparison problem. The literature does make this physically plausible:
+  Huang supports the background-to-adjacent-equilibrium architecture,
+  Coman/Coman-Bassom support near-rim mode localization in related cap/plate
+  problems, and Bauer-type plate papers support circumferential compression as a
+  rim indicator. But the present clean package does not yet expose a theorem-
+  facing asymptotic edge layer.
+  At fixed `(n,q)` the current clean background ODE/BC system is regular at
+  `x=1`: it contains the live edge data `T_{s0}(1)=0`, `\varphi_0(1)=0`,
+  `c_0(1)=1`, `s_0(1)=0`, and the background equations have coefficients built
+  from `1/r_0` and `1/x`, not from a singular `1/(1-x)` balance. So no
+  theorem-facing small parameter or singular edge scaling `\delta` is currently
+  identified by the branch record itself. Nor does the current package prove
+  that `e_{\theta 0}/r_0`, `(-s_0H)^+`, `I_{coup}`, or the dangerous reduced
+  kernel concentrate in an `O(\delta)` right-edge zone.
+  Therefore a reduced edge-layer comparison problem is physically motivated but
+  not yet theorem-facingly well-posed on the present package: first one would
+  need to identify the correct small parameter / scaling or prove genuine right-
+  edge concentration of the active defect mass.
+  A final parameter-identification pass then separates two notions that must
+  not be conflated. The usual adjacent-equilibrium bookkeeping parameter
+  `\varepsilon` in a harmonic ansatz of the form
+  `w = w_s + \varepsilon w_n \cos(n\theta)`,
+  `F = F_s + \varepsilon F_n \cos(n\theta)`
+  is only perturbation amplitude and belongs to linearization; it does not by
+  itself create a spatial edge thickness. The missing object here would be an
+  independent structural edge scale `\delta \to 0` for a variable
+  `X=(1-x)/\delta`.
+  Auditing the candidate intrinsic parameters on the current clean branch is
+  negative. `\mu` and `\Lambda=12(1-\nu^2)\mu^2` are explicit constitutive /
+  thickness quantities, but the present theorem-facing branch fixes them as
+  positive parameters rather than taking a thinness or shallowness limit;
+  `n` is explicit in the adjacent-equilibrium operator, but the current theorem
+  statements fix `(n,q)` and therefore use `n` as a mode label, not as a large-
+  parameter regime; `\bar q` is likewise a fixed load parameter on the active
+  branch record, with no theorem-facing `\bar q\to\infty` scaling; and the
+  width of the negative-`T_{\theta 0}` zone or of the dangerous coupling sector
+  is not yet controlled theorem-facingly, so it cannot presently define
+  `\delta` either. Since the clean background system is regular at `x=1`, no
+  hidden regular-singular rescaling emerges there from the current package.
+  So the current clean simple-support branch does not presently contain a
+  meaningful intrinsic structural asymptotic parameter for a right-edge
+  thickness `\delta`; obtaining one would require enlarging the regime, most
+  naturally by explicitly promoting some additional family parameter (for
+  example large `n`) to asymptotic status rather than reading it implicitly from
+  the present fixed-`(n,q)` package.
+  So, for the clean-background route back to the flexural quadratic/Hurwitz
+  step on the fallback line, the branch is now blocked exactly by this missing
+  direct endpoint comparison, not by geometry-side admissibility or by local
+  packaging.
 - strict-line boundary:
   this conditional reduction does not discharge Assumption LC and does not
   close the strict ambient-to-local continuation theorem.

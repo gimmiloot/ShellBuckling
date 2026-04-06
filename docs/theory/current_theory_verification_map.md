@@ -6447,7 +6447,7 @@ Most valuable next proof pilots:
   linearized background BVP is fixed and the reduced integral route is shown to
   be genuinely insufficient.
 
-### V-S112. Conditional on Assumption LC, the direct weighted-integral split into `I_geom` and `I_coup` is sharp: on the preferred `LC-only` line the geometry term remains the more natural next subtarget, while on the fallback line `LC + LC-HM` the geometry endpoint is closed and the coupling term becomes the next blocker
+### V-S112. Conditional on Assumption LC, the direct weighted-integral split into `I_geom` and `I_coup` is sharp: on the preferred `LC-only` line the geometry term remains open, while on the fallback line `LC + LC-HM` the geometry endpoint is closed and the missing bridge from `\int \eta c_0 H` to `I_coup` is the next blocker
 
 - ID: `V-S112`
 - Claim / Hypothesis:
@@ -6474,18 +6474,37 @@ Most valuable next proof pilots:
      `\int \eta(s_0 H)^+`;
   3. together with the available bound `|s_0| \le 1`, this gives only soft
      estimates through `|H|`, not a theorem-facing upper bound for `I_{coup}`.
+  4. Writing `H = H_+ - H_-` leaves
+     `\int \eta c_0 H = \int \eta c_0 H_+ - \int \eta c_0 H_-`,
+     which is still only a signed `c_0`-weighted difference and does not
+     control the positive part `\int \eta(s_0 H)^+` without extra sign
+     information on `c_0` or `H`;
+  5. pointwise comparison
+     `s_0 H = (s_0/c_0)(c_0 H)`
+     would require theorem-facing one-sided control of
+     `s_0/c_0 = \tan\varphi_0`, or a positive lower bound for `c_0` on the
+     positive-coupling set, which is stronger global angle/range information
+     than the active weighted need;
+  6. product-rule variants of `((\eta J)/\mu)' = \eta c_0 H` with factors
+     involving `s_0` or `s_0/c_0` only generate remainder terms containing
+     `J/\mu` and background derivatives, not a sign-coercive positive-part
+     identity for `I_{coup}`.
   Therefore the direct integral split is sharp but still open.
   The route split should now be read explicitly:
   on the preferred `LC-only` line, the geometry side remains the more natural
   next subtarget;
   on the fallback line conditional on `LC + LC-HM`, the geometry-side endpoint
   `I_{geom}=D(1)` is closed by assumption, so the next actual blocker is the
-  missing theorem-facing upper bound for `I_{coup}`.
+  missing theorem-facing upper bound for `I_{coup}`;
+  more sharply, no theorem-facing bridge from the exact control of
+  `\int \eta c_0 H` to `I_{coup}` is currently visible on the present clean
+  background package.
   Under the physical-semantic screen, stronger global sign theorems for
   `\varphi_0`, `s_0`, or `e_{\theta 0}`, and broader branch-law theorems, are
   still stronger than necessary here.
-  The more natural default next subtarget is now the geometry side:
-  derive a theorem-facing lower bound for `I_{geom}`.
+  The weakest honest next target on the fallback line is instead the direct
+  comparison `D(1) \ge \bar q I_{coup}`, or any equally weak direct coupling-
+  side upper bound implying it.
 - Type: `strategy-level hypothesis`
 - Source file(s):
   `docs/theory/current_simple_support_status.md`;
@@ -6497,17 +6516,20 @@ Most valuable next proof pilots:
   `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
   `docs/assumptions/assumptions.md`.
 - Current status:
-  `LC-only: the direct integral split is explicit and sharp; no theorem-facing lower bound for I_geom or upper bound for I_coup is yet closed at this level, and because the coupling side currently controls eta c0 H rather than eta(s0 H)^+, the geometry side remains the more natural next default subtarget / LC+HM: the geometry endpoint I_geom=D(1) is closed by fallback assumption, so the next blocker is the still-open coupling-side upper bound for I_coup`
+  `LC-only: the direct integral split is explicit and sharp; no theorem-facing lower bound for I_geom or upper bound for I_coup is yet closed at this level, so the geometry side remains the more natural next default subtarget / LC+HM: the geometry endpoint I_geom=D(1) is closed by fallback assumption, the next blocker is the still-open coupling-side upper bound for I_coup, and the exact control of eta c0 H still does not theorem-facingly bridge to eta(s0 H)^+ because the available routes reduce only to missing control of H_+, |H|, or tan(phi_0)`
 - What counts as verification:
   a theorem-facing proof of at least one of the following:
-  1. a lower bound for
-     `I_{geom} = \int_{x_0}^1 \eta(r_0-x)/(x r_0)`;
+  1. on the fallback line, the direct comparison
+     `D(1) \ge \bar q I_{coup}`;
   2. an upper bound for
      `I_{coup} = \int_{x_0}^1 \eta(s_0 H)^+`;
   3. an equally weak one-sided integral inequality sufficient to sign or bound
-     `T_{s0}(x_0)`;
-  4. an exact theorem-facing argument showing that a lower bound for
-     `I_{geom}` is the truly minimal next subtarget among those options.
+     `T_{s0}(x_0)` on the fallback line;
+  4. an equally weak theorem-facing control converting the exact information on
+     `\eta c_0 H` into control of `\eta(s_0 H)^+`;
+  5. a theorem-facing proof that no such bridge can be derived from the
+     current clean background package alone, in which case a direct coupling-
+     side estimate or an explicit new fallback assumption becomes necessary.
 - Verification method:
   manual direct-integral audit of the active dominance inequality, exact
   rewrites of the geometry and coupling integrands, and conservative blocker
@@ -6517,15 +6539,20 @@ Most valuable next proof pilots:
   line, does not change equations, BCs, solver behavior, or assumptions, and
   does not yet reopen the flexural Hurwitz step; it only sharpens the active
   integral-theorem target by splitting it into the geometry and coupling
-  subtargets and selecting the more natural next one.
+  subtargets, fixing the fallback-line blocker at the coupling side, and
+  recording that the current exact control of `\eta c_0 H` still does not
+  bridge theorem-facingly to `\eta(s_0 H)^+`.
 - Next action:
   keep the route split explicit:
   on the preferred `LC-only` line, pursue a theorem-facing lower bound for
   `I_{geom}` first;
   on the fallback line conditional on `LC + LC-HM`, treat `I_{geom}=D(1)` as
-  already closed by assumption and move next to the coupling side, namely an
-  upper bound for `I_{coup}` or an equally weak control converting the exact
-  information on `\eta c_0 H` into control of `\eta(s_0 H)^+`.
+  already closed by assumption and move next to the coupling side.
+  Do not default there to stronger global-sign or angle-range theorems.
+  Attack the weakest direct target instead:
+  prove `D(1) \ge \bar q I_{coup}`, or an equally weak direct coupling-side
+  upper bound implying it; only if that still fails should a new explicit
+  coupling-side fallback assumption be considered.
 
 ### V-S113. Conditional on Assumption LC, the geometry integral `I_geom` does admit a direct positive-kernel representation; the lower-bound problem reduces to the source term `c_0-1+(1-\nu^2)T_{s0}c_0`
 
@@ -7186,3 +7213,380 @@ Most valuable next proof pilots:
   by ad hoc weaker-looking source conditions.
   Keep the weighted harmonic-mean inequality as the minimal fallback
   assumption, not a stronger pointwise or angle-sign statement.
+
+### V-S122. Conditional on Assumption LC, the direct fallback-line endpoint object `\Delta_{coup}` is exact but not favorable: `G_{coup} = F_T - \bar q(-s_0 H)^+`, so the combined endpoint formulation exposes a stricter obstruction rather than a new cancellation
+
+- ID: `V-S122`
+- Claim / Hypothesis:
+  Fix `(n,q)` and assume Assumption LC.
+  On the fallback line conditional on `LC + LC-HM`, keep the geometry endpoint
+  closed by assumption and define
+  `D(1) = \int_{x_0}^1 [\eta(x)/x](1-\lambda_{\theta 0}(x)^{-1})\, dx
+        = \int_{x_0}^1 \eta(x)e_{\theta 0}(x)/r_0(x)\, dx`,
+  `I_{coup} := \int_{x_0}^1 \eta(x)(s_0(x)H(x))^+\, dx`,
+  and
+  `\Delta_{coup} := D(1) - \bar q I_{coup}
+                  = \int_{x_0}^1 \eta(x)G_{coup}(x)\, dx`,
+  where
+  `G_{coup}(x)
+   := e_{\theta 0}(x)/r_0(x) - \bar q (s_0(x)H(x))^+`.
+  Compare this with the already exact kernel
+  `F_T = e_{\theta 0}/r_0 - \bar q s_0 H`
+  coming from
+  `T_{s0}(0) = -\int_{x_0}^1 \eta F_T`.
+  Using
+  `(s_0 H)^+ = s_0 H + (-s_0 H)^+`
+  gives the exact identities
+  `G_{coup} = F_T - \bar q(-s_0 H)^+`
+  and therefore
+  `\Delta_{coup}
+   = -T_{s0}(0) - \bar q \int_{x_0}^1 \eta(x)(-s_0(x)H(x))^+\, dx`.
+  Hence `G_{coup} \le F_T` pointwise, with equality only on `{s_0 H \ge 0}`.
+  So the direct endpoint formulation is exact, but it does not create a new
+  favorable cancellation; instead it removes the favorable negative-coupling
+  part of the old kernel.
+  The present clean background package therefore still gives no theorem-facing
+  lower bound for `G_{coup}` and no weaker weighted estimate for
+  `\Delta_{coup}`:
+  it neither signs `T_{s0}(0)` nor upper-bounds the negative-coupling defect
+  `\int \eta(-s_0 H)^+`.
+  Auditing the natural direct routes sharpens the same obstruction rather than
+  removing it:
+  the coarse center bound `T_{s0}(0) > -1/(1-\nu)` only gives the wrong-sided
+  estimate `-T_{s0}(0) < 1/(1-\nu)`;
+  reusing `T_{s0}(0) = -\int \eta F_T` merely rewrites the target as a weighted
+  lower bound for `G_{coup} = F_T - \bar q(-s_0 H)^+`;
+  the exact `H` transport law gives local information near `x_0` but no global
+  theorem-facing upper bound on `\int \eta(-s_0 H)^+`;
+  and `((\eta J)/\mu)' = \eta c_0 H` still controls `c_0 H`, not the negative
+  coupling sector `(-s_0 H)^+`.
+  Under the physical-semantic screen, stronger global sign theorems for
+  `\varphi_0`, `c_0`, `s_0`, or `H`, and broader branch-law theorems, remain
+  stronger than the active need.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `LC-only unchanged: the preferred geometry-side route still runs through one-sided control on S for the Riccati comparison / LC+HM: Delta_coup remains the right direct fallback-line object, and the natural direct routes through the coarse center bound, the exact F_T identity, the H transport law, and the J identity all stall at the same missing comparison between -T_s0(0) and the weighted negative-coupling defect`
+- What counts as verification:
+  a theorem-facing proof of at least one of the following:
+  1. the exact endpoint inequality
+     `-T_{s0}(0) \ge \bar q \int_{x_0}^1 \eta(-s_0 H)^+`,
+     equivalently `\Delta_{coup} \ge 0`;
+  2. a lower bound for the combined endpoint integrand `G_{coup}` or a weaker
+     weighted integral estimate sufficient for the same endpoint inequality;
+  3. a theorem-facing proof that the current clean background package alone
+     cannot supply such a bound, in which case any new coupling-side fallback
+     assumption would need to be stated explicitly rather than inferred.
+- Verification method:
+  manual direct-endpoint audit of the exact combined integrand, comparison with
+  the earlier exact kernel `F_T`, and positive-part decomposition of the
+  coupling term under the physical-semantic screening rule.
+- Verification boundary:
+  this does not prove Assumption LC, does not close the strict continuation
+  line, does not change equations, BCs, solver behavior, or assumptions, and
+  does not replace the preferred `LC-only` route; it only sharpens the
+  fallback-line blocker by showing that the exact direct endpoint object is
+  stricter than the older `F_T` identity and still unsupported by the current
+  package.
+- Next action:
+  keep exactly one default next target on the fallback line:
+  prove
+  `-T_{s0}(0) \ge \bar q \int_{x_0}^1 \eta(-s_0 H)^+`,
+  equivalently `\Delta_{coup} \ge 0`.
+  Do not default instead to stronger global-sign or branch-law theorems unless
+  this weaker direct endpoint target later proves genuinely insufficient.
+### V-S123. Conditional on Assumption LC, the localized positive-coupling sector `\Omega_+ = \{s_0H>0\}` is the right physical object on the fallback line, but the current clean background package still gives no theorem-facing localized comparison route
+
+- ID: `V-S123`
+- Claim / Hypothesis:
+  Fix `(n,q)` and assume Assumption LC.
+  On the fallback line conditional on `LC + LC-HM`, define
+  `\Omega_+ := \{x \in [x_0,1] : s_0(x)H(x) > 0\}`,
+  `\Omega_- := [x_0,1]\setminus\Omega_+`,
+  `D_+ := \int_{\Omega_+}\eta(x)e_{\theta 0}(x)/r_0(x)\, dx`,
+  `D_- := \int_{\Omega_-}\eta(x)e_{\theta 0}(x)/r_0(x)\, dx`,
+  and
+  `I_{coup} = \int_{\Omega_+}\eta(x)s_0(x)H(x)\, dx`.
+  Then
+  `D(1) = D_+ + D_-`
+  and, because `(s_0H)^+ = s_0H` on `\Omega_+` and `0` on `\Omega_-`,
+  the direct fallback-line target can be rewritten exactly as
+  `\Delta_{coup} = D(1) - \bar q I_{coup}
+                  = \int_{\Omega_+}\eta F_T
+                  + \int_{\Omega_-}\eta e_{\theta 0}/r_0`,
+  equivalently again as
+  `\Delta_{coup} = -T_{s0}(0) - \bar q\int_{\Omega_-}\eta(-s_0H)^+`.
+  Thus restricting to `\Omega_+` does identify the physically meaningful
+  destabilizing sector, and on `\Omega_+` the exact kernel collapses to
+  `G_{coup}=F_T`. But the present clean background package still yields no
+  theorem-facing localized comparison route from that fact alone:
+  1. it does not lower-bound `D_+` or `\int_{\Omega_+}\eta F_T`;
+  2. it does not sign or lower-bound the complement reserve `D_-`;
+  3. it does not control the weighted size or interface traces of `\Omega_+`;
+  4. localizing `((\eta J)/\mu)' = \eta c_0H` to connected components of
+     `\Omega_+` introduces unknown interface traces and still acts on `c_0H`,
+     not on `s_0H`.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `docs/assumptions/assumptions.md`.
+- Current status:
+  `LC-only unchanged: the preferred geometry-side route still runs through one-sided control on S for the Riccati comparison / LC+HM: \Omega_+ is the right physically meaningful localized object, but the present package still gives no theorem-facing localized comparison between geometry reserve and destabilizing coupling; the sectorized rewrite only restates the same missing controls on D_+, D_-, or on the geometry of \Omega_+ itself`
+- What counts as verification:
+  a theorem-facing proof of at least one of the following:
+  1. the sector-based weighted inequality
+     `\int_{\Omega_+}\eta F_T + \int_{\Omega_-}\eta e_{\theta 0}/r_0 \ge 0`,
+     equivalently `D(1) \ge \bar q I_{coup}`;
+  2. a weaker localized estimate sufficient for the same conclusion, e.g. a
+     lower bound for `D_+` together with a sign/lower bound for `D_-`, or an
+     intrinsic control of the weighted size/interface traces of `\Omega_+`;
+  3. a theorem-facing proof that no such `\Omega_+`-localized route can be
+     derived from the current clean background package alone.
+- Verification method:
+  manual localization audit of the exact fallback-line integrals, exact sector
+  decomposition on `\Omega_+ \cup \Omega_-`, and interface-term screening for
+  localized use of `((\eta J)/\mu)' = \eta c_0H`.
+- Verification boundary:
+  this does not prove Assumption LC, does not close the strict continuation
+  line, does not change equations, BCs, solver behavior, or assumptions, and
+  does not replace the preferred `LC-only` route; it only sharpens the fallback
+  blocker by exhausting the localized positive-coupling-sector mechanism before
+  any new coupling-side fallback is discussed.
+- Next action:
+  keep exactly one default localized next target on the fallback line:
+  prove the sector-based weighted inequality
+  `\int_{\Omega_+}\eta F_T + \int_{\Omega_-}\eta e_{\theta 0}/r_0 \ge 0`,
+  equivalently `D(1) \ge \bar q I_{coup}`.
+  Do not default instead to stronger global-sign or branch-law theorems unless
+  this `\Omega_+`-localized target later proves genuinely insufficient.
+### V-S124. Conditional on Assumption LC, edge compression through `T_{\theta 0}<0` near the outer edge is a literature-supported physical indicator on the fallback line, but the current clean background package does not yet convert it into a theorem-facing localized comparison
+
+- ID: `V-S124`
+- Claim / Hypothesis:
+  Fix `(n,q)` and assume Assumption LC.
+  On the fallback line conditional on `LC + LC-HM`, define the edge-compression
+  set
+  `E_- := \{x \in [x_0,1] : T_{\theta 0}(x) < 0\}`,
+  with edge-layer reading when `E_-` contains a right-edge interval, and recall
+  `T_{\theta 0} = \nu T_{s0} + e_{\theta 0}`.
+  Literature-facing physical guidance suggests that circumferential compression
+  near the rim may correlate with edge-localized unsymmetric destabilization.
+  But on the present clean background package this does not yet yield a theorem-
+  facing route to the active fallback target
+  `D(1) \ge \bar q I_{coup}`:
+  1. negative `T_{\theta 0}` does not sign `e_{\theta 0}` or `e_{\theta 0}/r_0`
+     without separate control of `T_{s0}`, so it does not directly control the
+     geometry reserve `D(1) = \int \eta e_{\theta 0}/r_0`;
+  2. the exact rotated background identity
+     `A' + A/r_0 = T_{\theta 0}/r_0 - s_0\bar q`
+     does show where `T_{\theta 0}` enters, but restricting it to `E_-`
+     introduces unknown interface traces and still couples only to `s_0`, not
+     to `H` or the active defect `(-s_0H)^+`;
+  3. the current package gives no theorem-facing sign or interval control for
+     `T_{\theta 0}` on a right-edge interval;
+  4. it also gives no theorem-facing confinement of `(s_0H)^+` or
+     `(-s_0H)^+` to `E_-`.
+  So the edge-compression interpretation sharpens the physical reading, but not
+  the theorem-facing blocker itself.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `docs/assumptions/assumptions.md`;
+  `docs/literature/notes/huang_1964_unsymmetrical_buckling.md`;
+  `docs/literature/notes/coman_2013_pressurised_plate_initial_tension.md`;
+  `docs/literature/notes/coman_2016_pressurised_shallow_cap.md`;
+  `docs/literature/notes/bauer_voronkova_romanova_loss_of_stability.md`;
+  `docs/literature/notes/bauer_voronkova_semenov_2022_unsymmetric_forms.md`.
+- Current status:
+  `LC-only unchanged: the preferred geometry-side route still runs through one-sided control on S for the Riccati comparison / LC+HM: edge compression via T_theta0<0 near the outer edge is literature-supported as a physical indicator, but the current clean package gives no theorem-facing sign control of T_theta0 near the edge, no confinement of dangerous coupling mass to E_-, and no localized comparison strong enough to imply D(1) >= qbar I_coup`
+- What counts as verification:
+  a theorem-facing proof of at least one of the following:
+  1. a localized comparison on `E_-` sufficient for
+     `D(1) \ge \bar q I_{coup}`;
+  2. a theorem-facing confinement of `(s_0H)^+` or `(-s_0H)^+` to `E_-`
+     together with an edge-zone comparison reducing the active target to that
+     set;
+  3. a theorem-facing proof that the current clean background package alone
+     cannot convert edge compression into such a localized route.
+- Verification method:
+  manual audit of how `T_{\theta 0}` enters the exact clean background ODE and
+  rotated integral identities, combined with a literature-guided physical-
+  semantic screening of edge-localization interpretations.
+- Verification boundary:
+  this does not prove Assumption LC, does not close the strict continuation
+  line, does not change equations, BCs, solver behavior, or assumptions, and
+  does not replace the preferred `LC-only` route; it only records that the
+  edge-compression mechanism is presently interpretive rather than theorem-
+  facing on the fallback line.
+- Next action:
+  keep exactly one default next theorem target on the fallback line unchanged:
+  prove the direct endpoint inequality
+  `D(1) \ge \bar q I_{coup}`,
+  equivalently
+  `-T_{s0}(0) \ge \bar q \int_{x_0}^1 \eta(-s_0H)^+`.
+  Do not replace this by an edge-compression statement unless a genuine
+  theorem-facing localization/confinement step is first found.
+### V-S125. Conditional on Assumption LC, a right-edge boundary-layer reformulation of the fallback obstruction is physically motivated, but the current clean background package does not yet identify a theorem-facing edge-layer scaling or concentration regime
+
+- ID: `V-S125`
+- Claim / Hypothesis:
+  Fix `(n,q)` and assume Assumption LC.
+  On the fallback line conditional on `LC + LC-HM`, ask whether the active
+  obstruction
+  `-T_{s0}(0) \ge \bar q \int_{x_0}^1 \eta(x)(-s_0(x)H(x))^+\, dx`,
+  equivalently `D(1) \ge \bar q I_{coup}`,
+  admits a right-edge boundary-layer reduction through a local variable of the
+  form `X := (1-x)/\delta`, `\delta \to 0`, or an equivalent shell coordinate.
+  Literature-facing guidance makes this plausible as a physical mechanism:
+  Huang supports the background-plus-adjacent-equilibrium architecture,
+  Coman/Coman-Bassom support near-rim localization in related cap/plate
+  problems, and Bauer-type plate papers support rim compression as an
+  instability indicator. But the present clean background package still does
+  not expose a theorem-facing asymptotic route:
+  1. at fixed `(n,q)` the clean background ODE/BC system is regular at `x=1`,
+     with edge data `T_{s0}(1)=0`, `\varphi_0(1)=0`, `c_0(1)=1`, `s_0(1)=0`,
+     and coefficients built from `1/r_0` and `1/x`, not from a singular
+     `1/(1-x)` balance;
+  2. therefore no intrinsic small parameter or edge-layer thickness `\delta` is
+     currently identified by the theorem-facing branch record itself;
+  3. the current package proves no concentration of `e_{\theta 0}/r_0`,
+     `(-s_0H)^+`, `I_{coup}`, or the reduced kernel in an `O(\delta)`
+     right-edge zone;
+  4. without such scaling or concentration, a reduced edge-layer comparison
+     problem is not yet theorem-facingly well-posed.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `docs/assumptions/assumptions.md`;
+  `docs/literature/SOURCE_INDEX.md`;
+  `docs/literature/notes/huang_1964_unsymmetrical_buckling.md`;
+  `docs/literature/notes/coman_2013_pressurised_plate_initial_tension.md`;
+  `docs/literature/notes/coman_2016_pressurised_shallow_cap.md`;
+  `docs/literature/notes/bauer_voronkova_romanova_loss_of_stability.md`;
+  `docs/literature/notes/bauer_voronkova_semenov_2022_unsymmetric_forms.md`.
+- Current status:
+  `LC-only unchanged: the preferred geometry-side route still runs through one-sided control on S for the Riccati comparison / LC+HM: a right-edge boundary-layer mechanism is physically well motivated, but the current clean package identifies neither a small asymptotic parameter nor a concentration theorem for the active defect mass, so no theorem-facing edge-layer comparison route is yet visible`
+- What counts as verification:
+  a theorem-facing proof of at least one of the following:
+  1. identification of a canonical small parameter / right-edge scaling `\delta`
+     for the current clean background branch;
+  2. a concentration statement showing that the active defect mass or reduced
+     kernel is asymptotically supported in a right-edge zone of thickness
+     `O(\delta)`;
+  3. a reduced leading-order edge-layer comparison problem derived from that
+     scaling and sufficient for `D(1) \ge \bar q I_{coup}`.
+- Verification method:
+  manual asymptotic audit of the exact clean background ODE/BC package near the
+  outer edge, combined with literature-guided physical screening of candidate
+  rim-localization regimes.
+- Verification boundary:
+  this does not prove Assumption LC, does not close the strict continuation
+  line, does not change equations, BCs, solver behavior, or assumptions, and
+  does not replace the preferred `LC-only` route; it only records that the
+  boundary-layer route is presently motivational rather than theorem-facing.
+- Next action:
+  keep exactly one default next target if this edge-layer route is pursued:
+  identify the correct right-edge small parameter / scaling `\delta` for the
+  current clean background branch.
+  Do not skip directly to a reduced edge-layer comparison law before such a
+  scaling or concentration statement is theorem-facingly fixed.
+### V-S126. Conditional on Assumption LC, the current clean simple-support package does not yet contain an intrinsic structural asymptotic parameter that would define a right-edge thickness `\delta`; the linearization amplitude `\varepsilon` is a different object
+
+- ID: `V-S126`
+- Claim / Hypothesis:
+  Fix `(n,q)` and assume Assumption LC.
+  Ask whether the current clean background / adjacent-equilibrium package
+  contains any genuine asymptotic parameter from which one could define a
+  meaningful right-edge scale `\delta \to 0`, for instance through
+  `X=(1-x)/\delta`, in a way relevant to the fallback obstruction.
+  The first point is conceptual: the usual adjacent-equilibrium parameter
+  `\varepsilon` in a harmonic ansatz such as
+  `w = w_s + \varepsilon w_n \cos(n\theta)`,
+  `F = F_s + \varepsilon F_n \cos(n\theta)`
+  is perturbation amplitude only. It belongs to linearization and does not by
+  itself create a spatial boundary-layer thickness.
+  Auditing the structural candidates on the present clean branch is negative:
+  1. `\mu` and `\Lambda=12(1-\nu^2)\mu^2` are explicit constitutive/thickness
+     parameters, but the active theorem regime fixes them as positive numbers
+     rather than taking a thinness or shallowness limit;
+  2. `n` is explicit in the adjacent-equilibrium operator, but once the theorem
+     statements fix `(n,q)`, it is only a mode label, not yet a large
+     asymptotic parameter;
+  3. `\bar q` is a fixed load parameter on the current branch record, with no
+     theorem-facing `\bar q\to\infty` line;
+  4. the widths of the negative-`T_{\theta 0}` zone and of the dangerous
+     coupling sector are not theorem-facingly controlled and therefore cannot
+     presently define `\delta`;
+  5. the clean background ODE/BC system is regular at `x=1`, so no hidden
+     regular-singular rescaling produces an intrinsic edge thickness.
+  Therefore no meaningful intrinsic structural `\delta` is currently available
+  on the fixed clean simple-support branch itself.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `docs/assumptions/assumptions.md`;
+  `docs/literature/SOURCE_INDEX.md`;
+  `docs/literature/notes/huang_1964_unsymmetrical_buckling.md`;
+  `docs/literature/notes/coman_2013_pressurised_plate_initial_tension.md`;
+  `docs/literature/notes/coman_2016_pressurised_shallow_cap.md`;
+  `docs/literature/notes/bauer_voronkova_romanova_loss_of_stability.md`;
+  `docs/literature/notes/bauer_voronkova_semenov_2022_unsymmetric_forms.md`.
+- Current status:
+  `LC-only unchanged: the preferred geometry-side route still runs through one-sided control on S for the Riccati comparison / LC+HM: the present clean package contains no intrinsic structural asymptotic parameter for a right-edge thickness delta; epsilon from adjacent-equilibrium linearization is amplitude bookkeeping only, while mu, n, qbar, and edge-zone widths are either fixed parameters or still uncontrolled and therefore do not theorem-facingly yield delta`
+- What counts as verification:
+  a theorem-facing proof of at least one of the following:
+  1. promotion of some explicit branch quantity to a genuine asymptotic regime
+     that canonically defines `\delta`;
+  2. a proof that one of the candidate parameters, most plausibly `n`, can be
+     enlarged from mode label to asymptotic parameter on the current theorem
+     line;
+  3. a proof that no intrinsic `\delta` exists without enlarging the theorem
+     regime beyond the present fixed-`(n,q)` package.
+- Verification method:
+  manual parameter audit of the exact clean background and adjacent-equilibrium
+  formulations, together with explicit separation of amplitude-smallness from
+  spatial scaling under the physical-semantic screening rule.
+- Verification boundary:
+  this does not prove Assumption LC, does not close the strict continuation
+  line, does not change equations, BCs, solver behavior, or assumptions, and
+  does not replace the preferred `LC-only` route; it only records that the
+  asymptotic parameter required for a right-edge `\delta` is absent from the
+  current fixed-branch package.
+- Next action:
+  keep exactly one default next target if an edge-scale route is still desired:
+  determine whether large wave number `n` can be promoted from mode label to a
+  genuine asymptotic parameter on an explicitly enlarged theorem regime.
+  Do not treat `\varepsilon` from linearization or a fixed `\mu`, `n`, or
+  `\bar q` as an intrinsic right-edge scale by default.
