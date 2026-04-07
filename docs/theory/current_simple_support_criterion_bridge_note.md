@@ -1512,9 +1512,22 @@ Current read of the existing pieces:
   zone and dangerous coupling sector are not yet controlled; and the background
   system stays regular at `x=1`, so no hidden singular rescaling appears. Thus
   the current package does not presently contain a meaningful structural small
-  parameter for a right-edge `\delta`; any such scale would require an explicit
-  enlargement of the theorem regime rather than an implicit reading of the
-  fixed-branch package.
+  parameter for a right-edge `\delta`. This should not be read as a reason to
+  abandon asymptotics, and it should not be replaced by fixing one specific
+  wave number. The correct architectural target is instead:
+  exact axisymmetric background
+  `\to`
+  asymptotic simplification in some non-`n` background parameter
+  `\to`
+  reduced nonsymmetric bifurcation problem with `n` kept as an unknown discrete
+  mode label `n=O(1)`
+  `\to`
+  critical load obtained as the minimum over the relevant `n`.
+  On the present clean branch no such usable non-`n` parameter is yet exposed
+  theorem-facingly. Among the explicit parameters already present, the only
+  plausible candidate is the shell thickness / shallowness quantity `\mu`
+  (equivalently `\Lambda`), but it is currently fixed as a constitutive
+  parameter, not as an active asymptotic regime.
 - verdict:
   `B. \Delta_{coup}` is indeed the right direct fallback-line object, but the
   current clean background package still gives no theorem-facing direct route:

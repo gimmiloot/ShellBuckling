@@ -1,3 +1,40 @@
+## 2026-04-07 - Upgrade the negative mu-probe to a class-level no-go for the natural regular large-mu scaling class
+
+- Affected files:
+  - `docs/theory/current_simple_support_status.md`
+  - `docs/theory/current_theory_verification_map.md`
+  - `CHANGELOG.md`
+- Extended the previous docs-only large-`mu` audit on the active exact 6-state simple-support background from the default renormalization probe to the whole natural regular scaling class
+  `T_s,u_r,varphi,e_s,T_theta,kappa_s = O(1)`,
+  `M_s,T_sn = O(mu^-2)`,
+  `u_z = O(mu)`.
+- Recorded the sharper theorem-facing proposition that, for fixed nonzero load and the preserved live BC vector, this entire regular class fails: the lost `Qhat'` transport is only a formal closure warning, while the decisive contradiction already comes from the center BC package together with the leading-order shear constraint.
+- Recorded separately that the edge compatibility relation remains a secondary obstruction and is not logically needed for the class-level no-go proof.
+- Kept solver equations, BCs, numerics, and assumptions unchanged; no new files were created.
+## 2026-04-07 - Exact large-mu audit on the live clean simple-support background
+
+- Affected files:
+  - `docs/theory/current_simple_support_status.md`
+  - `docs/theory/current_theory_verification_map.md`
+  - `CHANGELOG.md`
+- Added a docs-only continuation pass for the current theorem-facing `mu` / `Lambda` target on the active exact 6-state simple-support background.
+- Recorded the exact renormalization
+  `epsilon = mu^{-1}`,
+  `Mhat = mu^2 M_s`,
+  `Qhat = mu^2 T_sn`,
+  `zhat = u_z / mu`,
+  and the exact result that only the `Qhat'` channel carries an explicit `epsilon^{-2}` singular factor.
+- Recorded the derived leading-order shear balance and the negative closure verdict: with the preserved live BC vector, the formal large-`mu` limit is not square because the center BC `Qhat(x0)=0` conflicts with the leading-order balance for nonzero load and the edge BCs force an extra compatibility condition not present in the live package.
+- Kept solver equations, BCs, numerics, and assumptions unchanged; no new files were created.
+## 2026-04-06 - Correct finite-n asymptotic framing on the clean simple-support branch
+
+- Affected files:
+  - `docs/theory/current_simple_support_status.md`
+  - `docs/theory/current_simple_support_criterion_bridge_note.md`
+  - `docs/theory/current_theory_verification_map.md`
+- Corrected the theorem-facing asymptotic framing so that the circumferential wave number `n` stays an unknown discrete mode label `O(1)` rather than a default large-parameter line.
+- Recorded the finite-n architecture explicitly: exact background -> asymptotic simplification in a non-`n` parameter -> reduced nonsymmetric problem depending on `n` -> critical load obtained as the minimum over relevant discrete `n`.
+- Recorded that the current clean package still exposes no usable non-`n` background asymptotic regime, while the only plausible explicit candidate already present in the formulation is the shell thickness / shallowness quantity `mu` / `Lambda`.
 ## 2026-04-06 - Small-parameter audit for the clean simple-support right-edge scale
 
 - Affected files:
@@ -141,7 +178,7 @@ Affected files:
 - Kept the same honest full-state simple-support background solver, BCs, and determinant criterion, but repaired the current high-load supporting scan strategy so a failed coarse warm-start point now triggers an automatic local restart on the same load path instead of leaving a history-dependent gap immediately.
 - Added a dense local-restart continuation fallback inside the high-load supporting module, seeded independently from the honest simple-support template path and then continued locally to the failed target load; if that succeeds, the recovered solution is reused as the new continuation state.
 - Extended the diagnostic CSV with solve_mode = warm_start | local_restart | failure and updated the diagnostic summary so the full 
-=4,  ..15 MPa pass reports failed-point counts before the repair, recovered-point count, and remaining failures after the repair.
+=4, ..15 MPa pass reports failed-point counts before the repair, recovered-point count, and remaining failures after the repair.
 - Verified on the targeted 
 =4 full-range pass that the previous background-failure gap on 4.375..5.125 MPa is removed and the non-shallow scan becomes continuous again on the repaired path.
 # CHANGELOG

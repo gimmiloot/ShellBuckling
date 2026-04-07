@@ -2295,10 +2295,169 @@ Still open and now the true bottleneck:
   hidden regular-singular rescaling emerges there from the current package.
   So the current clean simple-support branch does not presently contain a
   meaningful intrinsic structural asymptotic parameter for a right-edge
-  thickness `\delta`; obtaining one would require enlarging the regime, most
-  naturally by explicitly promoting some additional family parameter (for
-  example large `n`) to asymptotic status rather than reading it implicitly from
-  the present fixed-`(n,q)` package.
+  thickness `\delta`. This does not mean that asymptotics should be abandoned,
+  and it does not mean that one should fix a specific wave number in advance.
+  The methodologically correct architecture, consistent with the Huang / Coman /
+  Bauer-type pattern, is instead:
+  exact axisymmetric background
+  `\to`
+  asymptotic simplification of that background branch in some non-`n`
+  parameter
+  `\to`
+  reduced nonsymmetric bifurcation problem with `n` kept as an unknown discrete
+  mode label `n=O(1)`
+  `\to`
+  critical load obtained as the minimum over the relevant discrete `n`.
+  On the present fixed-`(n,q)` clean package, however, no usable non-`n`
+  asymptotic parameter is yet theorem-facingly exposed by the branch record
+  itself. Among the explicit parameters already present in the formulation, the
+  only plausible non-`n` background candidate is the shell thickness /
+  shallowness quantity `\mu` (equivalently `\Lambda=12(1-\nu^2)\mu^2`), but it
+  is currently fixed as a constitutive parameter rather than promoted to an
+  asymptotic regime.
+  A direct exact large-`\mu` / large-`\Lambda` audit of the live 6-state
+  background package now sharpens this point on the current clean branch.
+  Using the active solver file
+  `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`,
+  the exact state is
+  `(T_s,T_{sn},M_s,u_r,u_z,\varphi)`,
+  the exact auxiliary definitions are
+  `r=x+u_r`,
+  `e_\theta=u_r/x`,
+  `e_s=(1-\nu^2)T_s-\nu e_\theta`,
+  `T_\theta=\nu T_s+e_\theta`,
+  `\kappa_s=12(1-\nu^2)\mu^2 M_s-\nu\sin\varphi/r`,
+  `M_\theta=\nu M_s+\sin\varphi/(12\mu^2 r)`,
+  and the exact BC vector is
+  `T_s(1)=0`, `M_s(1)=0`, `u_z(1)=0`, `T_{sn}(x_0)=0`, `u_r(x_0)=0`,
+  `\varphi(x_0)=0`.
+  To test the only explicit non-`n` candidate already visible in the package,
+  set
+  `\varepsilon=\mu^{-1}`,
+  `\widehat M=\mu^2 M_s`,
+  `\widehat Q=\mu^2 T_{sn}`,
+  `\widehat z=u_z/\mu`,
+  and leave `T_s,u_r,\varphi` as `O(1)` trial channels.
+  Then the exact renormalized formulas become
+  `\kappa_s=12(1-\nu^2)\widehat M-\nu\sin\varphi/r`,
+  `M_\theta=\varepsilon^2(\nu\widehat M+\sin\varphi/(12r))`,
+  `T_s'
+   = -T_s/r + (\cos\varphi/r)T_\theta - \varepsilon^2 \kappa_s \widehat Q`,
+  `\widehat Q'
+   = -\widehat Q/r
+     + \varepsilon^{-2}\!\left[(\sin\varphi/r)T_\theta+\kappa_s T_s-\bar q\right]`,
+  `\widehat M'
+   = -\widehat M/r + \widehat Q
+     + (\cos\varphi/r)(\nu\widehat M+\sin\varphi/(12r))`,
+  `u_r'=(1+e_s)\cos\varphi-1`,
+  `\widehat z'=-(1+e_s)\sin\varphi`,
+  `\varphi'=\kappa_s`.
+  So there is exactly one explicit `\varepsilon^{-2}` singular channel in the
+  renormalized first-order system, namely the `\widehat Q'` equation; the
+  channels `e_s`, `T_\theta`, `T_s'`, `\widehat M'`, `\widehat z'`, and
+  `\varphi'` stay regular at the exact algebraic level.
+  The candidate leading-order shear balance is therefore derived correctly from
+  the exact coefficient of `\varepsilon^{-2}`:
+  `(\sin\varphi/r)T_\theta+\kappa_s T_s-\bar q=0`.
+  After substituting the exact definitions of `T_\theta` and `\kappa_s`, this
+  balance simplifies exactly to
+  `12(1-\nu^2)T_s\widehat M + (\sin\varphi/r)e_\theta - \bar q = 0`.
+  But this formal one-singular-channel picture does **not** close to a usable
+  theorem-facing leading-order background regime on the present clean package.
+  At the exact center side, the preserved live BCs
+  `u_r(x_0)=0`, `\varphi(x_0)=0`, `\widehat Q(x_0)=0`
+  force
+  `e_\theta(x_0)=0`,
+  hence the leading-order balance gives
+  `12(1-\nu^2)T_s(x_0)\widehat M(x_0)=\bar q`.
+  Differentiating the same balance at `x_0` gives
+  `(T_s\widehat M)'(x_0)=0`,
+  because the mixed term `(\sin\varphi)e_\theta/r` and its first derivative
+  both vanish there.
+  However the regular leading-order ODE channels imply
+  `T_s'(x_0)=-(1-\nu)T_s(x_0)/x_0`,
+  `\widehat M'(x_0)=-(1-\nu)\widehat M(x_0)/x_0+\widehat Q(x_0)`,
+  so
+  `(T_s\widehat M)'(x_0)
+   = -2(1-\nu)T_s(x_0)\widehat M(x_0)/x_0 + T_s(x_0)\widehat Q(x_0)`.
+  Using the preserved center BC `\widehat Q(x_0)=0` and the algebraic balance
+  above yields
+  `(T_s\widehat M)'(x_0) = -\bar q/[6(1+\nu)x_0]`,
+  which is nonzero for nontrivial load. So the leading-order algebraic balance
+  is incompatible with the preserved exact center BC package on the current
+  live formulation.
+  The edge side also fails to stay square. If one keeps the exact edge BCs
+  `T_s(1)=0` and `\widehat M(1)=0`, the same leading-order balance collapses at
+  `x=1` to the extra compatibility condition
+  `(\sin\varphi(1)/r(1))e_\theta(1)=\bar q`,
+  which is not part of the exact BC vector and is not supplied by the live
+  background ODE package.
+  So the large-`\mu` probe does reveal an exact formal shear-balance
+  constraint, but it does **not** produce a usable closed leading-order
+  background regime with the preserved live BC set. In the current clean
+  package, `\mu` / `\Lambda` remains the only plausible explicit non-`n`
+  asymptotic candidate, but this exact renormalization audit is negative:
+  without an enlarged regime, extra scale, or additional compatibility layer,
+  the theorem-facing finite-`n` background reduction does not close.
+  A sharper **derived proposition** now upgrades that result from the default
+  renormalization probe to the whole natural regular large-`\mu` scaling class.
+  Fix a nonzero load `\bar q` and assume one stays in the regular class
+  `T_s,u_r,\varphi,e_s,T_\theta,\kappa_s=O(1)`,
+  `M_s=O(\mu^{-2})`,
+  `T_{sn}=O(\mu^{-2})`,
+  `u_z=O(\mu)`,
+  equivalently
+  `T_s,\widehat M,\widehat Q,\widehat z,u_r,\varphi=O(1)`,
+  with a regular leading-order limit on the fixed interval `[x_0,1]`.
+  Then the leading-order large-`\mu` problem is still **not usable** as a
+  square theorem-facing background problem on the preserved clean package.
+  The obstruction split is now explicit.
+  `A. closure obstruction` is **derived but not decisive by itself**:
+  at leading order the `\widehat Q'` transport disappears and only the
+  algebraic constraint
+  `F:=12(1-\nu^2)T_s\widehat M + (\sin\varphi/r)e_\theta - \bar q = 0`
+  remains.
+  But this alone does not yet prove a no-go, because differentiating `F=0`
+  along the regular leading-order equations recovers `\widehat Q` linearly:
+  `F' = 12(1-\nu^2)T_s \widehat Q + R(T_s,\widehat M,u_r,\varphi)`.
+  So away from the set `T_s=0`, the formal limit can still be read as an
+  index-1 DAE; the loss of the explicit `\widehat Q` transport therefore does
+  not by itself exclude a regular leading-order regime.
+  `B. BC obstruction` is **derived and decisive**:
+  the preserved exact center BCs already contradict the same regular limit.
+  At `x=x_0`, the live BCs give
+  `u_r(x_0)=0`,
+  `\varphi(x_0)=0`,
+  `\widehat Q(x_0)=0`,
+  hence `e_\theta(x_0)=0`;
+  the algebraic constraint then yields
+  `12(1-\nu^2)T_s(x_0)\widehat M(x_0)=\bar q`.
+  Because `F \equiv 0` in the leading-order system, one must also have
+  `F'(x_0)=0`, equivalently `(T_s\widehat M)'(x_0)=0`.
+  But the regular leading-order ODE channels imply
+  `T_s'(x_0)=-(1-\nu)T_s(x_0)/x_0`,
+  `\widehat M'(x_0)=-(1-\nu)\widehat M(x_0)/x_0+\widehat Q(x_0)`,
+  so
+  `(T_s\widehat M)'(x_0)
+   = -2(1-\nu)T_s(x_0)\widehat M(x_0)/x_0 + T_s(x_0)\widehat Q(x_0)`.
+  Substituting the preserved center BC `\widehat Q(x_0)=0` and the constraint
+  relation above gives
+  `(T_s\widehat M)'(x_0) = -\bar q/[6(1+\nu)x_0]`,
+  which is nonzero for `\bar q \neq 0`.
+  This is a direct contradiction. So the natural regular scaling class is
+  ruled out already by the exact center BC package; the proof does **not** need
+  the extra edge incompatibility to conclude a no-go.
+  The edge relation
+  `T_s(1)=0`, `\widehat M(1)=0`
+  `\Rightarrow`
+  `(\sin\varphi(1)/r(1))e_\theta(1)=\bar q`
+  remains a second **derived** incompatibility, but it is secondary rather
+  than logically necessary for the class-level failure.
+  Therefore the theorem-facing verdict is now stronger than before:
+  on the exact live clean package and for fixed nonzero load, the whole natural
+  regular large-`\mu` scaling class fails. The decisive no-go mechanism is the
+  preserved-BC contradiction, while the lost `\widehat Q` transport is only an
+  additional closure warning.
   So, for the clean-background route back to the flexural quadratic/Hurwitz
   step on the fallback line, the branch is now blocked exactly by this missing
   direct endpoint comparison, not by geometry-side admissibility or by local

@@ -7586,7 +7586,218 @@ Most valuable next proof pilots:
   current fixed-branch package.
 - Next action:
   keep exactly one default next target if an edge-scale route is still desired:
-  determine whether large wave number `n` can be promoted from mode label to a
-  genuine asymptotic parameter on an explicitly enlarged theorem regime.
-  Do not treat `\varepsilon` from linearization or a fixed `\mu`, `n`, or
-  `\bar q` as an intrinsic right-edge scale by default.
+  determine whether an explicit non-`n` background parameter, most plausibly the
+  shell thickness / shallowness quantity `\mu` (equivalently `\Lambda`), can be
+  promoted from fixed constitutive data to a genuine asymptotic regime.
+  Do not treat `\varepsilon` from linearization, a fixed discrete `n`, or a
+  fixed `\bar q` as an intrinsic right-edge scale by default.
+### V-S127. Conditional on Assumption LC, the corrected asymptotic architecture should keep the circumferential wave number `n` as an unknown discrete mode label `O(1)`; the missing ingredient is a non-`n` background asymptotic regime, not a large-`n` default line
+
+- ID: `V-S127`
+- Claim / Hypothesis:
+  Fix the clean full simple-support branch under Assumption LC and keep the
+  strict / `LC-only` / `LC+LC-HM` split unchanged.
+  The correct theorem-facing asymptotic architecture is not
+  `fix n first` and not `take large n by default`.
+  It should instead be read as
+  exact axisymmetric background
+  `\to`
+  asymptotic simplification of the background branch in some non-`n` parameter
+  `\to`
+  reduced nonsymmetric bifurcation problem depending on `n` as an unknown
+  discrete mode label with `n=O(1)`
+  `\to`
+  candidate critical load for each such `n`
+  `\to`
+  true critical load obtained as the minimum over the relevant discrete `n`.
+  This matches the methodological pattern behind Huang and the plate references.
+  On the present clean package that architecture is physically and
+  methodologically plausible, but it is not yet theorem-facingly usable because
+  no explicit non-`n` background asymptotic parameter is currently exposed by
+  the fixed-branch record. Among the parameters already visible in the
+  formulation, the only plausible intrinsic non-`n` candidate is `\mu`
+  (equivalently `\Lambda`), but it is presently fixed as constitutive data, not
+  as an asymptotic regime.
+- Type: `strategy-level hypothesis`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/vyvod_uravneniy_updated17.md`;
+  `src/shell_buckling/mixed_weak/_core_solver_common.py`;
+  `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`;
+  `proof_pilots/pilot_23_clean_simple_support_reduced_tangent_operator/pilot_23_clean_simple_support_reduced_tangent_operator.md`;
+  `docs/assumptions/assumptions.md`;
+  `docs/literature/SOURCE_INDEX.md`;
+  `docs/literature/notes/huang_1964_unsymmetrical_buckling.md`;
+  `docs/literature/notes/coman_2013_pressurised_plate_initial_tension.md`;
+  `docs/literature/notes/coman_2016_pressurised_shallow_cap.md`;
+  `docs/literature/notes/bauer_voronkova_romanova_loss_of_stability.md`;
+  `docs/literature/notes/bauer_voronkova_semenov_2022_unsymmetric_forms.md`.
+- Current status:
+  `LC-only unchanged: the preferred geometry-side route still runs through one-sided control on S for the Riccati comparison / LC+HM: the finite-n asymptotic architecture is methodologically the right one, but the current clean package still does not expose a usable non-n background asymptotic parameter; n should stay an unknown discrete mode label rather than a large-parameter default line`
+- What counts as verification:
+  a theorem-facing proof of at least one of the following:
+  1. identification of a genuine non-`n` background asymptotic regime for the
+     clean branch, while keeping `n=O(1)`;
+  2. a reduced nonsymmetric bifurcation problem derived in that regime and still
+     depending on `n` as a discrete label;
+  3. a proof that no such finite-`n` asymptotic reduction is meaningful without
+     enlarging the current formulation / regime.
+- Verification method:
+  manual architectural audit comparing the exact clean background /
+  adjacent-equilibrium package with the methodological pattern in the uploaded
+  shell/plate references, while explicitly separating amplitude-smallness,
+  discrete mode labeling, and background asymptotics.
+- Verification boundary:
+  this does not prove Assumption LC, does not close the strict continuation
+  line, does not change equations, BCs, solver behavior, or assumptions, and
+  does not replace the preferred `LC-only` route; it only corrects the default
+  asymptotic framing so that `n` remains discrete and the missing step is moved
+  back to a non-`n` background regime.
+- Next action:
+  keep exactly one default next target under this corrected framing:
+  determine whether the shell thickness / shallowness quantity `\mu`
+  (equivalently `\Lambda`) can be promoted from fixed constitutive data to an
+  explicit background asymptotic regime while keeping `n=O(1)`.
+  Do not default instead to large-`n`, to fixing one specific `n`, or to
+  dropping asymptotics altogether.
+### V-S128. Direct exact large-`\mu` / large-`\Lambda` renormalization of the live 6-state simple-support background exposes one formal singular channel but does not yield a usable closed finite-`n` leading-order regime on the current clean package
+
+- ID: `V-S128`
+- Claim / Hypothesis:
+  Work on the active exact 6-state axisymmetric simple-support background from
+  `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`
+  with state
+  `(T_s,T_{sn},M_s,u_r,u_z,\varphi)`
+  and exact BCs
+  `T_s(1)=0`, `M_s(1)=0`, `u_z(1)=0`, `T_{sn}(x_0)=0`, `u_r(x_0)=0`,
+  `\varphi(x_0)=0`.
+  Use the renormalization
+  `\varepsilon=\mu^{-1}`,
+  `\widehat M=\mu^2 M_s`,
+  `\widehat Q=\mu^2 T_{sn}`,
+  `\widehat z=u_z/\mu`,
+  while testing `T_s,u_r,\varphi` as `O(1)` channels.
+  Then the exact renormalized system has exactly one explicit
+  `\varepsilon^{-2}` channel,
+  `\widehat Q'
+   = -\widehat Q/r
+     + \varepsilon^{-2}\!\left[(\sin\varphi/r)T_\theta+\kappa_s T_s-\bar q\right]`,
+  with all other channels remaining regular at the exact first-order level.
+  The candidate leading-order shear balance
+  `(\sin\varphi/r)T_\theta+\kappa_s T_s-\bar q=0`
+  is therefore the correct derived leading-order constraint, and it simplifies
+  exactly to
+  `12(1-\nu^2)T_s\widehat M + (\sin\varphi/r)e_\theta - \bar q = 0`.
+  However this does **not** give a usable theorem-facing background asymptotic
+  regime on the present clean package:
+  the preserved center BC `\widehat Q(x_0)=0` is inconsistent with the
+  leading-order balance for nonzero load, and the preserved edge BCs
+  `T_s(1)=0`, `\widehat M(1)=0` force an extra compatibility relation
+  `(\sin\varphi(1)/r(1))e_\theta(1)=\bar q`
+  that is not part of the live BC vector.
+  So the exact large-`\mu` / large-`\Lambda` audit is negative on the current
+  package: one formal singular channel appears, but no square closed finite-`n`
+  leading-order background problem emerges without enlarging the regime.
+- Type: `structural/formal claim`
+- Source file(s):
+  `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`;
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_theory_verification_map.md`.
+- Current status:
+  `manual+CAS checked negative knowledge: the renormalized live system has one explicit epsilon^{-2} channel in Qhat', the derived leading-order shear balance is correct, but the regular limit is not BC-compatible on the preserved live package, so mu/Lambda does not currently provide a usable finite-n background asymptotic regime`
+- What counts as verification:
+  exact extraction of the live ODE/BC package, exact renormalization of all six
+  first-order equations, and a consistency audit proving either:
+  1. a square leading-order ODE/algebraic limit with the preserved BC package;
+  2. or an explicit incompatibility / missing compatibility layer blocking such
+     a limit on the current formulation.
+- Verification method:
+  manual symbolic derivation from the live solver equations, together with a
+  small CAS sanity check of the renormalized formulas and the exact shear-
+  balance simplification.
+- Verification boundary:
+  this does not change equations, BCs, solver behavior, or assumptions; it does
+  not prove Assumption LC, does not derive the later nonsymmetric reduced
+  problem, and does not rule out that a different enlarged regime
+  (`\bar q`-family, extra center/edge scale, or modified asymptotic package)
+  might work. It only says that the present exact live package does not close
+  under the default large-`\mu` probe.
+- Next action:
+  do not treat the current large-`\mu` renormalization as a closed theorem-
+  facing background regime. Any future return to this route must first specify
+  what is being enlarged beyond the present package:
+  a joint load family, an additional center/edge scale, or another explicit
+  compatibility layer. Keep `n=O(1)` unless such a new regime is stated
+  explicitly.
+### V-S129. The previous negative `\mu`-probe upgrades to a class-level no-go for the whole natural regular large-`\mu` scaling class on the live 6-state simple-support background
+
+- ID: `V-S129`
+- Claim / Hypothesis:
+  Fix the active exact 6-state axisymmetric simple-support background with the
+  preserved BC vector
+  `T_{sn}(x_0)=0`, `u_r(x_0)=0`, `\varphi(x_0)=0`, `T_s(1)=0`, `M_s(1)=0`,
+  `u_z(1)=0`, and fix a nonzero load `\bar q`.
+  Consider the natural regular large-`\mu` scaling class
+  `T_s,u_r,\varphi,e_s,T_\theta,\kappa_s=O(1)`,
+  `M_s=O(\mu^{-2})`,
+  `T_{sn}=O(\mu^{-2})`,
+  `u_z=O(\mu)`,
+  equivalently
+  `T_s,\widehat M,\widehat Q,\widehat z,u_r,\varphi=O(1)`,
+  with a regular leading-order limit on `[x_0,1]`.
+  Then no usable square leading-order background problem survives on the
+  current clean package.
+  More sharply:
+  `A. closure obstruction` is present but not logically decisive by itself,
+  because after the leading-order shear constraint
+  `F=12(1-\nu^2)T_s\widehat M + (\sin\varphi/r)e_\theta - \bar q = 0`
+  removes the explicit `\widehat Q'` transport, differentiating `F=0` still
+  recovers `\widehat Q` linearly through the coefficient
+  `12(1-\nu^2)T_s`.
+  So away from `T_s=0`, the formal limit can still be read as an index-1 DAE.
+  `B. BC obstruction` is decisive:
+  the preserved center BCs force
+  `12(1-\nu^2)T_s(x_0)\widehat M(x_0)=\bar q`
+  and simultaneously
+  `(T_s\widehat M)'(x_0)=0`,
+  while the regular leading-order ODE channels plus
+  `\widehat Q(x_0)=0`
+  imply
+  `(T_s\widehat M)'(x_0) = -\bar q/[6(1+\nu)x_0] \neq 0`.
+  Therefore the class is inconsistent for nonzero load.
+  The edge compatibility condition
+  `(\sin\varphi(1)/r(1))e_\theta(1)=\bar q`
+  is a second incompatibility but not needed for the no-go proof.
+- Type: `structural/formal claim`
+- Source file(s):
+  `src/shell_buckling/mixed_weak/axisymmetric_simple_support_background.py`;
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_theory_verification_map.md`.
+- Current status:
+  `manual+CAS checked class-level negative knowledge: on the live clean package, the whole natural regular large-mu scaling class fails for nonzero load; closure loss alone does not prove the no-go, but the preserved center BCs already force a contradiction`
+- What counts as verification:
+  a direct proposition-level proof from the exact renormalized system, the
+  derived leading-order shear constraint, and the preserved BC package that
+  either:
+  1. shows the whole regular scaling class is inconsistent; or
+  2. identifies a consistent square leading-order problem within that class.
+- Verification method:
+  manual symbolic derivation using the exact renormalized live equations,
+  together with small CAS sanity checks that:
+  1. the differentiated constraint contains `\widehat Q` with coefficient
+     `12(1-\nu^2)T_s`;
+  2. the center contradiction reduces to the nonzero quantity
+     `-\bar q/[6(1+\nu)x_0]`.
+- Verification boundary:
+  this does not prove Assumption LC, does not derive the later nonsymmetric
+  reduced problem, and does not identify a preferred replacement scaling.
+  It only proves that the current regular class itself cannot support the
+  desired large-`\mu` background regime on the preserved exact package.
+- Next action:
+  if a large-`\mu` route is ever reopened, it must leave the present natural
+  regular scaling class or enlarge the regime explicitly; it is no longer
+  enough to vary only the default `\widehat M`, `\widehat Q`, `\widehat z`
+  renormalization inside the same regular class. Keep `n=O(1)` unless some
+  different regime is spelled out explicitly.
