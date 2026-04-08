@@ -1,3 +1,75 @@
+## 2026-04-08 - Identify the weakest sufficient `F_T` target as the pullback of the flexural-admissible `lambda_c` region
+
+- Affected files:
+  - `docs/theory/current_theory_verification_map.md`
+  - `CHANGELOG.md`
+- Added a theorem/docs continuation pass that sharpens the active `F4` blocker above `LC`.
+- Recorded that the exact flexural target is already packaged by the explicit tests
+  `det(G_flex)=0`,
+  `det(G_flex-I)!=0`,
+  and the remaining cubic/Hurwitz conditions for `chi_flex`.
+- Recorded that the weakest sufficient condition is not a default one-sided sign law, but membership of `lambda_c` in the flexural-admissible region cut out by those explicit tests, together with the exact pullbacks
+  `lambda_c - 1 = (1-nu)T_{s0}(0)` and
+  `T_{s0}(0) = -∫ eta F_T`.
+- Recorded that the earlier package `H >= 0` plus weighted domination remains stronger than necessary for a one-sided sign conclusion and is only a partial heuristic route relative to the full flexural target.
+- Fixed the first sharper missing ingredient inside `F4` as extraction of the admissible `lambda_c` interval/region from the explicit flexural polynomial tests before any final weighted comparison theorem can be stated in fully minimal form.
+- Kept solver equations, BCs, numerics, and assumptions unchanged; no new assumptions were introduced and no new files were created.
+
+## 2026-04-08 - Split the active weighted `F_T` blocker and isolate the first unresolved kernel theorem
+
+- Affected files:
+  - `docs/theory/current_theory_verification_map.md`
+  - `CHANGELOG.md`
+- Added a theorem/docs continuation pass on the active background-kernel blocker above `LC`.
+- Recorded the exact weighted reduction chain
+  `\lambda_c - 1 = (1-\nu)T_{s0}(0)`,
+  `T_{s0}(0) = -\int \eta F_T`,
+  `F_T = e_{\theta 0}/r_0 - \bar q s_0 H`,
+  together with its role in the flexural `G_{flex}` / Hurwitz step.
+- Split the current weighted-control problem into four subtargets `F1`-`F4` and fixed the current theorem-facing verdict that the first genuinely unresolved strict ingredient is `F4`, the direct `\eta`-weighted dominance/comparison theorem for the combined kernel, while `F1`-`F3` remain stronger side routes rather than the default next target.
+- Recorded explicitly that the package `H >= 0` plus weighted domination is sufficient but stronger than necessary; the weaker default target is a direct sign/interval estimate on `F_T` or the equivalent weighted geometry-versus-coupling dominance estimate.
+- Kept solver equations, BCs, numerics, and assumptions unchanged; no new assumptions were introduced and no new files were created.
+
+## 2026-04-08 - Classify the above-LC exact-background criterion chain and fix its first blocker
+
+- Affected files:
+  - `docs/theory/current_simple_support_status.md`
+  - `docs/theory/current_theory_verification_map.md`
+  - `docs/theory/current_simple_support_criterion_rebuild_note.md`
+  - `CHANGELOG.md`
+- Added a docs/theory continuation pass that classifies the active criterion-facing chain above the standing bridge assumption `LC`.
+- Recorded explicitly which arrows are already closed under `LC`, which remain only partially framed, and which later comparison/promotional steps remain open.
+- Fixed the current role of `L_red` under `LC`: exact on the selected family `A_ls`, but not yet licensed as a final ambient criterion object on a theorem-facing selected slice.
+- Recorded that the first blocker above `LC` still sits at conditional `J_0^th` closure, with the sharpened missing ingredient read as clean-background branch control of `T_{s0}(0)` / `\lambda_c` strong enough for the flexural `G_{flex}` / Hurwitz step.
+- Reconfirmed that `B_red` / `B_mix` remain exact descendants on `A_ls`, while `sigma_Bred_bal` and `rho_R2` remain comparison/diagnostic layers only.
+- Kept solver equations, BCs, numerics, and assumptions unchanged; no new assumptions were introduced and no new files were created.
+
+## 2026-04-08 - Clarify LC architecture status and conditional/unconditional navigation on the clean exact-background criterion line
+
+- Affected files:
+  - `docs/theory/current_simple_support_status.md`
+  - `docs/theory/current_theory_verification_map.md`
+  - `docs/theory/current_simple_support_criterion_rebuild_note.md`
+  - `CHANGELOG.md`
+- Added a docs/theory architecture-status clarification pass for the clean full simple-support criterion line.
+- Recorded explicitly that `LC` is an existing unproved working assumption, not a newly introduced assumption, and that in the current stabilized repo reading it remains the standing bridge assumption from `A_full^th,n(q)` to punctured near-center clean mixed continuation.
+- Separated the current branch reading into three layers: unconditional exact selected-family / trace-shadow / hierarchy facts; results available only conditional on `LC`; and the open strict realization-theorem program below `LC`.
+- Re-anchored the active route to exact-background finite-`n` criterion work above `LC` unless the project explicitly chooses to switch to the strict realization-theorem program below it.
+- Kept solver equations, BCs, numerics, and assumptions unchanged; no new assumptions were introduced and no new files were created.
+
+## 2026-04-08 - Consolidate closure of the default mu/Lambda route and restore the exact-background criterion path
+
+- Affected files:
+  - `docs/theory/current_simple_support_status.md`
+  - `docs/theory/current_theory_verification_map.md`
+  - `docs/theory/current_simple_support_criterion_rebuild_note.md`
+  - `CHANGELOG.md`
+- Added a docs-only consolidation pass for the clean high-load simple-support package after the class-level large-`mu` no-go was already fixed.
+- Recorded explicitly that `mu` / `Lambda` was the only plausible intrinsic non-`n` background asymptotic candidate visible on the preserved clean package, and that its natural regular large-`mu` scaling class is now a closed route for fixed nonzero load.
+- Recorded that the decisive no-go mechanism is the preserved-BC contradiction, while loss of explicit `Qhat'` transport is only a closure warning and not the decisive obstruction by itself.
+- Restored the active next-step wording to the exact-background criterion line with finite discrete `n`, keeping `L_red > B_red > B_mix` explicit and treating further non-`n` asymptotic hunting as inactive unless a genuinely enlarged regime is stated first.
+- Kept solver equations, BCs, numerics, and assumptions unchanged; no new files were created.
+
 ## 2026-04-07 - Upgrade the negative mu-probe to a class-level no-go for the natural regular large-mu scaling class
 
 - Affected files:

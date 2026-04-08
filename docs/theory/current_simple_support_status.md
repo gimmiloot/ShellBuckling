@@ -58,6 +58,77 @@ For operational reading on the current clean branch:
 - use `docs/theory/current_simple_support_object_glossary.md` for stable object
   definitions.
 
+## Current High-Load Route Reading
+For the clean high-load criterion-facing problem, read the branch in the
+following layered way:
+
+- `exact:` the target remains
+  `exact axisymmetric background -> nonsymmetric bifurcation problem with finite discrete n -> criterion-facing critical-load reading`;
+- `closed route:` on the preserved clean package, `\mu` / `\Lambda` was the
+  only plausible intrinsic non-`n` background asymptotic candidate already
+  visible in the formulation, and its natural regular large-`\mu` scaling
+  class is now closed for fixed nonzero `\bar q`;
+- `derived reason for closure:` the decisive obstruction is the preserved
+  center-BC contradiction; loss of the explicit `\widehat Q` transport is only
+  a closure warning and is not decisive by itself;
+- `scope:` this closes the currently visible natural regular large-`\mu` route
+  on the preserved clean package; it does not claim that every enlarged
+  asymptotic regime is impossible;
+- `active route:` the next theorem-facing move returns to the exact-background
+  criterion line with finite discrete `n`, keeping `L_red > B_red > B_mix`
+  explicit and treating further non-`n` asymptotic hunting as inactive unless
+  a genuinely enlarged regime is stated first.
+
+## Current Architecture Reading Under `LC`
+
+- `standing assumption:` `LC` is an existing unproved working assumption on the
+  clean branch, not a newly introduced assumption. In the current stabilized
+  repo reading it remains the bridge assumption from the ambient class
+  `A_full^th,n(q)` to punctured near-center clean mixed continuation.
+- `unconditional:` the exact selected-family / trace-shadow facts on the
+  repository-selected boundary are already available; `L_red > B_red > B_mix`
+  remains the criterion-facing hierarchy on a fixed selected family;
+  descendant/comparison machinery stays subordinate to `L_red`; and the
+  default `\mu` / `\Lambda` route is a closed route on the preserved clean
+  high-load package.
+- `conditional on LC:` the ambient-to-local witness/germ machinery, local
+  renormalized objects, one-term asymptotic extraction, leading coefficients,
+  and ambient `J_0^th`-type trace work all remain available only conditionally
+  on `LC`.
+- `open strict theorem program:` the strict realization theorem below `LC`
+  remains open: derive punctured near-center clean mixed continuation directly
+  from the ambient admissible / center-regular class
+  `A_full^th,n(q)`. The repo should not silently read `A_full^th,n(q)` as
+  already locally realized on punctured intervals.
+- `active route:` unless the project explicitly reactivates that strict
+  realization-theorem program below `LC`, the active criterion-facing route is
+  exact-background finite-`n` criterion work above `LC`, keeping descendants
+  subordinate to `L_red` and not promoting them to final criterion objects.
+
+## Current Above-`LC` Criterion Chain
+
+- `conditional chain:` under Assumption `LC`, read the current theorem-facing
+  criterion line as
+  `Rep_loc^{n,q}(c,G) -> J_0^th,n,q -> {c in A_full^th,n(q) : J_0^th,n,q(c) in im(D_amp,n(q))} -> compare with A_ls -> ker(L_red,n(q)) <-> A_ls,n(q) ∩ ker(L_full,n(q)) -> B_red -> B_mix -> sigma_Bred_bal / rho_R2`.
+- `closed under LC:` the witness/germ statement `Rep_loc^{n,q}(c,G)`; the
+  logical implication `J_0^th` well-defined `=>` selected-trace slice
+  meaningful; the exact selected-family bridge
+  `ker(L_red) <-> A_ls ∩ ker(L_full)`; and the descendant identities defining
+  `B_red` and `B_mix` on `A_ls`.
+- `only partially framed under LC:` the passage from the punctured local witness
+  to a closed ambient trace map `J_0^th`; and the later comparison from the
+  selected-trace slice or any theorem-facing selected overclass down to the
+  exact selected family `A_ls`.
+- `first blocker above LC:` still earlier than selector authority on the
+  present chain. The conditional `J_0^th` line is not yet closed; in the
+  current sharpened reading its first missing ingredient is theorem-facing
+  clean-background branch control of `T_{s0}(0)` / `\lambda_c` strong enough
+  for the flexural `G_{flex}` / Hurwitz step.
+- `role of descendants:` `B_red` and `B_mix` remain exact descendants on the
+  selected family, while `sigma_Bred_bal` and `rho_R2` remain
+  comparison/diagnostic outputs and are not promoted to final criterion
+  objects, even under `LC`.
+
 ## Physical-Semantic Screening Rule For Theorem-Facing Claims
 Before promoting any new theorem-facing target, blocker, lemma, or
 spectral/geometric claim on the clean full `J_0` branch, future passes must
@@ -2458,10 +2529,11 @@ Still open and now the true bottleneck:
   regular large-`\mu` scaling class fails. The decisive no-go mechanism is the
   preserved-BC contradiction, while the lost `\widehat Q` transport is only an
   additional closure warning.
-  So, for the clean-background route back to the flexural quadratic/Hurwitz
-  step on the fallback line, the branch is now blocked exactly by this missing
-  direct endpoint comparison, not by geometry-side admissibility or by local
-  packaging.
+  Therefore the current default `\mu` / `\Lambda` high-load theorem route is a
+  closed route on the preserved clean package. The active theorem-facing route
+  returns to exact-background criterion work with finite discrete `n`, keeping
+  `L_red > B_red > B_mix` explicit and not treating further non-`n`
+  asymptotic hunting as the next move.
 - strict-line boundary:
   this conditional reduction does not discharge Assumption LC and does not
   close the strict ambient-to-local continuation theorem.
@@ -2782,9 +2854,11 @@ The shallow-comparison picture is now sharper but still conservative:
   ceiling band.
 
 ## Current Next Step
-The preferred next move is no longer deeper continuation of the same checked
-local theorem branch. That branch is frozen for now at Outcome B on its current
-checked boundary.
+The preferred next move is now exact-background criterion work on the clean
+high-load package, not further default non-`n` asymptotic hunting. The checked
+local theorem branch is frozen for now at Outcome B on its current checked
+boundary, and the current default `\mu` / `\Lambda` route is closed on the
+preserved package by the class-level no-go recorded above.
 
 Operationally, the clean full `simple support / РїРѕРґРІРёР¶РЅС‹Р№ С€Р°СЂРЅРёСЂ` workflow still
 keeps the same high-load discipline:
@@ -2799,11 +2873,17 @@ keeps the same high-load discipline:
   wrappers only as legacy/exploratory testbenches;
 - keep candidate loads reported conservatively as exploratory, supported,
   unstable-rival, or reserve readings rather than as final physical critical
-  loads.
+  loads;
+- do not reopen default `\mu` / `\Lambda` hunting on the preserved clean
+  package unless an explicitly enlarged regime is formulated first.
 
-The theorem-facing next move is now selection-authority clarification above the
-current criterion story, not a new numerical winner search:
+The theorem-facing next move is exact-background criterion work with finite
+discrete `n`, including selection-authority clarification inside the current
+criterion story, not a new asymptotic search and not a new numerical winner
+search:
 
+- keep the exact 6-state background as the active background object and keep
+  finite discrete `n` as the live mode architecture;
 - keep `A_ls` as the current repo-selected family, but not as a
   criterion-authoritative family;
 - keep `L_red` as the main reduced theorem-facing operator on a fixed selected

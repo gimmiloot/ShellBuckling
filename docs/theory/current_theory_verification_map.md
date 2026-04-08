@@ -7794,10 +7794,314 @@ Most valuable next proof pilots:
   this does not prove Assumption LC, does not derive the later nonsymmetric
   reduced problem, and does not identify a preferred replacement scaling.
   It only proves that the current regular class itself cannot support the
-  desired large-`\mu` background regime on the preserved exact package.
+  desired large-`\mu` background regime on the preserved exact package; it does
+  not rule out every conceivable enlarged asymptotic family.
 - Next action:
   if a large-`\mu` route is ever reopened, it must leave the present natural
   regular scaling class or enlarge the regime explicitly; it is no longer
   enough to vary only the default `\widehat M`, `\widehat Q`, `\widehat z`
   renormalization inside the same regular class. Keep `n=O(1)` unless some
   different regime is spelled out explicitly.
+### V-S130. V-S128 and V-S129 close the current default `\mu` / `\Lambda` route on the clean high-load package and return the active next step to exact-background finite-`n` criterion work
+
+- ID: `V-S130`
+- Claim / Hypothesis:
+  Read the current clean high-load package in the following layered way.
+  `exact:` the target problem remains
+  `exact axisymmetric background -> nonsymmetric bifurcation problem with finite discrete n -> criterion-facing critical-load reading`.
+  `closed route:` among the intrinsic non-`n` candidates currently visible on
+  the preserved clean package, `\mu` / `\Lambda` is the only plausible default
+  background asymptotic line, and V-S129 closes its natural regular
+  large-`\mu` scaling class for fixed nonzero load.
+  `theorem-facingly fixed:` therefore no usable default non-`n` background
+  asymptotic regime is currently available on the preserved package for the
+  high-load criterion problem.
+  `active route:` the next theorem-facing work should proceed on the exact-
+  background criterion line, keeping finite discrete `n` and the hierarchy
+  `L_red > B_red > B_mix`, rather than continuing non-`n` asymptotic hunting
+  on the same package.
+- Type: `interpretation claim`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
+  `docs/theory/current_theory_verification_map.md`.
+- Current status:
+  `theorem-facingly fixed route reading: the current default mu/Lambda line is closed on the preserved clean package; the active route is exact-background finite-n criterion work`
+- What counts as verification:
+  a route reading consistent with the already fixed structural claims V-S128
+  and V-S129 and with the current criterion hierarchy recorded on the clean
+  branch.
+- Verification method:
+  manual synthesis of already fixed structural claims and criterion-facing note
+  hierarchy.
+- Verification boundary:
+  this does not create a new criterion, does not solve the exact-background
+  criterion problem itself, and does not claim that every enlarged asymptotic
+  family is impossible.
+- Next action:
+  continue exact-background criterion architecture on finite discrete `n`,
+  keep descendants/diagnostics subordinate to `L_red`, and only reopen
+  asymptotic hunting if an explicitly enlarged regime is stated first.
+
+### V-S131. The current clean-branch architecture is now fixed as an unconditional / `LC`-conditional / open-strict split, with `LC` retained as a standing bridge assumption rather than a newly introduced hypothesis
+
+- ID: `V-S131`
+- Claim / Hypothesis:
+  Read the present clean full simple-support branch in the following layered
+  architecture.
+  `unconditional:` exact selected-family and trace-shadow facts on the current
+  repository-selected boundary are available, the hierarchy
+  `L_red > B_red > B_mix` remains fixed on a chosen selected family, old `R2`
+  machinery is subordinate descendant/comparison machinery rather than a final
+  criterion object, and V-S130 closes the default `\mu` / `\Lambda` route and
+  returns the active next step to exact-background finite-`n` criterion work.
+  `conditional on LC:` ambient-to-local witness/germ statements,
+  local renormalized objects, one-term asymptotic extraction, leading
+  coefficients, and ambient `J_0^th`-type trace work are currently available
+  only under Assumption LC.
+  `open strict theorem program:` below `LC` remains the strict realization
+  theorem from the ambient class `A_full^th,n(q)` to punctured near-center
+  clean mixed continuation in the current mixed variables.
+  `standing assumption:` `LC` is an existing explicit unproved working
+  assumption on the current branch reading, not a newly introduced assumption.
+  `current architecture verdict:` `A_full^th,n(q)` is intended long-term to be
+  a realized ambient class, but the currently licensed repo reading still
+  treats strict local realization as not yet derived from that class.
+- Type: `structural/formal claim`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`;
+  `docs/theory/current_simple_support_object_glossary.md`.
+- Current status:
+  `architecture reading fixed: LC remains a standing bridge assumption; work below LC is an open strict theorem program; the active route above LC is conditional`
+- What counts as verification:
+  a source-of-truth clarification that keeps `LC` explicit as an old unproved
+  bridge assumption, separates unconditional results from the `LC`-conditional
+  layer and the open strict realization program below it, and preserves the
+  active exact-background finite-`n` criterion route without reopening default
+  asymptotic hunting.
+- Verification method:
+  manual synthesis of the already fixed ambient-class, `LC`, and route-reading
+  notes.
+- Verification boundary:
+  this does not discharge `LC`, does not prove the strict realization theorem
+  below it, and does not create a new assumption. It only fixes the current
+  architecture/status reading.
+- Next action:
+  unless the project explicitly switches to the strict realization-theorem
+  program below `LC`, continue exact-background finite-`n` criterion work above
+  `LC`, keeping descendants/diagnostics subordinate to `L_red`.
+
+### V-S132. Under Assumption `LC`, the current above-`LC` criterion chain is now fixed: the selected-family bridge and descendant identities are exact, while the first remaining blocker still sits at conditional `J_0^th` closure rather than at selector authority
+
+- ID: `V-S132`
+- Claim / Hypothesis:
+  On the present clean full simple-support branch, read the active
+  criterion-facing line under Assumption `LC` in the following order:
+  `Rep_loc^{n,q}(c,G)
+   -> J_0^th,n,q
+   -> A_con^th,n(q) := {c in A_full^th,n(q) : J_0^th,n,q(c) in im(D_amp,n(q))}
+   -> compare with A_ls,n(q)
+   -> ker(L_red,n(q)) <-> A_ls,n(q) ∩ ker(L_full,n(q))
+   -> B_red,n(q) -> B_mix,n(q) -> sigma_Bred_bal / rho_R2`.
+  `closed under LC:` the witness/germ step `Rep_loc^{n,q}(c,G)` itself; the
+  proof-skeleton implication `J_0^th` well-defined `=>` the selected-trace
+  slice `A_con^th` is meaningful; the exact selected-family bridge
+  `ker(L_red) <-> A_ls ∩ ker(L_full)`; and the descendant identities
+  `B_red = B_full V_adm`, `B_mix = B_red G_amp`.
+  `only partially framed under LC:` the passage
+  `Rep_loc^{n,q}(c,G) -> J_0^th,n,q`, because the conditional local/trace line
+  is reduced but not closed; and the later passage from the selected-trace
+  slice `A_con^th` or any theorem-facing selected overclass down to the exact
+  selected family `A_ls`.
+  `still open under LC:` no theorem yet identifies the selected-trace slice
+  with `A_ls`, no theorem yet closes the losslessness / representative-law
+  comparison above `A_ls`, and no theorem yet promotes `B_red`, `B_mix`,
+  `sigma_Bred_bal`, or `rho_R2` to final criterion objects.
+  `first blocker above LC:` still earlier than selector authority on the
+  present chain; the conditional `J_0^th` line is the first remaining gap, and
+  in the latest sharpened reading its exact missing ingredient is theorem-
+  facing clean-background branch control of `T_{s0}(0)` / `\lambda_c` strong
+  enough for the flexural `G_{flex}` sign/Hurwitz step.
+- Type: `structural/formal claim`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_rebuild_note.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`.
+- Current status:
+  `above-LC chain fixed: exact selected-family and descendant layers are closed, but the first blocker remains conditional J_0^th closure before selector-authority/losslessness`
+- What counts as verification:
+  a source-of-truth classification that explicitly separates:
+  the closed selected-family bridge and descendant identities,
+  the still-open conditional `J_0^th` stage,
+  and the later selected-slice / selected-family comparison gap,
+  without promoting descendant diagnostics above `L_red`.
+- Verification method:
+  manual synthesis of the already fixed `LC` architecture, the conditional
+  local-trace reduction chain, the exact selected-family bridge, and the
+  selected-family descendant hierarchy.
+- Verification boundary:
+  this does not discharge `LC`, does not close the conditional `J_0^th` line,
+  does not prove the selected-slice / `A_ls` comparison theorem, and does not
+  promote descendant diagnostics to final criterion objects. It only fixes the
+  current above-`LC` chain reading and the location of its first blocker.
+- Next action:
+  keep the active route above `LC`, but read its order sharply:
+  first close the conditional `J_0^th` line if that program is pursued;
+  only after that should the selected-slice / `A_ls` comparison, losslessness,
+  representative law, and selector-authority questions become the first
+  blocker.
+
+### V-S133. On the active `F_T` route, the weighted background-control problem is now best split into four subtargets, and the first genuinely unresolved strict ingredient is the weighted dominance theorem itself rather than the stronger side conditions
+
+- ID: `V-S133`
+- Claim / Hypothesis:
+  Fix `(n,q)` and assume Assumption `LC`.
+  On the current clean branch, the active background-control route for the
+  flexural Hurwitz step already runs through the exact chain
+  `\lambda_c - 1 = (1-\nu)T_{s0}(0)`,
+  `T_{s0}(0) = -\int_{x_0}^1 \eta F_T`,
+  `F_T = e_{\theta 0}/r_0 - \bar q s_0 H`,
+  together with the explicit quadratic tests
+  `\det G_{flex}` and `\det(G_{flex}-I)` and the Hurwitz determinants of the
+  explicit cubic `\chi_{flex}`.
+  The current weighted-kernel problem is therefore best split as follows.
+  `F1:` global sign/range control of `H`.
+  `F2:` sign/size control of the coupling factor `s_0 H`.
+  `F3:` sign/size control of the geometry factor `e_{\theta 0}/r_0`
+  equivalently `(r_0-x)/(x r_0)`.
+  `F4:` a direct `\eta`-weighted comparison/dominance theorem strong enough to
+  control `T_{s0}(0)` from the combined kernel `F_T`, for example
+  `\int_{x_0}^1 \eta(r_0-x)/(x r_0)
+   \ge
+   \bar q \int_{x_0}^1 \eta(s_0 H)^+`
+  for the upper-sign direction, or any equally weak direct sign/interval bound
+  on `F_T`.
+  On the current source-of-truth reading:
+  `F1` is only partially available, because `H(x_0)=1` and `H'(x_0)=-\nu/x_0`
+  already give local positivity near `x_0`, but no global sign/range law is
+  closed.
+  `F2` and `F3` are not closed globally.
+  However they are also stronger than necessary for the active route:
+  the notes already reject them as default next targets under the
+  physical-semantic screen.
+  So the first genuinely unresolved strict ingredient is `F4`, namely the
+  direct weighted comparison/cancellation theorem for the combined kernel.
+  Equivalently, the current exact sufficient package
+  `H \ge 0` plus
+  `\int \eta e_{\theta 0}/r_0 \ge \bar q \int \eta(Hs_0)^+`
+  is stronger than necessary; the weaker and more natural default target is
+  the weighted dominance estimate itself, or any direct interval bound on
+  `F_T` that yields the required sign/interval law for `T_{s0}(0)`.
+- Type: `structural/formal claim`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`.
+- Current status:
+  `weighted F_T route split sharply: F1-F3 remain open stronger side routes, while the first genuinely unresolved strict ingredient is F4, the direct eta-weighted dominance theorem`
+- What counts as verification:
+  a source-of-truth classification that:
+  1. records the exact reduction chain from `T_{s0}(0)` / `\lambda_c` to the
+     flexural Hurwitz tests;
+  2. separates the stronger sufficient side conditions from the weaker direct
+     combined-kernel target;
+  3. fixes which subtarget is the first genuinely unresolved strict ingredient
+     on the present branch.
+- Verification method:
+  manual synthesis of the already fixed flexural-block packaging,
+  center-background identities, and weighted `F_T` reductions in the current
+  source notes.
+- Verification boundary:
+  this does not prove the weighted dominance theorem, does not sign
+  `T_{s0}(0)`, does not decide the flexural Hurwitz step, and does not add a
+  new assumption. It only sharpens the blocker structure inside the already
+  active `F_T` route.
+- Next action:
+  keep the honest default next target at `F4`: prove a direct `\eta`-weighted
+  comparison / cancellation estimate for the combined kernel `F_T`, rather
+  than first proving stronger global sign theorems for `H`, `s_0 H`, or
+  `e_{\theta 0}/r_0`.
+
+### V-S134. Inside `F4`, the weakest sufficient target is the pullback of the flexural-admissible `\lambda_c` region through `T_{s0}(0) = -\int \eta F_T`; the first sharper missing ingredient is extraction of that admissible region from the explicit flexural polynomial tests
+
+- ID: `V-S134`
+- Claim / Hypothesis:
+  Fix `(n,q)` and assume Assumption `LC`.
+  On the current clean branch, the exact flexural target already has an
+  explicit polynomial packaging:
+  `G_{flex}` is explicit,
+  `\chi_{flex}` is explicit,
+  `\det G_{flex}` and `\det(G_{flex}-I)` are explicit quadratic tests in
+  `\lambda_c`,
+  and the remaining local spectral/Hurwitz question is whether the current
+  branch satisfies:
+  1. `\det G_{flex} = 0`,
+  2. `\det(G_{flex}-I) \neq 0`,
+  3. no root of `\chi_{flex}` lies in `0 < \Re \lambda < 1`,
+  4. if `0` is a flexural root then it is simple / semisimple.
+  Therefore the exact weakest sufficient condition on `\lambda_c` is not a
+  priori a one-sided sign law such as `\lambda_c \le 1` or `\lambda_c \ge 1`,
+  but membership in the flexural-admissible region
+  `\Lambda_{flex}^{adm}(n,\nu)`
+  cut out by those explicit quadratic/cubic tests.
+  Pulling this back through the exact background identities
+  `\lambda_c - 1 = (1-\nu)T_{s0}(0)`
+  and
+  `T_{s0}(0) = -\int_{x_0}^1 \eta(x)F_T(x)\,dx`
+  gives the exact weakest sufficient targets
+  `T_{s0}(0) in T_{flex}^{adm}(n,\nu)
+   := {T : 1 + (1-\nu)T in \Lambda_{flex}^{adm}(n,\nu)}`
+  and
+  `\int_{x_0}^1 \eta F_T in I_{flex}^{adm}(n,\nu)
+   := {I : 1 - (1-\nu)I in \Lambda_{flex}^{adm}(n,\nu)}`.
+  If later `\Lambda_{flex}^{adm}` is shown to be an interval or half-line,
+  this pullback becomes the corresponding weakest interval inequality on
+  `T_{s0}(0)` and on `\int \eta F_T`.
+  Compared with the currently recorded sufficient package
+  `H \ge 0` and
+  `\int \eta e_{\theta 0}/r_0 \ge \bar q \int \eta(Hs_0)^+`,
+  the situation is now:
+  that package is stronger than necessary for a one-sided sign conclusion on
+  `T_{s0}(0)`, but relative to the full flexural target it is only a partial
+  heuristic sufficient route, because the repo has not yet proved that the
+  induced one-sided control places `\lambda_c` inside the exact admissible
+  flexural region.
+  So inside `F4`, the first sharper unresolved strict ingredient is now
+  earlier than any direct weighted geometry-versus-coupling estimate:
+  it is extraction of the admissible `\lambda_c` region itself from the
+  explicit flexural polynomial tests.
+- Type: `structural/formal claim`
+- Source file(s):
+  `docs/theory/current_simple_support_status.md`;
+  `docs/theory/current_simple_support_criterion_bridge_note.md`;
+  `docs/theory/current_theory_verification_map.md`.
+- Current status:
+  `weakest sufficient F4 target identified abstractly as pullback of the flexural-admissible lambda_c region; first sharper missing ingredient is interval/region extraction from the explicit flexural tests`
+- What counts as verification:
+  a source-of-truth statement that:
+  1. fixes the exact flexural target through the explicit quadratic/cubic
+     conditions;
+  2. identifies the weakest sufficient `\lambda_c`, `T_{s0}(0)`, and
+     `\int \eta F_T` conditions as pullbacks of that target;
+  3. separates this exact weakest target from the stronger heuristic package
+     `H \ge 0` plus weighted domination;
+  4. isolates the first sharper unresolved strict ingredient as interval/region
+     extraction from the explicit flexural polynomial tests.
+- Verification method:
+  manual synthesis of the already fixed flexural polynomial packaging and the
+  exact pullback identities through `T_{s0}(0)` and `\int \eta F_T`.
+- Verification boundary:
+  this does not solve the flexural polynomial tests, does not sign
+  `T_{s0}(0)`, does not prove the weighted comparison theorem, and does not add
+  a new assumption. It only identifies the exact weakest sufficient target and
+  the first sharper sublemma still missing inside `F4`.
+- Next action:
+  first extract theorem-facing interval/region information for
+  `\Lambda_{flex}^{adm}(n,\nu)` from the explicit tests
+  `\det G_{flex}`, `\det(G_{flex}-I)`, and `\chi_{flex}`;
+  then pull that region back to the corresponding target for
+  `\int \eta F_T`.

@@ -1906,6 +1906,98 @@ Conservative conclusion:
 - this remains a narrow local/trace obstruction and does not reopen selector
   authority, codomain choice, or clean-path consistency.
 
+### A2v. Current architecture-status reading under `LC`
+
+The clean branch should now be read with one explicit architecture split.
+
+- `intended architecture:` long-term, `A_full^th,n(q)` should behave as a
+  realized equation-bearing ambient class for the current clean mixed problem.
+- `currently licensed architecture:` on the present repo boundary,
+  `A_full^th,n(q)` is still only licensed as an ambient admissible /
+  center-regular compatibility class. The repo does not yet support reading it
+  as already locally realized on punctured intervals.
+- `standing assumption:` `LC` is therefore retained as an existing unproved
+  working assumption, not a newly added assumption. In the current live
+  reading it is the bridge assumption from `A_full^th,n(q)` to punctured near-
+  center clean mixed continuation in the current mixed variables.
+- `unconditional:` the selected-family boundary package
+  `A_ls`, `J_0 = C_center`, `J_0(A_ls) = im(D_amp)`,
+  `ker(L_red) <-> A_ls ∩ ker(L_full)`, the hierarchy
+  `L_red > B_red > B_mix`, and the closed default `\mu` / `\Lambda` route all
+  remain available without `LC`.
+- `conditional on LC:` the witness/germ language `Rep_loc^{n,q}(c,G)`,
+  local/chart machinery above punctured continuation, local renormalized
+  objects, one-term asymptotic extraction, leading coefficients, and ambient
+  `J_0^th`-type trace work should all be read as conditional on `LC`.
+- `open strict theorem program:` the strict theorem below `LC` remains the
+  realization theorem
+  `A_full^th,n(q) ->` punctured near-center clean mixed continuation.
+- `active route:` unless the project explicitly switches to that strict
+  realization-theorem program below `LC`, the active criterion-facing route
+  should stay on exact-background finite-`n` criterion work above `LC`, keeping
+  descendants/diagnostics subordinate to `L_red`.
+
+This clarification does not discharge `LC`, does not add a new assumption, and
+does not prove the strict realization theorem below `LC`. It only stabilizes
+the current theorem-facing architecture.
+
+### A2w. Current above-`LC` criterion-chain reading
+
+Under Assumption `LC`, the current theorem-facing criterion line should now be
+read in the following explicit order:
+
+```text
+Rep_loc^{n,q}(c,G)
+    -> J_0^th,n,q
+    -> A_con^th,n(q) := {c in A_full^th,n(q) : J_0^th,n,q(c) in im(D_amp,n(q))}
+    -> compare with A_ls,n(q)
+    -> ker(L_red,n(q)) <-> A_ls,n(q) ∩ ker(L_full,n(q))
+    -> B_red,n(q) -> B_mix,n(q) -> sigma_Bred_bal / rho_R2.
+```
+
+Status of the arrows on the present branch:
+
+- `closed under LC:` the witness/germ step `Rep_loc^{n,q}(c,G)` itself; the
+  logical implication `J_0^th` well-defined `=>` the selected-trace slice
+  `A_con^th` is meaningful; the exact selected-family kernel bridge
+  `ker(L_red) <-> A_ls ∩ ker(L_full)`; and the descendant identities
+  `B_red = B_full V_adm`, `B_mix = B_red G_amp`.
+- `only partially framed under LC:` the passage
+  `Rep_loc^{n,q}(c,G) -> J_0^th,n,q`, because the conditional local/trace line
+  is sharply reduced but not closed; and the passage from the selected-trace
+  slice `A_con^th` or any theorem-facing selected overclass down to the exact
+  selected family `A_ls`.
+- `still open under LC:` no theorem yet identifies the selected-trace slice
+  with `A_ls`, no theorem yet closes the losslessness / representative-law
+  comparison above `A_ls`, and no theorem yet promotes boundary descendants or
+  their diagnostics to final criterion objects.
+
+What `L_red` already gains under `LC`:
+
+- `L_red` remains the main exact theorem-facing reduced object on the exact
+  selected family `A_ls`.
+- if the later selected-slice comparison were closed, `L_red` is already the
+  right object waiting on that bridge.
+- but the current notes do not yet license reading `L_red` as a final ambient
+  criterion object on a theorem-facing selected slice, because the chain
+  `Rep_loc -> J_0^th -> A_con^th -> A_ls` is not yet fully closed.
+
+First blocker above `LC` on the current chain:
+
+- it is still earlier than selector authority, representative law, or
+  losslessness;
+- the first remaining blocker is the conditional `J_0^th` line itself;
+- in the latest sharpened reading, that blocker has been reduced to
+  clean-background branch control of `T_{s0}(0)` / `\lambda_c` strong enough
+  for the flexural `G_{flex}` sign/Hurwitz step on the conditional local line.
+
+So the practical reading above `LC` is:
+
+- `B_red` and `B_mix` remain exact descendants on `A_ls`;
+- `sigma_Bred_bal` and `rho_R2` remain comparison/diagnostic layers only;
+- the first theorem-facing gap is still before selector-authority promotion,
+  not after it.
+
 ### A3. What is closed enough theorem-facing
 
 The following criterion-facing blocks are currently closed enough to use:
@@ -2147,6 +2239,21 @@ The best next working target remains **Candidate R2**, but only as the current
 theorem-facing diagnostic baseline on a fixed selected family, not as a
 criterion-authoritative final selector.
 
+For the clean high-load package, the route reading is now:
+
+- `closed route:` `\mu` / `\Lambda` was the only plausible intrinsic non-`n`
+  background asymptotic candidate currently visible in the preserved package,
+  and the natural regular large-`\mu` class at fixed nonzero `\bar q` is now
+  closed by class-level no-go;
+- `derived reason for closure:` the decisive obstruction is the preserved BC
+  contradiction; closure loss alone is not the no-go;
+- `scope:` this does not close every conceivable enlarged asymptotic family;
+  it closes only the current default non-`n` route on the preserved package;
+- `active route:` theorem-facing progress should therefore stay on the exact-
+  background criterion line with finite discrete `n`, keeping
+  `L_red > B_red > B_mix` explicit and using `R2` only as the current
+  diagnostic baseline on a fixed selected family.
+
 Why this is still the right reduced-object target:
 
 - it is anchored on the strongest currently licensed theorem-facing object,
@@ -2166,15 +2273,19 @@ Why it still cannot be promoted further yet:
 
 Exact next checks needed after this rebuild:
 
-1. keep `L_red`-based and `rho_R2`-based readings only as diagnostics on an
+1. keep the exact background and finite discrete `n` mode architecture fixed;
+2. keep `L_red`-based and `rho_R2`-based readings only as diagnostics on an
    explicitly chosen family;
-2. isolate what would actually make a selection rule criterion-authoritative on
+3. isolate what would actually make a selection rule criterion-authoritative on
    the present clean boundary;
-3. decide whether that authority would have to come from a theorem-facing
+4. decide whether that authority would have to come from a theorem-facing
    weak/KKT rule, a local-to-global selected-family theorem, or some other
    construction;
-4. return to winner-search language only after the selection-authority layer is
+5. return to winner-search language only after the selection-authority layer is
    no longer open.
+
+On the current package, further theorem-facing progress should come from this
+exact-background criterion work, not from more non-`n` asymptotic hunting.
 
 ## Why This Pass Is Genuinely New
 
